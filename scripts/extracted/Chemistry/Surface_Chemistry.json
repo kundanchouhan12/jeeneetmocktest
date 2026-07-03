@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Surface_Chemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Surface_Chemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Surface Chemistry",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:52",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe INCORRECT statements below regarding colloidal solutions is:\n(1) A colloidal solution shows colligative properties.\n(2) An ordinary filter paper can stop the flow of colloidal particles.\n(3) The flocculating power of  is more than that of \n(4) A colloidal solution shows Brownian motion of colloidal particles.",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nWith respect to drug-enzyme interaction, identify the wrong statement:\n(1) Non-Competitive inhibitor binds to the allosteric site\n(2) Allosteric inhibitor changes the enzyme's active site\n(3) Allosteric inhibitor competes with the enzyme's active site\n(4) Competitive inhibitor binds to the enzyme's active site",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nFor the coagulation of a negative sol, the species below , that has the highest flocculating power is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe char ges on the colloidal CdS sol and  \nsol are, respectively:\n(1) positive and positive\n(2) positive and negative\n(3) negative and negative\n Surface Chemistry\n#PaperPhodnaHai\nSO2−\n4\nBa2+\nNa+\nPO3−\n4\nTiO2\n \n(4) negative and positive",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nA hard substance melts at high temperature and  \nis an insulator in both solid and in molten state. This solid is most likely to be a / an :\n(1) Ionic solid\n(2) Molecular solid\n(3) Metallic solid\n(4) Covalent solid\n Surface Chemistry\n#PaperPhodnaHai",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

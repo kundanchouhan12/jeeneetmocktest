@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Periodic Table",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Electronegativity across a period:",
+    "options": [
+      "Decreases",
+      "Increases",
+      "First increases then decreases",
+      "Remains constant"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Periodic Table",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which has the smallest atomic radius?",
+    "options": [
+      "Na",
+      "Mg",
+      "Al",
+      "Si"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Periodic Table",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The s-block elements are present in groups:",
+    "options": [
+      "1 and 2",
+      "3 to 12",
+      "13 to 18",
+      "All of the above"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

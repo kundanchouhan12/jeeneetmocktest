@@ -1,0 +1,290 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The powerhouse of the cell is:",
+    "options": [
+      "Nucleus",
+      "Ribosome",
+      "Mitochondria",
+      "Golgi apparatus"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "DNA replication is:",
+    "options": [
+      "Conservative",
+      "Semi-conservative",
+      "Dispersive",
+      "None"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Ribosomes are the site of:",
+    "options": [
+      "DNA synthesis",
+      "Protein synthesis",
+      "Lipid synthesis",
+      "ATP synthesis"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Cell wall in plants is composed of:",
+    "options": [
+      "Chitin",
+      "Cellulose",
+      "Peptidoglycan",
+      "Murein"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which organelle is absent in animal cells?",
+    "options": [
+      "Mitochondria",
+      "Ribosome",
+      "Chloroplast",
+      "Endoplasmic reticulum Page 68 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The fluid mosaic model of cell membrane was proposed by:",
+    "options": [
+      "Watson and Crick",
+      "Singer and Nicolson",
+      "Darwin and Wallace",
+      "Schleiden and Schwann"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "During mitosis, chromosomes align at the metaphase plate in:",
+    "options": [
+      "Prophase",
+      "Metaphase",
+      "Anaphase",
+      "Telophase"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Distinguish between prokaryotic and eukaryotic cells. Give two examples of each. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "What is the significance of meiosis in sexually reproducing organisms? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The instrument used to study living cells is called a:",
+    "options": [
+      "Spectrophotometer",
+      "Electron microscope",
+      "Light microscope",
+      "Chromatograph"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "ATP (adenosine triphosphate) is the currency of _____ in all living cells. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Glycolysis occurs in the:",
+    "options": [
+      "Mitochondria",
+      "Nucleus",
+      "Cytoplasm",
+      "Ribosome Page 76 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Net ATP produced during glycolysis (per glucose) is:",
+    "options": [
+      "38",
+      "36",
+      "2",
+      "4"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Krebs cycle occurs in the _____ of mitochondria. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Electron transport chain is located on the:",
+    "options": [
+      "Outer mitochondrial membrane",
+      "Inner mitochondrial membrane",
+      "Matrix",
+      "Cytoplasm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Cell Biology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The total number of chromosomes in a human somatic cell is:",
+    "options": [
+      "23",
+      "46",
+      "48",
+      "22"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

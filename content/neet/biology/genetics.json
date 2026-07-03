@@ -1,0 +1,236 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Mendel's law of segregation states that alleles separate during:",
+    "options": [
+      "Fertilization",
+      "Gamete formation",
+      "Mitosis",
+      "Interphase"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A cross between Tt and Tt will produce offspring in ratio:",
+    "options": [
+      "3:1",
+      "1:2:1",
+      "1:1",
+      "2:1"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In incomplete dominance, F1 of Red \u00d7 White cross is:",
+    "options": [
+      "Red",
+      "White",
+      "Pink",
+      "Spotted Page 69 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Colour blindness is a sex-linked recessive disorder carried on the:",
+    "options": [
+      "Autosome",
+      "Y chromosome",
+      "X chromosome",
+      "Mitochondrial DNA"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL proportion of sons will be haemophilic? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The enzyme that unwinds the DNA double helix during replication is:",
+    "options": [
+      "DNA polymerase",
+      "Ligase",
+      "Helicase",
+      "Primase"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "mRNA is read in the _____ direction during translation. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The codon AUG codes for:",
+    "options": [
+      "Stop",
+      "Methionine (start)",
+      "Valine",
+      "Lysine"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "How many codons code for stop signals?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4 Page 77 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In humans, sex determination is based on:",
+    "options": [
+      "Temperature",
+      "XY chromosomal system",
+      "XX chromosomal system",
+      "Environmental factors"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Down syndrome (Trisomy 21) results from:",
+    "options": [
+      "Deletion of chromosome 21",
+      "Monosomy of chromosome 21",
+      "Non-disjunction leading to extra chromosome 21",
+      "Point mutation"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Sickle cell anaemia is caused by a mutation in the _____ chain of haemoglobin. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Genetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Turner syndrome (XO) patients are:",
+    "options": [
+      "Male, infertile",
+      "Female, infertile",
+      "Male, fertile",
+      "Female, fertile"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

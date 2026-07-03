@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "(D) r\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "When a body is taken from equator to poles, its weight:",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Remains same",
+      "Becomes zero"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "(D) r\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The bulk modulus of an incompressible liquid is:",
+    "options": [
+      "Zero",
+      "Infinity",
+      "1",
+      "Very small"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "(D) r\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Surface tension of a liquid is due to:",
+    "options": [
+      "Gravitational force",
+      "Cohesive forces between molecules",
+      "Adhesive forces",
+      "External pressure"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "(D) r\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Bernoulli's principle is based on conservation of:",
+    "options": [
+      "Mass",
+      "Momentum",
+      "Energy",
+      "Charge Page 21 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

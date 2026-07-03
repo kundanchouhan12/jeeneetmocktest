@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "f-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which of the following lanthanides is used in colour TV screens?",
+    "options": [
+      "Ce",
+      "Eu",
+      "La",
+      "Nd"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

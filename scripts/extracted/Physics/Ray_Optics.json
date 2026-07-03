@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Ray_Optics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Ray_Optics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Optics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:43",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe angle of deviation through a prism is minimum when  \n(A) Incident ray and emer gent ray are symmetric to the prism  \n(B) The refracted ray inside the prism becomes parallel to its base  \n(C) Angle of incidence is equal to that of the angle of emer gence  \n(D) When angle of emer gence is double the angle of incidence Choose the correct answer from the options\ngiven below :\n(1) Statements  and  are true\n(2) Only statement (D) is true\n(3) Only statements (A) and (B) are true\n(4) Statements (B) and (C) are true",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe refractive index of a conver ging lens is 1.4. What will be the focal length of this lens if it is placed in a\nmedium of same refractive index ? (Assume the radii of curvature of the faces of lens are  and \nrespectively)\n(1) 1\n(2) Infinite\n(3) \n(4) Zero\n Ray Optics\n#PaperPhodnaHai\nR1 R2\nR1R2\nR1−R2",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nA deviation of  is produced in the yellow ray when prism of crown and flint glass are achromatically\ncombined. T aking dispersive powers of crown and flint glass are 0.02 and 0.03 respectively and refractive\nindex for yellow light for these glasses are 1.5 and 1.6 respectively . The refracting angles for crown glass\nprism will be ___(in degree)  \n(Round of f to the Nearest Integer)",
+      "answer_key": "12",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe thickness at the centre of a plano convex lens is  and the diameter is . If the speed of light in\nthe material of the lens is . The focal length of the lens is\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nThe image of an object placed in air formed by a convex refracting surface is at a distance of  behind the\nsurface. The image is real and is at  of the distance of the object from the surface .The wavelength of light\ninside the  \nsurface is  times the wavelength in air . The  \nradius of the curved surface is  the value of '  is _______",
+      "answer_key": "30",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nYour friend is having eye sight problem. She is not able lo see clearly a distant uniform window mesh and it\nappears to her as nonuniform and distorted. The doctor diagnosed the problem as:\n(1) Astigmatism\n(2) Myopia with Astigmatism\n Ray Optics\n#PaperPhodnaHai\n3 mm 6 cm\n2×108 ms−1\n0.30 cm\n15 cm\n1.5 cm\n30 cm\n10 m\n2rd \n3\n2\n3\n m.x\n13x′\n \n(3) Presbyopia with Astigmatism\n(4) Myopia and hypermetropia",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThree rays of light, namely red (R), green (G) and blue (B) are incident on the face  of a right angled prism\n as shown in figure.  \nThe refractive indices of the material of the prism for red, green and blue wavelength are 1.27, 1.42 and 1.49\nrespectively . The colour of the ray(s) emer ging out of the face  is :\n(1) green\n(2) red\n(3) blue and green\n(4) blue\n Ray Optics\n#PaperPhodnaHai\nPQR\nPR",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

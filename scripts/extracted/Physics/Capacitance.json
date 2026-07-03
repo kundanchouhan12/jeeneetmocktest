@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Capacitance_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Capacitance_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Electrostatics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:31",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nFor changing the capacitance of a given parallel plate capacitor , a dielectric material of dielectric constant  is\nused, which has the same area as the plates of the capacitor . The thickness of the  \ndielectric slab is  where 'd' is the separation  \nbetween the plates of parallel plate capacitor . The new capacitance (C') in terms of original capacitance  is\ngiven by the following relation :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nIn a parallel plate capacitor set up, the plate area of capacitor is  and the plates are separated by . If\nthe space between the plates are filled with a dielectric material of thickness  and area  (see fig.) the\ncapacitance of the set-up will be ___ . \n(Dielectric constant of the material  ) \n(Round of f to the Nearest Integer)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\n Capacitance\n#PaperPhodnaHai\n d,3\n4\n(C0)\nC′= C03+K\n4 K\nC′= C04+K\n3\nC′= C04 K\n K+3\nC′= C04\n3+K\n2 m21 m\n0.5 m 2 m2\nε0\n=3.2\n \nFour identical rectangular plates with length,  and breadth,  are arranged as shown in\nfigure. The equivalent capacitance between  and  is  The value of  is (Round of f to the Nearest\nInteger)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nA parallel plate capacitor whose capacitance  is  is char ged by a battery to a potential dif ference \n between its plates. The char ging battery is now disconnected and a porcelin plate with  is\ninserted between the plates, then the plate would oscillate back and forth between the plates with a constant\nmechanical ener gy of ______ pJ  \n(Assume no friction)",
+      "answer_key": "864",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nA  capacitor  is first char ged to a potential  \ndifference of  using a battery . Then the  \nbattery is removed and the capacitor is  \nconnected to an unchar ged capacitor  of . \nThe char ge in  on equilibrium condition  \nis . (Round of f to the Nearest  \n Capacitance\n#PaperPhodnaHai\n2\nA C .xε0\n dx\nC14pF\nV=12 V k=7\n2μF C1\n10 V\nC28μF\nC2\n−−−μC\n \nInteger)",
+      "answer_key": "16",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nA parallel plate capacitor has plate area  and plate separation of . The space between the plates is\nfilled up to a thickness 5  with a material of dielectric constant of  The resultant capacitance of the system\nis 'x' pF . The value of  \nThe value of 'x' to the nearest integer is ___",
+      "answer_key": "161",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nAn infinite number of point char ges, each carrying  char ge, are placed along the  -axis at \n The total force on a  point char ge, placed at the origin, is \n. The value of  to the nearest integer , is ___.  \n[Take \n Capacitance\n#PaperPhodnaHai\nm 10.\nε0=8.85×10−12 F⋅m−1\n1μC y\ny=1 m,2 m,4 m,8 m…………… 1C\nx×103 N x,\n=9×109Nm2/C2]1\n4πϵ0",
+      "answer_key": "12",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

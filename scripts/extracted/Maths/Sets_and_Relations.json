@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Sets_and_Relations_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Sets_and_Relations_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Sets, Relations, And Functions",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:21",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet  and '  ' be an equivalence relation on  defined by , if and\nonly if . Then the number of ordered pairs which satisfy this equivalence relation with ordered pair\n(4,3) is  \nequal to :\n(1) 5\n(2) 6\n(3) 8\n(4) 7",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nIn a school, there are three types of games to be played. Some of the students play two types of games, but\nnone play all the three games. Which V enn diagrams can justify the above statement?  \n(1)  and \n(2)  and \n(3) None of these\n(4)  and",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nDefine a relation  over a class of  real matrices  and  as \"ARB if f there exists a non-singular matrix \n such that . Then which of the following is true?\n(1)  is symmetric, transitive but not reflexive,\n(2)  is reflexive, symmetric but not transitive\n Sets and Relations\n#PaperPhodnaHai\nad=bc\nP Q\nP R\nQ R\nR n×n A B\nP PAP−1=B′′\nR\nR\n \n(3)  is an equivalence relation\n(4)  is reflexive, transitive but not symmetric\n Sets and Relations\n#PaperPhodnaHai\nR",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

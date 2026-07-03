@@ -1,0 +1,65 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Structure_of_Atom_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Structure_of_Atom_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Structure Of Atom",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:52",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nWhen light of wavelength  falls on a  \nmetal of threshold ener gy  the de-Broglie wavelength of emitted electrons is____  \n(Round of f to the Nearest Integer).  \n[Use:",
+      "answer_key": "9",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nArrange the following metal complex/ compounds in the increasing order of spin only magnetic moment.\nPresume all the three, high spin system. (Atomic numbers  and  ) \n(a)  \n(b)  and \n(c)  \nAnswer is:\n(1) (b) \n(2) (c) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nThe number of orbitals with  is ___  \n(Round of f to the Nearest Integer).",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nWhat is the spin-only magnetic moment value (BM) of a divalent metal ion with atomic number  in it's\naqueous solution?\n Structure of Atom\n#PaperPhodnaHai\n3.0eV, \\AA.\n√3=1.73, h=6.63×10−34 JS\nme=9.1×10−31 kg;c=3.0×108 ms−1\nleV=1.6×10−19 J]\nCe=58,Gd=64 Eu=63.\n(NH4)2[Ce(NO3)6]\nGd(NO3)3\nEu(NO3)3\n<(a)<(c)\n<(a)<(b)\n(a)<(b)<(c)\n(a)<(c)<(b)\nn=5, m1=+2\n25,\n \n(1) 5.92\n(2) 5\n(3) zero\n(4) 5.26",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nA certain orbital has  and . The number of radial nodes in this orbital is ____ (Round of f to the\nNearest Integer).",
+      "answer_key": "0",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nIn the ground state of atomic  ), the spin-only magnetic moment is ____ . (Round of f to\nthe Nearest Integer).  \n Given",
+      "answer_key": "49",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA certain orbital has no angular nodes and two radial nodes. The orbital is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nGiven below are two statements:  \nStatement I : Bohr's theory accounts for the  \nstability and line spectrum of  ion. \nStatement II : Bohr's theory was unable to  \nexplain the splitting of spectral  \n Structure of Atom\n#PaperPhodnaHai\nFe(Z=26 ×10−1BM\n[ :√3=1.73,√2=1.41]\n2 s\n3 s\n3p\n2p\nLi+\n \nlines in the presence of a  \nmagnetic field. In the light of the above statements, choose the  \nmost appropriate answer from the options given below:\n(1) Both statement I and statement II are true.\n(2) Statement I is false but statement II is true.\n(3) Both statement I and statement II are false.\n(4) Statement I is true but statement II is false.\n Structure of Atom\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 8,
+    "answers": 8,
+    "solutions": 0,
+    "exported": 8,
+    "skipped": 0
+  }
+}

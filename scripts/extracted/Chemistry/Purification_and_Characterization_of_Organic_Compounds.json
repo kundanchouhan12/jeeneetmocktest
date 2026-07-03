@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Purification_and_Characterization_of_Organic_Compounds_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Purification_and_Characterization_of_Organic_Compounds_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Some Basic Concepts Of Chemistry",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:10",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nUsing the provided information in the following paper chromatogram:  \nFig: Paper chromatography for compounds  and  \nThe calculated  value of  ____",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nWhich of the following is 'a' F ALSE statement?\n(1) Carius tube used in the estimation of sulphur in an or ganic compound\n(2) Kjedahl's method is used for the estimation of nitrogen in an or ganic compound\n(3) Phosphoric acid produced on oxidation of phosphorus present in an or ganic compound is precipitated as \n by adding magnesia mixture\n(4) Carius method is used for the estimation of nitrogen in an or ganic compound",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nGiven below are two statements :  \nStatement I : A mixture of chloroform and aniline can be separated by simple distillation  \nStatement II : When separating aniline from a mixture of aniline and water by steam  \ndistillation aniline boils below its boiling point  \nIn the light of the above statements, choose the most appropriate answer from the options given below\n Purification and Characterization of Organic Compounds\n#PaperPhodnaHai\nRf A ×10−1\nMg2P2O7\n \n(1) Statement  is true, statement II is false\n(2) Both Statement I and Statement II are true\n(3) Both Statement I and Statement II are false\n(4) Statement I is false, Statement II is true\n Purification and Characterization of Organic Compounds\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

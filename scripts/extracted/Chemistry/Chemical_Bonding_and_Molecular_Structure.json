@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Chemical_Bonding_and_Molecular_Structure_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Chemical_Bonding_and_Molecular_Structure_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Chemical Bonding",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:49",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nGiven below are two statements: one is labelled as Assertion  and the other is labelled as  \nReason  : \nAssertion  : The  bond angle in water molecule is  \nReason  The lone pair  lone pair repulsion of electrons is higher than the bond pair - bond pair repulsion.\n(1)  is false but  is true\n(2) Both  and  are true, but  is not the correct correct explanation of \n(3)  is true but  is false\n(4) Both  and  are true, and  is the correct explanation of",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA central atom in a molecule has two lone pairs of electrons and forms three single bonds. The shape of this\nmolecule is:\n(1) see-saw\n(2) planar triangular\n(3) T -shaped\n(4) trigonal pyramidal",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nAmongst the following, the linear species is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\n Chemical Bonding and Molecular Structure\n#PaperPhodnaHai\nR\nA H−O−H 104.5∘\nR: −\nA R\nA R R A\nA R\nA R R A\nNO2\nCl2O\nO3\nN−\n3\n \n is a covalent diatomic molecule where  \nand  are second row elements of periodic table. Based on Molecular orbital theory , the bond order of  is\n25 . The total number of electrons in AX is____  Round of f to the  \nNearest Integer).",
+      "answer_key": "15",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe oxide that shows magnetic property is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nIn the following molecules,  \nHybridisation of carbon a,  and  respectively  \nare :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\n Chemical Bonding and Molecular Structure\n#PaperPhodnaHai\nX AX\n(\nSiO2\nMn3O4\nNa2O\nMgO\nb c\nsp3,sp,sp\nsp3,sp2,sp\nsp3,sp2,sp2\nsp3,sp,sp2\n \nThe number of species below that have two  \nlone pairs of electrons in their central atom is_______  \n(Round of f to the Nearest integer)  \n Chemical Bonding and Molecular Structure\n#PaperPhodnaHai\n4,CIF3,AsF3,PCl5,BrF5,XeF4,SF6",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

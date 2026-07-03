@@ -1,0 +1,71 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Sequence_and_Series_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Sequence_and_Series_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Sequence & Series",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:29",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nLet \n is a 3-digit number  \n and \n for some  \nIf the sum of all the elements of the set  is  then  is equal to",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nThe sum of first four terms of a geometric progression (G.P .) is  and the sum of their respective reciprocals\nis  If the product of first three terms of the G.P . is  and the third term is  then  is",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nIf  and \n then\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nLet  be squares such that for each  the length of the side of  equals the length of\ndiagonal of . If the length of  is , then the smallest value of  for which area of  is less than\none, is",
+      "answer_key": "9",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nThe minimum value of  where  and  is equal to:\n(1) \n Sequence and Series\n#PaperPhodnaHai\nB={9k+2:k∈N}\nC:{9k+ℓ:k∈N} ℓ(0<ℓ<9)\nA∩(B∪C)274×400, ℓ\n65\n12\n.65\n181, α, 2α\n0<θ,ϕ<,x=∑∞\nn=0cos2nθ,y=∑∞\nn=0sin2nϕπ\n2\nz=∑∞\nn=0cos2nθ⋅sin2nϕ\nxyz=4\nxy−z=(x+y)z\nxy+yz+zx=z\nxy+z=(x+y)z\nA1,A2,A3,…… n≥1, An\nAn+1 A112 cm n An\nf(x)=aax+a1−ax, a,x∈R a>0,\na+1\na\n \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nIn an increasing, geometric series, the sum of the second and the sixth term is  and the product of the third\nand fifth term is 25 . Then, the sum of  and \n terms is equal to :\n(1) 35\n(2) 30\n(3) 26\n(4) 32",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nThe sum of the infinite series  is equal to\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nThe sum of the series  is equal to :\n(1) \n(2) \n(3) \n(4) \n Sequence and Series\n#PaperPhodnaHai\n2a\n2√a\n25\n2\n4th ,6th \n8th \n1++ + + + +…2\n37\n3212\n3317\n3422\n35\n9\n4\n15\n4\n13\n4\n11\n4\n∑∞\nn=1n2+6n+10\n(2n+1)!\ne+e−1−1041\n819\n8\n−e+e−1−1041\n819\n8\ne−e−1−1041\n819\n8\ne+e−1+1041\n819\n8",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nIf the arithmetic mean and geometric mean of the  and  terms of the sequence \n satisfy the equation   then  is equal to\n Sequence and Series\n#PaperPhodnaHai\n−16,8,−4,2,……….. 4x2−9x+5=0, p+q",
+      "answer_key": "10",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 9,
+    "answers": 9,
+    "solutions": 0,
+    "exported": 9,
+    "skipped": 0
+  }
+}

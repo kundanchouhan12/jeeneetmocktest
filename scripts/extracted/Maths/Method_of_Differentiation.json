@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Method_of_Differentiation_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Method_of_Differentiation_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Limit, Continuity & Differentiability",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:28",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nLet  be any function defined on  and let it satisfy the condition :  \n \nIf  then:\n(1) \n(2)  can take any value in \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nLet  be a dif ferentiable function at  with  and . Then  equals :\n(1) \n(2) \n(3) \n(4) \n Method of Differentiation\n#PaperPhodnaHai\n|f(x)−f(y)|≤∣∣(x−y)2∣∣,∀(x,y)∈R\nf(0)=1,\nf(x)<0,∀x∈R\nf(x) R\nf(x)=0,∀x∈R\nf(x)>0,∀x∈R\nf(x) x=a f′(a)=2 f(a)=4 limx→axf(a)−af(x)\nx−a\n2a+4\n2a−4\n4−2a\na+4",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

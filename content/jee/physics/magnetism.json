@@ -1,0 +1,128 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A charged particle moving parallel to a magnetic field experiences:",
+    "options": [
+      "Maximum force",
+      "Zero force",
+      "Centripetal force",
+      "Gravity"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Faraday's law of electromagnetic induction states that induced EMF is proportional to:",
+    "options": [
+      "Magnetic field",
+      "Rate of change of magnetic flux",
+      "Current in coil",
+      "Resistance of coil Page 11 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Lenz's law is a consequence of conservation of:",
+    "options": [
+      "Charge",
+      "Momentum",
+      "Energy",
+      "Mass"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The unit of magnetic flux is:",
+    "options": [
+      "Tesla",
+      "Weber",
+      "Ampere",
+      "Henry"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Self-inductance of a coil opposes the change in:",
+    "options": [
+      "Voltage",
+      "Resistance",
+      "Current",
+      "Temperature"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A straight conductor carrying current I is placed in a uniform magnetic field B perpendicular to it. The force per unit length on it is:",
+    "options": [
+      "B/I",
+      "I/B",
+      "IB",
+      "I\u00b2B"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetism",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL the force on it. Ans: ___________________________________________ Page 18 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

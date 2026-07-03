@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Solutions_and_Colligative_Properties_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Solutions_and_Colligative_Properties_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Solutions",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:10",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nWhen  of  is added to  of water , its freezing point drops by . The\ndissociation constant of  is . The value of  is ____ (Rounded of f to the nearest\ninteger)",
+      "answer_key": "35",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Numerical\n freezes at . The temperature at which a solution of  of  in  of  freeze is ____ \n. (The molal freezing point depression constant of  is) )",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Numerical\n1 molal aqueous solution of an electrolyte  is  ionised. The boiling point of the solution at 1 atm is\n_____ K. (Rounded-of f to the nearest integer)  Given  for",
+      "answer_key": "375",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nIf a compound AB dissociates to the extent of  in an aqueous solution, the molality of the solution which\nshows a  rise in the boiling point of the solution is ____ molal.  \n(Rounded-of f to the nearest integer)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 1) - Numerical\n of  at  and  is passed through  of  solution. The non-volatile\nsolute produced is dissolved in  of water . The lowering of vapour pressure of solution (assuming the\nsolution is dilute)  of  is  of  the value of  is (round of f to nearest\ninteger)",
+      "answer_key": "0",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nWhen  of benzoic acid is dissolved in  of water , the freezing point of solution was found to be \n. The number  of benzoic acid molecules associated (assuming \n Solutions and Colligative Properties\n#PaperPhodnaHai\nClCH2COOHx×10−3x\n[Kf(H2O)=1.86 K kg mol−1]\nC6H6 5.5∘C 10 gC4H10200 gC6H6\n∘C C6H65.12∘C/m\nA2 B360%\n[ Kb (H2O)=0.52 K kg mol−1]\n75%\n2.5 K\n[Kb=0.52 K kg mol−1]\n224 mLSO2( g)298 K 1 atm 100 mL0.1MNaOH\n36 g\n(P∗\n(H2O)=24 mm Hg)x×10−2 mm Hg, x\n12.2 g 100 g\n−0.93∘C(Kf(H2O)=1.86 K kg mol−1) (n)\n \n association ) is\n Solutions and Colligative Properties\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

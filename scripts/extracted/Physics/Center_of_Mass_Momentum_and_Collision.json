@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Center_of_Mass_Momentum_and_Collision_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Center_of_Mass_Momentum_and_Collision_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Work, Energy, Power And Collision",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:32",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nA ball of mass  moving with a velocity  along X-axis, hits another ball of mass  which\nis at rest. After collision, the first ball comes to rest and the second one disintegrates into two equal pieces.\nOne of the pieces starts moving along Y -axis at a speed of . The second piece starts moving at a speed\nof  at an angle  (degree) with respect to the  -axis.  \nThe configuration of pieces after collision is shown in the figure. The value of  to the nearest integer is ____",
+      "answer_key": "30",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nA lar ge block of wood of mass  is hanging from two long massless cords. A bullet of mass \n is fired into the block and gets embedded in it. The (block + bullet) then swing upwards, their centre\nof mass rising a vertical distance  before the (block + bullet) pendulum comes momentarily to rest\nat the end of its arc. The speed of the bullet just before collision is : (T ake  ) \n(1) \n Center of Mass Momentum and Collision\n#PaperPhodnaHai\n10 m/s\n20 m/s θ X\nθ\nM=5.99 kg\nm=10 g\nh=9.8 cm\ng=9.8 ms−2\n841.4 m/s\n \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nTwo identical blocks  and  each of mass  \nresting on the smooth horizontal floor are connected by a light spring of natural length  and spring constant \n. A third block  of mass  moving with a speed  along the line joining A and B collides with A.The\nmaximum compression in the spring is  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nThe disc of mass  with uniform surface mass  \ndensity  is shown in the figure. The centre of  \nmass of the quarter disc (the shaded area) is at  \nthe position  where  is ________  \n(Round of f to the Nearest Integer)  \n Center of Mass Momentum and Collision\n#PaperPhodnaHai\n831.4 m/s\n821.4 m/s\nA B m\nL\nK C m v\n√M\n2 K\n√mv\n2 K\n√mv\nK\n√m\n2 K\nM\nσ\n,x\n3a\nπx\n3a\nπx\n \n[a is an area as shown in the figure]",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nA ball of mass  moving with a velocity  along the  -axis, hits another ball of mass \nwhich is at rest. After the collision, first ball comes to rest while the second ball disintegrates into two equal\npieces. One piece starts moving along  -axis with a speed of 10 . The second piece starts moving at an\nangle of  with respect to the  -axis. The velocity of the ball moving at  with  -axis is . The\nconfiguration of pieces after collision is shown in the figure below . The value of  to the nearest integer is ___",
+      "answer_key": "20",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nAn object of mass  collides with another object of mass  which is at rest. After the collision the objects\nmove with equal speeds in opposite direction. The ratio of the masses  is :\n(1) 3: 1\n(2) 2: 1\n(3) 1: 2\n(4) 1: 1\n Center of Mass Momentum and Collision\n#PaperPhodnaHai\ny m/s\n30∘x 30∘x xm/s\nx\nm1 m2,\nm2:m1",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nThe projectile motion of a particle of mass  is shown in the figure.  \nThe initial velocity of the particle is  \n and the air resistance is assumed to be negligible. The magnitude of the change in momentum\nbetween the points  and  is . The value of  to the nearest integer , is ___.\n Center of Mass Momentum and Collision\n#PaperPhodnaHai\n5√2 ms−1\nA Bx×10−2kgms−1x,",
+      "answer_key": "5",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "(A) f(a) = f(b)  a = b",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The inverse of f(x) = 2x + 3 is:",
+    "options": [
+      "(x-3)/2",
+      "(x+3)/2",
+      "2x-3",
+      "1/(2x+3)"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

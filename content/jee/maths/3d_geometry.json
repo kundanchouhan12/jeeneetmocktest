@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "3D Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The direction cosines of the x-axis are:",
+    "options": [
+      "(1, 0, 0)",
+      "(0, 1, 0)",
+      "(0, 0, 1)",
+      "(1, 1, 0)"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "3D Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The equation of a plane parallel to the XY-plane passing through (0, 0, 5) is:",
+    "options": [
+      "x = 5",
+      "y = 5",
+      "z = 5",
+      "x + y + z = 5"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "3D Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The angle between lines with direction ratios (1, 1, 0) and (0, 1, 1) is:",
+    "options": [
+      "30\u00b0",
+      "45\u00b0",
+      "60\u00b0",
+      "90\u00b0 Page 61 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "3D Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL The distance between parallel planes 2x + y - 2z = 5 and 2x + y - 2z = 8 is: Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "3D Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The equation of a sphere with centre (1, 2, 3) and radius 4 is:",
+    "options": [
+      "(x-1)\u00b2+(y-2)\u00b2+(z-3)\u00b2=16",
+      "(x-1)\u00b2+(y-2)\u00b2+(z-3)\u00b2=4",
+      "(x+1)\u00b2+(y+2)\u00b2+(z+3)\u00b2=16",
+      "x\u00b2+y\u00b2+z\u00b2=16"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

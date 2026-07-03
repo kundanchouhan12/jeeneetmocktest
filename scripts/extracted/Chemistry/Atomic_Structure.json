@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Atomic_Structure_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Atomic_Structure_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Structure Of Atom",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:07",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nGiven below are two statements :  \nStatement-I: T wo photons having equal linear momenta have equal wavelengths.  \nStatement-II: If the wavelength of photon is decreased, then the momentum and ener gy of a photon will also\ndecrease.  \nIn the light of the above statements, choose the correct answer from the options given below .\n(1) Statement-I is false but Statement-II is true\n(2) Both Statement-I and Statement-II are true\n(3) Both Statement-I and Statement-II are false\n(4) Statement-I is true but Statement-II is false",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nA proton and a  nucleus are accelerated by the same potential. If  and  denote the de Broglie\nwavelengths of  and proton respectively , then the value of  is  The value of  is ____.\n[Rounded of f to the nearest integer] [Mass of  mass of proton]",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nAccording to Bohr's atomic theory :  \n(A) Kinetic ener gy of electron is  \n(B) The product of velocity (v) of electron and principal quantum number (n). 'vn' . \n(C) Frequency of revolution of electron in an orbit is . \n(D) Coulombic force of attraction on the electron is . Choose the most appropriate answer from the\noptions given below:\n(1)  only\n(2)  and  only\n(3) (A) only\n(4)  and  only\n Atomic Structure\n#PaperPhodnaHai\nLi3+ λLi\nλpx×10−1. x\nLi3+=8.3\n∝Z2\nn2\n∝Z2\n∝Z3\nn3\n∝Z3\nn4\n(C)\n(A) (D)\n(A),(C) (D)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nThe plots of radial distribution functions for various orbitals of hydrogen atom against 'r' are given below:  \n(A) \n  \n(B) \n  \n(C) \n  \n(D) \n  \n Atomic Structure\n#PaperPhodnaHai\n \nThe correct plot for 3 s orbital is:\n(1) D\n(2) B\n(3) A\n(4) C",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nElectromagnetic radiation of wavelength  is just suf ficient to ionize the atom of metal . The ionization\nenergy of metal A in  is ____. (Rounded of f to the nearest integer)",
+      "answer_key": "180",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nThe orbital having two radial as well as two angular nodes is\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nA ball weighing  is moving with a velocity of . If the uncertainty in its velocity is , then the\nuncertainty in its position is ____  (Rounded of f to the nearest integer) [Given : \n ]\n Atomic Structure\n#PaperPhodnaHai\nkJmol−1\n[h=6.63×10−34Js,c=3.00×108 ms−1, NA=6.02×1023 mol−1]\n5 d\n4f\n3p\n4 d\n10 g 90 ms−15%\n×10−33 m.\nh=6.63×10−34Js",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

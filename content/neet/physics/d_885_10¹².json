@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "(D) 8.85 \u00d7 10\u00b9\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The energy stored in a capacitor of capacitance C charged to voltage V is:",
+    "options": [
+      "CV",
+      "CV\u00b2",
+      "\u00bdCV\u00b2",
+      "2CV\u00b2"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "(D) 8.85 \u00d7 10\u00b9\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

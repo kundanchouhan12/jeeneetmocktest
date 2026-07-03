@@ -1,0 +1,21 @@
+# Firebase service account keys — NEVER commit these
+scripts/firebase-key.json
+scripts/*-key.json
+*.serviceAccountKey.json
+google-services-admin*.json
+
+# Generated output (re-created by build_power100.js)
+scripts/jee_power100.json
+scripts/neet_power100.json
+
+# Android build
+*.iml
+.gradle/
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab

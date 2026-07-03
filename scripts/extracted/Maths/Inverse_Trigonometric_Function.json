@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Inverse_Trigonometric_Function_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Inverse_Trigonometric_Function_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Trigonometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:27",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\n is equal to",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nA possible value of  is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\n is equal to:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nIf  then the value of  is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\n Inverse T rigonometric Function\n#PaperPhodnaHai\nr=1tan−1( )}1\n1+r+r2\ntan(sin−1)1\n4√63\n8\n1\n2√2\n1\n√7\n√7−1\n2√2−1\ncosec[2cot−1(5)+cos−1()]4\n5\n75\n56\n65\n56\n56\n33\n65\n33\n= = ;0<x<1,sin−1x\nacos−1x\nbtan−1y\nccos( )πc\na+b\n1−y2\n2y\n1−y2\n1+y2\n1−y2\n1−y2\ny√y\n \nIf  and  then the value of \nis :\n(1) \n(2) \n(3) \n(4) \n Inverse T rigonometric Function\n#PaperPhodnaHai\n4(a+b)−( )+( )−( )+..a2+b2\n2a3+b3\n3a4+b4\n4\nloge2\nloge()e\n2\ne\ne2−1",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

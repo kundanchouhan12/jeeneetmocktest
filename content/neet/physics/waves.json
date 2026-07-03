@@ -1,0 +1,146 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The frequency of a wave is 500 Hz and its wavelength is 0.6 m. The speed of the wave is:",
+    "options": [
+      "300 m/s",
+      "250 m/s",
+      "500 m/s",
+      "600 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In simple harmonic motion, acceleration is maximum at:",
+    "options": [
+      "Mean position",
+      "Extreme position",
+      "Between mean and extreme",
+      "Nowhere"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The phenomenon of resonance occurs when the frequency of driving force equals:",
+    "options": [
+      "Zero",
+      "Natural frequency of the system",
+      "Double the natural frequency",
+      "Half the natural frequency"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Beats are produced due to:",
+    "options": [
+      "Reflection",
+      "Superposition of waves of slightly different frequencies",
+      "Diffraction",
+      "Polarization"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Doppler effect relates to change in _____ due to relative motion between source and observer. Ans: ___________________________________________ Page 7 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL A body of mass 0.5 kg is executing SHM with amplitude 5 cm and frequency 10 Hz. Find the maximum kinetic energy. Ans: ___________________________________________ Page 19 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The speed of sound in air at 27\u00b0C is 340 m/s. At 127\u00b0C, it would be:",
+    "options": [
+      "392 m/s",
+      "360 m/s",
+      "380 m/s",
+      "420 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Stationary waves are formed by superposition of two waves travelling in:",
+    "options": [
+      "Same direction with same frequency",
+      "Opposite directions with same frequency",
+      "Perpendicular directions",
+      "Any direction"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

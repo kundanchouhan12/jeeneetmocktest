@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Thermal_Properties_Of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Thermal_Properties_Of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Fluid Mechanics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:46",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nA bimetallic strip consists of metals  and . It is mounted rigidly as shown. The metal A has higher\ncoefficient of expansion compared to that of metal . When the bimetallic strip is placed in a cold both, it will\n: \n(1) Bend towards the right\n(2) Not bend but shrink\n(3) Neither bend nor shrink\n(4) Bend towards the left",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nFor an ideal heat engine, the temperature of the source is . In order to have  efficiency the\ntemperature of the sink should be ___   \n(Round of f to the Nearest Integer)  \n(write modulus or absolute value of the temperature)",
+      "answer_key": "-113",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nTwo identical metal wires of thermal  \nconductivities  and  respectively are  \nconnected in series. The ef fective thermal  \nconductivity of the combination is :\n(1) \n(2) \n(3) \n Thermal Properties Of Matter\n#PaperPhodnaHai\nB\n127∘C 60%\n∘C.\nK1 K2\n2 K1 K2\n K1+K2\nK1+K2\n2 K1 K2\nK1+K2\n K1 K2\n \n(4) \n Thermal Properties Of Matter\n#PaperPhodnaHai\n K1+K2",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

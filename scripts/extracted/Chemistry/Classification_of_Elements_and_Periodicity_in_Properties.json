@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Classification_of_Elements_and_Periodicity_in_Properties_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Classification_of_Elements_and_Periodicity_in_Properties_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Classification Of Elements",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:49",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIdentify the elements  and  using the ionisation ener gy values given below:  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe characteristics of elements  and  with atomic numbers, respectively , 33,53 and 83 are:\n(1)  and  are metalloids and  is a metal.\n(2)  is a metalloid,  is a non-metal and  is a metal.\n(3) X,  and  are metals.\n(4)  and  are non-metals and  is a metalloid",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe absolute value of the electron gain enthalpy of halogens satisfies:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nWhich of the following compound CANNOT act as a Lewis base?\n(1) \n Classification of Elements and Periodicity in Properties\n#PaperPhodnaHai\n Ionization energy (kJ/mol)\n1st 2nd \nX 495 4563\nY 731 1450\nX=Na;Y=Mg\nX=Mg;Y=F\nX=Mg;Y=Na\nX=F;Y=Mg\nX,Y Z\nX Y Z\nX Y Z\nY Z\nX Z Y\nI>Br>Cl>F\nCl>Br>F>I\nCl>F>Br>I\nF>Cl>Br>I\nNF3\n \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe set of elements that dif fer in mutual relationship from those of the other sets is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe ionic radius of  ions is . The ionic radii (in ) of  and , respectively , are\n(1) 1.05 and 0.99\n(2) 0.72 and 0.54\n(3) 0.85 and 0.99\n(4) 0.68 and 0.72",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe first ionization ener gy of magnesium is smaller as compared to that of elements  and  but higher than\nthat of . the elements  and , respectively , are :\n(1) chlorine, lithium and sodium\n(2) ar gon, lithium and sodium\n(3) ar gon, chlorine and sodium\n(4) neon, sodium and chlorine\n Classification of Elements and Periodicity in Properties\n#PaperPhodnaHai\nSF4\nClF3\nLi−Mg\nB−Si\nBe−Al\nLi−Na\nNa+1.02\\AA \\AA Mg2+Al3+\nX Y,\nZ X,Y Z",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

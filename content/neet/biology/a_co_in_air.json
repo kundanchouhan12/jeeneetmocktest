@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) CO in air",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The ozone hole is primarily caused by:",
+    "options": [
+      "Option A",
+      "Methane",
+      "CFCs (chlorofluorocarbons)",
+      "Nitrous oxide"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

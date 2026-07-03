@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Semiconductors_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Semiconductors_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Modern Physics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:45",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nThe value of power dissipated across the zener diode  connected in the circuit as shown in the\nfigure is  watt.  \nThe value of  to the nearest integer , is ____",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nFor the given circuit, comment on the type of transformer used :  \n(1) Auxilliary transformer\n(2) Auto transformer\n(3) Step-up transformer\n(4) Step down transformer",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nAn npn transistor operates as a common emitter amplifier with a power gain of  The input circuit\nresistance is  and the output load resistance is . The common emitter current gain '\\beta' will be\n___ (Round of f to the Nearest Integer)\n Semiconductors\n#PaperPhodnaHai\nx×10−1\nx,\n106.\n100Ω 10 KΩ",
+      "answer_key": "100",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe correct relation between  (ratio of collector current to emitter current) and  (ratio of collector current to\nbase current) of a  \ntransistor is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nThe typical output characteristics curve for a transistor working in the common-emitter configuration is shown\nin the figure.  \nThe estimated current gain from the figure is\n Semiconductors\n#PaperPhodnaHai\nβ=α\n1+α\nα=β\n1−α\nβ=1\n1−α\nα=β\n1+β",
+      "answer_key": "200",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

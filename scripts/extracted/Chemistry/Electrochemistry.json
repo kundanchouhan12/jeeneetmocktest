@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Electrochemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Electrochemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Electrochemistry",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:50",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nA  aqueous solution of  has a conductance of  when measured in a cell constant \n. The molar conductivity of this solution is ___ . \n(Round of f to the Nearest Integer)",
+      "answer_key": "14.3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nA  solution of conductivity  shows a resistance of  in a conductivity cell. If the same cell\nis filled with an  \nsolution, the resistance drops to . The conductivity of the  solution is ____  (Round\noff to the Nearest Integer).",
+      "answer_key": "57",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nFor the reaction  \n \nthe magnitude of the standard molar free ener gy \nchange, _____  (Round of f to the Nearest Integer).",
+      "answer_key": "45",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nThe molar conductivities at infinite dilution of  \nbarium chloride, sulphuric arid and hydrochloric acid are 280,860 and   respectively . The\nmolar conductivity at infinite dilution of barium sulphate is______  \n Round of f to the Nearest Integer).\n Electrochemistry\n#PaperPhodnaHai\n1.3 cm−1mSm2 mol−1\nKC 0.14 S m−14.19Ω\nHCl\n1.03Ω HC1 ×10−2 S m−1.\n2Fe3+(aq)+2I−(aq)→2Fe2+(aq)+I2( s)\nΔrG∘\nm=− kJ\n426Scm2mol−1\nScm2 mol−1(",
+      "answer_key": "288",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

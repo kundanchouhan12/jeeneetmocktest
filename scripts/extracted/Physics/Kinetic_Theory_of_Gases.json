@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Kinetic_Theory_Of_Gases_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Kinetic_Theory_Of_Gases_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Kinetic Theory Of Gases",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:36",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe volume  of an enclosure contains a  \nmixture of three gases,  of oxygen,  of nitrogen and  of carbon dioxide at absolute temperature T .\nConsider  as universal gas constant. The pressure of the mixture of  \ngases is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nCalculate the value of mean free path  for oxygen molecules at temperature  and pressure \n. Assume the molecular diameter  and the gas is ideal.  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA polyatomic ideal gas has 24 vibrational  \nmodes. What is the value of  ?\n(1) 1.03\n(2) 1.3\n(3) 1.37\n(4) 10.3\n Kinetic Theory Of Gases\n#PaperPhodnaHai\n16 g 28 g 44 g\nR\n88RT\nV\n3RT\nV\n5\n2RT\nV\n4RT\nV\n(λ) 27∘C\n1.01×105 Pa 0.3nm\n(k=1.38×10−23JK−1)\n58nm\n32nm\n86nm\n102nm\nγ",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nTwo ideal polyatomic gases at temperatures  and  are mixed so that there is no loss of ener gy. If  and \n and  and  be the degrees of freedom, masses, number of molecules of the first and second gas\nrespectively , the temperature of mixture of  \nthese two gases is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nIf one mole of the polyatomic gas is having two  \nvibrational modes and  is the ratio of molar  \nspecific heats for polyatomic gas  then  \nthe value of  is :\n(1) 1.02\n(2) 1.2\n(3) 1.25\n(4) 1.35",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nWhat will be the average value of ener gy along one degree of freedom for an ideal gas in thermal equilibrium\nat a temperature  is Boltzmann constant)\n(1) \n(2) \n(3) \n(4) \n Kinetic Theory Of Gases\n#PaperPhodnaHai\nF2, m1 m2,n1 n2\nn1 T1+n2 T2\nn1+n2\nn1 F1 T1+n2 F2 T2\nn1 F1+n2 F2\nn1 F1 T1+n2 F2 T2\n F1+F2\nn1 F1 T1+n2 F2 T2\nn1+n2\nβ\n(β= )CP\nCv\nβ\nT(kB\nkBT1\n2\nkBT2\n3\nkBT3\n2\nkBT",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nConsider a sample of oxygen behaving like an ideal gas. At  the ratio of root mean square (rms)\nvelocity to the average velocity of gas molecule would be :  \n(Molecular weight of oxygen is  \n(1) \n(2) \n(3) \n(4) \n Kinetic Theory Of Gases\n#PaperPhodnaHai\n32 g/mol;R=8.3 J K−1 mol−1)\n√3\n3\n√8\n3\n√3π\n8\n√8π\n3",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

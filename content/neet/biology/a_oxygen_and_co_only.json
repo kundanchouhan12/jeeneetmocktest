@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) Oxygen and CO only",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Hormone responsible for parturition (childbirth) is:",
+    "options": [
+      "Progesterone",
+      "Estrogen",
+      "Oxytocin",
+      "Prolactin"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) Oxygen and CO only",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The corpus luteum secretes:",
+    "options": [
+      "FSH",
+      "LH",
+      "Progesterone",
+      "Testosterone Page 83 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

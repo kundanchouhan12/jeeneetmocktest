@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Circular_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Circular_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Rotational Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:28",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nA small bob tied at one end of a thin string of length  is describing a vertical circle so that the maximum\nand minimum tension in the string are in the rato 5: 1 . The velocity of the bob at the highest position is \ntake",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nThe point A moves with a uniform speed along the circumference of a circle of radius  and cover  in\n. The perpendicular projection 'P' form '  on the diameter MN represents the simple harmonic motion of\n'P'. The restoration force per unit mass when P touches M will be:  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nA particle is moving with uniform speed along the circumference of a circle of radius  under the action of a\ncentral fictitious force  which is inversely proportional to . Its time period of revolution will be given by :\n(1) \n(2) \n(3) \n Circular Motion\n#PaperPhodnaHai\nm/s.(\ng=10 m/s2)\n0.36 m 30∘\n0.1s A′\n100 N\n50 N\n9.87 N\n0.49 N\nR\nF R3\nT∝R5\n2\nT∝R2\nT∝R4\n3\n \n(4) \n Circular Motion\n#PaperPhodnaHai\n2",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

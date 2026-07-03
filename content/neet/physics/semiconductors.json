@@ -1,0 +1,1928 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The majority carriers in a p-type semiconductor are:",
+    "options": [
+      "Electrons",
+      "Holes",
+      "Protons",
+      "Neutrons Page 14 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A p-n junction diode in forward bias:",
+    "options": [
+      "Has very high resistance",
+      "Allows current to flow easily",
+      "Acts as an insulator",
+      "Blocks current"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A Zener diode is mainly used for:",
+    "options": [
+      "Amplification",
+      "Rectification",
+      "Voltage regulation",
+      "Oscillation"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The energy gap in conductors is:",
+    "options": [
+      "Large (>3 eV)",
+      "Small (~1 eV)",
+      "Zero",
+      "Very large"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In an NPN transistor, the base is:",
+    "options": [
+      "Heavily doped",
+      "Lightly doped and thin",
+      "Undoped",
+      "As thick as emitter"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A logic gate that gives output 1 only when all inputs are 1 is called:",
+    "options": [
+      "OR gate",
+      "AND gate",
+      "NOT gate",
+      "NOR gate Page 17 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The output of an XOR gate is 0 when:",
+    "options": [
+      "Inputs are different",
+      "Inputs are same",
+      "One input is 1",
+      "Both inputs are 0 only"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In a p-type semiconductor, the Fermi level lies:",
+    "options": [
+      "At the middle of bandgap",
+      "Near the conduction band",
+      "Near the valence band",
+      "In the conduction band"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The output frequency of a full-wave rectifier for input frequency f is:",
+    "options": [
+      "f/2",
+      "f",
+      "2f",
+      "4f Page 23 JEE + NEET Master Practice Workbook ANSWER KEY \u2014 PHYSICS"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": D",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": D",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": D",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": D",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": A",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": B",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Semiconductors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": ": C Note: For SHORT ANSWER and NUMERICAL questions, refer to standard textbooks for detailed solutions. Page 24 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

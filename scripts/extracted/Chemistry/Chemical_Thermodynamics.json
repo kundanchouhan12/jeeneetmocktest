@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Chemical_Thermodynamics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Chemical_Thermodynamics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Thermodynamics",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:07",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nAssuming ideal behaviour , the magnitude of log  for the following reaction at  is . The value\nof  is ____.(Integer answer)",
+      "answer_key": "855",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nThe reaction of cyanamide,  with oxygen was run in a bomb calorimeter and  was found to be \n. The magnitude of  for the reaction \n is ____ . (Rounded of f to the nearest integer)  \n[Assume ideal gases and ]",
+      "answer_key": "741",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nFive moles of an ideal gas at  is expanded isothermally from an initial pressure of  to 1.3 MPa\nagainst at constant external 4.3 MPa. The heat transferred in this process is ____ kJ  (Rounded-of f of\nthe nearest integer) [Use ]",
+      "answer_key": "15",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nFor a chemical reaction   the entropy change  depends on the\ntemperature  (in  as  \nMinimum temperature at which it will become spontaneous is ____ K.\n Chemical Thermodynamics\n#PaperPhodnaHai\nx\n3HC≡CH(g)⇌C6H6(ℓ)\n[Given :ΔfG∘(HC≡CH)=−2.04×105]mol−1;ΔfG∘(C6H6)=−1.24×105 J mol−1\nR=8.314 J K−1 mol−1]\nNH2CN(s) ΔU\n−742.24 kJ mol−1ΔH298\nNH2CN(s)+O2( g)→N2( g)+O2( g)+H2O(1)3\n2kJ\nR=8.314 J mol−1 K−1\n293 K 2.1MPa\nmol−1.\nR=8.314 J mol−1 K−1\nA+B⇌C+D(ΔrH⊖=80 kJ mol−1) Δr S⊖\nT K)ΔrS⊖=2T(J K−1 mol−1)",
+      "answer_key": "200",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

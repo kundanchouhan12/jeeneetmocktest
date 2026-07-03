@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "A person with genotype XX (carrier) for haemophilia mates with a normal male (XY). What",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The central dogma of molecular biology is:",
+    "options": [
+      "DNA \u2192 RNA \u2192 Protein",
+      "RNA \u2192 DNA \u2192 Protein",
+      "Protein \u2192 RNA \u2192 DNA",
+      "DNA \u2192 Protein \u2192 RNA"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "A person with genotype XX (carrier) for haemophilia mates with a normal male (XY). What",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Point mutation involving replacement of one base by another is called:",
+    "options": [
+      "Frameshift mutation",
+      "Substitution mutation",
+      "Deletion",
+      "Insertion"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "A person with genotype XX (carrier) for haemophilia mates with a normal male (XY). What",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Explain co-dominance with the example of ABO blood groups. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

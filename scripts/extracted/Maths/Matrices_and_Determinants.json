@@ -1,0 +1,107 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Matrices_and_Determinants_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Matrices_and_Determinants_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Matrices & Determinants",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:27",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nThe system of linear equations  \n \n \n \nis inconsistent if :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nLet  where  Suppose  is a matrix satisfying  for some non-\nzero . If  and  then  is equal to",
+      "answer_key": "17",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nLet  be any  matrix with entries from the set {0,1,2} . The maximum number of such matrices, for\nwhich the sum of diagonal elements of  is seven, is",
+      "answer_key": "540",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nFor the system of linear equations:  \nconsider the following statements:  \n(A) The system has unique solution if . \n(B) The system has unique solution if . \n Matrices and Determinants\n#PaperPhodnaHai\n2x−4y−2z=6\nx+2y−z=5m\nk=3, m=4\n5\nk≠3,m∈R\nk≠3, m≠4\n5\nk=3, m≠4\n5\nP=⎡\n⎢\n⎣3−1−2\n2 0 α\n3−5 0⎤\n⎥\n⎦, α∈R. Q=[qij] PQ=kI3\nk∈R q23=−k\n8|Q|= ,k2\n2α2+k2\nM 3×3\nM⊤M\nx−2y=1,x−y+kz=−2,ky+4z=6,k∈R\nk≠2,k≠−2\nk=−2\n \n(C) The system has unique solution if . \n(D) The system has no-solution if . \n(E) The system has infinite number of solutions if . \nWhich of the following statements are correct?\n(1)  and  only\n(2)  and  only\n(3)  and  only\n(4)  and  only",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nLet  and  be  real matrices such that  is symmetric matrix and  is skew-symmetric matrix. Then\nthe system of linear equations  where  is a  column matrix of unknown\nvariables and  is a  null matrix, has :\n(1) a unique solution\n(2) exactly two solutions\n(3) infinitely many solutions\n(4) no solution",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "25 Feb (Shift 1) - Numerical\n If  and  \n then  is equal to",
+      "answer_key": "13",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nIf the system of equations  \n Matrices and Determinants\n#PaperPhodnaHai\nk=2\nk≠−2\n(B) (E)\n(C) (D)\n(A) (D)\n(A) (E)\nA B 3×3 A B\n(A2 B2−B2 A2)X=O, X 3×1\nO 3×1\nA=⎡\n⎢\n⎣0 −tan()\ntan() 0⎤\n⎥\n⎦θ\n2\nθ\n2(I2+A)(I2−A)−1\n=[a−b\nba], 13(a2+b2)\n \nhas infinitely many solutions, then  is equal to",
+      "answer_key": "21",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nLet  where  and  are real numbers such that  and . If \nthen the value of  is",
+      "answer_key": "7",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nIf for the matrix,  then the value of  is:\n(1) 1\n(2) 3\n(3) 2\n(4) 4",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nThe following system of linear equations  \n(1) does not have any solution\n(2) has a unique solution\n(3) has a solution  satisfying \n(4) has infinitely many solutions\n Matrices and Determinants\n#PaperPhodnaHai\n3x−y−2z=2\n−2x−2y−4z=3\nk\nA=⎡\n⎢\n⎣xyz\nyzx\nzxy⎤\n⎥\n⎦, x,y z x+y+z>0 xyz=2A2=I3,\nx3+y3+z3\nA=[1−α\nαβ],AA⊤=I2, α4+β4\n3x+3y+2z=9\n3x+2y+2z=9\nx−y+4z=8\n(α,β,γ) α+β2+γ3=12",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 11,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nLet  be a  matrix with . Let  denote the  row of . If a matrix  is obtained by\nperforming the operation  on  then  is equal to:\n(1) 64\n(2) 16\n(3) 80\n(4) 128",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 12,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nThe value of  is\n(1) -2\n(2) \n(3) 0\n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 13,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nLet A be a symmetric matrix of order 2 with integer entries. If the sum of the diagonal elements of  is 1 ,\nthen the possible number of such matrices is:\n(1) 6\n(2) 1\n(3) 4\n(4) 12",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 14,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\n Consider the following system of equations :  \n \n Matrices and Determinants\n#PaperPhodnaHai\nR2→2R2+5R3 2 A, det(B)\n∣\n∣ ∣ ∣\n∣(a+1)(a+2)a+21\n(a+2)(a+3)a+31\n(a+3)(a+4)a+41∣\n∣ ∣ ∣\n∣\n(a+1)(a+2)(a+3)\n(a+2)(a+3)(a+4)\nA2\nx+2y−3z=a\n \n \n \nwhere  and  are real constants. Then the system of equations :\n(1) has a unique solution when \n(2) has infinite number of solutions when \n(3) has no solution for all  and \n(4) has a unique solution for all  and",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 15,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nIf the matrix  satisfies the equation  for some real\nnumbers  and  then   is equal to\n Matrices and Determinants\n#PaperPhodnaHai\nx−2y+7z=c\na,b c\n5a=2b+c\n5a=2b+c\na,b c\na,b c\nA=⎡\n⎢\n⎣10 0\n02 0\n30−1⎤\n⎥\n⎦A20+αA19+βA=⎡\n⎢\n⎣100\n040\n001⎤\n⎥\n⎦\nα β, β−α",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 15,
+    "answers": 15,
+    "solutions": 0,
+    "exported": 15,
+    "skipped": 0
+  }
+}

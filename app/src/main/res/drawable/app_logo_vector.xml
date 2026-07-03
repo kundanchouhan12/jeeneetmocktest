@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="200"
+    android:viewportHeight="200">
+
+    <!-- ── Outer gold ring ── -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M100,100 m-98,0 a98,98 0 1,0 196,0 a98,98 0 1,0 -196,0"/>
+
+    <!-- ── Inner dark navy circle ── -->
+    <path
+        android:fillColor="#080E1A"
+        android:pathData="M100,100 m-91,0 a91,91 0 1,0 182,0 a91,91 0 1,0 -182,0"/>
+
+    <!-- ── Soft inner glow ring ── -->
+    <path
+        android:fillColor="#15F59E0B"
+        android:pathData="M100,100 m-88,0 a88,88 0 1,0 176,0 a88,88 0 1,0 -176,0"/>
+
+    <!-- ════════════════════════════════════
+         GRADUATION CAP
+         ════════════════════════════════════ -->
+
+    <!-- Cap body / cylinder (left side – lighter) -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M72,86 L72,114 Q72,132 100,137 Q128,132 128,114 L128,86 L100,98 Z"/>
+
+    <!-- Cap body / cylinder (right side – darker for depth) -->
+    <path
+        android:fillColor="#D97706"
+        android:pathData="M100,98 L128,86 L128,114 Q128,132 100,137 Z"/>
+
+    <!-- Mortarboard flat top (diamond/rhombus) -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M100,50 L158,80 L100,98 L42,80 Z"/>
+
+    <!-- Mortarboard top highlight (upper-left half, lighter gold) -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M100,50 L158,80 L129,89 L71,71 Z"/>
+
+    <!-- Mortarboard centre line (subtle depth) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#D97706"
+        android:strokeWidth="1.5"
+        android:pathData="M100,50 L100,98"/>
+
+    <!-- ── Tassel string ── -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#F59E0B"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M158,80 L158,108"/>
+
+    <!-- Tassel knot/button -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M153,108 L163,108 L163,114 L153,114 Z"/>
+
+    <!-- Tassel threads (3 hanging lines) -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FBBF24"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M154,114 L153,122 M158,114 L158,123 M162,114 L163,122"/>
+
+    <!-- ════════════════════════════════════
+         SPARKLE STARS (education accent)
+         ════════════════════════════════════ -->
+
+    <!-- Top-left 5-pointed star -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M40,43 L41.9,49 L48,49 L43,52.6 L44.9,58.6 L40,55 L35.1,58.6 L37,52.6 L32,49 L38.1,49 Z"/>
+
+    <!-- Top-right small star -->
+    <path
+        android:fillColor="#FBBF24"
+        android:pathData="M162,35 L163.4,39.4 L168,39.4 L164.3,42 L165.7,46.4 L162,43.8 L158.3,46.4 L159.7,42 L156,39.4 L160.6,39.4 Z"/>
+
+    <!-- Bottom-right tiny dot accent -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M152,155 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"/>
+
+    <!-- Bottom-left tiny dot accent -->
+    <path
+        android:fillColor="#F59E0B"
+        android:pathData="M48,155 m-4,0 a4,4 0 1,0 8,0 a4,4 0 1,0 -8,0"/>
+
+</vector>

@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The number of orbitals in the n=3 shell is:",
+    "options": [
+      "3",
+      "6",
+      "9",
+      "12"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which quantum number determines the shape of an orbital?",
+    "options": [
+      "Principal (n)",
+      "Azimuthal (l)",
+      "Magnetic (m)",
+      "Spin (s)"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Atomic Structure",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The electronic configuration of Fe (Z=26) is:",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Both A and C"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

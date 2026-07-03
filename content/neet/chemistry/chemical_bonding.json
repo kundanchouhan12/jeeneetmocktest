@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The bond angle in water molecule is:",
+    "options": [
+      "120\u00b0",
+      "109.5\u00b0",
+      "104.5\u00b0",
+      "180\u00b0"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Chemical Bonding",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which of the following has a linear shape?",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

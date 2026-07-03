@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "(D) -Gmm/r\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A satellite in a circular orbit has kinetic energy equal to _____ times its total energy. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "(D) -Gmm/r\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Kepler's third law states that T\u00b2 \u221d:",
+    "options": [
+      "r",
+      "r\u00b2",
+      "r\u00b3",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

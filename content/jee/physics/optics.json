@@ -1,0 +1,236 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The focal length of a concave mirror is 15 cm. An object is placed 30 cm in front of it. The image distance is:",
+    "options": [
+      "30 cm",
+      "-30 cm",
+      "15 cm",
+      "60 cm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Total internal reflection occurs when light goes from:",
+    "options": [
+      "Rarer to denser medium",
+      "Denser to rarer medium at critical angle",
+      "Any medium at 45\u00b0",
+      "Air to glass Page 12 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Young's double slit experiment demonstrates:",
+    "options": [
+      "Diffraction",
+      "Polarization",
+      "Interference",
+      "Reflection"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Magnifying power of a simple microscope is:",
+    "options": [
+      "D/f",
+      "1 + D/f",
+      "f/D",
+      "D/(f+D)"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL A convex lens has focal length 20 cm. An object is placed 30 cm from it. Find the image position. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which colour of light undergoes the maximum deviation when passed through a prism?",
+    "options": [
+      "Red",
+      "Green",
+      "Yellow",
+      "Violet"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL What is the refractive index of glass if the critical angle is 42\u00b0? (sin 42\u00b0 = 0.669) Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "What is the principle behind optical fiber communication? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Explain the formation of rainbow with the help of dispersion of light. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The phenomenon of polarisation proves that light is a _____ wave. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Resolving power of a microscope increases when the wavelength of light used is:",
+    "options": [
+      "Increased",
+      "Decreased",
+      "Unchanged",
+      "Doubled"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "State the condition for constructive interference of light. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Optics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

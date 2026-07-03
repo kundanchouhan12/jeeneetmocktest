@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Wave_Optics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Wave_Optics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Wave Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:47",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nA fringe width of  was produced for two slits separated by  apart. The screen is placed  away .\nThe wavelength of light used is 'x' . The value of 'x' to the nearest integer is ____",
+      "answer_key": "600",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nIn Young's double slit arrangement, slits are separated by a gap of , and the screen is placed at a\ndistance of  from them. The distance between the first and the third bright fringe formed when the slits\nare illuminated by a monochromatic light of  is :-\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe speed of electrons in a scanning electron microscope is . If the protons having the same\nspeed are used instead of electrons, then the resolving power of scanning proton microscope will be changed\nby a factor of:\n(1) 1837\n(2) \n(3) \n(4) \n Wave Optics\n#PaperPhodnaHai\nnm\n0.5 mm\n0.5 m\n5890\\AA\n1178×10−9 m\n1178×10−6 m\n1178×10−12 m\n5890×10−7 m\n1×107 ms−1\n1\n1837\n√1837\n1\n√1837",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

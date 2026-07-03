@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Gravitation_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Gravitation_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Gravitation",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:35",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe maximum and minimum distances of a comet from the Sun are  and \nrespectively . If the speed of the comet at the nearest point is , the speed at the farthest point is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nIf one wants to remove all the mass of the earth to infinity in order to break it up completely . The amount of\nenergy that needs to be supplied will be  where  is ___.  \n(Round of f to the Nearest Integer)  \n(M is the mass of earth,  is the radius of earth,  is the gravitational constant)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe radius in kilometer to which the present radius of earth  to be compressed so that the\nescape velocity is increased 10 time is",
+      "answer_key": "64",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nA geostationary satellite is orbiting around an  \narbitary planet 'P' at a height of  above the  \nsurface of 'P',  being the radius of 'P'. The time period of another satellite in hours at a height  \nof  from the surface of 'P' is ________ has the time period of 24 hours.\n(1) \n(2) \n(3) 3\n(4) 5\n Gravitation\n#PaperPhodnaHai\n6×104 ms−1\n1.5×103 m/s\n6.0×103 m/s\n3.0×103 m/s\n4.5×103 m/s\nx\n5GM2\nRx\nR G\n(R=6400 km)\n11R\nR\n2R\n6√2\n6\n√2",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe time period of a satellite in a circular orbit of radius  is . The period of another satellite in a circular\norbit of radius  is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nIf the angular velocity of earth's spin is increased such that the bodies at the equator start floating, the duration\nof the day would be approximately :  \n(Take :  the radius of earth,  Take \n(1) 60 minutes\n(2) does not change\n(3) 1200 minutes\n(4) 84 minutes",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe angular momentum of a planet of mass  moving around the sun in an elliptical orbit is  The\nmagnitude of the areal velocity of the planet is :\n(1) \n(2) \n(3) \n(4) \n Gravitation\n#PaperPhodnaHai\n9R\n9 T\n27 T\n12 T\n3 T\ng=10 ms−2, R=6400×103 m, π=3.14)\nM→\nL.\n4 L\nM\nL\nM\n2 L\nM\nL\n2M",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

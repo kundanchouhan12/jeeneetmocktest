@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Solid State",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Glass is a _____ solid. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Solid State",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In an FCC unit cell, the number of atoms per unit cell is:",
+    "options": [
+      "1",
+      "2",
+      "4",
+      "8"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Solid State",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A Schottky defect lowers the _____ of the crystal. Ans: ___________________________________________ Page 43 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Solid State",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "4",
+      "6",
+      "8",
+      "12"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

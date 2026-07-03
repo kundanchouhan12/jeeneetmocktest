@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Probability_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Probability_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Probability",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:20",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nA pack of cards has one card missing. T wo cards are drawn randomly and are found to be spades. The\nprobability that the missing card is not a spade, is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet A denote the event that a 6 -digit integer formed by 0,1,2,3,4,5,6 without repetitions,be divisible by \nThen probability of event  is equal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nTwo dices are rolled. If both dices have six faces numbered 1,2,3,5,7 and  then the probability that the sum\nof the numbers on the top faces is less than or equal to 8 is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nLet there be three independent events  and . The probability that only  occurs is , only  occurs\nis  and only  occurs is . Let 'p' denote the probability of none of events occurs that satisfies the equations \n Probability\n#PaperPhodnaHai\n4\n52\n867\n39\n50\n22\n425\n3.\nA\n9\n56\n4\n9\n3\n7\n11\n27\n11,\n4\n9\n17\n36\n5\n12\n1\n2\nE1,E2 E3 E1 α E2\nβ E3 γ\n \n and  All the given probabilities are assumed to lie in the interval (0,1)  \nThen,  is equal to ____",
+      "answer_key": "6",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nLet a computer program generate only the digits 0 and 1 to form a string of binary numbers with probability of\noccurrence of 0 at even places be  and probability of occurrence of 0 at the odd place be . Then the\nprobability that '10' is followed by '01' is equal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet in a Binomial distribution, consisting of 5 independent trials, probabilities of exactly 1 and 2 successes be\n0.4096 and 0.2048 respectively . Then the probability of getting exactly 3 successes is equal to:\n(1) \n(2) \n(3) \n(4) \n Probability\n#PaperPhodnaHai\n Pr obability of occurrence of E1\n Probability of occurrence of E3\n1\n21\n3\n1\n18\n1\n3\n1\n6\n1\n9\n32\n625\n80\n243\n40\n243\n128\n625",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

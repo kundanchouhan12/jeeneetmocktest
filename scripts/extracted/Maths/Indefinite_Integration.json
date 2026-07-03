@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Indefinite_Integration_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Indefinite_Integration_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Integral Calculus",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:19",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nFor real numbers  and  if \n \n \nwhere  is an arbitrary constant, then the value  \nof  is equal to ____",
+      "answer_key": "6",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe integral  is equal to  \n(where  is a constant of integration)\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nIf v and  then the value of  is\n Indefinite Integration\n#PaperPhodnaHai\n∫ dx(x2−1)+tan−1( )x2+1\nx\n(x4+3x2+1)tan−1( )x2+1\nx\n=αloge(tan−1( ))x2+1\nx\n+βtan−1( )+δtan−1( )+Cγ(x2−1)\nxx2+1\nx\nC\n10(α+βγ+δ)\n∫ dx(2x−1)cos√(2x−1)2+5\n√4x2−4x+6\nc\nsin√(2x−1)2+5+c1\n2\ncos√(2x+1)2+5+c1\n2\ncos√(2x−1)2+5+c1\n2\nsin√(2x+1)2+5+c1\n2\nf(x)=∫ dx,(x≥0),f(0)=05x8+7x6\n(x2+1+2x7)2 f(1)= ,1\n KK",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

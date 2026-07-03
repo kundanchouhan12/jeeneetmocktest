@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "The greenhouse gases include CO, methane, and _____ in the atmosphere.",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Mutualism, commensalism, and parasitism are all types of:",
+    "options": [
+      "Competition",
+      "Symbiosis",
+      "Predation",
+      "Amensalism"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "The greenhouse gases include CO, methane, and _____ in the atmosphere.",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Explain why deforestation leads to decreased rainfall in nearby regions. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

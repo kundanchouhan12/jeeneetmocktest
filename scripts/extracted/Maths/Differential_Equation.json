@@ -1,0 +1,101 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\July_2021\\Differential_Equation_Click_here_to_download.pdf",
+  "pdf_name": "Differential_Equation_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Integral Calculus",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:53:28",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "(20 July 2021 Shift 1)\nLet  be the solution of the dif ferential equation  \n Then the area of the region bounded by the curves  and  in\nthe upper half plane is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": "We have  \n \n \nPut  \n \n \nNow , we get  \n \n \n \n \n \n \nSo, required bounded area  \n \n (II) (I)  \n(I.B.P .) \n option (1) is correct."
+    },
+    {
+      "q_num": 2,
+      "raw_text": "(20 July 2021 Shift 1)\nLet  be the solution of the dif ferential equation . \nThen the value of  is equal to:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": "Differential Equation\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\ndxx(⋅tan−1)y\nxy\nx\nxtany\nx\n∴ = −cot()dy\ndxy\nxy\nx\n=vy\nx\n⇒y=vn\n∴ =v+dy\ndxndv\ndx\nv+n =v−cot(v)dv\ndx\n⇒∫(tan)dv=−∫dx\nx\n∴ℓn∣∣sec()∣∣=−ℓn|x|+cy\nx\nAs()=()⇒C=01\n2y\nx\n∴sec()=y\nx1\nx\n⇒cos()=xy\nx\n∴y=xcos−1(x)\n=∫1/√2\n0x(cos−1x)dx=( )π−1\n8\n∴"
+    },
+    {
+      "q_num": 3,
+      "raw_text": "(20 July 2021 Shift 2)\nLet  satisfies the equation , \nfor all , where  If , then the value of  is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": "I.F.  \n \n \nNow  \nUse in (i)  \nNow (i) be comes  \nput"
+    },
+    {
+      "q_num": 4,
+      "raw_text": "(20 July 2021 Shift 2)\n Differential Equation\nxy\nx\n−1≤x≤1,y()= .1\n2π\n6x=0,x=1\n√2y=y(x)\n(π−1)1\n8\n(π−3)1\n12\n(π−2)1\n4\n(π−1)1\n6\ny=y(x) ex√1−y2dx+()dy=0,y(1)=−1y\nx\n(y(3))2\n1−4e3\n1−4e6\n1+4e3\n1+4e6\ny=y(x) −|A|=0dy\ndx\nx>0A=⎡\n⎢\n⎣ysinx1\n0 −1 1\n2 0⎤\n⎥\n⎦.\n1\nxy(π)=π+2 y()π\n2\n+π\n24\nπ\n−π\n21\nπ\n−3π\n21\nπ\n−π\n24\nπ\n \nLet a curve  be given by the solution of the dif ferential equation \n \nIf it intersects  -axis at , and the intersection point of the curve with  -axis is , then  is equal\nto",
+      "answer_key": "2",
+      "solution": "Put  \n \n \n Differential Equation\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n⇒ex√1−y2dx+ dy\n⇒∫ dy=∫ex\nIIxdx\n⇒√1−y2=ex(x−1)+c\n Given : At x=1,y=−1\n⇒0=0+c⇒c=0\n∴√1−y2=ex(x−1)\n At x=31−y2=(e32)2⇒y2=1−4e6y\nx\n−y\nx\n−y\n√1−y2\n|A|=−+2sinx+2y\nx\n=|A|dy\ndx\n=−+2sinx+2dy\ndxy\nx\n+ =2sinx+2dy\ndxy\nx\n=e∫dx=x1\nx\n⇒yx=∫x(2sinx+2)dx\nxy=x2−2xcosx+2sinx+c\nx=π,y=π+2\nc=0\nxy=x2−2xcosx+2sinx\nx=π/2\ny=()2\n−2⋅cos+2sinπ\n2π\n2π\n2π\n2π\n2\ny= +2π\n2π2\n4\ncos(cos−1(e−x))dx=√e2x−1dy1\n2\ncos−1(e−x)θ,θ∈[0,π]\ncosθ=e−x⇒2cos2−1=e−x θ\n2\ncos=√ =√θ\n2e−x+1\n2ex+1\n2cx\n \n \n \nPut  \n y \n \nPut  \n \n \n \n \n, passes through"
+    },
+    {
+      "q_num": 5,
+      "raw_text": "(22 July 2021 Shift 1)\nLet  be the solution of the dif ferential equation , with  \n Then, the value of  is equal  \nto:\n(1) \n(2) \n(3) \n(4) e",
+      "answer_key": "3",
+      "solution": "I.F.  \nSolution of D.E.  \n \n \nGiven  \n \n \n \n Differential Equation\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n2cx\n∫ =∫dy1\n√2dx\n√ex√ex−1\nex=t,=ex dt\ndx\n∫ =∫d1\n√2dt\nex√ex√ex−1\n∫ =√2ydt\nt√t2−t\nt=,=−1\nzdt\ndz1\nz2\n∫ =√2y−dz\nz2\n√ −1\nz1\nz21\nz\n−∫ =√2ydz\n√1−z\n=√2y+c−2(1−z)1/2\n−1\n2(1−)1/2\n=√2y+c1\nt\n2(1−e−x)1/2=√2y+c ⇒c=√2(0,−1)\n⟶\n2(1−e−x)1/2=√2(y+1) (α,0)\n2(1−e−a)1/2=√2\n√1−e−α= ⇒1−e−α=1\n√21\n2\ne−a= ⇒ea=21\n2\n+2sin2x=1+ycos2xdy\ndx\n⇒ +(−cos2x)y=cos2xdy\ndx\n=e∫−cos2xdx=e−sin2x\n2\ny(e−)=∫(cos2x)(e− )dx+csin2x\n2sin2x\n2\n⇒y(e−)=−e−+csin2x\n2sin2x\n2\ny()=0π\n4\n⇒0=−e−1/2+c⇒c=e−1/2\n⇒y(e− )=−e−+e−1/2sin2x\n2sin2x\n2\n \nat"
+    },
+    {
+      "q_num": 6,
+      "raw_text": "(22 July 2021 Shift 1)\nLet  be the solution of the dif ferential  \nequation , \n If the domain of  is an open  \ninterval , then  is equal to ____.",
+      "answer_key": "4",
+      "solution": "Q7\n \n \n \nAt  \n \n \n \n \n Differential Equation\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\ny=−1+e−1/2\n⇒y(0)=−1+e−1/2⇒(y(0)+1)2=e−1\ny+1=Y⇒dy=dY\nx+2=X⇒dx=dX\n⇒(Xe+Y)dX=XdYY\nX\n⇒XdY−YdX=XeY/xdX\n⇒d()e−=Y\nXY\nXdX\nX\n−e−Y/x=ℓ|X|+c\n(3,2)→−e−2/3=ℓ|3|+c\n−e−=ln|X|−e−−ℓn3\ne−=e2/3+ln3−ln|X|>0\nln|X|<e2/3+ℓn3→λ\nlx+2∣<eλ\n−eλ<x+2<eλ\n−eλ−2<x<eλ−2\nα β\nα+β=−4⇒∣α+βI=4t\nx2\n3\nY\nx\n=xdxdy−dx\ney−x\n⇒ =xdxdy−dx\ney−x\n⇒−ex−y= +cx2\n2\nx=0,y=0⇒c=−1\n⇒ex−y=2−x2\n2\n⇒y=x−ln( )2−x2\n2\n⇒ =1+ =dy\ndx2x\n2−x22+2x−x2\n2−x2\n√1−√1+√2+√2\n \nSo minimum value occurs at"
+    },
+    {
+      "q_num": 7,
+      "raw_text": "(25 July 2021 Shift 1)\nLet  be the solution of the dif ferential equation  \nthen, the minimum value of  is \nequal to :\n(1) \n(2) \n(3) \n Differential Equation\ncos(cos−1(e−x))dx=√e2x−1dy1\n2\ny y=−1 x (α,0) eα\ny=y(x) cosec2xdy+2dx=(1+ycos2x)cosec2xdx\ny()=0.π\n4(y(0)+1)2\ne1/2\ne−1/2\ne−1\ny=y(x)\n((x+2)e( )+(y+1))dx=(x+2)dyy+1\nx+2\ny(1)=1. y=y(x)\n(α,β)lα+β∣\ny=y(x) =1+xey−x,−√2<x<√2,y(0)=0dy\ndx\ny(x),x∈(−√2,√2)\n(2−√3)−loge2\n(2+√3)+loge2\n(1+√3)−loge(√3−1)\n \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "(25 July 2021 Shift 1)\nLet  be solution of the following dif ferential equation \n \nIf , then  is equal to",
+      "answer_key": "4",
+      "solution": "Let  \n \nI.F.  \n \nat  \n \n \nPut"
+    },
+    {
+      "q_num": 9,
+      "raw_text": "(25 July 2021 Shift 2)\nLet  be the solution of the dif ferential  \nequation  with , then  is equal to:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": "so  \n \n Differential Equation\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n2\n=(1−√3)−ln(√3−1)\ney=t\n⇒ −(2sinx)t=−sinxcos2xdt\ndx\n=e2wax\n⇒t⋅e2cosx=∫e2cosx⋅(−sinxcos2x)dx\nx=,y=0⇒C=π\n23\n4\n⇒ey=cos2x−cosx++⋅e−20ωx 1\n21\n21\n43\n4\n⇒y=log[ − ++e−2cosx]cos2x\n2cosx\n21\n43\n4\nx=0\n⇒y=log[+e−2]⇒α=,β=1\n43\n41\n43\n4\nxdy=(y+x3cosx)dx\nxdy=ydx+x3cosxdx\n=xdy−ydx\nx2x3cosxdx\nx2\n()=∫xcosxdxd\ndxy\nx\n⇒ =xsinx−∫1⋅sinxdxy\nx\n=xsinx+cosx+Cy\nx\n⇒0=−1+C⇒C=1,x=π,y=0\n=xsinx+cosx+1y\nx\ny=x2sinx+xcosx+xx=π\n2\ny()= +π\n2π2\n4π\n2"
+    },
+    {
+      "q_num": 10,
+      "raw_text": "(25 July 2021 Shift 2)\nLet a curve  pass through the point (2,  and have slope  for all positive real value of \n. Then the value of  is equal to ___",
+      "answer_key": "1",
+      "solution": "put  \n \n \nQ1 1\n \n \n \n \n when"
+    },
+    {
+      "q_num": 11,
+      "raw_text": "(27 July 2021 Shift 1)\nLet  be solution of the dif ferential equation  \n, with  \nIf , then the value of  is \nequal to:\n(1) \n(2) \n(3) 2\n Differential Equation\ny=y(x)\ney−2eysinx+sinxcos2x=0,y()=0dy\ndxπ\n2\ny(0)=logc(α+βe−2) 4(α+β)\ny=y(x)\nxdy=(y+x3cosx)dxy(π)=0 y()π\n2\n+π2\n4π\n2\n+π2\n2π\n4\n−π2\n2π\n4\n−π2\n4π\n2\ny=f(x) (loge2)2)2y\nxlogex\nx f(e)\ny=y(x)\nloge()=3x+4ydy\ndxy(0)=0\ny(−loge2)=αloge22\n3α\n−1\n4\n1\n4\n \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 12,
+      "raw_text": "(27 July 2021 Shift 1)\nIf  is the solution of the  \ndifferential equation  \n, with  \nthen  is equal to",
+      "answer_key": "2",
+      "solution": "at"
+    },
+    {
+      "q_num": 13,
+      "raw_text": "(27 July 2021 Shift 2)\nLet  be the solution of the dif ferential equation  \nIf , then  is equal to:\n(1) 4\n(2) 12\n(3) 8\n(4) 16",
+      "answer_key": "2",
+      "solution": "Differential Equation\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\nxℓnx\n⇒ =dy\ny2dx\nxℓnx\n⇒ℓnlyl=2ℓn∣ℓnxl+C\nx=2,y=(ℓn2)2\n⇒c=0\n⇒y=(ℓnx)2\n⇒f(e)=1\n=e3x⋅e4y⇒∫e−4ydy=∫e3xdxdy\ndx\n= +C⇒−− =C⇒C=−e−4y\n−4e3x\n31\n41\n37\n12\n= − ⇒e−4y=e−4y\n−4e3x\n37\n124e3x−7\n−3\ne4y= ⇒4y=ln( )3\n7−4e3x3\n7−4e3x\n4y=ℓn()3\n6x=−ℓn22\n3\ny=ln()=−ln21\n41\n21\n4\nsecy=2sinxcosydy\ndx\nsec2ydy=2sinxdx\ntany=−2cosx+c\nc=2\ntany=−2cosx+2⇒x=π\n2\ntany=2\nsec2y=2sinxdy\ndx\n5=2dy\ndx\n \n \n \n \n \nIntegrate  \ngiven   \n \n \nat"
+    },
+    {
+      "q_num": 14,
+      "raw_text": "(27 July 2021 Shift 2)\nLet  be the solution of the dif ferential  \nequation  If  \nand , then the value of  is equal  \nto\n Differential Equation\n2\ny=y(x),y∈[0,)π\n2\nsecy −sin(x+y)−sin(x−y)=0dy\ndxy(0)=0\n5y′()π\n2\ny=y(x) (x−x3)dy=(y+yx2−3x4)dx,x>2\ny(3)=3 y(4)\ny=y(x)\ndy=e(x+ydx;α∈N.y(loge2)=loge2\ny(0)=loge()1\n2α",
+      "answer_key": "2",
+      "solution": "Put  in (i)  \n \n(ii) - (iii)  \n \n (as \n Differential Equation\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n⇒xdy−ydx=(yx2−3x4)dx+x3dy\n⇒ =(ydx+xdy)−3x2dxxdy−ydx\nx2\n⇒d()=d(xy)−d(x3)y\nx\n⇒ =xy−x3+cy\nx\nf(3)=3⇒ =3×3−33+c3\n3\n⇒c=19\n∴ =xy−x3+19y\nx\nx=4,=4y−64+19y\n4\n15y=4×45\n⇒y=12\n∫e−ydy=∫eaxdx\n⇒e−y= +ceax\nα\nPut(x,y)=(ℓn2,ℓn2)\n= +C−1\n22α\nα\n(x,y)≡(0,−ℓn2)\n−2= +C1\nα\n=2α−1\nα3\n2\n⇒α=2α∈N)"
+    }
+  ],
+  "stats": {
+    "q_blocks": 14,
+    "answers": 14,
+    "solutions": 12,
+    "exported": 14,
+    "skipped": 0
+  }
+}

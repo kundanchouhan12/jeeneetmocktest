@@ -1,0 +1,164 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Ohm's law states that current is proportional to voltage at constant:",
+    "options": [
+      "Pressure",
+      "Temperature",
+      "Resistance",
+      "Both B and C"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Three resistors of 3 \u03a9 each are connected in parallel. The equivalent resistance is:",
+    "options": [
+      "9 \u03a9",
+      "1 \u03a9",
+      "3 \u03a9",
+      "0.33 \u03a9"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Kirchhoff's current law (KCL) is based on conservation of:",
+    "options": [
+      "Energy",
+      "Momentum",
+      "Charge",
+      "Mass Page 10 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The SI unit of electrical resistivity is:",
+    "options": [
+      "\u03a9",
+      "\u03a9\u00b7m",
+      "\u03a9/m",
+      "S/m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A wire of resistance 10 \u03a9 is stretched to double its length. Its new resistance is:",
+    "options": [
+      "5 \u03a9",
+      "20 \u03a9",
+      "40 \u03a9",
+      "80 \u03a9"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The power dissipated in a resistor R carrying current I is:",
+    "options": [
+      "IR",
+      "I\u00b2R",
+      "IR\u00b2",
+      "I/R"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL What is the terminal voltage of a cell with EMF 2V, internal resistance 0.5 \u03a9, delivering current 2 A? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "State Kirchhoff's voltage law and apply it to a simple single-loop circuit. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Current Electricity",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A wire of length 2 m and cross-sectional area 1 mm\u00b2 has resistance 1 \u03a9. Its resistivity is:",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

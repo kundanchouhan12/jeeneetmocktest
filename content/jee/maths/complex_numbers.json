@@ -1,0 +1,110 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Complex Numbers",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Find the complex number (3 + 4i)(3 - 4i). Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Complex Numbers",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The modulus of 5 + 12i is:",
+    "options": [
+      "13",
+      "17",
+      "5",
+      "12"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Complex Numbers",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Argument of the complex number -1 + i is:",
+    "options": [
+      "\u03c0/4",
+      "3\u03c0/4",
+      "-\u03c0/4",
+      "\u03c0/2 Page 55 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Complex Numbers",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The cube roots of unity sum to:",
+    "options": [
+      "1",
+      "-1",
+      "0",
+      "3"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Complex Numbers",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "If |z| = 1, z lies on a _____ in the Argand plane. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Complex Numbers",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Solve: x\u00b2 - 6x + 13 = 0 (roots are complex) Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

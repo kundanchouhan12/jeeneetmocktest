@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JEE NEET Mock Test — Play Store Screenshots</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #111;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    padding: 40px 20px;
+  }
+
+  h1.page-title {
+    color: #FFA000;
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+  .page-subtitle {
+    color: #888;
+    text-align: center;
+    font-size: 13px;
+    margin-bottom: 40px;
+  }
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+  }
+
+  /* Each Play Store screenshot: 1080×1920 → display at 360×640 */
+  .slide {
+    width: 360px;
+    height: 640px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 12px 48px rgba(0,0,0,0.7);
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Header area ─────────────────────────────── */
+  .slide-header {
+    position: relative;
+    z-index: 2;
+    padding: 22px 20px 18px;
+    flex-shrink: 0;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .badge-orange { background: #FFA000; color: #111; }
+  .badge-blue   { background: #1565C0; color: #fff; }
+  .badge-green  { background: #2E7D32; color: #fff; }
+  .badge-purple { background: #6A1B9A; color: #fff; }
+
+  .slide-title {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 7px;
+    color: #fff;
+  }
+  .slide-title span { color: #FFA000; }
+
+  .slide-desc {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.75);
+  }
+
+  /* ── Screenshot area ──────────────────────────── */
+  .slide-img {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+  .slide-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    display: block;
+  }
+
+  /* fade the screenshot into the header */
+  .slide-img::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 60px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* ── Colour themes ───────────────────────────── */
+  /* 1. Orange (primary) */
+  .theme-orange .slide-header { background: linear-gradient(160deg, #E65100 0%, #FF8F00 100%); }
+  .theme-orange .slide-img::before { background: linear-gradient(#FF8F00, transparent); }
+
+  /* 2. Rose / Physics */
+  .theme-rose .slide-header { background: linear-gradient(160deg, #880E4F 0%, #D81B60 100%); }
+  .theme-rose .slide-img::before { background: linear-gradient(#D81B60, transparent); }
+  .theme-rose .slide-title span { color: #FF80AB; }
+
+  /* 3. Blue / Maths */
+  .theme-blue .slide-header { background: linear-gradient(160deg, #0D47A1 0%, #1976D2 100%); }
+  .theme-blue .slide-img::before { background: linear-gradient(#1976D2, transparent); }
+  .theme-blue .slide-title span { color: #82B1FF; }
+
+  /* 4. Teal / AI */
+  .theme-teal .slide-header { background: linear-gradient(160deg, #004D40 0%, #00897B 100%); }
+  .theme-teal .slide-img::before { background: linear-gradient(#00897B, transparent); }
+  .theme-teal .slide-title span { color: #64FFDA; }
+
+  /* 5. Purple / Compete */
+  .theme-purple .slide-header { background: linear-gradient(160deg, #4A148C 0%, #7B1FA2 100%); }
+  .theme-purple .slide-img::before { background: linear-gradient(#7B1FA2, transparent); }
+  .theme-purple .slide-title span { color: #CE93D8; }
+
+  /* 6. Navy / Analytics */
+  .theme-navy .slide-header { background: linear-gradient(160deg, #0A1628 0%, #1A237E 100%); }
+  .theme-navy .slide-img::before { background: linear-gradient(#1A237E, transparent); }
+  .theme-navy .slide-title span { color: #82B1FF; }
+
+  /* 7. Gold / Streak */
+  .theme-gold .slide-header { background: linear-gradient(160deg, #827717 0%, #F9A825 100%); }
+  .theme-gold .slide-img::before { background: linear-gradient(#F9A825, transparent); }
+  .theme-gold .slide-title span { color: #FFF176; }
+
+  /* 8. Dark / Scan */
+  .theme-dark .slide-header { background: linear-gradient(160deg, #212121 0%, #424242 100%); }
+  .theme-dark .slide-img::before { background: linear-gradient(#424242, transparent); }
+  .theme-dark .slide-title span { color: #FFA000; }
+
+  /* ── Feature pills at bottom of header ────────── */
+  .pills { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .pill {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.18);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+
+  /* ── Print / export instructions ────────────────── */
+  .instructions {
+    background: #1E1E1E;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 20px 24px;
+    color: #ccc;
+    margin-bottom: 36px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .instructions strong { color: #FFA000; }
+  .instructions code {
+    background: #333;
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 12px;
+    color: #fff;
+  }
+
+  /* ── Slide labels ─────────────────────────────── */
+  .slide-label {
+    text-align: center;
+    color: #555;
+    font-size: 11px;
+    margin-top: 8px;
+    font-family: monospace;
+  }
+
+  .slide-wrap { display: flex; flex-direction: column; }
+</style>
+</head>
+<body>
+
+<h1 class="page-title">JEE NEET Mock Test — Play Store Screenshots</h1>
+<p class="page-subtitle">8 feature screenshots • 1080 × 1920 px equivalent • Open in browser → Screenshot each slide</p>
+
+<div class="instructions">
+  <strong>How to export Play Store-ready PNGs:</strong><br>
+  1. Open this file in <strong>Chrome / Edge</strong> (File → Open).<br>
+  2. Press <strong>F12</strong> → Device Toolbar (<code>Ctrl+Shift+M</code>) → set custom size <strong>360 × 640</strong>.<br>
+  3. Right-click each screenshot card → <strong>"Capture node screenshot"</strong> (in Elements panel) — or use <strong>Lightshot / Snipping Tool</strong>.<br>
+  4. Alternatively, zoom your browser to 300% and screenshot each card at <strong>1080 × 1920</strong> equivalent resolution.<br>
+  5. Upload to Play Console → <em>Store listing → Phone screenshots</em> (min 2, max 8).
+</div>
+
+<div class="grid">
+
+  <!-- ══ 1. HOME / HERO ══════════════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-orange">
+      <div class="slide-header">
+        <span class="badge badge-orange">JEE &amp; NEET</span>
+        <div class="slide-title">Complete Exam<br><span>Preparation App</span></div>
+        <div class="slide-desc">Mock Tests • Chapterwise • PYQs • Full Series<br>Switch between JEE &amp; NEET in one tap</div>
+        <div class="pills">
+          <span class="pill">Mock Test</span>
+          <span class="pill">Chapterwise</span>
+          <span class="pill">PYQs</span>
+          <span class="pill">Full Series</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/first screen shot.jpg" alt="Home screen">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 1 — Home Dashboard</div>
+  </div>
+
+  <!-- ══ 2. CHAPTERWISE TESTS ═══════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-rose">
+      <div class="slide-header">
+        <span class="badge badge-orange">Chapterwise</span>
+        <div class="slide-title">Master Every<br><span>Chapter Separately</span></div>
+        <div class="slide-desc">Physics, Chemistry &amp; Maths — 30 questions per chapter with progress tracking</div>
+        <div class="pills">
+          <span class="pill">30 Qs / chapter</span>
+          <span class="pill">Progress bar</span>
+          <span class="pill">Free chapters</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/1.jpg" alt="Chapterwise tests">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 2 — Physics Chapterwise</div>
+  </div>
+
+  <!-- ══ 3. TRENDING TESTS ══════════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-rose">
+      <div class="slide-header">
+        <span class="badge badge-orange">Trending</span>
+        <div class="slide-title">200+ Tests —<br><span>New Every Week</span></div>
+        <div class="slide-desc">Latest Physics, Chemistry &amp; Maths quick tests — 5 to 10 min practice sessions with attempt counts</div>
+        <div class="pills">
+          <span class="pill">Trending tests</span>
+          <span class="pill">Quick 5-min tests</span>
+          <span class="pill">New weekly</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/2.jpg" alt="Trending tests">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 3 — Trending Tests</div>
+  </div>
+
+  <!-- ══ 4. FULL MOCK + AI ADVISOR ══════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-teal">
+      <div class="slide-header">
+        <span class="badge badge-green">AI Powered</span>
+        <div class="slide-title">Real Exam<br><span>Simulation + AI Plan</span></div>
+        <div class="slide-desc">180-min full mock with negative marking • AI tracks your readiness &amp; builds your daily study plan</div>
+        <div class="pills">
+          <span class="pill">180 min full mock</span>
+          <span class="pill">AI daily plan</span>
+          <span class="pill">Exam readiness %</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/4.jpg" alt="Full mock and AI advisor">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 4 — AI Advisor &amp; Full Mock</div>
+  </div>
+
+  <!-- ══ 5. PERFORMANCE ANALYSIS ════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-navy">
+      <div class="slide-header">
+        <span class="badge badge-blue">Analytics</span>
+        <div class="slide-title">Deep Subject-wise<br><span>Performance Analytics</span></div>
+        <div class="slide-desc">See your accuracy for Physics, Chemistry &amp; Maths • Weak topics flagged automatically</div>
+        <div class="pills">
+          <span class="pill">Subject accuracy</span>
+          <span class="pill">Weak topics</span>
+          <span class="pill">Correct / Wrong</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/7.jpg" alt="Performance analysis">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 5 — Performance Analytics</div>
+  </div>
+
+  <!-- ══ 6. PREPARATION INSIGHTS / TREND CHART ═════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-navy">
+      <div class="slide-header">
+        <span class="badge badge-blue">Insights</span>
+        <div class="slide-title">AI Counselor &amp;<br><span>Trend Charts</span></div>
+        <div class="slide-desc">Performance trend over last 8 tests • AI identifies at-risk topics before your exam</div>
+        <div class="pills">
+          <span class="pill">Performance trend</span>
+          <span class="pill">AI predictions</span>
+          <span class="pill">Daily goal tracker</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/9.jpg" alt="Preparation insights">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 6 — Preparation Insights</div>
+  </div>
+
+  <!-- ══ 7. WEEKLY LEADERBOARD ══════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-purple">
+      <div class="slide-header">
+        <span class="badge badge-purple">Compete</span>
+        <div class="slide-title">Weekly<br><span>Leaderboard</span></div>
+        <div class="slide-desc">See how you rank against thousands of JEE &amp; NEET aspirants • Reset every Monday</div>
+        <div class="pills">
+          <span class="pill">Top 10 ranking</span>
+          <span class="pill">Weekly reset</span>
+          <span class="pill">Streak tracking</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/6.jpg" alt="Weekly leaderboard">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 7 — Weekly Leaderboard</div>
+  </div>
+
+  <!-- ══ 8. SCAN & SOLVE ════════════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-dark">
+      <div class="slide-header">
+        <span class="badge badge-orange">AI Tool</span>
+        <div class="slide-title">Scan Any Question<br><span>Get AI Solution</span></div>
+        <div class="slide-desc">Point your camera at any textbook or paper question • Get step-by-step AI explanation instantly</div>
+        <div class="pills">
+          <span class="pill">Camera scan</span>
+          <span class="pill">Text input</span>
+          <span class="pill">AI explanation</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/11.jpg" alt="Scan and solve">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 8 — AI Scan &amp; Solve</div>
+  </div>
+
+  <!-- ══ BONUS: TEST INTERFACE ══════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-gold">
+      <div class="slide-header">
+        <span class="badge badge-orange">Live Test</span>
+        <div class="slide-title">Real Exam UI<br><span>Timer &amp; Marking</span></div>
+        <div class="slide-desc">Countdown timer • +4/−1 marking scheme • Hint, Mark Review, Question palette — just like NTA</div>
+        <div class="pills">
+          <span class="pill">+4 / -1 marking</span>
+          <span class="pill">Live timer</span>
+          <span class="pill">Mark for review</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/12.jpg" alt="Test interface">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 9 — Test Interface</div>
+  </div>
+
+  <!-- ══ BONUS: RESULT ANALYSIS ═════════════════════════ -->
+  <div class="slide-wrap">
+    <div class="slide theme-teal">
+      <div class="slide-header">
+        <span class="badge badge-green">Results</span>
+        <div class="slide-title">Instant Results<br><span>&amp; Deep Analysis</span></div>
+        <div class="slide-desc">Question-by-question breakdown • Retry wrong answers • Unlock step-by-step solutions</div>
+        <div class="pills">
+          <span class="pill">Q-by-Q analysis</span>
+          <span class="pill">Retry wrongs</span>
+          <span class="pill">Solutions unlock</span>
+        </div>
+      </div>
+      <div class="slide-img">
+        <img src="screenshots/14.jpg" alt="Result analysis">
+      </div>
+    </div>
+    <div class="slide-label">Screenshot 10 — Result Analysis</div>
+  </div>
+
+</div>
+
+<div style="text-align:center; margin-top: 50px; color:#444; font-size:12px;">
+  Play Store requires minimum 2 screenshots • Maximum 8 • Recommended: 1080×1920 px portrait<br>
+  Suggested set for Play Store: Screenshots 1, 4, 5, 7, 8, 9, 10 (7 screenshots)
+</div>
+
+</body>
+</html>

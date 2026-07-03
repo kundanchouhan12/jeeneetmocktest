@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Work_Power_and_Energy_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Work_Power_and_Energy_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Work, Energy, Power And Collision",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:42",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nTwo solids A and B of mass  and  respectively are moving withequal linear momentum. The ratio of\ntheir kinetic ener gies  will be  So the value of  will be",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nThe potential ener gy (U) of a diatomic molecule is a function dependent on  (interatomic distance) as \n Where,  and  are positive constants. The equilibrium distance between two atoms will \n Where",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nTwo particles having masses  and  respectively are moving with equal kinetic ener gies. The ratio of the\nmagnitudes of their linear momentum is . The value of  will be",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nTwo masses  and , each of mass  are fixed together by a massless springs. A force acts on the mass B as\nshown in figure. If the mass A starts moving away from mass B with acceleration 'a', than the acceleration of\nmass B will be:  \n(1) \n(2) \n(3) \n(4) \n Work Power and Energy\n#PaperPhodnaHai\n(K.E.)A:(K.E.)B .A\n1A\nr\nU= − −3α\nr10β\nr5 a b\n()⋅2α\nβa\nba=\n4 g 16 g\nn:2 n\nA B M\nF+Ma\nM\nF−Ma\nM\nMa−F\nM\nMF\nF+Ma",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

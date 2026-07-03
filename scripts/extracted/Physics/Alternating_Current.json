@@ -1,0 +1,71 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Alternating_Current_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Alternating_Current_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Electromagnetic Induction",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:30",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nAn  circuit as shown in the figure is driven by a AC source generating a square wave. The output wave\npattern monitored by CRO would look close to :  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nA sinusoidal voltage of peak value  is applied to a series LCR circuit, in which  and\n. The value of power dissipated at resonant condition is 'x' . The value of  to the nearest integer\nis ____",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\n An  current is given by . \nA hot wire ammeter will give a reading :\n(1) \n Alternating Current\n#PaperPhodnaHai\n250 V R=8Ω,L=24mH\nC=60μF kW x\nAC I=I1sinωt+I2cosωt\n√I2\n1−I2\n2\n2\n \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\n(1) \n(2) \n(3) \n(4) \n Alternating Current\n#PaperPhodnaHai\n1+I2\n2\n2\nI1+I2\n√2\nI1+I2\n2√2\n(a)−(i),(b)−(iii),(c)−(iv),(d)−(ii)\n(a)−(ii),(b)−(iv),(c)−(iii),(d)−(i)\n(a)−(ii),(b)−(iii),(c)−(iv),(d)−(i)\n(a)−(ii),(b)−(iii),(c)−(i),(d)−(iv)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nWhat happens to the inductive reactance and  \nthe current in a purely inductive circuit if the frequency is halved?\n(1) Both, inductive reactance and current will  \nbe halved.\n(2) Inductive reactance will be halved and  \ncurrent will be doubled.\n(3) Inductive reactance will be doubled and  \ncurrent will be halved.\n(4) Both, inducting reactance and current will  \nbe doubled.",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nIn a scries LCR resonance circuit, if we change the resistance only , from a lower to higher value:\n(1) The bandwidth of resonance circuit will increase.\n(2) The resonance frequency will increase.\n(3) The quality factor will increase.\n(4) The quality factor and the resonance frequency will remain constant.",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nAn AC source rated  is connected to a resistor . The time taken by the current to change from its\nmaximum to the rms value is:\n(1) \n(2) \n(3) \n(4) \n Alternating Current\n#PaperPhodnaHai\n2.5 ms\n25 ms\n2.5 s\n0.25 ms",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe circuit shown in the figure consists of a char ged capacitor of capacity  and a char ge of . At time \n when the key is closed, the value of current flowing through the  resistor is ' . The value\nof 'x to the nearest integer is ___",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nIn a series LCR circuit, the inductive reactance  is  and the capacitive reactance  is . The\nresistance  in the circuit is . The power factor of the circuit is:\n(1) \n(2) \n(3) \n(4) \n Alternating Current\n#PaperPhodnaHai\nt=0, 5MΩ x′μ−A\n(XL)10Ω (XC)4Ω\n(R) 6Ω\n1\n2\n1\n2√2\n1\n√2\n√3\n2",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 9,
+    "answers": 9,
+    "solutions": 0,
+    "exported": 9,
+    "skipped": 0
+  }
+}

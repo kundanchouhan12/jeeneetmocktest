@@ -1,0 +1,71 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Matrices_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Matrices_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Matrices & Determinants",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:19",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nLet .Then, the system of linear equations  has :\n(1) A unique solution\n(2) Infinitely many solutions\n(3) No solution\n(4) Exactly two solutions",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nThe total number of  matrices A having entries from the set (0,1,2,3) such that the sum of all the diagonal\nentries of  is  is equal to______",
+      "answer_key": "766",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nLet \nwhere  and  be the identity matrix of order  If the determinant of the matrix \nis  then the value of  is equal to________",
+      "answer_key": "36",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nLet  and  be two  \nmatrices with real entries such that , \nwhere  and   \n Matrices\n#PaperPhodnaHai\n−ii],i=√−1 A8[x\ny]=[8\n64]\n3×3\nAAT9,\nω= ,−1+i√3\n2I3 3. (P−1AP−I3)2\nαω2, α\nA=[a1\na2] B=[b1\nb2] 2×1\nA=XB\nX= [1−1\n1k],1\n√3k∈R.\n \nIf  and  \nthen the value of  is ____",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nIf  and  then a possible value of  is\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nIf  then the value of  is equal to ____",
+      "answer_key": "16",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nLet  and  such that  \n and  then the value of  is equal to ____.",
+      "answer_key": "2020",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nLet  and  If  denotes the sum of all diagonal\nelements of the matrix  then  has value equal to\n(1) 1\n(2) 2\n(3) 0\n(4) 3\n Matrices\n#PaperPhodnaHai\n1+a2\n2= (b2\n1+b2\n2)2\n3(k2+1)b2\n2≠−2b1b2,\nk\nA=(0 sinα\nsinα 0) det(A2−I)=0,1\n2α\nπ\n2\nπ\n3\nπ\n4\nπ\n6\nA=[23\n0−1], det(A4)+det(A10−(Adj(2 A))10)\nA=[ab\ncd] B=[α\nβ]≠[0\n0]\nAB=B a+d=2021, ad−bc\nA+2B=⎡\n⎢\n⎣1 20\n6−33\n−531⎤\n⎥\n⎦2 A−B=⎡\n⎢\n⎣2−15\n2−16\n012⎤\n⎥\n⎦.Tr(A)\nA, Tr(A)−Tr(B)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nLet I be an identity matrix of order  and \n Then the value of  for which  is equal to ___\n Matrices\n#PaperPhodnaHai\nP=[2−1\n5−3]. n∈N Pn=5I−8P",
+      "answer_key": "6",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 9,
+    "answers": 9,
+    "solutions": 0,
+    "exported": 9,
+    "skipped": 0
+  }
+}

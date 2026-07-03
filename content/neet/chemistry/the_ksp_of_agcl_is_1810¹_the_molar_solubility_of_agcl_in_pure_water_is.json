@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The Ksp of AgCl is 1.8\u00d710\u00b9. The molar solubility of AgCl in pure water is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Hydrolysis of a salt of weak acid and strong base gives a solution that is:",
+    "options": [
+      "Acidic",
+      "Basic",
+      "Neutral",
+      "Depends on concentration Page 39 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

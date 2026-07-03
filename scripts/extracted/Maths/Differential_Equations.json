@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Differential_Equations_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Differential_Equations_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Integral Calculus",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:17",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nIf  is the solution of the dif ferential  \nequation,  then the maximum value of the function  over  is equal to\n:\n(1) 8\n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIf  is the solution of the dif ferential equation  with  \n then  equal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nWhich of the following is true for  that satisfies the dif ferential equation  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nLet  be the solution of the dif ferential equation  \n Differential Equations\n#PaperPhodnaHai\n+2ytanx=sinx,y()=0,dy\ndxπ\n3y(x) R\n1\n2\n−15\n4\n1\n8\ny=y(x) +(tanx)y=sinx,0≤x≤,dy\ndxπ\n3\ny(0)=0, y()π\n4\nloge21\n4\n( )loge21\n2√2\nloge2\nloge21\n2\ny(x)\n=xy−1+x−y;y(0)=0dy\ndx\ny(1)=e−−11\n2\ny(1)=e−e−1\n21\n2\ny(1)=1\ny(1)=e−11\n2\ny=y(x)\n \n Then  is equal to:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nIf the curve  is the solution of the dif ferential equation \n \nwhich passes through the point  then the value of  is equal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe dif ferential equation satisfied by the system of parabolas  is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\n Differential Equations\n#PaperPhodnaHai\n(1+ysinx(3sinx+cosx+3))dx\n0≤x≤,y(0)=0.π\n2,y()π\n3\n2loge( )2√3+9\n6\n2loge( )2√3+10\n11\n2loge( )√3+7\n2\n2loge( )3√3−8\n4\ny=y(x)\n2(x2+x5/4)dy−y(x+x1/4)dx=2x9/4dx,x>0\n(1,1−loge2),4\n3y(16)\n4( +loge3)31\n38\n3\n( +loge3)31\n38\n3\n4( −loge3)31\n38\n3\n( −loge3)31\n38\n3\ny2=4a(x+a)\ny()2\n−2x()−y=0dy\ndxdy\ndx\ny()2\n−2x()+y=0dy\ndxdy\ndx\ny()2\n+2x()−y=0dy\ndxdy\ndx\ny()+2x()−y=0dy\ndxdy\ndx\n \nLet  be the solution of the dif ferential  \nequation , \nwith  Then the value of  at  is equal to:\n(1) \n(2) \n(3) \n(4) \n Differential Equations\n#PaperPhodnaHai\n=(y+1)((y+1)ex2/2−x),0<x<2.1dy\ndx\ny(2)=0.dy\ndxx=1\n−e3/2\n(e2+1)2\n−2e2\n(1+e2)2\ne5/2\n(1+e2)2\n5e1/2\n(e2+1)2",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

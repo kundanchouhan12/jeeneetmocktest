@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Center_of_Mass_Momentum_Conservation_and_Collision_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Center_of_Mass_Momentum_Conservation_and_Collision_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Work, Energy, Power And Collision",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:27",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nA ball with a speed of  collides with another identical ball at rest. After the collision, the direction of\neach ball makes an angle of  with the original direction. The ratio of velocities of the balls after collision is \n where  is",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nA circular hole of radius  is cut out of a circular disc of radius 'a' shown in figure. The centroid of the\nremaining circular portion with respect to point  will be :  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nGiven below are two statements : one is labelled as Assertion A and the other is labelled as Reason R.  \nAssertion A : Body 'P' having mass M moving with speed 'u' has head-on collision elastically with another\nbody 'Q' having mass 'm' initially at rest. If $m< Reason R : During elastic collision, the momentum and kinetic\nenergy are both conserved. In the light of the above statements, choose the most appropriate answer from the\noptions given below:\n Center of Mass Momentum Conservation and Collision\n#PaperPhodnaHai\n30∘\nx:y, x\n()a\n2\n′O′\na10\n11\na2\n3\na1\n6\na5\n6\n \n(1)  is correct but  is not correct.\n(2) Both  and  are correct but  is NOT the correct explanation of .\n(3)  is not correct but  is correct.\n(4) Both  and  are correct and  is the correct explanation of .\n Center of Mass Momentum Conservation and Collision\n#PaperPhodnaHai\nA R R A\nA R\nA R R A",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

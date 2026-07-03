@@ -1,0 +1,95 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\July_2021\\Function_Click_here_to_download.pdf",
+  "pdf_name": "Function_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Sets, Relations, And Functions",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:53:48",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "(20 July 2021 Shift 1)\nLet  denote the greatest integer , where . If the domain of the real valued function \n is , then the value  \nof  is:\n(1) 8\n(2) 1\n(3) \n(4)",
+      "answer_key": "3",
+      "solution": "For domain,  \n \nCase I : When  \nand  \n \nCase II : When  \nand  \n \nSo, from (1) and (2) we get  \nDomain of function  \n \n \n Option (3) is correct."
+    },
+    {
+      "q_num": 2,
+      "raw_text": "(20 July 2021 Shift 2)\nLet  be defined by . \nThen the value of  for which , for all  \n, is\n(1) No such  exists\n(2) 5\n(3) 8\n(4) 6",
+      "answer_key": "2",
+      "solution": "....(1)  \n \n \n \n....(2)  \nfo  \n \nFrom eq. (i) & (ii) Clearly"
+    },
+    {
+      "q_num": 3,
+      "raw_text": "(20 July 2021 Shift 2)\nThe number of solutions of the equation  \n \n, is",
+      "answer_key": "1",
+      "solution": "Function\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n|[x]|−3\n|[x]|−2≥0\n|[x]|−3>0\n∴x∈(−∞,−3)∪[4,∞)\n|[x]|−2≤0\n|[x]|−3<0\n∴x∈[−2,3)\n=(−∞,−3)∪[−2,3)∪[4,∞)\n∴(a+b+c)=−3+(−2)+3=−2(a<b<c)\n⇒\nf(x)= =y5x+3\n6x−α\n5x+3=6xy−αy\nx(6y−5)=αy+3\nx=αy+3\n6y−5\nf−1(x)=αx+3\n6x−5\nf(x)=x\nf(x)=f−1(x)\n(α=5)\nlog(x+1)(2x2+7x+5)+log(2x+5)(x+1)2−4=0\nlog(x+1)(2x+5)(x+1)+2log(2x+5)(x+1)=4\n \n \nPut  \n \n \n \n \n \n (rejected)  (rejected)  \nSo,  \nNo. of solution"
+    },
+    {
+      "q_num": 4,
+      "raw_text": "(22 July 2021 Shift 1)\nLet  denote the greatest integer less than or equal to . Then, the values of  satisfying the equation \n lie in the interval :\n Function\nf(x)=√[x]∣−2\n|[x]|−3(−∞,a)∪[b,c)∪[4,∞),a<b<c\na+b+c\n−2\n−3\nf:R−{}→Rα\n6f(x)=5x+3\n6x−α\nα (fof)(x)=x\nx∈R−{}α\n6\nα\nlog(x+1)(2x2+7x+5)+log(2x+5)(x+1)2−4=0\nx>0\n[x] x x∈R\n[ex]2+[ex+1]−3=0\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": "Let  \n \n \n (Not possible)  \nor"
+    },
+    {
+      "q_num": 5,
+      "raw_text": "(22 July 2021 Shift 1)\nIf the domain of the function  \nis the interval , then  is equal to :\n(1) \n(2) 2\n(3) \n(4) 1",
+      "answer_key": "1",
+      "solution": "Also,  \n Function\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\nlog(x+1)(2x+5)=t\nt+=3⇒t2−3t+2=02\nt\nt=1,2\nlog(x+1)(2x+5)=1&log(x+1)(2x+5)=2\nx+1=2x+3\n&2x+5=(x+1)2\nx=−4 x2=4⇒x=2,−2\nx=2\n=1\n[ex]2+[ex+1]−3=0\n⇒[ex]2+[ex]+1−3=0\n[ex]=t\n⇒t2+t−2=0\n⇒t=−2,1\n[ex]=−2\n[ex]=1∴1≤ex<2\n⇒ ln(1)≤x<ln(2)\n⇒ 0≤x<ln(2)\n⇒ x∈[0,ln2)\nO≤x2−x+1≤1\n⇒x2−x≤0\n⇒x∈[0,1]\n0<sin−1( )≤2x−1\n2π\n2\n \n \n \n \n \nTaking intersection"
+    },
+    {
+      "q_num": 6,
+      "raw_text": "(22 July 2021 Shift 1)\nLet . Then the number  \nof bijective functions  such that  is equal to",
+      "answer_key": "720",
+      "solution": "The only possibility is:  \n Elements  in the domain can be mapped  \nwith  only . \nSo number of bijective functions."
+    },
+    {
+      "q_num": 7,
+      "raw_text": "(25 July 2021 Shift 1)\nLet  be defined as  \n \n \n, for all  \nThen which of the following statements is true ?\n(1) There exists an onto function  such  \nthat fog \n(2) There exists a one-one function  such  \nthat fog \n Function\ne\n[logc2,logc3)\n[1,e)\n[0,logc2)\nf(x)=cos−1√x2−x+1\n√sin−1( )2x−1\n2\n(α,β]α+β\n3\n2\n1\n2\nA={0,1,2,3,4,5,6,7}\nf:A→A f(1)+f(2)=3−f(3)\ng:N→N\ng(3n+1)=3n+2\ng(3n+2)=3n+3\ng(3n+3)=3n+1n≥0\nf:N→N\n=f\nf:N→N\n=f\n \n(3) \n(4) There exists a function  such that gof",
+      "answer_key": "1",
+      "solution": "If  is a one-one function such that  \n Function\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n2\n⇒0<2x−1≤2\n1<2x≤3\n<x≤1\n23\n2\nx∈(,1]1\n2\n⇒α=,β=11\n2\n⇒α=,β=11\n2\nf(1)+f(2)=3−f(3)\n⇒f(1)+f(2)=3+f(3)=3\n0+1+2=3\n⇒ 1,2,3\n0,1,2\n=3–×⌊5=720\ng:N→Ng(3n+1)=3n+2\ng(3n+2)=3n+3\ng(3n+3)=3n+1\ng(x)=⎡\n⎢\n⎣x+1x=3k+1\nx+1x=3k+2\nx−2x=3k+3\ng(g(x))=⎡\n⎢\n⎣x+2x=3k+1\nx−1x=3k+2\nx−1x=3k+3\ng(g(g(x)))=⎡\n⎢\n⎣xx=3k+1\nxx=3k+2\nxx=3k+3\nf:N→N,f\n \n, which is not the case  \nIf  is an onto function  \nsuch that , \none possibility is \nHere  is onto, also"
+    },
+    {
+      "q_num": 8,
+      "raw_text": "(25 July 2021 Shift 2)\nThe number of real solutions of the equation,  is:\n(1) 2\n(2) 3\n(3) 1\n(4) 4",
+      "answer_key": "1",
+      "solution": "Q9\n exist  gof is bijective  \n must be one-one and '  ' must be ONT O"
+    },
+    {
+      "q_num": 9,
+      "raw_text": "(25 July 2021 Shift 2)\nConsider function  and \n such that (gof  exists then:\n(1)  and  both are one-one\n(2)  and  both are onto\n(3)  is one-one and  is onto\n(4)  is onto and  is one-one",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "(27 July 2021 Shift 1)\nLet the domain of the function  \n be  \nThen the value of the integral  \n is equal to",
+      "answer_key": "1",
+      "solution": "For domain  \n \n \n \n \n \n and  \n \n \n and  \n Function\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\nff:N→Nf\nf( g(x))=f(x)\nf(x)=⎡\n⎢\n⎣nx=3n+1\nnx=3n+2\nnx=3n+3n∈N0\nf(x) f( g(x))=f(x)∀x∈N\n|x|2−|x|−12=0\n(|x|+3)(|x|−4)=0\n|x|=4⇒x=±2\n∴( gof )−1⇒\n⇒′f′g\nlog5(log3(18x−x2−77))>0\nlog3(18x−x2−77)>1\n18x−x2−77>3\nx2−18x+80<0\nx∈(8,10)\n⇒a=8 b=10\nI=∫b\nadxsin3x\nsin3x+sin3(a+b−x)\nI=∫b\nasin3(a+b−x)\nsin3x+sin3(a+b−x)\n2I=(b−a)⇒I= (∵a=8b−a\n2b=10)\nI= =110−8\n2\n \nQ1 1\n \nPut  \nPut  \n \nPut  \n \n can take any value  \nTotal"
+    },
+    {
+      "q_num": 11,
+      "raw_text": "(27 July 2021 Shift 1)\nLet  Then the number of  \npossible functions  such that  \n Function\nf:N→N =f\nx2−|x|−12=0\nf:A→B\ng:B→C(A,B,C⊆R) )−1\nf g\nf g\nf g\nf g\nf(x)=log4(log5(log3(18x−x2−77)))(a,b)\n∫b\nadxsin3x\n(sin3x+sin3(a+b−x))\nS={1,2,3,4,5,6,7}.\nf:S→S f(m⋅n)=f(m)⋅f(n)\n \nfor every  and  is equal to",
+      "answer_key": "490",
+      "solution": ""
+    },
+    {
+      "q_num": 12,
+      "raw_text": "(27 July 2021 Shift 2)\nLet  be defined as  \n Then  \nthe value of  is equal to:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": "So,  \n \nThus  \nNow  is natural number  \nThus"
+    },
+    {
+      "q_num": 13,
+      "raw_text": "(27 July 2021 Shift 2)\nLet  and \n If  is a \nquadratic equation whose roots are  and , \nthen the value of  is equal to :\n(1) 42\n(2) 47\n(3) 43\n(4) 50\n Function\nf:R→R\nf(x+y)+f(x−y)=2f(x)f(y),f()=−1.1\n2\n∑20\nk=11\nsin(k)sin(k+f(k))\ncosec2(21)cos(20)cos(2)\nsec2(1)sec(21)cos(20)\ncosec2(1)cosec(21)sin(20)\nsec2(21)sin(20)sin(2)\nα=maxx∈R{82sin3x⋅44cos3x}\nβ=minx∈R{82sin3x⋅44cos3x}.8x2+bx+c=0\nα1/5β1/5\nc−b",
+      "answer_key": "1",
+      "solution": "Function\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\nm=1f(n)=f(1)⋅f(n)⇒f(1)=1\nm=n=2\nf(4)=f(2).f(2)⎧⎪\n⎨\n⎪⎩f(2)=1⇒f(4)=1\n or \nf(2)=2⇒f(4)=4\nm=2,n=3\nf(6)=f(2)⋅f(3)⎧⎪ ⎪ ⎪ ⎪\n⎨\n⎪ ⎪ ⎪ ⎪⎩ when f(2)=1\nf(3)=1 to 7\nf(2)=2\nf(3)=1 or 2 or 3\nf(5),f(7)\n|x|×7×1×7×1×7\n|x|×3×1×7×1×7\n=490\nf(x)=cosλx\n∵f()=−11\n2\n−1=cosλ\n2\n⇒λ=2π\nf(x)=cos2πx\nk\nf(k)=1\n∑20\nk=1= ∑20\nk=1[ ]1\nsinksin(k+1)1\nsin1sin((k+1)−k)\nsink⋅sin(k+1)\n= ∑20\nk=1(cotk−cot(k+1)1\nsin1\n= =cosec21cosec(21)⋅sin20cot1−cot21\nsin1\n \n \n \n \nand  \nNow range of  \n \n \nSo,  \n \nquadratic  \n (product of roots  sum of roots  \n Function\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n=max{26sin3x⋅2sos3x}\n=max{26sin3x+sos3x}\nβ=min{82sin3x⋅44cos3x}=min{26sin3x+8cos3x}\n6sin3x+8cos3x\n=[−√62+82,+√62+82]=[−10,10]\nα=210&β=2−10\nα1/5=22=4\n⇒β1/5=2−2=1/4\n8x2+bx+c=0,c−b=\n8×[ ]+( )\n=8×[4×+4+]=8×[]=421\n41\n421\n4"
+    }
+  ],
+  "stats": {
+    "q_blocks": 13,
+    "answers": 13,
+    "solutions": 11,
+    "exported": 13,
+    "skipped": 0
+  }
+}

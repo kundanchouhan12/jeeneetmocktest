@@ -1,0 +1,164 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The male gamete in flowering plants is formed in:",
+    "options": [
+      "Ovule",
+      "Anther",
+      "Style",
+      "Petal"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Double fertilization is unique to:",
+    "options": [
+      "Gymnosperms",
+      "Angiosperms",
+      "Pteridophytes",
+      "Bryophytes Page 74 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In humans, the developing embryo implants in the:",
+    "options": [
+      "Ovary",
+      "Fallopian tube",
+      "Uterine wall (endometrium)",
+      "Cervix"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "What is parthenogenesis? Give an example in animals. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which type of reproduction leads to greater genetic variation?",
+    "options": [
+      "Binary fission",
+      "Budding",
+      "Sexual reproduction",
+      "Parthenogenesis"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Placenta in mammals is the site of exchange of:",
+    "options": [
+      "Option A",
+      "Nutrients, gases, and waste between mother and foetus",
+      "Blood cells",
+      "Hormones only"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Apomixis is the formation of seeds without:",
+    "options": [
+      "Water",
+      "Fertilization",
+      "Sunlight",
+      "Soil nutrients"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A polyembryonic seed contains _____ embryo/embryos. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Reproduction",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Vivipary is the phenomenon of seeds germinating _____ the fruit. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

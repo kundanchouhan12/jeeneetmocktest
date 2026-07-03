@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Amines_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Amines_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Organic Chemistry Basics",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:48",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe product \"A\" in the above reaction is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nReaction of Grignard reagent,  with  followed by hydrolysis gives compound \"A\" which\nreacts instantly with Lucas reagent to give compound . \nThe Compound  is :\n Alcohols Phenols and Ethers\n#PaperPhodnaHai\nB,C10H13Cl\nB\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nConsidering the above chemical reaction,  \nidentify the product \"X\" :\n Alcohols Phenols and Ethers\n#PaperPhodnaHai\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nMain Products formed during a reaction of 1-methoxy naphthalene with hydroiodic acid are:\n(1) \n(2) \n Alcohols Phenols and Ethers\n#PaperPhodnaHai\n \n(3) \n(4) \n Alcohols Phenols and Ethers\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

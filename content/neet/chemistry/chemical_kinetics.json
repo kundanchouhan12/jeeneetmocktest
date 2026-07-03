@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Chemical Kinetics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The rate of a first order reaction depends on:",
+    "options": [
+      "Concentration\u00b2",
+      "Concentration",
+      "Option C",
+      "Temperature only"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

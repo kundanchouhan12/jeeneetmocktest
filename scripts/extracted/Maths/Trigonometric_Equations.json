@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Trigonometric_Equations_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Trigonometric_Equations_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Trigonometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:22",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nIf for  and  then the\nvalue of  is equal to :\n(1) 20\n(2) 12\n(3) 9\n(4) 16",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe number of solutions of the equation  \n in the interval  is :\n(1) 3\n(2) 4\n(3) 2\n(4) 5",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe number of solutions of the equation  in the interval  is\n Trigonometric Equations\n#PaperPhodnaHai\n2log10(sinx+cosx)= (log10n−1),n>01\n2\nn\nx+2tanx=π\n2[0,2π]\n|cotx|=cotx+1\nsinx[0,2π]",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

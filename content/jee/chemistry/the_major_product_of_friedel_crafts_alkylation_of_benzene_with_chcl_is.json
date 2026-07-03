@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "The major product of Friedel-Crafts alkylation of benzene with CHCl is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Kolbe's electrolysis is used to synthesize:",
+    "options": [
+      "Acids",
+      "Higher alkanes",
+      "Esters",
+      "Alcohols"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

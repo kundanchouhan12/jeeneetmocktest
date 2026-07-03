@@ -1,0 +1,109 @@
+import firebase_admin
+from firebase_admin import credentials, firestore
+import os
+import sys
+import re
+
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except Exception:
+    pass
+
+SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
+
+if not os.path.exists(SERVICE_ACCOUNT_PATH):
+    print(f"ERROR: {SERVICE_ACCOUNT_PATH} not found!")
+    exit(1)
+
+if not firebase_admin._apps:
+    cred = credentials.Certificate(SERVICE_ACCOUNT_PATH)
+    firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+def is_corrupted(q):
+    text = q.get('questionText', '').strip()
+    options = q.get('options', [])
+    
+    # Rule 1: Extremely short question text
+    if not text or len(text) < 8:
+        return True, "Extremely short text"
+        
+    # Rule 2: Placeholder options
+    placeholder_options = ["option a", "option b", "option c", "option d"]
+    if len(options) != 4:
+        return True, f"Invalid options count: {len(options)}"
+    if all(o.lower().strip() == p for o, p in zip(options, placeholder_options)):
+        return True, "Placeholder options"
+        
+    # Rule 3: Text patterns indicating parsing failure
+    bad_patterns = [
+        r'refer to standard textbooks',
+        r'Note:\s*For SHORT ANSWER',
+        r'Master Practice Workbook',
+        r'Click here to download',
+        r'Questions with Answer Keys',
+        r'Solutions\s*JEE Main',
+        r'^\s*:\s*[A-D]\s*$',
+        r'^\s*:\s*[A-D]\s*Note:',
+    ]
+    for pattern in bad_patterns:
+        if re.search(pattern, text, re.IGNORECASE):
+            return True, f"Matched bad pattern: {pattern}"
+            
+    return False, ""
+
+def cleanup(dry_run=True):
+    print(f"🔍 Scanning Firestore for corrupted questions (Dry Run: {dry_run})...")
+    questions_ref = db.collection('questions')
+    
+    docs = questions_ref.get()
+    
+    corrupted_docs = []
+    
+    for doc in docs:
+        q = doc.to_dict()
+        corrupted, reason = is_corrupted(q)
+        if corrupted:
+            corrupted_docs.append((doc.id, q, reason))
+            
+    print(f"\nFound {len(corrupted_docs)} corrupted questions out of {len(docs)} total questions.")
+    
+    if corrupted_docs:
+        print("\nExamples of corrupted questions found:")
+        print("-" * 80)
+        for doc_id, q, reason in corrupted_docs[:10]:
+            print(f"ID: {doc_id}")
+            print(f"Reason: {reason}")
+            print(f"Text: {q.get('questionText')[:150]}...")
+            print(f"Options: {q.get('options')}")
+            print("-" * 80)
+            
+        if not dry_run:
+            print(f"\n⚠️ Deleting {len(corrupted_docs)} corrupted documents from Firestore...")
+            batch = db.batch()
+            count = 0
+            for doc_id, _, _ in corrupted_docs:
+                batch.delete(questions_ref.document(doc_id))
+                count += 1
+                if count >= 500:
+                    batch.commit()
+                    batch = db.batch()
+                    count = 0
+            if count > 0:
+                batch.commit()
+            print(f"✅ Successfully deleted {len(corrupted_docs)} corrupted questions.")
+            
+            try:
+                db.collection('metadata').document('question_bank').set({
+                    'version': firestore.Increment(1),
+                    'lastUpdated': firestore.SERVER_TIMESTAMP
+                }, merge=True)
+                print("✅ Updated /metadata/question_bank version increment.")
+            except Exception as e:
+                print(f"⚠️ Warning: Could not update metadata version - {e}")
+        else:
+            print("\nDry run completed. Run with '--execute' to perform the deletion.")
+
+if __name__ == "__main__":
+    execute = len(sys.argv) > 1 and sys.argv[1] == "--execute"
+    cleanup(dry_run=not execute)

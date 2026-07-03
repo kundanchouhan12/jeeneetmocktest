@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "AC Circuits",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The rms current in an AC circuit with peak current 10 A is:",
+    "options": [
+      "10 A",
+      "7.07 A",
+      "5 A",
+      "14.14 A Page 15 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "AC Circuits",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In an LCR series circuit at resonance, the impedance equals:",
+    "options": [
+      "0",
+      "R",
+      "XL + XC",
+      "XL - XC"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "AC Circuits",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Power factor of a purely inductive circuit is:",
+    "options": [
+      "1",
+      "0.5",
+      "0",
+      "\u221a2/2"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "AC Circuits",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The energy stored in an inductor of inductance L carrying current I is:",
+    "options": [
+      "LI",
+      "\u00bdLI\u00b2",
+      "LI\u00b2",
+      "L\u00b2I"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "AC Circuits",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL In a transformer, if primary turns are 100 and secondary turns are 500, and primary voltage is 220 V, find secondary voltage. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

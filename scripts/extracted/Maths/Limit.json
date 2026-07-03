@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\July_2021\\Limit_Click_here_to_download.pdf",
+  "pdf_name": "Limit_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Limit, Continuity & Differentiability",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:54:30",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "(20 July 2021 Shift 1)\nIf the value of  is equal to , then a is equal to ___",
+      "answer_key": "3",
+      "solution": "form:  \n \nNow  \n \n \n(by  ' Hospital Rule)  \n \n \nSo,"
+    },
+    {
+      "q_num": 2,
+      "raw_text": "(20 July 2021 Shift 2)\nIf  is given by , then the value of  \n \nis:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": "Q3\n \n \nFor limit to exist  \n \n \n Limit\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\nx2\n1∞\n=elimx→0( )×(x+2)1−cosx√cos2x\nx2\nlimtx→01−cosx√cos2x\nx2\n=\nlimtx→0sinx√cos2x−cosx× ×(−2sin2x)1\n2√cos2x\n2x\nL\nlimtx→0sinxcos2x+sin2x⋅cosx\n2x\n= +1=1\n23\n2\nelimx→0( )(x+2)1−cosx√cos2x\nx2\n=e×2=e33\n2\n⇒a=3\nI=∑n−1\nr=0f()5r\nn1\nn\nI=∫1\n0f(5x)dx\nI=∫1\n0(5x+1)dx\nI=[ +x]1\n05x2\n2\nI= +1=5\n27\n2\nlimx→0αx(1+x+)−β(x−+)+γx2(1−x)x2\n2x2\n2x3\n3\nx3\nlimx→0 =10x(α−β)+x2(α++γ)+x3(−−γ)β\n2α\n2β\n3\nx3\nα−β=0,α+ +γ=0β\n2\n− −γ=10α\n2β\n3\n \n \nPut in (i)"
+    },
+    {
+      "q_num": 3,
+      "raw_text": "(20 July 2021 Shift 2)\nIf , then the value of  is",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "(27 July 2021 Shift 1)\nLet  be a function such that  and  Then, the value of  is \nequal to :\n(1) 4\n(2) 8\n(3) 16\n(4) 12",
+      "answer_key": "4",
+      "solution": "Apply L'Hopital Rule"
+    },
+    {
+      "q_num": 5,
+      "raw_text": "(27 July 2021 Shift 2)\nThe value of  is equal  \nto:\n(1) 0\n Limit\nx2 en\nf:R→R f(x)=x+1\nlimn→∞[f(0)+f()+f()+…..+f( )]1\nn5\nn10\nn5(n−1)\nn\n3\n2\n5\n2\n1\n2\n7\n2\nlimx→0 =10,α,β,γ∈Rαxex−βloge(1+x)+γx2e−x\nxsin2xα+β+γ\nf:R→R f(2)=4 f′(2)=1. limx→2x2f(2)−4f(x)\nx−2\nlimx→0( )x\n8√1−sinx−8√1+sinx\n \n(2) 4\n(3) \n(4) \n Limit\n−1",
+      "answer_key": "3",
+      "solution": "(2) (2) \n Limit\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n2\n− + =10α\n2α\n33α\n2\n+ =10⇒ =10α\n63α\n2α+9α\n6\n⇒α=6\nα=6,β=6,γ=−9\nα+β+γ=3\nlimx→2( )2xf(2)−4f′(x)\n1\n= =124(4)−4\n1\nlimx→0( )x\n8√1−sinx−8√1+sinx\n=limx→0( )x\n8√1−sinx−8√1+sinx\n=limx→0( )x\n8√1−sinx−8√1+sinx\n( )(8√1−sinx+8√1+sinx)\n8√1−sinx+8√1+sinx\n( )(4√1−sinx+4√1+sinx)\n4√1−sinx+4√1+sinx\n( )(2√1−sinx+2√1+sinx)\n2√1−sinx+2√1+sinx\n=limx→0( )x\n1−sinx−(1+sinx)\n(8√1−sinx+8√1+sinx)(4√1−sinx+4√1+sinx)\n(2√1−sinx+2√1+sinx)\n=limx→0 (8√1−sinx+8√1+sinx)x\n(−2sinx)\n(4√1−sinx+4√1+sinx)(2√1−sinx+2√1+sinx)\n=limx→0(−)(2)1\n2{∵limx→0 =1}=−4sinx\nx"
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 4,
+    "exported": 5,
+    "skipped": 0
+  }
+}

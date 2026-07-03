@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Motion_in_Two_Dimension_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Motion_in_Two_Dimension_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Units, Dimensions And Measurement",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:35",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nA boy pushes a box of mass  with a force  on a frictionless surface. If the box W as\ninitially at rest, then ____ m is displacement along the  -axis after .",
+      "answer_key": "500",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nThe trajectory a projectile in a vertical plane is  where  and  are constants and  \\& y are\nrespectively the horizontal and vertical distance of the projectile from the point of projection. The angle of\nprojection  and the maximum height attained  are respectively given by:\n(1) \n(2) \n(3) \n(4) \n Motion in T wo Dimension\n#PaperPhodnaHai\nF=(20^i+10^j)N\nx 10 s\ny=αx−βx2, α β x\nθ H\ntan−1α,α2\n4β\ntan−1β,α2\n2β\ntan−1(),β\nαα2\nβ\ntan−1α,4α2\nβ",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

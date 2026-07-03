@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Electromagnetic_Waves_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Electromagnetic_Waves_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Wave Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:34",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nA plane electromagnetic wave of frequency  is travelling in vacuum along y-direction. At a particular\npoint in space and  \ntime, . The value of electric  \nfield at this point is :  \n(speed of light  )  are unit vectors along  and  \ndirection.\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nFor an electromagnetic wave travelling in free space, the relation between average ener gy densities due to\nelectric  and magnetic  fields is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nRed light dif fers from blue light as they have :\n(1) Dif ferent frequencies and dif ferent wavelengths\n(2) Dif ferent frequencies and same wavelengths\n(3) Same frequencies and same wavelengths\n(4) Same frequencies and dif ferent wavelengths\n Electromagnetic W aves\n#PaperPhodnaHai\n→\nB=8.0×10−8^zT\n=3×108 ms−1^x,^y,^z x,y Z\n−24^xV/m\n2.6^xV/m\n24^x V/m\n−2.6^yV/m\n(Ue) (Um)\nUe=Um\nUe>Um\nUe<Um\nUe≠Um",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nThe electric field intensity produced by the radiation coming from a  bulb at a distance of  is . The\nelectric field intensity  \nproduced by the radiation coming from  \nat the same distance is  \nof  ______",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nA plane electromagnetic wave propagating along y-direction can have the following pair of electric field \nand magnetic field  components.\n(1)  or \n(2)  or \n(3)  or \n(4)  or \n Electromagnetic W aves\n#PaperPhodnaHai\n60 W\n√E . Where the value x\n5\nx=\n(→\nE)\n(→\nB)\nEy,ByEz,Bz\nEy,BxEx,By\nEx,BzEz,Bx\nEx,ByEy,Bx",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

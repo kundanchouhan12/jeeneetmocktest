@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) Produce more glucose per CO fixed",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The process by which plants lose water through their leaves is called:",
+    "options": [
+      "Osmosis",
+      "Transpiration",
+      "Guttation",
+      "Translocation"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) Produce more glucose per CO fixed",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Gibberellins promote:",
+    "options": [
+      "Root growth",
+      "Stem elongation and seed germination",
+      "Leaf senescence",
+      "Fruit ripening"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) Produce more glucose per CO fixed",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Thylakoid membrane",
+      "Stroma",
+      "Cytoplasm",
+      "Mitochondria"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Area_Under_Curve_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Area_Under_Curve_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Integral Calculus",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:24",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nThe area (in sq. units) of the part of the circle  which is outside the parabola  is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nThe area of the region :  is:\n(1)  square units\n(2)  square units\n(3)  square units\n(4)  square units",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nThe graphs of sine and cosine functions, intersect each other at a number of points and between two\nconsecutive points of intersection, the two graphs enclose the same area A. Then  is equal to",
+      "answer_key": "64",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nThe area bounded by the lines  is \nNote: NT A has dropped this question in the final of ficial answer key .",
+      "answer_key": "8",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nLet  be the area of the region bounded by the curves ,  and  -axis in the first quadrant.\nAlso, let  be the area of the region bounded by the curves  -axis and   in the\nfirst quadrant. Then,\n(1)  and \n Area Under Curve\n#PaperPhodnaHai\n24π+3√3\n12π+3√3\n12π−3√3\n24π−3√3\nR={(x,y):5x2≤y≤2x2+9}\n9√3\n12√3\n11√3\n6√3\nA4\ny=∥x−1|−2|\nA1 y=sinxy=cosx y\nA2 y=sinx,y=cosx,x x=π\n2\nA1=A2 A1+A2=√2\n \n(2)  and \n(3)  and \n(4)  and \n Area Under Curve\n#PaperPhodnaHai\n2 A1=A2 A1+A2=1+√2\nA1:A2=1:√2 A1+A2=1",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

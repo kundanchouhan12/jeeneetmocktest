@@ -1,0 +1,77 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Laws_of_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Laws_of_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Newton's Laws Of Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:37",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nA block of mass  slides along a floor while a force of magnitude  is applied to it at an angle  as shown in\nfigure. The coef ficient of kinetic friction is . Then, the block's acceleration 'a' is given by : (g is acceleration\ndue to gravity)  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nA block of  mass moves with a uniform speed in a horizontal circular groove, with vertical side walls of\nradius . If the block  \ntakes  to complete one round, the normal force by the side walls of the groove is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nConsider a frame that is made up of two thin massless rods  and  as shown in the figure. A vertical\nforce  of magnitude  is applied at point  of the frame.  \n Laws of Motion\n#PaperPhodnaHai\nμK\n−cosθ−μK(g−sinθ)F\nmF\nm\ncosθ−μK(g−sinθ)F\nmF\nm\ncosθ−μK(g+sinθ)F\nmF\nm\ncosθ+μK(g−sinθ)F\nmF\nm\n200 g\n20 cm\n40 s\n0.0314 N\n9.859×10−2 N\n6.28×10−3 N\n9.859×10−4 N\nAB AC\n→\nP 100 N A\n \nSuppose the force is  resolved parallel to the arms  and  of the frame. The magnitude of the resolved\ncomponent along the arm  is . The value of  to the nearest integer , is ____",
+      "answer_key": "82",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nStatement I : A cyclist is moving on an unbanked road with a speed of  and takes a sharp circular turn\nalong a path of radius of  without reducing the speed. The static friction coef ficient is 0.2 . The cyclist will\nnot slip and pass the curve  \nStatement II : If the road is banked at an angle of  cyclist can cross the curve of  radius with the speed\nof  without slipping.  \nIn the light of the above statements, choose the correct answer from the options given below .\n(1) Statement I is incorrect and statement II is correct\n(2) Statement I is correct and statement II is incorrect\n(3) Both statement I and statement II are false\n(4) Both statement I and statement II are true",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\n Laws of Motion\n#PaperPhodnaHai\nP AB AC\nACxN x,\n7kmh−1\n2 m\n(g=9.8 m/s2)\n45∘, 2 m\n18.5kmh−1\n \nA body of mass  moves under a force of  It starts from rest and was at the origin\ninitially . After 4 s, its new coordinates are . The value of  is ___. (Round of f to the Nearest Integer)",
+      "answer_key": "12",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA modern grand-prix racing car of mass  is travelling on a flat track in a circular arc of radius  with a speed\n. If the coef ficient of static friction between the tyres and the track is  then the magnitude of negative lift \n acting downwards on the car is :  \n(Assume forces on the four tyres are identical and  acceleration due to gravity)  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nTwo blocks  and  are arranged on a horizontal frictionless table as shown in figure.\nThe coef ficient of static friction between the two blocks is . Then the maximum horizontal force that can be\napplied on the lar ger block so that the blocks move together is ______ N.  \n(Round of f to the NearestInteger)  \n[Take g as  ]",
+      "answer_key": "21",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\n Laws of Motion\n#PaperPhodnaHai\n(8, b,20) b\nm R\nv μs,\nFL\ng=\nm( +g)v2\nμsR\nm( −g)v2\nμsR\nm(g− )v2\nμsR\n−m(g+ )v2\nμsR\n(m=0.5 kg M=4.5 kg)\n3\n7\n9.8 ms−2\n \nA body of mass  rests on a horizontal floor with which it has a coef ficient of static friction  \n It is desired to make the body move by applying the minimum possible force . The value of  will be\n______ (Round of f to the Nearest Integer)  \n[Take  ]",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nA boy of mass  is standing on a piece of  \nwood having mass . If the coef ficient of  \nfriction between the wood and the floor is 0.5 ,  \nthe maximum force that the boy can exert on\nthe rope so that the piece of wood does not  \nmove from its place is N.(Round of f to the Nearest Integer)  \n[Take  ]",
+      "answer_key": "30",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nA bullet of mass  is fired on a wooden block to pierce through it, but it stops after moving a distance of \n into it. If the velocity of bullet before hitting the wood is 10  and it slows down with uniform\ndeceleration, then the magnitude of ef fective retarding force on the bullet is 'x' . The value  \nof 'x' to the nearest integer is ___\n Laws of Motion\n#PaperPhodnaHai\n.1\n√3FN F\ng=10 ms−2\n4 kg\n5 kg\ng=10 ms−2\n0.1 kg\n50 cm m/s\nN",
+      "answer_key": "10",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 10,
+    "answers": 10,
+    "solutions": 0,
+    "exported": 10,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Communication Systems",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Amplitude modulation is used in:",
+    "options": [
+      "Television broadcasting",
+      "AM radio broadcasting",
+      "Mobile phones",
+      "Radar"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Communication Systems",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The sky wave propagation is used for communication at frequencies:",
+    "options": [
+      "Below 2 MHz",
+      "2\u201330 MHz",
+      "Above 40 MHz",
+      "Above 100 MHz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

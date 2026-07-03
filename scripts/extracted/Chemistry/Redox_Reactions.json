@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Redox_Reactions_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Redox_Reactions_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Redox Reactions",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:51",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\n \nIf the above equation is balanced with integer coef ficients, the value of  is____ (Round of f to the Nearest\nInteger).",
+      "answer_key": "16",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe exact volumes of  solution required to neutralise  of  solution and  of \n solution, respectively , are:\n(1)  and \n(2)  and \n(3)  and \n(4)  and",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\n of aqueous solution of  in acidic medium completely reacted with  of  aqueous \n. The molarity of the  solution is ______   \n(Round of f to the Nearest Integer).",
+      "answer_key": "24",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\n of  solution is titrated against 0.2 M HCl solution. The following titre values were obtained in\n5 readings.  \n and  Based on these readings, and convention of titrimetric estimation of\nconcentration of  solution is________  \n(Round of f to the Nearest integer)\n Redox Reactions\n#PaperPhodnaHai\n4+bC2O2−\n4+cH+→xMn2++yCO2+zH2O\nc\n1MNaOH 50 mL1MH3PO3 100 mL\n2MH3PO2\n100 mL 100 mL\n100 mL 50 mL\n100 mL 200 mL\n50 mL 50 mL\n15 mL Fe2+20 mL0.03M\nCr2O2−\n7Fe2+×10−2M\n10.0mlNa2CO3\n4.8ml,4.9ml,5.0ml,5.0ml 5.0ml\nNa2CO3 mM",
+      "answer_key": "50",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

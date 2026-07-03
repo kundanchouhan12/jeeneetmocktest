@@ -1,0 +1,95 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Three_Dimensional_Geometry_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Three_Dimensional_Geometry_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Three Dimensional Geometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:22",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nIf for  the feet of perpendiculars from the points  and  on the plane \n are points  and  respectively , then the length of line segment  is equal to\n:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nLet the position vectors of two points  and  \nbe  and  respectively . Let  and  be two points such that the direction ratios of lines \n and  are (4,-1,2) and  respectively . Let lines  andQS intersect at . If the vector  is \nperpendicular to both  and  and thelength of vector  is  units, then the  \nmodulus of a position vector of  is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nLet  be a plane  containing the line,  If plane  divides the line\nsegment  joining points  and  in ratio  then the value of  is equal to :\n(1) 1.5\n(2) 3\n(3) 2\n(4) 4\n Three Dimensional Geometry\n#PaperPhodnaHai\nlx+my+nz=0 C(0,−a,−1) D CD\n√31\n√41\n√55\n√66\nP Q\n3^i−^j+2^k ^i+2^j−4^k, R S\nPR QS (−2,1,−2), PR T−−→\nTA\n−−→PR−→\nQS−−→\nTA√5\nA\n√482\n√171\n√5\n√227\nP lx+my+nz=0 = = .1−x\n1y+4\n2z+2\n3P\nAB A(−3,−6,1) B(2,4,−3) k:1 k",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIf  be an arbitrary point lying on a plane  which passes through the point (42,0,0) (0,42,0) and \n then the value of  \nexpression  \n(1) 0\n(2) 3\n(3) 39\n(4) -45",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIf the foot of the perpendicular from point (4,3,8) on the line   is  then\nthe shortest distance between the line  and line  \n is equal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nIf the distance of the point (1,-2,3) from the plane  measured parallel to the line, \n is  then the value of  is equal to ____",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe equation of the plane which contains the y-axis and passes through the point (1,2,3) is :\n Three Dimensional Geometry\n#PaperPhodnaHai\n(0,0,42),\n3+ +\n+ −x−11\n(y−19)2(z−12)2y−19\n(x−11)2(z−12)2\nz−12\n(x−11)2(y−19)2x+y+z\n14(x−11)(y−19)(z−12)\nL1: = = ,x−a\nly−2\n3z−b\n4l≠0(3,5,7),\nL1\nL2: = =x−2\n3y−4\n4z−5\n5\n1\n2\n1\n√6\n√2\n3\n1\n√3\nx+2y−3z+10=0\n= =x−1\n32−y\nmz+3\n1√,7\n2∣ml\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nIf the equation of the plane passing through the line of intersection of the planes \n \nand the point (-2,1,3) is  then the value of  is ____.",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nIf the equation of plane passing through the  \nmirror image of a point (2,3,1) with respect to line  and containing the line \n is  then  is equal to :\n(1) 20\n(2) 19\n(3) 18\n(4) 21",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nLet  be an arbitrary point having sum of the squares of the distance from the planes \n and  equal to  If the locus of the point  is \nthen the value of  is equal to ____.",
+      "answer_key": "0",
+      "solution": ""
+    },
+    {
+      "q_num": 11,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nLet the plane  bisect the line joining the points (4,-3,1) and (2,3,-5) at the right angles. If\n are integers, then the minimum value of  is\n Three Dimensional Geometry\n#PaperPhodnaHai\nx+3z=0\n3x+z=6\n3x−z=0\n2x−7y+4z−3=0,3x−5y+4z+11=0\nax+by+cz−7=0, 2a+b+c−7\n= =x+1\n2y−3\n1z+2\n−1\n= =x−2\n31−y\n2z+1\n1αx+βy+γz=24α+β+γ\nP\nx+y+z=0,lx−nz=0x−2y+z=0 9. Px2+y2+z2=9,\nl−n\nax+by+cz+d=0\na,b,c,d (a2+b2+c2+d2)",
+      "answer_key": "28",
+      "solution": ""
+    },
+    {
+      "q_num": 12,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe equation of the planes parallel to the plane   which are at unit distance from the point\n(1,2,3) is  If  then the positive value of  is",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 13,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nLet the mirror image of the point  a) with respect to the plane  (-3,5,2) .\nThen the value of  is equal to ___\n Three Dimensional Geometry\n#PaperPhodnaHai\nax+by+cz+d=0.(b−d)=K(c−a), K\n(1,3,→r⋅(2^i−^j+^k)−b=0be\nla+bl",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 13,
+    "answers": 13,
+    "solutions": 0,
+    "exported": 13,
+    "skipped": 0
+  }
+}

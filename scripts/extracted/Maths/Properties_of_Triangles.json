@@ -1,0 +1,23 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Properties_of_Triangles_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Properties_of_Triangles_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Trigonometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:20",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nIn , the lengths of sides  and  are  and , respectively . If the area of  is \nand  and  are respectively the radii of circumcircle and incircle of  \nthen the value of  (in  ) is equal to ____\n Properties of T riangles\n#PaperPhodnaHai\nR r ΔABC\n2R+rcm",
+      "answer_key": "15",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 1,
+    "answers": 1,
+    "solutions": 0,
+    "exported": 1,
+    "skipped": 0
+  }
+}

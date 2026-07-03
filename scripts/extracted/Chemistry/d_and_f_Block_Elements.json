@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\d_and_f_Block_elements_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "d_and_f_Block_elements_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Coordination Compounds",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:52",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nGiven below are two statement: one is labelled as Assertion A and the other is labelled as Reason  : \nAssertion A: Size of  ion is less than  ion. Reason  The above is a consequence of the lanthanoid\ncontraction. In the light of the above statements, choose the correct answer from the options given below :\n(1)  is false but  is true\n(2) Both  and  are true but  is not the correct explanation of \n(3) Both  and  are true and  is the correct explanation of \n(4)  is true but  is false",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nGiven below are two statements:  \nStatement I : The  value of  is \n \nStatement II : Ce is more stable in  state  \nthan  state.  \nIn the light of the above statements, choose the most appropriate answer from the options given below:\n(1) Both statement I and statement II are correct\n(2) Statement I is incorrect but statement II is  \ncorrect\n(3) Both statement I and statement II are incorrect\n(4) Statement I is correct but statement II is  \nincorrect.",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nWhen  of  lead nitrate solution is mixed with  of  chromic sulphate solution, ___ \n moles of lead sulphate precipitate out. (Round of f to the Nearest Integer).\n d and f Block elements\n#PaperPhodnaHai\nBk3+Np3+R:\nA R\nA R R A\nA R R A\nA R\nE∘Ce4+/Ce3+\n+1.74 V\nCe4+\nCe3+\n35 mL0.15M 20 mL0.12M\n×10−5",
+      "answer_key": "525",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nGiven below are two statements:  \nStatement I : Potassium permanganate on heating at  forms potassium manganate.  \nStatement II : Both potassium permanganate and potassium manganate are tetrahedral and paramagnetic in\nnature.  \nIn the light of the above statements, choose the most appropriate answer from the options given below:\n(1) Statement I is true but statement II is false\n(2) Both statement I and statement II are true\n(3) Statement I is false but statement II is true\n(4) Both statement I and statement II are false",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe common positive oxidation states for an element with atomic number 24 , are :\n(1) +2 to +6\n(2) +1 and +3 to +6\n(3) +1 and +3\n(4) +1 to +6",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nOn complete reaction of  with oxalic acid in aqueous solution containing , resulted in the\nformation of product A. The secondary valency of Fe in the product  is ____\n d and f Block elements\n#PaperPhodnaHai\nFeCl3 KOH\nA",
+      "answer_key": "6",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

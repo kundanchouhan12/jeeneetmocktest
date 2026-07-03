@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Magnetic_Properties_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Magnetic_Properties_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Fluid Mechanics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:38",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nA bar magnet of length  is placed in the magnetic meridian with its north pole pointing towards the\ngeographic north pole. A neutral point is obtained at a distance of  from the center of the magnet. If \n the magnetic moment of the magnet is \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nWhich of the following statements are correct?  \n(A) Electric monopoles do not exist whereas magnetic monopoles exist.  \n(B) Magnetic field lines due to a solenoid at its  \nends and outside cannot be completely straight and confined.  \n(C) Magnetic field lines are completely confined within a toroid.  \n(D) Magnetic field lines inside a bar magnet are  \nnot parallel.  \n(E)  is the condition for a perfect diamagnetic material, where  is its magnetic susceptibility .  \nChoose the correct answer from the options given below :\n(1) (C) and (E) only\n(2) (B) and (D) only\n(3) (A) and (B) only\n(4) (B) and (C) only\n Magnetic Properties of Matter\n#PaperPhodnaHai\n18 cm\nBH=0.4G, (1G=10−4 T)\n2.880×103 J T−1\n2.880×102 J T−1\n2.880 J T−1\n28.80 J T−1\nχ=−1 χ",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

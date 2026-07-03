@@ -1,0 +1,95 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\SHM_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "SHM_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Simple Harmonic Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:38",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nIn the given figure, a mass  is attached to a horizontal spring which is fixed on one side to a rigid support.\nThe spring constant of the spring is . The mass oscillates on a frictionless surface with time period  and\namplitude A. When the mass is in equilibrium position, as shown in the figure, another mass  is gently fixed\nupon it. The new amplitude of oscillation will be -  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nWhen a particle executes SHM, the nature of graphical representation of velocity as a function of displacement\nis :\n(1) elliptical\n(2) parabolic\n(3) straight line\n(4) circular",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nIn the given figure, a body of mass  is held between two massless springs, on a smooth inclined plane. The\nfree ends of the springs are attached to firm supports. If each spring has spring constant , the frequency of\n SHM\n#PaperPhodnaHai\nk T\nm\nA√M\nM+m\nA√M\nM−m\nA√M−m\nM\nA√M+m\nM\nM\nk\n \noscillation of given body is :  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nA particle is projected with velocity  along  -axis. A damping forceis acting on the particle which is\nproportional to the square of the distance from the origin i.e. . The distance at which the particle\nstops :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nIf the time period of a two meter long simple pendulum is  the acceleration due to gravity at the place\nwhere pendulum is executing S.H.M. is :\n(1) \n SHM\n#PaperPhodnaHai\n2π2k\nMgsinα\n√1\n2πk\nMgsinα\n√1\n2π2k\nM\n√1\n2πk\n2M\nv0 x\nma=−αX2\n()2v0\n3α1\n3\n()3v2\n0\n2α1\n2\n()3v2\n0\n2α1\n3\n()2v2\n0\n3α1\n2\n2 s,\n2π2 ms−2\n \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\n is the time - displacement equation of a  At  the displacement of the particle\nis  and it is moving along negative  -direction. Then the initial phase angle  will be\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nTwo identical spring of spring constant '2K' are attached to a block of mass  and to fixed support (see\nfigure). When the mass is displaced from equilibrium position on either side, it executes simple harmonic\nmotion. Then time period of oscillations of this system is:  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\n SHM\n#PaperPhodnaHai\n9.8 ms−2\nπ2 ms−2\nY=Asin(ωt+ϕ0) SHM,t=0\nY=A\n2x ϕ0\nπ\n6\nπ\n3\n2π\n3\n5π\n6\nm\nπ√m\nk\nπ√m\n2k\n2π√m\nk\n2π√m\n2k\n \nAssume that a tunnel is dug along a chord of the earth, at a perpendicular distance (R/2) from the earth's\ncentre, where 'R' is the radius of the Earth. The wall of the tunnel is frictionless. If a particle is released in this\ntunnel, it will execute a simple harmonic motion with a time period :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nIf two similar springs each of spring constant  are joined in series, the new spring constant and time period\nwould be changed by a factor :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nA particle executes S.H.M., the graph of velocity as a function of displacement is:\n(1) a circle\n(2) a parabola\n(3) an ellipse\n(4) a helix",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 11,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nGiven below are two statements :  \nStatement (I) :- A second's pendulum has a time period of 1 second.  \n SHM\n#PaperPhodnaHai\ng\n√1\n2πg\nR\n2πR\ng\ng\n2πR\nK1\n,√21\n2\n,2√21\n4\n,2√21\n2\n,√21\n4\n \nStatement (II) :- It takes precisely one second to move between the two extreme positions.  \nIn the light of the above statements, choose the correct answer from the options give below .\n(1) Both Statement I and Statement II are false\n(2) Statement  is true but Statement II is false\n(3) Statement I is false but Statement II is true\n(4) Both Statement  and Statement  is true",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 12,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nA particle excutes S.H.M with amplitude 'a' and time period . The displacement of the particle when its\nspeed is half of maximum speed is . The value of  is",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 13,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nTime period of a simple pendulum is . The time taken to complete  oscillations starting from mean position\nis . The value of  is\n SHM\n#PaperPhodnaHai\nI II\nT\n√xa\n2x\nT5\n8\nTα\nβα",
+      "answer_key": "7",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 13,
+    "answers": 13,
+    "solutions": 0,
+    "exported": 13,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Parabola_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Parabola_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:20",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nIf the three normals drawn to the parabola,  pass through the point  then 'a' must be greater\nthan :\n(1) \n(2) \n(3) -1\n(4) 1\n Parabola\n#PaperPhodnaHai\n1\n2\n−1\n2",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 1,
+    "answers": 1,
+    "solutions": 0,
+    "exported": 1,
+    "skipped": 0
+  }
+}

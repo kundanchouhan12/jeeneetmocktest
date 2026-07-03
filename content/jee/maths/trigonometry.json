@@ -1,0 +1,218 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "sin 30\u00b0 + cos 60\u00b0 equals:",
+    "options": [
+      "1",
+      "\u221a2",
+      "0.5",
+      "1.5"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "tan(45\u00b0) + cot(45\u00b0) equals:",
+    "options": [
+      "1",
+      "2",
+      "\u221a2",
+      "0"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The general solution of sin \u03b8 = 1/2 is:",
+    "options": [
+      "n\u03c0 + \u03c0/6",
+      "n\u03c0 + (-1)^n \u03c0/6",
+      "2n\u03c0 \u00b1 \u03c0/6",
+      "n\u03c0/6"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL cos(A+B) = cos A cos B - sin A sin B. Use this to find cos 75\u00b0. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The principal value of arcsin(-1/2) is:",
+    "options": [
+      "-\u03c0/3",
+      "-\u03c0/6",
+      "\u03c0/6",
+      "5\u03c0/6"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL In triangle ABC, if a = 5, b = 7, c = 8, find angle A using cosine rule. Ans: ___________________________________________ Page 48 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Prove that sin\u00b2A + cos\u00b2A = 1. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "tan(2\u03b8) in terms of tan \u03b8 is:",
+    "options": [
+      "2tan \u03b8/(1-tan\u00b2\u03b8)",
+      "2tan \u03b8/(1+tan\u00b2\u03b8)",
+      "tan\u00b2\u03b8/2",
+      "1/(2tan\u03b8)"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The number of solutions of sin x = x/3 is:",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "Infinite Page 62 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL In a triangle, if a = 5, b = 6, and C = 60\u00b0, find side c using cosine rule. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The maximum value of sin x + cos x is:",
+    "options": [
+      "1",
+      "\u221a2",
+      "2",
+      "\u221a3"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Trigonometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "sin(A + B) - sin(A - B) simplifies to:",
+    "options": [
+      "2sinAcosB",
+      "2cosAsinB",
+      "2sinBcosA",
+      "Both B and C"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

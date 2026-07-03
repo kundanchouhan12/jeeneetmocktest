@@ -1,0 +1,110 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Faraday's first law of electrolysis states that mass deposited is proportional to:",
+    "options": [
+      "Voltage",
+      "Temperature",
+      "Charge passed",
+      "Resistance Page 29 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The standard hydrogen electrode has a potential of:",
+    "options": [
+      "+1 V",
+      "-1 V",
+      "0 V",
+      "+0.5 V"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL EMF of a cell is 1.5 V. If Gibbs energy change is -n \u00d7 F \u00d7 E_cell, find \u0394G for n = 2 (F = 96500). Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In galvanic cells, oxidation occurs at:",
+    "options": [
+      "Cathode",
+      "Anode",
+      "Both electrodes",
+      "Salt bridge"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The concept of electrochemical series helps predict:",
+    "options": [
+      "Speed of reaction",
+      "Whether a metal can displace another from its solution",
+      "Solubility",
+      "Colour of compounds"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Daniell cell is:",
+    "options": [
+      "0.42 V",
+      "1.10 V",
+      "0.34 V",
+      "0.76 V Page 42 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

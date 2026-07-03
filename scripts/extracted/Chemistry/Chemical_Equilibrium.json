@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Chemical_Equilibrium_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Chemical_Equilibrium_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Equilibrium",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:49",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nFor the reaction  at , \n \nIf we start the reaction in a closed container at  \n with 22 millimoles of  the amount of  is the equilibrium mixture is....millimoles. (Round of f to the\nNearest Integer).",
+      "answer_key": "20",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe standard enthalpies of formation of  and  are  and \nrespectively . For the reaction  the standard reaction enthalpy ____ kJ.\n(Round of f to the Nearest Integer).",
+      "answer_key": "230",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nConsider the reaction . \nThe temperature at which  and  is ____ . (Round of f to the Nearest Integer).\n[Assume all gases are ideal and  bar",
+      "answer_key": "354",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nFor the reaction  \n \nthe reaction enthalpy  ___  \n(Round of f to the Nearest Integer).  \n[Given : Bond enthalpies in kJ mol  :",
+      "answer_key": "128",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\n Chemical Equilibrium\n#PaperPhodnaHai\nΔrGo=−9.478 kJ mol−1\n495 K A, B\n[R=8.314 J mol−1 K−1;ℓn10=2.303]\nAl2O3 CaO −1675 kJ mol−1−635 kJ mol−1\n3CaO+2Al→3Ca+Al2O3 ΔrH0=\nN2O4( g)⇌2NO2( g)\nKC=20.4 Kp=600.1, K\nR=0.0831 L K−1 mol−1]\nC2H6→C2H4+H2\nΔrH= kJmol−1\n−1:C−C\n347,C=C:611;C−H:414,H−H:436]\n \nThe gas phase reaction  \n \nat  has . \nThe equilibrium constant  for this reaction is_________ . (Round of f to the Nearest integer)  Use \n \n \n[antilog \n Chemical Equilibrium\n#PaperPhodnaHai\n400 K ΔG∘=+25.2 kJ mol−1\nKC ×10−2[\n:R=8.3 J mol−1 K−1,ln10=2.3\nlog102=0.30,1 atm=1bar]\n(−0.3)=0.501]",
+      "answer_key": "166",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

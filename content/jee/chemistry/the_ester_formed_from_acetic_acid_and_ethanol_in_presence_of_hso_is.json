@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "The ester formed from acetic acid and ethanol in presence of HSO is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "What is a Grignard reagent? Give its general formula and one use. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "The ester formed from acetic acid and ethanol in presence of HSO is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Nylon-6,6 is formed by polymerization of:",
+    "options": [
+      "Caprolactam",
+      "Hexamethylenediamine + adipic acid",
+      "Styrene",
+      "Vinyl chloride Page 32 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "The ester formed from acetic acid and ethanol in presence of HSO is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Distinguish between addition polymerization and condensation polymerization with one example each. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

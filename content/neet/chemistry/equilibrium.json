@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Equilibrium",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Le Chatelier's principle predicts the shift in equilibrium when:",
+    "options": [
+      "A catalyst is added",
+      "Temperature/pressure/concentration is changed",
+      "Volume is constant",
+      "Reaction is at STP Page 28 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Equilibrium",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "[C]^c [D]^d / [A]^a [B]^b",
+      "[A][B]/[C][D]",
+      "[A]^a [B]^b / [C]^c [D]^d",
+      "[C][D]/[A][B]"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Equilibrium",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which of the following is a strong acid?",
+    "options": [
+      "Acetic acid",
+      "Carbonic acid",
+      "Nitric acid",
+      "Phosphoric acid"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Equilibrium",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Buffer solution resists change in:",
+    "options": [
+      "Temperature",
+      "Volume",
+      "pH",
+      "Pressure"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Equilibrium",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

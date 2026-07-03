@@ -1,0 +1,89 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Rotational_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Rotational_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Rotational Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:44",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nFour equal masses,  each are placed at the corners of a square of length  as shown in the figure. The\nmoment of inertia of the system about an axis passing through A and parallel to DB would be :  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nConsider a  uniform circular disk of radius . It is pin supported at its center and is at rest initially .\nThe disk is acted upon by a constant force  through a massless string wrapped around its periphery\nas shown in the figure.  \n Rotational Motion\n#PaperPhodnaHai\nm/2\n2 ml2\n3 ml2\n√3 ml2\n20 kg 0.2 m\nF=20 N\n \nSuppose the disk makes  number of revolutions to attain an angular speed of . The value of , to the\nnearest integer , is ____ [Given : In one complete revolution, the disk rotates by",
+      "answer_key": "20",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nA force  is applied on an intersection point of  plane and  -axis. The magnitude of\ntorque of this force about a point (2,3,4) is ___  \n(Round of f to the Nearest Integer)",
+      "answer_key": "20",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nA solid disc of radius 'a' and mass 'm' rolls down without slipping on an inclined plane making an angle  with\nthe horizontal. The acceleration of the disc will be  where b is ___. (Round of f to the Nearest Integer)  \n acceleration due to gravity)  \n angle as shown in figure",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA triangular plate is shown. A force  \nis applied at point . The torque at point  with  \nrespect to point '  and  are :  \n(1) \n(2) \n(3) \n(4) \n Rotational Motion\n#PaperPhodnaHai\n6.28rad]\n→\nF=4^i+3^j+4^k x=2 x\nθ\n gsinθ2\n b\n(g=\n(θ= )\n→\nF=4^i−3^j\nP P\nO′ ′Q′\n−15−20√3,15−20√3\n15+20√3,15−20√3\n15−20√3,15+20√3\n−15+20√3,15+20√3",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA mass  hangs on a massless rod of length  which rotates at a constant angular frequency . The mass M\nmoves with steady speed in a circular path of constant radius. Assume that the system is in steady circular\nmotion with constant angular velocity  The angular momentum of  about point  is  which lies in the\npositive  direction and the angular momentum of  about  is . The correct statement for this system is :  \n(1)  and  are both constant in magnitude and direction\n(2)  is constant in direction with varying magnitude\n(3)  is constant, both in magnitude and direction\n(4)  is constant, both in magnitude and direction",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe angular speed of truck wheel is increased from  to  in 26 seconds. The number of\nrevolutions by the truck engine during this time is ______  \n(Assuming the acceleration to be uniform).",
+      "answer_key": "728",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe following bodies,  \n(1) a ring  \n(2) a disc  \n(3) a solid cylinder  \n Rotational Motion\n#PaperPhodnaHai\nω. M ALA\nz M BLB\nLA LB\nLB\nLB\nLA\n900rpm 2460rpm\n \n(4) a solid sphere,  \nof same mass 'm' and radius 'R' are allowed to roll down without slipping simultaneously from the top of the\ninclined plane. The body which will reach first at the bottom of the inclined plane is  \n[Mark the body as per their respective numbering given in the question]",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nA sphere of mass  and radius  is rolling with an initial speed of  goes up an inclined plane\nwhich makes an angle of  with the horizontal plane, without slipping. How low will the sphere take to\nreturn to the starting point  ? \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA thin circular ring of mass  and radius  is rotating about its axis with an angular speed . Two particles\nhaving mass  each are now attached at diametrically opposite points. The angular speed of the ring will\nbecome:\n Rotational Motion\n#PaperPhodnaHai\n30∘\nA\n0.60 s\n0.52 s\n0.57 s\n0.80 s\nM r ω\nm\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 11,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nConsider a uniform wire of mass  and length  It is bent into a semicircle. Its moment of inertia about a line\nperpendicular to the plane of the wire passing through the centre is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 12,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nA solid cylinder of mass  is wrapped with an inextensible light string and, is placed on a rough inclined\nplane as shown in the figure. The frictional force acting between the cylinder and the inclined plane is :  \n[The coef ficient of static friction, , is \n Rotational Motion\n#PaperPhodnaHai\nM+m\nωM+2 m\nM\nωM\nM+2 m\nωM−2 m\nM+2 m\nM L.\n1\n4ML2\nπ2\n2\n5ML2\nπ2\nML2\nπ2\n1\n2ML2\nπ2\nm\nμs0.4]\n \n(1) \n(2) \n(3) \n(4) 0\n Rotational Motion\n#PaperPhodnaHai\n2\n5mg\nmg\n5",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 12,
+    "answers": 12,
+    "solutions": 0,
+    "exported": 12,
+    "skipped": 0
+  }
+}

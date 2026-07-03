@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "States of Matter",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "At STP, 1 mole of ideal gas occupies:",
+    "options": [
+      "22.4 L",
+      "11.2 L",
+      "44.8 L",
+      "2.24 L"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "States of Matter",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The van der Waals equation accounts for:",
+    "options": [
+      "Ideal gas behaviour",
+      "Intermolecular forces and finite molecular volume",
+      "Kinetic energy only",
+      "Pressure only"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "States of Matter",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Boyle's law states that at constant temperature, pressure is inversely proportional to:",
+    "options": [
+      "Temperature",
+      "Moles",
+      "Volume",
+      "Density Page 27 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

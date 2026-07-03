@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Materials Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Cement is a mixture of calcium silicates and:",
+    "options": [
+      "Calcium sulphate",
+      "Calcium carbonate",
+      "Calcium aluminates",
+      "Calcium oxide only"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

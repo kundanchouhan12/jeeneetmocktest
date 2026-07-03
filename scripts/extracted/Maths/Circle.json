@@ -1,0 +1,71 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Circle_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Circle_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:16",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nLet  be a square of side of unit length.  \nLet a circle  centered at  with unit radius is drawn. Another circle  which touches  and the lines \nand  are tangent to it, is also drawn. Let a tangent line from the point  to the circle  meet the side \nat . If the length of  is  where  areintegers, then  is equal to_______",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet the lengths of intercepts on  -axis and  -axis made by the circle  \n be  and , respectively . Then  \nthe shortest distance from origin to a tangent to this circle which is perpendicular to the line  is\neuqal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe line  is a tangent to the circle at the point (2,5) and the centre of the circle lies on \n. Then, the radius of the circle is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nChoose the incorrect statement about the two circles whose equations are given below:  \n and \n Circle\n#PaperPhodnaHai\nC1 A C2 C1 AD\nAB C C2 AB\nE EBα+√3β, α,β α+β\nx y x2+y2+ax+2ay+c=0\n(a<0)2√2 2√5\nx+2y=0,\n√11\n√7\n√6\n√10\n2x−y+1=0\nx−2y=4\n3√5\n5√3\n5√4\n4√5\nx2+y2−10x−10y+41=0\n \n(1) Distance between two centres is the average of radii of both the circles.\n(2) Both circles' centres lie inside region of one another .\n(3) Both circles pass through the centre of each other .\n(4) Circles have two intersection points.",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe minimum distance between any two points  and  while considering point  on one circle and point \n on the other circle for the given circles' equations  \n \n is ____.",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nTwo tangents are drawn from a point  to the circle  such that the angle between\nthese tangents is , where . If the centre of the circle is denoted by  and these\ntangents touch the circle at points  and , then the ratio of the areas of  and  is :\n(1) 1 1: 4\n(2) 9: 4\n(3) 3: 1\n(4) 2: 1",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nChoose the correct statement about two circles whose equations are given below:  \n \n(1) circles have same centre\n(2) circles have no meeting point\n Circle\n#PaperPhodnaHai\nP1 P2 P1\nP2\nx2+y2−10x−10y+41=0\nx2+y2−24x−10y+160=0\nP x2+y2−2x−4y+4=0,\ntan−1()12\n5tan−1()∈(0,π)12\n5C\nA B ΔPAB ΔCAB\nx2+y2−10x−10y+41=0\nx2+y2−22x−10y+137=0\n \n(3) circles have only one meeting point\n(4) circles have two meeting points",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nFor the four circles  and  following four equations are given :  \nCircle  \nCircle  \nCircle  \nCircle  \nIf the centre of circle  is joined with centre of the circle  further centre of circle  is joined with centre of\nthe circle  centre of circle  is joined with the centre of circle  and lastly , centre of circle  is joined with\ncentre of circle , then these lines form the sides of a :\n(1) Rhombus\n(2) Square\n(3) Rectangle\n(4) Parallelogram",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet  and  Then the locus of center of a variable circle  which touches\n internally and  externally always passes through the points:\n(1) \n(2) \n(3) \n(4) (1,ą2)\n Circle\n#PaperPhodnaHai\nM:x2+y2=1\nN:x2+y2−2x=0\nO:x2+y2−2x−2y+1=0\nP:x2+y2−2y=0\nM N, N\nO, O P P\nM\nS1:x2+y2=9 S2:(x−2)2+y2=1 S\nS1 S2\n(0,±√3)\n(,± )1\n2√5\n2\n(2,±)3\n2",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 9,
+    "answers": 9,
+    "solutions": 0,
+    "exported": 9,
+    "skipped": 0
+  }
+}

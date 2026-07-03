@@ -1,0 +1,146 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "According to de Broglie hypothesis, wavelength of a particle is inversely proportional to its:",
+    "options": [
+      "Velocity",
+      "Charge",
+      "Momentum",
+      "Energy"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The photoelectric effect was explained by:",
+    "options": [
+      "Maxwell",
+      "Hertz",
+      "Einstein",
+      "Planck Page 13 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Half-life of a radioactive element is 20 days. After 60 days, the fraction remaining is:",
+    "options": [
+      "1/2",
+      "1/4",
+      "1/8",
+      "1/16"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In a nuclear fission reaction, energy is released because:",
+    "options": [
+      "Neutrons are destroyed",
+      "Mass defect is converted to energy",
+      "Protons are destroyed",
+      "Temperature increases"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Bohr radius of hydrogen atom (n=1) is approximately:",
+    "options": [
+      "0.529 \u00c5",
+      "5.29 \u00c5",
+      "0.0529 \u00c5",
+      "52.9 \u00c5"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL The work function of sodium is 2.3 eV. What is the threshold frequency? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

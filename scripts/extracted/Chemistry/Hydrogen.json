@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Hydrogen_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Hydrogen_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Hydrogen",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:50",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nGiven below are two statements:  \nStatement  can act as both oxidising and reducing agent in basic medium.  \nStatement II : In the hydrogen economy , the ener gy is transmitted in the form of dihydrogen. In the light of the\nabove statements, choose the correct answer from the options given below:\n(1) Both statement I and statement II are false\n(2) Both statement I and statement II are true\n(3) Statement I is true but statement II is false\n(4) Statement I is false but statement II is true",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe correct statements about  are: \n(A) used in the treatment of ef fluents.  \n(B) used as both oxidising and reducing agents.  \n(C) the two hydroxyl groups lie in the same plane.  \n(D) miscible with water .  \nChoose the correct answer from the options given below:\n(1)  and \n(2) (A), (B) and (D) only\n(3)  and(D) only\n(4)  and(D) only",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe INCORRECT statement(s) about heavy water is (are)  \n(a) used as a moderator in nuclear reactor  \n(b) obtained as a by-product in fertilizer industry . \n(c) used for the study of reaction mechanism  \n Hydrogen\n#PaperPhodnaHai\nH2O2\n(A),(B),(C) (D)\n(B),(C)\n(A),(C)\n \n(d) has a higher dielectric constant than water  \nChoose the correct answer from the options given below:\n(1) (B) only\n(2) (C) only\n(3) (D) only\n(4) (B) and (D) only",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nIn basic medium,  exhibits which of the following reactions?  \n(A)  \n(B)  \n(C)  \nChoose the most appropriate answer from the options given below:\n(1)  only\n(2) (A) only\n(3) (B) only\n(4)  only\n Hydrogen\n#PaperPhodnaHai\nMn2+→Mn4+\nI2→I−\nPbS→PbSO4\n(A),(C)\n(A),(B)",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

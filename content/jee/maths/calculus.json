@@ -1,0 +1,146 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "lim(x\u21920) (sin x)/x equals:",
+    "options": [
+      "0",
+      "\u221e",
+      "1",
+      "Undefined"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The derivative of x\u00b3 + 3x\u00b2 - x + 5 is:",
+    "options": [
+      "3x\u00b2 + 6x + 1",
+      "3x\u00b2 + 6x - 1",
+      "x\u00b2 + 6x - 1",
+      "3x + 6x - 1 Page 50 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "\u222bx\u00b2 dx equals:",
+    "options": [
+      "2x",
+      "x\u00b3/3 + C",
+      "x\u00b3 + C",
+      "3x\u00b3 + C"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The derivative of sin(x\u00b2) is:",
+    "options": [
+      "cos(x\u00b2)",
+      "2x cos(x\u00b2)",
+      "cos(2x)",
+      "2cos(x\u00b2)"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The derivative of tan x is:",
+    "options": [
+      "sec x",
+      "sec\u00b2x",
+      "cosec\u00b2x",
+      "-sec\u00b2x Page 57 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Calculus",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "\u222b(1/x)dx equals:",
+    "options": [
+      "1/x\u00b2 + C",
+      "ln|x| + C",
+      "-1/x + C",
+      "x + C"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

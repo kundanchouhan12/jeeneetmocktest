@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The reaction of carboxylic acid with alcohol in presence of HSO is called:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Gabriel phthalimide synthesis is used to prepare:",
+    "options": [
+      "Primary amines",
+      "Secondary amines",
+      "Tertiary amines",
+      "Amides"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The reaction of carboxylic acid with alcohol in presence of HSO is called:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Optical isomers exist due to:",
+    "options": [
+      "Restricted rotation",
+      "Presence of a chiral carbon",
+      "Double bonds",
+      "Ring structure"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The reaction of carboxylic acid with alcohol in presence of HSO is called:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The reaction of alkyl halide with aqueous KOH gives:",
+    "options": [
+      "Alkene",
+      "Alcohol",
+      "Ether",
+      "Alkyne Page 36 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The reaction of carboxylic acid with alcohol in presence of HSO is called:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "product? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

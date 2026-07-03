@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Gaseous_State_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Gaseous_State_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "States Of Matter",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:08",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nThe volume occupied by  of acetylene gas at  and  pressure is ____ L.  \n(Rounded of f to the nearest integer) (Given",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nA car tyre is filled with nitrogen gas at 35 psi at . It will burst if pressure exceeds 40 psi. The temperature\nin  at which the car tyre will burst is ____ (Rounded-of f to the nearest integer)",
+      "answer_key": "70",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 1) - Numerical\n of oxygen is adsorbed on  of platinum metal. The value of oxygen adsorbed per gram of the\nadsorbent at 1 atm and  in  is ____",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nA certain gas obeys . The value of  is  The value of  is\n Gaseous State\n#PaperPhodnaHai\nR=0.0826 L atm K−1 mol−1)\n27∘C\n∘C\n3.12 g 1.2 g\n300 KL [R=0.0821 L atm K−1 mol−1]\nP(Vm−b)=RT ( )\nT∂Z\n∂P.xb\nRTx",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

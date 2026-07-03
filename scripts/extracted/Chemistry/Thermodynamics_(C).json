@@ -1,0 +1,23 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Thermodynamics_(C)_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Thermodynamics_(C)_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Thermodynamics",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:52",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nDuring which of the following processes, does entropy decrease?  \n(A) Freezing of water to ice at  \n(B) Freezing of water to ice at  \n(C)  \n(D) Adsorption of  and lead surface  \n(E) Dissolution of  in water\n(1)  and  only\n(2) (B) and (C) only\n(3) (A) and (E) only\n(4) (A), (C) and (E) only\n Thermodynamics (C)\n#PaperPhodnaHai\n−10∘C\nN2( g)+3H2( g)→2NH3( g)\nCO(g)\nNaCl\n(A),(B),(C) (D)",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 1,
+    "answers": 1,
+    "solutions": 0,
+    "exported": 1,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Practical_Chemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Practical_Chemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Some Basic Concepts Of Chemistry",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:51",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nMatch List-I with List-II  \nThe correct match is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nIn Duma's method of estimation of nitrogen,  of an or ganic compound gave  of nitrogen\ncollected at  and  of Hg pressure. The percentage composition of nitrogen in the compound is\n___ (Round of f to the Nearest Integer).  \n[Given : Aqueous tension at  of  ]",
+      "answer_key": "19",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nGiven below are two statements:  \nStatement-I : Retardation factor  can be measured in meter/centimeter . \nStatement-II :  value of a compound remains constant in all solvents.  \nChoose the most appropriate answer from the options given below:\n Practical Chemistry\n#PaperPhodnaHai\n(a)−(i),(b)−(iv),(c)−(iii),(d)−(ii)\n(a)−(iii),(b)−(i),(c)−(iv),(d)−(ii)\n(a)−(i),(b)−(ii),(c)−(iv),(d)−(iii)\n0.1840 g 30 mL\n287 K 758 mm\n287 K=14 mm Hg\n(Rf)\nRf\n \n(1) Statement-I is true but statement-II is false\n(2) Both statement-I and statement-II are true\n(3) Both statement-I and statement-II are false\n(4) Statement-I is false but statement-II is true",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nNitrogen can be estimated by Kjeldah's method for which of the following compound?\n(1) \n(2) \n(3) \n(4) \n Practical Chemistry\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

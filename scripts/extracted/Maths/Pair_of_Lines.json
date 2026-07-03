@@ -1,0 +1,23 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\July_2021\\Pair_of_Lines_Click_here_to_download.pdf",
+  "pdf_name": "Pair_of_Lines_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:54:58",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "(25 July 2021 Shift 2)\nLet the equation of the pair of lines,  and , can be written as  \nThen the equation of the pair of the angle bisectors of the lines  is:\n(1) \n(2) \n(3) \n(4) \n Pair of Lines\nx2−4xy−5y2=0\nx2−3xy+y2=0\nx2+4xy−y2=0\nx2+3xy−y2=0\nx2−3xy−y2=0",
+      "answer_key": "3",
+      "solution": "Pair of Lines\nHints and SolutionsJEE Main 2021 (July) Chapter-wise Questions\n1−(−5)xy\n−2\n=x2−y2\n6xy\n−2\n⇒x2−y2=−3xy\n⇒x2+3xy−y2=0"
+    }
+  ],
+  "stats": {
+    "q_blocks": 1,
+    "answers": 1,
+    "solutions": 1,
+    "exported": 1,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Coordination Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which coordination compound is used in cancer chemotherapy?",
+    "options": [
+      "EDTA",
+      "Cisplatin",
+      "Haemoglobin",
+      "Chlorophyll Page 37 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Coordination Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Tetraaminocopper(II)",
+      "Tetraaminocuprate(II)",
+      "Tetraaminecopper(II) ion",
+      "Copper tetraamine"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

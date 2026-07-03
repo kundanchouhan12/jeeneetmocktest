@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Area_Under_Curves_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Area_Under_Curves_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Integral Calculus",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:15",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nLet the curve  be the solution of the dif ferential equation,  If the numerical value of\narea bounded by the curve  and  -axis is  then the value of  is equal to___",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet  be the curve obtained by the solution ofdif ferential equation  & Let the curve \n be the solution of .  \nIf both the curves pass through  then the area enclosed by the curves  and  is equal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nLet  be given as  \nIf the area bounded by  and  -axis is A, then the value of  is equal to ____.",
+      "answer_key": "41",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe area bounded by the curve  is equal to:\n(1) \n(2) \n(3) \n Area Under Curves\n#PaperPhodnaHai\ndx\ny=y(x) x ,4√8\n3y(1)\nC1 2xy=y2−x2,x>0dy\ndx\nC2 =2xy\nx2−y2dy\ndx\n(1,1), C1 C2\nπ−1\n−1π\n2\nπ+1\n+1π\n4\nf:[−3,1]→R\nf(x)={min{(x+6),x2},−3≤x≤0\nmax{√x,x2}, 0≤x≤1\ny=f(x)x 6 A\n4y2=x2(4−x)(x−2)\nπ\n8\n3π\n8\n3π\n2\n \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nLet  be the solution of the dif ferential  \nequation  with  \n If the area bounded by the line  and  is , then the value of \n is equal to ___\n Area Under Curves\n#PaperPhodnaHai\n16\ny=y(x)\nxdy−ydx=√(x2−y2)dx,x≥1,\ny(1)=0. x=1,x=eπ,y=0 y=y(x)αe2π+β\n10(α+β)",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

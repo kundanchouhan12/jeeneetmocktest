@@ -1,0 +1,182 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Darwin's theory of natural selection states that organisms with better adaptations have:",
+    "options": [
+      "Higher mutation rate",
+      "Greater reproductive success",
+      "Larger body size",
+      "More varied diet"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Analogous organs are those that have:",
+    "options": [
+      "Same origin, different function",
+      "Different origin, same function",
+      "Same origin and function",
+      "Different origin and function Page 70 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The founder effect is a type of:",
+    "options": [
+      "Natural selection",
+      "Genetic drift",
+      "Gene flow",
+      "Mutation"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Hardy-Weinberg principle states that allele frequencies remain constant in the absence of:",
+    "options": [
+      "Sexual reproduction",
+      "Evolutionary forces",
+      "Meiosis",
+      "Fertilization"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Miller-Urey experiment demonstrated that:",
+    "options": [
+      "Life came from space",
+      "Amino acids could form from inorganic compounds",
+      "DNA is the genetic material",
+      "Cells arise spontaneously"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The fossil evidence for evolution is found in:",
+    "options": [
+      "Museums only",
+      "Sedimentary rocks",
+      "Igneous rocks",
+      "Metamorphic rocks"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Industrial melanism in Biston betularia moths is an example of:",
+    "options": [
+      "Mutation",
+      "Natural selection in action",
+      "Genetic drift",
+      "Sexual selection"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The theory of chemical evolution was proposed by:",
+    "options": [
+      "Darwin",
+      "Haldane and Oparin",
+      "Lamarck",
+      "De Vries"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Vestigial organs support the theory of evolution because:",
+    "options": [
+      "They have no function",
+      "They represent organs functional in ancestors",
+      "They are present in all animals",
+      "They improve fitness"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Evolution",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The appendix in humans is considered a _____ organ. Ans: ___________________________________________ Page 87 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

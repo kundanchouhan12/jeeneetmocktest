@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Aromatic_Compounds_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Aromatic_Compounds_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Hydrocarbons",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:06",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nIn the following reaction the reason why meta-nitro product also formed is:  \n(1) Formation of anilinium ion\n(2)  substitution always takes place at meta-position\n(3) low temperature\n(4)  group is highly meta-directive",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nThe correct order of the following compounds showing increasing tendency towards nucleophilic substitution reaction is :  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\n Aromatic Compounds\n#PaperPhodnaHai\n−NH2\n(iv)<(i)<(iii)<(ii)\n(iv)<(i)<(ii)<(iii)\n(i)<(ii)<(iii)<(iv)\n(iv)<(iii)<(ii)<(i)\n \nCompound(s) which will liberate carbon dioxide with sodium bicarbonate solution is/are:  \n(1) B and C only\n(2) B only\n(3)  and  only\n(4)  only",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nThe major product of the following reaction is :  \n(1) \n  \n(2) \n  \n(3) \n  \n(4) \n  \n Aromatic Compounds\n#PaperPhodnaHai\nC",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nThe correct sequence of reagents used in the preparation of 4 -bromo-2-nitroethyl benzene from benezene is :\n(1) \n(2) \n(3) \n(4) \n Aromatic Compounds\n#PaperPhodnaHai\nCH3COCl/AlCl3,Zn−Hg/HCl,Br2/AlBr3,HNO3/H2SO4\nBr2/AlBr3,CH3COCl/AlCl3,HNO3/H2SO4,Zn/HCl\nHNO3/H2SO4,Br2/AlCl3,CH3COCl/AlCl3,Zn−Hg/HCl",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Thermodynamics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Thermodynamics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Thermodynamics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:46",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nIn thermodynamics, heat and work are :\n(1) Path functions\n(2) Intensive thermodynamic state variables\n(3) Extensive thermodynamic state variables\n(4) Point functions",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA Carnot's engine working between  and  has a work output of  per cycle. The amount of\nheat ener gy supplied to the engine from the source in each cycle is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nWhich one is the correct option for the two  \ndifferent thermodynamic processes?  \n(A) \n(B) \n Thermodynamics\n#PaperPhodnaHai\n3200 J\n1800 J\n1600 J\n2400 J\n \n(C) \n(D) \n(1) (C) and (A)\n(2) (C) and (D)\n(3) (A) only\n(4) (B) and (C)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\n Thermodynamics\n#PaperPhodnaHai\n \nThe P-V diagram of a diatomic ideal gas system going under cyclic process as shown in figure. The work done\nduring an adiabatic process  is (use : \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nFor an adiabatic expansion of an ideal gas, the fractional change in its pressure is equal to (where  is the ratio\nof specific heats):\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nAn ideal gas in a cylinder is separated by a piston in such a way that the entropy of one part is  and that of\nthe other part is . Given that . If the piston is removed then the total entropy of the system will be :\n(1) \n(2) \n Thermodynamics\n#PaperPhodnaHai\n−500 J\n−400 J\n400 J\n200 J\nγ\n−γdV\nV\n−γV\ndV\n−1\nγdV\nV\ndV\nV\nS1\nS2 S1>S2\nS1×S2\nS1−S2\n \n(3) \n(4) \n Thermodynamics\n#PaperPhodnaHai\n S2\nS1+S2",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

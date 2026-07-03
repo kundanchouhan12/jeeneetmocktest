@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Straight_Line_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Straight_Line_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:29",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nA man is walking on a straight line. The arithmetic mean of the reciprocals of the intercepts of this line on the\ncoordinate axes is  Three stones  and  are placed at the points (1,1), (2,2) and (4,4) respectively . Then\nwhich of these stones is/are on the path of the man?\n(1) B only\n(2) A only\n(3) All the three\n(4)  only",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nLet a point  be such that its distance from the point (5,0) is thrice the distance of  from the point (-5,0) . If\nthe locus of the point  is a circle of radius , then  is equal to (Round of f to the nearest integer)",
+      "answer_key": "56",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nThe image of the point (3,5) in the line , lies on :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nThe intersection of three lines   and  is a:\n(1) Equilateral triangle\n(2) None of the above\n(3) Isosceles triangle\n(4) Right angled triangle\n Straight Line\n#PaperPhodnaHai\n4A,B C\nC\nP P\nP r 4r2\nx−y+1=0\n(x−2)2+(y−4)2=4\n(x−4)2+(y+2)2=16\n(x−4)2+(y−4)2=8\n(x−2)2+(y−2)2=12\nx−y=0,x+2y=3 2x+y=6",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nIf the locus of the mid-point of the line segment from the point (3,2) to a point on the circle,  is a\ncircle of the radius , then  is equal to :\n(1) \n(2) \n(3) 1\n(4) \n Straight Line\n#PaperPhodnaHai\nr r\n1\n4\n1\n2\n1\n3",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

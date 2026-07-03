@@ -1,0 +1,65 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Permutation_and_Combination_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Permutation_and_Combination_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Permutations And Combinations",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:28",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nA scientific committee is to formed from 6 Indians and 8 foreigners, which includes at least 2 Indians and\ndouble the number of foreigners as Indians. Then the number of ways, the committee can be formed is:\n(1) 560\n(2) 1050\n(3) 1625\n(4) 575",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nThe students  are to be divided into 3 groups  and  such that each group has at least one\nstudent and the group  has at most 3 students. Then the total number of  \npossibilities of forming such groups is",
+      "answer_key": "31650",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nThe total number of positive integral solutions  such that  is\n(1) 36\n(2) 45\n(3) 24\n(4) 30",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nThe total number of numbers, lying between 100 and 1000 that can be formed with the digits  if the\nrepetition of digits is not allowed and numbers are divisible by either 3 or 5 is",
+      "answer_key": "32",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nThe total number of two digit numbers 'n', such that  is a multiple of  is\n Permutation and Combination\n#PaperPhodnaHai\nC\n(x,y,z) xyz=24\n1,2,3,4,5,\n3n+7n10,",
+      "answer_key": "45",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nThe number of seven digit integers with sum of the digits equal to 10 and formed by using the digits 1,2 and 3\nonly is\n(1) 77\n(2) 42\n(3) 35\n(4) 82",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nA natural number has prime factorization given by  where  and  are such that  and \n. Then the number of odd divisors of , including  is :\n(1) 1 1\n(2) \n(3) 12\n(4) 6",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nThe total number of 4 -digit numbers whose greatest common divisor with 18 is 3 , is\n Permutation and Combination\n#PaperPhodnaHai\ny−1+z−1=,y>z5\n6n 1,\n6x",
+      "answer_key": "1000",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 8,
+    "answers": 8,
+    "solutions": 0,
+    "exported": 8,
+    "skipped": 0
+  }
+}

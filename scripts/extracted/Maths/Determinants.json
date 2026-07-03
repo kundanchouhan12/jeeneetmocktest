@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Determinants_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Determinants_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Matrices & Determinants",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:17",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe maximum value of  \n is:\n(1) \n(2) \n(3) \n(4) 5",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe system of equations ,  and  has no solution if  is equal to\n:\n(1) 0\n(2) 1\n(3) -1\n(4) -2",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nIf  are in arithmetic progression with common dif ference  and the determinant of the matrix \n is zero,  \nthen the value of  is\n(1) 72\n(2) 12\n(3) 36\n(4) 6\n Determinants\n#PaperPhodnaHai\n∣ ∣ ∣\n∣sin2x 1+cos2xcos2x\n1+sin2x cos2x cos2x\nsin2x cos2x sin2x∣\n∣ ∣ ∣\n∣,x∈R\n√7\n3\n4\n√5\nkx+y+z=1x+ky+z=k x+y+zk=k2k\nx,y,z d,x≠3 d,\n⎡\n⎢\n⎣34√2x\n45√2y\n5 k z⎤\n⎥\n⎦\nk2",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe solutions of the equation  \n$\\left|\n\\right|=0,(0\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nLet  be the real roots of the equation,  and  If the system\nof equations (in,  ) given by   \n has non-trivial solution, then the value of  is\n(1) 5\n(2) 3\n(3) 1\n(4) 0",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet the system of linear equations  \n \n \n \nhas a non-trivial solution. Then which of the following is true?\n Determinants\n#PaperPhodnaHai\ncos2x 1+cos2x cos2x\n4sin2x 4sin2x 1+4sin2x\n,π\n12π\n6\n,π\n65π\n6\n,5π\n127π\n12\n,7π\n1211π\n12\nα,β,γ x3+ax2+bx+c=0,(a,b,c∈R a,b≠0)\nu,v,w αu+βv+γw=0,βu+γv+αw=0\nγu+αv+βw=0a2\n b\n4x+λy+2z=0\n2x−y+z=0\nμx+2y+3z=0,λ,μ∈R\n \n(1) \n(2) \n(3) \n(4) \n Determinants\n#PaperPhodnaHai\nλ=2,μ∈R\nλ=3,μ∈R\nμ=−6,λ∈R",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Magnetic_Effects_Of_Current_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Magnetic_Effects_Of_Current_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Magnetic Effect Of Current",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:38",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nA char ge  is moving  distance in the magnetic field . Find the value of work done by .\n(1) 1\n(2) Infinite\n(3) Zero\n(4) -1",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe magnetic field in a region is given by  A square loop of side  is placed with its edges\nalong the  and y axes. The loop is moved with a constant velocity . The emf induced in the loop is :  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA solenoid of 1000 turns per metre has a core with relative permeability 500. Insulated windings of the\nsolenoid carry an electric current of . The magnetic flux density produced by the solenoid is:  \n(permeability of free space \n(1) \n(2) \n Magnetic Effects Of Current\n#PaperPhodnaHai\n dI →\nB→\nB\n→\nB=B0()^k.x\nad\nx→v=v0^i\nB0v2\n0 d\n2a\nB0v0 d\n2a\nB0v0 d2\na\nB0v0 d2\n2a\n5 A\n=4π×10−7H/m)\nπT\n2×10−3πT\n \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nA hairpin like shape as shown in figure is made by bending a long current carrying wire. What is the\nmagnitude of a magnetic field at point  which lies on the centre of the semicircle?  \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nFour identical long solenoids  and  are connected to each other as shown in the figure. If the\nmagnetic field at the center of  is  the field at the center of  would be : (Assume that the magnetic field\nis confined with in the volume of respective solenoid).  \n(1) \n(2) \n(3) \n(4) \n Magnetic Effects Of Current\n#PaperPhodnaHai\n5\n10−4πT\nP\n(2−π)μ0I\n4πr\n(2+π)μ0I\n4πr\n(2+π)μ0I\n2πr\n(2−π)μ0I\n2πr\nA,B,C D\nA3 T C\n12 T\n6 T\n9 T\n1 T",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA loop of flexible wire of irregular shape carrying current is placed in an external magnetic field. Identify the\neffect of the field on the wire.\n(1) Loop assumes circular shape with its plane normal to the field.\n(2) Loop assumes circular shape with its plane parallel to the field.\n(3) W ire gets stretched to become straight.\n(4) Shape of the loop remains unchanged.",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe time taken for the magnetic ener gy to reach  of its maximum value, when a solenoid of resistance \ninductance  is connected to a battery , is :\n(1) \n(2) infinite\n(3) \n(4) \n Magnetic Effects Of Current\n#PaperPhodnaHai\nL\nℓn5L\nR\nℓn2L\nR\nℓn10L\nR",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,290 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The distance between points (3, 4) and (0, 0) is:",
+    "options": [
+      "5",
+      "7",
+      "4",
+      "3"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The slope of the line joining (1, 2) and (3, 8) is:",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "6"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Equation of a circle with centre (2, -3) and radius 5 is:",
+    "options": [
+      "(x-2)\u00b2+(y+3)\u00b2=5",
+      "(x-2)\u00b2+(y+3)\u00b2=25",
+      "(x+2)\u00b2+(y-3)\u00b2=25",
+      "x\u00b2+y\u00b2=25"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The eccentricity of a circle is:",
+    "options": [
+      "0",
+      "1",
+      "Between 0 and 1",
+      "> 1 Page 49 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The foci of the ellipse x\u00b2/25 + y\u00b2/9 = 1 are at:",
+    "options": [
+      "(\u00b14, 0)",
+      "(\u00b13, 0)",
+      "(\u00b15, 0)",
+      "(0, \u00b14)"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Find the equation of line passing through (2, 3) with slope -1. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The angle between lines y = x and y = \u221a3x is:",
+    "options": [
+      "15\u00b0",
+      "30\u00b0",
+      "45\u00b0",
+      "60\u00b0"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The vertex of the parabola y\u00b2 = 8x is at:",
+    "options": [
+      "(0, 0)",
+      "(2, 0)",
+      "(0, 2)",
+      "(4, 0)"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Two lines are parallel if their slopes are:",
+    "options": [
+      "Negative reciprocals",
+      "Equal",
+      "Both zero",
+      "Undefined"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL The perpendicular distance of point (3, 4) from the line 3x - 4y + 5 = 0 is: Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The locus of a point equidistant from two fixed points is the:",
+    "options": [
+      "Circle",
+      "Parabola",
+      "Perpendicular bisector",
+      "Ellipse"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The centre of the circle x\u00b2 + y\u00b2 - 6x + 4y - 12 = 0 is:",
+    "options": [
+      "(3, -2)",
+      "(-3, 2)",
+      "(6, -4)",
+      "(-6, 4) Page 59 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL The sum of the squares of the intercepts of the line 3x + 4y = 12 on the axes is: Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A line perpendicular to ax + by + c = 0 has slope:",
+    "options": [
+      "-a/b",
+      "b/a",
+      "a/b",
+      "-b/a"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The reflection of point (3, -5) in the x-axis is:",
+    "options": [
+      "(-3, 5)",
+      "(3, 5)",
+      "(-3, -5)",
+      "(5, 3)"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Coordinate Geometry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The midpoint of (4, 6) and (2, -2) is:",
+    "options": [
+      "(3, 2)",
+      "(3, 4)",
+      "(6, 4)",
+      "(2, 3) Page 65 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

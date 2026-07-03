@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Statistics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Statistics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Statistics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:21",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nConsider three observations a,  and  such that  If the standard deviation of   is \n then which of the following is true?\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nConsider the statistics of two sets of  \nobservations as follows:  \n \nIf the variance of the combined set of these two  \nobservations is , then the value of  is equal to ____",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nConsider a set of 3 n numbers having variance 4. In this set, the mean of first  numbers is 6 and the mean of\nthe remaining  numbers is 3. A new set is constructed by adding 1 into each of first  numbers, and\nsubtracting  each of the remaining n numbers. If the variance of the new set is  then  is equal to\n____.",
+      "answer_key": "68",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe mean age of 25 teachers in a school is 40 years. A teacher retires at the age of 60 years and a new teacher\nis appointed in his place. If the mean age of the teachers in this school now is 39 years, then the age (in years)\nof the newly appointed  \nteacher is ___.\n Statistics\n#PaperPhodnaHai\nd,\nb2=3(a2+c2)+9d2\nb2=a2+c2+3d2\nb2=3(a2+c2+d2)\nb2=3(a2+c2)−9d2\n Size  Mean  Variance \n Observation I  10 2 2\n Observation II   n  3 1\n17\n9n\n2n\nn 2n\n1from k, 9k",
+      "answer_key": "35",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet in a series of  observations, half of them are equal to a and remaining half are equal to -a. Also by\nadding a constant b in each of these observations, the mean and standard deviation of new set become 5 and\n20, respectively . Then the value of  is equal to:\n(1) 425\n(2) 650\n(3) 250\n(4) 925\n Statistics\n#PaperPhodnaHai\na2+b2",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

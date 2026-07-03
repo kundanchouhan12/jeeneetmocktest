@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Work_Power_Energy_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Work_Power_Energy_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Work, Energy, Power And Collision",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:48",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\n boy is rolling a  ball on the frictionless floor with the speed of . The ball gets deflected by an\nobstacle on the way . After deflection it moves with  of its initial kinetic  \nenergy. What is the speed of the ball now?\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA constant power delivering machine has towed a box, which was initially at rest, along a horizontal straight\nline. The distance moved by the box in time '  ' is proportional to :-\n(1) \n(2) \n(3) t\n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nAs shown in the figure, a particle of mass 10  is placed at a point . When the particle is slightly displaced\nto its right, it starts moving and reaches the point . The speed of the particle at  is  (Take \n \nThe value of 'x' to the nearest integer is ___\n Work Power Energy\n#PaperPhodnaHai\n5%\n19.0 ms−1\n4.47 ms−1\n14.41 ms−1\n1.00 ms−1\nt\nt2/3\nt3/2\nt1/2\nkg A\nB Bxm/s.\ng=10 m/s2)",
+      "answer_key": "10",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nA particle of mass  moves in a circular orbit under the central potential field, , where  is a\npositive constant. The correct radius - velocity graph of the particle's motion is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nA ball of mass , moving with a velocity of  collides with a spring of length  and force\nconstant . The length of the compressed spring is  The value of  to the nearest integer , is ___.\n Work Power Energy\n#PaperPhodnaHai\nrC\n4 kg 10 ms−1, 8 m\n100Nm−1x m. x,",
+      "answer_key": "6",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

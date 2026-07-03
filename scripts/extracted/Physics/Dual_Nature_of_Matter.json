@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Dual_Nature_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Dual_Nature_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Modern Physics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:34",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe stopping potential in the context of photoelectric ef fect depends on the following property of incident\nelectromagnetic radiation :\n(1) Phase\n(2) Intensity\n(3) Amplitude\n(4) Frequency",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe de-Broglie wavelength associated with an electron and a proton were calculated by accelerating them\nthrough same potential of . What should nearly be the ratio of their wavelengths?\n(1) 1860: 1\n(2) \n(3) 41.4: 1\n(4) 43: 1",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nAn electron of mass  and a photon have same  \nenergy . The ratio of wavelength of electron to that of photon is: (c being the velocity of light)\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\n Dual Nature of Matter\n#PaperPhodnaHai\n( mP=1.00727u,me=0.00055u)\n(1860)2:1\nm\nE\n( )1/21\nc2m\nE\n( )1/21\ncE\n2m\n( )1/2E\n2 m\nc(2mE)1/2\n \nTwo identical photocathodes receive the light  \nof frequencies  and  respectively . If the velocities of the photo-electrons coming out are  \n and  respectively , then\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA particle is travelling 4 times as fast as an electron. Assuming the ratio of de-Broglie wavelength of a particle\nto that of electron is  the mass of the particle is :-\n(1)  times the mass of e-\n(2) 8 times the mass of \n(3) 16 times the mass of \n(4)  times the mass of e-\n Dual Nature of Matter\n#PaperPhodnaHai\nv1 v2\nv2\n1−v2\n2= [f1−f2]2 h\n m\nv2\n1+v2\n2= [f1+f2]2 h\n m\nv1+v2=[(f1+f2)]−2 h\n m1\n2\nv1−v2=[(f1−f2)]1/22 h\n m\n2:1,\n1\n16\ne−\ne−\n1\n8",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

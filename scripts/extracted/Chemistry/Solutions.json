@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Solutions_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Solutions_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Solutions",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:51",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\n is  dissociated in water to  and  The boiling point of a 10.0 molal aqueous solution of \nis____ . (Round of f to the Nearest Integer). [Given : Molal elevation constant of water \n boiling point of pure water",
+      "answer_key": "106",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nAt  the vapour pressure of  is  and that of  is . One mole of  and 2 moles of  are\nmixed. Assuming that this solution is ideal, the vapour pressure of the mixture is ___ . (Round of to the\nNearest Integer).",
+      "answer_key": "19",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe oxygen dissolved in water exerts a partial pressure of  in the vapour above water . The molar\nsolubility of oxygen in water is ____  \n(Round of f to the Nearest Integer).  \n[Given : Henry's law constant\nDensity of water with dissolved oxygen  ]",
+      "answer_key": "25",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nA 1 molal  solution has a degree of  \ndissociation of  Its boiling point is equal to that of another solution which contains 18.1  \nweight percent of a non electrolytic solute . \nThe molar mass of  is ____ u. (Round of f to \nthe Nearest Integer).  \n[Density of water \n Solutions\n#PaperPhodnaHai\n∘C\nKb=0.5 K kg mol−1\n=100∘C]\n363 K, A21kPa B18kPa A B\nkPa\n20kPa\n×10−5 moldm−3\n=KH=8.0×104kPa for O2\n=1.0 kgdm−3\nK4Fe(CN)6\n0.4.\nA\nA\n=1.0 g cm−3]",
+      "answer_key": "85",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\n2 molal solution of a weak acid HA has a  \nfreezing point of . The degree of dissociation of this acid is___ . (Round of f to the Nearest\nInteger).  \n[Given : Molal depression constant of water =  \n Freezing point of pure water",
+      "answer_key": "50",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nA solute a dimerizes in water . The boiling point of a 2 molar solution of  is . The  \npercentage association of  is________  \n(Round of f to the Nearest integer)  \n[Use :  for water  \nBoiling point of water \n Solutions\n#PaperPhodnaHai\n1.85 K kg mol−1\n=0∘C]\nA100.52∘C\nA\nKb =0.52 K kg mol−1\n=100∘C]",
+      "answer_key": "100",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

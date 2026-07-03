@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The number of sigma bonds in ethane (CH) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Alkanes undergo which type of reaction most readily?",
+    "options": [
+      "Addition",
+      "Substitution",
+      "Elimination",
+      "Rearrangement"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The number of sigma bonds in ethane (CH) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Ozonolysis of 2-butene gives:",
+    "options": [
+      "2 molecules of acetaldehyde",
+      "Formaldehyde + propanal",
+      "Acetone + formaldehyde",
+      "2 ethanol molecules"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The number of sigma bonds in ethane (CH) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The reaction of primary amines with chloroform and KOH is the _____ reaction. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The number of sigma bonds in ethane (CH) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Diazotization of primary aromatic amine is done using:",
+    "options": [
+      "NaCl + HCl Page 41 JEE + NEET Master Practice Workbook",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

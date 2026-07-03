@@ -1,0 +1,182 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "C4 plants have an advantage over C3 plants because they:",
+    "options": [
+      "Option A",
+      "Minimize photorespiration",
+      "Grow in cold climates",
+      "Require less light Page 72 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Guard cells regulate _____ in plants. Ans: ___________________________________________ Page 80 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The hormone that promotes fruit ripening is:",
+    "options": [
+      "Auxin",
+      "Cytokinin",
+      "Ethylene",
+      "ABA"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Abscisic acid (ABA) promotes:",
+    "options": [
+      "Stem elongation",
+      "Seed germination",
+      "Stomata closure and seed dormancy",
+      "Root growth"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The movement of sugar from source to sink through phloem is called:",
+    "options": [
+      "Transpiration",
+      "Translocation",
+      "Osmosis",
+      "Active transport"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Nitrogen fixation is carried out by which organisms?",
+    "options": [
+      "All bacteria",
+      "Only Rhizobium",
+      "Cyanobacteria and Rhizobium",
+      "Fungi"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which pigment absorbs red and far-red light in plants?",
+    "options": [
+      "Chlorophyll",
+      "Carotenoid",
+      "Phytochrome",
+      "Anthocyanin"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Define photoperiodism and explain its significance in agriculture. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "What is vernalization? Which crops benefit from it? Ans: ___________________________________________ Page 81 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Plant Physiology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The source of oxygen released in photosynthesis is:",
+    "options": [
+      "Option A",
+      "Glucose",
+      "Option C",
+      "ATP Page 84 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

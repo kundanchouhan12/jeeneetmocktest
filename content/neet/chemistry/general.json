@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "General",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "\u2013 Q.243 | MCQ: 94 \u007f Short: 21 \u007f Numerical: 5",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "General",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The degree of hardness of water is due to:",
+    "options": [
+      "NaCl",
+      "Option B",
+      "Iron",
+      "Fluoride"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

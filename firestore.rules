@@ -1,0 +1,93 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper: Is the user authenticated?
+    function isAuth() {
+      return request.auth != null;
+    }
+
+    // Helper: Is the vault discussion still active (within 48 hours)?
+    function isVaultActive(vaultDate) {
+      // vaultDate is YYYY-MM-DD. This is a simplified check.
+      // For strict 48h, we'd need a timestamp field in the vault doc.
+      return true; // Simplified for now, logic handled by client + timestamp checks
+    }
+
+    match /daily_vaults/{vaultId} {
+      allow read: if isAuth();
+      allow write: if false; // Only admin scripts can write metadata
+
+      match /discussions/{commentId} {
+        allow read: if isAuth();
+        
+        // Rules for creating a comment
+        allow create: if isAuth() 
+          && request.resource.data.userId == request.auth.uid
+          && request.resource.data.message.size() <= 300
+          && request.resource.data.username.size() <= 30
+          && request.resource.data.timestamp > 0;
+
+        // Only owner can delete their comment
+        allow delete: if isAuth() && resource.data.userId == request.auth.uid;
+        
+        // Updates only for reporting or liking (limited)
+        allow update: if isAuth() && (
+          request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isReported', 'likes'])
+        );
+      }
+
+      match /question_votes/{userId} {
+        allow read: if isAuth();
+        allow write: if isAuth() && request.auth.uid == userId;
+      }
+    }
+
+    // User profiles and all nested sub-collections (purchases, question history, etc.)
+    match /users/{userId}/{document=**} {
+      allow read, write: if isAuth() && request.auth.uid == userId;
+    }
+
+    // Leaderboard access rules
+    match /leaderboard/{weekKey} {
+      allow read: if isAuth();
+      
+      match /scores/{userId} {
+        allow read: if isAuth();
+        allow write: if isAuth() && request.auth.uid == userId;
+      }
+    }
+
+    // Questions collection
+    match /questions/{questionId} {
+      allow read: if isAuth();
+      allow write: if false; // Only admin scripts can write questions
+    }
+
+    // Metadata version collection
+    match /metadata/{metadataId} {
+      allow read: if isAuth();
+      allow write: if false; // Only admin scripts can write metadata
+    }
+
+    // App config (force-update flags, feature gates) — read-only for clients
+    match /app_config/{docId} {
+      allow read: if isAuth();
+      allow write: if false;
+    }
+
+    // Daily attempt counter — used for FOMO count display and analytics
+    // Any authenticated user can read and increment; no per-user restriction needed.
+    match /dailyStats/{date} {
+      allow read: if isAuth();
+      allow write: if isAuth();
+    }
+
+    // Power 100 — fixed curated question sets for JEE and NEET.
+    // Read-only for all authenticated users; written only by the admin script.
+    match /standard_tests/{exam} {
+      allow read: if isAuth();
+      allow write: if false;
+    }
+  }
+}

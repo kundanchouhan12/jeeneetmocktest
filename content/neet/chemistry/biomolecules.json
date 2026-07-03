@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Amino acids are the monomers of:",
+    "options": [
+      "Carbohydrates",
+      "Lipids",
+      "Proteins",
+      "Nucleic acids"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The primary structure of a protein refers to:",
+    "options": [
+      "3D folding",
+      "Sequence of amino acids",
+      "Double helix",
+      "Quaternary structure"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "DNA and RNA both contain adenine, guanine, and cytosine. The base unique to DNA is:",
+    "options": [
+      "Uracil",
+      "Thymine",
+      "Guanine",
+      "Adenine"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Biomolecules",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Starch and cellulose are both made of glucose but differ in their _____ linkage. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

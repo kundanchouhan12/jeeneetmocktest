@@ -1,0 +1,146 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The magnitude of vector 3i + 4j is:",
+    "options": [
+      "5",
+      "7",
+      "1",
+      "25"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The dot product of i and j is:",
+    "options": [
+      "1",
+      "0",
+      "i",
+      "-1"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "If vectors a and b are perpendicular, then a\u00b7b equals:",
+    "options": [
+      "1",
+      "|a||b|",
+      "0",
+      "-1"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The cross product of a vector with itself is:",
+    "options": [
+      "1",
+      "The vector itself",
+      "Zero vector",
+      "Unit vector"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Find the unit vector in the direction of 2i - j + 2k. Ans: ___________________________________________ Page 52 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The projection of vector a on vector b is:",
+    "options": [
+      "a \u00d7 b",
+      "a \u00b7 b / |b|",
+      "|a||b| sin\u03b8",
+      "a \u00b7 b / |a|"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL If a = 2i + 3j - k and b = i - j + 2k, find a \u00b7 b. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Vectors",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The area of parallelogram formed by vectors a and b is:",
+    "options": [
+      "a \u00b7 b",
+      "|a \u00d7 b|",
+      "|a| + |b|",
+      "a \u00b7 b / 2"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

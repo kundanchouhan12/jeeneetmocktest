@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Motion_In_Two_Dimensions_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Motion_In_Two_Dimensions_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Units, Dimensions And Measurement",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:41",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nA mosquito is moving with a velocity  m/s and accelerating in uniform conditions.\nWhat will be the direction of mosquito after  ?\n(1)  from  axis\n(2)  from  -axis\n(3)  from \n(4)  from  axis",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nA person is swimming with a speed of  s at an angle of  with the flow and reaches to a point\ndirectly opposite on the other side of the river . The speed of the flow is 'x' . The value of 'x' to the nearest\ninteger is ___\n Motion In T wo Dimensions\n#PaperPhodnaHai\n2 s\ntan−1()2\n3x−\ntan−1( )√85\n6y\ntan−1()5\n2y−axis\ntan−1()5\n2x−\n10 m/ 120∘\nm/s",
+      "answer_key": "5",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

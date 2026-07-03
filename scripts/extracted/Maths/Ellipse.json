@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Ellipse_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Ellipse_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:18",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIf the point of intersections of the ellipse  and the circle  \nlie on the curve  then  is equal to:\n(1) 12\n(2) 5\n(3) 6\n(4) 10",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nLet  be a tangent line to the parabola  at  If  is also a tangent to the ellipse \n then the value of  is equal to :\n(1) 1 1\n(2) 14\n(3) 16\n(4) 20\n Ellipse\n#PaperPhodnaHai\n16y2\n b2 x2+y2=4 b, b>4\ny2=3x2, b\nL y2=4x−20(6,2).L\n+ =1,x2\n2y2\nbb",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

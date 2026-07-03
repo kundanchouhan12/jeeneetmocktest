@@ -1,0 +1,398 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A ball is thrown vertically upward with a velocity of 20 m/s. The maximum height reached is (g = 10 m/s\u00b2):",
+    "options": [
+      "10 m",
+      "20 m",
+      "40 m",
+      "5 m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A body of mass 2 kg is acted upon by two perpendicular forces of 3 N and 4 N. The acceleration of the body is:",
+    "options": [
+      "2.5 m/s\u00b2",
+      "3.5 m/s\u00b2",
+      "1.5 m/s\u00b2",
+      "5 m/s\u00b2"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A projectile is fired at 45\u00b0 with initial speed u. The range of the projectile is:",
+    "options": [
+      "u\u00b2/g",
+      "u\u00b2/2g",
+      "2u\u00b2/g",
+      "u/g"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The kinetic energy of a body of mass 4 kg moving with velocity 5 m/s is:",
+    "options": [
+      "20 J",
+      "40 J",
+      "50 J",
+      "100 J"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Newton's second law of motion states that force equals:",
+    "options": [
+      "mass \u00d7 velocity",
+      "mass \u00d7 acceleration",
+      "mass \u00d7 displacement",
+      "velocity \u00d7 time Page 4 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A car accelerates uniformly from rest to 72 km/h in 10 s. The acceleration is:",
+    "options": [
+      "2 m/s\u00b2",
+      "7.2 m/s\u00b2",
+      "0.2 m/s\u00b2",
+      "3.6 m/s\u00b2"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The SI unit of angular momentum is:",
+    "options": [
+      "kg\u00b7m/s",
+      "kg\u00b7m\u00b2/s",
+      "N\u00b7m",
+      "J\u00b7s\u00b2"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A stone tied to a string moves in a circle. Which force acts as centripetal force?",
+    "options": [
+      "Gravity",
+      "Normal force",
+      "Tension",
+      "Friction"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Work done by a force is zero when the angle between force and displacement is:",
+    "options": [
+      "0\u00b0",
+      "45\u00b0",
+      "90\u00b0",
+      "180\u00b0"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The momentum of a 10 kg body moving at 5 m/s is:",
+    "options": [
+      "2 kg\u00b7m/s",
+      "15 kg\u00b7m/s",
+      "50 kg\u00b7m/s",
+      "0.5 kg\u00b7m/s"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A body slides down a frictionless inclined plane of angle 30\u00b0. Its acceleration is (g = 10 m/s\u00b2):",
+    "options": [
+      "5 m/s\u00b2",
+      "10 m/s\u00b2",
+      "8.66 m/s\u00b2",
+      "2.5 m/s\u00b2 Page 5 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The escape velocity from the surface of the Earth is approximately:",
+    "options": [
+      "8 km/s",
+      "11.2 km/s",
+      "16 km/s",
+      "3 km/s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A spring of spring constant 200 N/m is compressed by 0.05 m. The potential energy stored is:",
+    "options": [
+      "0.25 J",
+      "0.5 J",
+      "5 J",
+      "10 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The time period of a simple pendulum of length 1 m on Earth (g = 10 m/s\u00b2) is approximately:",
+    "options": [
+      "1 s",
+      "2 s",
+      "3.14 s",
+      "0.5 s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Conservation of momentum applies when:",
+    "options": [
+      "Net external force is zero",
+      "Net torque is zero",
+      "Energy is conserved",
+      "Velocity is constant"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The velocity of an object in uniform circular motion is constant in _____ but changes in _____. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL A 5 kg object is placed on a frictionless surface. A horizontal force of 15 N acts on it. Find the distance travelled in 4 seconds starting from rest. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Distinguish between elastic and inelastic collisions with one example each. Ans: ___________________________________________ Page 6 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL A bullet of mass 0.02 kg is fired with velocity 200 m/s into a block of 0.98 kg at rest on a frictionless surface. Find the common velocity after the bullet embeds in the block. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A body is moving in a straight line. Draw the v-t graph for uniform deceleration and explain what the area under the graph represents. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL The coefficient of friction between a body and a surface is 0.4. The body weighs 50 N. Find the limiting friction. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Mechanics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

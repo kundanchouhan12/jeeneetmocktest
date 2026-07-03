@@ -1,0 +1,65 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Oscillations_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Oscillations_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Simple Harmonic Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:42",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nTime period of a simple pendulum is  inside a lift when the lift is stationary . If the lift moves upwards with\nan acceleration  the time period of pendulum will be :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nAmplitude of a mass-spring system, which is  decreases with\ntime. If  Decay constant  then how much time is required for the amplitude of the\nsystem to drop to half of its initial value ? \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nFor what value of displacement the kinetic ener gy and potential ener gy of a simple harmonic oscillation\nbecome equal?\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\n Oscillations\n#PaperPhodnaHai\ng/2,\n√3 T\nT\n√3\n√ T3\n2\n√ T2\n3\n executing  simple  harmonic  motion \nmass=500 g, =20 g/s\n(ln2=0.693)\n34.65 s\n17.32 s\n0.034 s\n15.01 s\nx=0\nx=±A\nx=±A\n√2\nx=A\n2\n \nConsider two identical springs each of spring constant  and negligible mass compared to the mass  as\nshown. Fig. 1 shows one of them and Fig. 2 shows their series combination. The ratios of time period of\noscillation of the two SHM is  where value of  is ______  \n(Round of f to the Nearest Integer)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nA block of mass  attached to a spring is made to oscillate with an initial amplitude of  \n. After 2 minutes the amplitude decreases  \nto . Determine the value of the damping  \nconstant for this motion. (take In  )\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nTwo particles  and  of equal masses are suspended from two massless springs of spring constants  and \n respectively .If the maximum velocities during oscillations are equal, the ratio of the amplitude of  and \nis\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\n Oscillations\n#PaperPhodnaHai\n=√x,Tb\nTax\n1 kg\n12 cm\n6 cm\n2=0.693\n0.69×102 kg s−1\n3.3×102 kg s−1\n1.16×10−2 kg s−1\n5.7×10−3 kg s−1\nA B K1\nK2 A B\nK2\n K1\nK1\n K2\n√K1\n K2\n√K2\n K1\n \nA particle performs simple harmonic motion with a period of 2 second. The time taken by the particle to cover\na displacement equal to half of its amplitude from the mean position is  The value of 'a' to the nearest\ninteger is ___",
+      "answer_key": "6",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe function of time representing a simple harmonic motion with a period of  is :\n(1) \n(2) \n(3) \n(4) \n Oscillations\n#PaperPhodnaHai\na\nπ\nω\nsin(ωt)+cos(ωt)\ncos(ωt)+cos(2ωt)+cos(3ωt)\nsin2(ωt)\n3cos(−2ωt)π\n4",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 8,
+    "answers": 8,
+    "solutions": 0,
+    "exported": 8,
+    "skipped": 0
+  }
+}

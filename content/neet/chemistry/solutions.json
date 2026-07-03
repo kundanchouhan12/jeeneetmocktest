@@ -1,0 +1,128 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Elevation in boiling point is a _____ property that depends on the number of solute particles. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Raoult's law states that the vapour pressure of a solution is proportional to the _____ of the solvent. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The vapour pressure of a solution is always _____ that of the pure solvent. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Henry's law relates solubility of a gas to:",
+    "options": [
+      "Temperature",
+      "Partial pressure of the gas",
+      "Volume of solvent",
+      "Density of solvent Page 34 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Osmotic pressure of a 0.1 M glucose solution at 27\u00b0C is (R = 0.0821 L\u00b7atm/mol\u00b7K): Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Molarity is defined as moles of solute per:",
+    "options": [
+      "100 g solvent",
+      "1 kg solvent",
+      "1 L solution",
+      "1 L solvent"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Solutions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Isotonic solutions have the same:",
+    "options": [
+      "pH",
+      "Temperature",
+      "Osmotic pressure",
+      "Density"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

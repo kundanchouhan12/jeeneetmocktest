@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Continuity_and_Differentiability_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Continuity_and_Differentiability_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Limit, Continuity & Differentiability",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:17",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nLet the functions  and  be \ndefined as :  \n and  \nThen, the number of points in  where  is NOT dif ferentiable is equal to :\n(1) 3\n(2) 1\n(3) 0\n(4) 2",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet  be such that the function  \nis continuous at , where  \nis the greatest integer less than or equal to . \nThen :\n(1) \n(2) \n(3) no such  exists\n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nLet  and  be defined as  \n and \n \n Continuity and Differentiability\n#PaperPhodnaHai\nf(x)={x+2,x<0\nx2, x≥0g(x)={x3, x<1\n3x−2,x≥1\nR (f∘g)(x)\nα∈R\nf(x)=⎧\n⎨⎩,x≠0\nα, x=0cos−1(1−{x}2)sin−1(1−{x})\n{x}−{x}3\nx=0 {x}=x−[x],[x]\nx\nα=π\n√2\nα=0\nα\nα=π\n4\nf:R→R g:R→R\nf(x)={x+a,x<0\n|x−1|,x≥0\ng(x)={x+1,x<0\n(x−1)2+b,x≥0\n \nwhere a, b are non-negative real numbers. If  \n(gof)  is continuous for all  then  \nis equal to ____",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nIf the function  is continuous at each point in its domain and  then  is ____",
+      "answer_key": "6",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nIf  is dif ferentiable at every point of the domain, then the values of a and  are\nrespectively:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet  be a function defined as  \nIf  is continuous at  then the value of  is equal to:\n(1) \n(2) -2\n(3) -3\n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\n Continuity and Differentiability\n#PaperPhodnaHai\nf(x)=cos(sinx)−cosx\nx4 f(0)=,1\nkk\nf(x)={;|x|≥1\nax2+b;|x|<11\n|x|b\n,1\n21\n2\n,−1\n23\n2\n,−5\n23\n2\n−,1\n23\n2\nf:R→R\nf(x)=⎧⎪ ⎪ ⎪ ⎪\n⎨\n⎪ ⎪ ⎪ ⎪⎩, if x<0\nb , if x=0\n, if x>0sin(a+1)x+sin2x\n2x\n√x+bx3−√x\nbx5/2\nf x=0, a+b\n−5\n2\n−3\n2\n \nLet  satisfy the equation  for all  and  for any . If\nIhe function  is dif ferentiable at  and  then  is equal to ___\n Continuity and Differentiability\n#PaperPhodnaHai\nf x=0 f′(0)=3, limh→0(f(h)−1)1\nh",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

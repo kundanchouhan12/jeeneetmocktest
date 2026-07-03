@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Newtons_Laws_of_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Newtons_Laws_of_Motion_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Newton's Laws Of Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:35",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nThe coef ficient of static friction between a wooden block of mass  and a vertical rough wall is 0.2 . The\nmagnitude of horizontal force that should be applied on the block to keep it adhere to the wall will be N",
+      "answer_key": "25",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nAn inclined plane is bent in such a way that the vertical cross-section is given by  where  is in vertical\nand  in horizontal direction. If the upper surface of this curved plane is rough with coef ficient of friction \n the maximum height in  at which a stationary block will not slip downward is ____ .",
+      "answer_key": "25",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nAs shown in the figure, a block of mass  is kept on a horizontal rough surface of coef ficient of friction \n. The critical force to be applied on the vertical surface as shown at an angle  with horizontal such that\nit does not move, will be . The value of  will be  (round of f to\nnearest integer)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nAn inclined plane making an angle of  with horizontal is placed in a uniform horizontal electric field \nas shown in the figure. A body of mass  and char ge  is allowed to slide down from rest at a height of \n. If the coef ficient of frication is  find the time taken by the body to reach the bottom.  \n Newtons Laws of Motion\n#PaperPhodnaHai\n[g=10 ms−2]\ny=x2\n4y\nx\nμ=0.5, cm cm\n√3 kg\n1\n3√360∘\n3x x [g=10 m/s2;sin60∘= ;cos60∘= ]√3\n21\n2\n30∘200N\nC\n1 kg 5mC\n1 m 0.2,\n \n \n(1) \n(2) \n(3) \n(4) \n Newtons Laws of Motion\n#PaperPhodnaHai\n2√3\n2\n2.3 s\n0.46 s\n1.3 s\n0.92 s",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

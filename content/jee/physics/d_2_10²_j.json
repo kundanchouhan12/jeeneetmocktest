@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "(D) 2 \u00d7 10\u00b2 J",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Write the Q-value equation for a nuclear reaction and state what it signifies. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

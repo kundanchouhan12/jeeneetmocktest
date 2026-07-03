@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Alcohols_Phenols_and_Ethers_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Alcohols_Phenols_and_Ethers_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Organic Chemistry Basics",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:48",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nAssertion A: Enol form of acetone  \n exists in  quantity . However , the enol form of acetyl acetone  \n exists in approximately  quantity . \nReason  enol form of acetyl acetone is  \nstabilized by intramolecular hydrogen bonding,  \nwhich is not possible in enol form of acetone.  \nChoose the correct statement:\n(1)  is false but  is true\n(2) Both  and  are true and  is the correct explanation of \n(3) Both  and  are true but  is not the correct explanation of \n(4)  is true but  is false",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nConsider the above reaction, the product 'X' and  \n'Y' respectively are :\n(1) \n(2) \n Aldehydes And Ketones\n#PaperPhodnaHai\n[CH3COCH2OCCH3] 15%\nR:\nA R\nA R R A\nA R R A\nA R\n \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nIn Tollen's test for aldehyde, the overall number of electron(s) transferred to the T ollen's reagent formula \n per aldehyde group to form silver mirror is________ .(Round  \noff to the Nearest integer)\n Aldehydes And Ketones\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

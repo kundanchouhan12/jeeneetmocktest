@@ -1,0 +1,71 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Application_of_Derivatives_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Application_of_Derivatives_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Limit, Continuity & Differentiability",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:15",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe range of  for which the function  \n has critical points, is\n(1) (-3,1)\n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nIf the normal to the curve  at a point  is parallel to the line \n then the value of  is equal to_______",
+      "answer_key": "406",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet  be the locus of the mirror image of a point on the parabola  with respect to the line . Then\nthe equation of tangent to  at  is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet  be a real valued function, defined on  \n and given by  \n \nThen in which of the following intervals, function  is increasing?\n Application of Derivatives\n#PaperPhodnaHai\nf(x)=(4a−3)(x+loge5)+2(a−7)cot()sin2()x\n2x\n2\nx+2nπ,n∈N,\n[−,2]4\n3\n[1,∞)\n(−∞,−1]\ny(x)=∫x\n0(2t2−15t+10)dt (a,b)\nx+3y=−5,a>1, ∣a+6bl\nC y2=4x y=x\nCP(2,1)\nx−y=1\n2x+y=5\nx+3y=5\nx+2y=4\nf\nR−{−1,1}\nf(x)=3loge∣∣∣∣−x−1\nx+12\nx−1\nf(x)\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nWhich of the following statements is correct for the function  for  such that  \n(1)  is a strictly increasing function\n(2)  has an inflection point at \n(3)  is a strictly decreasing function\n(4)  is an even function",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nConsider the function  defined by  Then f is\n(1) monotonic on \n(2) not monotonic on  and \n(3) monotonic on  only\n(4) monotonic on  only",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nLet  be defined as  \nfor all  where  such that  and for  the maximum\nvalue of  is  If  \n then the least value of  is equal to ____.\n Application of Derivatives\n#PaperPhodnaHai\n2\n(−∞,∞)−{−1,1}\n(−1,]1\n2\n(−∞,]−{−1}1\n2\ng(α)α∈R\ng(α)=∫ dxπ\n3\nπ\n6sinαx\ncosax+sinαx\ng(α)\ng(α) α=−1\n2\ng(α)\ng(α)\nf:R→R f(x)={(2−sin())|x|,x≠0\n0,x=0.1\nx\n(−∞,0)∪(0,∞)\n(−∞,0) (0,∞)\n(0,∞)\n(−∞,0)\nf:[−1,1]→R f(x)=ax2+bx+c\nx∈[−1,1], a,b,c∈R f(−1)=2,f′(−1)=1 x∈(−1,1)\nf′′(x) .1\n2f(x)≤α\nx∈[−1,1], α",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet a tangent be drawn to the ellipse  at  where  Then the value of \nsuch that the sum of intercepts on axes made by this tangent is minimum is equal to:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nLet  be a real polynomial of degree 3 which vanishes at . Let  have local minima  \nat  local maxima at  and , then the sum of all the coef ficients of the\npolynomial  is equal to ___\n Application of Derivatives\n#PaperPhodnaHai\n27(3√3cosθ,sinθ)θ∈(0,).π\n2θ\nπ\n8\nπ\n4\nπ\n6\nπ\n3\nP(x) x=−3 P(x)\nx=1, x=−1 ∫1\n−1P(x)dx=18\nP(x)",
+      "answer_key": "8",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 9,
+    "answers": 9,
+    "solutions": 0,
+    "exported": 9,
+    "skipped": 0
+  }
+}

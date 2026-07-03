@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Permutations & Combinations",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL How many 4-digit numbers can be formed using digits 1 to 9 without repetition? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Permutations & Combinations",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL In how many ways can 4 boys and 3 girls be arranged in a row so that no two girls are adjacent? Ans: ___________________________________________ Page 56 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Permutations & Combinations",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The number of handshakes in a group of 10 people (each shakes hands with everyone else once) is:",
+    "options": [
+      "45",
+      "90",
+      "100",
+      "50"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

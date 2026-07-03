@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Hydrocarbons_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Hydrocarbons_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Hydrocarbons",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:50",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nWhich of the following is Lindlar catalyst?\n(1) Zinc chloride and \n(2) Cold dilute solution of \n(3) Sodium and Liquid \n(4) Partially deactivated palladised charcoal",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIdentify the reagent(s) 'A' and condition(s) for the reaction:\n(1)  Anhydrous \n(2) \n(3) ; UV light\n(4) ; dark, Anhydrous",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nAn unsaturated hydrocarbon  on ozonolysis gives A. Compound A when warmed with ammonical silver\nnitrate forms a bright silver mirror along the sides of the test tube. The unsaturated hydrocarbon  is:\n(1) \n(2) \n(3) \n(4) \n Hydrocarbons\n#PaperPhodnaHai\nKMnO4\nNH3\nA=HCl; AlCl3\nA=HCl,ZnCl2\nA=Cl2\nA=Cl2 AlCl3\nX\nX\nHC≡C−CH2−CH3\nCH3−C≡C−CH3",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nGiven below are two statements:  \nStatement-I : 2 -methylbutane on oxidation with  gives 2 -methylbutan-   \nStatement-II : n-alkanes can be easily oxidised to corresponding alcohol with . Choose the correct\noption :\n(1) Both statement I and statement  are correct\n(2) Both statement I and statement II are incorrect\n(3) Statement I is correct but Statement II is incorrect\n(4) Statement I is incorrect but Statement II is correct\n Hydrocarbons\n#PaperPhodnaHai\nKMnO4\nΠ",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nThe total number of  sigma bond/s in  \nmesityl oxide  is ____ (Round of f to \nthe Nearest Integer).\n Hydrocarbons\n#PaperPhodnaHai\n(C6H10O)",
+      "answer_key": "5",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

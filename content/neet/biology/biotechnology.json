@@ -1,0 +1,290 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Restriction enzymes cut DNA at specific sequences called:",
+    "options": [
+      "Reading frames",
+      "Palindromic sequences",
+      "Promoters",
+      "Exons"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "PCR (Polymerase Chain Reaction) is used to:",
+    "options": [
+      "Sequence proteins",
+      "Amplify specific DNA sequences",
+      "Translate mRNA",
+      "Cleave DNA"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The first transgenic crop approved for use was:",
+    "options": [
+      "Bt cotton",
+      "Golden rice",
+      "Flavr Savr tomato",
+      "Roundup Ready soy"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Explain the role of plasmids as vectors in recombinant DNA technology. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "ELISA (Enzyme-Linked Immunosorbent Assay) is based on:",
+    "options": [
+      "Gel electrophoresis",
+      "Antigen-antibody interaction",
+      "PCR amplification",
+      "DNA sequencing Page 75 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Gene cloning requires all of the following EXCEPT:",
+    "options": [
+      "Restriction enzyme",
+      "Vector",
+      "Ligase",
+      "Ribozyme"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Ti plasmid is used as a vector to introduce genes into:",
+    "options": [
+      "Bacteria",
+      "Yeast",
+      "Plants",
+      "Animals"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The first hormone produced by recombinant DNA technology for commercial use was:",
+    "options": [
+      "Thyroxine",
+      "Insulin",
+      "Cortisol",
+      "Glucagon"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Gel electrophoresis separates DNA fragments based on:",
+    "options": [
+      "Charge only",
+      "Size and charge",
+      "Sequence",
+      "Base composition"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "CRISPR-Cas9 is used for:",
+    "options": [
+      "PCR amplification",
+      "Gene editing",
+      "Protein synthesis",
+      "Electrophoresis"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Stem cells are unique because they can:",
+    "options": [
+      "Only divide",
+      "Differentiate into various cell types",
+      "Produce antibodies",
+      "Store genetic information only Page 78 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Transgenic animals are those that have a _____ gene introduced into their genome. Ans: ___________________________________________ Page 85 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "DNA fingerprinting uses:",
+    "options": [
+      "PCR only",
+      "Satellite DNA (VNTRs)",
+      "Gel electrophoresis only",
+      "Restriction enzymes only"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Human Genome Project revealed that the human genome has approximately _____ protein-coding genes. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "RNAi (RNA interference) is a natural defense mechanism against:",
+    "options": [
+      "Bacteria",
+      "Foreign dsRNA/viruses",
+      "Fungi",
+      "UV radiation"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Biotechnology",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Totipotency is the capacity of a cell to develop into:",
+    "options": [
+      "Any organ",
+      "A complete organism",
+      "A specific tissue only",
+      "A gamete"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

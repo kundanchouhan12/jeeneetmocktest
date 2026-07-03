@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "d-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The highest oxidation state of Mn is:",
+    "options": [
+      "+4",
+      "+5",
+      "+7",
+      "+6"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "d-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which transition metal is used as a catalyst in the Haber process?",
+    "options": [
+      "Cu",
+      "Fe",
+      "Ni",
+      "Pt Page 33 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "d-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Why do transition metals form coloured compounds? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

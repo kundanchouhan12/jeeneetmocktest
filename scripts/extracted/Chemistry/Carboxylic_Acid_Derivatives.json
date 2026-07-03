@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Carboxylic_Acid_Derivatives_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Carboxylic_Acid_Derivatives_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Aldehydes, Ketones And Carboxylic Acids",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:49",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe product \"P\" in the above reaction is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIn the above reaction, the reagent \"A\" is:\n(1) \n(2) \n(3) Alkaline \n(4) \n Carboxylic Acid Derivatives\n#PaperPhodnaHai\nLiAlH4\nKMnO4,H+\nHCl,Zn−Hg",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

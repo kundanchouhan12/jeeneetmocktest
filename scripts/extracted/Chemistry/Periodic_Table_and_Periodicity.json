@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Periodic_Table_and_Periodicity_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Periodic_Table_and_Periodicity_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Classification Of Elements",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:09",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nConsider the elements  and  the correct increasing order of their first ionization enthalpy is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nThe correct order of bond dissociation enthalpy of halogen is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nMatch List-I with List-II  \n(1) \n(2) \n(3) \n(4) \n Periodic T able and Periodicity\n#PaperPhodnaHai\nAl<Mg<Si<S<P\nAl<Mg<S<Si<P\nMg<Al<Si<S<P\nMg<Al<Si<P<S\nF2>Cl2>Br2>I2\nCl2>F2>Br2>I2\nCl2>Br2>F2>I2\nI2>Br2>Cl2>F2\n(a)−(ii),(b)−(iii),(c)−(iv),(d)−(i)\n(a)−(iv),(b)−(i),(c)−(ii),(d)−(iii)\n(a)−(i),(b)−(iv),(c)−(iii),(d)−(ii)\n(a)−(i),(b)−(iii),(c)−(iv),(d)−(ii)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nGiven below are two statements: one is labelled as Assertion  and the other is labelled as Reason R.  \nAssertion A: In  isomorphous to  the metal is present in +1 oxidation state.  \nReason R: TI metals has fourteen  electrons in its electronic configuration.  \nIn the light of the above statements, choose the most appropriate answer from the options given below:\n(1) Both  and  are correct and  is the correct explanation of \n(2) A is not correct but  is correct\n(3) Both  and  are correct  is NOT the correct explanation of \n(4)  is correct but  is not correct",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nThe correct order of electron gain enthalpy is:\n(1) \n(2) \n(3) \n(4) \n Periodic T able and Periodicity\n#PaperPhodnaHai\nTII3, CsI3,\nf\nA R R A\nR\nA R R A\nA R\nS>Se>Te>O\nO>S>Se>Te\nS>O>Se>Te\nTe>Se>S>O",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

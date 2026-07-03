@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Coordination_Compounds_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Coordination_Compounds_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Coordination Compounds",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:49",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nThe equivalents of ethylene diamine required to replace the neutral ligands from the coordination sphere of the\ntrans-complex of  is____.  \n(Round of f to the Nearest Integer).",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\n absorbs light of wavelength 498 nm during a  transition. The octahedral splitting ener gy\nfor the above complex is ___ . (Round of f to the Nearest Integer).",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nMatch List-I with List-II :  \nChoose the correct answer from the options given below :\n(1) \n(2) (a)-(iv), (b)-(ii), (c)-(iii), (d)-(i)\n(3) (a)-(ii), (b)-(i), (c)-(iii), (d)-(iv)\n(4) (a)-(i), (b)-(ii), (c)-(iii), (d)-(iv)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe correct structures of trans-[NiBr  and meridonial-[Co(NH , respectively , are\n Coordination Compounds\n#PaperPhodnaHai\n[Ti(H2O)6]3+d−d\n×10−19 J\nh=6.626×10−34Js;c=3×108 ms−1\n(a)−(iii),(b)−(i),(c)−(ii),(d)−(iv)\n2(PPh3)2] 3)3(NO2)3]\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe total number of unpaired electrons present in the complex  is____.\n Coordination Compounds\n#PaperPhodnaHai",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

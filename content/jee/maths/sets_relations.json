@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sets & Relations",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The number of elements in the power set of {1, 2, 3, 4} is:",
+    "options": [
+      "8",
+      "12",
+      "16",
+      "24"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sets & Relations",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "If A = {1,2,3} and B = {3,4,5}, then A \u2229 B is:",
+    "options": [
+      "{1,2,3,4,5}",
+      "{3}",
+      "{}",
+      "{1,2}"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sets & Relations",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A relation R on set A is called equivalence relation if it is:",
+    "options": [
+      "Reflexive only",
+      "Symmetric only",
+      "Reflexive, symmetric, and transitive",
+      "Transitive only"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sets & Relations",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "For sets A and B, n(A \u222a B) = n(A) + n(B) - _____. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

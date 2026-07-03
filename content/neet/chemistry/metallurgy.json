@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Metallurgy",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Ore used to extract aluminium is:",
+    "options": [
+      "Haematite",
+      "Bauxite",
+      "Cassiterite",
+      "Galena"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Metallurgy",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Zone refining is used to obtain:",
+    "options": [
+      "Pure iron",
+      "Ultra-pure semiconductors",
+      "Crude oil fractions",
+      "Aluminium Page 38 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Metallurgy",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Froth flotation process separates ore from gangue based on:",
+    "options": [
+      "Density difference",
+      "Magnetic properties",
+      "Preferential wettability",
+      "Chemical reactivity"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Metallurgy",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The process of converting pig iron to wrought iron is called:",
+    "options": [
+      "Smelting",
+      "Calcination",
+      "Puddling",
+      "Roasting"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

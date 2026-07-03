@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Identify the type of isomerism: CHCHOH and CHOCH:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Chlorobenzene",
+      "Toluene",
+      "Benzaldehyde",
+      "Benzene"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

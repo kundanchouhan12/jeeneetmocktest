@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs grep -l \"Markwon\\\\|Math\\\\|latex\")",
+      "Bash(grep -r \"contains.*\\\\$\\\\|normalize\\\\|\\\\\\\\\\\\\\\\\\(\" \"E:\\\\MockTestApp\\\\app\\\\src\\\\main\\\\java\" --include=\"*.kt\")",
+      "Bash(xargs grep -l \"MathRenderer\")",
+      "PowerShell(\\(Get-Content 'E:\\\\MockTestApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\jeeneet\\\\mocktest\\\\utils\\\\MathRenderer.kt' | Select-String -Pattern 'renderAsync|normalize|replace' -LineNumber\\))",
+      "PowerShell(\\(Get-Content 'E:\\\\MockTestApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\jeeneet\\\\mocktest\\\\ui\\\\test\\\\TestActivity.kt' | Select-String -Pattern 'renderAsync|MathRenderer|tvQuestionText|tvOption' -LineNumber\\) | Select-Object -First 20)",
+      "PowerShell(\\(Get-Content 'E:\\\\MockTestApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\jeeneet\\\\mocktest\\\\ui\\\\result\\\\SolutionActivity.kt' | Select-String -Pattern 'render|MathRenderer' -LineNumber\\))",
+      "PowerShell(\\(Get-Content 'E:\\\\MockTestApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\jeeneet\\\\mocktest\\\\utils\\\\MathRenderer.kt' | Select-String -Pattern 'renderAsync|normalize|replace' -Context 0,0\\))",
+      "PowerShell(\\(Get-Content 'E:\\\\MockTestApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\jeeneet\\\\mocktest\\\\ui\\\\test\\\\TestActivity.kt' | Select-String -Pattern 'MathRenderer\\\\.renderAsync|tvQuestionText|tvOption'\\) | Select-Object -First 20)",
+      "PowerShell(\\(Get-Content 'E:\\\\MockTestApp\\\\app\\\\src\\\\main\\\\java\\\\com\\\\jeeneet\\\\mocktest\\\\ui\\\\result\\\\SolutionActivity.kt' | Select-String -Pattern 'MathRenderer\\\\.render'\\))",
+      "Bash(xargs grep -l \"vault\" -i)"
+    ]
+  }
+}

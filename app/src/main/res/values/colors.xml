@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ─── Light Mode Colors (Clean White / Indigo) ─── -->
+
+    <!-- Backgrounds -->
+    <color name="bg_primary">#FFE8EEF4</color>      <!-- slate-200ish — main screen bg, makes white cards pop  -->
+    <color name="bg_secondary">#FFFFFFFF</color>    <!-- white         — card surface                          -->
+    <color name="bg_tertiary">#FFF1F5F9</color>     <!-- slate-100     — input / chip bg                       -->
+    <color name="bg_surface">#FFF8FAFC</color>
+
+    <!-- Text -->
+    <color name="text_primary">#FF0F172A</color>    <!-- slate-900 — headings           -->
+    <color name="text_secondary">#FF1E293B</color>  <!-- slate-800 — body text          -->
+    <color name="text_tertiary">#FF475569</color>   <!-- slate-600 — sub-labels         -->
+    <color name="text_muted">#FF94A3B8</color>      <!-- slate-400 — hints / captions   -->
+
+    <!-- Primary brand — Indigo -->
+    <color name="color_primary">#FF6366F1</color>
+    <color name="color_primary_dark">#FF4F46E5</color>
+
+    <!-- Gold (premium / coins) -->
+    <color name="gold_primary">#FFF59E0B</color>
+    <color name="gold_light">#FFFBBF24</color>
+    <color name="gold_dark">#FFD97706</color>
+
+    <!-- Header gradient — Indigo -->
+    <color name="gradient_start">#FF4338CA</color>  <!-- indigo-700 — status bar        -->
+    <color name="gradient_center">#FF4F46E5</color> <!-- indigo-600                     -->
+    <color name="gradient_end">#FF6366F1</color>    <!-- indigo-500                     -->
+
+    <!-- Divider / borders -->
+    <color name="divider">#FFE2E8F0</color>         <!-- slate-200                      -->
+
+    <!-- Subject accent colors -->
+    <color name="subject_physics">#FF3B82F6</color>
+    <color name="subject_chemistry">#FF10B981</color>
+    <color name="subject_maths">#FFF59E0B</color>
+    <color name="subject_biology">#FF22C55E</color>
+
+    <!-- Home screen card gradients -->
+    <color name="card_mock_test_start">#FF8E24AA</color>
+    <color name="card_mock_test_end">#FFBA68C8</color>
+    <color name="card_physics_start">#FFE91E63</color>
+    <color name="card_physics_end">#FFF06292</color>
+    <color name="card_chemistry_start">#FF00897B</color>
+    <color name="card_chemistry_end">#FF4DB6AC</color>
+    <color name="card_maths_start">#FF1565C0</color>
+    <color name="card_maths_end">#FF42A5F5</color>
+    <color name="card_full_test_start">#FF004D40</color>
+    <color name="card_full_test_end">#FF00897B</color>
+    <color name="card_pyqs_start">#FFE65100</color>
+    <color name="card_pyqs_end">#FFFF8F00</color>
+
+    <!-- Status colors -->
+    <color name="correct_green">#FF22C55E</color>
+    <color name="wrong_red">#FFEF4444</color>
+    <color name="review_orange">#FFFB923C</color>
+    <color name="marked_purple">#FFA855F7</color>
+    <color name="skipped_gray">#FF64748B</color>
+
+    <!-- Buttons -->
+    <color name="btn_gradient_start">#FF6366F1</color>
+    <color name="btn_gradient_end">#FF4F46E5</color>
+    <color name="btn_outlined_border">#666366F1</color>
+
+    <!-- App icon -->
+    <color name="ic_launcher_background">#FFFFFFFF</color>
+
+    <!-- Misc -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Legacy -->
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+</resources>

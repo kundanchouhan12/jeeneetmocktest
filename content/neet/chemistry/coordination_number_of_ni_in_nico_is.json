@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Coordination number of Ni in [Ni(CO)] is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The EAN rule (18-electron rule) is most applicable to:",
+    "options": [
+      "Ionic compounds",
+      "Organometallic complexes",
+      "Coordination compounds with halide ligands",
+      "Simple salts"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Coordination number of Ni in [Ni(CO)] is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "1.73",
+      "3.87",
+      "4.90",
+      "5.92"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

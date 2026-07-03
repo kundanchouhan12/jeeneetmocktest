@@ -1,0 +1,164 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "If A and B are two events with P(A) = 0.4, P(B) = 0.3, P(A\u2229B) = 0.1, then P(A\u222aB) is:",
+    "options": [
+      "0.6",
+      "0.7",
+      "0.5",
+      "0.8"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Two fair dice are thrown. The probability of getting a sum of 7 is:",
+    "options": [
+      "1/6",
+      "1/7",
+      "5/36",
+      "7/36"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Bayes' theorem is used to find:",
+    "options": [
+      "Joint probability",
+      "Conditional probability",
+      "Marginal probability",
+      "Total probability"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL A bag has 3 red and 4 blue balls. Two are drawn without replacement. Find the probability both are red. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL If P(A) = 0.3, P(B) = 0.4, and A and B are independent, find P(A\u2229B). Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In binomial distribution B(n, p), the mean is:",
+    "options": [
+      "np",
+      "npq",
+      "\u221a(npq)",
+      "p/n"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Poisson distribution is a limiting form of binomial distribution when n is _____ and p is _____. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL A coin is tossed 3 times. Find the probability of getting exactly 2 heads. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Probability",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL If P(A) = 0.5 and P(B|A) = 0.4, find P(A \u2229 B). Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

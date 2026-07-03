@@ -1,0 +1,65 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Atomic_Physics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Atomic_Physics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Modern Physics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:31",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nThe first three spectral lines of  -atom in the Balmer series are given  considering the Bohr atomic\nmodel, the wave lengths of first and third spectral lines  are related by afactor of approximately 'x' \n.The value of  to the nearest integer , is ____",
+      "answer_key": "15",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nIf an electron is moving in the  orbit of the hydrogen atom, then its velocity  for the  \norbit is given as:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nWhich level of the single ionized carbon has  \nthe same ener gy as the ground state ener gy of hydrogen atom?\n(1) 1\n(2) 6\n(3) 4\n(4) 8",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe atomic hydrogen emits a line spectrum consisting of various series. Which series of hydrogen atomic\nspectra is lying in the visible region?\n(1) Brackett series\n(2) Paschen series\n(3) L yman series\n Atomic Physics\n#PaperPhodnaHai\n()λ1\nλ3\n×10−1x,\nnth (vn) nth \nvn∝n\nvn∝1\nn\nvn∝n2\nvn∝1\nn2\n \n(4) Balmer series",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nA particle of mass  moves in a circular orbit in a central potential field  If Bohr's quantization\nconditions are applied, radii of  \npossible orbitals  vary with , where  is ______",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nAn oil drop of radius  with a density  \n is held stationary under a constant electric field  in the Millikan's oil drop experiment.\nWhat is the number of excess electrons that the oil drop will possess?  \n(consider \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nImagine that the electron in a hydrogen atom is replaced by a muon (  ). The mass of muon particle is 207\ntimes that of an electron and char ge is equal to the char ge of an electron. The ionization potential of this\nhydrogen atom will be :-\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\n Atomic Physics\n#PaperPhodnaHai\nrn n1/αα\n2 mm 3 g\ncm−33.55×105 V m−1\ng=9.81 m/s2)\n48.8×1011\n1.73×1010\n17.3×1010\n1.73×1012\nμ\n13.6eV\n2815.2eV\n331.2eV\n27.2eV\n \nA proton and an  -particle, having kinetic ener gies  and  respectively , enter into a magnetic field at\nright angles. The ratio of the radii of trajectory of proton to that of  -particle is  The ratio of  is :\n(1) 1: 8\n(2) 8: 1\n(3) 1: 4\n(4) 4: 1\n Atomic Physics\n#PaperPhodnaHai\nα 2:1. Kp:Kα",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 8,
+    "answers": 8,
+    "solutions": 0,
+    "exported": 8,
+    "skipped": 0
+  }
+}

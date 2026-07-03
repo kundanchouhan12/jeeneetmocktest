@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Chemical_Kinetics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Chemical_Kinetics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Chemical Kinetics",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:49",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nThe decomposition of formic acid on gold surface follows first order kinetics. If the rate constant at  is \n and the activation ener gy , the rate  \nconstant at  is _____  (Round of to the Nearest Integer).  \n Given",
+      "answer_key": "10",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nA and B decompose via first order kinetics with half-lives  and 18.0 min respectively . Starting from\nan equimolar non reactive mixture of  and , the time taken for the concentration of A to become 16 times\nthat of  is ___ min. (Round of f to the Nearest Integer).",
+      "answer_key": "108",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nFor a certain first order reaction  of the reactant is left after . The rate constant of this reaction is\n____  (Round of f to the Nearest Integer).  \n Given",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nThe reaction  is an elementary  \nreaction.  \nFor a certain quantity of reactants, if the volume  \nof the reaction vessel is reduced by a factor of  the rate of the reaction increases by a factor of ____. (Round\noff to the Nearest Integer).",
+      "answer_key": "27",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\n \nThis reaction was studied at  and the  \nfollowing data was obtained  \n Chemical Kinetics\n#PaperPhodnaHai\n1.0×10−3 s−1Ea=11.488 kJ mol−1\n200 K ×10−5 s−1.\n( :R=8.314 J mol−1 K−1)\n54.0 min\nA B\nB\n32% 570 s\n×10−3 s−1.\n[ :log102=0.301,ln10=2.303]\n2 A+B2→2AB\n3,\n2NO(g)+Cl2( g)⇌2NOCl(s)\n−10∘C\n \n \n and  are the initial concentrations and  is the initial reaction rate.The overall order of the\nreaction is____.  \n(Round of f to the Nearest Integer).",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nA reaction has a half life of . The time  \nrequired for  completion of the reaction is_____  min. (Round of f to the Nearest integer)  \n Use \n Chemical Kinetics\n#PaperPhodnaHai\n1 0.10 0.10 0.18\n2 0.10 0.20 0.35\n3 0.20 0.20 1.40\n[NO]0 [Cl2]0r0\n1 min\n99.9%\n[ :ln2=0.69,ln10=2.3]",
+      "answer_key": "10",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

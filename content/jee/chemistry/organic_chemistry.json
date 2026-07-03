@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "1-propanol",
+      "2-propanol",
+      "propan-2-ol",
+      "Both B and C"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The IUPAC name of acetone is:",
+    "options": [
+      "Propanal",
+      "Propanone",
+      "Propanoic acid",
+      "Propanol"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which test distinguishes between primary, secondary, and tertiary amines?",
+    "options": [
+      "Lucas test",
+      "Hinsberg test",
+      "Tollens test",
+      "Baeyer test"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Saponification",
+      "Esterification",
+      "Hydrolysis",
+      "Condensation"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "6",
+      "7",
+      "8",
+      "5"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

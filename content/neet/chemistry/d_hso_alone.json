@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "(D) HSO alone",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Coupling reaction of diazonium salt gives:",
+    "options": [
+      "Phenol",
+      "Azo dye",
+      "Amine",
+      "Acid"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "(D) HSO alone",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Chain isomerism",
+      "Position isomerism",
+      "Functional isomerism",
+      "Tautomerism"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

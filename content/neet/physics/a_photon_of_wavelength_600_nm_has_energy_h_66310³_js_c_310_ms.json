@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "A photon of wavelength 600 nm has energy (h = 6.63\u00d710\u00b3 J\u00b7s, c = 3\u00d710 m/s):",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The number of electrons emitted in photoelectric effect depends on:",
+    "options": [
+      "Frequency of light",
+      "Intensity of light",
+      "Wavelength of light",
+      "Work function"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "A photon of wavelength 600 nm has energy (h = 6.63\u00d710\u00b3 J\u00b7s, c = 3\u00d710 m/s):",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "\u03b1-particles are identical to the nucleus of:",
+    "options": [
+      "Hydrogen",
+      "Helium",
+      "Lithium",
+      "Beryllium"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "A photon of wavelength 600 nm has energy (h = 6.63\u00d710\u00b3 J\u00b7s, c = 3\u00d710 m/s):",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Proton",
+      "Electron",
+      "Positron",
+      "Neutron"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

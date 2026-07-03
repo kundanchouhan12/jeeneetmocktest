@@ -1,0 +1,65 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Sequences_and_Series_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Sequences_and_Series_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Sequence & Series",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:21",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nConsider an arithmetic series and a geometric series having four initial terms from the set \n If the last terms of these series are the maximum possible four digit numbers, then\nthe number of common terms in these two series is equal to______",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nLet  a and  be in G.P . and  be in  \nA.P., where . Then  is equal  \nto ____",
+      "answer_key": "14",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nLet \nup to  -terms, where . If  and \n then value of a is equal to ____",
+      "answer_key": "16",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nIf  and  are in  \narithmetic progression for a real number  then the value of the determinant  \n is equal to :",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nIf  are natural numbers such that  \n then the slope of the line passing through  and origin is :\n Sequences and Series\n#PaperPhodnaHai\n,1\n16b ,,61\na1\nb\na,b>0 72(a+b)\nSn(x)=loga1/2x+loga1/3x+loga1/6x\n+loga1/1x+loga1/18x+loga1/27x+….\nn a>1 S24(x)=1093\nS12(2x)=265,\n1,log10(4x−2) log10(4x+ )18\n5\nx,\n∣\n∣ \n∣ \n∣\n∣2(x−)x−1x2\n1 0 x\nx 1 0∣\n∣ \n∣ \n∣\n∣1\n2\nα,β 100α−199β=(100)(100)+(99)(101)+(98)(102)\n+…..+(1)(199), (α,β)\n \n(1) 540\n(2) 550\n(3) 530\n(4) 510",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\n is equal to\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet  be the sum of first 2 n terms of an arithmetic progression. Let  be the sum of first  terms of the\nsame arithmetic progression. If  is  then the sum of the first  terms of the arithmetic\nprogression is equal to:\n(1) 1000\n(2) 7000\n(3) 5000\n(4) 3000",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nIf  then the value of  is equal to ___\n Sequences and Series\n#PaperPhodnaHai\n32−11\n52−11\n72−11\n(201)2−1\n101\n404\n25\n101\n101\n408\n99\n400\nS1 S2 4n\n(S2−S1)1000, 6n\n∑10\nr=1r!(r3+6r2+2r+5)=α(11!), α",
+      "answer_key": "160",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 8,
+    "answers": 8,
+    "solutions": 0,
+    "exported": 8,
+    "skipped": 0
+  }
+}

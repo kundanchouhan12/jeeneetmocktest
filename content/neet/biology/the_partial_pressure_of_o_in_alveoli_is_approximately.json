@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "The partial pressure of O in alveoli is approximately:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Name the enzymes involved in DNA replication and describe the role of each. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "The partial pressure of O in alveoli is approximately:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which hormone is called the 'fight or flight' hormone and why? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "The partial pressure of O in alveoli is approximately:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Describe the mechanism of nerve impulse transmission across a synapse. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "The partial pressure of O in alveoli is approximately:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The RBC count in a healthy adult male is approximately:",
+    "options": [
+      "2-3 million/mm\u00b3",
+      "4.5-5.5 million/mm\u00b3",
+      "7-8 million/mm\u00b3",
+      "1-2 million/mm\u00b3"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "The partial pressure of O in alveoli is approximately:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Bile juice is secreted by the _____ and stored in the _____. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

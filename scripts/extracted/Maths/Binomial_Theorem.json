@@ -1,0 +1,83 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Binomial_Theorem_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Binomial_Theorem_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Binomial Theorem",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:16",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nIf  is the number of irrational terms in the  \nexpansion of  then  is divisible by:\n(1) 26\n(2) 30\n(3) 8\n(4) 7",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nLet [x] denote greatest integer less than or  \nequal to  If for , \nthen  is equal to :\n(1) 2\n(2) \n(3) 1\n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nLet  be a positive integer . Let \nIf  then  is equal to ____",
+      "answer_key": "6",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nIf the fourth term in the expansion of  is  then the value of  where  is equal to :\n Binomial Theorem\n#PaperPhodnaHai\n(31/4+51/8)60\n, (n−1)\nx. n∈N,(1−x+x3)n=∑3n\nj=0ajxj\n∑[]\nj=0a2j+4∑[ ]\nj=0a2j+13n\n23n−1\n2\n2n−1\nn\nn\nA=n\n∑\nk=0(−1)knCk[()k\n+()k\n+()k\n+( )k\n+( )k\n]1\n23\n47\n815\n1631\n32\n63 A=1− ,1\n230 n\n(x+xlog2x)74480, x x∈N\n \n(1) 2\n(2) 4\n(3) 3\n(4) 1",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nIf  is divided by  then the remainder is ____.",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe value of  is equal to :\n(1) 1 124\n(2) 1324\n(3) 1024\n(4) 924",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nLet the coef ficients of third, fourth and fifth terms in the expansion of  be in the ratio 12: 8:\n3 . Then the term independent of  in the expansion, is equal to ____.",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nLet  \nthen  is equal to\n(1) \n(2) \n(3) \n(4) \n Binomial Theorem\n#PaperPhodnaHai\n∑6\nr=0(6Cr−6C6−r)\n(x+)n\n,x≠0,a\nx2\nx\n(1+x+2x2)20=a0+a1x+a2x2+…+a40x40\na1+a3+a5+…+a37\n220(220−21)\n219(220−21)\n219(220+21)\n220(220+21)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nThe term independent of  in the expansion of  \n is equal to ___",
+      "answer_key": "210",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nLet  denote the binomial coef ficient of  in \nthe expansion of . \nIf , \nthen  is equal to ___",
+      "answer_key": "19",
+      "solution": ""
+    },
+    {
+      "q_num": 11,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nLet  be a plane containing the line  and parallel to the line  If the point\n lies on the plane , then the value of  is equal to ___\n Binomial Theorem\n#PaperPhodnaHai\n[ − ]10\n,x≠1,x+1\nx2/3−x1/3+1x−1\nx−x1/2\nnCr xr\n(1+x)n\n∑10\nk=0(22+3k)nCk=α.310+β.210,α,β∈R\nα+β\nP = =x−1\n3y+6\n4z+5\n2= = .x−3\n4y−2\n−3z+5\n7\n(1,−1,α) P |5α|",
+      "answer_key": "38",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 11,
+    "answers": 11,
+    "solutions": 0,
+    "exported": 11,
+    "skipped": 0
+  }
+}

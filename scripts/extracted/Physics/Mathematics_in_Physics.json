@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Mathematics_in_Physics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Mathematics_in_Physics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Mathematics In Physics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:38",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nThe resistance  where  and  The percentage error in  is 'x' \\%. The\nvalue of 'x' to the nearest integer is ____",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe time period of a simple pendulum is given by . The measured value of the length of pendulum\nis  known to a  accuracy . The time for 200 oscillations of the pendulum is found to be 100 second\nusing a clock of 1 s resolution. The percentage accuracy in the determination of 'g' using this pendulum is 'x'.\nThe value of 'x' to the nearest integer is:-\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nThe radius of a sphere is measured to be . Suppose the percentage error in its volume is \nThe value of  to the nearest  \n is ___.\n Mathematics in Physics\n#PaperPhodnaHai\nIV=(50±2)V I=(20±0.2)A. R\nT=2π√ℓ\ng\n10 cm 1 mm\n2%\n3%\n5%\n4%\n(7.50±0.85)cm x.\nx,\nx,",
+      "answer_key": "34",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

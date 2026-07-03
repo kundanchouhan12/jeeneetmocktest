@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Feb_2021\\Trigonometry_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Trigonometry_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Trigonometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T13:33:29",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nIf  satisfies the equation  then the value of \n is\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nAll possible values of  for which  lie in:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nIf $0\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nThe number of integral values of ' ' for which the equation  has a solution,  is",
+      "answer_key": "11",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nIf  the number of solutions of the given equation when  is\n Trigonometry\n#PaperPhodnaHai\n(0<x< )2sinx\nsinx+√3cosxπ\n2\n3\n2\n2√3\n1\n2\n√3\nθ∈[0,2π] sin2θ+tan2θ>0\n(0,)∪(π,)π\n23π\n2\n(0,)∪(,)∪(π,)∪(,)π\n4π\n23π\n45π\n43π\n27π\n4\n(0,)∪(,)∪(π,)π\n2π\n23π\n47π\n6\n(0,)∪(,)∪(, )π\n4π\n23π\n43π\n211π\n6\n1+√3\n2\n1−√3\n2\n√3\n2\n1\n2\nk 3sinx+4cosx=k+1 k∈R\n√3(cos2x)=(√3−1)cosx+1, x∈[0,]π\n2",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

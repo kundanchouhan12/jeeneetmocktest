@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hybridization of carbon in ethyne (CH) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which type of bond is formed by sharing of electrons?",
+    "options": [
+      "Ionic",
+      "Covalent",
+      "Metallic",
+      "Hydrogen"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hybridization of carbon in ethyne (CH) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Square pyramidal",
+      "Trigonal bipyramidal",
+      "Octahedral",
+      "Tetrahedral"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

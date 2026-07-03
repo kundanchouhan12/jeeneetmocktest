@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Heat_Transfer_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Heat_Transfer_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Thermal Physics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:32",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nA reversible heat engine converts one- fourth of the heat input into work. When the temperature of the sink is\nreduced by , its ef ficiency is doubled. The temperature in Kelvin of the source will be",
+      "answer_key": "208",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nThe temperature  at the junction of two insulating sheets, having thermal resistances  and  as well as top\nand bottom temperatures  and  (as shown in figure) is given by :  \n(1) \n(2) \n(3) \n(4) \n Heat T ransfer\n#PaperPhodnaHai\nθ R1 R2\nθ1 θ2\nθ1R2+θ2R1\nR1+R2\nθ1R2−θ2R1\nR2−R1\nθ2R2−θ1R1\nR2−R1\nθ1R1+θ2R2\nR1+R2",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

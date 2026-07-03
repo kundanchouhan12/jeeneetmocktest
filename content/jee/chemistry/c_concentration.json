@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(C) Concentration",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A catalyst increases reaction rate by:",
+    "options": [
+      "Increasing \u0394H",
+      "Decreasing activation energy",
+      "Increasing temperature",
+      "Changing the products"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(C) Concentration",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Half-life of a first order reaction with rate constant k is:",
+    "options": [
+      "0.693/k",
+      "k/0.693",
+      "k \u00d7 0.693",
+      "1/k Page 30 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(C) Concentration",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Arrhenius equation relates rate constant to:",
+    "options": [
+      "Concentration",
+      "Temperature",
+      "Pressure",
+      "Volume"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(C) Concentration",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Define order and molecularity of a reaction. How do they differ? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

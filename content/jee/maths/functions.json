@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Functions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "If f(x) = x\u00b2 - 4x + 3, find the values of x where f(x) < 0. Ans: ___________________________________________ Page 54 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Functions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The domain of f(x) = \u221a(4 - x\u00b2) is:",
+    "options": [
+      "[-2, 2]",
+      "(-\u221e, -2) \u222a (2, \u221e)",
+      "(-2, 2)",
+      "[-4, 4]"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Functions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A function f is one-to-one (injective) if:",
+    "options": [
+      "Option A",
+      "Every y has a preimage",
+      "f is continuous",
+      "f is differentiable"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Functions",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The graph of y = |x| has a _____ at the origin. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

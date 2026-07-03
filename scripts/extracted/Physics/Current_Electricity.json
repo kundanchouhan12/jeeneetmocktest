@@ -1,0 +1,89 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Current_Electricity_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Current_Electricity_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Current Electricity",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:33",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nA conducting wire of length , area of crosssection A and electric resistivity  is connected between the\nterminals of a battery . A potential dif ference  is developed between its ends, causing an electric current.  \nIf the length of the wire of the same material is doubled and the area of cross-section is halved, the resultant\ncurrent would be :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nIn the figure given, the electric current flowing through the  resistor is 'x' . \nThe value of  to the nearest integer is ____",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nA resistor develops  of thermal ener gy in 20s when a current of  is passed through it. If the current\nis increased from  to , what will be the ener gy developed in .\n(1) \n(2) \n(3) \n(4) \n Current Electricity\n#PaperPhodnaHai\nV\n1\n4VA\nρl\n3\n4VA\nρl\n1\n4ρl\nVA\n4VA\nρl\n5kΩ mA\nx\n500 J 1.5 A\n1.5 A 3 A 20 s\n1500 J\n1000 J\n500 J\n2000 J",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nThe ener gy dissipated by a resistor is  in 1 s when an electric current of  flows through it. The\nresistance is ___  \n(Round of f to the Nearest Integer)",
+      "answer_key": "2500",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA current of  exists in a wire of crosssectional area of  with a drift velocity of . The\nnumber of free electrons in each cubic meter of the wire is\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe equivalent resistance of series combination of two resistors is 's'. When they are connected in parallel, the\nequivalent resistance is 'p'. If  then the minimum value for  is \n(Round of f to the Nearest Integer)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nTwo cells of emf  and  with internal resistance  and  respectively are connected in series to an external\nresistor  (see figure). The value of  at which the potential dif ference across the terminals of the first cell\nbecomes zero is  \n(1) \n Current Electricity\n#PaperPhodnaHai\nΩ\n10 A 5 mm22×10−3 ms−1\n2×106\n625×1025\n2×1025\n1×1023\ns=np, n\n2E E r1 r2\nR R,\nr1+r2\n \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe four arms of a Wheatstone bridge have resistances as shown in the figure. A galvanometer of \nresistance is connected  \nacross . Calculate the current through the galvanometer when a potential dif ference of  is maintained\nacross . \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nSeawater at a frequency  has \npermittivity  and resistivity . \nImagine a parallel plate capacitor is immersed  \nin seawater and is driven by an alternating  \nvoltage source  Then the  \nconduction current density becomes  times  \nthe displacement current density after time  \n Current Electricity\n#PaperPhodnaHai\n2\n+r2r1\n2\nr1−r2\n15Ω\nBD 10 V\nAC\n2.44μA\n2.44 mA\n4.87 mA\n4.87μA\nf=9×102 Hz,\nε=80ε0 ρ=0.25Ωm\nV(t)=V0sin(2πft).\n10x\n \n The value of  is ______  \n(Given",
+      "answer_key": "6",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nIn the experiment of Ohm's law , a potential dif ference of  is applied across the end of a conductor of\nlength  and diameter of . The measured current in the \n permissible percentage error in the resistivity of the\nconductor is :-\n(1) 3.9\n(2) 8.4\n(3) 7.5\n(4) 3",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 11,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe voltage across the  resistor in the given circuit is  volt.  \nThe value of 'x' to the nearest integer is ___",
+      "answer_key": "70",
+      "solution": ""
+    },
+    {
+      "q_num": 12,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nTwo wires of same length and thickness having specific resistances  and  respectively are\nconnected in parallel. The ef fective resistivity is . The value of  to the nearest integer , is\n Current Electricity\n#PaperPhodnaHai\n800x\n: =9×109Nm2C−2)1\n4πε0\n5.0 V\n10.0 cm 5.00 mm\n conductor is 2.00 A. The  maximum \n10Ω x\n6Ωcm 3Ωcm\nρΩcm ρ",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 12,
+    "answers": 12,
+    "solutions": 0,
+    "exported": 12,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Properties_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Properties_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Fluid Mechanics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:36",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nIf  and  are the values of Y oung's modulus, bulk modulus and modulus of rigidity of any material\nrespectively . Choose the correct relation for these parameters.\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nA uniform metallic wire is elongated by  when subjected to a linear force . The elongation, if its\nlength and diameter is doubled andsubjected to the same force will be ____",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nThe normal density of a material is  and its bulk modulus of elasticity is  The magnitude of increase in\ndensity of material, when a pressure  is applied uniformly on all sides, will be :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nThe length of metallic wire is  when tension in it is . It is  when the tension is . The original length of\nthe wire will be :\n(1) \n(2) \n(3) \n(4) \n Properties of Matter\n#PaperPhodnaHai\nK= N/m2Yη\n9η−3Y\nη= N/m2 3YK\n9K+Y\nY= N/m29 Kη\n3 K−η\nY=  N/m29 Kη\n2η+3 K\n0.04 m F\ncm.\nρ K.\nP\nρK\nP\nK\nρP\nPK\nρ\nρP\nK\nl1 T1 l2 T2\nl1+l2\n2\nT1l1−T2l2\n T2−T1\nT2l1+T1l2\n T1+T2\nT2l1−T1l2\nT2−T1",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

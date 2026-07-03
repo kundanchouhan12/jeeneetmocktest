@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\EMI_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "EMI_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Electromagnetic Induction",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:29",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nA common transistor radio set requires  (D.C.) for its operation. The D.C. source is constructed by using\na transformer and a rectifier circuit, which are operated at  (A.C.) on standard domestic A.C. supply . The\nnumber of turns of secondary coil are  then the number  \nof turns of primary are ____",
+      "answer_key": "440",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 1) - Numerical\nA coil of inductance 2 H having negligible resistance is connected to a source of supply whose voltage is\ngiven by  volt. (where t is in second). If the voltage is applied when  then the ener gy stored in the\ncoil after  is ____ J.",
+      "answer_key": "144",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nAn aeroplane, with its wings spread , is flying at a speed of  in a horizontal direction. The total\nintensity of earth's field at that part is  and the angle of dip is . The emf induced\nbetween the tips of the plane wings will be\n(1) \n(2) \n(3) \n(4) \n EMI\n#PaperPhodnaHai\n220 V\n24,\nV=3t t=0,\n4 s\n10 m 180 km/h\n2.5×10−4 Wb/m260∘\n88.37mV\n62.50mV\n54.125mV\n108.25mV",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

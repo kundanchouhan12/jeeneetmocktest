@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Mechanical_Properties_of_Fluids_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Mechanical_Properties_of_Fluids_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Fluid Mechanics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:39",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe pressure acting on a submarine is   at a certain depth. If the depth is doubled, the percentage\nincrease in the pressure acting on the submarine would be : (Assume that atmospheric pressure is  Pa\ndensity of water is  )\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nWhat will be the nature of flow of water from a circular tap, when its flow rate increased from  to \n ? The radius of the tap and viscosity of water are  and  respectively . \n(Density of water :  )\n(1) Unsteady to steady flow\n(2) Remains steady flow\n(3) Remains turbulent flow\n(4) Steady flow to unsteady flow",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nWhen two soap bubbles of radii a and  a) coalesce, the radius of curvature of common surface is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\n Mechanical Properties of Fluids\n#PaperPhodnaHai\n1×105\n103 kg m−3, g=10 ms−2\n%200\n3\n%200\n5\n%5\n200\n%3\n200\n0.18 L/min\n0.48 L/min 0.5 cm 10−3 Pa s,\n103 kg/m3\nb(b>\nab\nb−a\na+b\nab\nb−a\nab\nab\na+b\n \nAn object is located at  beneath the surface  \nof the water . If the fractional compression  is  the ratio of hydraulic stress to the corresponding\nhydraulic strain will be  \n[Given : density of water is  and \n(1) 1.96 \\times 10^{7} \\mathrm{Nm}^{-2}$\n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nSuppose you have taken a dilute solution of oleic acid in such a way that its concentration becomes \nof oleic acid per  of the  \nsolution. Then you make a thin film of this  \nsolution (monomolecular thickness) of area  by considering 100 spherical drops of radius \n Then the thickness of oleic acid layer will be . \nWhere  is ______",
+      "answer_key": "25",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nConsider a water tank as shown in the figure.  \nIt's cross-sectional area is . The tank has an opening  near the bottom whose cross-section area is \n. A load of  is applied on the water at the top when the height of the water level is  above the\nbottom, the velocity of water coming out the opening  is . The value of , to the nearest integer , is\n Mechanical Properties of Fluids\n#PaperPhodnaHai\nΔV\nV1.36%,\n1000 kg m−3g=9.8 ms−2.]\n1.44×107Nm−2\n2.26×109Nm−2\n1.44×109Nm−2\n0.01 cm3\ncm3\n4 cm2\n( )×10−3 cm.3\n40π1\n3x×10−14 m\nx\n0.4 m2B\n1 cm224 kg 40 cm\nBvms−1v\n \n___. [T ake value of  to be  ] \n Mechanical Properties of Fluids\n#PaperPhodnaHai",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

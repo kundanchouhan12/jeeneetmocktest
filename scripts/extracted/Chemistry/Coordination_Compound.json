@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Coordination_Compound_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Coordination_Compound_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Coordination Compounds",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:08",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nThe calculated magnetic moments (spin only value) for species  and \nrespectively are :\n(1) 5.92,4.90 and 0 BM\n(2)  and \n(3) 4.90,0 and 1.73 BM\n(4) 4.90,0 and",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nThe hybridization and magnetic nature of  and  respectively are:\n(1)  and paramagnetic\n(2)  and paramagnetic\n(3)  and diamagnetic\n(4)  and diamagnetic",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nGiven below are two statements :  \nStatement I : The identification of  is carried out by dimethyl glyoxime in the presence of  \nStatement II : The dimethyl glyoxime is a bidentate neutral ligand.  \nIn the light of the above statements, choose the correct answer from the options given below :\n(1) Both statement I and statement II are true\n(2) Both statement I and statement II are false\n(3) Statement I is false but statement II is true\n(4) Statement I is true but statement II is false",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\n Coordination Compound\n#PaperPhodnaHai\n4\n5.82,O 0BM\n2.83BM\n[Mn(CN)6]4−[Fe(CN)6]3−,\nd2sp3\nsp3 d2\nd2sp3\nsp3 d2\nNi2+NH4OH\n \nIf which of the following order the given complex ions are arranged correctly with respect to their decreasing\nspin only magnetic moment?  \n(i)  \n(ii)  \n(iii)  \n(iv) \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nThe spin only magnetic moment of a divalent ion in aqueous solution (atomic number 29) is ____ BM.",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nNumber of bridging CO ligands in  is",
+      "answer_key": "0",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "26 Feb (Shift 2) - Numerical\nThe number of stereoisomers possible for  is ____  oxalate]\n Coordination Compound\n#PaperPhodnaHai\n[Co(NH3)6]3+\n[NiCl4]2−\n[Cu(NH3)4]2+\n(ii)>(i)>(iii)>(iv)\n(iii)>(iv)>(ii)>(i)\n(ii)>(iii)>(i)>(iv)\n(i)>(iii)>(iv)>(ii)\n[Mn2(CO)10]\n[Co(Ox)2(Br)(NH3)]2−[Ox=",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

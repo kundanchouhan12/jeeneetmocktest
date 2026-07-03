@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Differentiation_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Differentiation_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Limit, Continuity & Differentiability",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:18",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet  where  be a twice dif ferentiable function such that  If  be\ndefined as , then the value of | |is equal to :\n(1) \n(2) \n(3) \n(4) 1",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nIf  and its first derivative with respect to  is   where  and \nare integers, then the minimum value of  is ____\n Differentiation\n#PaperPhodnaHai\ng(x)=logef(x) g′′(5)−g′′(1)\n205\n144\n197\n144\n187\n144\nf(x)=sin(cos−1( ))1−22x\n1+22x x−loge2whenb\nax=1, a b\n∣∣a2−b2∣∣",
+      "answer_key": "481",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

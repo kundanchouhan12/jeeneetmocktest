@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "The number of real roots of the equation x - 5x\u00b2 + 4 = 0 is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "If \u03b1, \u03b2, \u03b3 are roots of x\u00b3 - 6x\u00b2 + 11x - 6 = 0, find \u03b1+\u03b2+\u03b3.",
+    "options": [
+      "6",
+      "-11",
+      "-6",
+      "11 Page 63 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

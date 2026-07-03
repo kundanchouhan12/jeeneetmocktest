@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\States_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "States_of_Matter_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "States Of Matter",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:51",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nAt  of iron reacts with  to form . The evolved hydrogen gas expands  \nagainst a constant pressure of 1 bar . The work done by the gas during this expansion is ___ J.  \n(Round of f to the Nearest Integer)  \n[Given : . Assume, hydrogen is an ideal gas]  \n[Atomic mass of f Fe is  ]",
+      "answer_key": "2218",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe pressure exerted by a non-reactive gaseous mixture of  of methane and  of carbon dioxide in a \n vessel at  is ____ . \n(Round of f to the Nearest Integer).  \n[Assume gases are ideal,  \nAtomic masses :",
+      "answer_key": "150",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nThe number of chlorine atoms in  of chlorine gas at  is ____ . (Round of f to the Nearest\nInteger). [Assume chlorine is an ideal gas at STP  bar \n States of Matter\n#PaperPhodnaHai\nR=8.314 J mol−1 K−1\n55.85u\n6.4 g 8.8 g\n10 L 27∘C kPa\nR=8.314 J mol−1 K−1\nC:12.0u,H:1.0u,O:16.0u]\n20 mL STP 1021\nR=0.083 L mol−1 K−1, NA=6.023×1023]",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

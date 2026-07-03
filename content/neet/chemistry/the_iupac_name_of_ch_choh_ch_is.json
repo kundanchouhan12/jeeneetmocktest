@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The IUPAC name of CH-CH(OH)-CH is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Markovnikov's rule applies to addition of HX to:",
+    "options": [
+      "Alkanes",
+      "Alkynes only",
+      "Unsymmetrical alkenes",
+      "Aromatic compounds"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The IUPAC name of CH-CH(OH)-CH is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The product of dehydration of ethanol is:",
+    "options": [
+      "Methanol",
+      "Ethene",
+      "Ethyne",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

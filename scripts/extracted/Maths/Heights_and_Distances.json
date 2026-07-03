@@ -1,0 +1,23 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Heights_and_Distances_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Heights_and_Distances_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Trigonometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:18",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nA pole stands vertically inside a triangular park . Let the angle of elevation of the top of the pole from\neach corner of the park be . If the radius of the circumcircle ot  is 2 , then the height of the pole is\nequal to:\n(1) \n(2) \n(3) \n(4) \n Heights and Distances\n#PaperPhodnaHai\nπ\n3ΔABC\n2√3\n3\n2√3\n√3\n1\n√3",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 1,
+    "answers": 1,
+    "solutions": 0,
+    "exported": 1,
+    "skipped": 0
+  }
+}

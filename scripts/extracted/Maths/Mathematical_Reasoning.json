@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Mathematical_Reasoning_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Mathematical_Reasoning_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Mathematical Reasoning",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:19",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nWhich of the following Boolean expression is a tautology ?\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nIf the Boolean expression  is a tautology , then the Boolean expression  is\nequivalent to\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nIf the Boolean expression  is a tautology , then  and  are respectively given by\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nIf  and  are two statements, then which of the following compound statement is a tautology?\n(1) \n(2) \n(3) \n Mathematical Reasoning\n#PaperPhodnaHai\n(p∧q)∨(p→q)\n(p∧q)∧(p→q)\n(p∧q)→(p→q)\n(p⇒q)⇔(q∗(∼p)) p∗(∼q)\nq⇒p\n∼q⇒p\np⇒∼q\np⇒q\n(p∧q)⊛(p⊗q) ⊛ ⊗\n→,→\n∧,∨\n∨,→\n∧,→\nP Q\n((P⇒Q)∧∼Q)⇒Q\n((P⇒Q)∧∼Q)⇒∼P\n((P⇒Q)∧∼Q)⇒P\n \n(4) \n Mathematical Reasoning\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

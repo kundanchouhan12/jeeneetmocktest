@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Waves_and_Sound_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Waves_and_Sound_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Wave Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:47",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nA closed or gan pipe of length  and an open or gan pipe contain gases of densities  and  respectively . The\ncompressibility of gases are equal in both the pipes. Both the pipes are vibrating in their first overtone with\nsame frequency . The length of the open pipe is  where  is ___. (Round of f to the Nearest Integer)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nA sound wave of frequency  travels  \nwith the speed of  along the positive  \nx-axis. Each point of the wave moves to and  \nfro through a total distance of . What will  \nbe the mathematical expression of this  \ntravelling wave ?\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nA galaxy is moving away from the earth at a speed of . The shift in the wavelength of a red line at \n is  The value of  to the nearest integer , is ___.[T ake the value of speed of light  as \n \n Waves and Sound\n#PaperPhodnaHai\n L√x\n3ρ1\nρ2x\n245 Hz\n300 ms−1\n6 cm\nY(x,t)=0.03[sin5.1x−(0.2×103)t]\nY(x,t)=0.06[sin5.1x−(1.5×103)t]\nY(x,t)=0.06[sin0.8x−(0.5×103)t]\nY(x,t)=0.03[sin5.1x−(1.5×103)t]\n286kms−1\n630nm x×10−10 m. x, c,\n3×108ms−1]",
+      "answer_key": "6",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

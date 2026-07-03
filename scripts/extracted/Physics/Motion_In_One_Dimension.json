@@ -1,0 +1,59 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Motion_In_One_Dimension_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Motion_In_One_Dimension_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Units, Dimensions And Measurement",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:41",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe velocity-displacement graph describing the motion of a bicycle is shown in the figure.  \nThe acceleration-displacement graph of the bicycle's motion is best described by :\n(1) \n(2) \n(3) \n Motion In One Dimension\n#PaperPhodnaHai\n \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nA swimmer can swim with velocity of  in still water . Water flowing in a river has velocity .\nThe direction with respect to the direction of flow of river water he should swim in order to reach the point on\nthe other bank just opposite to his starting point is ___. (Round of f to the Nearest Integer) (find the angle in\ndegree)",
+      "answer_key": "120",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA car accelerates from rest at a constant rate  \nfor some time after which it decelerates at a  \nconstant rate  to come to rest. If the total time  \nelapsed is t seconds, the total distance travelled  \nis:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nA rubber ball is released from a height of  \nabove the floor . It bounces back repeatedly , \nalways rising to  of the height through  \n Motion In One Dimension\n#PaperPhodnaHai\nα\nβ\nt2 4αβ\n(α+β)\nt2 2αβ\n(α+β)\nt2 αβ\n2(α+β)\nt2 αβ\n4(α+β)\n5 m\n81\n100\n \nwhich it falls. Find the average speed of the ball.  \n(Take  )\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe velocity of a particle is  \nIts position is  at  then its  \ndisplacement after time  is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe position, velocity and acceleration of a particle moving with a constant acceleration can be represented\nby:\n(1) \n(2) \n Motion In One Dimension\n#PaperPhodnaHai\n3.0 ms−1\n3.50 ms−1\n2.0 ms−1\n2.50 ms−1\nv=v0+gt+Ft2\nx=0t=0;\n(t=1)\nv0+g+F\nv0+ +g\n2F\n3\nv0+ +Fg\n2\nv0+2 g+3 F\n \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe velocity-displacement graph of a particle is shown in the figure.  \nThe acceleration-displacement graph of the same particle is represented by :\n(1) \n(2) \n Motion In One Dimension\n#PaperPhodnaHai\n \n(3) \n(4) \n Motion In One Dimension\n#PaperPhodnaHai",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 7,
+    "answers": 7,
+    "solutions": 0,
+    "exported": 7,
+    "skipped": 0
+  }
+}

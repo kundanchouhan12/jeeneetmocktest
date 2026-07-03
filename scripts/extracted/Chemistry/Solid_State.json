@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Solid_State_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Solid_State_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Solid State",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:51",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nA certain element crystallises in a bce lattice of unit cell edge length . If the same element under the\nsame conditions crystallises in the fcc lattice, the edge length of the unit cell in  will be____. (Round of f\nto the Nearest Integer).  \n[Assume each lattice point has a single atom]  \n Assume",
+      "answer_key": "33",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nGa (atomic mass  ) crystallizes in a hexagonal close packed structure. The total number of voids in \nof Ga is ___  (Round of f to the Nearest Integer).",
+      "answer_key": "15",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nA colloidal system consisting of a gas dispersed in a solid is called a/an:\n(1) solid sol\n(2) gel\n(3) aerosol\n(4) foam",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nIn a binary compound, atoms of element A  \nform a hcp structure and those of element  \noccupy  of the tetrahedral voids of the hep structure. The formula of the binary compound  \nis :\n(1) \n(2) \n(3) \n(4)  Official Ans. by NT A (2)\n Solid State\n#PaperPhodnaHai\n\\AA\n[ √3=1.73,√2=1.41]\n70u 0.581 g\n×1021.\nM\n2/3\nM2 A3\nM4 A3\nM4 A\nMA3",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Surface Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which colloid has a dispersed phase as liquid and dispersion medium as solid?",
+    "options": [
+      "Foam",
+      "Gel",
+      "Emulsion",
+      "Aerosol"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Surface Chemistry",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Adsorption of gas on solid surface is exothermic due to:",
+    "options": [
+      "Entropy increase",
+      "Bond formation at surface",
+      "Expansion of gas",
+      "Cooling effect"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

@@ -1,0 +1,272 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which law of thermodynamics introduces the concept of entropy?",
+    "options": [
+      "Zeroth law",
+      "First law",
+      "Second law",
+      "Third law"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "In an adiabatic process:",
+    "options": [
+      "Temperature remains constant",
+      "No heat exchange occurs",
+      "Pressure remains constant",
+      "Volume remains constant"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The efficiency of a Carnot engine operating between 127\u00b0C and 27\u00b0C is:",
+    "options": [
+      "25%",
+      "33%",
+      "50%",
+      "75%"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The internal energy of an ideal gas depends only on:",
+    "options": [
+      "Pressure",
+      "Volume",
+      "Temperature",
+      "Density"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which process is represented by a vertical line on a P-V diagram?",
+    "options": [
+      "Isothermal",
+      "Adiabatic",
+      "Isochoric",
+      "Isobaric"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The root mean square speed of gas molecules is proportional to:",
+    "options": [
+      "\u221aT",
+      "T",
+      "T\u00b2",
+      "1/T Page 8 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A gas expands isothermally. What happens to its internal energy? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "State and explain the first law of thermodynamics with an example. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Thermometric property used in a mercury thermometer is:",
+    "options": [
+      "Resistance",
+      "Volume expansion",
+      "EMF",
+      "Pressure"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "One calorie equals approximately:",
+    "options": [
+      "1 J",
+      "4.2 J",
+      "0.24 J",
+      "42 J"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The process of heat transfer that does not require a medium is:",
+    "options": [
+      "Conduction",
+      "Convection",
+      "Radiation",
+      "Both A and B"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Wien's displacement law relates the peak wavelength of radiation to:",
+    "options": [
+      "Frequency",
+      "Temperature",
+      "Intensity",
+      "Energy"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Coefficient of performance of a refrigerator is defined as:",
+    "options": [
+      "Work done / Heat removed",
+      "Heat removed / Work done",
+      "Work done / Total heat",
+      "1 - efficiency"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Degree of freedom for a diatomic gas at room temperature is:",
+    "options": [
+      "3",
+      "5",
+      "6",
+      "7 Page 22 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The mean free path of a gas molecule increases when:",
+    "options": [
+      "Temperature decreases",
+      "Pressure increases",
+      "Temperature increases and pressure decreases",
+      "Density increases"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Phosphorus exists as P due to:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The oxide of nitrogen used as laughing gas is:",
+    "options": [
+      "NO",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

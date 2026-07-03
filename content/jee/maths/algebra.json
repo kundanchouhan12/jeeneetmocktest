@@ -1,0 +1,182 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The roots of the quadratic equation 2x\u00b2 - 5x + 3 = 0 are:",
+    "options": [
+      "1 and 3/2",
+      "3 and 1/2",
+      "3/2 and 1",
+      "Both A and C"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "If \u03b1 and \u03b2 are roots of x\u00b2 - 5x + 6 = 0, then \u03b1\u00b2 + \u03b2\u00b2 equals:",
+    "options": [
+      "13",
+      "25",
+      "11",
+      "36"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The sum of the first 20 natural numbers is:",
+    "options": [
+      "190",
+      "200",
+      "210",
+      "100"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "5",
+      "6",
+      "7",
+      "3"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The 10th term of the AP 3, 7, 11, 15,... is:",
+    "options": [
+      "39",
+      "43",
+      "35",
+      "47"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The sum of infinite GP with first term 3 and common ratio 1/3 is:",
+    "options": [
+      "4.5",
+      "3.5",
+      "9/2",
+      "9"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Solve: |2x - 3| < 7 Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "x",
+      "b",
+      "a",
+      "1"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Algebra",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The number of integers between -3 and 3 (inclusive) satisfying |x| \u2264 2 is:",
+    "options": [
+      "3",
+      "5",
+      "4",
+      "7"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

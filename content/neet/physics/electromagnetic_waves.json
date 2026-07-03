@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The displacement current was introduced by:",
+    "options": [
+      "Faraday",
+      "Maxwell",
+      "Hertz",
+      "Ampere"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Electromagnetic waves are transverse in nature because:",
+    "options": [
+      "Electric and magnetic fields are parallel",
+      "E and B are perpendicular to the direction of propagation",
+      "They require a medium",
+      "They travel at speed of sound"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Waves",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which electromagnetic wave has the highest frequency?",
+    "options": [
+      "Radio waves",
+      "Infrared",
+      "X-rays",
+      "Gamma rays Page 16 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

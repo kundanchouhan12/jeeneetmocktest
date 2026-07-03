@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(D) H/Ni",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Benzene undergoes preferentially:",
+    "options": [
+      "Addition reactions",
+      "Substitution reactions",
+      "Elimination reactions",
+      "Combustion"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(D) H/Ni",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Nucleophilic substitution SN1 is favoured by:",
+    "options": [
+      "Primary halide",
+      "Tertiary halide",
+      "Methyl halide",
+      "Vinyl halide"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(D) H/Ni",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Tollens' test is used to identify:",
+    "options": [
+      "Ketones",
+      "Alcohols",
+      "Aldehydes",
+      "Carboxylic acids"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(D) H/Ni",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Write the reaction mechanism for the nitration of benzene. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "(D) H/Ni",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "Methyl acetate",
+      "Ethyl acetate",
+      "Propyl acetate",
+      "Ethyl propanoate"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

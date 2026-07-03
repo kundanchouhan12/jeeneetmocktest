@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The standard reduction potential of Zn\u00b2/Zn is -0.76 V and Cu\u00b2/Cu is +0.34 V. The EMF of the",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Kohlrausch's law of independent migration of ions states that molar conductivity at infinite dilution is the _____ of ionic conductances. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The standard reduction potential of Zn\u00b2/Zn is -0.76 V and Cu\u00b2/Cu is +0.34 V. The EMF of the",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The degree of dissociation of a weak electrolyte can be found from the ratio of _____ to _____. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The standard reduction potential of Zn\u00b2/Zn is -0.76 V and Cu\u00b2/Cu is +0.34 V. The EMF of the",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The Nernst equation relates electrode potential to:",
+    "options": [
+      "Temperature only",
+      "Concentration of ions and standard potential",
+      "Current",
+      "Resistance"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

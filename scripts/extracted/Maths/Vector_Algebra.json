@@ -1,0 +1,77 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Vector_Algebra_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Vector_Algebra_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Vector Algebra",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:22",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nLet a vector  be obtained by rotating the vector  by an angle  about the origin in\ncounterclockwise direction in the first quadrant. Then the area of triangle having vertices  and\n(0,0) is equal to\n(1) \n(2) 1\n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nLet  and . If  and \n then the value of  \n is equal to :\n(1) 9\n(2) 15\n(3) 13\n(4) 1 1",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nLet  be a vector perpendicular to the vectors  \n and  \nIf  then the value of  \nis equal to ____",
+      "answer_key": "28",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nLet  and . \nIf  then  \n Vector Algebra\n#PaperPhodnaHai\n(α,β),(0,β)\n1\n2\n1\n√2\n2√2\n→a=^i+2^j−3^k→\nb=2^i−3^j+5^k→r×→a=→\nb×→r,→r⋅(α^i+2^j+^k)=3\n→r⋅(2^i+5^j−α^k)=−1,α∈R,\nα+|→r|2\n→c\n→a=^i+^j−^k→\nb=^i+2^j+^k\n−→ c. (^i+^j+3^k)=8 →c⋅(→a×→b)\n→a=2^i−3^j+4^k→\nb=7^i+^j−6^k\n→r×→a=→r×→\nb,→r⋅(^i+2^j+^k)=−3,→r⋅(2^i−3^j+^k)\n \nis equal to :\n(1) 12\n(2) 8\n(3) 13\n(4) 10",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nIf  \nsuch that  and  then  \n is equal to ____",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nLet  be the origin. Let  and  be such that  \n and the vector  is perpendicular to . If  is coplanar with \nand , then the value of  is equal to\n(1) 7\n(2) 9\n(3) 2\n(4) 1",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nLet  be a vector in the plane containing vectors  and . If the vector  is\nperpendicular to  and its projection on  is  then the value of  is equal to ____ .\n Vector Algebra\n#PaperPhodnaHai\n→\nb=−β^i−α^j−^k and \n→c=^i−2^j−^k\n→a⋅→\nb=1→\nb⋅→c=−3,\n((→a×→b)⋅→c)1\n3\nO−−→\nOP=x^i+y^j−^k−−→\nOQ=−^i+2^j+3x^k,x,y∈R,x>0,\n|−−→\nPQ|=√20−−→\nOP−−→\nOQ−−→\nOR=3^i+z^j−7^k,z∈R,−−→\nOP\n−−→\nOQ x2+y2+z2\n→x→a=2^i−^j+^k→\nb=^i+2^j−^k→x\n(3^i+2^j−^k)→a ,17√6\n2|→x|2",
+      "answer_key": "486",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA vector a has components  and 1 with respect to a rectangular cartesian system. This system is rotated\nthrough a certain angle about the  \norigin in the counter clockwise sense. If, with respect to new system, a has components  and , then a\nvalue of  is equal to:\n(1) 1\n(2) \n(3) \n(4) -1",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nIn a triangle  if , \n then the projection of the vector  on  is equal to:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet  and  be two non-zero vectors perpendicular to each other and  If  then\nthe angle between the vectors  \n and  is equal to:\n(1) \n(2) \n(3) \n(4) \n Vector Algebra\n#PaperPhodnaHai\np+1 √10\np\n−5\n4\n4\n5\nABC,|−−→\nBC|=8,|−−→\nCA|=7\n|−−→\nAB|=10,−−→\nAB−−→\nAC\n25\n4\n85\n14\n127\n20\n115\n16\n→a→\nb |→a|=|→\nb|.|→a×→\nb|=|→a|,\n(→a+→\nb+(→a×→\nb))→a\nsin−1( )1\n√3\ncos−1( )1\n√3\ncos−1( )1\n√2\nsin−1( )1\n√6",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 10,
+    "answers": 10,
+    "solutions": 0,
+    "exported": 10,
+    "skipped": 0
+  }
+}

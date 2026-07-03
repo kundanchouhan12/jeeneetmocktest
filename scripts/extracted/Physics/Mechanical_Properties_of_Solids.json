@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Mechanical_Properties_of_Solids_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Mechanical_Properties_of_Solids_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Elasticity",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:39",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nIn order to determine the Y oung's Modulus of a wire of radius  (measured using a scale of least count \n and length  (measured using a scale of least count  ), a weight of mass \n(measured using a scale of least count  ) was hanged to get the elongation of  (measured using a\nscale of least count . What will be the fractional error in the value of Y oung's Modulus determined\nby this experiment?\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nTwo separate wires  and  are stretched by  and  respectively , when they are subjected to a force\nof . Assume that both the wires are made up of same material and the radius of wire  is 4 times that of the\nradius of wire A. The length of the wires  and  are in the ratio of . Then  can be expressed as \nwhere  is ___\n Mechanical Properties of Solids\n#PaperPhodnaHai\n=0.001 cm) 1 m =1 mm 1 kg\n=1 g 0.5 cm\n0.001 cm)\n0.14%\n0.9%\n9%\n1.4%\nA B 2 mm 4 mm\n2 N B\nA B a:b a/b 1/x\nx",
+      "answer_key": "32",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

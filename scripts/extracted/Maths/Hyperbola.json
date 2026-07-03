@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Hyperbola_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Hyperbola_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Coordinate Geometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:18",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe locus of the midpoints of the chord of the circle,  which is tangent to the hyperbola, \n is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nA square ABCD has all its vertices on the curve . The midpoints of its sides also lie on the same\ncurve. Then, the square of area of  is",
+      "answer_key": "80",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nConsider a hyperbola . Let the tangent at a point  meet the  -axis at  and latus\nrectum at  If  is a focus of  which is nearer to the point , then the area of  is\nequal to\n(1) \n(2) \n(3) \n(4) \n Hyperbola\n#PaperPhodnaHai\n− =1x2\n9y2\n16\n(x2+y2)2−16x2+9y2=0\n(x2+y2)2−9x2+144y2=0\n(x2+y2)2−9x2−16y2=0\n(x2+y2)2−9x2+16y2=0\nx2y2=1\nABCD\nH:x2−2y2=4 P(4,√6) x Q\nR(x1,y1),x1>0.F H P ΔQFR\n4√6\n√6−1\n−27\n√6\n4√6−1",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

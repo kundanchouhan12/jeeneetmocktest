@@ -1,0 +1,29 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\Fluid_Mechanics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Fluid_Mechanics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Fluid Mechanics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:31",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nA hydraulic press can lift  when a mass 'm' is placed on the smaller piston. It can lift ____  when the\ndiameter of the lar ger piston is increased by 4 times and that of the smaller piston is decreased by 4 times\nkeeping the same mass 'm' on the smaller piston.",
+      "answer_key": "25600",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nA lar ge number of water drops, each of radius , combine to have a drop of radius . If the surface tension is \n and mechanical equivalent of heat is , the rise in heat ener gy per unit volume will be :\n(1) \n(2) \n(3) \n(4) \n Fluid Mechanics\n#PaperPhodnaHai\nr R\nT J\n2T\nrJ\n3T\nrJ\n(− )2T\nJ1\nr1\nR\n(− )3T\nJ1\nr1\nR",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 2,
+    "answers": 2,
+    "solutions": 0,
+    "exported": 2,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Inverse_Trigonometric_Functions_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Inverse_Trigonometric_Functions_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Trigonometry",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:19",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nLet  Then  equal to :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nGiven that the inverse trigonometric functions take principal values only . Then, the number of real values of \nwhich satisfy  \n is equal to:\n(1) 2\n(2) 1\n(3) 3\n(4) 0",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nIf   upto 100 terms, then  is :\n(1) 1.01\n(2) 1\n(3) 1.02\n(4) 1.03",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe sum of possible values of  for  is\n(1) \n Inverse T rigonometric Functions\n#PaperPhodnaHai\nr=1tan−1( ).6r\n22r+1+32r+1 limk→∞Sk\ntan−1()3\n2\nπ\n2\ncot−1()3\n2\ntan−1(3)\nx\nsin−1()+sin−1()=sin−1x3x\n54x\n5\ncot−1(α)=cot−12+cot−18+cot−118+cot−132+…… α\nx tan−1(x+1)+cot−1( )=tan−1()1\nx−18\n31\n−32\n4\n \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nThe number of solutions of the equation  \nfor  and  denotes the greatest integer less than or equal to  is :\n(1) 2\n(2) 0\n(3) 4\n(4) Infinite\n Inverse T rigonometric Functions\n#PaperPhodnaHai\n4\n−30\n4\n−33\n4\nsin−1[x2+]+cos−1[x2−]=x2 1\n32\n3\nx∈[−1,1], [x] x,",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "(D) a\u00b2/a\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The angular width of the central maximum in single slit diffraction is:",
+    "options": [
+      "\u03bb/d",
+      "2\u03bb/d",
+      "\u03bb/2d",
+      "d/\u03bb Page 20 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

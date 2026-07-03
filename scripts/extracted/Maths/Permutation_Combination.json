@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Permutation_Combination_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Permutation_Combination_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Permutations And Combinations",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:20",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nConsider a rectangle ABCD having 5,7,6,9 points in the interior of the line segments ,  DA\nrespectively . Let  be the numberof triangles having these points from dif ferent sides as vertices and  be the\nnumber of quadrilaterals having these points from dif ferent sides as vertices. Then  is equal to :\n(1) 795\n(2) 1 173\n(3) 1890\n(4) 717",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nTeam 'A' consists of 7 boys and  girls and  \nTeam 'B' has 4 boys and 6 girls. If a total of 52 single matches can be arranged between these two teams when\na boy plays against a boy and a girl plays against a girl, then  is equal to :\n(1) 5\n(2) 2\n(3) 4\n(4) 6",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 2) - Single Corr ect\nIf the sides  and  of a triangle  have 3,5 and 6 interior points respectively , then the total\nnumber of triangles that can be constructed using these points as vertices, is equal to :\n(1) 364\n(2) 240\n(3) 333\n(4) 360",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\n Permutation Combination\n#PaperPhodnaHai\nα β\n(β−α)\nn\nn\nAB,BC CA ABC\n \nThe sum of all the 4 -digit distinct numbers that can be formed with the digits 1,2,2 and 3 is:\n(1) 26664\n(2) 122664\n(3) 122234\n(4) 22264",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe number of times the digit 3 will be written when listing the integers from 1 to 1000 is",
+      "answer_key": "300",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nThe missing value in the following figure is  \nUse the logic which gives answer in single digit\n Permutation Combination\n#PaperPhodnaHai",
+      "answer_key": "4",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

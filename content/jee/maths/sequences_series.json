@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sequences & Series",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL The sum of an infinite GP is 8 and the first term is 2. Find the common ratio. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sequences & Series",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The 4th term of a GP with first term 3 and common ratio 2 is:",
+    "options": [
+      "12",
+      "24",
+      "48",
+      "6"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sequences & Series",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Sum of first n terms of AP is n/2 \u00d7 (first + last). Sum of first 10 terms of AP 2, 5, 8,... is:",
+    "options": [
+      "155",
+      "145",
+      "135",
+      "165"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "Sequences & Series",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Find the sum: 1 + 2 + 3 + ... + 100. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

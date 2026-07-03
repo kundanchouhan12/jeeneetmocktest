@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Maths\\Mar_2021\\Functions_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Functions_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Maths",
+  "chapter": "Sets, Relations, And Functions",
+  "year": 2021,
+  "extracted_at": "2026-05-23T14:14:18",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Single Corr ect\nThe number of roots of the equation,  \n \nin the interval  is equal to :\n(1) 3\n(2) 4\n(3) 8\n(4) 2",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 1) - Single Corr ect\nThe inverse of \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nThe real valued function  where [x] denotes the greatest integer less than or equal to  is\ndefined for all  belonging to:\n(1) all reals except integers\n(2) all non-integers except the interval [-1,1]\n(3) all integers except 0,-1,1\n(4) all reals except the Interval [-1,1]",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nIf the functions are defined as  and  then what is the common domain of the\nfollowing functions:  \n Functions\n#PaperPhodnaHai\n[0,π]\ny=5logx is : \nx=(1/y)log5\nx=y1\nlog5\nx=5logy\nx=51\nlogy\nf(x)= ,cosec−1x\n√x−[x]x,\nx\nf(x)=√x g(x)=√1−x,\n \n where \n(1) \n(2) \n(3) $0\n(4) $0",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nLet  be defined by  Let  be given as  Then, the\nsum of all the values of  for which  is equal to\n(1) 7\n(2) 2\n(3) 5\n(4) 3\n Functions\n#PaperPhodnaHai\ng(x)\n0≤x≤1\n0≤x<1\nf:R−{3}→R−{1} f(x)= .x−2\nx−3g:R→R g(x)=2x−3.\nx f−1(x)+g−1(x)=13\n2",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Nuclear_Physics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Nuclear_Physics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Modern Physics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:41",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nThe half-life of  is 2.7 days. The activity of  of  if its atomic weight is  is, \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nCalculate the time interval between  decay and  decay if half-life of a substance is 20 minutes.\n(1) 60 minutes\n(2) 20 minutes\n(3) 40 minutes\n(4) 13 minutes",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA radioactive sample disintegrates via two independent decay processes having half lives  and \nrespectively . The ef fective half- life  of the nuclei is:\n(1) None of the above\n(2) \n(3) \n(4)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 2) - Single Corr ect\nThe decay of a proton to neutron is :\n(1) not possible as proton mass is less than the neutron mass\n Nuclear Physics\n#PaperPhodnaHai\n(NA=6×1023/mol)\n240Ci\n357Ci\n535Ci\n252Ci\n33% 67%\nT(1)\n1/2T(2)\n1/2\nT1/2\nT1/2=T(1)\n1/2+T(2)\n1/2\nT1/2=T(1)\n1/2T(2)\n1/2\nT(1)\n1/2+T(2)\n1/2\nT1/2=T(t)\n1/2+T(2)\n1/2\nT(1)\n1/2−T(2)\n1/2\n \n(2) possible only inside the nucleus\n(3) not possible but neutron to proton conversion is possible\n(4) always possible as it is associated only with  decay\n Nuclear Physics\n#PaperPhodnaHai",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 4,
+    "answers": 4,
+    "solutions": 0,
+    "exported": 4,
+    "skipped": 0
+  }
+}

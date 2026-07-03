@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "General",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "\u2013 Q.123 | MCQ: 98 \u007f Short: 13 \u007f Numerical: 12",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

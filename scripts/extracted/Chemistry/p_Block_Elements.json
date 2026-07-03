@@ -1,0 +1,77 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\p_Block_Elements_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "p_Block_Elements_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "P-Block Elements",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:10",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nGiven below are two statements :  \nStatement I : Colourless cupric metaborate is reduced to cuprous metaborate in a luminous flame.  \nStatement II : Cuprous metaborate is obtained by heating boric anhydride and copper sulphate in a non-\nluminous flame. In the light of the above statements, choose the most appropriate answer from the options\ngiven below .\n(1) Statement I is false but statement II is true.\n(2) Statement  is true but Statement II is false.\n(3) Both Statement I and Statement II are true.\n(4) Both Statement I and Statement II are false.",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nAmong the following allotropic forms of sulphur , the number of allotropic forms, which will show\nparamagnetism is  \n(1)  -sulphur  \n(2)  -sulphur  \n(3)  -form",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nThe correct statement about  is:\n(1) All B-H-B angles are of .\n(2) Its fragment, , behaves as a Lewis base.\n(3) T erminal B-H bonds have less p-character when compared to bridging bonds.\n(4) The two  bonds are not of same length.",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 1) - Numerical\n p Block Elements\n#PaperPhodnaHai\nα\nβ\nS2\nB2H6\n120∘\nBH3\nB−H−B\n \nAmong the following, the number of halide(s) which is/are inert to hydrolysis is  \n(A)  \n(B)  \n(C)  \n(D)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nGiven below are two statements :  \nStatement I :  and  forms of sulphur can change reversibly between themselves with slow heating or slow\ncooling.  \nStatement II : At room temperature the stable crystalline form of sulphur is monoclinic sulphur . \nIn the light of the above statements, choose the correct answer from the options given below .\n(1) Both statement I and statement II are false\n(2) Statement I is true but statement II is false\n(3) Both statement I and statement II are true\n(4) Statement I is false but statement II is true",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nWhich of the following compound is added to the sodium extract before addition of silver nitrate for testing of\nhalogens ?\n(1) Nitric acid\n(2) Sodium hydroxide\n(3) Hydrochloric acid\n(4) Ammonia",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\n p Block Elements\n#PaperPhodnaHai\nSiCl4\nPCl5\nSF6\nα β\n \nFind  and  in the following reaction :  \n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nCompound A used as a strong oxidizing agent is amphoteric in nature. It is the part of lead storage batteries.\nCompound  is :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nWhich pair of oxides is acidic in nature?\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 10,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\n p Block Elements\n#PaperPhodnaHai\nNH3+A+CO2→(NH4)2CO3\n(NH4)2CO3+H2O+B→NH4HCO3\nNH4HCO3+NaCl→NH4Cl+C\nA−H2O;B−CO2;C−NaHCO3\nA−H2O;B−O2;C−Na2CO3\nA−O2;B−CO2;C−Na2CO3\nA−H2O;B−O2;C−NaHCO3\nA\nPb3O4\nPbO2\nPbSO4\nPbO\nN2O,BaO\nCaO,SiO2\nB2O3,CaO\nB2O3,SiO2\n \nMatch List-I with List-II.  \nChoose the correct answer from the option given below:\n(1) \n(2) \n(3) \n(4) \n p Block Elements\n#PaperPhodnaHai\n(a)−(iv),(b)−(iii),(c)−(i),(d)−(ii)\n(a)−(iv),(b)−(i),(c)−(ii),(d)−(iii)\n(a)−(i),(b)−(iii),(c)−(iv),(d)−(ii)",
+      "answer_key": "2",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 10,
+    "answers": 10,
+    "solutions": 0,
+    "exported": 10,
+    "skipped": 0
+  }
+}

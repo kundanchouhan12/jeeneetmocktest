@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(C) Water (HO)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Photophosphorylation is the synthesis of ATP using energy from:",
+    "options": [
+      "Respiration",
+      "Light",
+      "Chemical reactions",
+      "Fermentation"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(C) Water (HO)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Ferredoxin functions as an electron carrier during:",
+    "options": [
+      "Dark reaction",
+      "Light reaction in PSI",
+      "Glycolysis",
+      "Krebs cycle"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(C) Water (HO)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "CAM plants open their stomata at night to:",
+    "options": [
+      "Lose water",
+      "Option B",
+      "Absorb oxygen",
+      "Release excess sugar"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

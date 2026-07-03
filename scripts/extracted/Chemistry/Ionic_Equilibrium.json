@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Ionic_Equilibrium_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Ionic_Equilibrium_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Equilibrium",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:51",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nTwo salts  and MX have the same value of solubility product of  The ratio of  \ntheir molar solubilities i.e. ____.  \n(Round of f to the Nearest Integer).",
+      "answer_key": "50",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 2) - Numerical\nSulphurous acid  has  and  The  of  \nis ___ (Round of f to the Nearest Integer)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\n0.01 moles of a weak acid  is dissolved in  of  solution. The degree of\ndissociation of HA is ______  \n(Round of f to the Nearest Integer).  \n[Neglect volume change on adding HA. Assume degree of dissociation",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nIn order to prepare a buf fer solution of pH 5.74 sodium acetate is added to acetic acid. If the  \nconcentration of acetic acid in the buf fer is 1.0  \n the concentration of sodium acetate in the  \nbuffer is ___ M.(Round of f to the Nearest Integer).  \n[Given:pKa (acetic acid)",
+      "answer_key": "10",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\nThe solubility of  in water is  Its solubility in   solution is_____  \n(Round of f to the Nearest integer) (Assume that solubility is much less than  )\n Ionic Equilibrium\n#PaperPhodnaHai\n=S(A2X)\nS(MX)\n(H2SO3) Ka1=1.7×10−2Ka2=6.4×10−8. pH0.588MH2SO3\nHA(Ka=2.0×10−6) 1.0 L0.1MHCl\n×10−5\n<<1]\nM,\n=4.74]\nCdSO4 8.0×10−4 mol L−1. 0.01MH2SO4\n0.01M",
+      "answer_key": "64",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}

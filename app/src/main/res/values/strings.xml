@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">JEE NEET Mock Test</string>
+
+    <!-- Meta (Facebook) Audience Network — replace with values from Meta for Developers console -->
+    <string name="facebook_app_id">1526778102155457</string>
+    <string name="facebook_client_token">680e39e8e6a92bc1578a6d9524384cc0</string>
+    <string name="start_test">Start Test</string>
+    <string name="submit_test">Submit Test</string>
+    <string name="mark_review">Mark for Review</string>
+    <string name="clear_response">Clear Response</string>
+    <string name="watch_ad_unlock">Watch Ad to Unlock Solutions</string>
+    <string name="time_remaining">Time Remaining</string>
+    <string name="your_score">Your Score</string>
+    <string name="correct_answers">Correct</string>
+    <string name="wrong_answers">Wrong</string>
+    <string name="unattempted">Unattempted</string>
+    <string name="percentile">Percentile</string>
+</resources>

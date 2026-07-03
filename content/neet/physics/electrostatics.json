@@ -1,0 +1,110 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The electric field inside a uniformly charged hollow conducting sphere is:",
+    "options": [
+      "Maximum at center",
+      "Zero",
+      "Same as outside",
+      "Infinite"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Coulomb's law gives the force between two point charges. If the distance is doubled, the force becomes:",
+    "options": [
+      "4 times",
+      "Half",
+      "Double",
+      "One-fourth"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official answer key option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The unit of electric potential is:",
+    "options": [
+      "Newton",
+      "Joule",
+      "Volt",
+      "Coulomb"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "A capacitor of 5 \u00b5F is connected to a 10 V battery. The charge stored is:",
+    "options": [
+      "0.5 C",
+      "50 \u00b5C",
+      "2 \u00b5C",
+      "0.02 C"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Electric field lines never intersect because:",
+    "options": [
+      "They are parallel",
+      "At any point, the field has a unique direction",
+      "They have the same magnitude",
+      "None of the above Page 9 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The dielectric constant of a vacuum is:",
+    "options": [
+      "0",
+      "1",
+      "Infinity",
+      "Option D"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

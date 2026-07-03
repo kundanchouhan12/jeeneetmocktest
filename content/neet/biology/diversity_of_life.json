@@ -1,0 +1,74 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Diversity of Life",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which kingdom includes organisms with cell walls made of chitin?",
+    "options": [
+      "Monera",
+      "Plantae",
+      "Fungi",
+      "Protista"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Diversity of Life",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The binomial nomenclature system was introduced by:",
+    "options": [
+      "Darwin",
+      "Mendel",
+      "Linnaeus",
+      "Lamarck"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Diversity of Life",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Viruses are not considered living organisms primarily because they:",
+    "options": [
+      "Have no DNA",
+      "Cannot reproduce without a host cell",
+      "Lack a cell membrane",
+      "Have no proteins"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "Diversity of Life",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NCERT defines five kingdoms. Name them and give one distinguishing feature of each. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

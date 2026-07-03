@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics (Chem)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "\u0394G < 0 for a reaction indicates that the reaction is:",
+    "options": [
+      "Non-spontaneous",
+      "At equilibrium",
+      "Spontaneous",
+      "Endothermic"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics (Chem)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Hess's law is based on conservation of:",
+    "options": [
+      "Mass",
+      "Charge",
+      "Energy",
+      "Momentum"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics (Chem)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The standard enthalpy of formation of an element in its standard state is:",
+    "options": [
+      "Positive",
+      "Negative",
+      "Zero",
+      "Undefined"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics (Chem)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Entropy of the universe in a spontaneous process:",
+    "options": [
+      "Decreases",
+      "Increases",
+      "Remains same",
+      "Becomes zero"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics (Chem)",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Calculate \u0394G at 300 K if \u0394H = -30 kJ/mol and \u0394S = -100 J/mol\u00b7K. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

@@ -1,0 +1,35 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Mar_2021\\Electrostatics_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Electrostatics_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Electrostatics",
+  "year": 2021,
+  "extracted_at": "2026-05-23T18:15:35",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 2) - Single Corr ect\nFind out the surface char ge density at the intersection of point  plane and  -axis, in the region of\nuniform line char ge of  lying along the  -axis in free space.\n(1) 0.424 \n(2) 47.88 \n(3) 0.07 \n(4) 4.0",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nThe electric field in a region is given by  \n with  The \nflux of this field through a rectangular surface  \narea  parallel to the  plane is ________",
+      "answer_key": "640",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "18 Mar ch (Shift 1) - Single Corr ect\nA plane electromagnetic wave of frequency  is travelling in vacuum along the  direction. At a\nparticular point in space and time,  where  is unit vector along z-direction) What is \nat this point?\n(1) \n(2) \n(3) \n(4) \n Electrostatics\n#PaperPhodnaHai\n8nC/m z\nnCm−2\nC/m\nnCm−2\nnCm−2\n→\nE=E0^i+E0^j2\n53\n5E0=4.0×103⋅N\nC\n0.4 m2Y−Z Nm2C−1\n100MHz x−\n→\nB=2.0×10−8^kT⋅( ,^k→\nE\n0.6^jV/m\n6.0^kV/m\n6.0^jV/m\n0.6^kV/m",
+      "answer_key": "3",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 3,
+    "answers": 3,
+    "solutions": 0,
+    "exported": 3,
+    "skipped": 0
+  }
+}

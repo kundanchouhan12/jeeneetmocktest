@@ -1,0 +1,53 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Feb_2021\\Chemical_Bonding_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Chemical_Bonding_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Chemical Bonding",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:11:07",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Single Corr ect\nWhich of the following are isostructural pairs?  \n(A)  and  \n(B)  and  \n(c)  and \n(D)  and \n(1) A and  only\n(2)  and  only\n(3)  and  only\n(4)  and  only",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nThe correct shape and I-I-I bond angles respectively in  ion are :\n(1) T rigonal planar; \n(2) Distorted trigonal planar;  and \n(3) Linear; \n(4) T -shaped;  and",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "25 Feb (Shift 1) - Single Corr ect\nAccording to molecular orbital theory , the species among the following that does not exist is:\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 2) - Single Corr ect\nWhich among the following species has unequal bond lengths ?\n Chemical Bonding\n#PaperPhodnaHai\n4CrO2−\n4\nSiCl4 TiCl4\nNH3 NO−\n3\nBCl3 BrCl3\nC\nA B\nB C\nC D\nI−\n3\n120∘\n135∘90∘\n180∘\n180∘90∘\nHe−\n2\nHe2+\n2\nO2−\n2\nBe2\n \n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "4",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 1) - Single Corr ect\nGiven below are two statements : one is labelled as Assertion A and the other is labelled as Reason R.  \nAssertion A : Dipole-dipole interactions are the only non-covalent interactions, resulting in hydrogen bond\nformation  \nReason R : Fluorine is the most electronegative element and hydrogen bonds in HF are symmetrical In the\nlight of the above statements, choose the most appropriate answer from the options given below :\n(1)  is false but  is true\n(2) Both  and  are true and  is the correct explanation of \n(3)  is true but  is false\n(4) Both  and  are true and  is not the correct explanation of",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "26 Feb (Shift 2) - Single Corr ect\nMatch List-I with List-II.  \nChoose the correct answer from the options given below:\n(1) \n(2) \n(3) \n Chemical Bonding\n#PaperPhodnaHai\nSiF4\nBF−\n4\nSF4\nA R\nA R R A\nA R\nA R R A\n(a)−(iii),(b)−(iv),(c)−(i),(d)−(iii)\n(a)−(i),(b)−(ii),(c)−(iii),(d)−(iv)\n(a)−(ii),(b)−(i),(c)−(iv),(d)−(iii)\n \n(4) \n Chemical Bonding\n#PaperPhodnaHai",
+      "answer_key": "1",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 6,
+    "answers": 6,
+    "solutions": 0,
+    "exported": 6,
+    "skipped": 0
+  }
+}

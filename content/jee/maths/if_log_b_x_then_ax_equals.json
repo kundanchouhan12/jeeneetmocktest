@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "If log b = x, then a^x equals:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Solve: 2^(x+1) = 32 Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "If log b = x, then a^x equals:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "0",
+      "2",
+      "4",
+      "1"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

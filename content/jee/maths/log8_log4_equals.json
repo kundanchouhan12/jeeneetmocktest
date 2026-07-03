@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "log(8) + log(4) equals:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The number of ways to arrange 5 books in a row is:",
+    "options": [
+      "25",
+      "60",
+      "120",
+      "150 Page 46 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

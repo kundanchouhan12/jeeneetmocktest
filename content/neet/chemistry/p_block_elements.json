@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "p-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The most electronegative element is:",
+    "options": [
+      "Oxygen",
+      "Chlorine",
+      "Fluorine",
+      "Nitrogen"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "p-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which noble gas is used in balloons instead of hydrogen?",
+    "options": [
+      "Neon",
+      "Argon",
+      "Helium",
+      "Krypton"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "p-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Ozone layer is found in:",
+    "options": [
+      "Troposphere",
+      "Mesosphere",
+      "Stratosphere",
+      "Thermosphere"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "p-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Which halogen is a liquid at room temperature?",
+    "options": [
+      "Fluorine",
+      "Chlorine",
+      "Bromine",
+      "Iodine"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "p-Block Elements",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "High electronegativity",
+      "Tendency to form p\u03c0-p\u03c0 bonds",
+      "Inability to form p\u03c0-p\u03c0 bonds readily",
+      "High atomic radius"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

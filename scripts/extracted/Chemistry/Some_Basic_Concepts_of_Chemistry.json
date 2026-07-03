@@ -1,0 +1,71 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Chemistry\\Mar_2021\\Some_Basic_Concepts_of_Chemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "Some_Basic_Concepts_of_Chemistry_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Chemistry",
+  "chapter": "Some Basic Concepts Of Chemistry",
+  "year": 2021,
+  "extracted_at": "2026-05-30T19:58:51",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nComplete combustion of  of an or ganic compound provides  of  and  of  The\npercentage composition of carbon and hydrogen in or ganic compound is 15.3 and....respectively . (Round of f to\nthe Nearest Integer)",
+      "answer_key": "3",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "16 Mar ch (Shift 1) - Numerical\nA 6.50 molal solution of  (aq.) has a density of . The molarity of the solution is_____\n. (Round of f to the Nearest Integer).  \n[Atomic masses:",
+      "answer_key": "9",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nIn the above reaction,  of benzene on nitration gives  of nitrobenzene. The percentage yield of\nnitrobenzene in the above reaction is ____  (Round of f to the Nearest Integer).  \nGiven atomic mass :",
+      "answer_key": "80",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "17 Mar ch (Shift 1) - Numerical\nThe mole fraction of a solute in a 100 molal aqueous solution ____  \n(Round of f to the Nearest Integer).",
+      "answer_key": "64",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\n is doped with  mole percent of . The number of cationic vacancies in  of  crystal is\n____\n Some Basic Concepts of Chemistry\n#PaperPhodnaHai\nKOH 1.89 g cm−3\nmoldm−3\nK:39.0u;O:16.0u;H:1.0u]\n3.9 g 4.92 g\n%.\nC:12.0u,H:1.0uO:16.0u,N:14.0u\n×10−2\nKBr 10−5SrBr2 1 gKBr\n \n. (Round of f to the Nearest Integer). [Atomic Mass :",
+      "answer_key": "5",
+      "solution": ""
+    },
+    {
+      "q_num": 6,
+      "raw_text": "17 Mar ch (Shift 2) - Numerical\nConsider the above reaction. The percentage yield of amide product is ____ (Round of f to the Nearest Integer).\n(Given : Atomic mass:",
+      "answer_key": "77",
+      "solution": ""
+    },
+    {
+      "q_num": 7,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\n____ grams of 3-Hydroxy propanal  must be dehydrated to produce  of acrolein \n if the percentage yield is 64. (Round of f to the Nearest Integer).  \n[Given : Atomic masses: C: 12.0 u,",
+      "answer_key": "16",
+      "solution": ""
+    },
+    {
+      "q_num": 8,
+      "raw_text": "18 Mar ch (Shift 1) - Numerical\nComplete combustion of  of ethane gives  molecules of water . The value of  is____(Round of f to\nthe Nearest Integer).  \n[Use : ; Atomic masses in u",
+      "answer_key": "18",
+      "solution": ""
+    },
+    {
+      "q_num": 9,
+      "raw_text": "18 Mar ch (Shift 2) - Numerical\n Some Basic Concepts of Chemistry\n#PaperPhodnaHai\nNA=6.023×1023]\nC:12.0u,H:1.0u\nN:14.0u,O:16.0u,Cl:35.5u)\n(MW=74) 7.8 g\n(MW=56)(C3H4O)\nH:1.0u,O:16.0u]\n3 g x×1022x\nNA=6.023×1023:C:12.0;O:16.0;H:1.0]\n \nConsider the above reaction where  of benzoic acid is used to get  of  -bromo  \nbenzoic acid. The percentage yield of the product is______  \n(Round of f to the Nearest integer)  \n[Given : Atomic masses :  \n Some Basic Concepts of Chemistry\n#PaperPhodnaHai\nC=12.0u,H:1.0u,\nO:16.0u,Br=80.0u]",
+      "answer_key": "78",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 9,
+    "answers": 9,
+    "solutions": 0,
+    "exported": 9,
+    "skipped": 0
+  }
+}

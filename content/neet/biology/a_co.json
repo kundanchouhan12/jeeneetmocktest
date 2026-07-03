@@ -1,0 +1,92 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) CO",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "BOD (Biological Oxygen Demand) is a measure of:",
+    "options": [
+      "Oxygen in atmosphere",
+      "Organic pollution in water",
+      "Biodiversity",
+      "Soil fertility"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) CO",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "An organism that obtains energy by breaking down dead organic matter is called a:",
+    "options": [
+      "Producer",
+      "Consumer",
+      "Decomposer",
+      "Parasite"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) CO",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Biomagnification refers to the increase in concentration of toxins with:",
+    "options": [
+      "Decreasing temperature",
+      "Increasing trophic levels",
+      "Increasing biodiversity",
+      "Decreasing population Page 82 JEE + NEET Master Practice Workbook"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) CO",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Ex-situ conservation includes:",
+    "options": [
+      "National parks",
+      "Biosphere reserves",
+      "Zoological parks and seed banks",
+      "Wildlife sanctuaries"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(A) CO",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Project Tiger in India was launched in:",
+    "options": [
+      "1965",
+      "1973",
+      "1982",
+      "1991"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

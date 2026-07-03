@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ─── Dark Mode Colors ─── -->
+
+    <!-- Backgrounds -->
+    <color name="bg_primary">#FF080E1A</color>
+    <color name="bg_secondary">#FF0E1829</color>
+    <color name="bg_tertiary">#FF1A2540</color>
+    <color name="bg_surface">#FF060C16</color>
+
+    <!-- Text colors -->
+    <color name="text_primary">#FFFFFFFF</color>
+    <color name="text_secondary">#FFE2E8F0</color>
+    <color name="text_tertiary">#FF94A3B8</color>
+    <color name="text_muted">#FF64748B</color>
+
+    <!-- Primary brand (Gold in dark mode) -->
+    <color name="color_primary">#FFF59E0B</color>
+    <color name="color_primary_dark">#FFD97706</color>
+
+    <!-- Gold -->
+    <color name="gold_primary">#FFF59E0B</color>
+    <color name="gold_light">#FFFBBF24</color>
+    <color name="gold_dark">#FFD97706</color>
+
+    <!-- Gradient header colors -->
+    <color name="gradient_start">#FF1A2A5E</color>
+    <color name="gradient_center">#FF0F1D4A</color>
+    <color name="gradient_end">#FF080E1A</color>
+
+    <!-- Divider -->
+    <color name="divider">#1AFFFFFF</color>
+
+    <!-- Subject accent colors -->
+    <color name="subject_physics">#FF3B82F6</color>
+    <color name="subject_chemistry">#FF10B981</color>
+    <color name="subject_maths">#FFF59E0B</color>
+    <color name="subject_biology">#FF22C55E</color>
+
+    <!-- Home screen card gradient colors (darker for dark mode) -->
+    <color name="card_mock_test_start">#FF6A1B9A</color>
+    <color name="card_mock_test_end">#FF9C27B0</color>
+    <color name="card_physics_start">#FFC2185B</color>
+    <color name="card_physics_end">#FFE91E63</color>
+    <color name="card_chemistry_start">#FF00695C</color>
+    <color name="card_chemistry_end">#FF00897B</color>
+    <color name="card_maths_start">#FF0D47A1</color>
+    <color name="card_maths_end">#FF1976D2</color>
+    <color name="card_full_test_start">#FF1B5E20</color>
+    <color name="card_full_test_end">#FF2E7D32</color>
+    <color name="card_pyqs_start">#FFBF360C</color>
+    <color name="card_pyqs_end">#FFE64A19</color>
+
+    <!-- Status colors -->
+    <color name="correct_green">#FF22C55E</color>
+    <color name="wrong_red">#FFEF4444</color>
+    <color name="review_orange">#FFFB923C</color>
+    <color name="marked_purple">#FFA855F7</color>
+    <color name="skipped_gray">#FF64748B</color>
+
+    <!-- Buttons -->
+    <color name="btn_gradient_start">#FFF59E0B</color>
+    <color name="btn_gradient_end">#FFD97706</color>
+    <color name="btn_outlined_border">#33F59E0B</color>
+</resources>

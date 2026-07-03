@@ -1,0 +1,47 @@
+{
+  "pdf_path": "D:\\JEE_PDFs\\Physics\\Feb_2021\\EM_Waves_Click_here_to_download_Click_here_to_download.pdf",
+  "pdf_name": "EM_Waves_Click_here_to_download_Click_here_to_download.pdf",
+  "subject": "Physics",
+  "chapter": "Wave Motion",
+  "year": 2021,
+  "extracted_at": "2026-05-23T17:00:29",
+  "questions": [
+    {
+      "q_num": 1,
+      "raw_text": "24 Feb (Shift 1) - Numerical\nAn electromagnetic wave of frequency , is travelling in a medium whose relative electric permittivity and\nrelative magnetic permeability both are 2. Its velocity in this medium is ____",
+      "answer_key": "15",
+      "solution": ""
+    },
+    {
+      "q_num": 2,
+      "raw_text": "24 Feb (Shift 2) - Single Corr ect\nMatch List - I with List - II. List - I  List - II  \nChoose the correct answer from the options given below :\n(1) \n(2) \n(3) \n(4)",
+      "answer_key": "1",
+      "solution": ""
+    },
+    {
+      "q_num": 3,
+      "raw_text": "24 Feb (Shift 2) - Numerical\nAn electromagnetic wave of frequency  enters a dielectric medium of relative electric permittivity 2.25 from\nvacuum. The wavelength of this wave in that medium wil be ____",
+      "answer_key": "667",
+      "solution": ""
+    },
+    {
+      "q_num": 4,
+      "raw_text": "25 Feb (Shift 2) - Numerical\nThe peak electric field produced by the radiation coming from the  bulb at a distance of 10 m is . The\nefficiency of the bulb is  and it is a point source. The value of  is",
+      "answer_key": "2",
+      "solution": ""
+    },
+    {
+      "q_num": 5,
+      "raw_text": "26 Feb (Shift 1) - Numerical\nA radiation is emitted by  bulb and it generates an electric field and magnetic field at  placed at a distance of\n. The ef ficiency of the bulb is . The value of peak electric field at  is . Value of  is ____.\n EM W aves\n#PaperPhodnaHai\n×107 m/s\n(a)−(ii),(b)−(iv),(c)−(i),(d)−(iii)\n(a)−(vi),(b)−(iv),(c)−(i),(d)−(v)\n(a)−(ii),(b)−(iv),(c)−(vi),(d)−(iii)\n(a)−(vi),(b)−(v),(c)−(i),(d)−(iv)\n3GHz\n×10−2 cm\n8 W √x\n10μ0c\nπV\nm\n10% x\n1000 W Pt\n2 m 1.25% Px×10−1V/m x\n \n(Rounded-of f to the nearest integer) [T ake \n EM W aves\n#PaperPhodnaHai",
+      "answer_key": "137",
+      "solution": ""
+    }
+  ],
+  "stats": {
+    "q_blocks": 5,
+    "answers": 5,
+    "solutions": 0,
+    "exported": 5,
+    "skipped": 0
+  }
+}
