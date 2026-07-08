@@ -1,0 +1,488 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "In a historical experiment to determine Planck's constant, a metal surface was irradiated with light of different wavelengths. The emitted photoelectron energies were measured by applying a stopping potential. The relevant data for the wavelength$(\\lambda)$of incident light and the corresponding stopping potential$\\left(V_{0}\\right)$are given below :\nThe measured data: at λ = 0.3 μm, V₀ = 2.0 V; at λ = 0.4 μm, V₀ = 1.0 V; at λ = 0.5 μm, V₀ = 0.4 V.\nGiven that$c=3 \\times 10^{8} \\mathrm{~m} \\mathrm{~s}^{-1}$and$e=1.6 \\times 10^{-19} C$, Planck's constant (in units of$J \\mathrm{~s}$) found from such an experiment is",
+    "options": [
+      "$6.0 \\times 10^{-34}$",
+      "$6.4 \\times 10^{-34}$",
+      "$6.6 \\times 10^{-34}$",
+      "$6.8 \\times 10^{-34}$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Rotational Motion",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "A uniform wooden stick of mass$1.6 \\mathrm{~kg}$and length$l$rests in an inclined manner on a smooth, vertical wall of height$h(<l)$such that a small portion of the stick extends beyond the wall. The reaction force of the wall on the stick is perpendicular to the stick. The stick makes an angle of$30^{\\circ}$with the wall and the bottom of the stick is on a rough floor. The reaction of the wall on the stick is equal in magnitude to the reaction of the floor on the stick. The ratio$h / l$and the frictional force$f$at the bottom of the stick are\n$\\left(g=10 \\mathrm{~ms} \\mathrm{~s}^{2}\\right)$",
+    "options": [
+      "$\\frac{h}{l}=\\frac{\\sqrt{3}}{16}, f=\\frac{16 \\sqrt{3}}{3} \\mathrm{~N}$",
+      "$\\frac{h}{l}=\\frac{3}{16}, f=\\frac{16 \\sqrt{3}}{3} \\mathrm{~N}$",
+      "$\\frac{h}{l}=\\frac{3 \\sqrt{3}}{16}, f=\\frac{8 \\sqrt{3}}{3} \\mathrm{~N}$",
+      "$\\frac{h}{l}=\\frac{3 \\sqrt{3}}{16}, f=\\frac{16 \\sqrt{3}}{3} \\mathrm{~N}$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "The electrostatic energy of$Z$protons uniformly distributed throughout a spherical nucleus of radius$R$is given by\n\\[\nE=\\frac{3}{5} \\frac{Z(Z-1) e^{2}}{4 \\pi \\varepsilon_{0} R}\n\\]\nThe measured masses of the neutron,${ }_{1}^{1} \\mathrm{H},{ }_{7}^{15} \\mathrm{~N}$and${ }_{8}^{15} \\mathrm{O}$are$1.008665 \\mathrm{u}, 1.007825 \\mathrm{u}$,$15.000109 \\mathrm{u}$and$15.003065 \\mathrm{u}$, respectively. Given that the radii of both the${ }_{7}^{15} \\mathrm{~N}$and${ }_{8}^{15} \\mathrm{O}$nuclei are same,$1 \\mathrm{u}=931.5 \\mathrm{MeV} / c^{2}$($c$is the speed of light) and$e^{2} /\\left(4 \\pi \\varepsilon_{0}\\right)=1.44 \\mathrm{MeV} \\mathrm{fm}$. Assuming that the difference between the binding energies of${ }_{7}^{15} \\mathrm{~N}$and${ }_{8}^{15} \\mathrm{O}$is purely due to the electrostatic energy, the radius of either of the nuclei is\n$\\left(1 \\mathrm{fm}=10^{-15} \\mathrm{~m}\\right)$",
+    "options": [
+      "$2.85 \\mathrm{fm}$",
+      "$3.03 \\mathrm{fm}$",
+      "$3.42 \\mathrm{fm}$",
+      "$3.80 \\mathrm{fm}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "An accident in a nuclear laboratory resulted in deposition of a certain amount of radioactive material of half-life 18 days inside the laboratory. Tests revealed that the radiation was 64 times more than the permissible level required for safe operation of the laboratory. What is the minimum number of days after which the laboratory can be considered safe for use?",
+    "options": [
+      "64",
+      "90",
+      "108",
+      "120"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "A gas is enclosed in a cylinder with a movable frictionless piston. Its initial thermodynamic state at pressure$P_{i}=10^{5} \\mathrm{~Pa}$and volume$V_{i}=10^{-3} \\mathrm{~m}^{3}$changes to a final state at$P_{f}=(1 / 32) \\times 10^{5} \\mathrm{~Pa}$and$V_{f}=8 \\times 10^{-3} \\mathrm{~m}^{3}$in an adiabatic quasi-static process, such that$P^{3} V^{5}=$constant. Consider another thermodynamic process that brings the system from the same initial state to the same final state in two steps: an isobaric expansion at$P_{i}$followed by an isochoric (isovolumetric) process at volume$V_{f}$. The amount of heat supplied to the system in the two-step process is approximately",
+    "options": [
+      "$112 \\mathrm{~J}$",
+      "$294 \\mathrm{~J}$",
+      "$588 \\mathrm{~J}$",
+      "$813 \\mathrm{~J}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "The ends$\\mathrm{Q}$and$\\mathrm{R}$of two thin wires,$\\mathrm{PQ}$and RS, are soldered (joined) together. Initially each of the wires has a length of$1 \\mathrm{~m}$at$10^{\\circ} C$. Now the end$P$is maintained at$10^{\\circ} C$, while the end$\\mathrm{S}$is heated and maintained at$400^{\\circ} C$. The system is thermally insulated from its surroundings. If the thermal conductivity of wire$\\mathrm{PQ}$is twice that of the wire$R S$and the coefficient of linear thermal expansion of$\\mathrm{PQ}$is$1.2 \\times 10^{-5} \\mathrm{~K}^{-1}$, the change in length of the wire$P Q$is",
+    "options": [
+      "$0.78 \\mathrm{~mm}$",
+      "$0.90 \\mathrm{~mm}$",
+      "$1.56 \\mathrm{~mm}$",
+      "$2.34 \\mathrm{~mm}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Mathematics In Physics",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "Consider an expanding sphere of instantaneous radius$R$whose total mass remains constant. The expansion is such that the instantaneous density$\\rho$remains uniform throughout the volume. The rate of fractional change in density$\\left(\\frac{1}{\\rho} \\frac{d \\rho}{d t}\\right)$is constant. The velocity$v$of any point on the surface of the expanding sphere is proportional to",
+    "options": [
+      "$R$",
+      "$R^{3}$",
+      "$\\frac{1}{R}$",
+      "$R^{2 / 3}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "A photoelectric material having work-function$\\phi_{0}$is illuminated with light of wavelength$\\lambda\\left(\\lambda<\\frac{h c}{\\phi_{0}}\\right)$. The fastest photoelectron has a de Broglie wavelength$\\lambda_{d}$. A change in wavelength of the incident light by$\\Delta \\lambda$results in a change$\\Delta \\lambda_{d}$in$\\lambda_{d}$. Then the ratio$\\Delta \\lambda_{d} / \\Delta \\lambda$is proportional to",
+    "options": [
+      "$\\lambda_{d} / \\lambda$",
+      "$\\lambda_{d}^{2} / \\lambda^{2}$",
+      "$\\lambda_{d}^{3} / \\lambda$",
+      "$\\lambda_{d}^{3} / \\lambda^{2}$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "A rocket is launched normal to the surface of the Earth, away from the Sun, along the line joining the Sun and the Earth. The Sun is$3 \\times 10^{5}$times heavier than the Earth and is at a distance$2.5 \\times 10^{4}$times larger than the radius of the Earth. The escape velocity from Earth's gravitational field is$v_{e}=11.2 \\mathrm{~km} \\mathrm{~s}^{-1}$. The minimum initial velocity$\\left(v_{S}\\right)$required for the rocket to be able to leave the Sun-Earth system is closest to\n(Ignore the rotation and revolution of the Earth and the presence of any other planet)",
+    "options": [
+      "$v_{S}=22 \\mathrm{~km} \\mathrm{~s}^{-1}$",
+      "$v_{S}=42 \\mathrm{~km} \\mathrm{~s}^{-1}$",
+      "$v_{S}=62 \\mathrm{~km} \\mathrm{~s}^{-1}$",
+      "$v_{S}=72 \\mathrm{~km} \\mathrm{~s}^{-1}$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "A person measures the depth of a well by measuring the time interval between dropping a stone and receiving the sound of impact with the bottom of the well. The error in his measurement of time is$\\delta T=0.01$seconds and he measures the depth of the well to be$L=20$meters. Take the acceleration due to gravity$g=10 \\mathrm{~ms}^{-2}$and the velocity of sound is$300 \\mathrm{~ms}^{-1}$. Then the fractional error in the measurement,$\\delta L / L$, is closest to",
+    "options": [
+      "$0.2 \\%$",
+      "$1 \\%$",
+      "$3 \\%$",
+      "$5 \\%$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 2019,
+    "questionText": "Consider a spherical gaseous cloud of mass density$\\rho(r)$in free space where$r$is the radial distance from its center. The gaseous cloud is made of particles of equal mass$m$moving in circular orbits about the common center with the same kinetic energy$K$. The force acting on the particles is their mutual gravitational force. If$\\rho(r)$is constant in time, the particle number density$n(r)=\\rho(r) / m$is\n[$G$is universal gravitational constant]",
+    "options": [
+      "$\\frac{K}{2 \\pi r^{2} m^{2} G}$",
+      "$\\frac{K}{\\pi r^{2} m^{2} G}$",
+      "$\\frac{3 K}{\\pi r^{2} m^{2} G}$",
+      "$\\frac{K}{6 \\pi r^{2} m^{2} G}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electrostatics",
+    "difficulty": "Hard",
+    "year": 2019,
+    "questionText": "A thin spherical insulating shell of radius$R$carries a uniformly distributed charge such that the potential at its surface is$V_{0}$. A hole with a small area$\\alpha 4 \\pi R^{2}(\\alpha \\ll 1)$is made on the shell without affecting the rest of the shell. Which one of the following statements is correct?",
+    "options": [
+      "The potential at the center of the shell is reduced by$2 \\alpha V_{0}$",
+      "The magnitude of electric field at the center of the shell is reduced by$\\frac{\\alpha V_{0}}{2 R}$",
+      "The ratio of the potential at the center of the shell to that of the point at$\\frac{1}{2} R$from center towards the hole will be$\\frac{1-\\alpha}{1-2 \\alpha}$",
+      "The magnitude of electric field at a point, located on a line passing through the hole and shell's center, on a distance$2 R$from the center of the spherical shell will be reduced by$\\frac{\\alpha V_{0}}{2 R}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 2019,
+    "questionText": "A current carrying wire heats a metal rod. The wire provides a constant power$(P)$to the rod. The metal rod is enclosed in an insulated container. It is observed that the temperature$(T)$in the metal rod changes with time$(t)$as\n\\[\nT(t)=T_{0}\\left(1+\\beta t^{\\frac{1}{4}}\\right)\n\\]\nwhere$\\beta$is a constant with appropriate dimension while$T_{0}$is a constant with dimension of temperature. The heat capacity of the metal is,",
+    "options": [
+      "$\\frac{4 P\\left(T(t)-T_{0}\\right)^{3}}{\\beta^{4} T_{0}^{4}}$",
+      "$\\frac{4 P\\left(T(t)-T_{0}\\right)^{4}}{\\beta^{4} T_{0}^{5}}$",
+      "$\\frac{4 P\\left(T(t)-T_{0}\\right)^{2}}{\\beta^{4} T_{0}^{3}}$",
+      "$\\frac{4 P\\left(T(t)-T_{0}\\right)}{\\beta^{4} T_{0}^{2}}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2019,
+    "questionText": "In a radioactive sample,${ }_{19}^{40} \\mathrm{~K}$nuclei either decay into stable${ }_{20}^{40} \\mathrm{Ca}$nuclei with decay constant$4.5 \\times 10^{-10}$per year or into stable${ }_{18}^{40} \\mathrm{Ar}$nuclei with decay constant$0.5 \\times 10^{-10}$per year. Given that in this sample all the stable${ }_{20}^{40} \\mathrm{Ca}$and${ }_{18}^{40} \\mathrm{Ar}$nuclei are produced by the${ }_{19}^{40} \\mathrm{~K}$nuclei only. In time$t \\times 10^{9}$years, if the ratio of the sum of stable${ }_{20}^{40} \\mathrm{Ca}$and${ }_{18}^{40} \\mathrm{Ar}$nuclei to the radioactive${ }_{19}^{40} \\mathrm{~K}$nuclei is 99 , the value of$t$will be,\n[Given:$\\ln 10=2.3]$",
+    "options": [
+      "1.15",
+      "9.2",
+      "2.3",
+      "4.6"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2021,
+    "questionText": "A heavy nucleus$Q$of half-life 20 minutes undergoes alpha-decay with probability of$60 \\%$and beta-decay with probability of$40 \\%$. Initially, the number of$Q$nuclei is 1000. The number of alpha-decays of$Q$in the first one hour is",
+    "options": [
+      "50",
+      "75",
+      "350",
+      "525"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "List I describes thermodynamic processes in four different systems. List II gives the magnitudes (either exactly or as a close approximation) of possible changes in the internal energy of the system due to the process.\nList-I\n(I)$10^{-3} \\mathrm{~kg}$of water at$100^{\\circ} C$is converted to steam at the same temperature, at a pressure of$10^5 \\mathrm{~Pa}$. The volume of the system changes from$10^{-6} \\mathrm{~m}^3$to$10^{-3} \\mathrm{~m}^3$in the process. Latent heat of water$=2250 \\mathrm{~kJ} / \\mathrm{kg}$.\n(II) 0.2 moles of a rigid diatomic ideal gas with volume$V$at temperature$500 \\mathrm{~K}$undergoes an isobaric expansion to volume$3 \\mathrm{~V}$. Assume$R=8.0 \\mathrm{~J} \\mathrm{~mol}^{-1} \\mathrm{~K}^{-1}$.\n(III) One mole of a monatomic ideal gas is compressed adiabatically from volume$V=\\frac{1}{3} m^3$and pressure$2 \\mathrm{kPa}$to volume$\\frac{V}{8}$.\n(IV) Three moles of a diatomic ideal gas whose molecules can vibrate, is given$9 \\mathrm{~kJ}$of heat and undergoes isobaric expansion.\nList-II\n(P)$2 \\mathrm{~kJ}$\n(Q)$7 \\mathrm{~kJ}$\n(R)$4 \\mathrm{~kJ}$\n(S)$5 \\mathrm{~kJ}$\n(T)$3 \\mathrm{~kJ}$\nWhich one of the following options is correct?",
+    "options": [
+      "$\\mathrm{I} \\rightarrow \\mathrm{T}$, II$\\rightarrow$R, III$\\rightarrow \\mathrm{S}$, IV$\\rightarrow$Q,",
+      "I$\\rightarrow \\mathrm{S}$, II$\\rightarrow$P, III$\\rightarrow \\mathrm{T}$, IV$\\rightarrow$P,",
+      "I$\\rightarrow$P, II$\\rightarrow$R, III$\\rightarrow$T, IV$\\rightarrow$Q.",
+      "I$\\rightarrow$Q, II$\\rightarrow$R, III$\\rightarrow \\mathrm{S}$, IV$\\rightarrow \\mathrm{T}$,"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "When light of a given wavelength is incident on a metallic surface, the minimum potential needed to stop the emitted photoelectrons is$6.0 \\mathrm{~V}$. This potential drops to$0.6 \\mathrm{~V}$if another source with wavelength four times that of the first one and intensity half of the first one is used. What are the wavelength of the first source and the work function of the metal, respectively? [Take$\\frac{h c}{e}=1.24 \\times$$10^{-6} \\mathrm{~J} \\mathrm{mC}^{-1}$.]",
+    "options": [
+      "$1.72 \\times 10^{-7} \\mathrm{~m}, 1.20 \\mathrm{eV}$",
+      "$1.72 \\times 10^{-7} \\mathrm{~m}, 5.60 \\mathrm{eV}$",
+      "$3.78 \\times 10^{-7} \\mathrm{~m}, 5.60 \\mathrm{eV}$",
+      "$3.78 \\times 10^{-7} \\mathrm{~m}, 1.20 \\mathrm{eV}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "Area of the cross-section of a wire is measured using a screw gauge. The pitch of the main scale is$0.5 \\mathrm{~mm}$. The circular scale has 100 divisions and for one full rotation of the circular scale, the main scale shifts by two divisions. The measured readings are listed below.\nMeasured readings: with the arms of the gauge touching (no wire) — main scale 0 division, circular scale 4 divisions. Attempt 1 with wire — main scale 4 divisions, circular scale 20 divisions. Attempt 2 with wire — main scale 4 divisions, circular scale 16 divisions.\nWhat are the diameter and cross-sectional area of the wire measured using the screw gauge?",
+    "options": [
+      "$2.22 \\pm 0.02 \\mathrm{~mm}, \\pi(1.23 \\pm 0.02) \\mathrm{mm}^{2}$",
+      "$2.22 \\pm 0.01 \\mathrm{~mm}, \\pi(1.23 \\pm 0.01) \\mathrm{mm}^{2}$",
+      "$2.14 \\pm 0.02 \\mathrm{~mm}, \\pi(1.14 \\pm 0.02) \\mathrm{mm}^{2}$",
+      "$2.14 \\pm 0.01 \\mathrm{~mm}, \\pi(1.14 \\pm 0.01) \\mathrm{mm}^{2}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Rotational Motion",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "A bar of mass$M=1.00 \\mathrm{~kg}$and length$L=0.20 \\mathrm{~m}$is lying on a horizontal frictionless surface. One end of the bar is pivoted at a point about which it is free to rotate. A small mass$m=0.10 \\mathrm{~kg}$is moving on the same horizontal surface with$5.00 \\mathrm{~m} \\mathrm{~s}^{-1}$speed on a path perpendicular to the bar. It hits the bar at a distance$L / 2$from the pivoted end and returns back on the same path with speed$\\mathrm{v}$. After this elastic collision, the bar rotates with an angular velocity$\\omega$. Which of the following statement is correct?",
+    "options": [
+      "$\\omega=6.98 \\mathrm{rad} \\mathrm{s}^{-1}$and$\\mathrm{v}=4.30 \\mathrm{~m} \\mathrm{~s}^{-1}$",
+      "$\\omega=3.75 \\mathrm{rad} \\mathrm{s}^{-1}$and$\\mathrm{v}=4.30 \\mathrm{~m} \\mathrm{~s}^{-1}$",
+      "$\\omega=3.75 \\mathrm{rad} \\mathrm{s}^{-1}$and$\\mathrm{v}=10.0 \\mathrm{~m} \\mathrm{~s}^{-1}$",
+      "$\\omega=6.80 \\mathrm{rad} \\mathrm{s}^{-1}$and$\\mathrm{v}=4.10 \\mathrm{~m} \\mathrm{~s}^{-1}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermodynamics",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "One mole of an ideal gas expands adiabatically from an initial state$\\left(T_{A}, V_{0}\\right)$to final state$\\left(T_{\\mathrm{f}}, 5 V_{0}\\right)$. Another mole of the same gas expands isothermally from a different initial state$\\left(T_{B}, V_{0}\\right)$to the same final state$\\left(T_{\\mathrm{f}}, 5 V_{0}\\right)$. The ratio of the specific heats at constant pressure and constant volume of this ideal gas is$\\gamma$. What is the ratio$T_{A} / T_{B}$?",
+    "options": [
+      "$5^{\\gamma-1}$",
+      "$5^{1-\\gamma}$",
+      "$5^{\\gamma}$",
+      "$5^{1+\\gamma}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "Two satellites$\\mathrm{P}$and$\\mathrm{Q}$are moving in different circular orbits around the Earth (radius$R$). The heights of$\\mathrm{P}$and$\\mathrm{Q}$from the Earth surface are$h_{\\mathrm{P}}$and$h_{\\mathrm{Q}}$, respectively, where$h_{\\mathrm{P}}=R / 3$. The accelerations of$\\mathrm{P}$and$\\mathrm{Q}$due to Earth's gravity are$g_{\\mathrm{P}}$and$g_{\\mathrm{Q}}$, respectively. If$g_{\\mathrm{P}} / g_{\\mathrm{Q}}=36 / 25$, what is the value of$h_{\\mathrm{Q}}$?",
+    "options": [
+      "$3 R / 5$",
+      "$R / 6$",
+      "$6 R / 5$",
+      "$5 R / 6$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Modern Physics",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "List-I shows different radioactive decay processes and List-II provides possible emitted particles. Match each entry in List-I with an appropriate entry from List-II, and choose the correct option.\nList-I\n(P)${ }_{92}^{238} U \\rightarrow{ }_{91}^{234} \\mathrm{~Pa}$\n(Q)${ }_{82}^{214} \\mathrm{~Pb} \\rightarrow{ }_{82}^{210} \\mathrm{~Pb}$\n(R)${ }_{81}^{210} \\mathrm{Tl} \\rightarrow{ }_{82}^{206} \\mathrm{~Pb}$\n(S)${ }_{91}^{228} \\mathrm{~Pa} \\rightarrow{ }_{88}^{224} \\mathrm{Ra}$\nList-II\n(1) one$\\alpha$particle and one$\\beta^{+}$particle\n(2) three$\\beta^{-}$particles and one$\\alpha$particle\n(3) two$\\beta^{-}$particles and one$\\alpha$particle\n(4) one$\\alpha$particle and one$\\beta^{-}$particle\n(5) one$\\alpha$particle and two$\\beta^{+}$particles",
+    "options": [
+      "$P \\rightarrow 4, Q \\rightarrow 3, R \\rightarrow 2, S \\rightarrow 1$",
+      "$P \\rightarrow 4, Q \\rightarrow 1, R \\rightarrow 2, S \\rightarrow 5$",
+      "$P \\rightarrow 5, Q \\rightarrow 3, R \\rightarrow 1, S \\rightarrow 4$",
+      "$P \\rightarrow 5, Q \\rightarrow 1, R \\rightarrow 3, S \\rightarrow 2$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "Match the temperature of a black body given in List-I with an appropriate statement in List-II, and choose the correct option.\n[Given: Wien's constant as$2.9 \\times 10^{-3} \\mathrm{~m}-\\mathrm{K}$and$\\frac{h c}{e}=1.24 \\times 10^{-6} \\mathrm{~V}-\\mathrm{m}$]\nList-I\n(P)$2000 \\mathrm{~K}$\n(Q)$3000 \\mathrm{~K}$\n(R)$5000 \\mathrm{~K}$\n(S)$10000 \\mathrm{~K}$\nList-II\n(1) The radiation at peak wavelength can lead to emission of photoelectrons from a metal of work function$4 \\mathrm{eV}$.\n(2) The radiation at peak wavelength is visible to human eye.\n(3) The radiation at peak emission wavelength will result in the widest central maximum of a single slit diffraction.\n(4) The power emitted per unit area is$1 / 16$of that emitted by a blackbody at temperature$6000 \\mathrm{~K}$.\n(5) The radiation at peak emission wavelength can be used to image human bones.",
+    "options": [
+      "$P \\rightarrow 3, Q \\rightarrow 5, R \\rightarrow 2, S \\rightarrow 3$",
+      "$P \\rightarrow 3, Q \\rightarrow 2, R \\rightarrow 4, S \\rightarrow 1$",
+      "$P \\rightarrow 3, Q \\rightarrow 4, R \\rightarrow 2, S \\rightarrow 1$",
+      "$P \\rightarrow 1, Q \\rightarrow 2, R \\rightarrow 5, S \\rightarrow 3$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "A series LCR circuit is connected to a$45 \\sin (\\omega t)$Volt source. The resonant angular frequency of the circuit is$10^{5} \\mathrm{rad} \\mathrm{s}^{-1}$and current amplitude at resonance is$I_{0}$. When the angular frequency of the source is$\\omega=8 \\times 10^{4} \\mathrm{rad} \\mathrm{s}^{-1}$, the current amplitude in the circuit is$0.05 I_{0}$. If$L=50 \\mathrm{mH}$, match each entry in List-I with an appropriate value from List-II and choose the correct option.\nList-I\n(P)$I_{0}$in$\\mathrm{mA}$\n(Q) The quality factor of the circuit\n(R) The bandwidth of the circuit in$\\mathrm{rad} \\mathrm{s}^{-1}$\n(S) The peak power dissipated at resonance in Watt\nList-II\n(1) 44.4\n(2) 18\n(3) 400\n(4) 2250\n(5) 500",
+    "options": [
+      "$P \\rightarrow 2, Q \\rightarrow 3, R \\rightarrow 5, S \\rightarrow 1$",
+      "$P \\rightarrow 3, Q \\rightarrow 1, R \\rightarrow 4, S \\rightarrow 2$",
+      "$P \\rightarrow 4, Q \\rightarrow 5, R \\rightarrow 3, S \\rightarrow 1$",
+      "$P \\rightarrow 4, Q \\rightarrow 2, R \\rightarrow 1, S \\rightarrow 5$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "Young's modulus of elasticity$Y$is expressed in terms of three derived quantities, namely, the gravitational constant$G$, Planck's constant$h$and the speed of light$c$, as$Y=c^{\\alpha} h^{\\beta} G^{\\gamma}$. Which of the following is the correct option?",
+    "options": [
+      "$\\alpha=7, \\beta=-1, \\gamma=-2$",
+      "$\\alpha=-7, \\beta=-1, \\gamma=-2$",
+      "$\\alpha=7, \\beta=-1, \\gamma=2$",
+      "$\\alpha=-7, \\beta=1, \\gamma=-2$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Motion In Two Dimension",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "A particle of mass$m$is moving in the$x y$-plane such that its velocity at a point$(x, y)$is given as$\\overrightarrow{\\mathrm{v}}=\\alpha(y \\hat{x}+2 x \\hat{y})$, where$\\alpha$is a non-zero constant. What is the force$\\vec{F}$acting on the particle?",
+    "options": [
+      "$\\vec{F}=2 m \\alpha^{2}(x \\hat{x}+y \\hat{y})$",
+      "$\\vec{F}=m \\alpha^{2}(y \\hat{x}+2 x \\hat{y})$",
+      "$\\vec{F}=2 m \\alpha^{2}(y \\hat{x}+x \\hat{y})$",
+      "$\\vec{F}=m \\alpha^{2}(x \\hat{x}+2 y \\hat{y})$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "An ideal gas is in thermodynamic equilibrium. The number of degrees of freedom of a molecule of the gas is$n$. The internal energy of one mole of the gas is$U_{n}$and the speed of sound in the gas is$\\mathrm{v}_{n}$. At a fixed temperature and pressure, which of the following is the correct option?",
+    "options": [
+      "$v_{3}<v_{6}$and$U_{3}>U_{6}$",
+      "$v_{5}>v_{3}$and$U_{3}>U_{5}$",
+      "$v_{5}>v_{7}$and$U_{5}<U_{7}$",
+      "$v_{6}<v_{7}$and$U_{6}<U_{7}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

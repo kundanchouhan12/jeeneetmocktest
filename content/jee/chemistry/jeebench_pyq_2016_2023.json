@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "One mole of an ideal gas at$300 \\mathrm{~K}$in thermal contact with surroundings expands isothermally from$1.0 \\mathrm{~L}$to$2.0 \\mathrm{~L}$against a constant pressure of$3.0 \\mathrm{~atm}$. In this process, the change in entropy of surroundings$\\left(\\Delta S_{\\text {surr }}\\right)$in$\\mathrm{J} \\mathrm{K}^{-1}$is\n(1$\\mathrm{L} \\operatorname{atm}=101.3 \\mathrm{~J})$",
+    "options": [
+      "5.763",
+      "1.013",
+      "-1.013",
+      "-5.763"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Classification Of Elements",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "The increasing order of atomic radii of the following Group 13 elements is",
+    "options": [
+      "$\\mathrm{Al}<\\mathrm{Ga}<\\mathrm{In}<\\mathrm{Tl}$",
+      "$\\mathrm{Ga}<\\mathrm{Al}<\\mathrm{In}<\\mathrm{Tl}$",
+      "$\\mathrm{Al}<\\mathrm{In}<\\mathrm{Ga}<\\mathrm{Tl}$",
+      "$\\mathrm{Al}<\\mathrm{Ga}<\\mathrm{Tl}<\\mathrm{In}$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "Among$[\\mathrm{Ni(CO)}_{4}]$,$[\\mathrm{NiCl}_{4}]^{2-}$,$[\\mathrm{Co(NH_3)_{4}Cl_2}]\\mathrm{Cl}$,$\\mathrm{Na_3}[\\mathrm{CoF_6}]$,$\\mathrm{Na_2O_2}$and$\\mathrm{CsO_2}$number of paramagnetic compounds is",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrocarbons",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "On complete hydrogenation, natural rubber produces",
+    "options": [
+      "ethylene-propylene copolymer",
+      "vulcanised rubber",
+      "polypropylene",
+      "polybutylene"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "For the following electrochemical cell at$298 \\mathrm{~K}$,\n$\\mathrm{Pt}(s) \\mid \\mathrm{H}_{2}(g, 1$bar$)\\left|\\mathrm{H}^{+}(aq, 1 \\mathrm{M}) \\| \\mathrm{M}^{4+}(aq), \\mathrm{M}^{2+}(aq)\\right| \\operatorname{Pt}(s)$\n$E_{\\text {cell }}=0.092 \\mathrm{~V}$when$\\frac{\\left[\\mathrm{M}^{2+}(aq)\\right]}{\\left[M^{4+}(aq)\\right]}=10^{x}$.\nGiven :$E_{\\mathrm{M}^{4} / \\mathrm{M}^{2+}}^{0}=0.151 \\mathrm{~V} ; 2.303 \\frac{R T}{F}=0.059 \\mathrm{~V}$\nThe value of$x$is",
+    "options": [
+      "-2",
+      "-1",
+      "1",
+      "2"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2016,
+    "questionText": "The geometries of the ammonia complexes of$\\mathrm{Ni}^{2+}, \\mathrm{Pt}^{2+}$and$\\mathrm{Zn}^{2+}$, respectively, are",
+    "options": [
+      "octahedral, square planar and tetrahedral",
+      "square planar, octahedral and tetrahedral",
+      "tetrahedral, square planar and octahedral",
+      "octahedral, tetrahedral and square planar"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "For the following cell,\n\\[\n\\mathrm{Zn}(s)\\left|\\mathrm{ZnSO}_{4}(a q) \\| \\mathrm{CuSO}_{4}(a q)\\right| \\mathrm{Cu}(s)\n\\]\nwhen the concentration of$\\mathrm{Zn}^{2+}$is 10 times the concentration of$\\mathrm{Cu}^{2+}$, the expression for$\\Delta G\\left(\\right.$in$\\left.\\mathrm{J} \\mathrm{mol}^{-1}\\right)$is\n[$\\mathrm{F}$is Faraday constant;$\\mathrm{R}$is gas constant;$\\mathrm{T}$is temperature;$E^{o}($cell$)=1.1 \\mathrm{~V}$]",
+    "options": [
+      "$1.1 \\mathrm{~F}$",
+      "$2.303 \\mathrm{RT}-2.2 \\mathrm{~F}$",
+      "$2.303 \\mathrm{RT}+1.1 \\mathrm{~F}$",
+      "$-2.2 \\mathrm{~F}$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Thermodynamics",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "The standard state Gibbs free energies of formation of$C$(graphite) and$C$(diamond) at$\\mathrm{T}=298 \\mathrm{~K}$are\n\\[\n\\begin{gathered}\n\\Delta_{f} G^{o}[C(\\text { graphite })]=0 \\mathrm{~kJ} \\mathrm{~mol}\n\\Delta_{f} G^{o}[C(\\text { diamond })]=2.9 \\mathrm{~kJ} \\mathrm{~mol}^{-1} .\n\\end{gathered}\n\\]\nThe standard state means that the pressure should be 1 bar, and substance should be pure at a given temperature. The conversion of graphite [ C(graphite)] to diamond [ C(diamond)] reduces its volume by$2 \\times 10^{-6} \\mathrm{~m}^{3} \\mathrm{~mol}^{-1}$. If$C$(graphite) is converted to$C$(diamond) isothermally at$\\mathrm{T}=298 \\mathrm{~K}$, the pressure at which$C$(graphite) is in equilibrium with$C($diamond), is\n[Useful information:$1 \\mathrm{~J}=1 \\mathrm{~kg} \\mathrm{~m}^{2} \\mathrm{~s}^{-2} ; 1 \\mathrm{~Pa}=1 \\mathrm{~kg} \\mathrm{~m}^{-1} \\mathrm{~s}^{-2} ; 1$bar$=10^{5} \\mathrm{~Pa}$]",
+    "options": [
+      "14501 bar",
+      "58001 bar",
+      "1450 bar",
+      "29001 bar"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "Which of the following combination will produce$\\mathrm{H}_{2}$gas?",
+    "options": [
+      "Fe metal and conc.$\\mathrm{HNO}_{3}$",
+      "Cu metal and conc.$\\mathrm{HNO}_{3}$",
+      "$\\mathrm{Zn}$metal and$\\mathrm{NaOH}(\\mathrm{aq})$",
+      "Au metal and$\\mathrm{NaCN}(\\mathrm{aq})$in the presence of air"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "P-Block Elements",
+    "difficulty": "Hard",
+    "year": 2017,
+    "questionText": "The order of the oxidation state of the phosphorus atom in$\\mathrm{H}_{3} \\mathrm{PO}_{2}, \\mathrm{H}_{3} \\mathrm{PO}_{4}, \\mathrm{H}_{3} \\mathrm{PO}_{3}$, and$\\mathrm{H}_{4} \\mathrm{P}_{2} \\mathrm{O}_{6}$is",
+    "options": [
+      "$\\mathrm{H}_{3} \\mathrm{PO}_{3}>\\mathrm{H}_{3} \\mathrm{PO}_{2}>\\mathrm{H}_{3} \\mathrm{PO}_{4}>\\mathrm{H}_{4} \\mathrm{P}_{2} \\mathrm{O}_{6}$",
+      "$\\mathrm{H}_{3} \\mathrm{PO}_{4}>\\mathrm{H}_{3} \\mathrm{PO}_{2}>\\mathrm{H}_{3} \\mathrm{PO}_{3}>\\mathrm{H}_{4} \\mathrm{P}_{2} \\mathrm{O}_{6}$",
+      "$\\mathrm{H}_{3} \\mathrm{PO}_{4}>\\mathrm{H}_{4} \\mathrm{P}_{2} \\mathrm{O}_{6}>\\mathrm{H}_{3} \\mathrm{PO}_{3}>\\mathrm{H}_{3} \\mathrm{PO}_{2}$",
+      "$\\mathrm{H}_{3} \\mathrm{PO}_{2}>\\mathrm{H}_{3} \\mathrm{PO}_{3}>\\mathrm{H}_{4} \\mathrm{P}_{2} \\mathrm{O}_{6}>\\mathrm{H}_{3} \\mathrm{PO}_{4}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2019,
+    "questionText": "The green colour produced in the borax bead test of a chromium(III) salt is due to",
+    "options": [
+      "$\\mathrm{Cr}\\left(\\mathrm{BO}_{2}\\right)_{3}$",
+      "$\\mathrm{Cr}_{2}\\left(\\mathrm{~B}_{4} \\mathrm{O}_{7}\\right)_{3}$",
+      "$\\mathrm{Cr}_{2} \\mathrm{O}_{3}$",
+      "$\\mathrm{CrB}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "P-Block Elements",
+    "difficulty": "Hard",
+    "year": 2019,
+    "questionText": "Calamine, malachite, magnetite and cryolite, respectively, are",
+    "options": [
+      "$\\mathrm{ZnSO}_{4}, \\mathrm{CuCO}_{3}, \\mathrm{Fe}_{2} \\mathrm{O}_{3}, \\mathrm{AlF}_{3}$",
+      "$\\mathrm{ZnSO}_{4}, \\mathrm{Cu}(\\mathrm{OH})_{2}, \\mathrm{Fe}_{3} \\mathrm{O}_{4}, \\mathrm{Na}_{3} \\mathrm{AlF}_{6}$",
+      "$\\mathrm{ZnCO}_{3}, \\mathrm{CuCO}_{3} \\cdot \\mathrm{Cu}(\\mathrm{OH})_{2}, \\mathrm{Fe}_{3} \\mathrm{O}_{4}, \\mathrm{Na}_{3} \\mathrm{AlF}_{6}$",
+      "$\\mathrm{ZnCO}_{3}, \\mathrm{CuCO}_{3}, \\mathrm{Fe}_{2} \\mathrm{O}_{3}, \\mathrm{Na}_{3} \\mathrm{AlF}_{6}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "S-Block Elements",
+    "difficulty": "Hard",
+    "year": 2020,
+    "questionText": "Which of the following liberates$\\mathrm{O}_{2}$upon hydrolysis?",
+    "options": [
+      "$\\mathrm{Pb}_{3} \\mathrm{O}_{4}$",
+      "$\\mathrm{KO}_{2}$",
+      "$\\mathrm{Na}_{2} \\mathrm{O}_{2}$",
+      "$\\mathrm{Li}_{2} \\mathrm{O}_{2}$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2020,
+    "questionText": "A colorless aqueous solution contains nitrates of two metals,$\\mathbf{X}$and$\\mathbf{Y}$. When it was added to an aqueous solution of$\\mathrm{NaCl}$, a white precipitate was formed. This precipitate was found to be partly soluble in hot water to give a residue$\\mathbf{P}$and a solution$\\mathbf{Q}$. The residue$\\mathbf{P}$was soluble in aq.$\\mathrm{NH}_{3}$and also in excess sodium thiosulfate. The hot solution$\\mathbf{Q}$gave a yellow precipitate with KI. The metals$\\mathbf{X}$and$\\mathbf{Y}$, respectively, are",
+    "options": [
+      "Ag and$\\mathrm{Pb}$",
+      "Ag and Cd",
+      "$\\mathrm{Cd}$and$\\mathrm{Pb}$",
+      "Cd and Zn"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2021,
+    "questionText": "The calculated spin only magnetic moments of$\\left[\\mathrm{Cr}\\left(\\mathrm{NH}_{3}\\right)_{6}\\right]^{3+}$and$\\left[\\mathrm{CuF}_{6}\\right]^{3-}$in$\\mathrm{BM}$, respectively, are\n(Atomic numbers of$\\mathrm{Cr}$and$\\mathrm{Cu}$are 24 and 29, respectively)",
+    "options": [
+      "3.87 and 2.84",
+      "4.90 and 1.73",
+      "3.87 and 1.73",
+      "4.90 and 2.84"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrocarbons",
+    "difficulty": "Hard",
+    "year": 2021,
+    "questionText": "Correct match of the$\\mathbf{C}-\\mathbf{H}$bonds (shown in bold) in Column$\\mathbf{J}$with their BDE in Column$\\mathbf{K}$is\n(P) H-CH(CH₃)₂ → BDE 132 kcal/mol; (Q) H-CH₂Ph → BDE 110 kcal/mol; (R) H-CH=CH₂ → BDE 95 kcal/mol; (S) H-C≡CH → BDE 88 kcal/mol.",
+    "options": [
+      "$P$- iii,$Q$- iv, R - ii, S - i",
+      "$P-i, Q-i i, R-$iii, S - iv",
+      "P - iii, Q - ii, R - i, S - iv",
+      "$P-i i, Q-i, R-i v, S-i i i$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2021,
+    "questionText": "The reaction of$\\mathrm{K}_3\\left[\\mathrm{Fe}(\\mathrm{CN})_6\\right]$with freshly prepared$\\mathrm{FeSO}_4$solution produces a dark blue precipitate called Turnbull's blue. Reaction of$\\mathrm{K}_4\\left[\\mathrm{Fe}(\\mathrm{CN})_6\\right]$with the$\\mathrm{FeSO}_4$solution in complete absence of air produces a white precipitate$\\mathbf{X}$, which turns blue in air. Mixing the$\\mathrm{FeSO}_4$solution with$\\mathrm{NaNO}_3$, followed by a slow addition of concentrated$\\mathrm{H}_2 \\mathrm{SO}_4$through the side of the test tube produces a brown ring. Precipitate$\\mathbf{X}$is",
+    "options": [
+      "$\\mathrm{Fe}_{4}\\left[\\mathrm{Fe}(\\mathrm{CN})_{6}\\right]_{3}$",
+      "$\\mathrm{Fe}\\left[\\mathrm{Fe}(\\mathrm{CN})_{6}\\right]$",
+      "$\\mathrm{K}_{2} \\mathrm{Fe}\\left[\\mathrm{Fe}(\\mathrm{CN})_{6}\\right]$",
+      "$\\mathrm{KFe}\\left[\\mathrm{Fe}(\\mathrm{CN})_{6}\\right]$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2021,
+    "questionText": "The reaction of$\\mathrm{K}_3\\left[\\mathrm{Fe}(\\mathrm{CN})_6\\right]$with freshly prepared$\\mathrm{FeSO}_4$solution produces a dark blue precipitate called Turnbull's blue. Reaction of$\\mathrm{K}_4\\left[\\mathrm{Fe}(\\mathrm{CN})_6\\right]$with the$\\mathrm{FeSO}_4$solution in complete absence of air produces a white precipitate$\\mathbf{X}$, which turns blue in air. Mixing the$\\mathrm{FeSO}_4$solution with$\\mathrm{NaNO}_3$, followed by a slow addition of concentrated$\\mathrm{H}_2 \\mathrm{SO}_4$through the side of the test tube produces a brown ring. Among the following, the brown ring is due to the formation of",
+    "options": [
+      "$\\left[\\mathrm{Fe}(\\mathrm{NO})_{2}\\left(\\mathrm{SO}_{4}\\right)_{2}\\right]^{2-}$",
+      "$\\left[\\mathrm{Fe}(\\mathrm{NO})_{2}\\left(\\mathrm{H}_{2} \\mathrm{O}\\right)_{4}\\right]^{3+}$",
+      "$\\left[\\mathrm{Fe}(\\mathrm{NO})_{4}\\left(\\mathrm{SO}_{4}\\right)_{2}\\right]$",
+      "$\\left[\\mathrm{Fe}(\\mathrm{NO})\\left(\\mathrm{H}_{2} \\mathrm{O}\\right)_{5}\\right]^{2+}$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "S-Block Elements",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "LIST-I contains compounds and LIST-II contains reactions\nLIST-I\n(I)$\\mathrm{H}_2 \\mathrm{O}_2$\n(II)$\\mathrm{Mg}(\\mathrm{OH})_2$\n(III)$\\mathrm{BaCl}_2$\n(IV)$\\mathrm{CaCO}_3$\nLIST-II\n(P)$\\mathrm{Mg}\\left(\\mathrm{HCO}_{3}\\right)_{2}+\\mathrm{Ca}(\\mathrm{OH})_{2} \\rightarrow$\n(Q)$\\mathrm{BaO}_{2}+\\mathrm{H}_{2} \\mathrm{SO}_{4} \\rightarrow$\n(R)$\\mathrm{Ca}(\\mathrm{OH})_{2}+\\mathrm{MgCl}_{2} \\rightarrow$\n(S)$\\mathrm{BaO}_{2}+\\mathrm{HCl} \\rightarrow$\n(T)$\\mathrm{Ca}\\left(\\mathrm{HCO}_{3}\\right)_{2}+\\mathrm{Ca}(\\mathrm{OH})_{2} \\rightarrow$\nMatch each compound in LIST-I with its formation reaction(s) in LIST-II, and choose the correct option",
+    "options": [
+      "I$\\rightarrow$Q; II$\\rightarrow$P; III$\\rightarrow \\mathrm{S}$; IV$\\rightarrow$R",
+      "I$\\rightarrow$T; II$\\rightarrow$P; III$\\rightarrow$Q; IV$\\rightarrow \\mathrm{R}$",
+      "I$\\rightarrow$T; II$\\rightarrow$R; III$\\rightarrow$Q; IV$\\rightarrow$P",
+      "I$\\rightarrow$Q; II$\\rightarrow$R; III$\\rightarrow \\mathrm{S}$; IV$\\rightarrow \\mathrm{P}$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "LIST-I contains metal species and LIST-II contains their properties.\nLIST-I\n(I)$\\left[\\mathrm{Cr}(\\mathrm{CN})_{6}\\right]^{4-}$\n(II)$\\left[\\mathrm{RuCl}_{6}\\right]^{2-}$\n(III)$\\left[\\mathrm{Cr}\\left(\\mathrm{H}_{2} \\mathrm{O}\\right)_{6}\\right]^{2+}$\n(IV)$\\left[\\mathrm{Fe}\\left(\\mathrm{H}_{2} \\mathrm{O}\\right)_{6}\\right]^{2+}$\nLIST-II\n(P)$t_{2 \\mathrm{~g}}$orbitals contain 4 electrons\n(Q)$\\mu$(spin-only$=4.9 \\mathrm{BM}$\n(R) low spin complex ion\n(S) metal ion in$4+$oxidation state\n(T)$d^{4}$species\n[Given: Atomic number of$\\mathrm{Cr}=24, \\mathrm{Ru}=44, \\mathrm{Fe}=26$]\nMatch each metal species in LIST-I with their properties in LIST-II, and choose the correct option",
+    "options": [
+      "I$\\rightarrow$R, T; II$\\rightarrow$P, S; III$\\rightarrow$Q, T; IV$\\rightarrow$P, Q",
+      "I$\\rightarrow$R, S; II$\\rightarrow$P, T; III$\\rightarrow$P, Q; IV$\\rightarrow$Q, T",
+      "I$\\rightarrow \\mathrm{P}, \\mathrm{R} ; \\mathrm{II} \\rightarrow \\mathrm{R}, \\mathrm{S}$; III$\\rightarrow \\mathrm{R}, \\mathrm{T}$; IV$\\rightarrow \\mathrm{P}, \\mathrm{T}$",
+      "I$\\rightarrow$Q, T; II$\\rightarrow \\mathrm{S}, \\mathrm{T}$; III$\\rightarrow \\mathrm{P}, \\mathrm{T}$; IV$\\rightarrow \\mathrm{Q}, \\mathrm{R}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Organic Chemistry Basics",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "Match the compounds in LIST-I with the observations in LIST-II, and choose the correct option.\nLIST-I\n(I) Aniline\n(II)$o$-Cresol\n(III) Cysteine\n(IV) Caprolactam\nLIST-II\n(P) Sodium fusion extract of the compound on boiling with$\\mathrm{FeSO}_{4}$, followed by acidification with conc.$\\mathrm{H}_{2} \\mathrm{SO}_{4}$, gives Prussian blue color.\n(Q) Sodium fusion extract of the compound on treatment with sodium nitroprusside gives blood red color.\n(R) Addition of the compound to a saturated solution of$\\mathrm{NaHCO}_{3}$results in effervescence.\n(S) The compound reacts with bromine water to give a white precipitate.\n(T) Treating the compound with neutral$\\mathrm{FeCl}_{3}$solution produces violet color.",
+    "options": [
+      "$\\mathrm{I} \\rightarrow \\mathrm{P}, \\mathrm{Q}$; II$\\rightarrow \\mathrm{S}$; III$\\rightarrow \\mathrm{Q}$, R; IV$\\rightarrow \\mathrm{P}$",
+      "$\\mathrm{I} \\rightarrow \\mathrm{P}$; II$\\rightarrow \\mathrm{R}, \\mathrm{S}$; III$\\rightarrow \\mathrm{R}$; IV$\\rightarrow \\mathrm{Q}, \\mathrm{S}$",
+      "$\\mathrm{I} \\rightarrow \\mathrm{Q}, \\mathrm{S}$; II$\\rightarrow \\mathrm{P}, \\mathrm{T}$; III$\\rightarrow \\mathrm{P}$; IV$\\rightarrow \\mathrm{S}$",
+      "$\\mathrm{I} \\rightarrow \\mathrm{P}, \\mathrm{S}$; II$\\rightarrow \\mathrm{T}$; III$\\rightarrow \\mathrm{Q}, \\mathrm{R}$; IV$\\rightarrow \\mathrm{P}$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Solid State",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "Atom$\\mathrm{X}$occupies the fcc lattice sites as well as alternate tetrahedral voids of the same lattice. The packing efficiency (in %) of the resultant solid is closest to",
+    "options": [
+      "25",
+      "35",
+      "55",
+      "75"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "P-Block Elements",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "The reaction of$\\mathrm{HClO}_{3}$with$\\mathrm{HCl}$gives a paramagnetic gas, which upon reaction with$\\mathrm{O}_{3}$produces",
+    "options": [
+      "$\\mathrm{Cl}_{2} \\mathrm{O}$",
+      "$\\mathrm{ClO}_{2}$",
+      "$\\mathrm{Cl}_{2} \\mathrm{O}_{6}$",
+      "$\\mathrm{Cl}_{2} \\mathrm{O}_{7}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2022,
+    "questionText": "The reaction of$\\mathrm{Pb}\\left(\\mathrm{NO}_{3}\\right)_{2}$and$\\mathrm{NaCl}$in water produces a precipitate that dissolves upon the addition of$\\mathrm{HCl}$of appropriate concentration. The dissolution of the precipitate is due to the formation of",
+    "options": [
+      "$\\mathrm{PbCl}_{2}$",
+      "$\\mathrm{PbCl}_{4}$",
+      "$\\left[\\mathrm{PbCl}_{4}\\right]^{2-}$",
+      "$\\left[\\mathrm{PbCl}_{6}\\right]^{2-}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official JEE Advanced answer key: option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Electrochemistry",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "Plotting$1 / \\Lambda_{\\mathrm{m}}$against$\\mathrm{c} \\Lambda_{\\mathrm{m}}$for aqueous solutions of a monobasic weak acid (HX) resulted in a straight line with y-axis intercept of$\\mathrm{P}$and slope of$\\mathrm{S}$. The ratio$\\mathrm{P} / \\mathrm{S}$is\n$\\left[\\Lambda_{\\mathrm{m}}=\\right.$molar conductivity\n$\\Lambda_{\\mathrm{m}}^{\\mathrm{o}}=$limiting molar conductivity\n$\\mathrm{c}=$molar concentration\n$\\mathrm{K}_{\\mathrm{a}}=$dissociation constant of$\\mathrm{HX}$]",
+    "options": [
+      "$\\mathrm{K}_{\\mathrm{a}} \\Lambda_{\\mathrm{m}}^{\\mathrm{o}}$",
+      "$\\mathrm{K}_{\\mathrm{a}} \\Lambda_{\\mathrm{m}}^{\\mathrm{o}} / 2$",
+      "$2 \\mathrm{~K}_{\\mathrm{a}} \\Lambda_{\\mathrm{m}}^{\\mathrm{o}}$",
+      "$1 /\\left(\\mathrm{K}_{\\mathrm{a}} \\Lambda_{\\mathrm{m}}^{\\mathrm{o}}\\right)$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Equilibrium",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "On decreasing the$p \\mathrm{H}$from 7 to 2, the solubility of a sparingly soluble salt (MX) of a weak acid (HX) increased from$10^{-4} \\mathrm{~mol} \\mathrm{~L}^{-1}$to$10^{-3} \\mathrm{~mol} \\mathrm{~L}^{-1}$. The$p\\mathrm{~K}_{\\mathrm{a}}$of$\\mathrm{HX}$is",
+    "options": [
+      "3",
+      "4",
+      "5",
+      "2"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official JEE Advanced answer key: option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "P-Block Elements",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "Match the reactions (in the given stoichiometry of the reactants) in List-I with one of their products given in List-II and choose the correct option.\nList-I\n(P)$\\mathrm{P}_{2} \\mathrm{O}_{3}+3 \\mathrm{H}_{2} \\mathrm{O} \\rightarrow$\n(Q)$\\mathrm{P}_{4}+3 \\mathrm{NaOH}+3 \\mathrm{H}_{2} \\mathrm{O} \\rightarrow$\n(R)$\\mathrm{PCl}_{5}+\\mathrm{CH}_{3} \\mathrm{COOH} \\rightarrow$\n(S)$\\mathrm{H}_{3} \\mathrm{PO}_{2}+2 \\mathrm{H}_{2} \\mathrm{O}+4 \\mathrm{AgNO}_{3} \\rightarrow$\nList-II\n(1)$\\mathrm{P}(\\mathrm{O})\\left(\\mathrm{OCH}_{3}\\right) \\mathrm{Cl}_{2}$\n(2)$\\mathrm{H}_{3} \\mathrm{PO}_{3}$\n(3)$\\mathrm{PH}_{3}$\n(4)$\\mathrm{POCl}_{3}$\n(5)$\\mathrm{H}_{3} \\mathrm{PO}_{4}$",
+    "options": [
+      "$\\mathrm{P} \\rightarrow 2$;$\\mathrm{Q} \\rightarrow 3$;$\\mathrm{R} \\rightarrow 1$;$\\mathrm{S} \\rightarrow 5$",
+      "$\\mathrm{P} \\rightarrow 3$; Q$\\rightarrow 5$; R$\\rightarrow 4$;$\\mathrm{S} \\rightarrow 2$",
+      "$\\mathrm{P} \\rightarrow 5 ; \\mathrm{Q} \\rightarrow 2 ; \\mathrm{R} \\rightarrow 1$; S$\\rightarrow 3$",
+      "P$\\rightarrow 2$; Q$\\rightarrow 3$; R$\\rightarrow 4$;$\\mathrm{S} \\rightarrow 5$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Coordination Compounds",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "Match the electronic configurations in List-I with appropriate metal complex ions in List-II and choose the correct option.\n[Atomic Number:$\\mathrm{Fe}=26, \\mathrm{Mn}=25$,$\\mathrm{Co}=27$]\nList-I\n(P)$t_{2 g}^{6} e_{g}^{0}$\n(Q)$t_{2 g}^{3} e_{g}^{2}$\n(R)$\\mathrm{e}^{2} \\mathrm{t}_{2}^{3}$\n(S)$t_{2 g}^{4} e_{g}^{2}$\nList-II\n(1)$\\left[\\mathrm{Fe}\\left(\\mathrm{H}_{2} \\mathrm{O}\\right)_{6}\\right]^{2+}$\n(2)$\\left[\\mathrm{Mn}\\left(\\mathrm{H}_{2} \\mathrm{O}\\right)_{6}\\right]^{2+}$\n(3)$\\left[\\mathrm{Co}\\left(\\mathrm{NH}_{3}\\right)_{6}\\right]^{3+}$\n(4)$\\left[\\mathrm{FeCl}_{4}\\right]^{-}$\n(5)$\\left[\\mathrm{CoCl}_{4}\\right]^{2-}$",
+    "options": [
+      "$\\mathrm{P} \\rightarrow 1$; Q$\\rightarrow 4$;$\\mathrm{R} \\rightarrow 2$;$\\mathrm{S} \\rightarrow 3$",
+      "$\\mathrm{P} \\rightarrow 1 ; \\mathrm{Q} \\rightarrow 2 ; \\mathrm{R} \\rightarrow 4 ; \\mathrm{S} \\rightarrow 5$",
+      "$\\mathrm{P} \\rightarrow 3 ; \\mathrm{Q} \\rightarrow 2 ; \\mathrm{R} \\rightarrow 5 ; \\mathrm{S} \\rightarrow 1$",
+      "$\\mathrm{P} \\rightarrow 3 ; \\mathrm{Q} \\rightarrow 2 ; \\mathrm{R} \\rightarrow 4$;$\\mathrm{S} \\rightarrow 1$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Aldehydes, Ketones And Carboxylic Acids",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "The major products obtained from the reactions in List-II are the reactants for the named reactions mentioned in List-I. Match List-I with List-II and choose the correct option.\nList-I\n(P) Etard reaction\n(Q) Gattermann reaction\n(R) Gattermann-Koch reaction\n(S) Rosenmund reduction\nList-II\n(1) Acetophenone$\\stackrel{\\mathrm{Zn}-\\mathrm{Hg}, \\mathrm{HCl}}{\\longrightarrow}$\n(2) Toluene$\\underset{\\text{(ii)}\\mathrm{SOCl}_{2}}{\\stackrel{\\text { (i) } \\mathrm{KMnO}_{4}, \\mathrm{KOH}, \\Delta}{\\longrightarrow}}$\n(3) Benzene$\\underset{\\text { anhyd. } \\mathrm{AlCl}_{3}}{\\stackrel{\\mathrm{CH}_{3} \\mathrm{Cl}}{\\longrightarrow}}$\n(4) Aniline$\\underset{273-278 \\mathrm{~K}}{\\stackrel{\\mathrm{NaNO}_{2} / \\mathrm{HCl}}{\\longrightarrow}}$\n(5) Phenol$\\stackrel{\\mathrm{Zn}, \\Delta}{\\longrightarrow}$",
+    "options": [
+      "$\\mathrm{P} \\rightarrow 2$;$\\mathrm{Q} \\rightarrow 4 ; \\mathrm{R} \\rightarrow 1 ; \\mathrm{S} \\rightarrow 3$",
+      "$\\mathrm{P} \\rightarrow 1$;$\\mathrm{Q} \\rightarrow 3$;$\\mathrm{R} \\rightarrow 5$;$\\mathrm{S} \\rightarrow 2$",
+      "$\\mathrm{P} \\rightarrow 3$;$\\mathrm{Q} \\rightarrow 2 ; \\mathrm{R} \\rightarrow 1$;$\\mathrm{S} \\rightarrow 4$",
+      "$\\mathrm{P} \\rightarrow 3$;$\\mathrm{Q} \\rightarrow 4$; R$\\rightarrow 5$;$\\mathrm{S} \\rightarrow 2$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Official JEE Advanced answer key: option D.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Surface Chemistry",
+    "difficulty": "Hard",
+    "year": 2023,
+    "questionText": "Consider the following statements related to colloids.\n(I) Lyophobic colloids are not formed by simple mixing of dispersed phase and dispersion medium.\n(II) For emulsions, both the dispersed phase and the dispersion medium are liquid.\n(III) Micelles are produced by dissolving a surfactant in any solvent at any temperature.\n(IV) Tyndall effect can be observed from a colloidal solution with dispersed phase having the same refractive index as that of the dispersion medium.\nThe option with the correct set of statements is",
+    "options": [
+      "(I) and (II)",
+      "(II) and (III)",
+      "(III) and (IV)",
+      "(II) and (IV)"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official JEE Advanced answer key: option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

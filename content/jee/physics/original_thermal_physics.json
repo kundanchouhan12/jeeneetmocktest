@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A steel rod has a length of $2.000$ m at $20^\\circ C$. If the coefficient of linear expansion of steel is $\\alpha = 12\\times10^{-6}\\,^\\circ C^{-1}$, find its length when heated to $120^\\circ C$.",
+    "options": [
+      "2.0012 m",
+      "2.0024 m",
+      "2.0048 m",
+      "2.0002 m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Using $\\Delta L = L_0 \\alpha \\Delta T = 2.000 \\times 12\\times10^{-6} \\times 100 = 2.4\\times10^{-3}$ m, the new length is $2.000 + 0.0024 = 2.0024$ m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "How much heat is required to raise the temperature of $3$ kg of water from $20^\\circ C$ to $60^\\circ C$? (Specific heat of water $= 4200\\ J/kg\\,K$)",
+    "options": [
+      "252 kJ",
+      "420 kJ",
+      "504 kJ",
+      "600 kJ"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "$Q = mc\\Delta T = 3 \\times 4200 \\times 40 = 504000$ J $= 504$ kJ.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What quantity of heat is needed to completely melt $0.25$ kg of ice already at $0^\\circ C$ into water at $0^\\circ C$? (Latent heat of fusion of ice $L_f = 3.36\\times10^{5}\\ J/kg$)",
+    "options": [
+      "42 kJ",
+      "84 kJ",
+      "168 kJ",
+      "21 kJ"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$Q = mL_f = 0.25 \\times 3.36\\times10^{5} = 8.4\\times10^{4}$ J $= 84$ kJ, since melting occurs at constant temperature.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The surface temperature of a star is $5800$ K. Using Wien's displacement law ($\\lambda_{max}T = b = 2.9\\times10^{-3}\\ m\\,K$), find the wavelength at which the star emits maximum intensity.",
+    "options": [
+      "290 nm",
+      "500 nm",
+      "1000 nm",
+      "5800 nm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$\\lambda_{max} = b/T = 2.9\\times10^{-3}/5800 = 5\\times10^{-7}$ m $= 500$ nm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two identical blackbody spheres A and B have surface temperatures $T$ and $2T$ respectively. What is the ratio of power radiated by B to that radiated by A?",
+    "options": [
+      "2",
+      "4",
+      "8",
+      "16"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "By the Stefan-Boltzmann law, power $\\propto T^4$, so the ratio is $(2T/T)^4 = 16$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A solid has a coefficient of linear expansion $\\alpha = 7\\times10^{-6}\\,^\\circ C^{-1}$. What is its coefficient of cubical (volume) expansion?",
+    "options": [
+      "$7\\times10^{-6}\\,^\\circ C^{-1}$",
+      "$14\\times10^{-6}\\,^\\circ C^{-1}$",
+      "$21\\times10^{-6}\\,^\\circ C^{-1}$",
+      "$3.5\\times10^{-6}\\,^\\circ C^{-1}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For an isotropic solid, $\\gamma = 3\\alpha = 3 \\times 7\\times10^{-6} = 21\\times10^{-6}\\,^\\circ C^{-1}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "According to Newton's law of cooling, the rate of loss of heat of a body is directly proportional to which of the following (for small temperature differences)?",
+    "options": [
+      "The temperature difference between the body and its surroundings",
+      "The square of the temperature difference",
+      "The absolute temperature of the surroundings only",
+      "The absolute temperature of the body only"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Newton's law of cooling states that for a small temperature excess, the rate of heat loss is proportional to the temperature difference between the body and its surroundings.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A metal rod of length $0.5$ m and cross-sectional area $2\\times10^{-4}\\ m^2$ has thermal conductivity $400\\ W/m\\,K$. Its ends are maintained at $100^\\circ C$ and $0^\\circ C$. Find the rate of heat flow through the rod in the steady state.",
+    "options": [
+      "4 W",
+      "8 W",
+      "16 W",
+      "32 W"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "$\\frac{dQ}{dt} = \\frac{KA\\Delta T}{L} = \\frac{400 \\times 2\\times10^{-4} \\times 100}{0.5} = 16$ W.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "$200$ g of water at $80^\\circ C$ is mixed with $300$ g of water at $20^\\circ C$ in an insulated container. Find the final temperature of the mixture.",
+    "options": [
+      "36°C",
+      "40°C",
+      "44°C",
+      "50°C"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Heat lost by hot water equals heat gained by cold water: $200(80-T_f) = 300(T_f-20)$, giving $T_f = 44^\\circ C$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which mode of heat transfer occurs through actual bulk movement of fluid particles and therefore cannot take place in vacuum?",
+    "options": [
+      "Conduction",
+      "Convection",
+      "Radiation",
+      "Diffusion"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Convection involves physical movement of heated fluid particles carrying thermal energy, so it requires a fluid medium and cannot occur in vacuum.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "According to Kirchhoff's law of thermal radiation, a body that is a good absorber of radiation of a particular wavelength at a given temperature is also:",
+    "options": [
+      "A poor emitter of that wavelength",
+      "A good emitter of that same wavelength",
+      "A perfect reflector of that wavelength",
+      "Transparent to that wavelength"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Kirchhoff's law states the ratio of emissive to absorptive power is the same for all bodies at a given temperature, so good absorbers are also good emitters at that wavelength.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "For one mole of an ideal gas, how does the molar specific heat at constant pressure $C_p$ relate to the molar specific heat at constant volume $C_v$?",
+    "options": [
+      "$C_p - C_v = R$",
+      "$C_p - C_v = 2R$",
+      "$C_p - C_v = R/2$",
+      "$C_p = C_v$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "This is Mayer's relation, which follows from applying the first law of thermodynamics to an ideal gas: $C_p - C_v = R$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two rods of the same length and same cross-sectional area, having thermal conductivities $K_1 = 100\\ W/m\\,K$ and $K_2 = 300\\ W/m\\,K$, are joined end to end (in series) to form a composite rod. Find the equivalent thermal conductivity of the composite rod.",
+    "options": [
+      "50 W/mK",
+      "150 W/mK",
+      "200 W/mK",
+      "400 W/mK"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For two rods of equal length and area in series, $K_{eq} = \\frac{2K_1K_2}{K_1+K_2} = \\frac{2\\times100\\times300}{400} = 150$ W/mK.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two rods of the same length and same material are connected in parallel between two heat reservoirs. Rod 1 has cross-sectional area $2\\ cm^2$ and thermal conductivity $200\\ W/m\\,K$; rod 2 has area $3\\ cm^2$ and thermal conductivity $100\\ W/m\\,K$. Find the ratio of heat current through rod 1 to that through rod 2.",
+    "options": [
+      "1:1",
+      "2:3",
+      "3:4",
+      "4:3"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Heat current $H \\propto KA$ for the same length and temperature difference: $H_1:H_2 = (200\\times2):(100\\times3) = 400:300 = 4:3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A $0.5$ kg metal block heated to $150^\\circ C$ is dropped into a calorimeter (of negligible heat capacity) containing $0.4$ kg of water at $25^\\circ C$. The mixture reaches a final temperature of $30^\\circ C$. Find the specific heat of the metal. (Specific heat of water $= 4200\\ J/kg\\,K$)",
+    "options": [
+      "70 J/kgK",
+      "140 J/kgK",
+      "210 J/kgK",
+      "280 J/kgK"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Heat lost by metal = heat gained by water: $0.5 \\times c \\times (150-30) = 0.4\\times4200\\times(30-25)$, giving $60c = 8400$, so $c = 140$ J/kgK.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "$50$ g of ice at $0^\\circ C$ is added to $200$ g of water at $20^\\circ C$ in an insulated container. Find the final temperature of the mixture. (Specific heat of water $= 4.2\\ J/g\\,^\\circ C$, latent heat of fusion of ice $= 336\\ J/g$)",
+    "options": [
+      "0°C",
+      "5°C",
+      "10°C",
+      "2.5°C"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Heat available from water cooling to $0^\\circ C$ is $200\\times4.2\\times20 = 16800$ J, which exactly equals the heat needed to melt all the ice ($50\\times336 = 16800$ J), so all ice just melts and the final temperature is $0^\\circ C$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A brass plate has a circular hole of diameter $5.000$ cm at $20^\\circ C$. The coefficient of linear expansion of brass is $19\\times10^{-6}\\,^\\circ C^{-1}$. Find the diameter of the hole when the plate is heated to $220^\\circ C$.",
+    "options": [
+      "5.000 cm",
+      "4.981 cm",
+      "5.019 cm",
+      "5.038 cm"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "A hole in a solid expands as if it were made of the surrounding material, so $\\Delta d = d_0\\alpha\\Delta T = 5.000\\times19\\times10^{-6}\\times200 = 0.019$ cm, giving a new diameter of $5.019$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A liquid has density $1000\\ kg/m^3$ at $0^\\circ C$ and coefficient of volume expansion $\\gamma = 2\\times10^{-4}\\,^\\circ C^{-1}$. Find its approximate density at $100^\\circ C$ (mass remains constant).",
+    "options": [
+      "1020 kg/m³",
+      "1000 kg/m³",
+      "980 kg/m³",
+      "960 kg/m³"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Since $\\rho = \\rho_0/(1+\\gamma\\Delta T) \\approx \\rho_0(1-\\gamma\\Delta T)$ for small $\\gamma\\Delta T$, $\\rho \\approx 1000(1-0.02) = 980\\ kg/m^3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A body cools from $60^\\circ C$ to $50^\\circ C$ in $10$ minutes when the surrounding temperature is $20^\\circ C$. Using Newton's law of cooling in the average-temperature approximation, find the time taken for it to cool further from $50^\\circ C$ to $40^\\circ C$.",
+    "options": [
+      "7 min",
+      "10 min",
+      "14 min",
+      "20 min"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Using $\\frac{T_1-T_2}{t} = k\\left(\\frac{T_1+T_2}{2}-T_s\\right)$: the first interval gives $\\frac{10}{10}=k(55-20)=35k$, so $k=1/35$; the second interval gives $\\frac{10}{t}=k(45-20)=25k=25/35$, so $t=14$ min.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two spherical blackbodies A and B have radii in the ratio $1:2$ and absolute temperatures in the ratio $2:1$. Find the ratio of power radiated by A to that radiated by B.",
+    "options": [
+      "1:4",
+      "1:1",
+      "2:1",
+      "4:1"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Power $\\propto r^2T^4$, so $\\frac{P_A}{P_B} = \\left(\\frac{1}{2}\\right)^2\\left(\\frac{2}{1}\\right)^4 = \\frac{1}{4}\\times16 = 4$, i.e., $4:1$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two rods AB and BC of equal length and equal cross-sectional area are joined at B. The thermal conductivity of AB is twice that of BC. End A is maintained at $100^\\circ C$ and end C at $0^\\circ C$. Find the steady-state temperature at junction B.",
+    "options": [
+      "33.3°C",
+      "50°C",
+      "66.7°C",
+      "75°C"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "In steady state, the heat current through both rods is equal: $2K(100-T) = K(T-0)$, giving $200 = 3T$, so $T = 66.7^\\circ C$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The coefficient of apparent expansion of a liquid in a glass vessel is measured to be $6\\times10^{-4}\\,^\\circ C^{-1}$. If the coefficient of linear expansion of glass is $9\\times10^{-6}\\,^\\circ C^{-1}$, find the real (absolute) coefficient of volume expansion of the liquid.",
+    "options": [
+      "$5.73\\times10^{-4}\\,^\\circ C^{-1}$",
+      "$6.00\\times10^{-4}\\,^\\circ C^{-1}$",
+      "$6.27\\times10^{-4}\\,^\\circ C^{-1}$",
+      "$8.10\\times10^{-4}\\,^\\circ C^{-1}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Real expansion of the liquid equals apparent expansion plus expansion of the vessel: $\\gamma_{real} = \\gamma_{apparent} + 3\\alpha_{glass} = 6\\times10^{-4} + 27\\times10^{-6} = 6.27\\times10^{-4}\\,^\\circ C^{-1}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Find the total heat required to convert $2$ kg of water at $30^\\circ C$ completely into steam at $100^\\circ C$. (Specific heat of water $= 4200\\ J/kg\\,K$, latent heat of vaporization $= 2.26\\times10^{6}\\ J/kg$)",
+    "options": [
+      "$5.88\\times10^{5}$ J",
+      "$4.52\\times10^{6}$ J",
+      "$5.11\\times10^{6}$ J",
+      "$4.11\\times10^{6}$ J"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Heat to raise temperature: $Q_1 = 2\\times4200\\times70 = 5.88\\times10^{5}$ J; heat to vaporize: $Q_2 = 2\\times2.26\\times10^{6} = 4.52\\times10^{6}$ J; total $= 5.108\\times10^{6}$ J $\\approx 5.11\\times10^{6}$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A spherical body of surface area $0.05\\ m^2$ and emissivity $0.8$ is maintained at $400$ K in surroundings at $300$ K. Using the Stefan-Boltzmann law, find the net rate of loss of heat by radiation. ($\\sigma = 5.67\\times10^{-8}\\ W/m^2K^4$)",
+    "options": [
+      "19.8 W",
+      "39.7 W",
+      "59.5 W",
+      "79.4 W"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Net radiated power is $P = e\\sigma A(T^4 - T_s^4) = 0.8\\times5.67\\times10^{-8}\\times0.05\\times(400^4-300^4) \\approx 39.7$ W; emissivity equals absorptivity by Kirchhoff's law, justifying its use for the net exchange.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Find the total heat required to convert $100$ g of ice at $-10^\\circ C$ completely into steam at $100^\\circ C$. (Specific heat of ice $= 2100\\ J/kg\\,K$, specific heat of water $= 4200\\ J/kg\\,K$, latent heat of fusion $= 3.36\\times10^{5}\\ J/kg$, latent heat of vaporization $= 2.26\\times10^{6}\\ J/kg$)",
+    "options": [
+      "261.7 kJ",
+      "271.6 kJ",
+      "303.7 kJ",
+      "337.0 kJ"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Total heat is the sum of four stages: warming ice ($0.1\\times2100\\times10=2100$ J), melting ice ($0.1\\times3.36\\times10^5=33600$ J), warming water ($0.1\\times4200\\times100=42000$ J), and vaporizing water ($0.1\\times2.26\\times10^6=226000$ J); the sum is $2100+33600+42000+226000=303700$ J $= 303.7$ kJ.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A body cools from $60^\\circ C$ to $40^\\circ C$ in $7$ minutes in surroundings maintained at $10^\\circ C$. Using Newton's law of cooling in the exponential form $T(t) = T_s + (T_0-T_s)e^{-kt}$, find the temperature of the body after a further $7$ minutes (i.e., $14$ minutes from the start).",
+    "options": [
+      "22°C",
+      "25°C",
+      "28°C",
+      "30°C"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "At $t=7$ min, $(T-T_s)/(T_0-T_s) = 30/50 = 0.6 = e^{-7k}$. After another $7$ minutes, this ratio squares: $e^{-14k} = 0.36$, so $T - 10 = 50\\times0.36 = 18$, giving $T = 28^\\circ C$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two stars A and B, both radiating as perfect blackbodies of the same radius, have peak emission wavelengths $4000$ Å and $8000$ Å respectively. Find the ratio of the total power radiated by star A to that radiated by star B.",
+    "options": [
+      "2:1",
+      "4:1",
+      "8:1",
+      "16:1"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "By Wien's law, $T \\propto 1/\\lambda_{max}$, so $T_A/T_B = 8000/4000 = 2$. Since power $\\propto T^4$ for equal radii, $P_A/P_B = 2^4 = 16$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Three slabs of the same cross-sectional area are joined in series between a hot end at $100^\\circ C$ and a cold end at $0^\\circ C$: slab 1 (thickness $2$ cm, $K_1=200\\ W/m\\,K$), slab 2 (thickness $4$ cm, $K_2=400\\ W/m\\,K$), slab 3 (thickness $2$ cm, $K_3=100\\ W/m\\,K$), in that order. Find the steady-state temperature at the interface between slab 1 and slab 2.",
+    "options": [
+      "50°C",
+      "60°C",
+      "75°C",
+      "80°C"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Thermal resistance per unit area is $L/K$: $R_1 = 0.02/200=1\\times10^{-4}$, $R_2=0.04/400=1\\times10^{-4}$, $R_3=0.02/100=2\\times10^{-4}$, total $=4\\times10^{-4}$. The drop across slab 1 is $100\\times(R_1/R_{total}) = 25^\\circ C$, so the interface temperature is $100-25=75^\\circ C$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A star of radius $7\\times10^{8}$ m has a surface temperature of $6000$ K. A small planet, behaving as a perfect blackbody, orbits at a distance of $1.5\\times10^{11}$ m from the star's center. Estimate the equilibrium temperature of the planet.",
+    "options": [
+      "145 K",
+      "290 K",
+      "410 K",
+      "580 K"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Equating absorbed power ($\\sigma T^4 \\frac{R^2}{d^2}\\pi r^2$) to emitted power ($4\\pi r^2\\sigma T_p^4$) for the planet gives $T_p = T\\sqrt{R/(2d)} = 6000\\sqrt{7\\times10^{8}/(3\\times10^{11})} \\approx 290$ K.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Thermal Physics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A copper calorimeter of mass $100$ g (specific heat $400\\ J/kg\\,^\\circ C$) contains $200$ g of water and $50$ g of ice, all in thermal equilibrium at $0^\\circ C$. A $150$ g piece of metal at $200^\\circ C$ with specific heat $300\\ J/kg\\,^\\circ C$ is dropped in, and the system is insulated from surroundings. Find the final temperature of the mixture. (Latent heat of fusion of ice $= 3.36\\times10^{5}\\ J/kg$)",
+    "options": [
+      "0°C",
+      "5°C",
+      "10°C",
+      "15°C"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The maximum heat the metal can release by cooling to $0^\\circ C$ is $0.15\\times300\\times200 = 9000$ J, but melting all the ice would require $0.05\\times3.36\\times10^5=16800$ J; since $9000\\ J < 16800\\ J$, only part of the ice melts (about $27$ g) and the final temperature remains $0^\\circ C$ (the calorimeter's heat capacity is irrelevant since its temperature never changes).",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

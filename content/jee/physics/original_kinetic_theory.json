@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "An ideal gas is enclosed in a rigid container of fixed volume. If its absolute temperature is raised from $300\\,K$ to $600\\,K$ while the amount of gas remains unchanged, the pressure of the gas becomes:",
+    "options": [
+      "twice its initial value",
+      "half its initial value",
+      "the same as its initial value",
+      "four times its initial value"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At constant volume and constant number of moles, $P \\propto T$ from the ideal gas equation, so doubling the absolute temperature doubles the pressure.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following is a basic postulate of the kinetic theory of gases?",
+    "options": [
+      "Gas molecules are point-sized particles in continuous random motion that collide elastically with each other and the container walls",
+      "Gas molecules attract each other strongly at all separations",
+      "Gas molecules move only along straight lines and never collide",
+      "All gas molecules move with exactly the same speed at a given instant"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Kinetic theory treats gas molecules as point masses in continuous random motion, undergoing perfectly elastic collisions with each other and the container walls, with negligible intermolecular forces except during collisions.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "An ideal gas exerts a pressure of $1.5 \\times 10^{5}\\,Pa$ and has an rms speed of $500\\,m/s$. Using $P = \\frac{1}{3}\\rho v_{rms}^2$, find the density of the gas.",
+    "options": [
+      "$1.8\\,kg/m^3$",
+      "$0.9\\,kg/m^3$",
+      "$3.6\\,kg/m^3$",
+      "$0.6\\,kg/m^3$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$\\rho = 3P/v_{rms}^2 = 3(1.5\\times10^5)/(500)^2 = 1.8\\,kg/m^3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the average translational kinetic energy of a single ideal gas molecule at a temperature of $300\\,K$? (Take Boltzmann constant $k = 1.38\\times10^{-23}\\,J/K$)",
+    "options": [
+      "$6.21\\times10^{-21}\\,J$",
+      "$4.14\\times10^{-21}\\,J$",
+      "$3.10\\times10^{-21}\\,J$",
+      "$8.28\\times10^{-21}\\,J$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Average translational KE per molecule $=\\frac32 kT = \\frac32(1.38\\times10^{-23})(300)=6.21\\times10^{-21}\\,J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Calculate the rms speed of oxygen gas molecules ($M = 32\\,g/mol$) at $300\\,K$. (Take $R = 8.314\\,J/mol\\,K$)",
+    "options": [
+      "$484\\,m/s$",
+      "$684\\,m/s$",
+      "$384\\,m/s$",
+      "$966\\,m/s$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$v_{rms}=\\sqrt{3RT/M}=\\sqrt{3(8.314)(300)/0.032}\\approx 484\\,m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "For a sample of ideal gas at a fixed temperature, how do the rms speed ($v_{rms}$), average speed ($v_{avg}$), and most probable speed ($v_{mp}$) of the molecules compare?",
+    "options": [
+      "$v_{rms} > v_{avg} > v_{mp}$",
+      "$v_{mp} > v_{avg} > v_{rms}$",
+      "$v_{avg} > v_{rms} > v_{mp}$",
+      "$v_{rms} = v_{avg} = v_{mp}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "From Maxwell's speed distribution, $v_{rms}=\\sqrt{3RT/M}$, $v_{avg}=\\sqrt{8RT/\\pi M}$, and $v_{mp}=\\sqrt{2RT/M}$, and since $\\sqrt3 > \\sqrt{8/\\pi} > \\sqrt2$, we get $v_{rms} > v_{avg} > v_{mp}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "How many degrees of freedom does a monatomic ideal gas molecule (e.g. helium) possess?",
+    "options": [
+      "3",
+      "5",
+      "6",
+      "7"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A monatomic molecule can only translate along the three coordinate axes, giving 3 translational degrees of freedom and no rotational or vibrational contribution.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A rigid diatomic gas molecule (no vibration) has how many degrees of freedom?",
+    "options": [
+      "5",
+      "3",
+      "6",
+      "7"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A rigid diatomic molecule has 3 translational and 2 rotational degrees of freedom (rotation about the axis joining the atoms is neglected), totaling 5.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Using the law of equipartition of energy, calculate the molar specific heat at constant volume, $C_v$, of a monatomic ideal gas. (Take $R=8.314\\,J/mol\\,K$)",
+    "options": [
+      "$12.47\\,J/mol\\,K$",
+      "$8.31\\,J/mol\\,K$",
+      "$20.79\\,J/mol\\,K$",
+      "$4.16\\,J/mol\\,K$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For a monatomic gas, $f=3$, so $C_v = \\frac{f}{2}R = \\frac32(8.314)=12.47\\,J/mol\\,K$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A rigid diatomic ideal gas has $C_v = \\frac52 R$. Using Mayer's relation, find its molar specific heat at constant pressure $C_p$. (Take $R=8.314\\,J/mol\\,K$)",
+    "options": [
+      "$29.1\\,J/mol\\,K$",
+      "$20.8\\,J/mol\\,K$",
+      "$12.5\\,J/mol\\,K$",
+      "$37.4\\,J/mol\\,K$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Mayer's relation gives $C_p - C_v = R$, so $C_p = \\frac52R + R = \\frac72R = \\frac72(8.314)\\approx29.1\\,J/mol\\,K$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the value of $\\gamma = C_p/C_v$ for a monatomic ideal gas?",
+    "options": [
+      "$5/3$",
+      "$7/5$",
+      "$4/3$",
+      "$9/7$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For a monatomic gas, $C_v=\\frac32R$ and $C_p=\\frac52R$, so $\\gamma = C_p/C_v = 5/3 \\approx 1.67$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In the expression for mean free path $\\lambda = \\dfrac{kT}{\\sqrt{2}\\,\\pi d^2 P}$, what does the symbol $d$ represent?",
+    "options": [
+      "The effective diameter of a gas molecule",
+      "The diameter of the container",
+      "The average distance between the container walls",
+      "The de Broglie wavelength of a molecule"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In the mean free path formula, $d$ is the effective molecular diameter, which sets the collision cross-section $\\pi d^2$ used to estimate the collision frequency.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "If the absolute temperature of a fixed sample of ideal gas is increased to four times its original value, by what factor does the rms speed of its molecules increase?",
+    "options": [
+      "2",
+      "4",
+      "8",
+      "16"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $v_{rms}\\propto\\sqrt{T}$, increasing T by a factor of 4 increases $v_{rms}$ by a factor of $\\sqrt4=2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "At the same temperature, find the ratio of the rms speed of hydrogen molecules ($M=2\\,g/mol$) to that of oxygen molecules ($M=32\\,g/mol$).",
+    "options": [
+      "$4:1$",
+      "$1:4$",
+      "$2:1$",
+      "$16:1$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At equal temperature, $v_{rms}\\propto 1/\\sqrt{M}$, so the ratio is $\\sqrt{M_{O_2}/M_{H_2}}=\\sqrt{32/2}=\\sqrt{16}=4$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A fixed amount of ideal gas at constant temperature is compressed so that its volume is halved. According to kinetic theory, the resulting increase in pressure is mainly due to:",
+    "options": [
+      "an increase in the number density of molecules, leading to more frequent collisions with the walls, while the rms speed stays unchanged",
+      "an increase in the rms speed of the molecules while the number density stays unchanged",
+      "a decrease in the mass of individual molecules",
+      "a change in the elastic nature of collisions between molecules"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At constant temperature, $v_{rms}$ is unchanged; halving the volume doubles the number density of molecules, which increases the frequency of wall collisions and hence the pressure.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Calculate the total translational kinetic energy of $2\\,mol$ of an ideal gas at $400\\,K$. (Take $R=8.314\\,J/mol\\,K$)",
+    "options": [
+      "$9977\\,J$",
+      "$4988\\,J$",
+      "$19954\\,J$",
+      "$2494\\,J$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Total translational KE $=\\frac32nRT=\\frac32(2)(8.314)(400)\\approx 9977\\,J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "One mole of a monatomic ideal gas ($C_v=\\frac32R$) is mixed with one mole of a rigid diatomic ideal gas ($C_v=\\frac52R$). What is the molar specific heat at constant volume of the mixture?",
+    "options": [
+      "$2R\\,(\\approx16.63\\,J/mol\\,K)$",
+      "$1.5R\\,(\\approx12.47\\,J/mol\\,K)$",
+      "$2.5R\\,(\\approx20.79\\,J/mol\\,K)$",
+      "$R\\,(\\approx8.31\\,J/mol\\,K)$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$C_{v,mix}=\\dfrac{n_1C_{v1}+n_2C_{v2}}{n_1+n_2}=\\dfrac{1(1.5R)+1(2.5R)}{2}=2R$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The rms speed of nitrogen gas molecules ($M=28\\,g/mol$) in a container is found to be $600\\,m/s$. What is the temperature of the gas? (Take $R=8.314\\,J/mol\\,K$)",
+    "options": [
+      "$404\\,K$",
+      "$202\\,K$",
+      "$808\\,K$",
+      "$101\\,K$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "From $v_{rms}^2=3RT/M$, $T=\\dfrac{v_{rms}^2 M}{3R}=\\dfrac{(600)^2(0.028)}{3(8.314)}\\approx 404\\,K$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "At very high temperatures, a diatomic gas molecule additionally possesses 2 vibrational degrees of freedom (contributing $2\\times\\frac12kT$ for kinetic energy and $2\\times\\frac12kT$ for potential energy), giving a total of 7 degrees of freedom. Under this condition, what is $\\gamma=C_p/C_v$ for the gas?",
+    "options": [
+      "$9/7\\,(\\approx1.29)$",
+      "$7/5\\,(=1.4)$",
+      "$5/3\\,(\\approx1.67)$",
+      "$4/3\\,(\\approx1.33)$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "With $f=7$, $C_v=\\frac72R$ and $C_p=C_v+R=\\frac92R$, so $\\gamma=\\dfrac{9/2}{7/2}=9/7\\approx1.29$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "If the pressure of a gas is doubled while its temperature is held constant, the mean free path of the gas molecules becomes:",
+    "options": [
+      "half its original value",
+      "double its original value",
+      "the same as before",
+      "four times its original value"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $\\lambda=\\dfrac{kT}{\\sqrt2\\pi d^2P}\\propto1/P$ at constant temperature, doubling P halves the mean free path.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Helium gas ($M=4\\,g/mol$) at $300\\,K$ has the same rms speed as oxygen gas ($M=32\\,g/mol$) at what temperature?",
+    "options": [
+      "$2400\\,K$",
+      "$300\\,K$",
+      "$37.5\\,K$",
+      "$4800\\,K$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Equal $v_{rms}$ requires $T/M$ to be equal for both gases: $T_{O_2}=T_{He}\\times(M_{O_2}/M_{He})=300\\times8=2400\\,K$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "An ideal gas has a density of $1.2\\,kg/m^3$ and exerts a pressure of $1.0\\times10^{5}\\,Pa$. Find its rms speed using $P=\\frac13\\rho v_{rms}^2$.",
+    "options": [
+      "$500\\,m/s$",
+      "$250\\,m/s$",
+      "$1000\\,m/s$",
+      "$707\\,m/s$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$v_{rms}=\\sqrt{3P/\\rho}=\\sqrt{3(1.0\\times10^5)/1.2}=\\sqrt{2.5\\times10^5}\\approx500\\,m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Calculate the total internal energy of $3\\,mol$ of a rigid diatomic ideal gas (no vibration) at $500\\,K$. (Take $R=8.314\\,J/mol\\,K$)",
+    "options": [
+      "$31.2\\,kJ$",
+      "$12.5\\,kJ$",
+      "$18.7\\,kJ$",
+      "$24.9\\,kJ$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For a rigid diatomic gas, $U=\\frac52nRT=\\frac52(3)(8.314)(500)\\approx31.2\\,kJ$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Find the most probable speed of nitrogen gas molecules ($M=28\\,g/mol$) at $300\\,K$ using $v_{mp}=\\sqrt{2RT/M}$. (Take $R=8.314\\,J/mol\\,K$)",
+    "options": [
+      "$422\\,m/s$",
+      "$517\\,m/s$",
+      "$463\\,m/s$",
+      "$596\\,m/s$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$v_{mp}=\\sqrt{2(8.314)(300)/0.028}\\approx422\\,m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A container holds gas molecules with number density $3\\times10^{25}\\,m^{-3}$, each of mass $5\\times10^{-26}\\,kg$, moving with rms speed $600\\,m/s$. Using $P=\\frac13 n_0 m v_{rms}^2$, calculate the pressure exerted by the gas.",
+    "options": [
+      "$1.8\\times10^5\\,Pa$",
+      "$5.4\\times10^5\\,Pa$",
+      "$9.0\\times10^4\\,Pa$",
+      "$3.6\\times10^5\\,Pa$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$P=\\frac13(3\\times10^{25})(5\\times10^{-26})(600)^2=\\frac13(1.5)(3.6\\times10^5)=1.8\\times10^5\\,Pa$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A rigid, thermally insulated container is divided by a valve into two compartments: one holds $2\\,mol$ of monatomic ideal gas at $300\\,K$, and the other holds $3\\,mol$ of rigid diatomic ideal gas at $500\\,K$. The valve is opened, the gases mix, and no heat is exchanged with the surroundings while no external work is done. Find the final common temperature of the mixture.",
+    "options": [
+      "$442.9\\,K$",
+      "$420\\,K$",
+      "$400\\,K$",
+      "$460\\,K$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Conservation of internal energy gives $n_1(\\frac32R)T_1+n_2(\\frac52R)T_2=(n_1\\frac32+n_2\\frac52)RT_f$; substituting values, $T_f=\\dfrac{2(1.5)(300)+3(2.5)(500)}{2(1.5)+3(2.5)}=\\dfrac{4650}{10.5}\\approx442.9\\,K$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Nitrogen gas at $300\\,K$ and pressure $1.0\\times10^{5}\\,Pa$ has an effective molecular diameter of $3.0\\times10^{-10}\\,m$. Estimate its mean free path. (Take $k=1.38\\times10^{-23}\\,J/K$)",
+    "options": [
+      "$1.0\\times10^{-7}\\,m$",
+      "$1.0\\times10^{-8}\\,m$",
+      "$1.0\\times10^{-6}\\,m$",
+      "$5.0\\times10^{-7}\\,m$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$\\lambda=\\dfrac{kT}{\\sqrt2\\pi d^2P}=\\dfrac{(1.38\\times10^{-23})(300)}{\\sqrt2\\,\\pi(3.0\\times10^{-10})^2(1.0\\times10^5)}\\approx1.0\\times10^{-7}\\,m$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A rigid diatomic ideal gas ($\\gamma=7/5$) undergoes a quasi-static adiabatic compression that reduces its volume to half its original value. By what factor does its pressure increase?",
+    "options": [
+      "$2.64$",
+      "$2.00$",
+      "$1.40$",
+      "$3.17$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For an adiabatic process, $PV^\\gamma=$ constant, so $P_2/P_1=(V_1/V_2)^\\gamma=2^{1.4}\\approx2.64$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "$2\\,mol$ of a monatomic ideal gas is mixed with $3\\,mol$ of a rigid diatomic ideal gas (no vibration). Find $\\gamma=C_p/C_v$ of the resulting mixture.",
+    "options": [
+      "$1.48$",
+      "$1.40$",
+      "$1.67$",
+      "$1.55$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$C_{v,mix}=\\dfrac{2(1.5R)+3(2.5R)}{5}=2.1R$ and $C_{p,mix}=C_{v,mix}+R=3.1R$, giving $\\gamma=3.1/2.1\\approx1.48$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Kinetic Theory Of Gases",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "The escape velocity from a planet's surface is $5\\,km/s$. Above approximately what temperature would hydrogen gas molecules ($M=2\\times10^{-3}\\,kg/mol$) attain an rms speed equal to this escape velocity, making it likely for hydrogen to escape the planet's atmosphere? (Take $R=8.314\\,J/mol\\,K$)",
+    "options": [
+      "$2005\\,K$",
+      "$1002\\,K$",
+      "$4010\\,K$",
+      "$502\\,K$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Setting $v_{rms}=\\sqrt{3RT/M}$ equal to the escape velocity, $T=\\dfrac{v^2M}{3R}=\\dfrac{(5000)^2(2\\times10^{-3})}{3(8.314)}\\approx2005\\,K$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

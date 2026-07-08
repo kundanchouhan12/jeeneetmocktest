@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A transverse wave on a string is described by $y = 0.05\\sin(4\\pi x - 200\\pi t)$ m, where $x$ and $t$ are in SI units. What is the speed of the wave?",
+    "options": [
+      "25 m/s",
+      "50 m/s",
+      "100 m/s",
+      "200 m/s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Comparing with $y = A\\sin(kx-\\omega t)$, $k = 4\\pi$ rad/m and $\\omega = 200\\pi$ rad/s, so $v = \\omega/k = 200\\pi/4\\pi = 50$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The speed of a longitudinal wave in a metal rod is given by $v = \\sqrt{Y/\\rho}$. For a rod with Young's modulus $Y = 4\\times10^{11}$ Pa and density $\\rho = 4\\times10^{3}$ kg/m$^3$, find the speed of sound in the rod.",
+    "options": [
+      "5000 m/s",
+      "$10^4$ m/s",
+      "$2\\times10^4$ m/s",
+      "$8\\times10^3$ m/s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$v = \\sqrt{Y/\\rho} = \\sqrt{4\\times10^{11}/4\\times10^{3}} = \\sqrt{10^{8}} = 10^4$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A string has a mass per unit length of 0.01 kg/m and is stretched with a tension of 100 N. Find the speed of transverse waves on the string.",
+    "options": [
+      "10 m/s",
+      "50 m/s",
+      "100 m/s",
+      "1000 m/s"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Using $v = \\sqrt{T/\\mu} = \\sqrt{100/0.01} = \\sqrt{10000} = 100$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A gas has $\\gamma = 1.4$, pressure $1.0\\times10^{5}$ Pa and density 1.25 kg/m$^3$. Using Newton-Laplace's formula, find the speed of sound in the gas.",
+    "options": [
+      "240 m/s",
+      "335 m/s",
+      "400 m/s",
+      "500 m/s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$v = \\sqrt{\\gamma P/\\rho} = \\sqrt{1.4\\times10^{5}/1.25} = \\sqrt{112000} \\approx 335$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A string of length 1 m, fixed at both ends, supports transverse waves travelling at 400 m/s. Find its fundamental frequency of vibration.",
+    "options": [
+      "100 Hz",
+      "200 Hz",
+      "400 Hz",
+      "800 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For a string fixed at both ends, $f_1 = v/2L = 400/(2\\times1) = 200$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A pipe closed at one end has length 0.5 m. Taking the speed of sound in air as 340 m/s, find its fundamental frequency (neglect end correction).",
+    "options": [
+      "85 Hz",
+      "170 Hz",
+      "340 Hz",
+      "680 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For a closed pipe, $f_1 = v/4L = 340/(4\\times0.5) = 170$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A pipe open at both ends has length 0.85 m. Taking the speed of sound in air as 340 m/s, find its fundamental frequency (neglect end correction).",
+    "options": [
+      "100 Hz",
+      "200 Hz",
+      "400 Hz",
+      "170 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For an open pipe, $f_1 = v/2L = 340/(2\\times0.85) = 200$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two tuning forks of frequencies 256 Hz and 260 Hz are sounded together. What is the beat frequency heard?",
+    "options": [
+      "2 Hz",
+      "4 Hz",
+      "8 Hz",
+      "516 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Beat frequency equals the difference of the two frequencies: $|260-256| = 4$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A source of sound of frequency 450 Hz moves toward a stationary observer at a speed of 34 m/s. If the speed of sound in air is 340 m/s, find the frequency heard by the observer.",
+    "options": [
+      "450 Hz",
+      "410 Hz",
+      "500 Hz",
+      "550 Hz"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For a source approaching a stationary observer, $f' = f\\dfrac{v}{v-v_s} = 450\\times\\dfrac{340}{306} = 500$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A point source emits sound uniformly in all directions. If the intensity at a distance of 2 m from the source is 90 W/m$^2$, find the intensity at a distance of 6 m.",
+    "options": [
+      "30 W/m$^2$",
+      "10 W/m$^2$",
+      "45 W/m$^2$",
+      "5 W/m$^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Intensity follows the inverse square law, $I \\propto 1/r^2$, so $I_2 = 90\\times(2/6)^2 = 10$ W/m$^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two sound waves have amplitudes in the ratio 3:2. What is the ratio of their intensities?",
+    "options": [
+      "3:2",
+      "9:4",
+      "27:8",
+      "4:9"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Intensity is proportional to the square of the amplitude, so the ratio is $3^2:2^2 = 9:4$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In a transverse wave, the particles of the medium vibrate:",
+    "options": [
+      "Parallel to the direction of wave propagation",
+      "In circles around the direction of propagation",
+      "Perpendicular to the direction of wave propagation",
+      "Randomly in all directions"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "By definition, in a transverse wave the particle displacement is perpendicular to the direction in which the wave travels.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A transverse wave of wavelength 0.4 m travels along a stretched string such that the maximum speed of a particle of the string equals the wave speed. Find the amplitude of the wave.",
+    "options": [
+      "4.0 cm",
+      "6.4 cm",
+      "12.8 cm",
+      "2.0 cm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Maximum particle speed is $A\\omega$ and wave speed is $v=\\omega\\lambda/2\\pi$. Setting $A\\omega = \\omega\\lambda/2\\pi$ gives $A=\\lambda/2\\pi = 0.4/2\\pi \\approx 6.4$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A string of length 1.5 m, fixed at both ends, vibrates in its third harmonic at a frequency of 300 Hz. Find the speed of transverse waves on the string.",
+    "options": [
+      "100 m/s",
+      "200 m/s",
+      "300 m/s",
+      "450 m/s"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Third harmonic means $f_3=3f_1=300$ Hz, so $f_1=100$ Hz. Then $v=f_1\\times2L=100\\times3=300$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A closed organ pipe emits its first overtone at a frequency of 750 Hz. Find its fundamental frequency.",
+    "options": [
+      "375 Hz",
+      "250 Hz",
+      "1500 Hz",
+      "150 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "A closed pipe supports only odd harmonics, so its first overtone is the third harmonic: $3f_1 = 750$ Hz, giving $f_1=250$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A source emitting sound of frequency 400 Hz moves with speed 20 m/s toward a stationary observer, while the observer simultaneously moves with speed 10 m/s toward the source. Taking the speed of sound as 340 m/s, find the frequency heard by the observer.",
+    "options": [
+      "400 Hz",
+      "412.5 Hz",
+      "437.5 Hz",
+      "462.5 Hz"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Using $f' = f\\dfrac{v+v_o}{v-v_s} = 400\\times\\dfrac{350}{320} = 437.5$ Hz, since both motions are towards each other.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two stretched wires A and B, made of the same material and having the same length and tension, have diameters in the ratio 2:1 (A is thicker). Find the ratio of their fundamental frequencies $f_A:f_B$.",
+    "options": [
+      "2:1",
+      "1:2",
+      "4:1",
+      "1:4"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Mass per unit length $\\mu \\propto d^2$, and since $T$ and $L$ are equal, $f\\propto1/\\sqrt{\\mu}$. Thus $f_A/f_B = \\sqrt{\\mu_B/\\mu_A} = \\sqrt{1/4} = 1/2$, giving $f_A:f_B=1:2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two waves of the same frequency, with amplitudes 3 cm and 4 cm, superpose at a point with a phase difference of 90 degrees. Find the amplitude of the resultant wave.",
+    "options": [
+      "7 cm",
+      "5 cm",
+      "1 cm",
+      "3.5 cm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Resultant amplitude $A=\\sqrt{A_1^2+A_2^2+2A_1A_2\\cos\\phi}=\\sqrt{9+16+2(3)(4)\\cos90^\\circ}=\\sqrt{25}=5$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A tuning fork of frequency 500 Hz produces sound of wavelength 0.68 m in air. At a point where the path difference between waves arriving from two coherent sources of this sound is 1.02 m, what type of interference occurs?",
+    "options": [
+      "Constructive interference (maximum)",
+      "Destructive interference (minimum)",
+      "Neither maximum nor minimum",
+      "Cannot be determined"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Path difference in terms of wavelength is $1.02/0.68 = 1.5\\lambda$, an odd multiple of $\\lambda/2$, which corresponds to destructive interference.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Tuning fork A of unknown frequency and tuning fork B of frequency 256 Hz produce 4 beats per second when sounded together. When a small piece of wax is stuck on fork A (lowering its frequency), the beat frequency decreases to 2 beats per second. Find the original frequency of fork A.",
+    "options": [
+      "252 Hz",
+      "260 Hz",
+      "258 Hz",
+      "264 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Since lowering the frequency of A decreased the beat frequency, A's frequency must have been above B's. So $f_A = 256+4 = 260$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The sound intensity level at a point increases by 20 dB. By what factor does the intensity increase?",
+    "options": [
+      "10",
+      "20",
+      "100",
+      "1000"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Using $\\Delta\\beta = 10\\log_{10}(I_2/I_1)$, $20 = 10\\log_{10}(I_2/I_1)$ gives $I_2/I_1 = 10^2 = 100$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "If the amplitude of a wave travelling on a string is halved while its frequency is doubled, with all other quantities unchanged, how does the average power transmitted by the wave change?",
+    "options": [
+      "Doubles",
+      "Becomes half",
+      "Remains unchanged",
+      "Becomes four times"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Average power $P \\propto \\omega^2A^2$. With $\\omega\\to2\\omega$ and $A\\to A/2$, $P' \\propto (2\\omega)^2(A/2)^2 = \\omega^2A^2 = P$, so power is unchanged.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A string of length 2 m, fixed at both ends, vibrates in its 4th harmonic. Find the distance between two adjacent nodes.",
+    "options": [
+      "1.0 m",
+      "0.5 m",
+      "0.25 m",
+      "2.0 m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The nth harmonic has n equal loops along the string, each of length $L/n$, which equals the node-to-node spacing. Here $L/n = 2/4 = 0.5$ m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The sound intensity level at a distance of 10 m from a point source is 60 dB. Assuming no absorption, find the intensity level at a distance of 100 m from the source.",
+    "options": [
+      "6 dB",
+      "40 dB",
+      "50 dB",
+      "20 dB"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Since $I\\propto1/r^2$, increasing distance 10-fold reduces intensity by a factor of 100, i.e. a drop of $10\\log_{10}(100)=20$ dB. So the level becomes $60-20=40$ dB.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "In a resonance column experiment using a tuning fork of frequency 320 Hz, two successive resonance lengths of the air column are found to be 25 cm and 75 cm. Find the speed of sound in air.",
+    "options": [
+      "160 m/s",
+      "240 m/s",
+      "320 m/s",
+      "480 m/s"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Successive resonance lengths differ by $\\lambda/2$: $\\lambda = 2(0.75-0.25) = 1.0$ m. Then $v = f\\lambda = 320\\times1.0 = 320$ m/s (the end correction cancels out in the difference).",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A source of sound emitting frequency 600 Hz moves with speed 30 m/s directly towards a stationary reflecting wall. A stationary observer is located behind the source, so the source is moving away from the observer as it approaches the wall. Taking the speed of sound as 330 m/s, find the beat frequency heard by the observer due to the superposition of the direct sound and the sound reflected from the wall.",
+    "options": [
+      "55 Hz",
+      "110 Hz",
+      "165 Hz",
+      "220 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Direct sound (source receding from observer): $f_1 = 600\\times330/(330+30) = 550$ Hz. Sound reaching the wall (source approaching a stationary wall): $f_2 = 600\\times330/(330-30) = 660$ Hz, which the wall reflects unchanged to the stationary observer. Beat frequency $= 660-550 = 110$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A steel wire of mass 5 g and length 50 cm is stretched under a tension of 100 N and fixed rigidly at both ends. Find the frequency of the 4th harmonic of vibration of the wire.",
+    "options": [
+      "100 Hz",
+      "200 Hz",
+      "400 Hz",
+      "800 Hz"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Mass per unit length $\\mu = 0.005/0.5 = 0.01$ kg/m, so $v=\\sqrt{T/\\mu}=\\sqrt{100/0.01}=100$ m/s. Fundamental frequency $f_1=v/2L=100/1=100$ Hz, so the 4th harmonic is $4f_1=400$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two organ pipes of the same length 0.5 m are sounded in their fundamental modes — one pipe is open at both ends and the other is closed at one end. Taking the speed of sound in air as 340 m/s, find the difference between their fundamental frequencies.",
+    "options": [
+      "85 Hz",
+      "170 Hz",
+      "340 Hz",
+      "510 Hz"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Open pipe: $f_{open}=v/2L=340/1=340$ Hz. Closed pipe: $f_{closed}=v/4L=340/2=170$ Hz. Difference $=340-170=170$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A source emitting sound of frequency 525 Hz and an observer are both moving along the same straight line in the same direction, with the source behind, chasing the observer at 40 m/s while the observer moves at 20 m/s. Taking the speed of sound as 340 m/s, find the frequency heard by the observer.",
+    "options": [
+      "490 Hz",
+      "525 Hz",
+      "560 Hz",
+      "595 Hz"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The source approaches the observer (denominator $v-v_s$) while the observer recedes from the source (numerator $v-v_o$): $f' = f\\dfrac{v-v_o}{v-v_s} = 525\\times\\dfrac{320}{300} = 560$ Hz.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Wave Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two waves, $y_1 = 5\\sin(100\\pi t - \\pi x)$ cm and $y_2 = 5\\sin(100\\pi t + \\pi x)$ cm, travel in opposite directions on a stretched string and superpose to form a standing wave. Find the amplitude of oscillation of the particle located at $x = 1/3$ m.",
+    "options": [
+      "10 cm",
+      "5 cm",
+      "2.5 cm",
+      "0 cm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Adding the two waves gives $y = 10\\cos(\\pi x)\\sin(100\\pi t)$, a standing wave whose amplitude at position $x$ is $10|\\cos(\\pi x)|$. At $x=1/3$ m, this is $10\\cos(60^\\circ) = 10\\times0.5 = 5$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

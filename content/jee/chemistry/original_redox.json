@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the oxidation number of Mn in $KMnO_4$?",
+    "options": [
+      "+2",
+      "+4",
+      "+6",
+      "+7"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "K contributes +1 and four O atoms contribute -8, so for the neutral compound, Mn + 1 - 8 = 0, giving Mn = +7.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the oxidation number of Cr in the dichromate ion $Cr_2O_7^{2-}$?",
+    "options": [
+      "+3",
+      "+4",
+      "+6",
+      "+7"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Let Cr = x. With 7 oxygens at -2 each, 2x + 7(-2) = -2, giving 2x = 12, so x = +6.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the oxidation number of sulphur in $H_2SO_4$?",
+    "options": [
+      "+4",
+      "+6",
+      "+2",
+      "-2"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Two H atoms give +2 and four O atoms give -8; for the neutral molecule, S + 2 - 8 = 0, so S = +6.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the oxidation number of nitrogen in $HNO_3$?",
+    "options": [
+      "+3",
+      "+4",
+      "+5",
+      "-3"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "H is +1 and three O atoms total -6, so N + 1 - 6 = 0, giving N = +5.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the oxidation number of oxygen in hydrogen peroxide, $H_2O_2$?",
+    "options": [
+      "-2",
+      "-1",
+      "0",
+      "-1/2"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "In peroxides, oxygen exists in the -1 state because each O-O bonded pair shares one electron pair with hydrogen, unlike the usual -2 state in oxides.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the average oxidation number of oxygen in potassium superoxide, $KO_2$?",
+    "options": [
+      "-2",
+      "-1",
+      "-1/2",
+      "0"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "K is +1, so the $O_2^-$ superoxide group carries a total charge of -1 spread over two oxygen atoms, giving each oxygen an average oxidation state of -1/2.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In a redox reaction, the oxidizing agent is the substance that:",
+    "options": [
+      "loses electrons and is itself oxidized",
+      "gains electrons and is itself reduced",
+      "donates protons to the other reactant",
+      "remains chemically unchanged during the reaction"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "An oxidizing agent brings about oxidation of another species by accepting electrons from it, and in doing so it is itself reduced.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following reactions is NOT a redox reaction?",
+    "options": [
+      "$Zn + CuSO_4 \\to ZnSO_4 + Cu$",
+      "$2KClO_3 \\to 2KCl + 3O_2$",
+      "$NaOH + HCl \\to NaCl + H_2O$",
+      "$2FeCl_2 + Cl_2 \\to 2FeCl_3$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Neutralization of NaOH with HCl involves no change in oxidation number of any atom (Na, O, H, Cl all retain their oxidation states), so it is not a redox reaction, unlike the other three options which all involve electron transfer.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following is an example of a disproportionation reaction?",
+    "options": [
+      "$Cl_2 + 2NaOH \\to NaCl + NaOCl + H_2O$",
+      "$Zn + 2HCl \\to ZnCl_2 + H_2$",
+      "$2Na + Cl_2 \\to 2NaCl$",
+      "$Fe_2O_3 + 2Al \\to Al_2O_3 + 2Fe$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In this reaction, chlorine (oxidation state 0) is simultaneously reduced to Cl- (-1) in NaCl and oxidized to Cl+1 in NaOCl, which is the defining feature of a disproportionation reaction.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the oxidation number of phosphorus in $H_3PO_4$?",
+    "options": [
+      "+3",
+      "+5",
+      "+4",
+      "-3"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Three H atoms give +3 and four O atoms give -8, so P + 3 - 8 = 0, giving P = +5.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A reducing agent in a redox reaction is the species that:",
+    "options": [
+      "gains electrons and is itself reduced",
+      "loses electrons and is itself oxidized",
+      "increases the oxidation number of some atom without changing its own oxidation number",
+      "acts only as a catalyst and remains unchanged"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "A reducing agent causes reduction of another species by donating electrons to it, and in the process it is itself oxidized.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the oxidation number of chlorine in $NaClO_3$?",
+    "options": [
+      "+1",
+      "+3",
+      "+5",
+      "+7"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Na is +1 and three O atoms give -6, so Cl + 1 - 6 = 0, giving Cl = +5.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In acidic medium, $MnO_4^-$ oxidizes $Fe^{2+}$ to $Fe^{3+}$ while itself being reduced to $Mn^{2+}$. How many moles of $Fe^{2+}$ are oxidized by one mole of $MnO_4^-$?",
+    "options": [
+      "1",
+      "3",
+      "5",
+      "6"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Mn goes from +7 to +2, a gain of 5 electrons per $MnO_4^-$, while each $Fe^{2+}$ loses only 1 electron; so 5 moles of $Fe^{2+}$ are needed to balance the electrons gained by 1 mole of $MnO_4^-$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In acidic medium, $Cr_2O_7^{2-}$ oxidizes $Fe^{2+}$ to $Fe^{3+}$ while being reduced to $2Cr^{3+}$. How many moles of $Fe^{2+}$ are oxidized by one mole of $Cr_2O_7^{2-}$?",
+    "options": [
+      "2",
+      "3",
+      "6",
+      "7"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Each of the two Cr atoms goes from +6 to +3 (gain of 3 electrons each), so the total gain per $Cr_2O_7^{2-}$ ion is 6 electrons, requiring 6 moles of $Fe^{2+}$ (each losing 1 electron) to balance.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "What is the n-factor of $KMnO_4$ when it acts as an oxidizing agent in neutral or faintly alkaline medium, being reduced to $MnO_2$?",
+    "options": [
+      "1",
+      "3",
+      "5",
+      "6"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "In neutral medium, Mn goes from +7 in $MnO_4^-$ to +4 in $MnO_2$, a gain of 3 electrons, so the n-factor is 3 (compared to 5 in acidic medium and 1 in strongly alkaline medium).",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The molar mass of $K_2Cr_2O_7$ is 294 g/mol. What is its equivalent weight when it acts as an oxidizing agent in acidic medium?",
+    "options": [
+      "294",
+      "147",
+      "98",
+      "49"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "In acidic medium, $Cr_2O_7^{2-}$ accepts 6 electrons (each of two Cr atoms goes from +6 to +3), so the n-factor is 6, and equivalent weight = molar mass / n-factor = 294/6 = 49.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In the reaction $2KI + Cl_2 \\to 2KCl + I_2$, which species acts as the reducing agent?",
+    "options": [
+      "$Cl_2$",
+      "$KI$ (via $I^-$)",
+      "$KCl$",
+      "$I_2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Iodide ion is oxidized from -1 in KI to 0 in $I_2$, losing electrons, which makes $KI$ the reducing agent, while $Cl_2$ is reduced and acts as the oxidizing agent.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The cuprous ion, $Cu^+$, is unstable in aqueous solution and readily undergoes disproportionation. What are the products of this reaction?",
+    "options": [
+      "Only $Cu^{2+}$ ions",
+      "Only $Cu$ metal",
+      "$Cu^{2+}$ ions and $Cu$ metal",
+      "$CuO$ and $Cu_2O$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "In the reaction $2Cu^+ \\to Cu^{2+} + Cu$, one $Cu^+$ ion is oxidized to $Cu^{2+}$ while another is reduced to metallic Cu, a classic disproportionation of the same species.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Consider the reaction $5I^- + IO_3^- + 6H^+ \\to 3I_2 + 3H_2O$. Since iodine is present in two different oxidation states among the reactants (-1 and +5) and forms a single oxidation state (0) in the product, this reaction is best classified as a:",
+    "options": [
+      "disproportionation reaction",
+      "comproportionation reaction",
+      "neutralization reaction",
+      "hydrolysis reaction"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "When two different oxidation states of the same element combine to give a single, intermediate oxidation state product, the reaction is called a comproportionation (or synproportionation) reaction — the reverse of disproportionation.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "What is the average oxidation state of iron in $Fe_3O_4$ (magnetite)?",
+    "options": [
+      "+2",
+      "+3",
+      "+8/3",
+      "+3/2"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "$Fe_3O_4$ can be regarded as $FeO \\cdot Fe_2O_3$, containing one $Fe^{2+}$ and two $Fe^{3+}$ ions; the average oxidation state is (2 + 3 + 3)/3 = 8/3.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "0.1 mol of $Cr_2O_7^{2-}$ is used to completely oxidize $Fe^{2+}$ ions to $Fe^{3+}$ in acidic medium. How many moles of $Fe^{2+}$ are oxidized?",
+    "options": [
+      "0.1 mol",
+      "0.3 mol",
+      "0.6 mol",
+      "1.0 mol"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Each $Cr_2O_7^{2-}$ ion accepts 6 electrons, so 0.1 mol of it accepts 0.6 mol of electrons, which must equal the moles of $Fe^{2+}$ oxidized since each $Fe^{2+}$ donates only 1 electron.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "When bromine disproportionates in hot concentrated alkali as $3Br_2 + 6OH^- \\to 5Br^- + BrO_3^- + 3H_2O$, what is the mole ratio of $Br^-$ to $BrO_3^-$ formed?",
+    "options": [
+      "1:1",
+      "3:1",
+      "5:1",
+      "6:1"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The balanced equation directly shows 5 moles of $Br^-$ formed for every 1 mole of $BrO_3^-$, consistent with the electron balance (5 Br atoms gain 1 electron each, matching the 5 electrons lost by the 1 Br atom oxidized to +5).",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A strong oxidizing agent has a strong tendency to gain electrons. Its reduced form (conjugate species), such as $F^-$ formed from $F_2$, therefore behaves as a:",
+    "options": [
+      "strong oxidizing agent",
+      "strong reducing agent",
+      "weak reducing agent",
+      "non-redox, chemically inert species"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Just as the conjugate base of a strong acid is a weak base, the conjugate reduced species of a very strong oxidizing agent (like $F_2$) has very little tendency to give up electrons again, making it a weak reducing agent.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "When the equation $Cu + HNO_3 (dilute) \\to Cu(NO_3)_2 + NO + H_2O$ is balanced using the smallest whole-number coefficients, what is the coefficient of $HNO_3$?",
+    "options": [
+      "4",
+      "6",
+      "8",
+      "10"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The balanced equation is $3Cu + 8HNO_3 \\to 3Cu(NO_3)_2 + 2NO + 4H_2O$; 3 Cu atoms lose 6 electrons total, matching the 6 electrons gained by 2 N atoms going from +5 to +2, and atom balance then requires 8 $HNO_3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "20 mL of 0.02 M $KMnO_4$ solution exactly oxidizes 25 mL of a $FeSO_4$ solution in acidic medium, according to $MnO_4^- + 5Fe^{2+} + 8H^+ \\to Mn^{2+} + 5Fe^{3+} + 4H_2O$. What is the molarity of the $FeSO_4$ solution?",
+    "options": [
+      "0.016 M",
+      "0.04 M",
+      "0.08 M",
+      "0.16 M"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Millimoles of $KMnO_4$ = 0.02 x 20 = 0.4, and since n-factor is 5, milliequivalents = 2. This must equal the milliequivalents of $Fe^{2+}$ (n-factor 1), so moles of $Fe^{2+}$ = 2 mmol, giving a molarity of 2/25 = 0.08 M.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "25 mL of 0.1 M oxalic acid ($H_2C_2O_4$) solution is completely oxidized by 20 mL of acidified $KMnO_4$ solution. What is the molarity of the $KMnO_4$ solution?",
+    "options": [
+      "0.02 M",
+      "0.025 M",
+      "0.05 M",
+      "0.10 M"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Oxalic acid has n-factor 2 (each of 2 carbons goes from +3 to +4), so milliequivalents = 0.1 x 25 x 2 = 5. Setting this equal to milliequivalents of $KMnO_4$ (n-factor 5): M x 20 x 5 = 5, giving M = 0.05 M.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Balance the redox equation in acidic medium: $MnO_4^- + H_2O_2 + H^+ \\to Mn^{2+} + O_2 + H_2O$. What is the sum of all the stoichiometric coefficients (reactants and products) in the balanced equation using smallest whole numbers?",
+    "options": [
+      "18",
+      "24",
+      "28",
+      "32"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The balanced equation is $2MnO_4^- + 5H_2O_2 + 6H^+ \\to 2Mn^{2+} + 5O_2 + 8H_2O$ (2 Mn atoms gain 10 electrons total, matching 5 $H_2O_2$ molecules each losing 2 electrons); summing all coefficients gives 2+5+6+2+5+8 = 28.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "$Cu^{2+}$ ions react with excess $I^-$ as $2Cu^{2+} + 4I^- \\to 2CuI + I_2$, and the liberated iodine is titrated as $I_2 + 2Na_2S_2O_3 \\to 2NaI + Na_2S_4O_6$. If 0.1 mol of $Cu^{2+}$ is completely reduced, how many moles of $Na_2S_2O_3$ are required?",
+    "options": [
+      "0.05 mol",
+      "0.10 mol",
+      "0.15 mol",
+      "0.20 mol"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "From the first equation, 2 mol $Cu^{2+}$ produce 1 mol $I_2$, so 0.1 mol $Cu^{2+}$ produces 0.05 mol $I_2$; the second equation needs 2 mol $Na_2S_2O_3$ per mol $I_2$, so 0.05 x 2 = 0.10 mol $Na_2S_2O_3$ is required.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "In iodometric titrations, thiosulfate is oxidized according to $2S_2O_3^{2-} \\to S_4O_6^{2-} + 2e^-$. How many moles of electrons are released when 2 moles of $S_2O_3^{2-}$ ions are converted to 1 mole of $S_4O_6^{2-}$ ions?",
+    "options": [
+      "1 mol",
+      "2 mol",
+      "4 mol",
+      "8 mol"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The average sulphur oxidation state rises from +2 in $S_2O_3^{2-}$ (total +8 for 4 S atoms across 2 ions) to +2.5 in $S_4O_6^{2-}$ (total +10 for 4 S atoms), an overall increase of 2, so 2 moles of electrons are lost as shown directly in the half-reaction.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Redox Reactions",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "For the reaction $Cr_2O_7^{2-} + C_2O_4^{2-} + H^+ \\to Cr^{3+} + CO_2 + H_2O$ in acidic medium, what mole ratio of $Cr_2O_7^{2-}$ to $C_2O_4^{2-}$ is required for complete reaction?",
+    "options": [
+      "1:1",
+      "1:2",
+      "1:3",
+      "2:3"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Each $Cr_2O_7^{2-}$ gains 6 electrons while each $C_2O_4^{2-}$ loses 2 electrons (oxidized to 2 $CO_2$); equating electrons gained and lost, 6 x (mol $Cr_2O_7^{2-}$) = 2 x (mol $C_2O_4^{2-}$), giving a ratio of 1:3.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

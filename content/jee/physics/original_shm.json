@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following is the defining characteristic of a particle executing simple harmonic motion (SHM)?",
+    "options": [
+      "The acceleration is directly proportional to the displacement from the mean position and is always directed towards it.",
+      "The acceleration is constant in magnitude and direction throughout the motion.",
+      "The velocity is directly proportional to the displacement from the mean position.",
+      "The acceleration is directly proportional to the displacement but directed away from the mean position."
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "SHM is defined by $a = -\\omega^2 x$, meaning acceleration is proportional to displacement x and always directed towards the mean (equilibrium) position, which is the restoring nature of the force.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A particle executes SHM given by $x = A\\sin(\\omega t)$ with amplitude 0.05 m and angular frequency 4 rad/s. What is the maximum speed of the particle?",
+    "options": [
+      "0.2 m/s",
+      "0.0125 m/s",
+      "0.8 m/s",
+      "0.4 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Maximum speed in SHM is $v_{max} = A\\omega$. Substituting the values, $v_{max} = 0.05 \\times 4 = 0.2$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass 2 kg is attached to a spring of force constant 200 N/m and set into oscillation on a frictionless surface. What is the time period of oscillation? (Take pi = 3.14)",
+    "options": [
+      "0.628 s",
+      "0.314 s",
+      "1.256 s",
+      "0.1 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Time period is $T = 2\\pi\\sqrt{m/k}$. Substituting, $T = 2\\pi\\sqrt{2/200} = 2\\pi(0.1) = 0.628$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A simple pendulum of length 1 m is taken to a location where the acceleration due to gravity is $\\pi^2$ m/s^2. What is its time period?",
+    "options": [
+      "2 s",
+      "1 s",
+      "4 s",
+      "3.14 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$T = 2\\pi\\sqrt{L/g} = 2\\pi\\sqrt{1/\\pi^2} = 2\\pi/\\pi = 2$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A particle undergoes SHM with a frequency of 5 Hz. What is its angular frequency?",
+    "options": [
+      "$10\\pi$ rad/s",
+      "$5\\pi$ rad/s",
+      "$2.5\\pi$ rad/s",
+      "$20\\pi$ rad/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$\\omega = 2\\pi f = 2\\pi(5) = 10\\pi$ rad/s, approximately 31.4 rad/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A particle executes SHM described by $x = A\\sin(\\omega t + \\phi)$. If the particle is at its positive extreme position (x = A) at t = 0, what is the value of the initial phase $\\phi$?",
+    "options": [
+      "$\\pi/2$",
+      "0",
+      "$\\pi$",
+      "$3\\pi/2$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At t = 0, x = A gives $\\sin\\phi = 1$, so $\\phi = \\pi/2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "For a particle executing SHM, how does the magnitude of acceleration compare at the mean position versus at the extreme positions?",
+    "options": [
+      "It is zero at the mean position and maximum at the extreme positions.",
+      "It is maximum at the mean position and zero at the extreme positions.",
+      "It is zero at both positions.",
+      "It is the same non-zero value at both positions."
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $a = -\\omega^2 x$, acceleration is zero where x = 0 (mean position) and maximum in magnitude ($\\omega^2 A$) where displacement is maximum (extreme positions).",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A particle executing SHM has spring constant 250 N/m and amplitude 0.04 m. What is the total mechanical energy of the oscillator?",
+    "options": [
+      "0.2 J",
+      "0.4 J",
+      "0.1 J",
+      "0.02 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Total energy in SHM is $E = \\frac{1}{2}kA^2 = \\frac{1}{2}(250)(0.04)^2 = 0.2$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "At what displacement (in terms of amplitude A) from the mean position are the kinetic energy and potential energy of a particle in SHM equal?",
+    "options": [
+      "$x = A/\\sqrt{2}$",
+      "$x = A/2$",
+      "$x = 2A/3$",
+      "$x = A$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "PE $=\\frac{1}{2}kx^2$ and KE $=\\frac{1}{2}k(A^2-x^2)$. Setting them equal gives $x^2 = A^2 - x^2$, so $x = A/\\sqrt{2}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two springs, each of force constant 100 N/m, are connected in series and attached to a block. What is the effective spring constant of the combination?",
+    "options": [
+      "50 N/m",
+      "200 N/m",
+      "100 N/m",
+      "25 N/m"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For springs in series, $1/k_{eff} = 1/k_1 + 1/k_2 = 1/100 + 1/100 = 1/50$, so $k_{eff} = 50$ N/m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two springs, each of force constant 150 N/m, are connected in parallel and attached to a block. What is the effective spring constant of the combination?",
+    "options": [
+      "300 N/m",
+      "150 N/m",
+      "75 N/m",
+      "225 N/m"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For springs in parallel, $k_{eff} = k_1 + k_2 = 150 + 150 = 300$ N/m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "At the extreme positions of a particle executing SHM, what are the values of its velocity and acceleration?",
+    "options": [
+      "Velocity is zero and acceleration is maximum.",
+      "Velocity is maximum and acceleration is zero.",
+      "Both velocity and acceleration are zero.",
+      "Both velocity and acceleration are maximum."
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At extreme positions the particle momentarily stops (v = 0) before reversing direction, while the restoring acceleration is maximum ($\\omega^2A$) since displacement is maximum there.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A particle executes SHM according to $x = 0.02\\cos(50t)$ (x in metres, t in seconds). What is the maximum acceleration of the particle?",
+    "options": [
+      "50 m/s^2",
+      "25 m/s^2",
+      "100 m/s^2",
+      "2500 m/s^2"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$a_{max} = \\omega^2 A = (50)^2(0.02) = 2500 \\times 0.02 = 50$ m/s^2.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A particle executes SHM with amplitude A and angular frequency $\\omega$. What is its speed when the displacement is $x = A/2$?",
+    "options": [
+      "$\\dfrac{\\sqrt{3}}{2}A\\omega$",
+      "$\\dfrac{1}{2}A\\omega$",
+      "$A\\omega$",
+      "$\\dfrac{\\sqrt{3}}{4}A\\omega$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $v=\\omega\\sqrt{A^2-x^2}$ with $x=A/2$: $v=\\omega\\sqrt{A^2-A^2/4}=\\omega\\sqrt{3A^2/4}=\\frac{\\sqrt3}{2}A\\omega$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A simple pendulum has time period T on the Earth's surface where the acceleration due to gravity is g. If the same pendulum is now placed inside an elevator accelerating upward at g/4, what is its new time period in terms of T?",
+    "options": [
+      "$\\dfrac{2}{\\sqrt5}T$",
+      "$\\dfrac{\\sqrt5}{2}T$",
+      "$\\dfrac{4}{5}T$",
+      "$\\dfrac{5}{4}T$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Effective gravity becomes $g' = g + g/4 = 5g/4$. Since $T\\propto 1/\\sqrt g$, $T' = T\\sqrt{g/g'} = T\\sqrt{4/5} = \\frac{2}{\\sqrt5}T$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block-spring system oscillates with time period T and amplitude A. If the block is pulled further so that the new amplitude is 2A (the spring remains within its elastic limit), what happens to the time period?",
+    "options": [
+      "It remains the same, T.",
+      "It doubles to 2T.",
+      "It becomes T/2.",
+      "It becomes $\\sqrt2\\,T$."
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The time period of SHM, $T=2\\pi\\sqrt{m/k}$, depends only on mass and spring constant, not on amplitude, so T remains unchanged even though the maximum speed and energy increase.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two SHMs of the same frequency along the same line are given by $x_1 = 3\\sin(\\omega t)$ and $x_2 = 4\\sin(\\omega t + \\pi/2)$ (in cm). What is the amplitude of the resultant SHM?",
+    "options": [
+      "5 cm",
+      "7 cm",
+      "1 cm",
+      "3.5 cm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Resultant amplitude is $A=\\sqrt{A_1^2+A_2^2+2A_1A_2\\cos\\phi}$ with $\\phi=\\pi/2$ (the cosine term vanishes): $A=\\sqrt{3^2+4^2}=5$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A particle is subjected to two perpendicular SHMs of equal amplitude A: $x = A\\sin(\\omega t)$ and $y = A\\sin(\\omega t + \\pi/2)$. What is the path traced by the particle?",
+    "options": [
+      "A circle of radius A.",
+      "A straight line through the origin.",
+      "An ellipse with its major axis along x.",
+      "A parabola."
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $y=A\\cos(\\omega t)$, we get $x^2+y^2=A^2\\sin^2\\omega t + A^2\\cos^2\\omega t = A^2$, which is the equation of a circle of radius A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A spring-mass system with spring constant k and mass m has time period T. The spring is now cut into two equal halves, and the mass m is attached to one half. What is the new time period?",
+    "options": [
+      "$T/\\sqrt2$",
+      "$T\\sqrt2$",
+      "$T/2$",
+      "$2T$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Cutting a spring in half doubles its spring constant to 2k (since $k\\propto1/\\text{length}$). The new period is $T'=2\\pi\\sqrt{m/2k} = T/\\sqrt2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A simple pendulum has time period T on the surface of the Earth. If an identical pendulum (same length) is taken to the Moon, where $g_{moon} = g_{earth}/6$, what is its new time period in terms of T?",
+    "options": [
+      "$\\sqrt6\\,T$",
+      "$T/\\sqrt6$",
+      "$6T$",
+      "$T/6$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $T\\propto 1/\\sqrt g$, a smaller g gives a larger period: $T_{moon}=T\\sqrt{g_{earth}/g_{moon}}=T\\sqrt6$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A particle executes SHM with amplitude 0.1 m and time period 2 s. What is its average speed over one complete oscillation?",
+    "options": [
+      "0.2 m/s",
+      "0.1 m/s",
+      "0.4 m/s",
+      "0.05 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In one complete period, the particle travels a total distance of 4A. Average speed $=4A/T = 4(0.1)/2 = 0.2$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A particle executes SHM as $x = A\\sin(\\omega t)$, starting from the mean position at t = 0. What is the time taken to first reach $x = A/2$, in terms of the time period T?",
+    "options": [
+      "T/12",
+      "T/6",
+      "T/8",
+      "T/4"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$\\sin(\\omega t)=1/2 \\Rightarrow \\omega t = \\pi/6 \\Rightarrow t = \\dfrac{\\pi/6}{2\\pi/T} = T/12$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A damped oscillator's amplitude decreases exponentially with time. It is observed that the amplitude falls to half its initial value in 20 s. Assuming the same damping continues, how long after the start will the amplitude fall to one-quarter of its initial value?",
+    "options": [
+      "40 s",
+      "60 s",
+      "80 s",
+      "30 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For exponential decay $A=A_0e^{-\\lambda t}$, equal time intervals produce equal fractional decreases. Halving twice (to reach 1/4) takes twice the time of one halving, i.e., $2\\times20=40$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A particle of mass m executes SHM with spring constant k and amplitude A. What is the average kinetic energy of the particle over one complete time period?",
+    "options": [
+      "$kA^2/4$",
+      "$kA^2/2$",
+      "$kA^2$",
+      "$kA^2/8$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The time-average of $\\cos^2(\\omega t)$ over a period is 1/2, so the average KE $= \\frac{1}{2}k\\langle A^2\\cos^2\\omega t\\rangle=\\frac{1}{2}k\\cdot\\frac{A^2}{2}=\\frac{kA^2}{4}$, which equals half of the total mechanical energy.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two blocks of mass 1 kg and 3 kg are connected by a spring of force constant 48 N/m and placed on a frictionless horizontal surface. If the system is set into oscillation along the line joining the blocks, what is the time period of the oscillation? (Take pi = 3.14; use the reduced mass $\\mu = m_1m_2/(m_1+m_2)$ in place of mass in the SHM formula)",
+    "options": [
+      "0.785 s",
+      "1.57 s",
+      "0.5 s",
+      "1.0 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Reduced mass $\\mu = (1\\times3)/(1+3) = 0.75$ kg. Time period $T=2\\pi\\sqrt{\\mu/k}=2\\pi\\sqrt{0.75/48}=2\\pi(0.125)=0.785$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A block hanging from a vertical spring stretches the spring by 0.1 m at equilibrium. If the block is then set into vertical SHM, what is its time period? (Take $g = 10$ m/s^2)",
+    "options": [
+      "0.628 s",
+      "0.314 s",
+      "1.256 s",
+      "0.2 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At equilibrium, $kx_0=mg$, so $k/m=g/x_0$. Time period $T=2\\pi\\sqrt{m/k}=2\\pi\\sqrt{x_0/g}=2\\pi\\sqrt{0.1/10}=2\\pi(0.1)=0.628$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A uniform liquid column of total length 2 m is set oscillating in a U-tube of uniform cross-section. Taking $g = 10$ m/s^2 and using the result that for a liquid column of length L oscillating in a U-tube $T = 2\\pi\\sqrt{L/2g}$, what is the time period of the oscillation?",
+    "options": [
+      "1.99 s",
+      "0.99 s",
+      "2.81 s",
+      "1.4 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$T=2\\pi\\sqrt{L/2g}=2\\pi\\sqrt{2/20}=2\\pi\\sqrt{0.1}=2\\pi(0.316)\\approx1.99$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A particle executing SHM with angular frequency 2 rad/s is observed to have a displacement of 3 cm and a speed of 8 cm/s at a certain instant. What is the amplitude of oscillation?",
+    "options": [
+      "5 cm",
+      "4 cm",
+      "7 cm",
+      "6.4 cm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $v=\\omega\\sqrt{A^2-x^2}$, we get $A^2=x^2+(v/\\omega)^2=3^2+(8/2)^2=9+16=25$, so $A=5$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two SHMs of the same frequency and equal amplitude A act along the same line with a constant phase difference of 120 degrees between them. What is the amplitude of the resultant SHM?",
+    "options": [
+      "A",
+      "2A",
+      "$A\\sqrt3$",
+      "A/2"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Resultant amplitude $=\\sqrt{A^2+A^2+2A^2\\cos120°}=\\sqrt{2A^2-A^2}=\\sqrt{A^2}=A$, since $\\cos120°=-1/2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Simple Harmonic Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A spring of force constant k and natural length L, with a block of mass m attached, has time period T. The spring is cut into two pieces in the length ratio 1:3, and the same block is now attached to the shorter piece. What is the new time period?",
+    "options": [
+      "T/2",
+      "T/4",
+      "$T/\\sqrt2$",
+      "2T"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The shorter piece has length L/4, so its spring constant is $k_1 = k\\times(L/(L/4)) = 4k$ (since $k\\propto1/\\text{length}$). The new period is $T'=2\\pi\\sqrt{m/4k}=\\frac{1}{2}\\times2\\pi\\sqrt{m/k}=T/2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

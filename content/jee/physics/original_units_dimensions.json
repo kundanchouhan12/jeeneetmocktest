@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The dimensional formula of power is:",
+    "options": [
+      "$[M L^2 T^{-2}]$",
+      "$[M L^2 T^{-3}]$",
+      "$[M L T^{-2}]$",
+      "$[M L^{-1} T^{-2}]$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Power = Work/time = $ML^2T^{-2}/T = [ML^2T^{-3}]$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Surface tension is defined as force per unit length. Its dimensional formula is:",
+    "options": [
+      "$[M L T^{-2}]$",
+      "$[M L^{-1} T^{-2}]$",
+      "$[M T^{-2}]$",
+      "$[M L^2 T^{-2}]$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Surface tension = Force/Length = $MLT^{-2}/L = [M T^{-2}]$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The SI unit of Planck's constant is the same as the SI unit of:",
+    "options": [
+      "Force",
+      "Angular momentum",
+      "Power",
+      "Pressure"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Planck's constant has dimensions $[ML^2T^{-1}]$ and SI unit $J\\,s$, identical to that of angular momentum.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In a vernier caliper, 10 vernier scale divisions coincide with 9 main scale divisions, and each main scale division is 1 mm. The least count of the instrument is:",
+    "options": [
+      "0.1 mm",
+      "0.01 mm",
+      "1 mm",
+      "0.5 mm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Least count = 1 MSD − 1 VSD = 1 mm × (1 − 9/10) = 0.1 mm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A screw gauge has a pitch of 0.5 mm and 50 divisions on its circular scale. Its least count is:",
+    "options": [
+      "0.001 mm",
+      "0.01 mm",
+      "0.1 mm",
+      "0.05 mm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Least count = pitch / number of circular divisions = 0.5 mm / 50 = 0.01 mm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The number of significant figures in the measurement 0.00520 m is:",
+    "options": [
+      "2",
+      "3",
+      "5",
+      "6"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Leading zeros are not significant; the digits 5, 2, and the trailing 0 after the decimal are significant, giving 3 significant figures.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Using $F = \\frac{Gm_1m_2}{r^2}$, the dimensional formula of the universal gravitational constant G is:",
+    "options": [
+      "$[M^{-1} L^3 T^{-2}]$",
+      "$[M L^3 T^{-2}]$",
+      "$[M^{-1} L^2 T^{-2}]$",
+      "$[M^{-1} L^3 T^{-1}]$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$G = Fr^2/(m_1m_2) = (MLT^{-2}\\cdot L^2)/M^2 = [M^{-1}L^3T^{-2}]$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following pairs of physical quantities have the same dimensional formula?",
+    "options": [
+      "Work and Power",
+      "Torque and Energy",
+      "Pressure and Force",
+      "Momentum and Angular momentum"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Torque = Force × distance = $[ML^2T^{-2}]$, which is the same as the dimensional formula of Energy, even though they are physically different quantities.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "1 newton is equal to:",
+    "options": [
+      "$10^3$ dyne",
+      "$10^5$ dyne",
+      "$10^7$ dyne",
+      "$10^2$ dyne"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "1 N = 1 kg·m/s² = ($10^3$ g)($10^2$ cm/s²) = $10^5$ g·cm/s² = $10^5$ dyne.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The dimensional formula of angular momentum is:",
+    "options": [
+      "$[M L T^{-1}]$",
+      "$[M L^2 T^{-2}]$",
+      "$[M L^2 T^{-1}]$",
+      "$[M L^{-1} T^{-1}]$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Angular momentum = $mvr = M\\cdot(LT^{-1})\\cdot L = [ML^2T^{-1}]$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The number of significant figures in $6.020 \\times 10^3$ is:",
+    "options": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "In scientific notation, every digit in the coefficient (6, 0, 2, 0) is significant, giving 4 significant figures.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The dimensional formula of the coefficient of viscosity is:",
+    "options": [
+      "$[M L^{-1} T^{-1}]$",
+      "$[M L^{-1} T^{-2}]$",
+      "$[M L T^{-1}]$",
+      "$[M L^{-2} T^{-1}]$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "From $F = \\eta A \\frac{dv}{dx}$, $\\eta = \\frac{F\\,dx}{A\\,dv} = \\frac{MLT^{-2}\\cdot L}{L^2\\cdot LT^{-1}} = [ML^{-1}T^{-1}]$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The time period T of a simple pendulum is assumed to depend on its length l and the acceleration due to gravity g as $T = k\\, l^a g^b$, where k is a dimensionless constant. Using dimensional analysis, the values of a and b are:",
+    "options": [
+      "a = 1/2, b = 1/2",
+      "a = 1/2, b = -1/2",
+      "a = -1/2, b = 1/2",
+      "a = 1, b = -1"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$[T]=T$, $[l]=L$, $[g]=LT^{-2}$. Matching powers: $L^{a+b}T^{-2b}=L^0T^1$ gives $b=-1/2$ and $a=1/2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A physical quantity Z is calculated using $Z = \\frac{A^2 B^3}{C}$. If the percentage errors in measuring A, B, and C are 2%, 1%, and 3% respectively, the percentage error in Z is:",
+    "options": [
+      "6%",
+      "8%",
+      "10%",
+      "12%"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For a product/quotient formula, %error in Z = $2(2\\%) + 3(1\\%) + 1(3\\%) = 4+3+3 = 10\\%$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A student writes four equations relating displacement s, initial velocity u, acceleration a, and time t. Which of the following is NOT dimensionally consistent?",
+    "options": [
+      "$s = ut + \\frac{1}{2}at^2$",
+      "$v = u + at$",
+      "$s = ut^2 + \\frac{1}{2}at$",
+      "$v^2 = u^2 + 2as$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "In option C, $ut^2$ has dimension $LT$ and $\\frac{1}{2}at$ has dimension $LT^{-1}$, neither of which matches the dimension of s (L); it is not dimensionally homogeneous, unlike the other three equations.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The mass of a solid sphere is measured with an error of 1%, and its diameter (measured with a screw gauge) has an error of 1.5%. The percentage error in the calculated density of the sphere is:",
+    "options": [
+      "2.5%",
+      "4.0%",
+      "5.5%",
+      "3.5%"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Density $\\rho = m/V \\propto m/d^3$, so %error in $\\rho$ = %error in m + 3×%error in d = $1\\% + 3(1.5\\%) = 5.5\\%$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The value of the universal gravitational constant is $G = 6.67 \\times 10^{-11}\\ N\\,m^2\\,kg^{-2}$ in SI units. Given that $[G] = [M^{-1}L^3T^{-2}]$, its value in CGS units (cm, g, s) is:",
+    "options": [
+      "$6.67 \\times 10^{-8}\\ cm^3\\,g^{-1}\\,s^{-2}$",
+      "$6.67 \\times 10^{-11}\\ cm^3\\,g^{-1}\\,s^{-2}$",
+      "$6.67 \\times 10^{-5}\\ cm^3\\,g^{-1}\\,s^{-2}$",
+      "$6.67 \\times 10^{-14}\\ cm^3\\,g^{-1}\\,s^{-2}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $n_2 = n_1(M_1/M_2)^{-1}(L_1/L_2)^3(T_1/T_2)^{-2}$: mass factor gives $10^{-3}$ and length factor gives $10^6$, so $n_2 = 6.67\\times10^{-11}\\times10^{-3}\\times10^{6} = 6.67\\times10^{-8}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "While measuring the diameter of a wire with a vernier caliper (least count 0.01 cm), the main scale reads 2.4 cm and the 6th vernier division coincides with a main scale division. The instrument has a zero error of −0.02 cm (i.e., when the jaws are closed, the vernier reads −0.02 cm). The correct diameter of the wire is:",
+    "options": [
+      "2.44 cm",
+      "2.46 cm",
+      "2.48 cm",
+      "2.42 cm"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Observed reading = $2.4 + 6(0.01) = 2.46$ cm. Corrected reading = observed − zero error = $2.46 - (-0.02) = 2.48$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A screw gauge (pitch 1 mm, 100 circular divisions) has a positive zero error of +0.05 mm. While measuring the thickness of a sheet, the main scale reads 2 mm and the circular scale reads 45 divisions. The corrected thickness is:",
+    "options": [
+      "2.40 mm",
+      "2.45 mm",
+      "2.50 mm",
+      "2.55 mm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Least count = $1/100 = 0.01$ mm. Observed reading = $2 + 45(0.01) = 2.45$ mm. Corrected reading = observed − zero error = $2.45 - 0.05 = 2.40$ mm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The time period of oscillation of a mass m attached to a spring of force constant k is $T = 2\\pi\\sqrt{m/k}$. The dimensional formula of the spring constant k must be:",
+    "options": [
+      "$[M L T^{-2}]$",
+      "$[M T^{-2}]$",
+      "$[M L^{-1} T^{-2}]$",
+      "$[M L^2 T^{-2}]$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "From $T^2 = 4\\pi^2 m/k$, $[k] = [m]/[T^2] = M/T^2 = [MT^{-2}]$, consistent with $k = F/x = MLT^{-2}/L$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two lengths measured as 12.63 m and 3.4 m are added. The sum, expressed to the correct number of significant figures, is:",
+    "options": [
+      "16.03 m",
+      "16.0 m",
+      "16 m",
+      "16.030 m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "In addition, the result should have as many decimal places as the least precise term (3.4, one decimal place); the sum 16.03 rounds to 16.0 m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The product of two measured quantities 4.2 cm and 1.60 cm, reported to the appropriate number of significant figures, is:",
+    "options": [
+      "6.72 $cm^2$",
+      "6.7 $cm^2$",
+      "6.720 $cm^2$",
+      "7.0 $cm^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "4.2 has 2 significant figures (the least among the two), so the product 6.72 must be rounded to 2 significant figures, giving 6.7 $cm^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The energy density of an electric field is given by $u = \\frac{1}{2}\\varepsilon_0 E^2$, where E is the electric field. The dimensional formula of energy density u works out to be the same as that of:",
+    "options": [
+      "Pressure",
+      "Force",
+      "Momentum",
+      "Power"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Energy density = energy/volume = $ML^2T^{-2}/L^3 = [ML^{-1}T^{-2}]$, which is identical to the dimensional formula of pressure.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In the relation $P = \\frac{nRT}{V-b}$, where P is pressure, V is volume, T is temperature, and n, R are constants, for the equation to be dimensionally consistent, the quantity b must have the same dimension as:",
+    "options": [
+      "Pressure",
+      "Volume",
+      "Temperature",
+      "R"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Since b is subtracted from V, by the principle of homogeneity b must have the same dimensions as volume, $[L^3]$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A screw gauge has a pitch of 1 mm and 100 divisions on its circular scale, with a zero error of −0.03 mm. While measuring the diameter of a wire, the main scale reads 3 mm and the circular scale reads 47 divisions. The true diameter of the wire is:",
+    "options": [
+      "3.44 mm",
+      "3.47 mm",
+      "3.50 mm",
+      "3.53 mm"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Least count = $1/100 = 0.01$ mm. Observed reading = $3 + 47(0.01) = 3.47$ mm. True reading = observed − zero error = $3.47 - (-0.03) = 3.50$ mm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "In an experiment, a voltmeter reads $V = (10.0 \\pm 0.1)\\ V$ and an ammeter reads $I = (2.00 \\pm 0.05)\\ A$. The resistance is calculated using $R = V/I$. The correctly reported value of resistance, including its absolute error, is:",
+    "options": [
+      "$(5.0 \\pm 0.1)\\ \\Omega$",
+      "$(5.0 \\pm 0.2)\\ \\Omega$",
+      "$(5.00 \\pm 0.35)\\ \\Omega$",
+      "$(5.0 \\pm 0.35)\\ \\Omega$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "%error in V = 1%, %error in I = 2.5%, so total %error in R = 3.5%. $\\Delta R = 3.5\\%$ of $5.0\\ \\Omega \\approx 0.175\\ \\Omega$, which rounds to 0.2 Ω, giving $R = (5.0 \\pm 0.2)\\ \\Omega$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "The viscous drag force F on a small sphere moving through a fluid is assumed to depend on the coefficient of viscosity $\\eta$, the radius r of the sphere, and its velocity v, as $F = k\\,\\eta^a r^b v^c$ (k dimensionless). Using dimensional analysis, the values of a, b, c are:",
+    "options": [
+      "a=1, b=1, c=1",
+      "a=1, b=2, c=1",
+      "a=2, b=1, c=1",
+      "a=1, b=1, c=2"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$[F]=MLT^{-2}$, $[\\eta]=ML^{-1}T^{-1}$, $[r]=L$, $[v]=LT^{-1}$. Matching powers of M, L, T gives $a=1, b=1, c=1$, consistent with Stokes' law $F=6\\pi\\eta r v$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Newton assumed that the speed of sound v in a gas depends on the pressure P and density $\\rho$ of the gas as $v = k P^a \\rho^b$ (k dimensionless). Using dimensional analysis, the relation obtained is:",
+    "options": [
+      "$v \\propto \\sqrt{P\\rho}$",
+      "$v \\propto \\sqrt{P/\\rho}$",
+      "$v \\propto P/\\rho$",
+      "$v \\propto \\rho/P$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$[v]=LT^{-1}$, $[P]=ML^{-1}T^{-2}$, $[\\rho]=ML^{-3}$. Matching dimensions gives $a=1/2$, $b=-1/2$, so $v \\propto \\sqrt{P/\\rho}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "The diameter of a cylinder is measured with a vernier caliper as $d = (1.20 \\pm 0.01)\\ cm$ and its length with a scale as $L = (5.00 \\pm 0.10)\\ cm$. The percentage error in the calculated volume $V = \\pi d^2 L/4$ is closest to:",
+    "options": [
+      "1.7%",
+      "2.0%",
+      "3.7%",
+      "4.7%"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "%error in V = $2(\\Delta d/d)\\times100 + (\\Delta L/L)\\times100 = 2(0.01/1.20\\times100) + (0.10/5.00\\times100) = 1.67\\% + 2\\% = 3.67\\% \\approx 3.7\\%$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Units, Dimensions And Measurement",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Suppose a new system of units is defined in which the unit of mass is halved, the unit of length is doubled, and the unit of time is kept unchanged. The numerical value of a force measured in this new system, compared to its numerical value in the original system, will:",
+    "options": [
+      "Double",
+      "Become half",
+      "Remain unchanged",
+      "Become four times"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Force has dimensions $[M^1L^1T^{-2}]$. Using $n_2 = n_1(M_1/M_2)^1(L_1/L_2)^1(T_1/T_2)^{-2}$ with $M_1/M_2=2$, $L_1/L_2=1/2$, $T_1/T_2=1$, we get $n_2=n_1\\times2\\times0.5\\times1=n_1$, so the numerical value is unchanged.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

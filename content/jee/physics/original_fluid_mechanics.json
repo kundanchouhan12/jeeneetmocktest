@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Find the pressure at a depth of 5 m below the free surface of water in an open tank. (Atmospheric pressure $P_0 = 1.0 \\times 10^5$ Pa, density of water $\\rho = 1000$ kg/m$^3$, $g = 10$ m/s$^2$.)",
+    "options": [
+      "$1.5 \\times 10^5$ Pa",
+      "$1.0 \\times 10^5$ Pa",
+      "$2.0 \\times 10^5$ Pa",
+      "$0.5 \\times 10^5$ Pa"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $P = P_0 + \\rho g h$: $P = 1.0\\times10^5 + 1000\\times10\\times5 = 1.5\\times10^5$ Pa.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In a hydraulic lift, the smaller piston has an area of 2 $cm^2$ and the larger piston has an area of 200 $cm^2$. A force of 50 N is applied on the smaller piston. What force does the larger piston exert?",
+    "options": [
+      "5000 N",
+      "500 N",
+      "50000 N",
+      "100 N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Pascal's law, pressure is transmitted equally, so $F_2 = F_1 \\times (A_2/A_1) = 50 \\times (200/2) = 5000$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "According to Archimedes' principle, the buoyant force acting on a body partially or fully immersed in a fluid is equal to:",
+    "options": [
+      "the weight of the fluid displaced by the body",
+      "the weight of the body itself",
+      "the product of the fluid density and the total volume of the body only",
+      "the atmospheric pressure acting on the top surface of the body"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Archimedes' principle states that the upward buoyant force on a submerged or floating body equals the weight of the fluid it displaces.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Water flows through a horizontal pipe whose cross-sectional area narrows from 4 $cm^2$ to 1 $cm^2$. If the speed of water in the wider section is 2 m/s, what is its speed in the narrower section?",
+    "options": [
+      "8 m/s",
+      "2 m/s",
+      "0.5 m/s",
+      "4 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By the equation of continuity, $A_1 v_1 = A_2 v_2$, so $v_2 = (4 \\times 2)/1 = 8$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Bernoulli's theorem, applied to the steady, incompressible, non-viscous flow of a fluid, is essentially a statement of conservation of:",
+    "options": [
+      "mass",
+      "energy",
+      "momentum",
+      "angular momentum"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Bernoulli's equation, $P + \\frac{1}{2}\\rho v^2 + \\rho g h = \\text{constant}$, expresses conservation of mechanical energy per unit volume along a streamline.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A tiny sphere of radius 1 mm moves through a viscous liquid of coefficient of viscosity 0.5 Pa·s with a speed of 0.02 m/s. What is the viscous drag force on the sphere, according to Stokes' law?",
+    "options": [
+      "$1.9 \\times 10^{-4}$ N",
+      "$3.8 \\times 10^{-4}$ N",
+      "$9.4 \\times 10^{-5}$ N",
+      "$1.9 \\times 10^{-3}$ N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Stokes' law gives $F = 6\\pi \\eta r v = 6\\pi \\times 0.5 \\times 0.001 \\times 0.02 \\approx 1.9 \\times 10^{-4}$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The terminal velocity attained by a small sphere falling freely through a viscous fluid under gravity is proportional to which power of its radius $r$?",
+    "options": [
+      "$r$",
+      "$r^2$",
+      "$r^3$",
+      "$1/r$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The terminal velocity is $v_t = \\dfrac{2r^2(\\rho-\\sigma)g}{9\\eta}$, which shows $v_t \\propto r^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A rectangular wire frame with a movable side of length 5 cm holds a soap film. If the surface tension of the soap solution is 0.03 N/m, what additional force is needed on the movable wire to keep the film in equilibrium?",
+    "options": [
+      "$3 \\times 10^{-3}$ N",
+      "$1.5 \\times 10^{-3}$ N",
+      "$6 \\times 10^{-3}$ N",
+      "$3 \\times 10^{-2}$ N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A soap film has two free surfaces, so the force is $F = 2TL = 2 \\times 0.03 \\times 0.05 = 3 \\times 10^{-3}$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Mercury does not wet glass and forms a convex meniscus in a glass tube because the angle of contact between mercury and glass is:",
+    "options": [
+      "obtuse (greater than 90 degrees)",
+      "acute (less than 90 degrees)",
+      "exactly 90 degrees",
+      "zero"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A liquid that does not wet a surface, such as mercury on glass, has an obtuse angle of contact, resulting in a convex meniscus and capillary depression.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A capillary tube of radius $3.5 \\times 10^{-4}$ m is dipped vertically in water of surface tension 0.07 N/m. Assuming complete wetting (angle of contact = 0 degrees), find the height to which water rises. (density of water = 1000 kg/m$^3$, $g = 10$ m/s$^2$)",
+    "options": [
+      "4 cm",
+      "2 cm",
+      "8 cm",
+      "0.4 cm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $h = \\dfrac{2T\\cos\\theta}{\\rho g r} = \\dfrac{2\\times0.07}{1000\\times10\\times3.5\\times10^{-4}} = 0.04$ m $= 4$ cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In a simple mercury barometer, the glass tube is tilted at an angle to the vertical while the mercury column remains unbroken and reaches the same reservoir. Compared to the vertical arrangement, the vertical height of the mercury column above the reservoir level:",
+    "options": [
+      "remains the same",
+      "increases",
+      "decreases",
+      "becomes zero"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Atmospheric pressure is balanced by the vertical height of the mercury column, not the length along the tube; tilting only increases the length of mercury in the tube while the vertical height stays the same.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A soap bubble of radius 1 cm has surface tension 0.03 N/m. What is its surface energy? (A soap bubble has two free surfaces.)",
+    "options": [
+      "$7.5 \\times 10^{-5}$ J",
+      "$3.8 \\times 10^{-5}$ J",
+      "$1.5 \\times 10^{-4}$ J",
+      "$7.5 \\times 10^{-6}$ J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Surface energy $= T \\times \\Delta A = 0.03 \\times (2 \\times 4\\pi r^2) = 0.03 \\times 2 \\times 4\\pi \\times (0.01)^2 \\approx 7.5 \\times 10^{-5}$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A hydraulic press has a smaller piston of diameter 2 cm and a larger piston of diameter 20 cm. A force of 100 N is applied on the smaller piston. What force is exerted by the larger piston?",
+    "options": [
+      "$1 \\times 10^4$ N",
+      "$1 \\times 10^3$ N",
+      "$1 \\times 10^5$ N",
+      "$2 \\times 10^3$ N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since area is proportional to the square of diameter, $A_2/A_1 = (20/2)^2 = 100$, so $F_2 = 100 \\times 100 = 1 \\times 10^4$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block of wood of density 600 kg/m$^3$ floats freely in water of density 1000 kg/m$^3$. What fraction of the block's volume remains above the water surface?",
+    "options": [
+      "40%",
+      "60%",
+      "20%",
+      "80%"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For floating, the submerged fraction is $\\rho_{block}/\\rho_{liquid} = 600/1000 = 0.6$, so 60% is submerged and 40% remains above the surface.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A horizontal venturimeter carries water and has a wide section of area 3 $cm^2$ and a throat of area 1 $cm^2$. If the pressure difference between the wide section and the throat is 4000 Pa, find the speed of water at the throat. (density of water = 1000 kg/m$^3$)",
+    "options": [
+      "3 m/s",
+      "1 m/s",
+      "9 m/s",
+      "1.5 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By continuity, $v_1 = v_2/3$. Bernoulli gives $\\Delta P = \\frac{1}{2}\\rho(v_2^2 - v_1^2) = \\frac{1}{2}\\rho v_2^2(1-1/9) = \\frac{4}{9}\\rho v_2^2$. Solving $4000 = \\frac{4}{9}\\times1000\\times v_2^2$ gives $v_2 = 3$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Air flows over the top surface of an airplane wing of area 20 $m^2$ at 120 m/s and under the bottom surface at 100 m/s. Using Bernoulli's principle, estimate the lift force on the wing. (density of air = 1.2 kg/m$^3$)",
+    "options": [
+      "$5.28 \\times 10^4$ N",
+      "$2.64 \\times 10^4$ N",
+      "$1.06 \\times 10^5$ N",
+      "$4.4 \\times 10^4$ N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Pressure difference $\\Delta P = \\frac{1}{2}\\rho(v_{top}^2 - v_{bottom}^2) = 0.6\\times(14400-10000) = 2640$ Pa. Lift force $= \\Delta P \\times A = 2640 \\times 20 = 52800$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In a perfume atomizer, a rapid stream of air is blown across the open top of a vertical tube dipped in the liquid. The liquid rises up the tube mainly because:",
+    "options": [
+      "the fast air stream lowers the pressure above the tube below atmospheric pressure, so atmospheric pressure pushes the liquid up",
+      "the fast air stream heats the liquid, causing it to rise",
+      "capillary action alone draws the liquid up the tube",
+      "the air stream directly drags liquid molecules upward through viscous friction"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Bernoulli's principle, the high-speed air jet has lower pressure; the resulting pressure difference lets atmospheric pressure on the liquid surface push the liquid up the tube, where it is sprayed as a fine mist.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A large open tank has a small hole near its base, with the water surface maintained at a height of 5 m above the hole. Find the speed with which water leaves the hole. ($g = 10$ m/s$^2$)",
+    "options": [
+      "10 m/s",
+      "5 m/s",
+      "50 m/s",
+      "20 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Torricelli's law (Bernoulli's theorem applied to efflux), $v = \\sqrt{2gh} = \\sqrt{2\\times10\\times5} = 10$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A solid weighs 500 N in air and 400 N when fully submerged in water. Find the relative density (specific gravity) of the solid.",
+    "options": [
+      "5",
+      "4",
+      "0.2",
+      "10"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The loss of weight (buoyant force) is $500-400=100$ N. Relative density $= \\dfrac{\\text{weight in air}}{\\text{loss of weight in water}} = 500/100 = 5$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "For streamline (Poiseuille) flow through a capillary tube under a fixed pressure difference, the volume flow rate depends on the fourth power of the tube's radius. If the radius of the tube is doubled while keeping everything else constant, by what factor does the flow rate increase?",
+    "options": [
+      "16",
+      "8",
+      "4",
+      "2"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Poiseuille's equation gives $Q \\propto r^4$, so doubling the radius increases the flow rate by a factor of $2^4 = 16$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A tiny spherical ball of radius 1 mm and density 2500 kg/m$^3$ falls through a viscous liquid of density 1000 kg/m$^3$ and viscosity 1.0 Pa·s. Find its terminal velocity. ($g = 10$ m/s$^2$)",
+    "options": [
+      "$3.33 \\times 10^{-3}$ m/s",
+      "$6.67 \\times 10^{-3}$ m/s",
+      "$1.67 \\times 10^{-3}$ m/s",
+      "$3.33 \\times 10^{-2}$ m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $v_t = \\dfrac{2r^2(\\rho-\\sigma)g}{9\\eta} = \\dfrac{2\\times(0.001)^2\\times1500\\times10}{9\\times1.0} \\approx 3.33\\times10^{-3}$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A water drop and a soap bubble in air have the same radius and are formed from liquids of the same surface tension. If the excess pressure inside the water drop is 200 Pa, what is the excess pressure inside the soap bubble?",
+    "options": [
+      "400 Pa",
+      "200 Pa",
+      "100 Pa",
+      "800 Pa"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Excess pressure in a drop is $2T/r$, while in a bubble (two surfaces) it is $4T/r$, which is twice that of a drop. So the bubble's excess pressure is $2 \\times 200 = 400$ Pa.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two capillary tubes of radii $r$ and $2r$ are dipped vertically in the same liquid. If the liquid rises to height $h$ in the tube of radius $r$, to what height will it rise in the tube of radius $2r$?",
+    "options": [
+      "$h/2$",
+      "$2h$",
+      "$h$",
+      "$h/4$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $h = 2T\\cos\\theta/(\\rho g r)$, height is inversely proportional to radius. Doubling the radius halves the rise, giving $h/2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A hydraulic car lift supports a car of mass 1000 kg on a piston of area 0.5 $m^2$. Compressed air is applied to a smaller piston of area 0.01 $m^2$. Find the force required on the smaller piston to just support the car. ($g = 10$ m/s$^2$)",
+    "options": [
+      "200 N",
+      "100 N",
+      "400 N",
+      "2000 N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Weight of car $W = mg = 10000$ N. By Pascal's law, $F_1 = W \\times (A_1/A_2) = 10000 \\times (0.01/0.5) = 200$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A hydraulic lift is filled with oil of density 800 kg/m$^3$. The input piston, of cross-sectional area 10 $cm^2$, is located 3 m above the output piston, whose cross-sectional area is 1000 $cm^2$. A force of 50 N is applied to the input piston. What force is delivered at the output piston? ($g = 10$ m/s$^2$)",
+    "options": [
+      "7400 N",
+      "5000 N",
+      "24000 N",
+      "50000 N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Pressure at the input piston is $P_1 = F_1/A_1 = 50/(10\\times10^{-4}) = 5\\times10^4$ Pa. Since the output piston is 3 m lower, the pressure there is $P_2 = P_1 + \\rho g h = 5\\times10^4 + 800\\times10\\times3 = 7.4\\times10^4$ Pa. Force on output piston $= P_2 \\times A_2 = 7.4\\times10^4 \\times 0.1 = 7400$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Water flows steadily through a pipe whose cross-sectional area decreases from 8 $cm^2$ at point A to 2 $cm^2$ at point B, with point B located 1.25 m above point A. The speed and pressure at A are 1 m/s and $5 \\times 10^4$ Pa respectively. Find the pressure at B. (density of water = 1000 kg/m$^3$, $g = 10$ m/s$^2$)",
+    "options": [
+      "$3 \\times 10^4$ Pa",
+      "$5 \\times 10^4$ Pa",
+      "$2 \\times 10^4$ Pa",
+      "$3.5 \\times 10^4$ Pa"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By continuity, $v_B = v_A \\times A_A/A_B = 1 \\times 8/2 = 4$ m/s. Bernoulli's equation gives $P_A + \\frac{1}{2}\\rho v_A^2 = P_B + \\frac{1}{2}\\rho v_B^2 + \\rho g h$, so $50000 + 500 = P_B + 8000 + 12500$, giving $P_B = 3 \\times 10^4$ Pa.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two small spheres made of the same material fall through the same viscous liquid and reach their terminal velocities. Sphere A has radius 1 mm and terminal velocity 2 mm/s. Sphere B has radius 2 mm. How long does sphere B take to fall a distance of 4 cm while moving at its terminal velocity?",
+    "options": [
+      "5 s",
+      "2.5 s",
+      "10 s",
+      "20 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $v_t \\propto r^2$, sphere B's terminal velocity is $2 \\times (2/1)^2 = 8$ mm/s. Time to cover 4 cm (40 mm) is $40/8 = 5$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Water rises to a height of 6 cm in a long capillary tube of a certain radius. If a tube of the same radius, but only 4 cm long above the liquid surface, is now used, what happens?",
+    "options": [
+      "The liquid rises to the top of the tube (4 cm) and the radius of curvature of the meniscus increases so that the liquid remains in equilibrium without overflowing",
+      "The liquid rises to 6 cm by forming a visible column projecting above the rim of the tube",
+      "The liquid does not rise into the tube at all",
+      "The liquid rises to 6 cm and then continuously overflows from the top of the tube"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $h = 2T\\cos\\theta/(\\rho g r)$, if the available tube length is less than the natural rise height, the liquid rises only to the top of the tube and the meniscus flattens (radius of curvature increases, effective angle of contact adjusts) so that the reduced height still satisfies equilibrium without the liquid overflowing.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A hydraulic press multiplies an applied force by a factor of 50 (mechanical advantage = 50). If the output piston must rise by 2 cm to lift a load, through what distance must the input piston be pushed, assuming no energy losses?",
+    "options": [
+      "100 cm",
+      "2 cm",
+      "4 cm",
+      "0.04 cm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By conservation of volume (and hence energy, since $F_1 d_1 = F_2 d_2$), the input piston must move a distance equal to the mechanical advantage times the output distance: $d_1 = 50 \\times 2 = 100$ cm. This also shows that no energy is gained: the larger force at the output moves a proportionally smaller distance.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Fluid Mechanics",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A solid cube of density 800 kg/m$^3$ floats in equilibrium at the interface of two immiscible liquids: an upper liquid of density 600 kg/m$^3$ and a lower liquid of density 1200 kg/m$^3$. What fraction of the cube's volume lies in the lower liquid?",
+    "options": [
+      "1/3",
+      "2/3",
+      "1/2",
+      "1/4"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For equilibrium, weight equals total buoyant force: $\\rho_{cube} = \\rho_{lower}x + \\rho_{upper}(1-x)$, so $800 = 1200x + 600(1-x)$, giving $200 = 600x$, so $x = 1/3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

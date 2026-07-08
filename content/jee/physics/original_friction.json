@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass 4 kg rests on a horizontal surface. If the coefficient of static friction between the block and the surface is 0.5, what is the maximum force of static friction that the surface can exert on the block? (Take $g = 10\\,m/s^2$)",
+    "options": [
+      "$10\\,N$",
+      "$20\\,N$",
+      "$40\\,N$",
+      "$2\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Maximum static friction is $f_{max} = \\mu_s N = \\mu_s mg = 0.5 \\times 4 \\times 10 = 20\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass 5 kg slides on a horizontal floor with a coefficient of kinetic friction of 0.2. What is the kinetic friction force acting on the block? (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$5\\,N$",
+      "$10\\,N$",
+      "$20\\,N$",
+      "$1\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Kinetic friction is $f = \\mu_k mg = 0.2 \\times 5 \\times 10 = 10\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The angle of repose between a block and an inclined surface is $30°$. What is the coefficient of static friction between the block and the surface?",
+    "options": [
+      "$\\sqrt{3}$",
+      "$1/\\sqrt{3}$",
+      "$1/2$",
+      "$2/\\sqrt{3}$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The coefficient of static friction equals the tangent of the angle of repose: $\\mu_s = \\tan30° = 1/\\sqrt{3}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The coefficient of static friction between a block and an inclined plane is 1. What is the angle of repose for this surface?",
+    "options": [
+      "$30°$",
+      "$37°$",
+      "$45°$",
+      "$60°$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The angle of repose satisfies $\\tan\\theta = \\mu_s = 1$, so $\\theta = 45°$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block resting on a horizontal table is pushed by a horizontal force smaller than the maximum static friction force. What happens to the block and the frictional force acting on it?",
+    "options": [
+      "The block remains at rest and the static friction equals the applied force, acting opposite to it",
+      "The block accelerates and kinetic friction acts opposite to its motion",
+      "The block remains at rest and friction always equals $\\mu_s mg$ regardless of the applied force",
+      "The block moves at constant velocity"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "As long as the applied force is less than the maximum static friction, static friction self-adjusts to exactly balance the applied force, keeping the block in equilibrium; it is not always at its maximum value.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass 10 kg lies on a horizontal floor. If the coefficient of static friction between the block and floor is 0.4, what minimum horizontal force is required to just start moving the block? (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$20\\,N$",
+      "$40\\,N$",
+      "$400\\,N$",
+      "$4\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The block starts to move when the applied force equals the maximum static friction: $F_{min} = \\mu_s mg = 0.4 \\times 10 \\times 10 = 40\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "For the same pair of surfaces, how does the coefficient of rolling friction generally compare with the coefficient of kinetic (sliding) friction?",
+    "options": [
+      "The coefficient of rolling friction is much smaller than that of kinetic friction",
+      "The coefficient of rolling friction is much larger than that of kinetic friction",
+      "They are always exactly equal",
+      "The rolling friction coefficient is always greater than 1"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Rolling friction arises mainly from small deformation at the contact region and is typically much smaller than sliding kinetic friction for the same surfaces, which is why wheels reduce resistance to motion.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block is placed on a table, once resting on its larger face and once on its smaller face, while its weight and hence the normal force stay unchanged. How does the maximum static friction force compare in the two cases?",
+    "options": [
+      "It is the same in both cases since friction is independent of the apparent contact area",
+      "It is larger when resting on the larger face",
+      "It is larger when resting on the smaller face",
+      "It depends only on the shape of the block"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The laws of friction state that limiting friction depends on the normal reaction and the nature of the surfaces in contact, not on the apparent area of contact.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following statements about the maximum static friction ($f_s$) and kinetic friction ($f_k$) between the same pair of surfaces, for the same normal force, is generally true?",
+    "options": [
+      "$f_s \\geq f_k$",
+      "$f_s$ is always exactly equal to $f_k$",
+      "$f_k$ is always greater than $f_s$",
+      "$f_s$ and $f_k$ do not depend on the normal force at all"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Experimentally, the maximum (limiting) static friction is generally slightly greater than or equal to the kinetic friction force between the same surfaces under the same normal force.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass 8 kg lies on a horizontal table where the coefficient of static friction is 0.5. A horizontal force of 15 N is applied to the block, and it remains stationary. What is the magnitude of the frictional force acting on the block? (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$40\\,N$",
+      "$15\\,N$",
+      "$0\\,N$",
+      "$25\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The maximum static friction is $\\mu_s mg = 0.5 \\times 8 \\times 10 = 40\\,N$, which exceeds 15 N, so the block stays at rest and static friction exactly balances the applied force, giving $f = 15\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A car moving on a horizontal road with its wheels locked decelerates uniformly at $5\\,m/s^2$ due to friction alone. What is the coefficient of kinetic friction between the tyres and the road? (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$0.2$",
+      "$0.5$",
+      "$0.05$",
+      "$2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The deceleration due to friction alone is $a = \\mu_k g$, so $\\mu_k = a/g = 5/10 = 0.5$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass 12 kg slides on a horizontal surface with coefficient of kinetic friction 0.25. Find the kinetic friction force acting on the block while it slides. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$15\\,N$",
+      "$30\\,N$",
+      "$3\\,N$",
+      "$60\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Kinetic friction is $f = \\mu_k mg = 0.25 \\times 12 \\times 10 = 30\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A 2 kg block rests on an incline making an angle of $30°$ with the horizontal. The coefficient of static friction between the block and incline is 0.75, so the angle of repose, $\\tan^{-1}(0.75) \\approx 37°$, exceeds $30°$ and the block stays at rest. What is the magnitude of the frictional force acting on the block? (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$17.3\\,N$",
+      "$15\\,N$",
+      "$10\\,N$",
+      "$5\\,N$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Since the block is in equilibrium, friction balances the component of gravity along the incline: $f = mg\\sin30° = 2 \\times 10 \\times 0.5 = 10\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block slides down a rough incline of angle $37°$ with the horizontal. If the coefficient of kinetic friction between the block and incline is 0.25, find the acceleration of the block down the incline. (Take $\\sin37°=0.6, \\cos37°=0.8, g=10\\,m/s^2$)",
+    "options": [
+      "$2\\,m/s^2$",
+      "$4\\,m/s^2$",
+      "$6\\,m/s^2$",
+      "$8\\,m/s^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$a = g(\\sin\\theta - \\mu_k\\cos\\theta) = 10(0.6 - 0.25 \\times 0.8) = 10 \\times 0.4 = 4\\,m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two blocks A (3 kg) and B (2 kg) are in contact on a horizontal floor with a common coefficient of kinetic friction of 0.2 between each block and the floor. A horizontal force of 30 N is applied to block A, pushing it against block B so that both move together. Find the contact force between the two blocks. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$8\\,N$",
+      "$10\\,N$",
+      "$12\\,N$",
+      "$20\\,N$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Common acceleration $a = (F - \\mu(m_A+m_B)g)/(m_A+m_B) = (30-10)/5 = 4\\,m/s^2$; for block B, the contact force is $N = m_Ba + \\mu m_Bg = 2\\times4 + 4 = 12\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A 6 kg block lies on a rough horizontal floor with coefficient of static friction 0.75. A force is applied to the block at $37°$ above the horizontal, pulling it. What is the minimum magnitude of this force that will just start the block moving? (Take $\\sin37°=0.6, \\cos37°=0.8, g=10\\,m/s^2$)",
+    "options": [
+      "$30\\,N$",
+      "$36\\,N$",
+      "$45\\,N$",
+      "$60\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The upward component of the pulling force reduces the normal reaction: $F = \\frac{\\mu_s mg}{\\cos\\theta + \\mu_s\\sin\\theta} = \\frac{0.75\\times60}{0.8+0.45} = \\frac{45}{1.25} = 36\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Block A (mass 2 kg) rests on a rough horizontal table with coefficient of kinetic friction 0.5, and is connected by a light string, passing over a frictionless pulley at the edge of the table, to a hanging block B (mass 3 kg). Find the acceleration of the system when released from rest. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$2\\,m/s^2$",
+      "$3\\,m/s^2$",
+      "$4\\,m/s^2$",
+      "$6\\,m/s^2$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "$a = \\frac{m_Bg - \\mu m_Ag}{m_A+m_B} = \\frac{30-10}{5} = 4\\,m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A car moves on a level (unbanked) circular road of radius 20 m. If the coefficient of static friction between the tyres and road is 0.5, find the maximum speed at which the car can go around the curve without skidding. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$5\\,m/s$",
+      "$10\\,m/s$",
+      "$14.1\\,m/s$",
+      "$20\\,m/s$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "On a level road, friction alone provides the centripetal force: $v_{max} = \\sqrt{\\mu g r} = \\sqrt{0.5\\times10\\times20} = 10\\,m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block is sliding up a rough incline of angle $37°$ with coefficient of kinetic friction 0.25. While it moves up, both gravity and friction act to decelerate it. Find the retardation of the block. (Take $\\sin37°=0.6, \\cos37°=0.8, g=10\\,m/s^2$)",
+    "options": [
+      "$4\\,m/s^2$",
+      "$6\\,m/s^2$",
+      "$8\\,m/s^2$",
+      "$10\\,m/s^2$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "While moving up, friction acts down the incline along with the gravity component: $a = g(\\sin\\theta + \\mu_k\\cos\\theta) = 10(0.6+0.2) = 8\\,m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A 2 kg block rests on top of a 3 kg block; the coefficient of static friction between the two blocks is 0.4. The lower block can slide freely on a frictionless floor. What is the maximum horizontal force that can be applied to the lower block so that both blocks move together without the upper block slipping? (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$8\\,N$",
+      "$12\\,N$",
+      "$20\\,N$",
+      "$50\\,N$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The upper block's maximum possible acceleration is $\\mu_s g = 4\\,m/s^2$; for both blocks to share this acceleration, $F_{max} = (m_1+m_2)\\times4 = 5\\times4 = 20\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A uniform ladder rests with its base on a rough floor, coefficient of static friction 0.5, and its top leaning against a smooth vertical wall. What is the minimum angle the ladder must make with the floor so that it does not slip?",
+    "options": [
+      "$30°$",
+      "$37°$",
+      "$45°$",
+      "$60°$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For a ladder with a smooth wall and rough floor, equilibrium requires $\\tan\\theta_{min} = \\frac{1}{2\\mu} = \\frac{1}{2\\times0.5} = 1$, giving $\\theta_{min} = 45°$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A car moving at $20\\,m/s$ on a horizontal road applies brakes, locking its wheels. If the coefficient of kinetic friction between the tyres and road is 0.5, find the distance the car travels before stopping. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$20\\,m$",
+      "$40\\,m$",
+      "$50\\,m$",
+      "$100\\,m$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Using $v^2 = 2\\mu g d$, the stopping distance is $d = \\frac{v^2}{2\\mu g} = \\frac{400}{10} = 40\\,m$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block is projected up a rough incline of angle $45°$ with coefficient of kinetic friction 0.5. It takes time $t_1$ to come to momentary rest at its highest point, and then slides back down to the starting point in time $t_2$. Find the ratio $t_1 : t_2$.",
+    "options": [
+      "$1:1$",
+      "$1:\\sqrt{3}$",
+      "$\\sqrt{3}:1$",
+      "$1:2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Using $d = \\frac{1}{2}a_1t_1^2 = \\frac{1}{2}a_2t_2^2$ with $a_1 = g(\\sin\\theta+\\mu\\cos\\theta)$ and $a_2 = g(\\sin\\theta-\\mu\\cos\\theta)$, and since $\\sin45° = \\cos45°$, we get $t_1/t_2 = \\sqrt{(1-\\mu)/(1+\\mu)} = \\sqrt{0.5/1.5} = 1/\\sqrt{3}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block of mass 3 kg is dragged at constant velocity across a rough horizontal floor through a distance of 5 m by a horizontal force. If the coefficient of kinetic friction is 0.3, calculate the work done against friction. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$15\\,J$",
+      "$30\\,J$",
+      "$45\\,J$",
+      "$90\\,J$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Work done against friction is $W = f \\times d = \\mu mg \\times d = 0.3 \\times 3 \\times 10 \\times 5 = 45\\,J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A 2 kg block rests on top of a 4 kg block, which lies on a frictionless floor. The coefficient of kinetic friction between the two blocks is 0.3. A horizontal force of 30 N is applied to the lower block. Find the acceleration of the upper (2 kg) block. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$1.5\\,m/s^2$",
+      "$3\\,m/s^2$",
+      "$5\\,m/s^2$",
+      "$6\\,m/s^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "If both blocks moved together, the required acceleration would be $F/(m_1+m_2)=5\\,m/s^2$, but the maximum friction on the top block only allows $a=\\mu g=0.3\\times10=3\\,m/s^2$; since this is less than 5, the blocks slip and the top block's actual acceleration is $\\mu g = 3\\,m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Block A (mass 5 kg) rests on an incline of angle $37°$ with the horizontal, where the coefficient of static friction between block and incline is 0.25. Block A is connected by a light string over a frictionless pulley at the top of the incline to a hanging block B. Find the minimum mass of B required to just start pulling A up the incline. (Take $\\sin37°=0.6, \\cos37°=0.8, g=10\\,m/s^2$)",
+    "options": [
+      "$2\\,kg$",
+      "$3\\,kg$",
+      "$4\\,kg$",
+      "$5\\,kg$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "At the threshold of motion, $m_Bg = m_Ag(\\sin\\theta+\\mu_s\\cos\\theta) = 5\\times10\\times(0.6+0.2) = 40\\,N$, giving $m_B = 4\\,kg$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A road is banked at an angle $\\theta$ such that $\\tan\\theta=0.75$, with a radius of curvature of 40 m. If the coefficient of static friction between tyres and road is 0.5, find the maximum speed at which a vehicle can negotiate the curve without skidding. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$20\\,m/s$",
+      "$20\\sqrt{2}\\,m/s$",
+      "$40\\,m/s$",
+      "$10\\sqrt{2}\\,m/s$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$v_{max} = \\sqrt{\\dfrac{rg(\\tan\\theta+\\mu)}{1-\\mu\\tan\\theta}} = \\sqrt{\\dfrac{40\\times10\\times(0.75+0.5)}{1-0.5\\times0.75}} = \\sqrt{\\dfrac{500}{0.625}} = \\sqrt{800} = 20\\sqrt{2}\\,m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A 4 kg block lies on an incline of angle $37°$ with the horizontal; the coefficient of static friction between block and incline is 0.5. A horizontal force F, directed so as to push the block toward the incline, is applied to the block. Find the minimum value of F required to prevent the block from sliding down the incline. (Take $\\sin37°=0.6, \\cos37°=0.8, g=10\\,m/s^2$)",
+    "options": [
+      "$8\\,N$",
+      "$16\\,N$",
+      "$24\\,N$",
+      "$32\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "With normal reaction $N = mg\\cos\\theta+F\\sin\\theta$ and friction acting up the incline at its limiting value, $F_{min} = \\dfrac{mg(\\sin\\theta-\\mu\\cos\\theta)}{\\cos\\theta-\\mu\\sin\\theta} = \\dfrac{40\\times0.2}{0.5} = 16\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two blocks P (mass 4 kg) and Q (mass 2 kg) are connected by a light inextensible string and lie on a rough horizontal floor; the coefficient of kinetic friction between each block and the floor is 0.25. Block P is pulled by a horizontal force of 45 N, dragging Q behind it via the string. Find the tension in the string connecting P and Q. (Take $g=10\\,m/s^2$)",
+    "options": [
+      "$10\\,N$",
+      "$15\\,N$",
+      "$20\\,N$",
+      "$25\\,N$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Total friction on the system is $\\mu(m_P+m_Q)g = 0.25\\times6\\times10 = 15\\,N$, so acceleration $a = (45-15)/6 = 5\\,m/s^2$; for block Q, $T = \\mu m_Qg + m_Qa = 5+10 = 15\\,N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Friction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A block of mass 10 kg rests on an incline of angle $37°$ with the horizontal; the coefficient of static friction between block and incline is 0.5. The block is connected via a light string over a frictionless pulley at the top of the incline to a hanging mass M. Find the range of values of M for which the system remains in equilibrium. (Take $\\sin37°=0.6, \\cos37°=0.8, g=10\\,m/s^2$)",
+    "options": [
+      "$1\\,kg$ to $6\\,kg$",
+      "$2\\,kg$ to $10\\,kg$",
+      "$4\\,kg$ to $8\\,kg$",
+      "$0.5\\,kg$ to $12\\,kg$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$M_{min} = m(\\sin\\theta-\\mu\\cos\\theta) = 10(0.6-0.4) = 2\\,kg$ and $M_{max} = m(\\sin\\theta+\\mu\\cos\\theta) = 10(0.6+0.4) = 10\\,kg$, so equilibrium holds for $2\\,kg \\leq M \\leq 10\\,kg$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

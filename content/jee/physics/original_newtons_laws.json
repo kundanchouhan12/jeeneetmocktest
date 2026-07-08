@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A passenger standing inside a moving bus lurches forward when the bus suddenly stops. This phenomenon is best explained by which law?",
+    "options": [
+      "Newton's first law of motion",
+      "Newton's second law of motion",
+      "Newton's third law of motion",
+      "Law of conservation of energy"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The passenger's body tends to continue in its state of motion due to inertia even though the bus has stopped, which is a direct consequence of Newton's first law (law of inertia).",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A constant force of 15 N acts on a body of mass 3 kg that is initially at rest. What is the acceleration produced?",
+    "options": [
+      "$3\\ m/s^2$",
+      "$5\\ m/s^2$",
+      "$10\\ m/s^2$",
+      "$45\\ m/s^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "By Newton's second law, $a = F/m = 15/3 = 5\\ m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A net force acts on a 2 kg body producing an acceleration of $4\\ m/s^2$. What is the magnitude of the net force?",
+    "options": [
+      "2 N",
+      "4 N",
+      "6 N",
+      "8 N"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Using $F = ma = 2 \\times 4 = 8\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A swimmer pushes the water backward with his hands and moves forward as a result. Which law of motion explains this?",
+    "options": [
+      "Newton's first law",
+      "Newton's second law",
+      "Newton's third law",
+      "Law of conservation of mass"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The water exerts an equal and opposite reaction force on the swimmer's hands, propelling him forward, illustrating Newton's third law: for every action there is an equal and opposite reaction.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A force of 50 N acts on a body of mass 2 kg, initially at rest, for 0.2 s. What is the final speed of the body?",
+    "options": [
+      "2.5 m/s",
+      "5 m/s",
+      "10 m/s",
+      "20 m/s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Impulse $= Ft = 50 \\times 0.2 = 10\\ N\\cdot s = m\\Delta v$, so $\\Delta v = 10/2 = 5\\ m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A man of mass 60 kg stands on a weighing machine inside a lift moving upward with constant velocity. Taking $g = 10\\ m/s^2$, what does the weighing machine read?",
+    "options": [
+      "0 N",
+      "300 N",
+      "600 N",
+      "1200 N"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Since the lift moves with constant velocity, acceleration is zero, so the normal force equals the actual weight: $N = mg = 60 \\times 10 = 600\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass 5 kg hangs in equilibrium from a light, inextensible string. Taking $g = 10\\ m/s^2$, find the tension in the string.",
+    "options": [
+      "25 N",
+      "50 N",
+      "100 N",
+      "500 N"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For equilibrium, tension balances weight: $T = mg = 5 \\times 10 = 50\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two blocks of masses 2 kg and 3 kg are connected by a light string and lie on a smooth horizontal table. A horizontal force of 10 N is applied to the system. What is the acceleration of the blocks?",
+    "options": [
+      "$1\\ m/s^2$",
+      "$2\\ m/s^2$",
+      "$5\\ m/s^2$",
+      "$10\\ m/s^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The whole system moves together, so $a = F/(m_1+m_2) = 10/5 = 2\\ m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In a conical pendulum, the bob moves in a horizontal circle while the string sweeps out a cone. The horizontal component of the string's tension provides:",
+    "options": [
+      "The weight of the bob",
+      "The centripetal force for circular motion",
+      "A force equal and opposite to gravity",
+      "No net force is provided"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "In a conical pendulum, the vertical component of tension balances gravity while the horizontal component supplies the centripetal force needed for circular motion.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A gun of mass 4 kg fires a bullet of mass 0.02 kg with a muzzle velocity of 300 m/s. Find the recoil velocity of the gun.",
+    "options": [
+      "0.75 m/s",
+      "1.5 m/s",
+      "3 m/s",
+      "6 m/s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "By conservation of momentum, $m_{gun} v_{gun} = m_{bullet} v_{bullet}$, so $v_{gun} = (0.02 \\times 300)/4 = 1.5\\ m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "If the net external force acting on a body is zero, the body will:",
+    "options": [
+      "Always come to rest immediately",
+      "Continue in its state of rest or uniform motion in a straight line",
+      "Accelerate uniformly",
+      "Move in a circular path"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "This is a direct consequence of Newton's first and second laws: zero net force means zero acceleration, so the velocity remains unchanged.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In an Atwood machine, two masses 3 kg and 5 kg are connected by a light string over a frictionless, massless pulley. Taking $g = 10\\ m/s^2$, find the acceleration of the system.",
+    "options": [
+      "$1.25\\ m/s^2$",
+      "$2\\ m/s^2$",
+      "$2.5\\ m/s^2$",
+      "$5\\ m/s^2$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For an Atwood machine, $a = \\dfrac{(m_2-m_1)g}{m_1+m_2} = \\dfrac{(5-3)\\times 10}{8} = 2.5\\ m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A man of mass 50 kg stands on a weighing machine inside a lift that is accelerating upward at $2\\ m/s^2$. Taking $g = 10\\ m/s^2$, what is the reading of the weighing machine?",
+    "options": [
+      "400 N",
+      "500 N",
+      "600 N",
+      "700 N"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Apparent weight $N = m(g+a) = 50 \\times (10+2) = 600\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A man of mass 60 kg stands on a weighing machine inside a lift accelerating downward at $3\\ m/s^2$. Taking $g = 10\\ m/s^2$, find the reading of the machine.",
+    "options": [
+      "180 N",
+      "300 N",
+      "420 N",
+      "600 N"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Apparent weight $N = m(g-a) = 60 \\times (10-3) = 420\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A road is banked at an angle so that a car can safely negotiate a curve of radius 40 m at 20 m/s without depending on friction. Taking $g = 10\\ m/s^2$, find the banking angle.",
+    "options": [
+      "30°",
+      "37°",
+      "45°",
+      "60°"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For frictionless banking, $\\tan\\theta = v^2/(rg) = 400/400 = 1$, giving $\\theta = 45°$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A conical pendulum has a bob of mass 0.5 kg attached to a string that makes an angle of 60° with the vertical. Taking $g = 10\\ m/s^2$, find the tension in the string.",
+    "options": [
+      "2.5 N",
+      "5 N",
+      "10 N",
+      "20 N"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Vertical equilibrium gives $T\\cos\\theta = mg$, so $T = mg/\\cos 60° = (0.5\\times 10)/0.5 = 10\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block of mass 3 kg rests on a smooth horizontal table and is connected by a light string over a frictionless pulley at the edge of the table to a hanging block of mass 2 kg. Taking $g = 10\\ m/s^2$, find the acceleration of the system.",
+    "options": [
+      "$2\\ m/s^2$",
+      "$4\\ m/s^2$",
+      "$5\\ m/s^2$",
+      "$6\\ m/s^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Applying Newton's second law to the whole system, $a = \\dfrac{m_2 g}{m_1+m_2} = \\dfrac{2\\times 10}{5} = 4\\ m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The cable of a lift suddenly snaps and the lift falls freely under gravity. What will a person standing inside the lift experience?",
+    "options": [
+      "Increased apparent weight",
+      "Normal apparent weight equal to actual weight",
+      "Apparent weight equal to zero (weightlessness)",
+      "Apparent weight becomes negative"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "In free fall, both the lift and the person accelerate downward at $g$, so the normal force (apparent weight) becomes zero, a state called weightlessness.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A ball of mass 0.1 kg moving with a velocity of 20 m/s strikes a wall normally and rebounds with the same speed. If the ball is in contact with the wall for 0.01 s, find the average force exerted by the ball on the wall.",
+    "options": [
+      "100 N",
+      "200 N",
+      "400 N",
+      "800 N"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Change in momentum $= m(v-(-v)) = 0.1\\times 40 = 4\\ kg\\cdot m/s$; average force $= \\Delta p/\\Delta t = 4/0.01 = 400\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two blocks of mass 2 kg and 3 kg are in contact on a smooth horizontal surface. A horizontal force of 25 N is applied to the 2 kg block, pushing both blocks together. Find the contact force between the two blocks.",
+    "options": [
+      "10 N",
+      "15 N",
+      "20 N",
+      "25 N"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Common acceleration $a = F/(m_1+m_2) = 25/5 = 5\\ m/s^2$. The contact force must accelerate only the 3 kg block: $N = m_2 a = 3\\times5 = 15\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Three blocks of masses 2 kg, 3 kg, and 1 kg are connected in a line by light strings on a smooth horizontal surface, in that order. A horizontal force of 24 N is applied to the 2 kg block, pulling all three blocks. Find the tension in the string connecting the 3 kg and 1 kg blocks.",
+    "options": [
+      "2 N",
+      "4 N",
+      "8 N",
+      "12 N"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The system's acceleration is $a = F/(2+3+1) = 24/6 = 4\\ m/s^2$. The last string only needs to accelerate the 1 kg block: $T = 1\\times 4 = 4\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A simple pendulum is suspended from the ceiling of a car accelerating horizontally at $10\\ m/s^2$. Taking $g = 10\\ m/s^2$, find the angle the string makes with the vertical in equilibrium (relative to the car).",
+    "options": [
+      "30°",
+      "37°",
+      "45°",
+      "60°"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "In the car's non-inertial frame, a pseudo-force $ma$ acts backward on the bob. Equilibrium gives $\\tan\\theta = a/g = 10/10 = 1$, so $\\theta = 45°$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A shell of mass 10 kg at rest explodes into two fragments of mass 4 kg and 6 kg. If the 6 kg fragment moves with a velocity of 8 m/s, find the velocity of the 4 kg fragment.",
+    "options": [
+      "6 m/s",
+      "8 m/s",
+      "12 m/s",
+      "16 m/s"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "By conservation of momentum, the initial momentum is zero, so $m_1v_1 = m_2v_2$, giving $v_1 = (6\\times 8)/4 = 12\\ m/s$ in the opposite direction.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A lift of total mass 500 kg is moving upward but decelerating at $2\\ m/s^2$. Taking $g = 10\\ m/s^2$, find the tension in the lift cable.",
+    "options": [
+      "3000 N",
+      "4000 N",
+      "5000 N",
+      "6000 N"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Moving up while decelerating means the acceleration is directed downward. So $T = m(g-a) = 500\\times(10-2) = 4000\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A light string passes over a fixed frictionless pulley attached to the ceiling. One end of the string is pulled vertically downward with a constant force of 30 N, while the other end passes under a movable pulley (from which a 4 kg block hangs) and is fixed to the ceiling. Taking $g = 10\\ m/s^2$, find the acceleration of the block.",
+    "options": [
+      "$2.5\\ m/s^2$",
+      "$5\\ m/s^2$",
+      "$10\\ m/s^2$",
+      "$15\\ m/s^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Since the string is massless and pulled with force 30 N, the tension throughout is $T = 30\\ N$. Two string segments support the movable pulley, giving an upward force $2T = 60\\ N$ on the 4 kg block (weight 40 N). Net force $= 60-40=20\\ N$, so $a = 20/4 = 5\\ m/s^2$ upward.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A monkey of mass m climbs up a light, inextensible rope that passes over a smooth, massless pulley fixed to the ceiling. A bunch of bananas, also of mass m, is tied to the other end and hangs freely. If the monkey climbs with some acceleration relative to the rope, what happens to the bananas?",
+    "options": [
+      "The bananas remain stationary at all times",
+      "The bananas move downward with acceleration g",
+      "The bananas move upward with exactly the same acceleration as the monkey, so the separation between them stays constant",
+      "The bananas always move faster than the monkey and hit the pulley"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For both the monkey and the bananas, $T - mg = ma$ holds with the same mass m and the same tension T, so their ground-frame accelerations must always be equal, regardless of how the monkey climbs; the monkey can never close the gap by climbing.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A block of mass 4 kg rests on a smooth incline of angle 30° and is connected via a light string over a frictionless pulley at the top of the incline to a 1 kg block hanging vertically. Taking $g = 10\\ m/s^2$, find the tension in the string.",
+    "options": [
+      "8 N",
+      "10 N",
+      "12 N",
+      "20 N"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The 4 kg block tends to slide down (driving force $mg\\sin30° = 20\\ N$ versus hanging weight $10\\ N$), giving acceleration $a = (20-10)/5 = 2\\ m/s^2$. For the hanging block, $T = m(g+a) = 1\\times(10+2) = 12\\ N$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "An Atwood machine with masses 3 kg and 5 kg is set up inside a lift that is accelerating upward at $2\\ m/s^2$. Taking $g = 10\\ m/s^2$, find the acceleration of the 5 kg block relative to the lift.",
+    "options": [
+      "$1\\ m/s^2$",
+      "$2\\ m/s^2$",
+      "$3\\ m/s^2$",
+      "$4\\ m/s^2$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "In the lift's frame, the effective gravity is $g' = g+a = 12\\ m/s^2$. The relative acceleration is $a' = \\dfrac{(m_2-m_1)g'}{m_1+m_2} = \\dfrac{2\\times12}{8} = 3\\ m/s^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A time-varying force $F = 6t$ (in newtons, t in seconds) acts on a body of mass 3 kg initially at rest. Find the speed of the body at $t = 4\\ s$.",
+    "options": [
+      "8 m/s",
+      "12 m/s",
+      "16 m/s",
+      "24 m/s"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Impulse equals the change in momentum: $\\int_0^4 6t\\, dt = 3t^2\\Big|_0^4 = 48\\ kg\\cdot m/s$. So $v = 48/3 = 16\\ m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Newton's Laws Of Motion",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A conical pendulum has a string of length 0.5 m, and the bob revolves in a horizontal circle with the string making an angle of 60° with the vertical. Taking $g = 10\\ m/s^2$, find the time period of revolution.",
+    "options": [
+      "0.5 s",
+      "1 s (approximately)",
+      "2 s",
+      "3.14 s"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The period is $T = 2\\pi\\sqrt{\\dfrac{L\\cos\\theta}{g}} = 2\\pi\\sqrt{\\dfrac{0.5\\times0.5}{10}} = 2\\pi\\sqrt{0.025} \\approx 0.99\\ s \\approx 1\\ s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

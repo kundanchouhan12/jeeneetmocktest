@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A circular loop of radius $0.1$ m is placed with its plane perpendicular to a uniform magnetic field of $0.5$ T. If the field is switched off uniformly in $0.2$ s, what is the magnitude of the average induced emf in the loop?",
+    "options": [
+      "0.0785 V",
+      "0.157 V",
+      "0.0393 V",
+      "0.314 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Initial flux $\\phi = BA = 0.5 \\times \\pi (0.1)^2 \\approx 0.0157$ Wb, and final flux is zero. Average emf $= \\Delta\\phi/\\Delta t = 0.0157/0.2 \\approx 0.0785$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A bar magnet is moved with its north pole facing downward, approaching a horizontal conducting loop from directly above along the loop's axis. As viewed from above (the side from which the magnet approaches), the induced current in the loop flows:",
+    "options": [
+      "Counterclockwise",
+      "Clockwise",
+      "There is no induced current since the magnet is not touching the loop",
+      "Alternately clockwise and counterclockwise"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Lenz's law the loop opposes the approaching magnet by presenting a north pole toward it (repulsion); the right-hand rule shows this requires the current to flow counterclockwise as seen from the side the magnet approaches.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A straight metal rod of length $0.5$ m moves with a velocity of $4$ m/s in a direction perpendicular to both its own length and a uniform magnetic field of $0.2$ T. Find the motional emf induced across the ends of the rod.",
+    "options": [
+      "0.4 V",
+      "0.8 V",
+      "0.1 V",
+      "1.6 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Motional emf is given by $\\varepsilon = Bvl = 0.2 \\times 4 \\times 0.5 = 0.4$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "An air-core solenoid has $1000$ turns, length $0.5$ m and cross-sectional area $2 \\times 10^{-3}$ m^2. Calculate its self-inductance.",
+    "options": [
+      "5.03 mH",
+      "2.51 mH",
+      "10.05 mH",
+      "1.26 mH"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $L = \\mu_0 N^2 A / l$, $L = (4\\pi\\times10^{-7})(1000)^2(2\\times10^{-3})/0.5 \\approx 5.03 \\times 10^{-3}$ H.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "An inductor of self-inductance $2$ H carries a steady current of $3$ A. How much energy is stored in its magnetic field?",
+    "options": [
+      "9 J",
+      "6 J",
+      "18 J",
+      "4.5 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Energy stored in an inductor is $U = \\frac{1}{2}LI^2 = \\frac{1}{2}(2)(3)^2 = 9$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two coils have a mutual inductance of $2$ H. The current in the first coil changes uniformly from $5$ A to $1$ A in $0.4$ s. Find the magnitude of the emf induced in the second coil.",
+    "options": [
+      "20 V",
+      "10 V",
+      "8 V",
+      "40 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Magnitude of induced emf is $\\varepsilon = M\\frac{dI}{dt} = 2 \\times \\frac{4}{0.4} = 20$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A plane loop of area $0.05$ m^2 is placed in a uniform magnetic field of $0.4$ T such that the field makes an angle of $30$ degrees with the plane of the loop. Find the magnetic flux linked with the loop.",
+    "options": [
+      "0.01 Wb",
+      "0.02 Wb",
+      "0.0173 Wb",
+      "0.0087 Wb"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The angle between the field and the normal to the loop is $90 - 30 = 60$ degrees, so $\\phi = BA\\cos60^{\\circ} = 0.4 \\times 0.05 \\times 0.5 = 0.01$ Wb.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A rectangular coil of $200$ turns and area $0.15$ m^2 rotates with an angular speed of $50$ rad/s in a uniform magnetic field of $0.4$ T, about an axis in its plane perpendicular to the field. Find the peak emf generated.",
+    "options": [
+      "600 V",
+      "300 V",
+      "1200 V",
+      "150 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Peak emf of a rotating coil is $\\varepsilon_0 = NBA\\omega = 200 \\times 0.4 \\times 0.15 \\times 50 = 600$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In a growing LR circuit with $L = 2$ H and $R = 4$ ohm, how much time is required for the current to rise to about $63.2$ percent of its maximum steady-state value?",
+    "options": [
+      "0.5 s",
+      "8 s",
+      "2 s",
+      "0.25 s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The current reaches $63.2\\%\\,(=1-e^{-1})$ of its maximum value in one time constant, $\\tau = L/R = 2/4 = 0.5$ s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In an LR circuit, the current decays from an initial value of $10$ A with a time constant of $0.2$ s after the battery is removed and the circuit is shorted. Find the current at $t = 0.2$ s.",
+    "options": [
+      "3.68 A",
+      "5 A",
+      "6.32 A",
+      "1.35 A"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Decay current is $I = I_0 e^{-t/\\tau}$; at $t = \\tau$, $I = 10 \\times e^{-1} \\approx 3.68$ A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Eddy currents induced in the iron core of a transformer cause undesirable heating losses. This loss is minimized in practice by:",
+    "options": [
+      "Using a laminated core of thin, mutually insulated sheets",
+      "Using a thicker solid iron core",
+      "Increasing the number of primary turns",
+      "Operating the transformer at a lower frequency only"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Laminating the core into thin insulated sheets increases the resistance to circulating eddy currents, breaking them into smaller loops and greatly reducing energy loss as heat.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A coil of self-inductance $0.5$ H carries a current that changes at a rate of $4$ A/s. Find the magnitude of the self-induced emf in the coil.",
+    "options": [
+      "2 V",
+      "0.5 V",
+      "8 V",
+      "4.5 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Self-induced emf is $\\varepsilon = L\\frac{dI}{dt} = 0.5 \\times 4 = 2$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A conducting rod of length $1$ m rests on horizontal frictionless rails connected by a resistor of $2$ ohm, in a uniform magnetic field of $0.5$ T perpendicular to the plane of the rails. The rod is pulled with a constant velocity of $2$ m/s. Find the current flowing in the circuit.",
+    "options": [
+      "0.5 A",
+      "1 A",
+      "0.25 A",
+      "2 A"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Motional emf $\\varepsilon = Bvl = 0.5 \\times 2 \\times 1 = 1$ V, so current $I = \\varepsilon/R = 1/2 = 0.5$ A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A circular loop lies in a uniform magnetic field of $0.3$ T perpendicular to its plane. Its radius increases uniformly from $5$ cm to $10$ cm in $2$ s. Find the average emf induced in the loop.",
+    "options": [
+      "3.53 mV",
+      "7.07 mV",
+      "1.77 mV",
+      "14.1 mV"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Initial area $= \\pi(0.05)^2 \\approx 7.85\\times10^{-3}$ m^2, final area $=\\pi(0.1)^2\\approx 3.14\\times10^{-2}$ m^2. Average emf $= B\\Delta A/\\Delta t \\approx 0.3 \\times 0.0236/2 \\approx 3.53\\times10^{-3}$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A coil of $100$ turns and area $0.02$ m^2 rotates with angular speed $20$ rad/s in a field of $0.5$ T. If the coil starts with its plane perpendicular to the field (flux maximum, emf zero), find the instantaneous emf after it has rotated through $30$ degrees.",
+    "options": [
+      "10 V",
+      "20 V",
+      "17.3 V",
+      "5 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Peak emf $\\varepsilon_0 = NBA\\omega = 100 \\times 0.5 \\times 0.02 \\times 20 = 20$ V. Since the coil starts at zero emf, $\\varepsilon(\\theta) = \\varepsilon_0\\sin\\theta = 20\\sin30^{\\circ} = 10$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two inductors of $4$ H and $12$ H (with no mutual inductance between them) are connected in parallel. Find the equivalent inductance of the combination.",
+    "options": [
+      "3 H",
+      "16 H",
+      "8 H",
+      "6 H"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For inductors in parallel with no mutual coupling, $\\frac{1}{L} = \\frac{1}{L_1}+\\frac{1}{L_2}$, giving $L = \\frac{L_1L_2}{L_1+L_2} = \\frac{4\\times12}{16} = 3$ H.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "An LR circuit has $L = 4$ H and $R = 2$ ohm, giving a time constant of $2$ s. If the resistance is doubled to $4$ ohm while keeping $L$ the same, what is the new time constant, and how does the current growth behave?",
+    "options": [
+      "1 s; current rises to steady state faster",
+      "1 s; current rises to steady state slower",
+      "4 s; current rises to steady state faster",
+      "4 s; current rises to steady state slower"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Time constant $\\tau = L/R$; doubling $R$ halves $\\tau$ to $1$ s, so the current approaches its (now lower) steady value more quickly.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A $2$ H inductor carries a current of $3$ A. What current must flow through an $8$ H inductor for it to store the same energy?",
+    "options": [
+      "1.5 A",
+      "0.75 A",
+      "3 A",
+      "6 A"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Energy in the first inductor $U = \\frac{1}{2}(2)(3)^2 = 9$ J. Setting $\\frac{1}{2}(8)I^2 = 9$ gives $I^2 = 2.25$, so $I = 1.5$ A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A conducting rod of mass $0.2$ kg and length $0.5$ m slides down frictionless vertical rails connected at the bottom by a resistor of $1$ ohm, in a uniform horizontal magnetic field of $1$ T perpendicular to the plane of the rails. Find the terminal velocity of the rod. (Take $g = 10$ m/s^2.)",
+    "options": [
+      "8 m/s",
+      "4 m/s",
+      "2 m/s",
+      "16 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At terminal velocity, gravity balances the magnetic retarding force: $mg = \\frac{B^2l^2v_t}{R}$, giving $v_t = \\frac{mgR}{B^2l^2} = \\frac{0.2\\times10\\times1}{1\\times0.25} = 8$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A square loop lying perpendicular to a uniform field of $0.6$ T has its side length shrinking uniformly at a rate of $2$ cm/s. Find the magnitude of the induced emf at the instant the side length is $10$ cm.",
+    "options": [
+      "2.4 mV",
+      "1.2 mV",
+      "4.8 mV",
+      "0.6 mV"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For area $A = s^2$, $\\frac{dA}{dt} = 2s\\frac{ds}{dt} = 2(0.1)(0.02) = 4\\times10^{-3}$ m^2/s. Induced emf $= B\\left|\\frac{dA}{dt}\\right| = 0.6 \\times 4\\times10^{-3} = 2.4\\times10^{-3}$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A small coplanar coil of radius $2$ cm lies at the center of a much larger coaxial circular coil of radius $20$ cm. Treating the field at the center of the large coil as uniform over the small coil's area, estimate the mutual inductance between the two coils.",
+    "options": [
+      "$3.95 \\times 10^{-9}$ H",
+      "$1.97 \\times 10^{-9}$ H",
+      "$7.90 \\times 10^{-9}$ H",
+      "$3.95 \\times 10^{-7}$ H"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Field at the center of the large coil per unit current is $B/I = \\mu_0/(2R)$, so $M = \\frac{\\mu_0 \\pi r^2}{2R} = \\frac{(4\\pi\\times10^{-7})\\pi(0.02)^2}{2(0.2)} \\approx 3.95\\times10^{-9}$ H.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A switch is closed at $t = 0$ connecting a battery of emf $\\varepsilon$ to a series LR circuit. At the very instant $t = 0$, the rate at which energy is being stored in the inductor's magnetic field is:",
+    "options": [
+      "Zero",
+      "Maximum, equal to $\\varepsilon^2/R$",
+      "Equal to $\\varepsilon^2/(2R)$",
+      "Equal to half the maximum rate it will ever reach"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Rate of energy storage in the inductor is $P_L = IV_L$. At $t=0$, the current $I = 0$ even though $V_L = \\varepsilon$ is at its maximum, so $P_L = 0$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A bar magnet is released from rest and falls freely along the axis of a fixed horizontal conducting coil, passing through it under gravity alone (no other applied forces). Compared to a free fall with no coil present, while the magnet is entering and leaving the coil its acceleration is:",
+    "options": [
+      "Less than g, due to a retarding force from the induced current opposing the relative motion",
+      "Exactly equal to g at all times, since gravity is the only real force",
+      "Greater than g, since the induced current attracts the magnet forward",
+      "Zero, since the magnet immediately reaches terminal velocity"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Lenz's law, the current induced in the coil opposes the change in flux caused by the falling magnet, exerting a retarding force on it, so the magnet's acceleration while near the coil is less than g.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A rectangular conducting loop of width $0.2$ m moves with a constant velocity of $3$ m/s perpendicular to the straight boundary of a uniform magnetic field region of $0.4$ T, entering the field. Find the magnitude of the induced emf while the loop is entering the field.",
+    "options": [
+      "0.24 V",
+      "0.12 V",
+      "0.6 V",
+      "0.48 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "While entering, only the leading edge of width $w$ cuts field lines, giving motional emf $\\varepsilon = Bvw = 0.4\\times3\\times0.2 = 0.24$ V; once fully inside, the flux stops changing and the emf becomes zero.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A conducting rod slides with constant velocity $2$ m/s along horizontal rails separated by $0.5$ m, closing a circuit of increasing area starting from zero at $t=0$. Simultaneously, a uniform magnetic field perpendicular to the plane of the rails increases with time as $B(t) = 0.1t$ (tesla, $t$ in seconds). Find the magnitude of the induced emf at $t = 2$ s.",
+    "options": [
+      "0.4 V",
+      "0.2 V",
+      "0.6 V",
+      "0.8 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Enclosed area $A(t) = (\\text{rail separation})\\times vt = 0.5\\times2\\times t = t$ m^2. Flux $\\phi(t) = B(t)A(t) = 0.1t \\times t = 0.1t^2$, so $\\varepsilon = \\frac{d\\phi}{dt} = 0.2t$. At $t=2$ s, $\\varepsilon = 0.4$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A rectangular loop of area $0.1$ m^2 and resistance $2$ ohm lies in a magnetic field varying as $B(t) = 0.2\\sin(100t)$ tesla, directed perpendicular to the loop. Find the maximum power dissipated in the loop.",
+    "options": [
+      "2 W",
+      "1 W",
+      "4 W",
+      "0.5 W"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Induced emf $\\varepsilon(t) = -A\\frac{dB}{dt} = -AB_0\\omega\\cos(\\omega t)$, with peak value $\\varepsilon_0 = AB_0\\omega = 0.1\\times0.2\\times100 = 2$ V. Peak current $I_0 = \\varepsilon_0/R = 1$ A, so maximum power $= I_0^2R = 1^2\\times2 = 2$ W.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A series LR circuit with $L = 2$ H and $R = 10$ ohm is connected to a $20$ V battery and allowed to reach steady state. The battery is then disconnected and replaced by a plain wire, leaving the inductor to discharge through the resistor. Find the total heat generated in the resistor from the moment of disconnection until the current dies out.",
+    "options": [
+      "4 J",
+      "8 J",
+      "2 J",
+      "40 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Steady-state current before disconnection is $I_0 = \\varepsilon/R = 20/10 = 2$ A. All the magnetic energy stored, $U = \\frac{1}{2}LI_0^2 = \\frac{1}{2}(2)(2)^2 = 4$ J, is eventually dissipated as heat in the resistor since there is no other energy source.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A toroid has $500$ turns, mean radius $0.1$ m, cross-sectional area $1\\times10^{-4}$ m^2, and is wound on a magnetic core of relative permeability $500$. Find the energy stored in the toroid when it carries a current of $2$ A.",
+    "options": [
+      "0.05 J",
+      "0.025 J",
+      "0.1 J",
+      "0.2 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Self-inductance of the toroid is $L = \\frac{\\mu_r\\mu_0N^2A}{2\\pi R} = \\frac{500(4\\pi\\times10^{-7})(500)^2(10^{-4})}{2\\pi(0.1)} \\approx 0.025$ H. Energy stored $U = \\frac{1}{2}LI^2 = \\frac{1}{2}(0.025)(2)^2 = 0.05$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two coils have a mutual inductance of $0.5$ H. The current in the primary coil is increased linearly from $0$ to $10$ A in $0.1$ s. If the secondary coil forms a closed loop of resistance $5$ ohm, find the total charge that flows through it.",
+    "options": [
+      "1 C",
+      "0.5 C",
+      "2 C",
+      "5 C"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Charge flown is $q = \\frac{\\Delta\\phi_2}{R} = \\frac{M\\Delta I}{R} = \\frac{0.5\\times10}{5} = 1$ C, independent of how quickly the current changes.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Electromagnetic Induction",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A conducting rod of length $1$ m rotates with angular velocity $10$ rad/s about an axis through one of its ends, perpendicular to the rod, in a uniform magnetic field of $0.2$ T parallel to the rotation axis. Find the emf induced between the two ends of the rod.",
+    "options": [
+      "1 V",
+      "2 V",
+      "0.5 V",
+      "0.2 V"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For a rod rotating about one end, each element at radius $r$ has speed $\\omega r$; integrating the motional emf $d\\varepsilon = B\\omega r\\,dr$ from $0$ to $L$ gives $\\varepsilon = \\frac{1}{2}B\\omega L^2 = \\frac{1}{2}(0.2)(10)(1)^2 = 1$ V.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The SI unit of stress in a stretched wire is the same as the SI unit of:",
+    "options": [
+      "Force",
+      "Pressure",
+      "Energy",
+      "Power"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Stress is defined as force per unit area, which has the same SI unit ($N/m^2$, i.e. pascal) as pressure.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Within the elastic limit of a material, Hooke's law states that:",
+    "options": [
+      "Stress is directly proportional to strain",
+      "Stress is inversely proportional to strain",
+      "Stress is proportional to the square of strain",
+      "Strain is independent of the applied stress"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Hooke's law states that within the elastic limit, stress is directly proportional to strain, the constant of proportionality being the modulus of elasticity.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A wire of length $2\\, m$ and cross-sectional area $1\\times10^{-6}\\, m^2$ is stretched by $1\\, mm$ when a force of $100\\, N$ is applied along its length. The Young's modulus of the wire material is:",
+    "options": [
+      "$1\\times10^{11}\\, N/m^2$",
+      "$2\\times10^{11}\\, N/m^2$",
+      "$5\\times10^{10}\\, N/m^2$",
+      "$4\\times10^{11}\\, N/m^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Using $Y = \\frac{FL}{A \\Delta L} = \\frac{100 \\times 2}{1\\times10^{-6} \\times 1\\times10^{-3}} = 2\\times10^{11}\\, N/m^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "When the pressure on a liquid is increased by $2\\times10^{5}\\, Pa$, its volume decreases by 0.01% of its original volume. The bulk modulus of the liquid is:",
+    "options": [
+      "$2\\times10^{7}\\, Pa$",
+      "$2\\times10^{8}\\, Pa$",
+      "$2\\times10^{9}\\, Pa$",
+      "$2\\times10^{10}\\, Pa$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "$K = \\frac{\\Delta P}{\\Delta V/V} = \\frac{2\\times10^5}{1\\times10^{-4}} = 2\\times10^9\\, Pa$, since 0.01% equals $1\\times10^{-4}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A tangential force of $50\\, N$ is applied over a face of area $0.5\\, m^2$ of a block, producing a shear strain (angle of shear) of $2\\times10^{-4}$ radian. The modulus of rigidity of the material is:",
+    "options": [
+      "$2.5\\times10^{5}\\, Pa$",
+      "$5\\times10^{5}\\, Pa$",
+      "$1\\times10^{6}\\, Pa$",
+      "$5\\times10^{4}\\, Pa$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Shear stress $= F/A = 50/0.5 = 100\\, N/m^2$, so modulus of rigidity $\\eta = \\frac{100}{2\\times10^{-4}} = 5\\times10^5\\, Pa$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Poisson's ratio of a material is defined as the ratio of:",
+    "options": [
+      "Lateral strain to longitudinal strain",
+      "Longitudinal strain to lateral strain",
+      "Lateral stress to longitudinal stress",
+      "Shear strain to longitudinal strain"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Poisson's ratio $\\sigma$ is defined as the ratio of lateral strain to longitudinal strain produced in a stretched wire.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A stretched wire has a stress of $4\\times10^{7}\\, N/m^2$ and a corresponding strain of $2\\times10^{-4}$. The elastic potential energy stored per unit volume of the wire is:",
+    "options": [
+      "$2000\\, J/m^3$",
+      "$4000\\, J/m^3$",
+      "$8000\\, J/m^3$",
+      "$16000\\, J/m^3$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Energy density $= \\frac{1}{2} \\times \\text{stress} \\times \\text{strain} = 0.5 \\times 4\\times10^7 \\times 2\\times10^{-4} = 4000\\, J/m^3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The maximum stress up to which a body regains its original shape and size completely after the removal of the deforming force is called the:",
+    "options": [
+      "Breaking stress",
+      "Ultimate tensile strength",
+      "Elastic limit",
+      "Compressibility"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The elastic limit is the maximum stress within which a body fully recovers its original dimensions once the deforming force is removed.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The bulk modulus of a material is $5\\times10^{9}\\, Pa$. Its compressibility is:",
+    "options": [
+      "$5\\times10^{9}\\, Pa^{-1}$",
+      "$2\\times10^{-9}\\, Pa^{-1}$",
+      "$2\\times10^{-10}\\, Pa^{-1}$",
+      "$5\\times10^{-10}\\, Pa^{-1}$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Compressibility is the reciprocal of bulk modulus: $\\frac{1}{5\\times10^9} = 2\\times10^{-10}\\, Pa^{-1}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A wire of natural length $1\\, m$ elongates by $0.5\\, mm$ when loaded. The longitudinal strain produced in the wire is:",
+    "options": [
+      "$5\\times10^{-3}$",
+      "$5\\times10^{-4}$",
+      "$2\\times10^{-4}$",
+      "$5\\times10^{-5}$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Strain $= \\Delta L / L = \\frac{0.5\\times10^{-3}}{1} = 5\\times10^{-4}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two wires P and Q are made of the same material. Wire P has twice the length and twice the diameter of wire Q. The Young's modulus of P compared to that of Q is:",
+    "options": [
+      "Twice that of Q",
+      "Half that of Q",
+      "Four times that of Q",
+      "Same as that of Q"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Young's modulus is an intrinsic property of the material and does not depend on the length or cross-sectional dimensions of the wire.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The maximum tensile stress that a material can withstand without breaking (fracturing) is called its:",
+    "options": [
+      "Elastic limit",
+      "Breaking stress",
+      "Young's modulus",
+      "Poisson's ratio"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Breaking stress (ultimate tensile strength) is the maximum stress a material can bear just before it fractures.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A wire of length $L$ and cross-sectional area $A$ is stretched by an amount $x$ when a force $F$ is applied. Another wire of the same material with length $2L$ and cross-sectional area $2A$ is stretched by the same force $F$. The elongation produced in the second wire is:",
+    "options": [
+      "$x/4$",
+      "$x/2$",
+      "$x$",
+      "$2x$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "$\\Delta L = \\frac{FL}{AY}$; doubling both $L$ and $A$ leaves the ratio $L/A$ unchanged, so the elongation remains $x$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A wire of length $L$ and radius $r$ stretches by $x$ under a force $F$. Another wire of the same material, with length $2L$ and radius $2r$, is stretched by the same force $F$. The elongation produced is:",
+    "options": [
+      "$x/8$",
+      "$x/2$",
+      "$x$",
+      "$2x$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Since area $\\propto r^2$, doubling the radius makes the new area $4\\pi r^2$; $\\Delta L_2 = \\frac{F(2L)}{4\\pi r^2 Y} = \\frac{1}{2}\\cdot\\frac{FL}{\\pi r^2 Y} = x/2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two wires of the same cross-sectional area $1\\times10^{-6}\\, m^2$, each of length $1\\, m$, are joined end to end. The first wire has Young's modulus $2\\times10^{11}\\, N/m^2$ and the second has $1\\times10^{11}\\, N/m^2$. A force of $100\\, N$ is applied along the length of the combination. The total elongation produced is:",
+    "options": [
+      "$1.0\\, mm$",
+      "$1.5\\, mm$",
+      "$2.0\\, mm$",
+      "$0.75\\, mm$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Same force acts on both segments: $\\Delta L_1 = \\frac{100\\times1}{10^{-6}\\times2\\times10^{11}} = 0.5\\, mm$, $\\Delta L_2 = \\frac{100\\times1}{10^{-6}\\times10^{11}} = 1\\, mm$; total $= 1.5\\, mm$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A steel rod is rigidly clamped at both ends so that it cannot expand or contract. If its temperature is lowered by $50\\, K$, the thermal stress developed in the rod is (Young's modulus of steel $= 2\\times10^{11}\\, N/m^2$, coefficient of linear expansion $= 1.2\\times10^{-5}\\, K^{-1}$):",
+    "options": [
+      "$6\\times10^{7}\\, N/m^2$",
+      "$1.2\\times10^{8}\\, N/m^2$",
+      "$2.4\\times10^{8}\\, N/m^2$",
+      "$1.2\\times10^{7}\\, N/m^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Thermal stress $= Y\\alpha\\Delta T = 2\\times10^{11}\\times1.2\\times10^{-5}\\times50 = 1.2\\times10^{8}\\, N/m^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A solid sphere of bulk modulus $K = 1.6\\times10^{11}\\, Pa$ is lowered into a fluid such that the pressure on it increases by $1.6\\times10^{7}\\, Pa$. The percentage decrease in the radius of the sphere is approximately:",
+    "options": [
+      "$0.01\\%$",
+      "$0.0033\\%$",
+      "$0.03\\%$",
+      "$0.1\\%$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$\\Delta V/V = \\Delta P/K = 1\\times10^{-4}$. Since $V\\propto r^3$, $\\Delta r/r = (\\Delta V/V)/3 \\approx 3.33\\times10^{-5}$, i.e. about $0.0033\\%$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A wire of diameter $5\\, mm$ is stretched so that its diameter decreases to $4.997\\, mm$ while its longitudinal strain is $2\\times10^{-3}$. The Poisson's ratio of the wire material is:",
+    "options": [
+      "$0.2$",
+      "$0.25$",
+      "$0.3$",
+      "$0.5$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Lateral strain $= 0.003/5 = 6\\times10^{-4}$; Poisson's ratio $= \\frac{6\\times10^{-4}}{2\\times10^{-3}} = 0.3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The stress-strain graphs for two wires P and Q of the same dimensions are plotted on the same axes. Wire P shows a steeper straight-line graph than wire Q in the elastic region. It can be concluded that:",
+    "options": [
+      "Wire P has a smaller Young's modulus than wire Q",
+      "Wire P has a larger Young's modulus than wire Q",
+      "Wire P is more ductile than wire Q",
+      "Wire P has a smaller breaking stress than wire Q"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The slope of the linear (elastic) portion of a stress-strain graph equals the Young's modulus; a steeper slope means a larger Young's modulus.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A wire stores elastic potential energy $U$ when stretched by a force $F$ within its elastic limit. If the force is doubled (still within the elastic limit), the elastic potential energy stored becomes:",
+    "options": [
+      "$U/2$",
+      "$2U$",
+      "$4U$",
+      "$U$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Since $U = \\frac{1}{2}\\cdot\\frac{F^2 L}{AY} \\propto F^2$, doubling the force quadruples the stored energy.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A metal wire increases in length by 0.1% when subjected to a tensile stress of $3.6\\times10^{8}\\, N/m^2$. The Young's modulus of the metal is:",
+    "options": [
+      "$3.6\\times10^{10}\\, N/m^2$",
+      "$3.6\\times10^{11}\\, N/m^2$",
+      "$7.2\\times10^{11}\\, N/m^2$",
+      "$1.8\\times10^{11}\\, N/m^2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Strain $= 0.1\\% = 1\\times10^{-3}$, so $Y = \\text{stress}/\\text{strain} = \\frac{3.6\\times10^8}{1\\times10^{-3}} = 3.6\\times10^{11}\\, N/m^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A rigid horizontal bar is supported by two vertical wires of the same length and material, attached at its two ends. Wire 1 has cross-sectional area $A$ and wire 2 has cross-sectional area $2A$. If the bar remains perfectly horizontal under load, the ratio of tension in wire 1 to that in wire 2 is:",
+    "options": [
+      "$2:1$",
+      "$1:2$",
+      "$1:1$",
+      "$4:1$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For the bar to stay horizontal, both wires must have equal extension: $\\frac{T_1 L}{AY} = \\frac{T_2 L}{2AY}$, giving $T_1:T_2 = 1:2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A wire with Poisson's ratio $0.25$ is stretched, producing a longitudinal strain of $4\\times10^{-3}$. The fractional change in the volume of the wire is:",
+    "options": [
+      "$1\\times10^{-3}$ (decrease)",
+      "$2\\times10^{-3}$ (increase)",
+      "$4\\times10^{-3}$ (increase)",
+      "$2\\times10^{-3}$ (decrease)"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Fractional volume change $= \\text{strain}\\times(1-2\\sigma) = 4\\times10^{-3}\\times(1-0.5) = 2\\times10^{-3}$, an increase since the wire is stretched.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A wire of a certain material and cross-sectional area can support a maximum load $W$ just before breaking. If the wire is cut into two equal halves along its length and one half is used, the maximum load it can support before breaking is:",
+    "options": [
+      "$W/2$",
+      "$W$",
+      "$2W$",
+      "$W/4$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Breaking load equals breaking stress times cross-sectional area, which is independent of the wire's length, so it remains $W$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A uniform metal wire of length $2\\, m$, density $8000\\, kg/m^3$ and Young's modulus $2\\times10^{11}\\, N/m^2$ hangs vertically under its own weight. Taking $g = 10\\, m/s^2$, the elongation of the wire due to its own weight is:",
+    "options": [
+      "$0.4\\, \\mu m$",
+      "$0.8\\, \\mu m$",
+      "$1.6\\, \\mu m$",
+      "$3.2\\, \\mu m$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For a wire hanging under its own weight, $\\Delta L = \\frac{\\rho g L^2}{2Y} = \\frac{8000\\times10\\times4}{2\\times2\\times10^{11}} = 8\\times10^{-7}\\, m = 0.8\\, \\mu m$, obtained by integrating the stress due to the weight of the wire below each cross-section.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A composite wire is made of two segments of equal length $1\\, m$ and equal cross-sectional area $1\\times10^{-6}\\, m^2$, joined in series and rigidly fixed between two rigid supports so that the total length cannot change. Segment 1 has Young's modulus $1\\times10^{11}\\, N/m^2$ and coefficient of linear expansion $2\\times10^{-5}\\, K^{-1}$; segment 2 has Young's modulus $2\\times10^{11}\\, N/m^2$ and coefficient of linear expansion $1\\times10^{-5}\\, K^{-1}$. If the temperature of the whole wire is raised by $100\\, K$, the compressive stress developed in the wire is:",
+    "options": [
+      "$1\\times10^{8}\\, N/m^2$",
+      "$1.5\\times10^{8}\\, N/m^2$",
+      "$2\\times10^{8}\\, N/m^2$",
+      "$3\\times10^{8}\\, N/m^2$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Since the total length is fixed, the same compressive force F in both segments must cancel the free thermal expansion: $F\\left(\\frac{L_1}{AY_1}+\\frac{L_2}{AY_2}\\right) = \\Delta T(L_1\\alpha_1+L_2\\alpha_2)$, which gives $F = 200\\, N$ and stress $= F/A = 2\\times10^{8}\\, N/m^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A light rigid bar of length $2\\, m$ is held horizontally by two vertical wires attached at its two ends: a steel wire (Young's modulus $2\\times10^{11}\\, N/m^2$) at one end and a brass wire (Young's modulus $1\\times10^{11}\\, N/m^2$) at the other end, both of the same original length and cross-sectional area. A weight is hung from the bar at a distance $d$ from the steel-wire end so that the bar remains horizontal. The value of $d$ is:",
+    "options": [
+      "$0.5\\, m$",
+      "$0.67\\, m$",
+      "$1.0\\, m$",
+      "$1.33\\, m$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Equal extension (bar stays horizontal) requires $T_{steel} = T_{brass}\\times(Y_{steel}/Y_{brass}) = 2T_{brass}$. Balancing torques about the steel end, $T_{brass}\\times2 = W\\times d$, and with $T_{brass}=W/3$, this gives $d = 2/3\\, m \\approx 0.67\\, m$ from the steel end.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A solid block is subjected to a uniform hydraulic pressure of $6\\times10^{6}\\, N/m^2$. If the bulk modulus of the material is $3\\times10^{9}\\, N/m^2$, the elastic potential energy stored per unit volume of the block is:",
+    "options": [
+      "$3000\\, J/m^3$",
+      "$6000\\, J/m^3$",
+      "$12000\\, J/m^3$",
+      "$1500\\, J/m^3$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Energy density under hydraulic pressure is $\\frac{P^2}{2K} = \\frac{(6\\times10^6)^2}{2\\times3\\times10^9} = 6000\\, J/m^3$, using $\\Delta V/V = P/K$ and $U/V = \\frac{1}{2}P(\\Delta V/V)$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A wire of length $1\\, m$ tapers uniformly from a radius of $0.5\\, mm$ at one end to $1\\, mm$ at the other end. It is made of a material with Young's modulus $2\\times10^{11}\\, N/m^2$ and is stretched along its axis by a force of $100\\, N$. The elongation produced in the wire is:",
+    "options": [
+      "$0.16\\, mm$",
+      "$0.32\\, mm$",
+      "$0.64\\, mm$",
+      "$1.0\\, mm$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For a linearly tapering wire, integrating the local strain along its length gives $\\Delta L = \\frac{FL}{\\pi Y r_1 r_2} = \\frac{100\\times1}{\\pi\\times2\\times10^{11}\\times5\\times10^{-4}\\times1\\times10^{-3}} \\approx 0.32\\, mm$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Elasticity",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "The stress-strain graph of a material is a straight line from the origin up to the elastic limit, where the strain is $2\\times10^{-3}$ and the stress is $4\\times10^{8}\\, N/m^2$. Beyond this point, the material deforms plastically at this same constant stress until it fractures at a strain of $2\\times10^{-2}$. The total energy absorbed per unit volume of the material up to fracture is:",
+    "options": [
+      "$4\\times10^{6}\\, J/m^3$",
+      "$7.2\\times10^{6}\\, J/m^3$",
+      "$7.6\\times10^{6}\\, J/m^3$",
+      "$8\\times10^{6}\\, J/m^3$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Energy absorbed per unit volume equals the area under the stress-strain curve: the elastic (triangular) part gives $\\frac{1}{2}\\times4\\times10^8\\times2\\times10^{-3}=4\\times10^5\\, J/m^3$, and the plastic (rectangular) part gives $4\\times10^8\\times(0.02-0.002)=7.2\\times10^6\\, J/m^3$; the total is $7.6\\times10^6\\, J/m^3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A constant force of $5\\ N$ acts on a block and displaces it by $4\\ m$, with the force making an angle of $60^\\circ$ with the displacement. What is the work done by the force?",
+    "options": [
+      "10 J",
+      "20 J",
+      "17.3 J",
+      "5 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Work done by a constant force is $W = Fd\\cos\\theta = 5 \\times 4 \\times \\cos60^\\circ = 5 \\times 4 \\times 0.5 = 10\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A body of mass $2\\ kg$ moving at $3\\ m/s$ speeds up to $5\\ m/s$ under the action of a net force. What is the work done by the net force on the body?",
+    "options": [
+      "8 J",
+      "16 J",
+      "32 J",
+      "4 J"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "By the work-energy theorem, $W = \\Delta KE = \\frac{1}{2}m(v_f^2-v_i^2) = \\frac{1}{2}\\times2\\times(25-9) = 16\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A spring of force constant $200\\ N/m$ is compressed by $0.1\\ m$ from its natural length. What is the elastic potential energy stored in it?",
+    "options": [
+      "0.5 J",
+      "2 J",
+      "1 J",
+      "10 J"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Elastic potential energy stored in a spring is $U = \\frac{1}{2}kx^2 = \\frac{1}{2}\\times200\\times(0.1)^2 = 1\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A force of $10\\ N$ moves a block at a constant velocity of $2\\ m/s$ along its own direction. What is the power delivered by the force?",
+    "options": [
+      "5 W",
+      "200 W",
+      "12 W",
+      "20 W"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Power delivered by a force moving an object at constant velocity along its direction is $P = Fv = 10\\times2 = 20\\ W$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the net work done by a conservative force on a particle that moves along a closed path and returns to its starting point?",
+    "options": [
+      "Zero",
+      "Positive",
+      "Negative",
+      "Depends on the path taken"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A conservative force is one for which the work done depends only on initial and final positions, so the net work done over any closed path is zero.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass $5\\ kg$ is raised through a height of $2\\ m$. Taking $g = 10\\ m/s^2$, what is the increase in its gravitational potential energy?",
+    "options": [
+      "50 J",
+      "100 J",
+      "10 J",
+      "500 J"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The increase in gravitational potential energy is $\\Delta U = mgh = 5\\times10\\times2 = 100\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A ball moving with speed $v$ collides head-on elastically with an identical ball at rest. What happens to the velocities of the two balls immediately after collision?",
+    "options": [
+      "Both balls move together with speed $v/2$",
+      "The first ball continues with speed $v$ and the second remains at rest",
+      "The first ball comes to rest and the second moves off with speed $v$",
+      "Both balls rebound with speed $v/2$ each in opposite directions"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For a head-on elastic collision between two identical masses where one is initially at rest, the velocities are exchanged: the moving ball stops and the stationary ball moves off with the initial speed $v$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass $2\\ kg$ moving at $4\\ m/s$ collides head-on with an identical stationary block of mass $2\\ kg$ and they stick together. What is their common velocity after collision?",
+    "options": [
+      "4 m/s",
+      "1 m/s",
+      "8 m/s",
+      "2 m/s"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "By conservation of momentum, $2\\times4 + 2\\times0 = (2+2)v \\Rightarrow v = 2\\ m/s$ for the combined mass after a perfectly inelastic collision.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The coefficient of restitution between two colliding bodies is defined as the ratio of:",
+    "options": [
+      "Relative velocity of separation to relative velocity of approach",
+      "Relative velocity of approach to relative velocity of separation",
+      "Total momentum after collision to total momentum before collision",
+      "Kinetic energy after collision to kinetic energy before collision"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Coefficient of restitution is defined as $e = \\frac{\\text{relative velocity of separation}}{\\text{relative velocity of approach}}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A block of mass $4\\ kg$ is pushed through a distance of $5\\ m$ on a rough horizontal floor with coefficient of friction $0.2$. Taking $g = 10\\ m/s^2$, how much work is done against friction?",
+    "options": [
+      "8 J",
+      "40 J",
+      "20 J",
+      "200 J"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Work done against friction equals the friction force times the distance: $W = \\mu mg \\times d = 0.2\\times4\\times10\\times5 = 40\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "What is the kinetic energy of a $1\\ kg$ object moving with a speed of $10\\ m/s$?",
+    "options": [
+      "10 J",
+      "100 J",
+      "50 J",
+      "500 J"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Kinetic energy is $KE = \\frac{1}{2}mv^2 = \\frac{1}{2}\\times1\\times10^2 = 50\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A machine does $600\\ J$ of work in $20\\ s$. What is its average power output?",
+    "options": [
+      "12000 W",
+      "600 W",
+      "20 W",
+      "30 W"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Average power is total work divided by time: $P = W/t = 600/20 = 30\\ W$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A force $F = 3x^2\\ N$ (with $x$ in metres) acts on a particle along the x-axis. What is the work done by this force as the particle moves from $x = 0$ to $x = 2\\ m$?",
+    "options": [
+      "8 J",
+      "6 J",
+      "12 J",
+      "24 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Work done by a variable force is $W = \\int F\\,dx = \\int_0^2 3x^2\\,dx = [x^3]_0^2 = 8\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block of mass $2\\ kg$ moving at $1\\ m/s$ on a frictionless surface strikes a spring of force constant $50\\ N/m$. What is the maximum compression of the spring?",
+    "options": [
+      "0.1 m",
+      "0.2 m",
+      "0.4 m",
+      "0.04 m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "By energy conservation, $\\frac{1}{2}mv^2 = \\frac{1}{2}kx^2 \\Rightarrow \\frac{1}{2}\\times2\\times1^2 = \\frac{1}{2}\\times50\\times x^2 \\Rightarrow x^2=0.04 \\Rightarrow x=0.2\\ m$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A block of mass $5\\ kg$ slides down a smooth incline from a height of $2\\ m$ and then moves onto a rough horizontal surface with coefficient of friction $0.25$. Taking $g = 10\\ m/s^2$, how far does the block travel on the rough surface before stopping?",
+    "options": [
+      "4 m",
+      "10 m",
+      "8 m",
+      "16 m"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Energy at the bottom of the incline is $mgh = 5\\times10\\times2=100\\ J$, which is dissipated by friction over distance $d$: $\\mu mg\\, d = 100 \\Rightarrow 0.25\\times5\\times10\\times d=100 \\Rightarrow d=8\\ m$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A ball of mass $1\\ kg$ moving at $6\\ m/s$ collides elastically head-on with a stationary ball of mass $2\\ kg$. What is the velocity of the $2\\ kg$ ball after collision?",
+    "options": [
+      "2 m/s",
+      "6 m/s",
+      "-2 m/s",
+      "4 m/s"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "For an elastic collision, $v_2' = \\frac{2m_1}{m_1+m_2}u_1 = \\frac{2\\times1}{3}\\times6 = 4\\ m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A ball of mass $3\\ kg$ moving at $4\\ m/s$ collides head-on with a stationary ball of mass $1\\ kg$, and the two stick together. How much kinetic energy is lost in the collision?",
+    "options": [
+      "6 J",
+      "18 J",
+      "24 J",
+      "12 J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Common velocity after perfectly inelastic collision is $v=\\frac{3\\times4}{4}=3\\ m/s$. KE lost $=\\frac{1}{2}\\times3\\times4^2 - \\frac{1}{2}\\times4\\times3^2 = 24-18=6\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In an elastic collision between two identical balls, one of which is initially at rest, the moving ball is deflected by $30^\\circ$ from its original direction. At what angle to the original direction does the initially stationary ball move off?",
+    "options": [
+      "30°",
+      "60°",
+      "90°",
+      "45°"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For an elastic collision between two identical masses where one is initially at rest and the collision is oblique, the two balls always move off at right angles to each other, so if one deflects by $30^\\circ$, the other moves at $90^\\circ-30^\\circ=60^\\circ$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A car of mass $1000\\ kg$ starting from rest accelerates to a speed of $20\\ m/s$ in $10\\ s$ on a level road. Ignoring friction and air resistance, what is the average power delivered by the engine?",
+    "options": [
+      "10 kW",
+      "40 kW",
+      "20 kW",
+      "2 kW"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Average power equals the kinetic energy gained divided by time: $P=\\frac{\\frac{1}{2}\\times1000\\times20^2}{10}=20000\\ W = 20\\ kW$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A pendulum bob of mass $0.5\\ kg$ is released from rest with its string horizontal. The string is $1\\ m$ long. Taking $g = 10\\ m/s^2$, what is the speed of the bob at the lowest point?",
+    "options": [
+      "10 m/s",
+      "2 m/s",
+      "20 m/s",
+      "4.47 m/s"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "By energy conservation, the speed at the lowest point after falling through a height equal to the string length is $v=\\sqrt{2gL}=\\sqrt{2\\times10\\times1}=\\sqrt{20}\\approx4.47\\ m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A bullet of mass $0.01\\ kg$ is fired with a speed of $300\\ m/s$ from a gun of mass $3\\ kg$ initially at rest. What is the recoil speed of the gun?",
+    "options": [
+      "1 m/s",
+      "3 m/s",
+      "0.1 m/s",
+      "10 m/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By conservation of momentum, $3V = 0.01\\times300 \\Rightarrow V=1\\ m/s$ (recoil speed of the gun).",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A spring of force constant $200\\ N/m$ is compressed by $0.2\\ m$ and used to launch a block of mass $1\\ kg$ up a frictionless incline of angle $30^\\circ$. Taking $g = 10\\ m/s^2$, what distance along the incline does the block travel before momentarily stopping?",
+    "options": [
+      "0.4 m",
+      "0.8 m",
+      "1.6 m",
+      "4 m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Spring energy converts to gravitational PE along the incline: $\\frac{1}{2}kx^2 = mgd\\sin\\theta \\Rightarrow \\frac{1}{2}\\times200\\times0.04 = 1\\times10\\times d\\times0.5 \\Rightarrow d=0.8\\ m$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A ball is dropped from a height of $5\\ m$ onto a floor and bounces back to a height of $1.25\\ m$. What is the coefficient of restitution between the ball and the floor?",
+    "options": [
+      "0.25",
+      "0.7",
+      "0.5",
+      "0.9"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Coefficient of restitution from bounce heights is $e=\\sqrt{h/H}=\\sqrt{1.25/5}=\\sqrt{0.25}=0.5$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A force $F = (10 - 2x)\\ N$ (with $x$ in metres) acts on a particle moving along the x-axis. What is the work done by this force as the particle moves from $x = 0$ to $x = 5\\ m$?",
+    "options": [
+      "50 J",
+      "0 J",
+      "75 J",
+      "25 J"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Work done is the area under the F-x graph: $W=\\int_0^5(10-2x)\\,dx=[10x-x^2]_0^5=50-25=25\\ J$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Ball A of mass $2\\ kg$, moving at $10\\ m/s$, undergoes an elastic collision with an identical stationary ball B. After the collision, ball A moves off at $53^\\circ$ to its original direction with a speed of $6\\ m/s$. What is the speed and direction of ball B after the collision? (Use $\\sin37^\\circ = \\cos53^\\circ = 0.6$, $\\cos37^\\circ = \\sin53^\\circ = 0.8$)",
+    "options": [
+      "8 m/s at 37°",
+      "6 m/s at 53°",
+      "10 m/s at 37°",
+      "8 m/s at 53°"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using conservation of momentum along x and y together with conservation of kinetic energy for the elastic collision, the values $v_A=6\\ m/s$ at $53^\\circ$ and $v_B=8\\ m/s$ at $37^\\circ$ satisfy both: momentum $2\\times6\\cos53^\\circ+2\\times8\\cos37^\\circ=20$ and energy $6^2+8^2=10^2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A bullet of mass $0.05\\ kg$ moving at $200\\ m/s$ embeds itself in a stationary wooden block of mass $1.95\\ kg$ resting on a frictionless surface and connected to a spring of force constant $800\\ N/m$. What is the maximum compression of the spring after the bullet embeds in the block?",
+    "options": [
+      "0.5 m",
+      "0.25 m",
+      "1 m",
+      "0.125 m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "First, the perfectly inelastic collision gives a combined velocity $v=\\frac{0.05\\times200}{2}=5\\ m/s$. Then energy conservation with the spring gives $\\frac{1}{2}\\times2\\times5^2=\\frac{1}{2}\\times800\\times x^2 \\Rightarrow x^2=0.0625 \\Rightarrow x=0.25\\ m$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A machine delivers constant power of $1000\\ W$ to a $10\\ kg$ block starting from rest on a frictionless surface. What is the speed of the block after $5\\ s$?",
+    "options": [
+      "10 m/s",
+      "100 m/s",
+      "31.6 m/s",
+      "1000 m/s"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For constant power, $P\\,dt = mv\\,dv$; integrating gives $Pt=\\frac{1}{2}mv^2 \\Rightarrow v=\\sqrt{\\frac{2Pt}{m}}=\\sqrt{\\frac{2\\times1000\\times5}{10}}=\\sqrt{1000}\\approx31.6\\ m/s$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A uniform chain of mass $M$ and length $L$ lies on a smooth horizontal table with one-third of its length hanging over the edge. What is the work done in pulling the hanging part back onto the table?",
+    "options": [
+      "$MgL/6$",
+      "$MgL/9$",
+      "$MgL/3$",
+      "$MgL/18$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "The hanging part has mass $M/3$ and its center of mass lies at depth $L/6$ below the table, so the work needed to pull it up is $W=\\frac{M}{3}\\times g\\times\\frac{L}{6}=\\frac{MgL}{18}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two identical balls undergo a head-on collision; one is initially at rest, and the coefficient of restitution between them is $0.5$. What fraction of the initial kinetic energy is lost in the collision?",
+    "options": [
+      "37.5%",
+      "25%",
+      "50%",
+      "62.5%"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For an equal-mass head-on collision with restitution $e$, the outgoing speeds are $v_1'=\\frac{v(1-e)}{2}$ and $v_2'=\\frac{v(1+e)}{2}$. With $e=0.5$, the final KE is $0.625$ times the initial KE, so the fraction lost is $37.5\\%$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Work, Energy, Power And Collision",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A light spring holding energy $E$ connects two blocks of mass $m$ and $3m$ at rest on a frictionless surface. When released, the spring pushes the blocks apart. What is the kinetic energy of the block of mass $m$ after it separates from the spring?",
+    "options": [
+      "E/4",
+      "3E/4",
+      "E/2",
+      "E"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "By momentum conservation the lighter block gets a larger share of the spring energy: solving $mv_1=3mv_2$ and $\\frac{1}{2}mv_1^2+\\frac{1}{2}(3m)v_2^2=E$ gives the kinetic energy of the mass $m$ block as $\\frac{3E}{4}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

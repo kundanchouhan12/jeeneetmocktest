@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Hydrogen is usually placed separately in the periodic table because it shows resemblance with the elements of which two groups?",
+    "options": [
+      "Alkali metals and halogens",
+      "Alkaline earth metals and noble gases",
+      "Halogens and noble gases",
+      "Alkali metals and noble gases"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Hydrogen resembles alkali metals in having one valence electron and forming a +1 ion, and resembles halogens in needing one more electron to attain a noble gas (He) configuration, forming a diatomic molecule and a -1 hydride ion.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which isotope of hydrogen has a nucleus containing exactly one proton and one neutron?",
+    "options": [
+      "Protium",
+      "Deuterium",
+      "Tritium",
+      "None of these"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Protium (¹H) has only a proton, deuterium (²H or D) has one proton and one neutron, and tritium (³H or T) has one proton and two neutrons.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which isotope of hydrogen is radioactive, decaying by emission of low-energy beta particles?",
+    "options": [
+      "Protium",
+      "Deuterium",
+      "Tritium",
+      "All three isotopes are radioactive"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Tritium is the only naturally occurring radioactive isotope of hydrogen; it undergoes beta decay with a half-life of about 12.3 years, while protium and deuterium are stable.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In the laboratory, dihydrogen gas is most commonly prepared by treating granulated zinc with:",
+    "options": [
+      "Dilute hydrochloric acid or dilute sulphuric acid",
+      "Concentrated nitric acid",
+      "Distilled water",
+      "Molten sodium chloride"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Zinc reacts with dilute HCl or dilute $H_2SO_4$ to liberate dihydrogen gas along with the corresponding zinc salt; concentrated nitric acid instead gets reduced to nitrogen oxides rather than releasing $H_2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The industrial method in which steam is passed over red-hot coke to give water gas, which is then enriched in hydrogen by converting CO to $CO_2$ using a catalyst, is known as:",
+    "options": [
+      "Bosch process",
+      "Haber process",
+      "Contact process",
+      "Solvay process"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In the Bosch process, water gas (CO + $H_2$) is mixed with more steam and passed over an iron oxide/chromic oxide catalyst so CO is converted to $CO_2$, which is then scrubbed away leaving purified dihydrogen.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following correctly describes dihydrogen gas under normal conditions?",
+    "options": [
+      "Colourless, odourless, tasteless and lighter than air",
+      "A dense, yellow-green coloured gas",
+      "Highly soluble in water",
+      "A gas that instantly turns lime water milky"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Dihydrogen is a colourless, odourless, tasteless, combustible gas that is much lighter than air and only sparingly soluble in water.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Ionic (saline) hydrides such as $NaH$ and $CaH_2$ are typically formed when dihydrogen reacts with:",
+    "options": [
+      "Highly electropositive s-block metals",
+      "Halogens",
+      "Noble gases",
+      "Transition metals of the d-block"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Highly reactive, electropositive s-block metals (alkali metals and heavier alkaline earth metals) transfer an electron to hydrogen to form ionic hydrides containing the $H^-$ hydride ion.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Hydrides formed by many d-block and f-block metals (such as palladium), which are non-stoichiometric in composition and retain the metallic conductivity and lustre of the parent metal, are called:",
+    "options": [
+      "Interstitial (metallic) hydrides",
+      "Ionic hydrides",
+      "Molecular covalent hydrides",
+      "Complex hydrides"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In interstitial hydrides, small hydrogen atoms occupy interstitial voids in the metal lattice, giving compositions that are usually non-stoichiometric (e.g. $PdH_{0.6-0.8}$) while the metal retains its characteristic properties.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In the structure of hydrogen peroxide, $H_2O_2$, the two oxygen atoms are directly connected by:",
+    "options": [
+      "A peroxide (O-O single bond) linkage",
+      "A carbon-oxygen double bond",
+      "A coordinate covalent bond from O to O",
+      "A triple bond"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Hydrogen peroxide has a non-planar, open-book type structure in which the two oxygen atoms are joined by a single O-O bond, called the peroxide linkage, with one hydrogen attached to each oxygen.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Hydrogen peroxide is commonly used as a mild antiseptic and as a bleaching agent for hair and textiles mainly because, on decomposition, it releases:",
+    "options": [
+      "Nascent oxygen",
+      "Chlorine gas",
+      "Hydrogen gas",
+      "Sulphur dioxide"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$H_2O_2$ decomposes to give water and oxygen; the oxidizing action of the liberated (nascent) oxygen is responsible for its antiseptic and bleaching effects.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Heavy water, which is used as a moderator to slow down neutrons in nuclear reactors, has the chemical formula:",
+    "options": [
+      "$D_2O$",
+      "$H_2O_2$",
+      "$T_2O$",
+      "$HDO$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Heavy water is deuterium oxide, $D_2O$, made using the heavy hydrogen isotope deuterium in place of ordinary hydrogen; it is used as a moderator in nuclear reactors and in mechanistic studies.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Water that does not produce lather easily with soap, due to dissolved calcium and magnesium salts, is called:",
+    "options": [
+      "Hard water",
+      "Soft water",
+      "Heavy water",
+      "Distilled water"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Hard water contains appreciable amounts of dissolved $Ca^{2+}$ and $Mg^{2+}$ salts, which react with soap to form an insoluble scum instead of producing lather.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Calcium hydride, $CaH_2$, reacts with water to produce dihydrogen gas along with:",
+    "options": [
+      "Calcium hydroxide",
+      "Calcium oxide",
+      "Calcium carbonate",
+      "Calcium chloride"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The reaction is $CaH_2 + 2H_2O \\rightarrow Ca(OH)_2 + 2H_2$; each hydride ion abstracts a proton from water, releasing $H_2$, which is why $CaH_2$ (Hydrolith) is used as a portable, compact source of hydrogen.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Water gas, obtained industrially by passing steam over red-hot coke, is chiefly a mixture of:",
+    "options": [
+      "$CO$ and $H_2$",
+      "$CO_2$ and $H_2$",
+      "$CH_4$ and $H_2$",
+      "$N_2$ and $H_2$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The reaction $C + H_2O \\rightarrow CO + H_2$ (endothermic) at high temperature over red-hot coke produces water gas, a mixture of carbon monoxide and dihydrogen, also used as synthesis gas.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "When hydrogen peroxide is added to an acidified solution of potassium permanganate, the purple colour fades and a colourless gas is evolved because $H_2O_2$ acts as a reducing agent, itself being oxidized to:",
+    "options": [
+      "Oxygen gas",
+      "Water only, with no gas evolved",
+      "Hydrogen gas",
+      "Ozone"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In $2KMnO_4 + 3H_2SO_4 + 5H_2O_2 \\rightarrow K_2SO_4 + 2MnSO_4 + 8H_2O + 5O_2$, $H_2O_2$ is oxidized to $O_2$ while $Mn^{7+}$ is reduced to $Mn^{2+}$, decolourizing the permanganate.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "When hydrogen peroxide is added to an acidified solution of potassium iodide, it acts as an oxidizing agent and the solution turns brown due to formation of:",
+    "options": [
+      "Iodine ($I_2$)",
+      "Potassium iodate",
+      "Hydroiodic acid gas",
+      "Potassium hydroxide"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The reaction $H_2O_2 + 2KI + H_2SO_4 \\rightarrow K_2SO_4 + I_2 + 2H_2O$ shows $H_2O_2$ oxidizing iodide ions to iodine, which imparts a brown colour and gives a blue colour with starch.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A bottle of hydrogen peroxide is labelled as '20 volume'. This means that:",
+    "options": [
+      "One litre of the solution liberates 20 litres of oxygen gas at STP on complete decomposition",
+      "The solution contains 20% $H_2O_2$ by mass",
+      "The solution is exactly 20 molar in $H_2O_2$",
+      "The solution occupies 20 times its own volume when boiled"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "'Volume strength' expresses the volume of oxygen gas (measured at STP) liberated by complete decomposition of one volume of the $H_2O_2$ solution via $2H_2O_2 \\rightarrow 2H_2O + O_2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Pure hydrogen peroxide is stored in wax-lined or plastic bottles, kept away from light, and often stabilized with substances such as urea or acetanilide. This is done mainly to prevent:",
+    "options": [
+      "Its catalytic and photochemical decomposition into water and oxygen",
+      "Its evaporation into the atmosphere",
+      "Its freezing at room temperature",
+      "Its reaction with atmospheric nitrogen"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$H_2O_2$ decomposes readily on exposure to light, heat, or trace metal ion catalysts (often present in ordinary glass); dark wax-lined containers and stabilizers slow this catalytic/photochemical decomposition.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In one industrial method for manufacturing hydrogen peroxide, electrolysis of a 50% sulphuric acid solution using a high current density produces peroxodisulphuric acid at the anode, which on hydrolysis with water yields:",
+    "options": [
+      "$H_2O_2$ and $H_2SO_4$",
+      "$H_2S$ and $O_2$",
+      "$SO_2$ and $H_2O$ only",
+      "$H_2SO_3$ only"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Electrolytic oxidation of $HSO_4^-$ ions at the anode gives peroxodisulphuric acid, $H_2S_2O_8$, which is subsequently hydrolyzed to regenerate sulphuric acid and release hydrogen peroxide, which can be separated by distillation under reduced pressure.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Covalent hydrides are further classified as electron-deficient, electron-precise, and electron-rich based on the number of electrons available relative to that needed for conventional bonding. Which of the following is a classic example of an electron-deficient hydride?",
+    "options": [
+      "$B_2H_6$",
+      "$CH_4$",
+      "$NH_3$",
+      "$H_2O$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Diborane, $B_2H_6$, does not have enough electrons to form normal two-centre two-electron bonds for all its atoms and is therefore classified as electron-deficient, whereas $CH_4$ is electron-precise and $NH_3$, $H_2O$ are electron-rich (having lone pairs).",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Ortho-hydrogen and para-hydrogen are two forms of dihydrogen molecules that differ from each other in terms of:",
+    "options": [
+      "The relative orientation (parallel or antiparallel) of the nuclear spins of the two hydrogen nuclei",
+      "The number of protons present in the molecule",
+      "Their isotopic mass",
+      "Their electronic configuration"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In orthohydrogen the two nuclear spins are parallel, while in parahydrogen they are antiparallel; these are nuclear spin isomers of $H_2$ and show slightly different physical properties even though their chemical behaviour is essentially the same.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In the water-gas shift reaction used to increase the hydrogen yield from water gas, carbon monoxide reacts with steam over a catalyst to give:",
+    "options": [
+      "$CO_2$ and $H_2$",
+      "$CH_4$ and $O_2$",
+      "Carbon and $H_2O$",
+      "$CO_2$ and $O_2$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The water-gas shift reaction, $CO + H_2O \\rightarrow CO_2 + H_2$, carried out over a catalyst such as $Fe_3O_4$-$Cr_2O_3$, converts the CO in water gas into $CO_2$ (later scrubbed out) while producing additional dihydrogen.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Permanent hardness of water, which cannot be removed by simple boiling, is mainly caused by the presence of:",
+    "options": [
+      "Soluble chlorides and sulphates of calcium and magnesium",
+      "Bicarbonates of calcium and magnesium",
+      "Dissolved carbon dioxide gas",
+      "Dissolved atmospheric oxygen"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Unlike temporary hardness (due to bicarbonates, which decompose on boiling), permanent hardness is due to chlorides and sulphates of $Ca^{2+}$/$Mg^{2+}$, which remain in solution even after boiling and require methods like ion exchange or treatment with washing soda for removal.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Dihydrogen gas is used industrially in the catalytic hydrogenation of vegetable oils in the presence of finely divided nickel. This process mainly converts liquid oils into:",
+    "options": [
+      "Solid or semi-solid fats (such as vanaspati ghee) by saturating carbon-carbon double bonds",
+      "Fatty acids by hydrolysis",
+      "Glycerol and soap by saponification",
+      "Aromatic hydrocarbons"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In catalytic hydrogenation, $H_2$ adds across the C=C double bonds of unsaturated vegetable oils using a nickel catalyst, converting the liquid oil into a solid or semi-solid saturated fat.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "What is the volume strength of a $1.5$ M aqueous solution of hydrogen peroxide? (Assume 1 mole of gas occupies 22.4 L at STP.)",
+    "options": [
+      "16.8 volume",
+      "33.6 volume",
+      "8.4 volume",
+      "22.4 volume"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "From $2H_2O_2 \\rightarrow 2H_2O + O_2$, 1 L of a 1.5 M solution contains 1.5 mol $H_2O_2$, giving 0.75 mol $O_2$ on complete decomposition; volume of $O_2$ at STP = $0.75 \\times 22.4 = 16.8$ L, so the volume strength is 16.8.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A hydrogen peroxide solution is labelled '10 volume'. What is the approximate concentration of $H_2O_2$ in this solution in grams per litre? (Molar mass of $H_2O_2$ = 34 g/mol; 1 mole of gas occupies 22.4 L at STP.)",
+    "options": [
+      "≈30.3 g $L^{-1}$",
+      "≈17 g $L^{-1}$",
+      "≈60.6 g $L^{-1}$",
+      "≈340 g $L^{-1}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "'10 volume' means 1 L of solution gives 10 L of $O_2$ at STP, i.e. $10/22.4 = 0.446$ mol $O_2$, which corresponds to $2 \\times 0.446 = 0.893$ mol $H_2O_2$ per litre; mass concentration = $0.893 \\times 34 \\approx 30.3$ g $L^{-1}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "The dihedral (skew) angle between the two O-H bonds of hydrogen peroxide is noticeably smaller in the solid state than in the gas phase. This change is best attributed to:",
+    "options": [
+      "Extensive intermolecular hydrogen bonding that constrains molecular geometry in the solid lattice",
+      "A change in the oxidation state of oxygen on freezing",
+      "Conversion of the O-O single bond into a double bond in the solid state",
+      "Ionization of $H_2O_2$ into $H^+$ and $HO_2^-$ on freezing"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$H_2O_2$ has a flexible, non-planar 'open book' structure; in the solid state, extensive hydrogen bonding between neighbouring molecules distorts and reduces the dihedral angle compared to the relatively unconstrained gas-phase molecule, while the O-O single bond and oxidation states remain unchanged.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "5.4 g of aluminium is treated with excess hot concentrated NaOH solution: $2Al + 2NaOH + 2H_2O \\rightarrow 2NaAlO_2 + 3H_2$. What volume of dihydrogen gas (at STP) is liberated? (Atomic mass of Al = 27; 1 mole of gas occupies 22.4 L at STP.)",
+    "options": [
+      "6.72 L",
+      "3.36 L",
+      "13.44 L",
+      "22.4 L"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Moles of Al = $5.4/27 = 0.2$ mol; from the equation, moles of $H_2$ = $0.2 \\times (3/2) = 0.3$ mol; volume at STP = $0.3 \\times 22.4 = 6.72$ L.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "In the decomposition of hydrogen peroxide, $2H_2O_2 \\rightarrow 2H_2O + O_2$, this reaction is classified as a disproportionation because the oxygen atoms of $H_2O_2$, present in the $-1$ oxidation state, are simultaneously:",
+    "options": [
+      "Reduced to $-2$ in $H_2O$ and oxidized to $0$ in $O_2$",
+      "Oxidized to $+1$ in both $H_2O$ and $O_2$",
+      "Reduced to $-2$ in both products",
+      "Left unchanged in oxidation state in both products"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Oxygen in $H_2O_2$ has oxidation state $-1$; in disproportionation, half of it is reduced to $-2$ (as in $H_2O$) while the other half is oxidized to $0$ (as in $O_2$), so $H_2O_2$ simultaneously acts as its own oxidizing and reducing agent.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Hydrogen",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "In an acidified redox titration, 50 mL of a 0.2 N hydrogen peroxide solution is completely oxidized by a $KMnO_4$ solution of normality 0.1 N. What volume of the $KMnO_4$ solution is required?",
+    "options": [
+      "100 mL",
+      "25 mL",
+      "50 mL",
+      "200 mL"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At the equivalence point of a redox titration, milliequivalents of oxidant equal milliequivalents of reductant: $N_1V_1 = N_2V_2$, so $0.1 \\times V_1 = 0.2 \\times 50$, giving $V_1 = 100$ mL of $KMnO_4$ solution.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

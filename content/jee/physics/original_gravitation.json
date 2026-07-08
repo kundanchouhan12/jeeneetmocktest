@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two point masses of 2 kg and 3 kg are separated by a distance of 1 m. Taking $G = 6.67\\times10^{-11}$ N m² kg⁻², the gravitational force of attraction between them is closest to:",
+    "options": [
+      "$4.0\\times10^{-10}$ N",
+      "$4.0\\times10^{-11}$ N",
+      "$2.0\\times10^{-10}$ N",
+      "$8.0\\times10^{-10}$ N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Newton's law of gravitation, $F = Gm_1m_2/r^2 = 6.67\\times10^{-11}\\times2\\times3/1^2 \\approx 4.0\\times10^{-10}$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "At a height equal to the radius R of the earth above the earth's surface, the acceleration due to gravity is:",
+    "options": [
+      "g/2",
+      "g/4",
+      "g/3",
+      "g/9"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Using $g' = gR^2/(R+h)^2$ with $h=R$, we get $g' = gR^2/(2R)^2 = g/4$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "At a depth of R/2 below the earth's surface (R is the radius of the earth), the acceleration due to gravity is:",
+    "options": [
+      "g/2",
+      "g/4",
+      "3g/4",
+      "g"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using $g_d = g(1-d/R)$ with $d=R/2$, we get $g_d = g/2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A planet has mass $2\\times10^{24}$ kg and radius $5\\times10^{6}$ m. Using $G=6.67\\times10^{-11}$ N m² kg⁻², the escape velocity from its surface is approximately:",
+    "options": [
+      "7.3 km/s",
+      "11.2 km/s",
+      "3.6 km/s",
+      "14.6 km/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$v_e=\\sqrt{2GM/R}=\\sqrt{2\\times6.67\\times10^{-11}\\times2\\times10^{24}/5\\times10^{6}}\\approx7.3\\times10^{3}$ m/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Taking g = 9.8 m/s² and radius of earth R = 6400 km, the orbital speed of a satellite revolving very close to the earth's surface is approximately:",
+    "options": [
+      "7.9 km/s",
+      "11.2 km/s",
+      "3.1 km/s",
+      "9.8 km/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$v_o=\\sqrt{gR}=\\sqrt{9.8\\times6.4\\times10^{6}}\\approx7.92$ km/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The orbital speed of a satellite moving very close to a planet's surface is 6 km/s. The escape speed from the planet's surface is:",
+    "options": [
+      "$6\\sqrt{2}$ km/s (about 8.5 km/s)",
+      "12 km/s",
+      "3 km/s",
+      "6 km/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Escape speed and near-surface orbital speed are related by $v_e = \\sqrt{2}\\,v_o$, so $v_e = 6\\sqrt{2} \\approx 8.49$ km/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two planets orbit the sun with orbital radii in the ratio 1:4. The ratio of their orbital periods (smaller planet : larger planet) is:",
+    "options": [
+      "1:8",
+      "1:4",
+      "1:2",
+      "1:16"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Kepler's third law, $T^2 \\propto r^3$, so the period ratio is $(1/4)^{3/2} = 1/8$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A body of mass 10 kg rests on the earth's surface (mass of earth $M=6\\times10^{24}$ kg, radius $R=6.4\\times10^{6}$ m). Its gravitational potential energy relative to infinity is approximately:",
+    "options": [
+      "$-6.25\\times10^{8}$ J",
+      "$-6.25\\times10^{7}$ J",
+      "$+6.25\\times10^{8}$ J",
+      "$-3.1\\times10^{8}$ J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$U = -GMm/R = -(6.67\\times10^{-11}\\times6\\times10^{24}\\times10)/(6.4\\times10^{6}) \\approx -6.25\\times10^{8}$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "An astronaut inside a space station orbiting the earth experiences weightlessness mainly because:",
+    "options": [
+      "earth's gravity is exactly zero at that height",
+      "gravity itself provides the centripetal force for the orbit, so the floor exerts no normal reaction on the astronaut",
+      "there is no air resistance in space",
+      "the station moves at constant velocity, so no net force acts on it"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "In orbit, the astronaut and station are both in free fall around the earth; gravity supplies exactly the centripetal force needed, leaving zero normal (apparent weight) force.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "As one moves from the earth's surface to higher altitudes, the acceleration due to gravity decreases mainly because:",
+    "options": [
+      "the earth's mass decreases with altitude",
+      "the distance from the earth's center increases and $g \\propto 1/r^2$",
+      "the air density decreases with altitude",
+      "the earth's rotation slows down with altitude"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Since $g = GM/r^2$, increasing distance $r$ from the earth's center reduces $g$ by the inverse-square law, independent of atmosphere.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A geostationary satellite appears stationary relative to a point on the earth's surface because:",
+    "options": [
+      "its time period equals the earth's rotation period (about 24 hours) and it revolves in the equatorial plane in the same sense as the earth's rotation",
+      "its time period is 12 hours",
+      "it moves in a polar orbit",
+      "its orbital speed equals the escape speed"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A geostationary satellite must revolve with the same angular velocity and direction as the earth's rotation, in the equatorial plane, so it stays above the same point.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The gravitational force between two point masses is F when they are separated by a distance r. If the separation is increased to 3r, the new force is:",
+    "options": [
+      "F/9",
+      "F/3",
+      "3F",
+      "9F"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $F \\propto 1/r^2$, tripling the distance reduces the force to $F/3^2 = F/9$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "At a depth $d = R/5$ below the earth's surface, gravity reduces by a certain fraction of its surface value. At what height h above the surface (with $h \\ll R$) does gravity reduce by approximately the same fraction?",
+    "options": [
+      "R/10",
+      "R/5",
+      "R/20",
+      "2R/5"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Depth formula: $g_d = g(1-d/R)$; height (small h) formula: $g_h \\approx g(1-2h/R)$. Equating fractional drops, $d/R = 2h/R$, giving $h = d/2 = R/10$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Using g = 9.8 m/s² and R = 6400 km, the time period of a satellite orbiting very close to the earth's surface is approximately:",
+    "options": [
+      "84.6 minutes",
+      "24 hours",
+      "108 minutes",
+      "42 minutes"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$T = 2\\pi\\sqrt{R/g} = 2\\pi\\sqrt{6.4\\times10^{6}/9.8} \\approx 5077$ s $\\approx 84.6$ minutes.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A satellite of mass 1000 kg orbits the earth in a circular orbit of radius 2R (R = earth's radius). Taking g = 9.8 m/s² and R = 6.4×10⁶ m, the minimum energy required to send the satellite from this orbit to infinity (its binding energy) is approximately:",
+    "options": [
+      "$1.57\\times10^{10}$ J",
+      "$3.13\\times10^{10}$ J",
+      "$7.84\\times10^{9}$ J",
+      "$6.27\\times10^{10}$ J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Binding energy $= GMm/2r = mgR^2/(2\\times2R) = mgR/4 = 1000\\times9.8\\times6.4\\times10^{6}/4 \\approx 1.57\\times10^{10}$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A satellite orbits the earth at radius r with orbital speed 8 km/s. Another satellite orbits at radius 4r. Its orbital speed is:",
+    "options": [
+      "4 km/s",
+      "2 km/s",
+      "16 km/s",
+      "32 km/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Since $v_o \\propto 1/\\sqrt{r}$, increasing radius by 4 times reduces speed by a factor of $\\sqrt{4}=2$, giving $8/2 = 4$ km/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The earth rotates with angular speed $\\omega \\approx 7.27\\times10^{-5}$ rad/s and has radius R = 6.4×10⁶ m. Due to earth's rotation alone (ignoring oblateness), the percentage reduction in effective gravity at the equator compared to a non-rotating earth, given g = 9.8 m/s², is closest to:",
+    "options": [
+      "0.35%",
+      "3.5%",
+      "0.035%",
+      "1.7%"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The reduction is $\\Delta g = \\omega^2R = (7.27\\times10^{-5})^2\\times6.4\\times10^{6} \\approx 0.034$ m/s², which is about $0.034/9.8 \\times 100 \\approx 0.35\\%$ of g.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A planet has the same average density as the earth but twice the earth's radius. If the escape velocity from earth's surface is 11.2 km/s, the escape velocity from this planet's surface is:",
+    "options": [
+      "22.4 km/s",
+      "11.2 km/s",
+      "5.6 km/s",
+      "15.8 km/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "For a fixed density $\\rho$, $M \\propto R^3$, so $v_e=\\sqrt{2GM/R} \\propto \\sqrt{R^3/R} = R$. Doubling R doubles $v_e$, giving 22.4 km/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two planets orbiting the sun have orbital periods of 1 year and 8 years respectively. The ratio of their orbital radii (larger planet : smaller planet) is:",
+    "options": [
+      "4:1",
+      "8:1",
+      "2:1",
+      "16:1"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By Kepler's third law, $r \\propto T^{2/3}$, so the radius ratio is $8^{2/3} = 4$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two point masses M and 4M are separated by a distance d. At what distance from mass M (measured along the line joining them) is the resultant gravitational field zero?",
+    "options": [
+      "d/3",
+      "d/2",
+      "2d/3",
+      "d/5"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At the null point, $GM/x^2 = G(4M)/(d-x)^2$, giving $\\sqrt{M}/(\\sqrt{M}+\\sqrt{4M}) = 1/3$, so the point lies at $d/3$ from M.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "The work done to lift a body of mass 10 kg from the earth's surface to a height equal to the earth's radius R (use g = 9.8 m/s², R = 6.4×10⁶ m) is:",
+    "options": [
+      "$3.14\\times10^{8}$ J",
+      "$6.27\\times10^{8}$ J",
+      "$1.57\\times10^{8}$ J",
+      "$6.27\\times10^{7}$ J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$W = GMm/R - GMm/2R = mgR/2 = 10\\times9.8\\times6.4\\times10^{6}/2 \\approx 3.14\\times10^{8}$ J; the simple $mgh$ formula is not valid since h is not small compared to R.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A comet moves in an elliptical orbit around the sun such that its aphelion distance is 3 times its perihelion distance. The ratio of its speed at perihelion to its speed at aphelion is:",
+    "options": [
+      "3:1",
+      "1:3",
+      "9:1",
+      "$\\sqrt{3}$:1"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By conservation of angular momentum (Kepler's second law), $v_p r_p = v_a r_a$, so $v_p/v_a = r_a/r_p = 3$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Satellite A orbits the earth at radius r and satellite B orbits at radius 2r; both have equal mass. The ratio of their kinetic energies $KE_A : KE_B$ is:",
+    "options": [
+      "2:1",
+      "1:2",
+      "4:1",
+      "1:4"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Orbital kinetic energy is $KE = GMm/2r \\propto 1/r$, so $KE_A/KE_B = (2r)/r = 2$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A body weighs 90 N on the earth's surface. Its weight at a height h = R/2 above the surface (R = earth's radius) is:",
+    "options": [
+      "40 N",
+      "45 N",
+      "22.5 N",
+      "60 N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$g' = gR^2/(R+h)^2 = g/(1.5)^2 = 4g/9$, so the weight becomes $90\\times4/9 = 40$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A satellite of mass 1000 kg is to be raised from a circular orbit at the earth's surface (radius R) to a circular orbit of radius 4R. Using g = 9.8 m/s² and R = 6.4×10⁶ m, the minimum extra energy required is approximately:",
+    "options": [
+      "$2.35\\times10^{10}$ J",
+      "$1.57\\times10^{10}$ J",
+      "$7.84\\times10^{9}$ J",
+      "$4.70\\times10^{10}$ J"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Total orbital energy is $E=-GMm/2r$. $\\Delta E = \\dfrac{GMm}{2}\\left(\\dfrac{1}{R}-\\dfrac{1}{4R}\\right) = \\dfrac{3mgR}{8} = \\dfrac{3\\times1000\\times9.8\\times6.4\\times10^{6}}{8} \\approx 2.35\\times10^{10}$ J.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A narrow frictionless tunnel is drilled straight through the center of the earth, assumed to be a uniform sphere of radius R and surface gravity g. A small ball is dropped into the tunnel and executes simple harmonic motion. Using g = 9.8 m/s² and R = 6.4×10⁶ m, the time period of this motion is approximately:",
+    "options": [
+      "84.6 minutes",
+      "42.3 minutes",
+      "24 hours",
+      "169 minutes"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Inside a uniform earth, $g(r) = gr/R$ acts like a restoring force giving SHM with $\\omega=\\sqrt{g/R}$, so $T=2\\pi\\sqrt{R/g}\\approx84.6$ minutes — the same as the period of a satellite skimming the surface.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Two stars of masses m and 2m, separated by a fixed distance d, revolve about their common center of mass under their mutual gravitational attraction. The time period of revolution is:",
+    "options": [
+      "$2\\pi\\sqrt{\\dfrac{d^3}{3Gm}}$",
+      "$2\\pi\\sqrt{\\dfrac{d^3}{Gm}}$",
+      "$2\\pi\\sqrt{\\dfrac{d^3}{2Gm}}$",
+      "$2\\pi\\sqrt{\\dfrac{d^3}{6Gm}}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The mass m orbits at radius $2d/3$ from the center of mass. Setting gravitational force equal to centripetal force, $2Gm^2/d^2 = m\\omega^2(2d/3)$, gives $\\omega^2=3Gm/d^3$, so $T=2\\pi\\sqrt{d^3/(3Gm)}$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "If the earth (radius R = 6.4×10⁶ m, g = 9.8 m/s²) were to spin fast enough that objects at the equator become effectively weightless, the required period of rotation would be approximately:",
+    "options": [
+      "84.6 minutes",
+      "24 hours",
+      "12 hours",
+      "169 minutes"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Weightlessness at the equator requires $\\omega^2R = g$, i.e. $\\omega=\\sqrt{g/R}$, giving $T=2\\pi\\sqrt{R/g}\\approx84.6$ minutes — the object would then effectively be in a surface-skimming orbit.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A satellite of mass m orbits the earth in a circular orbit of radius 2R (R = earth's radius), with g = 9.8 m/s² and R = 6.4×10⁶ m. The minimum additional speed that must be imparted to the satellite, tangentially, to make it escape the earth's gravity from this orbit is approximately:",
+    "options": [
+      "2.32 km/s",
+      "7.92 km/s",
+      "5.60 km/s",
+      "3.24 km/s"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Orbital speed at 2R is $v_o=\\sqrt{GM/2R}=\\sqrt{gR/2}\\approx5.60$ km/s; escape speed there is $v_e=\\sqrt{GM/R}=\\sqrt{gR}\\approx7.92$ km/s. The extra speed needed is $v_e-v_o\\approx2.32$ km/s.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Gravitation",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Three particles, each of mass m, are placed at the corners of an equilateral triangle of side a and interact only through their mutual gravitation. The work an external agent must do to slowly increase the side of the triangle from a to 2a is:",
+    "options": [
+      "$\\dfrac{3Gm^2}{2a}$",
+      "$\\dfrac{3Gm^2}{a}$",
+      "$\\dfrac{Gm^2}{2a}$",
+      "$\\dfrac{3Gm^2}{4a}$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The system's gravitational PE for 3 pairs is $U=-3Gm^2/a$ at side a and $-3Gm^2/2a$ at side 2a. The external work equals the change in PE: $-3Gm^2/2a-(-3Gm^2/a)=3Gm^2/2a$.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

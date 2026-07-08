@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "In which region of the atmosphere is the ozone layer that protects life on Earth from harmful ultraviolet radiation located?",
+    "options": [
+      "Stratosphere",
+      "Troposphere",
+      "Mesosphere",
+      "Thermosphere"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The protective ozone layer lies in the stratosphere, roughly 15-35 km above the Earth's surface, where it absorbs most of the sun's harmful UV-B radiation.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Classical (London-type) smog is a mixture of smoke, fog and which gas, and is chemically classified as a __ mixture?",
+    "options": [
+      "$SO_2$; oxidizing",
+      "$SO_2$; reducing",
+      "$NO_2$; oxidizing",
+      "$O_3$; reducing"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Classical smog forms in cool, humid climates from smoke, fog and $SO_2$, and because $SO_2$ acts as a reducing agent, this type of smog is termed reducing smog.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following is NOT a typical component of photochemical smog?",
+    "options": [
+      "Ozone ($O_3$)",
+      "Peroxyacetyl nitrate (PAN)",
+      "Sulfur dioxide ($SO_2$)",
+      "Nitrogen dioxide ($NO_2$)"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Photochemical smog forms from $NO_x$ and hydrocarbons reacting in sunlight to give $O_3$, PAN, $NO_2$, acrolein and formaldehyde; $SO_2$ is instead the hallmark pollutant of classical (reducing) smog.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following compounds is a chlorofluorocarbon (CFC) that has been strongly implicated in stratospheric ozone depletion?",
+    "options": [
+      "$CO_2$",
+      "$CH_4$",
+      "$N_2O$",
+      "$CFCl_3$"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "$CFCl_3$ (Freon-11) is a chlorofluorocarbon widely used in refrigerants and aerosols that, upon reaching the stratosphere, photodissociates to release ozone-destroying chlorine atoms.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The depletion of stratospheric ozone by human-made compounds is primarily driven by free radicals containing which element acting catalytically?",
+    "options": [
+      "Chlorine",
+      "Carbon",
+      "Sulfur",
+      "Phosphorus"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Chlorine atoms released from CFCs by UV photolysis act catalytically, repeatedly reacting with and destroying ozone molecules while being regenerated in the process.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Which of the following gases is NOT considered a greenhouse gas?",
+    "options": [
+      "$CO_2$",
+      "$N_2$",
+      "$CH_4$",
+      "$N_2O$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$N_2$ makes up most of the atmosphere but does not absorb infrared radiation, so it does not contribute to the greenhouse effect, unlike $CO_2$, $CH_4$ and $N_2O$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Biochemical Oxygen Demand (BOD) of a water sample is defined as the amount of oxygen required by:",
+    "options": [
+      "plants to photosynthesize in the water body",
+      "fish to respire in the water body",
+      "bacteria to decompose the organic matter present in a given volume of water",
+      "chemical oxidants to fully oxidize the water sample"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "BOD measures the oxygen consumed by microorganisms while biodegrading the organic matter in a water sample over a fixed period, so a higher BOD indicates greater organic pollution.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Eutrophication of a lake refers to which of the following phenomena?",
+    "options": [
+      "Depletion of ozone in the air above the lake",
+      "Accumulation of heavy metals in fish tissue",
+      "Acidification of lake water due to acid rain",
+      "Excessive nutrient enrichment leading to algal bloom and subsequent oxygen depletion"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Runoff of nutrients such as phosphates and nitrates causes excessive algal growth; when the algae die and decompose, dissolved oxygen in the water is depleted, harming aquatic life.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Minamata disease, first reported in Japan, resulted from eating fish contaminated with which toxic pollutant discharged from industrial effluent?",
+    "options": [
+      "Mercury",
+      "Lead",
+      "Cadmium",
+      "Arsenic"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Industrial discharge of methylmercury into Minamata Bay accumulated in fish, and its consumption caused severe neurological damage in local residents, known as Minamata disease.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Itai-itai disease, characterized by severe pain in bones and joints, resulted from long-term exposure to which heavy metal in contaminated rice and water?",
+    "options": [
+      "Mercury",
+      "Cadmium",
+      "Chromium",
+      "Nickel"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Cadmium discharged by mining operations into Japan's Jinzu River contaminated irrigation water and rice crops, leading to painful bone-weakening disease known as itai-itai disease.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "The fundamental goal of green chemistry is best described as which of the following?",
+    "options": [
+      "Increasing the yield of industrial reactions regardless of by-products formed",
+      "Replacing all organic solvents with water irrespective of reaction efficiency",
+      "Designing chemical products and processes that reduce or eliminate the use and generation of hazardous substances",
+      "Maximizing the use of non-renewable feedstocks for cost efficiency"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Green chemistry aims to prevent pollution at its source by designing safer chemicals, reactions and processes rather than treating waste after it is generated.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Incomplete combustion of fuel in automobile engines mainly releases which highly toxic gas that binds strongly to haemoglobin?",
+    "options": [
+      "Carbon dioxide",
+      "Sulfur dioxide",
+      "Ozone",
+      "Carbon monoxide"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Carbon monoxide forms when fuel burns without sufficient oxygen and is toxic because it binds to haemoglobin far more strongly than oxygen, reducing the blood's oxygen-carrying capacity.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Stratospheric ozone is naturally formed and maintained through the Chapman mechanism, a two-step process. Which pair of steps correctly describes it?",
+    "options": [
+      "$O_2$ splits into two oxygen atoms on absorbing UV light, then an oxygen atom combines with $O_2$ to form $O_3$",
+      "$O_3$ splits into $O_2$ and an oxygen atom on absorbing UV light, then two oxygen atoms combine to form $O_2$",
+      "$O_3$ decomposes into $O_2$ directly, and $O_2$ never reforms into ozone",
+      "$N_2$ splits into nitrogen atoms on absorbing UV light, then a nitrogen atom combines with $O_2$ to form $NO_2$"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In the Chapman mechanism, UV radiation photolyzes $O_2$ into two oxygen atoms, and each atom then combines with another $O_2$ molecule to continuously form and maintain the stratospheric ozone layer.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Chlorine atoms released from CFCs destroy stratospheric ozone through a catalytic cycle. Which pair of steps correctly represents this cycle?",
+    "options": [
+      "$Cl + O_2 \\rightarrow ClO_2$ followed by $ClO_2 + O_3 \\rightarrow Cl + 2O_2$",
+      "$Cl + O_3 \\rightarrow ClO + O_2$ followed by $ClO + O \\rightarrow Cl + O_2$",
+      "$Cl + O_3 \\rightarrow ClO_3$ followed by $ClO_3 \\rightarrow Cl + O_3$",
+      "$2Cl + O_3 \\rightarrow Cl_2O_3$ followed by $Cl_2O_3 \\rightarrow 2Cl + O_3$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Chlorine first reacts with ozone to form ClO, which then reacts with a free oxygen atom to regenerate atomic chlorine, meaning the chlorine acts as a catalyst that is not permanently consumed.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Photochemical smog, unlike classical (London-type) smog, requires sunlight to form because:",
+    "options": [
+      "sunlight is needed to condense fog droplets around smoke particles",
+      "sunlight directly converts $SO_2$ into $H_2SO_4$ mist",
+      "sunlight supplies the energy to photolyze $NO_2$ into NO and reactive oxygen atoms, initiating the radical chemistry that produces $O_3$ and PAN",
+      "sunlight is required to cool the air enough for a temperature inversion to occur"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Photochemical smog chemistry begins when sunlight splits $NO_2$ into NO and an oxygen atom, triggering a chain of free-radical reactions with hydrocarbons that ultimately generates ozone and PAN.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Peroxyacetyl nitrate (PAN), a major eye and respiratory irritant found in photochemical smog, is primarily formed from the reaction of:",
+    "options": [
+      "$SO_2$ with fog droplets",
+      "$CO_2$ with $NH_3$ in moist air",
+      "ozone reacting directly with soot particles",
+      "unburnt hydrocarbons and $NO_2$ in the presence of sunlight, via peroxyacetyl free radicals"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Hydrocarbons are oxidized by radicals to form peroxyacetyl radicals, which then react with $NO_2$ to give PAN, a characteristic and harmful component of photochemical smog.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Although a single methane molecule traps substantially more infrared radiation than a single $CO_2$ molecule, $CO_2$ is considered the largest overall contributor to anthropogenic global warming mainly because:",
+    "options": [
+      "carbon dioxide is present in the atmosphere at a much higher concentration due to the sheer scale of fossil fuel combustion",
+      "methane is completely non-toxic",
+      "carbon dioxide absorbs visible light more strongly than infrared radiation",
+      "methane is destroyed instantly upon release and never reaches the atmosphere"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Global warming impact depends on both a gas's potency and its atmospheric abundance; despite methane's higher per-molecule potency, the enormous quantity of $CO_2$ emitted from fossil fuel burning makes it the dominant overall contributor.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Normal, unpolluted rainwater is slightly acidic (pH about 5.6) due to dissolved atmospheric $CO_2$ forming carbonic acid. Rain is classified as acid rain when its pH falls further, mainly due to dissolved:",
+    "options": [
+      "$O_3$ and $CO_2$",
+      "$H_2SO_4$ and $HNO_3$ formed from $SO_2$ and $NO_x$",
+      "$NaCl$ from sea spray",
+      "dissolved $O_2$ and $N_2$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Industrial and vehicular emissions of $SO_2$ and $NO_x$ are oxidized in the atmosphere and dissolve in rainwater to form sulfuric and nitric acids, lowering the pH well below 5.6 and producing acid rain.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A healthy, unpolluted water body capable of sustaining fish and other aquatic life typically has a dissolved oxygen (DO) level:",
+    "options": [
+      "below 2 ppm",
+      "exactly 0 ppm",
+      "above 6 ppm",
+      "equal to its BOD value"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Dissolved oxygen levels above about 6 ppm are generally needed to support a healthy diversity of aquatic organisms; values much lower than this signal pollution and oxygen depletion.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Chemical Oxygen Demand (COD) differs from Biochemical Oxygen Demand (BOD) mainly in that COD measures:",
+    "options": [
+      "only the oxygen consumed by fish respiration",
+      "only the dissolved oxygen present in water at a given instant",
+      "the oxygen produced by algae during eutrophication",
+      "the oxygen equivalent required to chemically oxidize both biodegradable and non-biodegradable organic matter using a strong oxidizing agent, usually giving a value equal to or greater than BOD"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Unlike BOD, which reflects only microbially degradable matter, COD uses a strong chemical oxidant to also oxidize non-biodegradable organic substances, so COD values are typically equal to or higher than BOD.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Vehicles fitted with catalytic converters containing Pt, Pd and Rh must use unleaded petrol mainly because:",
+    "options": [
+      "lead deposits coat the catalyst surface and deactivate it, a phenomenon known as catalyst poisoning",
+      "lead compounds increase engine efficiency, which would damage the converter",
+      "leaded petrol produces less carbon monoxide, making the converter unnecessary",
+      "lead reacts with the converter metals to form explosive compounds"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Lead compounds from leaded petrol deposit on the precious-metal catalyst surface, blocking active sites and rendering the catalytic converter ineffective at converting CO, hydrocarbons and $NO_x$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "In the context of green chemistry, the term 'atom economy' of a reaction refers to:",
+    "options": [
+      "the total number of atoms present in the reactants",
+      "the percentage of the mass of reactant atoms that is incorporated into the desired final product",
+      "the monetary cost of atoms used in a synthesis",
+      "the number of steps in a synthetic route"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Atom economy expresses how much of the mass of the starting materials ends up in the useful product rather than in waste by-products; green chemistry favors reactions with high atom economy.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Replacing chlorine gas with hydrogen peroxide for bleaching paper pulp is often cited as a green chemistry improvement mainly because:",
+    "options": [
+      "hydrogen peroxide is cheaper in every case",
+      "hydrogen peroxide bleaches faster than chlorine under all conditions",
+      "hydrogen peroxide decomposes to give environmentally benign water and oxygen instead of toxic, persistent chlorinated organic by-products",
+      "hydrogen peroxide does not require any energy input"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Chlorine bleaching generates persistent, toxic chlorinated organic compounds, whereas hydrogen peroxide breaks down into harmless water and oxygen, making it a safer oxidizing and bleaching agent.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Compared with PM10 particulate matter, PM2.5 particles are generally considered more hazardous to human health mainly because they:",
+    "options": [
+      "are larger and get trapped in the nose",
+      "are composed only of water droplets",
+      "do not remain suspended in air for long",
+      "are small enough to penetrate deep into the alveoli of the lungs and even enter the bloodstream"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "PM2.5 particles are fine enough to bypass the upper respiratory defenses and lodge deep in the alveoli, and can even cross into the bloodstream, making them more damaging to health than the coarser PM10.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Consider the two elementary steps of the chlorine-catalyzed stratospheric ozone destruction cycle: $Cl + O_3 \\rightarrow ClO + O_2$ and $ClO + O \\rightarrow Cl + O_2$. Adding these steps gives the overall reaction, which correctly shows that:",
+    "options": [
+      "$O_3 + O \\rightarrow 2O_2$, with chlorine regenerated so a single Cl atom can destroy many thousands of ozone molecules before being removed from the stratosphere",
+      "$O_3 + O \\rightarrow 2O_2$, with chlorine consumed permanently in the process",
+      "$2O_3 \\rightarrow 3O_2$, with two chlorine atoms consumed permanently",
+      "$Cl_2 + O_3 \\rightarrow Cl_2O + O_2$, which ends the destructive cycle"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Summing the two steps cancels the intermediate ClO and Cl, leaving the net reaction $O_3 + O \\rightarrow 2O_2$ with chlorine unchanged overall; because it is regenerated as a catalyst, one chlorine atom can participate in the cycle repeatedly, destroying huge numbers of ozone molecules before it is eventually removed as a stable reservoir species.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "The Antarctic 'ozone hole' shows dramatically greater seasonal ozone depletion than elsewhere on Earth mainly because:",
+    "options": [
+      "CFCs are manufactured mostly in Antarctica",
+      "extreme cold during the polar winter allows polar stratospheric clouds (PSCs) to form, whose ice-crystal surfaces convert stable chlorine reservoir species into reactive chlorine that rapidly destroys ozone once sunlight returns in spring",
+      "the ozone layer is naturally absent over Antarctica throughout the year",
+      "Antarctica receives no ultraviolet radiation, so ozone cannot form there at all"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "During the extremely cold, dark polar winter, polar stratospheric clouds provide surfaces that convert normally unreactive chlorine reservoir compounds (like $HCl$ and $ClONO_2$) into photolytically active forms, which rapidly destroy ozone in a catalytic chain reaction once sunlight returns in the Antarctic spring.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Which of the following correctly represents the general sequence of events leading to the buildup of ground-level ozone and PAN in photochemical smog?",
+    "options": [
+      "$SO_2$ dissolves in fog droplets to directly form $O_3$ without involvement of sunlight or nitrogen oxides",
+      "$CO_2$ is photolyzed by sunlight to directly yield PAN and ozone",
+      "$NO_2$ absorbs sunlight and splits into NO and an oxygen atom; the oxygen atom combines with $O_2$ to give $O_3$; hydrocarbon-derived radicals then convert NO back to $NO_2$ without consuming additional ozone, allowing $O_3$ and PAN to accumulate",
+      "ozone from the stratosphere descends directly to ground level, where it reacts with fog to form classical smog"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Photochemical smog begins with sunlight-driven photolysis of $NO_2$ to NO and atomic oxygen, which forms ozone; hydrocarbon radicals then oxidize NO back to $NO_2$ without destroying ozone in the process, so ozone and PAN both accumulate rather than reaching a steady low level.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A water sample is found to have a dissolved oxygen (DO) value of only 2 ppm and a biochemical oxygen demand (BOD) value of 20 ppm. This combination most likely indicates that the water body is:",
+    "options": [
+      "clean and safe for drinking without any treatment",
+      "free of any pollutants but naturally low in oxygen due to high altitude",
+      "contaminated only with non-biodegradable heavy metals and no organic matter",
+      "heavily polluted with biodegradable organic waste, whose microbial decomposition is consuming most of the available dissolved oxygen"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "A low DO together with a high BOD is the classic signature of organic pollution, such as sewage or effluent discharge, because microorganisms decomposing the excess organic matter consume large amounts of the water's dissolved oxygen.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A pharmaceutical company redesigns a synthesis to (i) use supercritical $CO_2$ instead of a chlorinated organic solvent for extraction, and (ii) choose a route with fewer by-products so a larger fraction of reactant mass ends up in the final drug molecule. These two changes respectively exemplify improvements in which two green chemistry aspects?",
+    "options": [
+      "safer solvent selection and higher atom economy",
+      "increasing reaction temperature and pressure",
+      "using a more toxic catalyst and lowering atom economy",
+      "increasing waste generation and reducing yield"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Using supercritical $CO_2$ avoids hazardous chlorinated solvents (safer solvent selection), while a route with fewer by-products maximizes the fraction of reactant mass converted into the desired product, which is precisely the definition of higher atom economy.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Chemistry",
+    "chapter": "Environmental Chemistry",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "Ozone plays contrasting roles depending on its location in the atmosphere. Which statement correctly distinguishes these roles?",
+    "options": [
+      "Ozone is beneficial in the troposphere, where it protects against UV radiation, but harmful in the stratosphere, where it acts as a greenhouse gas",
+      "Ozone in the stratosphere absorbs harmful UV-B radiation and protects life, whereas ground-level (tropospheric) ozone formed in photochemical smog is a toxic pollutant that damages lungs, crops and materials",
+      "Ozone has identical, entirely beneficial effects regardless of its altitude in the atmosphere",
+      "Ozone is never found in the troposphere under natural or polluted conditions"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Stratospheric ozone shields the Earth from harmful UV-B radiation and is essential for life, while the same molecule formed at ground level through photochemical smog reactions is a harmful pollutant that irritates the respiratory system, damages plants and degrades materials.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

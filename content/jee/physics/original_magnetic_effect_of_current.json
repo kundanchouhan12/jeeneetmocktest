@@ -1,0 +1,542 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A long straight current-carrying wire carries a current of 5 A. What is the magnitude of the magnetic field at a perpendicular distance of 10 cm from the wire?",
+    "options": [
+      "$2 \\times 10^{-5}$ T",
+      "$5 \\times 10^{-6}$ T",
+      "$1 \\times 10^{-5}$ T",
+      "$1 \\times 10^{-6}$ T"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Using $B = \\frac{\\mu_0 I}{2\\pi r}$ with $I = 5$ A and $r = 0.1$ m, $B = \\frac{(4\\pi\\times10^{-7})(5)}{2\\pi(0.1)} = 1\\times10^{-5}$ T.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A circular coil of radius 5 cm carries a current of 2 A. Find the magnetic field at the centre of the coil.",
+    "options": [
+      "$2.5\\times10^{-5}$ T",
+      "$1.26\\times10^{-5}$ T",
+      "$5.0\\times10^{-5}$ T",
+      "$1.0\\times10^{-4}$ T"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "At the centre of a circular loop, $B = \\frac{\\mu_0 I}{2R} = \\frac{(4\\pi\\times10^{-7})(2)}{2(0.05)} = 2.5\\times10^{-5}$ T.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A long solenoid has 2000 turns per metre and carries a current of 3 A. Find the magnetic field inside the solenoid, well away from its ends.",
+    "options": [
+      "$3.8\\times10^{-3}$ T",
+      "$1.5\\times10^{-2}$ T",
+      "$7.5\\times10^{-4}$ T",
+      "$7.5\\times10^{-3}$ T"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Inside an ideal solenoid, $B = \\mu_0 n I = (4\\pi\\times10^{-7})(2000)(3) = 7.5\\times10^{-3}$ T.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A proton moves with a speed of $2\\times10^6$ m/s perpendicular to a uniform magnetic field of 0.5 T. Find the magnitude of the magnetic force on the proton.",
+    "options": [
+      "$3.2\\times10^{-13}$ N",
+      "$1.6\\times10^{-13}$ N",
+      "$8.0\\times10^{-14}$ N",
+      "$1.6\\times10^{-19}$ N"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "$F = qvB = (1.6\\times10^{-19})(2\\times10^6)(0.5) = 1.6\\times10^{-13}$ N, directed perpendicular to both velocity and field.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A straight wire of length 0.5 m carrying a current of 4 A is placed perpendicular to a uniform magnetic field of 0.2 T. Find the force on the wire.",
+    "options": [
+      "$0.4$ N",
+      "$0.8$ N",
+      "$0.2$ N",
+      "$1.0$ N"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$F = BIL = (0.2)(4)(0.5) = 0.4$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "Two long parallel wires carry currents of 10 A and 15 A in the same direction and are separated by 20 cm. Find the force per unit length between them.",
+    "options": [
+      "$3.0\\times10^{-4}$ N/m",
+      "$7.5\\times10^{-5}$ N/m",
+      "$1.5\\times10^{-4}$ N/m",
+      "$1.5\\times10^{-3}$ N/m"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi d} = \\frac{(4\\pi\\times10^{-7})(10)(15)}{2\\pi(0.2)} = 1.5\\times10^{-4}$ N/m; the force is attractive since the currents are in the same direction.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A single-turn rectangular loop of area $0.02\\ m^2$ carries a current of 5 A. The plane of the loop is oriented parallel to a uniform magnetic field of 0.3 T. Find the torque on the loop.",
+    "options": [
+      "$0.06$ N·m",
+      "$0.03$ N·m",
+      "$0.015$ N·m",
+      "$0.3$ N·m"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "When the plane of the loop is parallel to B, the normal is perpendicular to B, so $\\theta = 90^\\circ$ and the torque is maximum: $\\tau = NIAB = (1)(5)(0.02)(0.3) = 0.03$ N·m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "According to Ampere's circuital law, the line integral $\\oint \\vec{B}\\cdot d\\vec{l}$ taken around any closed loop equals:",
+    "options": [
+      "$\\mu_0 I_{enc}/2$",
+      "the total current in the circuit regardless of which loop is chosen",
+      "$\\mu_0 I_{enc} r$, where r is the radius of the loop",
+      "$\\mu_0$ times the net current enclosed by the loop"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "Ampere's circuital law states $\\oint \\vec{B}\\cdot d\\vec{l} = \\mu_0 I_{enc}$, where $I_{enc}$ is the net current passing through the surface bounded by the loop, regardless of the loop's shape.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A long straight vertical wire carries a current in the upward direction. Viewed from above (looking down along the wire), in which sense do the magnetic field lines circulate around the wire?",
+    "options": [
+      "counterclockwise",
+      "clockwise",
+      "radially outward from the wire",
+      "radially inward toward the wire"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "By the right-hand rule, if the thumb points in the direction of the current (upward, toward an observer above the wire), the fingers curl counterclockwise as seen by that observer.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "A positive charge moves along the $+x$ direction in a region where a uniform magnetic field points along the $+y$ direction. What is the direction of the magnetic force on the charge?",
+    "options": [
+      "along $+x$",
+      "along $-y$",
+      "along $+z$",
+      "along $-z$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The magnetic force is $\\vec{F} = q\\vec{v}\\times\\vec{B}$. With $\\vec{v}$ along $+x$ and $\\vec{B}$ along $+y$, $\\hat{x}\\times\\hat{y} = \\hat{z}$, so the force on the positive charge is along $+z$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "To convert a galvanometer into an ammeter, a shunt resistance is connected in _____ with the galvanometer coil and has a _____ value of resistance compared to the galvanometer.",
+    "options": [
+      "series; high",
+      "parallel; low",
+      "series; low",
+      "parallel; high"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "A shunt is a low-resistance wire connected in parallel with the galvanometer coil so that most of the current bypasses the galvanometer, allowing the combination to measure large currents as an ammeter.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Easy",
+    "year": 0,
+    "questionText": "To convert a galvanometer into a voltmeter, a resistance is connected in _____ with the galvanometer and has a _____ value of resistance.",
+    "options": [
+      "series; high",
+      "parallel; high",
+      "series; low",
+      "parallel; low"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A high resistance is connected in series with the galvanometer so that only a small, safe current flows through the coil while the combination can measure a large potential difference, converting it into a voltmeter.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A circular loop of radius 3 cm carries a current of 4 A. Find the magnetic field at a point on the axis of the loop at a distance of 4 cm from its centre.",
+    "options": [
+      "$2.5\\times10^{-5}$ T",
+      "$9.05\\times10^{-6}$ T",
+      "$1.81\\times10^{-5}$ T",
+      "$3.62\\times10^{-5}$ T"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Using $B = \\frac{\\mu_0 I R^2}{2(R^2+x^2)^{3/2}}$ with $R=0.03$ m and $x=0.04$ m, $(R^2+x^2)^{3/2} = (0.0025)^{3/2} = 1.25\\times10^{-4}$, giving $B \\approx 1.81\\times10^{-5}$ T.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two long straight parallel wires carrying currents of 3 A and 4 A in the same direction are separated by 20 cm. At what distance from the 3 A wire, along the line joining them, is the net magnetic field zero?",
+    "options": [
+      "$6.0$ cm from the 3 A wire",
+      "$8.6$ cm from the 3 A wire",
+      "$10.0$ cm from the 3 A wire",
+      "$11.4$ cm from the 3 A wire"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For currents in the same direction, the fields between the wires oppose each other. Setting $\\frac{\\mu_0(3)}{2\\pi x} = \\frac{\\mu_0(4)}{2\\pi(0.2-x)}$ gives $3(0.2-x) = 4x$, so $x \\approx 0.086$ m, i.e. 8.6 cm from the 3 A wire.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A toroid has 500 turns, a mean radius of 10 cm, and carries a current of 2 A. Find the magnetic field inside the toroid.",
+    "options": [
+      "$1\\times10^{-3}$ T",
+      "$4\\times10^{-3}$ T",
+      "$2\\times10^{-4}$ T",
+      "$2\\times10^{-3}$ T"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "For a toroid, $B = \\frac{\\mu_0 N I}{2\\pi r} = \\frac{(4\\pi\\times10^{-7})(500)(2)}{2\\pi(0.1)} = 2\\times10^{-3}$ T.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A charged particle moves parallel to the direction of a uniform magnetic field. What is the magnetic force on the particle?",
+    "options": [
+      "equal to $qvB$",
+      "maximum possible for the given speed",
+      "zero",
+      "equal to $qvB/2$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The magnetic force is $F = qvB\\sin\\theta$; since $\\theta = 0^\\circ$ between velocity and field, $\\sin\\theta = 0$, so the force is zero.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "An electron moving at $3\\times10^6$ m/s enters a uniform magnetic field of 0.02 T perpendicular to its velocity. Find the radius of its circular path (mass of electron $= 9.1\\times10^{-31}$ kg).",
+    "options": [
+      "$1.7$ mm",
+      "$0.85$ mm",
+      "$0.43$ mm",
+      "$8.5$ mm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The radius is $r = \\frac{mv}{qB} = \\frac{(9.1\\times10^{-31})(3\\times10^6)}{(1.6\\times10^{-19})(0.02)} \\approx 0.85$ mm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "Two long parallel wires carry currents of 6 A and 10 A in opposite directions and are separated by 5 cm. Find the force per unit length between them and state its nature.",
+    "options": [
+      "$2.4\\times10^{-4}$ N/m, repulsive",
+      "$2.4\\times10^{-4}$ N/m, attractive",
+      "$1.2\\times10^{-4}$ N/m, repulsive",
+      "$4.8\\times10^{-4}$ N/m, repulsive"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "$\\frac{F}{L} = \\frac{\\mu_0 I_1 I_2}{2\\pi d} = \\frac{(4\\pi\\times10^{-7})(6)(10)}{2\\pi(0.05)} = 2.4\\times10^{-4}$ N/m; since the currents are antiparallel, the force is repulsive.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A coil of 50 turns and area $0.01\\ m^2$ carries a current of 2 A and is placed in a uniform field of 0.4 T such that the plane of the coil makes an angle of 30° with the field. Find the torque on the coil.",
+    "options": [
+      "$0.4$ N·m",
+      "$0.2$ N·m",
+      "$0.173$ N·m",
+      "$0.346$ N·m"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "The angle between the normal and B is $90^\\circ-30^\\circ=60^\\circ$. Torque $\\tau = NIAB\\sin\\theta = (50)(2)(0.01)(0.4)\\sin60^\\circ \\approx 0.346$ N·m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A galvanometer of resistance 99 Ω gives full-scale deflection for a current of 1 mA. Find the shunt resistance required to convert it into an ammeter reading up to 1 A.",
+    "options": [
+      "$0.99\\,\\Omega$",
+      "$9.9\\,\\Omega$",
+      "$0.099\\,\\Omega$",
+      "$99\\,\\Omega$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Using $I_g G = (I-I_g)S$, $S = \\frac{(0.001)(99)}{1-0.001} \\approx 0.099\\ \\Omega$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A galvanometer of resistance 100 Ω gives full-scale deflection for a current of 2 mA. Find the series resistance required to convert it into a voltmeter of range 0-10 V.",
+    "options": [
+      "$5000\\,\\Omega$",
+      "$4900\\,\\Omega$",
+      "$4800\\,\\Omega$",
+      "$100\\,\\Omega$"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Using $V = I_g(G+R)$, $R = \\frac{V}{I_g} - G = \\frac{10}{0.002} - 100 = 4900\\ \\Omega$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A semicircular loop of wire of radius 4 cm carries a current of 3 A. Find the magnetic field at the centre of the semicircle.",
+    "options": [
+      "$4.71\\times10^{-5}$ T",
+      "$1.18\\times10^{-5}$ T",
+      "$9.4\\times10^{-5}$ T",
+      "$2.36\\times10^{-5}$ T"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "A semicircular arc produces half the field of a full loop: $B = \\frac{\\mu_0 I}{4R} = \\frac{(4\\pi\\times10^{-7})(3)}{4(0.04)} \\approx 2.36\\times10^{-5}$ T.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A current-carrying loop of arbitrary shape is placed in a uniform magnetic field. What can be said about the net force on the loop?",
+    "options": [
+      "zero only for circular loops",
+      "always zero regardless of the shape of the loop",
+      "equal to $BIL$, where L is the perimeter of the loop",
+      "dependent on the orientation of the loop in the field"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "In a uniform magnetic field, the net force on any closed current loop is always zero, since the vector sum of $I\\,d\\vec{l}\\times\\vec{B}$ around a closed path vanishes; the net torque, however, need not be zero.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Medium",
+    "year": 0,
+    "questionText": "A wire carrying a current of 5 A is bent into a square loop of side 20 cm. Find the magnetic field at the centre of the loop.",
+    "options": [
+      "$1.41\\times10^{-5}$ T",
+      "$5.66\\times10^{-5}$ T",
+      "$2.83\\times10^{-5}$ T",
+      "$4.0\\times10^{-5}$ T"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "For a square loop, $B = \\frac{2\\sqrt{2}\\,\\mu_0 I}{\\pi a} = \\frac{2\\sqrt{2}(4\\pi\\times10^{-7})(5)}{\\pi(0.2)} \\approx 2.83\\times10^{-5}$ T.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A beam of protons passes undeflected through a velocity selector with electric field $2\\times10^4$ V/m and magnetic field 0.4 T (mutually perpendicular, and both perpendicular to the beam). The protons then enter a second region containing only a uniform magnetic field of 0.5 T, perpendicular to their velocity. Find the radius of their circular path (mass of proton $=1.67\\times10^{-27}$ kg).",
+    "options": [
+      "$1.04$ mm",
+      "$0.83$ mm",
+      "$1.25$ mm",
+      "$2.08$ mm"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "In the velocity selector, $v = E/B = 2\\times10^4/0.4 = 5\\times10^4$ m/s. In the second field, $r = \\frac{mv}{qB'} = \\frac{(1.67\\times10^{-27})(5\\times10^4)}{(1.6\\times10^{-19})(0.5)} \\approx 1.04\\times10^{-3}$ m.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A wire bent into a semicircular arc of radius 10 cm carries a current of 5 A and lies in a uniform magnetic field of 0.2 T directed perpendicular to the plane of the arc. Find the net magnetic force on the arc.",
+    "options": [
+      "$0.1$ N",
+      "$0.2$ N",
+      "$0.4$ N",
+      "$0.314$ N"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "For a curved wire in a uniform field, the net force equals $I\\vec{L}\\times\\vec{B}$, where $\\vec{L}$ is the straight-line vector joining the two ends (here the diameter, $2R = 0.2$ m). So $F = I(2R)B = (5)(0.2)(0.2) = 0.2$ N.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A long straight horizontal wire carries a current of 10 A. A second wire, parallel to the first, has a linear mass density of $2\\times10^{-4}$ kg/m and carries a current in the opposite direction. Find the current required in the second wire so that it remains suspended in equilibrium at a height of 1 cm above the first wire, supported entirely by the magnetic repulsion (take $g = 10\\ m/s^2$).",
+    "options": [
+      "$5$ A",
+      "$20$ A",
+      "$15.7$ A",
+      "$10$ A"
+    ],
+    "correctOptionIndex": 3,
+    "explanation": "For equilibrium, the magnetic force per unit length balances the weight per unit length: $\\frac{\\mu_0 I_1 I_2}{2\\pi d} = \\lambda g$. Solving, $I_2 = \\frac{\\lambda g (2\\pi d)}{\\mu_0 I_1} = \\frac{(2\\times10^{-4})(10)(2\\pi)(0.01)}{(4\\pi\\times10^{-7})(10)} = 10$ A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A galvanometer requires a series resistance of 4970 Ω to work as a voltmeter of range 0-5 V, and a series resistance of 9970 Ω to work as a voltmeter of range 0-10 V. Find the resistance of the galvanometer and its full-scale deflection current.",
+    "options": [
+      "$50\\,\\Omega$, $1\\,mA$",
+      "$30\\,\\Omega$, $2\\,mA$",
+      "$30\\,\\Omega$, $1\\,mA$",
+      "$100\\,\\Omega$, $0.5\\,mA$"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "From $5=I_g(G+4970)$ and $10=I_g(G+9970)$, subtracting gives $5=I_g(5000)$, so $I_g=1$ mA. Substituting back, $G+4970=5000$, so $G=30\\ \\Omega$.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A proton enters a uniform magnetic field of 0.2 T with a speed of $4\\times10^5$ m/s at an angle of 30° to the field direction, tracing a helical path. Find the pitch of the helix (mass of proton $=1.67\\times10^{-27}$ kg).",
+    "options": [
+      "$13.1$ cm",
+      "$11.4$ cm",
+      "$6.6$ cm",
+      "$5.7$ cm"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The period of circular motion is $T = \\frac{2\\pi m}{qB} \\approx 3.28\\times10^{-7}$ s, independent of speed. The velocity component along the field is $v_\\parallel = v\\cos30^\\circ \\approx 3.46\\times10^5$ m/s, so the pitch is $v_\\parallel T \\approx 0.114$ m, i.e. 11.4 cm.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "JEE",
+    "subject": "Physics",
+    "chapter": "Magnetic Effect Of Current",
+    "difficulty": "Hard",
+    "year": 0,
+    "questionText": "A moving coil galvanometer has 50 turns, each of area $2\\times10^{-4}\\ m^2$, suspended in a radial magnetic field of 0.1 T. A current of 2 mA produces a steady deflection of 30° ($\\approx 0.524$ rad). Find the torsional constant of the suspension.",
+    "options": [
+      "$6.67\\times10^{-8}$ N·m/rad",
+      "$1.91\\times10^{-6}$ N·m/rad",
+      "$3.82\\times10^{-6}$ N·m/rad",
+      "$7.64\\times10^{-6}$ N·m/rad"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "At equilibrium, the deflecting torque equals the restoring torque: $NIAB = k\\theta$. So $k = \\frac{NIAB}{\\theta} = \\frac{(50)(0.002)(2\\times10^{-4})(0.1)}{0.524} \\approx 3.82\\times10^{-6}$ N·m/rad.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

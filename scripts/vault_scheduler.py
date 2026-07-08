@@ -67,10 +67,11 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int) -> None:
     # 2. Fetch candidate pool — fetch all for this exam, then filter in Python.
     #    We do NOT filter by isDailyVault==False in Firestore because new question
     #    documents that lack the field entirely would be silently excluded.
+    #    No .limit() here — the pool must cover every question for the exam, not
+    #    just whatever Firestore's default ordering happens to put first.
     all_docs = (
         questions_ref
         .where("examType", "==", exam_type)
-        .limit(500)
         .get()
     )
 
