@@ -49,6 +49,7 @@ class MockTestListActivity : AppCompatActivity() {
 
     private lateinit var contentContainer: FrameLayout
     private lateinit var tabLayout: TabLayout
+    private var nativeAdContainer: FrameLayout? = null
     private val type by lazy { intent.getStringExtra(EXTRA_TYPE) ?: "mock_test" }
     private val exam by lazy { intent.getStringExtra(EXTRA_EXAM) ?: "JEE" }
 
@@ -113,12 +114,22 @@ class MockTestListActivity : AppCompatActivity() {
     }
 
     private fun showTab(position: Int) {
+        // Tabs are rebuilt from scratch on every switch — release the previous tab's native
+        // ad (if any) before its container is discarded, or it leaks (same class of bug as the
+        // banner/native-ad lifecycle issues fixed earlier).
+        nativeAdContainer?.let { AdManager.destroyNativeAd(it) }
+        nativeAdContainer = null
         contentContainer.removeAllViews()
         when (position) {
             0 -> showLatestTab()
             1 -> showCategoryTab()
             2 -> showResultTab()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        nativeAdContainer?.let { AdManager.destroyNativeAd(it) }
     }
 
     private fun makeScrollList(): Pair<ScrollView, LinearLayout> {
@@ -146,6 +157,15 @@ class MockTestListActivity : AppCompatActivity() {
         } else {
             testSeries.forEachIndexed { index, (subject, testNum) ->
                 list.addView(buildTestItemCard(subject, testNum, index))
+                // One native ad slot after the 6th item — only on lists long enough that it
+                // doesn't dominate the screen. Not repeated further down (avoids stacking
+                // concurrent native ad loads, which starve each other — see AdManager notes).
+                if (index == 5 && testSeries.size > 6) {
+                    val adContainer = FrameLayout(this).apply { layoutParams = lpRow(bottomDp = 10) }
+                    list.addView(adContainer)
+                    nativeAdContainer = adContainer
+                    AdManager.loadNativeAd(this, adContainer)
+                }
             }
         }
         contentContainer.addView(scroll)
@@ -438,7 +458,7 @@ class MockTestListActivity : AppCompatActivity() {
         dialogView.addView(adContainer)
 
         val alreadyUsedToday = PrefManager.hasUsedAdFreeUnlockToday(this)
-        com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+        val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
             .setTitle("Unlock $subject Pack")
             .setView(dialogView)
             .setPositiveButton("Buy ₹49") { _, _ -> ShopActivity.start(this) }
@@ -462,7 +482,11 @@ class MockTestListActivity : AppCompatActivity() {
                     TestActivity.start(this, exam, subject, totalQuestions = 10)
                 }
             }
-            .show()
+            .create()
+        // Dialog banners are never reshown — destroy on dismiss so the AdView doesn't leak
+        // its WebView across repeated paywall triggers.
+        dialog.setOnDismissListener { AdManager.destroyBanner(adContainer) }
+        dialog.show()
     }
 
     // ─── Helpers ─────────────────────────────────────────────────────────────

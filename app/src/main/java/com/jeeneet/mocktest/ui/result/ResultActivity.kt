@@ -88,6 +88,22 @@ class ResultActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (::bannerContainer.isInitialized) AdManager.pauseBanner(bannerContainer)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::bannerContainer.isInitialized) AdManager.resumeBanner(bannerContainer)
+    }
+
+    override fun onDestroy() {
+        if (::bannerContainer.isInitialized) AdManager.destroyBanner(bannerContainer)
+        if (::nativeAdContainer.isInitialized) AdManager.destroyNativeAd(nativeAdContainer)
+        super.onDestroy()
+    }
+
 
     private fun loadResult(id: Long) {
         lifecycleScope.launch(Dispatchers.IO) {

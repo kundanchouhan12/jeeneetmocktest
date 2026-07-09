@@ -132,21 +132,25 @@ class GeminiRepository(private val context: Context) {
                 }
             }
 
-            // 3. Try Gemini Vision API (Primary)
+            // 3. Try Groq (Primary — fast, high free-tier limits) when OCR text is available.
+            //    Groq is text-only, so with no OCR text we must go straight to Gemini Vision.
             var finalModel = "Gemini 1.5 Flash"
-            val result = try {
+            val result = if (!ocrText.isNullOrBlank()) {
+                try {
+                    finalModel = "Llama 3 (Groq)"
+                    onStatus("Solving with Groq... ⚡")
+                    GroqRepository(context).solve(ocrText).getOrThrow()
+                } catch (e: Exception) {
+                    onStatus("Groq busy. Trying Gemini Vision...")
+                    callWithRetry(onStatus) {
+                        finalModel = it
+                        callVisionApi(base64, it)
+                    }
+                }
+            } else {
                 callWithRetry(onStatus) {
                     finalModel = it
                     callVisionApi(base64, it)
-                }
-            } catch (e: Exception) {
-                // 4. Final Fallback to Groq Text (If OCR was available)
-                if (!ocrText.isNullOrBlank()) {
-                    onStatus("Vision busy. Trying Groq Text... ⚡")
-                    finalModel = "Llama 3 (Groq)"
-                    GroqRepository(context).solve(ocrText).getOrThrow()
-                } else {
-                    throw e
                 }
             }
             
@@ -233,18 +237,18 @@ class GeminiRepository(private val context: Context) {
                 return@runCatching SolveResult(solution, CacheStatus.MISS, "Local Bank")
             }
 
-            // 4. Try Gemini AI (Primary)
-            var finalModel = "Gemini 1.5 Flash"
+            // 4. Try Groq (Primary — fast, high free-tier limits), fall back to Gemini
+            var finalModel = "Llama 3 (Groq)"
             val result = try {
+                onStatus("Solving with Groq... ⚡")
+                GroqRepository(context).solve(question).getOrThrow()
+            } catch (e: Exception) {
+                onStatus("Groq busy. Trying Gemini...")
+                finalModel = "Gemini 1.5 Flash"
                 callWithRetry(onStatus) {
                     finalModel = it
                     callTextApi(question, it)
                 }
-            } catch (e: Exception) {
-                // 5. Final Fallback to Groq AI (Free Tier, High Limits)
-                onStatus("Gemini busy. Trying Groq... ⚡")
-                finalModel = "Llama 3 (Groq)"
-                GroqRepository(context).solve(question).getOrThrow()
             }
 
             val (snippet, cleaned) = extractSnippet(result)

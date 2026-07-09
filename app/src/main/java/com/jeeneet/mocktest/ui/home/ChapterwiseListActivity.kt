@@ -48,6 +48,7 @@ class ChapterwiseListActivity : AppCompatActivity() {
     }
 
     private lateinit var contentContainer: FrameLayout
+    private var nativeAdContainer: FrameLayout? = null
     private lateinit var tvOverallProgress: TextView
     private lateinit var tvBottomSubtitle: TextView
     private var tabIndicators = mutableListOf<View>()
@@ -235,12 +236,21 @@ class ChapterwiseListActivity : AppCompatActivity() {
         tabIndicators.forEachIndexed { i, v ->
             (v.background as? GradientDrawable)?.setColor(if (i == index) colorPrimary else Color.TRANSPARENT)
         }
+        // Tabs are rebuilt from scratch on every switch — release the previous tab's native
+        // ad (if any) before its container is discarded, or it leaks.
+        nativeAdContainer?.let { AdManager.destroyNativeAd(it) }
+        nativeAdContainer = null
         contentContainer.removeAllViews()
         when (index) {
             0 -> showLatestTab()
             1 -> showCategoryTab()
             2 -> showResultTab()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        nativeAdContainer?.let { AdManager.destroyNativeAd(it) }
     }
 
     // ─── Bottom floating progress bar ─────────────────────────────────────────
@@ -309,13 +319,21 @@ class ChapterwiseListActivity : AppCompatActivity() {
 
     private fun showLatestTab() {
         val (scroll, list) = makeScrollList()
-        val chapters = chaptersForSubject(subject)
+        val chapters = chaptersForSubject(subject).take(10)
         if (chapters.isEmpty()) {
             list.addView(uiEmptyView(subjectIcon(), "Questions Coming Soon!",
                 "Chapter-wise questions are being\nprepared. Please check back soon."))
         } else {
-            chapters.take(10).forEachIndexed { index, chapter ->
+            chapters.forEachIndexed { index, chapter ->
                 list.addView(buildLatestTestCard(chapter, 200 + (10 - index), index))
+                // One native ad slot after the 6th item — not repeated further down (avoids
+                // stacking concurrent native ad loads on one screen, which starve each other).
+                if (index == 5 && chapters.size > 6) {
+                    val adContainer = FrameLayout(this).apply { layoutParams = lpRow(bottomDp = 10) }
+                    list.addView(adContainer)
+                    nativeAdContainer = adContainer
+                    AdManager.loadNativeAd(this, adContainer)
+                }
             }
         }
         contentContainer.addView(scroll)
@@ -400,6 +418,13 @@ class ChapterwiseListActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 chapters.forEachIndexed { index, chapter ->
                     list.addView(buildChapterCard(index + 1, chapter, index, results))
+                    // One native ad slot after the 6th item — not repeated further down.
+                    if (index == 5 && chapters.size > 6) {
+                        val adContainer = FrameLayout(this@ChapterwiseListActivity).apply { layoutParams = lpRow(bottomDp = 10) }
+                        list.addView(adContainer)
+                        nativeAdContainer = adContainer
+                        AdManager.loadNativeAd(this@ChapterwiseListActivity, adContainer)
+                    }
                 }
             }
         }

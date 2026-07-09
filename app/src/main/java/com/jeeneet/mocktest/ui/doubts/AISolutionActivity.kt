@@ -334,8 +334,14 @@ class AISolutionActivity : AppCompatActivity() {
 
             android.util.Log.d("AISolution", "Safe markdown = $safeMarkdown")
 
+            // Extract $...$/$$...$$ LaTeX into opaque placeholder tokens BEFORE markdown→HTML —
+            // mdToHtml()/HtmlCompat have no idea what LaTeX is and would show it raw or mangle it
+            // (same bug Power100 had). Tokens pass through untouched; restored to real rendered
+            // math below once we have the final Spanned.
+            val (tokenizedMarkdown, latexList) = com.jeeneet.mocktest.utils.MathRenderer.tokenizeMath(safeMarkdown)
+
             // Convert markdown → HTML
-            val html = mdToHtml(safeMarkdown)
+            val html = mdToHtml(tokenizedMarkdown)
             android.util.Log.d("AISolution", "Generated HTML = $html")
 
             // 🔥 MAIN SOLUTION VIEW
@@ -365,11 +371,11 @@ class AISolutionActivity : AppCompatActivity() {
 
                     // 🔥 FALLBACK SYSTEM
                     text = if (parsed != null && parsed.toString().trim().isNotEmpty()) {
-                        parsed
+                        com.jeeneet.mocktest.utils.MathRenderer.restoreMathTokens(parsed, latexList, textSize)
                     } else {
                         safeMarkdown
                     }
-                    
+
                     movementMethod = android.text.method.LinkMovementMethod.getInstance()
                 }
 

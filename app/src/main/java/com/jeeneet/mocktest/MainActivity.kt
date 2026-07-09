@@ -306,6 +306,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        try { AdManager.destroyNativeAd(nativeAdContainer) } catch (_: Exception) {}
         try { AdManager.cleanup() } catch (_: Exception) {}
         try { if (::iapManager.isInitialized) iapManager.disconnect() } catch (_: Exception) {}
         try { appUpdateManager.unregisterListener(installStateListener) } catch (_: Exception) {}
@@ -649,20 +650,12 @@ class MainActivity : AppCompatActivity() {
         val close = { drawerLayout.closeDrawers() }
         val navItems = listOf(
             NavEntry("🏠", "Home",              Color.parseColor("#6366F1")) { close() },
-            NavEntry("📝", "Mock Tests",        Color.parseColor("#3B82F6")) { requiresHomeRefresh = true; MockTestListActivity.start(this, "mock_test", selectedExam); close() },
-            NavEntry("📑", "Chapterwise",       Color.parseColor("#8B5CF6")) {
-                val subs = if (selectedExam == "JEE") listOf("Physics","Chemistry","Maths") else listOf("Physics","Chemistry","Biology")
-                close()
-                com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
-                    .setTitle("Select Subject").setItems(subs.toTypedArray()) { _, i ->
-                        requiresHomeRefresh = true; ChapterwiseListActivity.start(this, subs[i], selectedExam)
-                    }.show()
-            },
+            NavEntry("🔖", "Bookmarks",         Color.parseColor("#8B5CF6")) { com.jeeneet.mocktest.ui.bookmarks.BookmarksActivity.start(this); close() },
+            NavEntry("📓", "My Notes",          Color.parseColor("#3B82F6")) { com.jeeneet.mocktest.ui.notes.NotesActivity.start(this); close() },
+            NavEntry("📋", "Prev Tests",        Color.parseColor("#6366F1")) { requiresHomeRefresh = true; MockTestListActivity.start(this, "mock_test", selectedExam); close() },
             NavEntry("🔬", "Scan Doubts",       Color.parseColor("#10B981")) { requiresHomeRefresh = true; com.jeeneet.mocktest.ui.doubts.ScanActivity.start(this); close() },
             NavEntry("🏆", "Leaderboard",       Color.parseColor("#F59E0B")) { LeaderboardActivity.start(this); close() },
-            NavEntry("🔥", "Streak Calendar",   Color.parseColor("#EF4444")) { StreakCalendarActivity.start(this); close() },
             NavEntry("🏅", "Achievements",      Color.parseColor("#F59E0B")) { requiresHomeRefresh = true; com.jeeneet.mocktest.ui.achievements.AchievementsActivity.start(this); close() },
-            NavEntry("📊", "Analytics",         Color.parseColor("#6366F1")) { com.jeeneet.mocktest.ui.analysis.AnalysisActivity.start(this); close() },
             NavEntry("👤", "Profile",           Color.parseColor("#64748B")) { requiresHomeRefresh = true; startActivity(Intent(this, com.jeeneet.mocktest.ui.profile.ProfileActivity::class.java)); close() },
             NavEntry("👑", "Upgrade Premium",   Color.parseColor("#F59E0B")) { requiresHomeRefresh = true; com.jeeneet.mocktest.ui.home.ShopActivity.start(this); close() },
             NavEntry("📅", "AI Study Plan",     Color.parseColor("#10B981")) { startActivity(Intent(this, com.jeeneet.mocktest.ui.insights.InsightsActivity::class.java)); close() }
@@ -1508,13 +1501,8 @@ class MainActivity : AppCompatActivity() {
                             correctMarks = 4f, negativeMarks = -1f, isDailyVault = true,
                             vaultGroupId = vaultQs.firstOrNull()?.vaultGroupId ?: ""
                         )
-                        if (AdManager.isInterstitialReady()) {
-                            AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
-                                TestActivity.startWithQuestions(this@MainActivity, config, vaultQs)
-                            }
-                        } else {
+                        AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
                             TestActivity.startWithQuestions(this@MainActivity, config, vaultQs)
-                            AdManager.loadInterstitial(this@MainActivity)
                         }
                     } else {
                         Toast.makeText(this@MainActivity, "Daily Vault is updating. Check back in a few minutes!", Toast.LENGTH_SHORT).show()
@@ -1649,12 +1637,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                if (AdManager.isInterstitialReady()) {
-                    AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) { startVaultAction() }
-                } else {
-                    startVaultAction()
-                    AdManager.loadInterstitial(this@MainActivity)
-                }
+                AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) { startVaultAction() }
             }
         ).apply { layoutParams = lpRow(bottomDp = Space.M) }
 
@@ -1774,13 +1757,8 @@ class MainActivity : AppCompatActivity() {
                         .setMessage("You've already earned your 15 coins today. Come back tomorrow for a fresh set of 10 questions!")
                         .setPositiveButton("Got it", null).show()
                 } else {
-                    if (AdManager.isInterstitialReady()) {
-                        AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
-                            TestActivity.startDailyQuiz(this@MainActivity, selectedExam)
-                        }
-                    } else {
+                    AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
                         TestActivity.startDailyQuiz(this@MainActivity, selectedExam)
-                        AdManager.loadInterstitial(this@MainActivity)
                     }
                 }
             }
@@ -3789,11 +3767,7 @@ class MainActivity : AppCompatActivity() {
                                 totalQuestions = vaultQs.size, durationMinutes = vaultQs.size,
                                 correctMarks = 4f, negativeMarks = -1f, isDailyVault = true,
                                 vaultGroupId = vaultQs.firstOrNull()?.vaultGroupId ?: "")
-                            if (AdManager.isInterstitialReady()) {
-                                AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
-                                    TestActivity.startWithQuestions(this@MainActivity, config, vaultQs)
-                                }
-                            } else {
+                            AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
                                 TestActivity.startWithQuestions(this@MainActivity, config, vaultQs)
                             }
                         } else Toast.makeText(this@MainActivity, "Vault updating…", Toast.LENGTH_SHORT).show()
@@ -4179,52 +4153,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
         return container
-    }
-
-    private fun buildQuickAccessRow(): View {
-        val container = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            layoutParams = lpRow(bottomDp = Space.M)
-        }
-        container.addView(uiTextView(UiText.H2, "⚡ Quick Access", textPrimary).apply {
-            textSize = 14f; typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
-            layoutParams = LinearLayout.LayoutParams(-1, -2).also { it.bottomMargin = Space.M.dp }
-        })
-        data class QA(val icon: String, val label: String, val action: () -> Unit)
-        val items = listOf(
-            QA("🔖", "Bookmarks") { com.jeeneet.mocktest.ui.bookmarks.BookmarksActivity.start(this) },
-            QA("📓", "My Notes") { com.jeeneet.mocktest.ui.notes.NotesActivity.start(this) },
-            QA("📋", "Prev Tests") { requiresHomeRefresh = true; MockTestListActivity.start(this, "mock_test", selectedExam) },
-            QA("🏆", "Rankings") { LeaderboardActivity.start(this) },
-            QA("⭐", "Achievements") { requiresHomeRefresh = true; com.jeeneet.mocktest.ui.achievements.AchievementsActivity.start(this) }
-        )
-        val row = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
-        items.forEach { qa ->
-            val cell = LinearLayout(this).apply {
-                orientation = LinearLayout.VERTICAL; gravity = Gravity.CENTER
-                layoutParams = LinearLayout.LayoutParams(0, -2, 1f)
-                isClickable = true; isFocusable = true
-                val tv = android.util.TypedValue()
-                val has = context.theme.resolveAttribute(android.R.attr.selectableItemBackground, tv, true)
-                if (has && tv.resourceId != 0) foreground = ContextCompat.getDrawable(context, tv.resourceId)
-                setPadding(0, Space.S.dp, 0, Space.S.dp)
-                setOnClickListener { qa.action() }
-            }
-            cell.addView(FrameLayout(this).apply {
-                layoutParams = LinearLayout.LayoutParams(44.dp, 44.dp)
-                background = GradientDrawable().apply { shape = GradientDrawable.OVAL; setColor(bgTertiary) }
-                addView(TextView(this@MainActivity).apply {
-                    text = qa.icon; textSize = 18f; gravity = Gravity.CENTER
-                    layoutParams = FrameLayout.LayoutParams(-1, -1)
-                })
-            })
-            cell.addView(uiTextView(UiText.CAPTION, qa.label, textSecondary).apply {
-                textSize = 10f; gravity = Gravity.CENTER; setPadding(0, 4.dp, 0, 0)
-                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
-            })
-            row.addView(cell)
-        }
-        container.addView(row); return container
     }
 
     private fun buildDailyChallengeCard(): View {

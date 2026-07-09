@@ -44,14 +44,16 @@ object AdManager {
     private var interstitialRetryCount = 0
     private var lastInterstitialShownMs = 0L
     private const val INTERSTITIAL_COOLDOWN_MS = 30_000L // 30 seconds
-    private const val REWARDED_QUEUE_TIMEOUT_MS = 8_000L
+    // Must outlast the full retry backoff below (3s+6s+9s=18s of scheduled delay, plus
+    // real network time per attempt) — otherwise this fires "not available" while a retry
+    // is still in flight and about to succeed, even though the ad loads a few seconds later.
+    private const val REWARDED_QUEUE_TIMEOUT_MS = 26_000L
 
     private val retryHandler = android.os.Handler(android.os.Looper.getMainLooper())
     private var interstitialRetryRunnable: Runnable? = null
     private var rewardedRetryRunnable: Runnable? = null
     private var rewardedTimeoutRunnable: Runnable? = null
     private var nativeAdRetryRunnable: Runnable? = null
-    private var displayedNativeAd: NativeAd? = null  // currently shown in container
     private var preloadedNativeAd: NativeAd? = null  // loaded ahead-of-time, not yet shown
     private var lastNativeLoadMs = 0L
     private const val NATIVE_REFRESH_MS = 30 * 60 * 1000L // stale after 30 min
@@ -134,6 +136,7 @@ object AdManager {
             }
             override fun onAdFailedToLoad(e: LoadAdError) {
                 Log.w(TAG, "Banner load failed (attempt ${retryCount + 1}): ${e.message}")
+                adView.destroy() // avoid leaking a failed AdView while retrying
                 if (retryCount < MAX_RETRIES) {
                     retryHandler.postDelayed({
                         if (!activity.isFinishing && !activity.isDestroyed)
@@ -145,6 +148,26 @@ object AdManager {
             }
         }
         adView.loadAd(buildRequest())
+    }
+
+    /** Call from the hosting Activity's onPause() so the banner stops refreshing/ticking while off-screen. */
+    fun pauseBanner(container: FrameLayout) {
+        (container.getChildAt(0) as? AdView)?.pause()
+    }
+
+    /** Call from the hosting Activity's onResume() to resume a previously paused banner. */
+    fun resumeBanner(container: FrameLayout) {
+        (container.getChildAt(0) as? AdView)?.resume()
+    }
+
+    /**
+     * Call from the hosting Activity's onDestroy(). Required by AdMob: an AdView wraps a WebView
+     * and leaks its Activity context + native resources if never destroyed. Leaving these around
+     * across repeated screen visits starves the SDK of resources, causing intermittent no-fill.
+     */
+    fun destroyBanner(container: FrameLayout) {
+        (container.getChildAt(0) as? AdView)?.destroy()
+        container.removeAllViews()
     }
 
     private fun getAdSize(activity: Activity): AdSize {
@@ -408,7 +431,8 @@ object AdManager {
      * Application.onCreate) so the first home-screen render is instant with zero blank time.
      */
     fun preloadNativeAd(context: Context) {
-        if (AdUnitIds.IS_DEBUG) return
+        // TEMP-TEST-BYPASS: normally `if (AdUnitIds.IS_DEBUG) return` — disabled for manual
+        // native-ad testing session. REVERT before shipping.
         if (PrefManager.isAdsRemoved(context)) return
         if (isNativeAdLoading) return
         // Cache already fresh — skip redundant network hit
@@ -450,7 +474,8 @@ object AdManager {
      * Safe to call on every buildContent() / onResume — internal guards prevent double-loads.
      */
     fun loadNativeAd(context: Context, container: FrameLayout, retryCount: Int = 0) {
-        if (AdUnitIds.IS_DEBUG) { container.visibility = View.GONE; return }
+        // TEMP-TEST-BYPASS: normally `if (AdUnitIds.IS_DEBUG) { container.visibility = View.GONE; return }`
+        // — disabled for manual native-ad testing session. REVERT before shipping.
         if (PrefManager.isAdsRemoved(context)) { container.visibility = View.GONE; return }
 
         try {
@@ -519,11 +544,22 @@ object AdManager {
                 adValue.valueMicros, adValue.currencyCode, adValue.precisionType
             )
         }
-        displayedNativeAd?.destroy()
-        displayedNativeAd = nativeAd
+        // Destroy only the ad previously shown in THIS container — multiple screens
+        // (home, test exit dialog, result screen) each hold their own container and can be
+        // alive at the same time in the back stack. A single shared "currently displayed"
+        // reference would destroy another screen's still-visible ad out from under it.
+        (container.tag as? NativeAd)?.destroy()
+        container.tag = nativeAd
         container.removeAllViews()
         container.addView(buildNativeAdView(context, nativeAd))
         container.visibility = View.VISIBLE
+    }
+
+    /** Call from the hosting Activity's onDestroy() (or dialog dismiss) to release this container's native ad. */
+    fun destroyNativeAd(container: FrameLayout) {
+        (container.tag as? NativeAd)?.destroy()
+        container.tag = null
+        container.removeAllViews()
     }
 
     fun cleanup() {
@@ -536,12 +572,12 @@ object AdManager {
         nativeAdRetryRunnable     = null
         rewardedTimeoutRunnable   = null
         
-        // We only destroy ads that are NOT shared/preloaded or that are definitively 
+        // We only destroy ads that are NOT shared/preloaded or that are definitively
         // no longer needed. preloadedAds are kept for the next activity.
+        // Per-container displayed native ads are released via destroyNativeAd() from
+        // each screen's own onDestroy(), not here — this is app-wide singleton state.
 
-        displayedNativeAd?.destroy()
         preloadedNativeAd?.destroy()
-        displayedNativeAd = null
         preloadedNativeAd = null
         lastNativeLoadMs  = 0L
         interstitialAd    = null

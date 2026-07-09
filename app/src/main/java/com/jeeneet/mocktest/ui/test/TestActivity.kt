@@ -109,6 +109,7 @@ class TestActivity : AppCompatActivity() {
     private lateinit var repo: MockTestRepository
     private var isFreeSession = false
     private var isSimulationMode = false
+    private var isFullMock = false
     private var lastExitAdShownMs = 0L
 
     private lateinit var tvTimer: TextView
@@ -167,7 +168,12 @@ class TestActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
-        AdManager.cleanup()
+        // AdManager is an app-wide singleton — do NOT call AdManager.cleanup() here.
+        // TestActivity finishes on every single test (Full Mock, Power100, Daily Vault,
+        // Daily Quiz, chapter practice), and ResultActivity's onCreate() (which loads its
+        // own banner/rewarded/native ad) typically runs before this onDestroy() fires.
+        // Calling cleanup() here previously wiped/destroyed ads app-wide mid-load — including
+        // tearing down a native ad ResultActivity had just rendered — right after every test.
     }
 
     private fun loadAndStartTest() {
@@ -239,7 +245,7 @@ class TestActivity : AppCompatActivity() {
             (subject == null || !com.jeeneet.mocktest.utils.PrefManager.isPackUnlocked(
                 this, repo.getProductIdForExamSubject(exam, subject)))
 
-        val isFullMock = subject == null && chapter == null && !isDailyQuiz && questionsJson == null && !intent.getBooleanExtra(EXTRA_SMART_PRACTICE, false)
+        isFullMock = subject == null && chapter == null && !isDailyQuiz && questionsJson == null && !intent.getBooleanExtra(EXTRA_SMART_PRACTICE, false)
 
         if (isFullMock && !isSimulationMode) {
             val generatedToday = PrefManager.getFullMocksGeneratedToday(this)
@@ -367,7 +373,10 @@ class TestActivity : AppCompatActivity() {
 
                     AdManager.showInterstitial(
                         activity = this,
-                        bypassCooldown = isDailyQuiz,
+                        // Full mock / simulation completion is a high-value, infrequent moment —
+                        // always show, same as Daily Quiz. Chapter/subject practice tests stay
+                        // cooldown-gated since those can be taken back-to-back quickly.
+                        bypassCooldown = isDailyQuiz || isFullMock || isSimulationMode,
                         onDismissed = {
                             ResultActivity.start(this, result.id.toLong())
                             finish()
@@ -612,7 +621,7 @@ class TestActivity : AppCompatActivity() {
             dialogContent.addView(adContainer)
         }
 
-        MaterialAlertDialogBuilder(this)
+        val exitDialog = MaterialAlertDialogBuilder(this)
             .setTitle("Exit Test?")
             .setView(dialogContent)
             .setPositiveButton("Save & Exit") { _, _ ->
@@ -624,7 +633,11 @@ class TestActivity : AppCompatActivity() {
                 finish()
             }
             .setNegativeButton("Continue Test", null)
-            .show()
+            .create()
+        // This dialog's native ad is never reshown — release it on dismiss so it doesn't
+        // linger as this container's "tag" (AdManager.destroyNativeAd only frees on next render).
+        exitDialog.setOnDismissListener { AdManager.destroyNativeAd(adContainer) }
+        exitDialog.show()
     }
 
     // ─── Programmatic layout ──────────────────────────────────────────────────
@@ -859,11 +872,14 @@ class TestActivity : AppCompatActivity() {
         val qId = q.id
 
         if (PrefManager.isAllAccessUnlocked(this)) {
-            MaterialAlertDialogBuilder(this)
+            val dialog = MaterialAlertDialogBuilder(this)
                 .setTitle("Question Hint")
                 .setMessage(shortHint)
                 .setPositiveButton("OK") { _, _ -> }
                 .show()
+            dialog.findViewById<TextView>(android.R.id.message)?.let {
+                com.jeeneet.mocktest.utils.MathRenderer.render(it, shortHint)
+            }
         } else {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Unlock Hint")
@@ -871,11 +887,14 @@ class TestActivity : AppCompatActivity() {
                 .setPositiveButton("Watch Ad") { _, _ ->
                     AdManager.showRewarded(this@TestActivity, onRewarded = {
                         AnalyticsManager.hintUsed(this@TestActivity, qId)
-                        MaterialAlertDialogBuilder(this@TestActivity)
+                        val dialog = MaterialAlertDialogBuilder(this@TestActivity)
                             .setTitle("Question Hint")
                             .setMessage(shortHint)
                             .setPositiveButton("OK") { _, _ -> }
                             .show()
+                        dialog.findViewById<TextView>(android.R.id.message)?.let {
+                            com.jeeneet.mocktest.utils.MathRenderer.render(it, shortHint)
+                        }
                     }, onNotAvailable = {
                         Toast.makeText(this@TestActivity, "Ad not available.", Toast.LENGTH_SHORT).show()
                     }, placement = "hint")

@@ -39,6 +39,7 @@ class VaultDiscussionActivity : AppCompatActivity() {
     private lateinit var etComment: EditText
     private lateinit var btnSend: View
     private lateinit var pollContainer: LinearLayout
+    private lateinit var bannerContainer: FrameLayout
 
     private var myVote: Int? = null
     private val voteCounts = mutableMapOf<Int, Int>()
@@ -56,10 +57,25 @@ class VaultDiscussionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         vaultDate = intent.getStringExtra(EXTRA_DATE) ?: "2026-05-16"
         setContentView(buildLayout())
-        
+
         checkIfArchived()
         listenToVotes()
         loadComments()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        com.jeeneet.mocktest.admob.AdManager.pauseBanner(bannerContainer)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        com.jeeneet.mocktest.admob.AdManager.resumeBanner(bannerContainer)
+    }
+
+    override fun onDestroy() {
+        com.jeeneet.mocktest.admob.AdManager.destroyBanner(bannerContainer)
+        super.onDestroy()
     }
 
     private fun checkIfArchived() {
@@ -150,7 +166,7 @@ class VaultDiscussionActivity : AppCompatActivity() {
         bottomBar.addView(btnSend)
         root.addView(bottomBar)
 
-        val bannerContainer = FrameLayout(this).apply {
+        bannerContainer = FrameLayout(this).apply {
             layoutParams = LinearLayout.LayoutParams(-1, -2)
         }
         root.addView(bannerContainer)

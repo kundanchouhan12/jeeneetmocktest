@@ -427,20 +427,20 @@ class Power100ResultActivity : AppCompatActivity() {
             })
             holder.root.addView(headerRow)
 
-            holder.root.addView(uiTextView(UiText.BODY, q.questionText, textPrimary).apply {
+            holder.root.addView(uiTextView(UiText.BODY, "", textPrimary).apply {
                 textSize = 13f; maxLines = 2; ellipsize = android.text.TextUtils.TruncateAt.END
-            })
+            }.also { com.jeeneet.mocktest.utils.MathRenderer.render(it, q.questionText) })
 
             val prog = progressMap[q.position]
             if (prog != null && prog.selectedOption >= 0) {
                 val yourAnswerText = "Your answer: ${('A' + prog.selectedOption)}. ${q.options.getOrNull(prog.selectedOption) ?: ""}"
                 val correctAnswerText = "Correct: ${('A' + q.correctOptionIndex)}. ${q.options.getOrNull(q.correctOptionIndex) ?: ""}"
-                holder.root.addView(uiTextView(UiText.CAPTION, yourAnswerText, wrongRed).apply {
+                holder.root.addView(uiTextView(UiText.CAPTION, "", wrongRed).apply {
                     textSize = 11f; setPadding(0, Space.S.dp, 0, 2.dp)
-                })
-                holder.root.addView(uiTextView(UiText.CAPTION, correctAnswerText, correctGreen).apply {
+                }.also { com.jeeneet.mocktest.utils.MathRenderer.render(it, yourAnswerText) })
+                holder.root.addView(uiTextView(UiText.CAPTION, "", correctGreen).apply {
                     textSize = 11f
-                })
+                }.also { com.jeeneet.mocktest.utils.MathRenderer.render(it, correctAnswerText) })
             }
         }
     }

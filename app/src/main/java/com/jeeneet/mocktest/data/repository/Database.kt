@@ -291,6 +291,17 @@ interface Power100Dao {
 
     @Query("SELECT * FROM power100_progress WHERE userId = :uid AND examType = :exam AND position = :pos")
     suspend fun getProgressForPosition(uid: String, exam: String, pos: Int): Power100Progress?
+
+    @Query("""
+        SELECT q.* FROM power100_questions q
+        INNER JOIN power100_progress p ON q.examType = p.examType AND q.position = p.position
+        WHERE p.userId = :uid AND p.isBookmarked = 1
+        ORDER BY p.answeredAt DESC
+    """)
+    suspend fun getBookmarkedQuestions(uid: String): List<Power100Question>
+
+    @Query("UPDATE power100_progress SET isBookmarked = 0 WHERE userId = :uid AND examType = :exam AND position = :position")
+    suspend fun removeBookmark(uid: String, exam: String, position: Int)
 }
 
 val MIGRATION_6_7 = object : Migration(6, 7) {

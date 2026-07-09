@@ -50,8 +50,8 @@ object MathRenderer {
                 buildSpannable(normalized, sizePx)
             }
             textView.text = spanned
-        } catch (e: Exception) {
-            android.util.Log.w("MathRenderer", "renderAsync failed: ${e.message}")
+        } catch (e: Throwable) {
+            android.util.Log.e("MathRenderer", "renderAsync FAILED for text=[$text]", e)
             // plain text already showing — nothing more to do
         }
     }
@@ -85,7 +85,10 @@ object MathRenderer {
                     start, sb.length,
                     Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
                 )
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
+                // Catches Error too (not just Exception) so a bad LaTeX expression can never
+                // crash the app — logged so real failures are diagnosable, not silent.
+                android.util.Log.e("MathRenderer", "FAILED latex=[$latex]", e)
                 // Graceful fallback: show the raw LaTeX text rather than nothing
                 sb.append(match.value)
             }
@@ -94,6 +97,56 @@ object MathRenderer {
         }
 
         sb.append(text, lastEnd, text.length)
+        return sb
+    }
+
+    private const val TOKEN_START = ''
+    private const val TOKEN_END = ''
+    private val TOKEN_PATTERN = Regex("$TOKEN_START(\\d+)$TOKEN_END")
+
+    /**
+     * For pipelines that transform text BEFORE it becomes a TextView's content (e.g. Markdown →
+     * HTML → Spanned, as in AISolutionActivity) — such pipelines don't understand `$...$` LaTeX
+     * and would show it raw or mangle it. Call this first to replace math segments with opaque
+     * placeholder tokens (safe to pass through markdown/HTML unescaped), run your pipeline, then
+     * call [restoreMathTokens] on the final result to swap tokens for real rendered LaTeX.
+     */
+    fun tokenizeMath(text: String): Pair<String, List<String>> {
+        val normalized = normalize(text)
+        val latexList = mutableListOf<String>()
+        val tokenized = MATH_PATTERN.replace(normalized) { match ->
+            val latex = match.groupValues[1].ifEmpty { match.groupValues[2] }.trim()
+            latexList.add(latex)
+            "$TOKEN_START${latexList.size - 1}$TOKEN_END"
+        }
+        return tokenized to latexList
+    }
+
+    /** Replaces tokens from [tokenizeMath] in an already-built Spanned/CharSequence with rendered LaTeX. */
+    fun restoreMathTokens(rendered: CharSequence, latexList: List<String>, sizePx: Float): CharSequence {
+        if (latexList.isEmpty()) return rendered
+        val sb = SpannableStringBuilder(rendered)
+        // Replace back-to-front so earlier match ranges stay valid as the builder mutates.
+        for (match in TOKEN_PATTERN.findAll(rendered).toList().asReversed()) {
+            val idx = match.groupValues[1].toIntOrNull() ?: continue
+            val latex = latexList.getOrNull(idx) ?: continue
+            try {
+                val drawable = JLatexMathDrawable.builder(latex)
+                    .textSize(sizePx)
+                    .padding(2)
+                    .build()
+                drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+                sb.replace(match.range.first, match.range.last + 1, " ")
+                sb.setSpan(
+                    ImageSpan(drawable, ImageSpan.ALIGN_BASELINE),
+                    match.range.first, match.range.first + 1,
+                    Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                )
+            } catch (e: Throwable) {
+                android.util.Log.e("MathRenderer", "restoreMathTokens FAILED latex=[$latex]", e)
+                sb.replace(match.range.first, match.range.last + 1, "$$latex$")
+            }
+        }
         return sb
     }
 

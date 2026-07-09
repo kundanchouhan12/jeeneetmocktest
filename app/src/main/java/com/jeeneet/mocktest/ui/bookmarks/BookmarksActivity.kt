@@ -18,16 +18,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.card.MaterialCardView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.jeeneet.mocktest.data.model.Power100Question
 import com.jeeneet.mocktest.data.model.Question
+import com.jeeneet.mocktest.data.repository.MockTestDatabase
 import com.jeeneet.mocktest.data.repository.MockTestRepository
+import com.jeeneet.mocktest.ui.power100.Power100Activity
 import com.jeeneet.mocktest.ui.style.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
+private sealed class BookmarkItem {
+    data class Regular(val question: Question) : BookmarkItem()
+    data class Power100Item(val question: Power100Question) : BookmarkItem()
+}
 
 class BookmarksActivity : AppCompatActivity() {
 
     private lateinit var repo: MockTestRepository
     private lateinit var contentContainer: FrameLayout
+    private lateinit var bannerContainer: FrameLayout
+    private var lastRegularBookmarks: List<Question> = emptyList()
 
     companion object {
         fun start(context: Context) =
@@ -39,6 +52,21 @@ class BookmarksActivity : AppCompatActivity() {
         repo = MockTestRepository(this)
         setContentView(buildLayout())
         observeBookmarks()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        com.jeeneet.mocktest.admob.AdManager.pauseBanner(bannerContainer)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        com.jeeneet.mocktest.admob.AdManager.resumeBanner(bannerContainer)
+    }
+
+    override fun onDestroy() {
+        com.jeeneet.mocktest.admob.AdManager.destroyBanner(bannerContainer)
+        super.onDestroy()
     }
 
     private fun buildLayout(): View {
@@ -54,7 +82,7 @@ class BookmarksActivity : AppCompatActivity() {
         root.addView(contentContainer)
         showLoading()
 
-        val bannerContainer = FrameLayout(this).apply {
+        bannerContainer = FrameLayout(this).apply {
             layoutParams = LinearLayout.LayoutParams(-1, -2)
         }
         root.addView(bannerContainer)
@@ -74,15 +102,35 @@ class BookmarksActivity : AppCompatActivity() {
     private fun observeBookmarks() {
         lifecycleScope.launch {
             repo.getBookmarkedQuestions().collectLatest { questions ->
-                showBookmarks(questions)
+                lastRegularBookmarks = questions
+                renderCombined()
             }
         }
     }
 
-    private fun showBookmarks(questions: List<Question>) {
+    private suspend fun fetchPower100Bookmarks(): List<Power100Question> = withContext(Dispatchers.IO) {
+        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
+        MockTestDatabase.getInstance(this@BookmarksActivity).power100Dao().getBookmarkedQuestions(uid)
+    }
+
+    private suspend fun renderCombined() {
+        val power100Items = fetchPower100Bookmarks()
+        showBookmarks(
+            lastRegularBookmarks.map { BookmarkItem.Regular(it) } +
+                power100Items.map { BookmarkItem.Power100Item(it) }
+        )
+    }
+
+    // Power100 bookmark changes don't come through the regular-bookmarks Flow (different
+    // table) — re-render explicitly using the last known regular list instead of resubscribing.
+    private fun refreshPower100Only() {
+        lifecycleScope.launch { renderCombined() }
+    }
+
+    private fun showBookmarks(items: List<BookmarkItem>) {
         contentContainer.removeAllViews()
 
-        if (questions.isEmpty()) {
+        if (items.isEmpty()) {
             contentContainer.addView(uiEmptyView(
                 "⭐", "No bookmarks yet",
                 "Tap ☆ on any question during a test to save it here for later review."
@@ -96,7 +144,12 @@ class BookmarksActivity : AppCompatActivity() {
             clipToPadding = false
             layoutParams = ViewGroup.LayoutParams(-1, -1)
         }
-        rv.adapter = BookmarkAdapter(questions, onRemove = { q -> confirmRemove(q) })
+        rv.adapter = BookmarkAdapter(
+            items,
+            onRemoveRegular = { q -> confirmRemove(q) },
+            onRemovePower100 = { q -> confirmRemovePower100(q) },
+            onOpenPower100 = { q -> Power100Activity.startAtPosition(this, q.examType, q.position) }
+        )
         contentContainer.addView(rv)
     }
 
@@ -110,14 +163,35 @@ class BookmarksActivity : AppCompatActivity() {
             .setNegativeButton("Cancel", null)
             .show()
     }
+
+    private fun confirmRemovePower100(question: Power100Question) {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Remove Bookmark?")
+            .setMessage("\"${question.questionText.take(80)}...\"")
+            .setPositiveButton("Remove") { _, _ ->
+                lifecycleScope.launch {
+                    val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
+                    withContext(Dispatchers.IO) {
+                        MockTestDatabase.getInstance(this@BookmarksActivity).power100Dao()
+                            .removeBookmark(uid, question.examType, question.position)
+                    }
+                    refreshPower100Only()
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
 }
 
 private class BookmarkAdapter(
-    private val items: List<Question>,
-    private val onRemove: (Question) -> Unit
+    private val items: List<BookmarkItem>,
+    private val onRemoveRegular: (Question) -> Unit,
+    private val onRemovePower100: (Power100Question) -> Unit,
+    private val onOpenPower100: (Power100Question) -> Unit
 ) : RecyclerView.Adapter<BookmarkAdapter.VH>() {
 
     private val answerColor = Color.parseColor("#10B981")
+    private val power100Color = Color.parseColor("#F59E0B")
 
     override fun getItemCount() = items.size
 
@@ -143,6 +217,15 @@ private class BookmarkAdapter(
             gravity = Gravity.CENTER_VERTICAL
             layoutParams = LinearLayout.LayoutParams(-1, -2).apply { bottomMargin = 6.dp }
         }
+        val tvBadge = TextView(ctx).apply {
+            text = "POWER 100"; textSize = 9f
+            setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            background = roundedFill(power100Color, 4f)
+            setPadding(6.dp, 2.dp, 6.dp, 2.dp)
+            visibility = View.GONE
+            layoutParams = LinearLayout.LayoutParams(-2, -2).apply { marginEnd = 6.dp }
+        }
         val tvSubject = ctx.uiTextView(UiText.OVERLINE, "", ctx.colorPrimary).apply {
             background = roundedFill(Color.argb(30, 139, 92, 246), 4f)
             setPadding(6.dp, 2.dp, 6.dp, 2.dp)
@@ -153,6 +236,7 @@ private class BookmarkAdapter(
             text = "✕"; textSize = 14f; setTextColor(ctx.textMuted)
             setPadding(8.dp, 4.dp, 4.dp, 4.dp)
         }
+        tagRow.addView(tvBadge)
         tagRow.addView(tvSubject)
         tagRow.addView(tvChapter)
         tagRow.addView(spacer)
@@ -173,32 +257,53 @@ private class BookmarkAdapter(
         inner.addView(tvAnswer)
 
         card.addView(inner)
-        return VH(card, tvSubject, tvChapter, btnRemove, tvQuestion, tvAnswer)
+        return VH(card, tvBadge, tvSubject, tvChapter, btnRemove, tvQuestion, tvAnswer)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
-        val q = items[position]
-        holder.tvSubject.text = q.subject
-        holder.tvChapter.text = "  ·  ${q.chapter}"
-        holder.btnRemove.setOnClickListener { onRemove(q) }
-        holder.tvQuestion.text = q.questionText
+        when (val item = items[position]) {
+            is BookmarkItem.Regular -> {
+                val q = item.question
+                holder.tvBadge.visibility = View.GONE
+                holder.tvSubject.text = q.subject
+                holder.tvChapter.text = "  ·  ${q.chapter}"
+                holder.root.setOnClickListener(null)
+                holder.btnRemove.setOnClickListener { onRemoveRegular(q) }
+                com.jeeneet.mocktest.utils.MathRenderer.render(holder.tvQuestion, q.questionText)
 
-        if (q.options.isNotEmpty()) {
-            val correctLabel = listOf("A", "B", "C", "D").getOrNull(q.correctOptionIndex) ?: ""
-            val correctText = q.options.getOrNull(q.correctOptionIndex) ?: ""
-            holder.tvAnswer.text = "Answer: ($correctLabel) $correctText"
-            holder.tvAnswer.visibility = View.VISIBLE
-        } else {
-            holder.tvAnswer.visibility = View.GONE
+                if (q.options.isNotEmpty()) {
+                    val correctLabel = listOf("A", "B", "C", "D").getOrNull(q.correctOptionIndex) ?: ""
+                    val correctText = q.options.getOrNull(q.correctOptionIndex) ?: ""
+                    com.jeeneet.mocktest.utils.MathRenderer.render(holder.tvAnswer, "Answer: ($correctLabel) $correctText")
+                    holder.tvAnswer.visibility = View.VISIBLE
+                } else {
+                    holder.tvAnswer.visibility = View.GONE
+                }
+            }
+            is BookmarkItem.Power100Item -> {
+                val q = item.question
+                holder.tvBadge.visibility = View.VISIBLE
+                holder.tvSubject.text = q.subject
+                holder.tvChapter.text = "  ·  ${q.chapter}"
+                holder.root.setOnClickListener { onOpenPower100(q) }
+                holder.btnRemove.setOnClickListener { onRemovePower100(q) }
+                com.jeeneet.mocktest.utils.MathRenderer.render(holder.tvQuestion, q.questionText)
+
+                val correctLabel = listOf("A", "B", "C", "D").getOrNull(q.correctOptionIndex) ?: ""
+                val correctText = q.options.getOrNull(q.correctOptionIndex) ?: ""
+                com.jeeneet.mocktest.utils.MathRenderer.render(holder.tvAnswer, "Answer: ($correctLabel) $correctText")
+                holder.tvAnswer.visibility = View.VISIBLE
+            }
         }
     }
 
     class VH(
-        v: View,
+        val root: View,
+        val tvBadge: TextView,
         val tvSubject: TextView,
         val tvChapter: TextView,
         val btnRemove: TextView,
         val tvQuestion: TextView,
         val tvAnswer: TextView
-    ) : RecyclerView.ViewHolder(v)
+    ) : RecyclerView.ViewHolder(root)
 }

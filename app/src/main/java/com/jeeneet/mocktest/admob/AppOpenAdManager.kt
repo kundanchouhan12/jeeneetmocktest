@@ -19,6 +19,10 @@ import com.jeeneet.mocktest.ui.auth.LoginActivity
 import com.jeeneet.mocktest.ui.auth.OnboardingActivity
 import com.jeeneet.mocktest.ui.auth.SignupActivity
 import com.jeeneet.mocktest.ui.auth.SplashActivity
+import com.jeeneet.mocktest.ui.doubts.ScanActivity
+import com.jeeneet.mocktest.ui.home.ShopActivity
+import com.jeeneet.mocktest.ui.power100.Power100Activity
+import com.jeeneet.mocktest.ui.simulation.SimulationIntroActivity
 import com.jeeneet.mocktest.ui.test.TestActivity
 import com.jeeneet.mocktest.utils.PrefManager
 
@@ -32,7 +36,7 @@ class AppOpenAdManager(private val application: Application) :
     companion object {
         private const val TAG = "AppOpenAdManager"
         private const val AD_EXPIRY_MS  = 4 * 3_600_000L   // 4 hours
-        private const val SHOW_COOLDOWN = 30_000L           // 30 seconds
+        private const val SHOW_COOLDOWN = 5 * 3_600_000L   // 5 hours — was 30 SECONDS, way too aggressive for app-open
     }
 
     private var appOpenAd: AppOpenAd? = null
@@ -50,8 +54,10 @@ class AppOpenAdManager(private val application: Application) :
 
     /** Returns true for activities where open ads must never appear. */
     private fun Activity.isAdExcluded() =
-        this is TestActivity || this is LoginActivity || this is OnboardingActivity ||
-        this is SignupActivity || this is ForgotPasswordActivity || this is SplashActivity
+        this is TestActivity || this is Power100Activity || this is SimulationIntroActivity ||
+        this is LoginActivity || this is OnboardingActivity || this is SignupActivity ||
+        this is ForgotPasswordActivity || this is SplashActivity ||
+        this is ShopActivity || this is ScanActivity
 
     // ─── ProcessLifecycle — fires only on true foreground (not between activities) ──
 

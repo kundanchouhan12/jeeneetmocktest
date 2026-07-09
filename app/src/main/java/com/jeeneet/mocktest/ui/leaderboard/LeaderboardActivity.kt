@@ -42,11 +42,27 @@ class LeaderboardActivity : AppCompatActivity() {
     )
 
     private lateinit var contentContainer: LinearLayout
+    private lateinit var bannerContainer: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(buildLayout())
         fetchLeaderboard()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        com.jeeneet.mocktest.admob.AdManager.pauseBanner(bannerContainer)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        com.jeeneet.mocktest.admob.AdManager.resumeBanner(bannerContainer)
+    }
+
+    override fun onDestroy() {
+        com.jeeneet.mocktest.admob.AdManager.destroyBanner(bannerContainer)
+        super.onDestroy()
     }
 
     private fun buildLayout(): View {
@@ -68,7 +84,7 @@ class LeaderboardActivity : AppCompatActivity() {
         scroll.addView(contentContainer)
         root.addView(scroll)
 
-        val bannerContainer = FrameLayout(this).apply {
+        bannerContainer = FrameLayout(this).apply {
             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
         }
         root.addView(bannerContainer)

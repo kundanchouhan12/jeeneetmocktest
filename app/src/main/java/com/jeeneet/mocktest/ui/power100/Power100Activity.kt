@@ -35,10 +35,18 @@ class Power100Activity : AppCompatActivity() {
 
     companion object {
         private const val EXTRA_EXAM = "extra_exam"
+        private const val EXTRA_JUMP_TO_POSITION = "extra_jump_to_position"
 
         fun start(context: Context, exam: String) {
             context.startActivity(Intent(context, Power100Activity::class.java).apply {
                 putExtra(EXTRA_EXAM, exam)
+            })
+        }
+
+        fun startAtPosition(context: Context, exam: String, position: Int) {
+            context.startActivity(Intent(context, Power100Activity::class.java).apply {
+                putExtra(EXTRA_EXAM, exam)
+                putExtra(EXTRA_JUMP_TO_POSITION, position)
             })
         }
     }
@@ -215,7 +223,14 @@ class Power100Activity : AppCompatActivity() {
 
             val progressList = withContext(Dispatchers.IO) { db.power100Dao().getProgress(uid, exam) }
             progressMap = progressList.associateBy { it.position }.toMutableMap()
-            withContext(Dispatchers.Main) { refreshGridUi() }
+            withContext(Dispatchers.Main) {
+                refreshGridUi()
+                val jumpToPosition = intent.getIntExtra(EXTRA_JUMP_TO_POSITION, -1)
+                if (jumpToPosition > 0) {
+                    val idx = questions.indexOfFirst { it.position == jumpToPosition }
+                    if (idx >= 0) showQuestionView(idx)
+                }
+            }
         }
     }
 
@@ -736,14 +751,15 @@ class Power100Activity : AppCompatActivity() {
                 else   -> Color.parseColor("#F59E0B")
             }, Corner.PILL
         )
-        tvQuestionText.text = q.questionText
+        lifecycleScope.launch {
+            com.jeeneet.mocktest.utils.MathRenderer.renderAsync(tvQuestionText, q.questionText)
+        }
         tvBookmark.text = if (prog?.isBookmarked == true) "★" else "☆"
 
         optionsGroup.removeAllViews()
         q.options.forEachIndexed { idx, optText ->
             val rb = RadioButton(this).apply {
                 id = View.generateViewId()
-                text = "${('A' + idx)}. $optText"
                 textSize = 14f
                 setTextColor(textPrimary)
                 buttonTintList = android.content.res.ColorStateList.valueOf(colorPrimary)
@@ -753,6 +769,9 @@ class Power100Activity : AppCompatActivity() {
                 }
                 background = roundedFill(bgSecondary, Corner.M)
                 isChecked = prog?.selectedOption == idx
+            }
+            lifecycleScope.launch {
+                com.jeeneet.mocktest.utils.MathRenderer.renderAsync(rb, "${('A' + idx)}. $optText")
             }
             optionsGroup.addView(rb)
         }
