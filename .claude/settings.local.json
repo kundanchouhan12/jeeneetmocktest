@@ -66,7 +66,16 @@
       "PowerShell(.\\\\gradlew.bat assembleDebug --no-daemon --console=plain 2>&1 | Select-Object -Last 80)",
       "PowerShell(.\\\\gradlew.bat :app:testDebugUnitTest --tests \"com.jeeneet.mocktest.MathRendererNormalizeTest\" --tests \"com.jeeneet.mocktest.AchievementBadgeConditionsTest\" --tests \"com.jeeneet.mocktest.VaultSyncLogicTest\" --tests \"com.jeeneet.mocktest.Power100CacheTtlTest\" --tests \"com.jeeneet.mocktest.AdaptiveEngineEdgeCasesTest\" 2>&1)",
       "Bash(Get-ChildItem *)",
-      "Bash(sed -E 's/\\\\\\(.*//')"
+      "Bash(sed -E 's/\\\\\\(.*//')",
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:www.kaggle.com)",
+      "WebFetch(domain:huggingface.co)",
+      "WebFetch(domain:jeemain.nta.nic.in)",
+      "Bash(mkdir *)",
+      "Bash(python *)",
+      "Bash(python3 *)"
     ]
   }
 }
