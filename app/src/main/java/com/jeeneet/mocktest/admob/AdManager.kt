@@ -100,11 +100,10 @@ object AdManager {
                     Log.d(TAG, "Adapter: ${adapter.substringAfterLast('.')} → ${adapterStatus.initializationState} (${adapterStatus.description})")
                 }
                 Log.d(TAG, "AdMob initialized")
-                // Preload the first set of full-screen ads for the session
-                if (context is Activity) {
-                    loadInterstitial(context)
-                    loadRewarded(context)
-                }
+                // Preload full-screen & native ads for the session on startup
+                loadInterstitial(context)
+                loadRewarded(context)
+                preloadNativeAd(context)
                 onReady()
             }
         } catch (e: Exception) {
@@ -187,20 +186,20 @@ object AdManager {
 
     // ─── Interstitial ─────────────────────────────────────────────────────────
 
-    fun loadInterstitial(activity: Activity) {
+    fun loadInterstitial(context: Context) {
         if (isInterstitialLoading || interstitialAd != null) return
-        if (PrefManager.isAdsRemoved(activity)) return
+        if (PrefManager.isAdsRemoved(context)) return
         isInterstitialLoading = true
 
         try {
             InterstitialAd.load(
-                activity, AdUnitIds.INTERSTITIAL, buildRequest(),
+                context, AdUnitIds.INTERSTITIAL, buildRequest(),
                 object : InterstitialAdLoadCallback() {
                     override fun onAdLoaded(ad: InterstitialAd) {
                         ad.onPaidEventListener = OnPaidEventListener { adValue ->
                             Log.d(TAG, "[Revenue] Interstitial: ${adValue.valueMicros}µ ${adValue.currencyCode} prec=${adValue.precisionType}")
                             com.jeeneet.mocktest.utils.AnalyticsManager.adImpression(
-                                activity, "interstitial", AdUnitIds.INTERSTITIAL,
+                                context, "interstitial", AdUnitIds.INTERSTITIAL,
                                 adValue.valueMicros, adValue.currencyCode, adValue.precisionType
                             )
                         }
@@ -213,7 +212,11 @@ object AdManager {
                         // Fire any queued show
                         pendingInterstitialCallback?.let { cb ->
                             pendingInterstitialCallback = null
-                            showInterstitial(activity, onDismissed = cb)
+                            if (context is Activity) {
+                                showInterstitial(context, onDismissed = cb)
+                            } else {
+                                cb.invoke()
+                            }
                         }
                     }
                     override fun onAdFailedToLoad(error: LoadAdError) {
@@ -224,8 +227,7 @@ object AdManager {
                             interstitialRetryCount++
                             interstitialRetryRunnable?.let { retryHandler.removeCallbacks(it) }
                             interstitialRetryRunnable = Runnable {
-                                if (!activity.isFinishing && !activity.isDestroyed)
-                                    loadInterstitial(activity)
+                                loadInterstitial(context)
                             }
                             retryHandler.postDelayed(interstitialRetryRunnable!!, 3000L * interstitialRetryCount)
                         } else {
@@ -254,7 +256,7 @@ object AdManager {
     fun showInterstitial(activity: Activity, bypassCooldown: Boolean = false, onDismissed: () -> Unit = {}) {
         if (PrefManager.isAdsRemoved(activity)) { onDismissed(); return }
 
-        // Frequency cap: max 1 interstitial per 5 minutes (skipped when bypassCooldown = true)
+        // Frequency cap: max 1 interstitial per 30s (skipped when bypassCooldown = true)
         val now = System.currentTimeMillis()
         if (!bypassCooldown && now - lastInterstitialShownMs < INTERSTITIAL_COOLDOWN_MS) {
             onDismissed()
@@ -289,20 +291,20 @@ object AdManager {
 
     // ─── Rewarded ─────────────────────────────────────────────────────────────
 
-    fun loadRewarded(activity: Activity) {
+    fun loadRewarded(context: Context) {
         if (isRewardedLoading || rewardedAd != null) return
-        if (PrefManager.isAdsRemoved(activity)) return
+        if (PrefManager.isAdsRemoved(context)) return
         isRewardedLoading = true
 
         try {
             RewardedAd.load(
-                activity, AdUnitIds.REWARDED, buildRequest(),
+                context, AdUnitIds.REWARDED, buildRequest(),
                 object : RewardedAdLoadCallback() {
                     override fun onAdLoaded(ad: RewardedAd) {
                         ad.onPaidEventListener = OnPaidEventListener { adValue ->
                             Log.d(TAG, "[Revenue] Rewarded: ${adValue.valueMicros}µ ${adValue.currencyCode} prec=${adValue.precisionType}")
                             com.jeeneet.mocktest.utils.AnalyticsManager.adImpression(
-                                activity, "rewarded", AdUnitIds.REWARDED,
+                                context, "rewarded", AdUnitIds.REWARDED,
                                 adValue.valueMicros, adValue.currencyCode, adValue.precisionType
                             )
                         }
@@ -317,10 +319,10 @@ object AdManager {
                         // Fire any queued show
                         val onRewarded = pendingRewardedOnRewarded
                         val onNotAvailable = pendingRewardedOnNotAvailable
-                        if (onRewarded != null) {
+                        if (onRewarded != null && context is Activity) {
                             pendingRewardedOnRewarded = null
                             pendingRewardedOnNotAvailable = null
-                            showRewarded(activity, onRewarded, onNotAvailable ?: {})
+                            showRewarded(context, onRewarded, onNotAvailable ?: {})
                         }
                     }
                     override fun onAdFailedToLoad(error: LoadAdError) {
@@ -331,8 +333,7 @@ object AdManager {
                             rewardedRetryCount++
                             rewardedRetryRunnable?.let { retryHandler.removeCallbacks(it) }
                             rewardedRetryRunnable = Runnable {
-                                if (!activity.isFinishing && !activity.isDestroyed)
-                                    loadRewarded(activity)
+                                loadRewarded(context)
                             }
                             retryHandler.postDelayed(rewardedRetryRunnable!!, 3000L * rewardedRetryCount)
                         } else {
