@@ -137,7 +137,7 @@ class LeaderboardActivity : AppCompatActivity() {
             .limit(100)
             .get()
             .addOnSuccessListener { snapshot ->
-                val MIN_QUALIFYING_SCORE = 50L
+                val MIN_QUALIFYING_SCORE = 100L
                 val filteredDocs = snapshot.documents.filter { (it.getLong("totalScore") ?: 0L) >= MIN_QUALIFYING_SCORE }
                 val entries = filteredDocs.mapIndexed { idx, doc ->
                     Entry(
@@ -181,7 +181,7 @@ class LeaderboardActivity : AppCompatActivity() {
         infoInner.addView(uiTextView(UiText.CAPTION, resetInfo, textMuted, Gravity.CENTER).apply {
             setPadding(0, Space.XS.dp, 0, 0)
         })
-        infoInner.addView(uiTextView(UiText.CAPTION, "🎯 Min. 50 pts required to qualify", colorPrimary, Gravity.CENTER).apply {
+        infoInner.addView(uiTextView(UiText.CAPTION, "🎯 Min. 100 pts required to qualify", colorPrimary, Gravity.CENTER).apply {
             setPadding(0, Space.XS.dp, 0, 0)
         })
         infoCard.addView(infoInner)
@@ -189,9 +189,9 @@ class LeaderboardActivity : AppCompatActivity() {
 
         if (entries.isEmpty()) {
             val emptyMsg = if (myScore > 0L) {
-                "Your current score is $myScore pts. Reach 50 pts to qualify for the leaderboard!"
+                "Your current score is $myScore pts. Reach 100 pts to qualify for the leaderboard!"
             } else {
-                "Score at least 50 points this week to claim the top spot on the leaderboard!"
+                "Score at least 100 points this week to claim the top spot on the leaderboard!"
             }
             contentContainer.addView(uiEmptyView(
                 "🏆", "No qualified rankings yet",
@@ -216,9 +216,9 @@ class LeaderboardActivity : AppCompatActivity() {
                 contentContainer.addView(buildRankRow(meEntry, isHighlighted = true))
             } else {
                 val statusText = if (myScore > 0L) {
-                    "Your current score: $myScore pts. Need ${50 - myScore} more pts to qualify!"
+                    "Your current score: $myScore pts. Need ${100 - myScore} more pts to qualify!"
                 } else {
-                    "Score at least 50 points this week to appear on the leaderboard!"
+                    "Score at least 100 points this week to appear on the leaderboard!"
                 }
                 contentContainer.addView(uiCard(
                     radius = Corner.L, elevation = Elev.NONE,
