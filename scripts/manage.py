@@ -10,7 +10,7 @@ try:
     import bulk_import
     import vault_scheduler
     import firebase_admin
-    from firebase_admin import messaging, credentials
+    from firebase_admin import messaging, credentials, firestore
 except ImportError as e:
     print(f"⚠️ Warning: Missing dependencies - {e}")
 
@@ -26,7 +26,7 @@ def show_help():
     print("-" * 30)
     print("Commands:")
     print("  import     -> Upload all JSON files from /content to Firebase")
-    print("  schedule   -> Pick 50 random questions for Tomorrow's Vault + Send Notification")
+    print("  schedule   -> Pick 30 random questions per exam for Today & Tomorrow's Vault + Send Notification")
     print("  help       -> Show this menu")
     print("-" * 30)
     print("Usage: python manage.py <command>\n")
@@ -58,17 +58,18 @@ def main():
 
     elif cmd == "schedule":
         print("🎲 Scheduling Daily Vault for Today and Tomorrow...")
+        db = firestore.client()
         today = datetime.date.today().strftime('%Y-%m-%d')
         tomorrow = (datetime.date.today() + datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-        
+
         # Schedule for both JEE and NEET for today
-        vault_scheduler.schedule_vault(today, "JEE")
-        vault_scheduler.schedule_vault(today, "NEET")
-        
+        vault_scheduler.schedule_vault(db, today, "JEE", 30)
+        vault_scheduler.schedule_vault(db, today, "NEET", 30)
+
         # Schedule for both JEE and NEET for tomorrow
-        vault_scheduler.schedule_vault(tomorrow, "JEE")
-        vault_scheduler.schedule_vault(tomorrow, "NEET")
-        
+        vault_scheduler.schedule_vault(db, tomorrow, "JEE", 30)
+        vault_scheduler.schedule_vault(db, tomorrow, "NEET", 30)
+
         print("✨ Vault ready. Sending push notification...")
         send_global_notification(
             "🔥 Daily Vault Refreshed!",

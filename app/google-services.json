@@ -7,6 +7,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:157296503095:android:7868496ab91fba4c0c92b2",
+        "android_client_info": {
+          "package_name": "com.devkprivatevpn.freeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157296503095-u79p04sq9sdtmqm2rur0l99dmistlvbv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdH4EYrbltrMQld4V8nrfQv862K-smZTw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157296503095-u79p04sq9sdtmqm2rur0l99dmistlvbv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:157296503095:android:4e88be858205cf750c92b2",
         "android_client_info": {
           "package_name": "com.jeeneet.mocktest"
@@ -30,11 +59,27 @@
           }
         },
         {
+          "client_id": "157296503095-mgopo5lr9utl25fs5b60jg3dv1v44cv8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jeeneet.mocktest",
+            "certificate_hash": "1fe9ef1a387f4a1e1c2ed041e869b72a6404a37e"
+          }
+        },
+        {
           "client_id": "157296503095-n5b5krvi08c8snqh51h78r53aac37jlm.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.jeeneet.mocktest",
             "certificate_hash": "754a8240fbd6b3d983bf43d9a6b3fa6313afc4fc"
+          }
+        },
+        {
+          "client_id": "157296503095-smh24rs1mua7tb01056lhn06u6sv309i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jeeneet.mocktest",
+            "certificate_hash": "dde3d23fafe2c2ee890d33d34b6d7beb6595bfac"
           }
         },
         {

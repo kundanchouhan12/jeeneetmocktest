@@ -3,7 +3,7 @@ import json
 
 GROQ_API_KEY = "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"
 GROQ_URL     = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL   = "llama-3.3-70b-versatile"
+GROQ_MODEL   = "groq/compound"
 
 headers = {
     "Authorization": f"Bearer {GROQ_API_KEY}",
