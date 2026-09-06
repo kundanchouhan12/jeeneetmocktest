@@ -203,9 +203,8 @@ object PrefManager {
         prefs(ctx).edit().remove("saved_test_session_${uid()}").apply()
 
     // ─── Scan / Doubt Solver limits ───────────────────────────────────────────
-    // Free users: 5 scans/day  |  Premium (All Access): unlimited
-
-    const val FREE_DAILY_SCANS = 5
+    // Free users: 2 scans/day  |  Premium (All Access): unlimited
+    const val FREE_DAILY_SCANS = 2
 
     fun getScanCountToday(ctx: Context): Int {
         val today = System.currentTimeMillis() / 86_400_000

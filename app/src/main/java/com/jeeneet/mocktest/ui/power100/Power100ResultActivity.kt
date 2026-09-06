@@ -287,20 +287,46 @@ class Power100ResultActivity : AppCompatActivity() {
             layoutParams = LinearLayout.LayoutParams(0, 52.dp, 1f).apply { marginEnd = Space.S.dp }
             setOnClickListener { finish() }
         }
+        val btnRevive = MaterialButton(this).apply {
+            text = "⚡ Revive (+1 Life)"; textSize = 12f; setTextColor(Color.parseColor("#1A2540"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            isAllCaps = false; stateListAnimator = null
+            background = GradientDrawable().apply {
+                cornerRadius = Corner.M.dpF
+                colors = intArrayOf(goldPrimary, goldDark)
+                orientation = GradientDrawable.Orientation.LEFT_RIGHT
+            }
+            layoutParams = LinearLayout.LayoutParams(0, 52.dp, 1.2f).apply { marginEnd = Space.S.dp }
+            setOnClickListener {
+                com.jeeneet.mocktest.admob.AdManager.showRewarded(
+                    activity = this@Power100ResultActivity,
+                    onRewarded = {
+                        Toast.makeText(this@Power100ResultActivity, "Extra Life Granted! Challenge Revived 🎉", Toast.LENGTH_SHORT).show()
+                        Power100Activity.start(this@Power100ResultActivity, exam)
+                        finish()
+                    },
+                    onNotAvailable = {
+                        Toast.makeText(this@Power100ResultActivity, "Ad not ready yet. Retrying...", Toast.LENGTH_SHORT).show()
+                        com.jeeneet.mocktest.admob.AdManager.loadRewarded(this@Power100ResultActivity)
+                    },
+                    placement = "power100_revive"
+                )
+            }
+        }
         val btnReattempt = MaterialButton(this).apply {
-            text = "Re-attempt Power 100"; textSize = 13f; setTextColor(Color.WHITE)
+            text = "Re-attempt"; textSize = 13f; setTextColor(Color.WHITE)
             isAllCaps = false; stateListAnimator = null
             background = GradientDrawable().apply {
                 cornerRadius = Corner.M.dpF
                 setColor(colorPrimary)
             }
-            layoutParams = LinearLayout.LayoutParams(0, 52.dp, 2f)
+            layoutParams = LinearLayout.LayoutParams(0, 52.dp, 1.2f)
             setOnClickListener {
                 Power100Activity.start(this@Power100ResultActivity, exam)
                 finish()
             }
         }
-        row.addView(btnBack); row.addView(btnReattempt)
+        row.addView(btnBack); row.addView(btnRevive); row.addView(btnReattempt)
         return row
     }
 
