@@ -102,6 +102,9 @@ def init_firebase(creds_path: str = SERVICE_ACCOUNT_PATH):
     return firestore.client()
 
 
+from cleanup_corrupted_questions import is_corrupted
+
+
 def generate_id(q: dict) -> str:
     content = f"{q.get('examType','')}_{q.get('subject','')}_{q.get('questionText','').strip()}"
     return "q_" + hashlib.md5(content.encode('utf-8')).hexdigest()
@@ -112,6 +115,10 @@ def validate_and_clean_question(q: dict) -> tuple[bool, str]:
     Strict quality & noise filter module.
     Returns (is_valid, rejection_reason).
     """
+    corrupted, reason = is_corrupted(q)
+    if corrupted:
+        return False, f"Corrupted question check failed: {reason}"
+
     text = q.get('questionText', '').strip()
     options = q.get('options', [])
     correct_opt = q.get('correctOption')

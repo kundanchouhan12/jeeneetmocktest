@@ -40,6 +40,9 @@ VALID_EXAMS = {"JEE", "NEET"}
 VALID_DIFFICULTIES = {"Easy", "Medium", "Hard"}
 
 
+from cleanup_corrupted_questions import is_corrupted
+
+
 def validate(questions: list, exam: str) -> None:
     subjects_jee = {"Physics", "Chemistry", "Maths"}
     subjects_neet = {"Physics", "Chemistry", "Biology"}
@@ -60,6 +63,10 @@ def validate(questions: list, exam: str) -> None:
             raise ValueError(f"Q{i}: options must be a list of exactly 4 strings")
         if not isinstance(q["correctOptionIndex"], int) or not (0 <= q["correctOptionIndex"] <= 3):
             raise ValueError(f"Q{i}: correctOptionIndex must be 0–3")
+        
+        bad, reason = is_corrupted(q)
+        if bad:
+            raise ValueError(f"Q{i}: corrupted question detected ({reason})")
 
     print(f"✓ Validation passed: {len(questions)} questions for {exam}")
 

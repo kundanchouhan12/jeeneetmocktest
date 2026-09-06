@@ -25,17 +25,46 @@ def is_corrupted(q):
     options = q.get('options', [])
     
     # Rule 1: Extremely short question text
-    if not text or len(text) < 8:
+    if not text or len(text) < 15:
         return True, "Extremely short text"
         
-    # Rule 2: Placeholder options
-    placeholder_options = ["option a", "option b", "option c", "option d"]
+    # Rule 2: Placeholder or empty options
     if len(options) != 4:
         return True, f"Invalid options count: {len(options)}"
+    placeholder_options = ["option a", "option b", "option c", "option d"]
     if all(o.lower().strip() == p for o, p in zip(options, placeholder_options)):
         return True, "Placeholder options"
-        
-    # Rule 3: Text patterns indicating parsing failure
+    if any(not str(o).strip() for o in options):
+        return True, "Empty option string"
+
+    # Rule 3: Missing diagram / figure dependencies
+    fig_patterns = [
+        r'in the (given )?(figure|diagram|circuit|graph|table)',
+        r'as shown in (the )?(figure|diagram|circuit|graph|table|below)',
+        r'refer to (the )?(figure|diagram|image)',
+        r'shown below',
+        r'see (the )?(figure|diagram)',
+    ]
+    has_image = bool(q.get('imageUrl')) or 'http' in text or 'data:image' in text
+    for pat in fig_patterns:
+        if re.search(pat, text, re.IGNORECASE) and not has_image:
+            return True, f"Missing required figure/diagram ({pat})"
+
+    # Rule 4: Incomplete equation text patterns
+    incomplete_patterns = [
+        r'area of the region\s*\\?\[?\s*\\?\{?\s*\(?x?,?\s*y?\)?',
+        r'area of the region\s*(is|\$|\=|\:)\s*$',
+        r'if the area of the region is \$',
+        r'value of\s*is\s*(equal to|\$|\:)',
+        r'is equal to\s*$',
+        r'given by\s*$',
+        r'^\s*the area of the region\s*is\s*$',
+    ]
+    for pat in incomplete_patterns:
+        if re.search(pat, text, re.IGNORECASE):
+            return True, f"Incomplete equation pattern ({pat})"
+
+    # Rule 5: Text patterns indicating parsing failure / unsupported LaTeX
     bad_patterns = [
         r'refer to standard textbooks',
         r'Note:\s*For SHORT ANSWER',
@@ -45,6 +74,8 @@ def is_corrupted(q):
         r'Solutions\s*JEE Main',
         r'^\s*:\s*[A-D]\s*$',
         r'^\s*:\s*[A-D]\s*Note:',
+        r'\\begin\{array\}',
+        r'\\mbox\{',
     ]
     for pattern in bad_patterns:
         if re.search(pattern, text, re.IGNORECASE):

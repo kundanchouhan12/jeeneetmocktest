@@ -153,10 +153,17 @@ def normalize_for_dedup(text: str) -> str:
     return t.lower()
 
 
+from cleanup_corrupted_questions import is_corrupted
+
+
 def validate_web_question(q: dict) -> tuple[bool, str]:
     """
     Validates web-ingested question data structure, image policy, and option counts.
     """
+    corrupted, reason = is_corrupted(q)
+    if corrupted:
+        return False, f"Corrupted question check failed: {reason}"
+
     text = sanitize_web_content(q.get('questionText', ''))
     options = q.get('options', [])
     correct_opt = q.get('correctOption')

@@ -96,8 +96,9 @@ object MathRenderer {
                 // Catches Error too (not just Exception) so a bad LaTeX expression can never
                 // crash the app — logged so real failures are diagnosable, not silent.
                 android.util.Log.e("MathRenderer", "FAILED latex=[$latex]", e)
-                // Graceful fallback: show the raw LaTeX text rather than nothing
-                sb.append(match.value)
+                // Graceful fallback: show cleaned raw LaTeX text without blank line gaps
+                val cleanFallback = match.value.replace(Regex("\\n+"), " ").trim()
+                sb.append(cleanFallback)
             }
 
             lastEnd = match.range.last + 1
@@ -168,4 +169,5 @@ object MathRenderer {
         .replace("\\[", "$$").replace("\\]", "$$")
         .replace(Regex("\\[math\\](.*?)\\[/math\\]", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
         .replace(Regex("<math>(.*?)</math>", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
+        .replace(Regex("\\\\mbox\\{(.*?)\\}")) { it.groupValues[1] }
 }
