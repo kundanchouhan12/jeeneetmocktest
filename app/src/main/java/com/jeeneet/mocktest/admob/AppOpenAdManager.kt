@@ -36,7 +36,7 @@ class AppOpenAdManager(private val application: Application) :
     companion object {
         private const val TAG = "AppOpenAdManager"
         private const val AD_EXPIRY_MS  = 4 * 3_600_000L   // 4 hours
-        private const val SHOW_COOLDOWN = 5 * 3_600_000L   // 5 hours — was 30 SECONDS, way too aggressive for app-open
+        private const val SHOW_COOLDOWN = 15 * 60_000L     // 15 minutes — optimal balance for revenue & user experience
     }
 
     private var appOpenAd: AppOpenAd? = null
