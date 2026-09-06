@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import androidx.test.core.app.ApplicationProvider
 import com.jeeneet.mocktest.data.model.*
+import com.jeeneet.mocktest.data.repository.MockTestDatabase
 import com.jeeneet.mocktest.data.repository.MockTestRepository
 import com.jeeneet.mocktest.utils.PrefManager
 import kotlinx.coroutines.runBlocking
@@ -26,6 +27,7 @@ class SecurityVerificationTest {
 
     @Before
     fun setUp() {
+        MockTestDatabase.resetForTests()
         ctx = ApplicationProvider.getApplicationContext()
         ctx.getSharedPreferences("mocktest_prefs", Context.MODE_PRIVATE)
             .edit().clear().commit()

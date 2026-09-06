@@ -16,6 +16,14 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
+/**
+ * [recycled] is true when the pool of not-recently-seen questions for this scope
+ * was too small to fill the request, so previously-seen questions had to be
+ * reused (or the test is simply shorter than requested). Callers should use this
+ * to tell the user more content is coming rather than silently repeating.
+ */
+data class QuestionFetchResult(val questions: List<Question>, val recycled: Boolean = false)
+
 class MockTestRepository(context: Context) {
 
     private val db = MockTestDatabase.getInstance(context)
@@ -45,7 +53,7 @@ class MockTestRepository(context: Context) {
 
     // ─── Questions ──────────────────────────────────────────────────────────
 
-    suspend fun getQuestionsForConfig(context: Context, config: ExamConfig, adUnlocked: Boolean = false): List<Question> =
+    suspend fun getQuestionsForConfig(context: Context, config: ExamConfig, adUnlocked: Boolean = false): QuestionFetchResult =
         withContext(Dispatchers.IO) {
             val isUnlocked = adUnlocked || config.isDailyVault ||
                 com.jeeneet.mocktest.utils.PrefManager.isAllAccessUnlocked(context) || when {
@@ -73,17 +81,24 @@ class MockTestRepository(context: Context) {
                 if (cachedIds != null) {
                     val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
                     val qs = questionDao.getQuestionsByIds(ids)
-                    if (qs.size >= config.totalQuestions * 0.8) return@withContext qs.padTo(config.totalQuestions)
+                    if (qs.size >= config.totalQuestions * 0.8)
+                        return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions))
                 }
 
-                val questions = if (isUnlocked) fetchAdaptiveQuestions(config)
-                    else questionDao.getQuestionsByChapter(config.examType, config.subject!!, config.chapter, config.totalQuestions)
-                        .padTo(config.totalQuestions)
+                val (questions, recycled) = if (isUnlocked) fetchAdaptiveQuestions(config) else run {
+                    val totalAvailable = questionDao.getChapterQuestionCount(config.examType, config.subject!!, config.chapter)
+                    val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
+                    val candidates = questionDao.getQuestionsByChapter(config.examType, config.subject!!, config.chapter, candidateCount)
+                    pickWithSeenTracking(
+                        context, "chapter_${config.examType}_${config.subject}_${config.chapter}",
+                        candidates, totalAvailable, config.totalQuestions
+                    )
+                }
 
                 if (questions.isNotEmpty())
                     prefs.edit().putString(cacheKey, questions.joinToString(",") { it.id.toString() }).apply()
 
-                return@withContext questions.padTo(config.totalQuestions)
+                return@withContext QuestionFetchResult(questions.padTo(config.totalQuestions), recycled)
             }
 
             if (!isUnlocked) {
@@ -93,32 +108,53 @@ class MockTestRepository(context: Context) {
                     val prefKey = "weekly_free_mock_${config.examType}_$weekKey"
                     val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
                     val cachedIds = prefs.getString(prefKey, null)
-                    
+
                     if (cachedIds != null) {
                         val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
                         val qs = questionDao.getQuestionsByIds(ids)
-                        if (qs.size >= config.totalQuestions * 0.8) return@withContext qs.padTo(config.totalQuestions).shuffled()
+                        if (qs.size >= config.totalQuestions * 0.8)
+                            return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions).shuffled())
                     }
 
-                    val newQs = questionDao.getFreeQuestions(config.examType, config.totalQuestions)
-                        .padTo(config.totalQuestions)
+                    val totalAvailable = questionDao.getFreeExamQuestionCount(config.examType)
+                    val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
+                    val candidates = questionDao.getFreeQuestions(config.examType, candidateCount)
+                    val (newQs, recycled) = pickWithSeenTracking(
+                        context, "free_${config.examType}", candidates, totalAvailable, config.totalQuestions
+                    )
                     prefs.edit().putString(prefKey, newQs.joinToString(",") { it.id.toString() }).apply()
-                    return@withContext newQs
+                    return@withContext QuestionFetchResult(newQs.padTo(config.totalQuestions), recycled)
                 }
 
                 return@withContext if (config.subject != null) {
-                    questionDao.getFreeQuestionsBySubject(config.examType, config.subject, config.totalQuestions)
-                        .padTo(config.totalQuestions)
+                    val totalAvailable = questionDao.getFreeSubjectQuestionCount(config.examType, config.subject)
+                    val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
+                    val candidates = questionDao.getFreeQuestionsBySubject(config.examType, config.subject, candidateCount)
+                    val (qs, recycled) = pickWithSeenTracking(
+                        context, "free_subject_${config.examType}_${config.subject}", candidates, totalAvailable, config.totalQuestions
+                    )
+                    QuestionFetchResult(qs.padTo(config.totalQuestions), recycled)
                 } else {
-                    questionDao.getFreeQuestions(config.examType, config.totalQuestions)
-                        .padTo(config.totalQuestions)
+                    val totalAvailable = questionDao.getFreeExamQuestionCount(config.examType)
+                    val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
+                    val candidates = questionDao.getFreeQuestions(config.examType, candidateCount)
+                    val (qs, recycled) = pickWithSeenTracking(
+                        context, "free_${config.examType}", candidates, totalAvailable, config.totalQuestions
+                    )
+                    QuestionFetchResult(qs.padTo(config.totalQuestions), recycled)
                 }
             }
 
             when {
-                config.subject != null -> questionDao.getQuestionsBySubject(
-                    config.examType, config.subject, config.totalQuestions
-                ).padTo(config.totalQuestions)
+                config.subject != null -> {
+                    val totalAvailable = questionDao.getSubjectQuestionCount(config.examType, config.subject)
+                    val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
+                    val candidates = questionDao.getQuestionsBySubject(config.examType, config.subject, candidateCount)
+                    val (qs, recycled) = pickWithSeenTracking(
+                        context, "premium_subject_${config.examType}_${config.subject}", candidates, totalAvailable, config.totalQuestions
+                    )
+                    QuestionFetchResult(qs.padTo(config.totalQuestions), recycled)
+                }
                 else -> {
                     // Premium User Full Mock -> Weekly Seed Logic
                     val weekKey = getWeekKey()
@@ -129,40 +165,88 @@ class MockTestRepository(context: Context) {
                     if (cachedIds != null) {
                         val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
                         val qs = questionDao.getQuestionsByIds(ids)
-                        if (qs.size >= config.totalQuestions * 0.8) return@withContext qs.padTo(config.totalQuestions).shuffled()
+                        if (qs.size >= config.totalQuestions * 0.8)
+                            return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions).shuffled())
                     }
 
-                    val newQs = questionDao.getRandomQuestions(config.examType, config.totalQuestions)
-                        .padTo(config.totalQuestions)
+                    val totalAvailable = questionDao.getExamQuestionCount(config.examType)
+                    val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
+                    val candidates = questionDao.getRandomQuestions(config.examType, candidateCount)
+                    val (newQs, recycled) = pickWithSeenTracking(
+                        context, "premium_full_${config.examType}", candidates, totalAvailable, config.totalQuestions
+                    )
                     prefs.edit().putString(prefKey, newQs.joinToString(",") { it.id.toString() }).apply()
-                    newQs
+                    QuestionFetchResult(newQs.padTo(config.totalQuestions), recycled)
                 }
             }
         }
 
-    private suspend fun fetchSimulationQuestions(context: Context, config: ExamConfig, isUnlocked: Boolean): List<Question> = withContext(Dispatchers.IO) {
+    /**
+     * Fills up to [n] questions from [candidates], preferring ones not already served
+     * recently under [scopeKey]. Persists newly-served ids into that window and resets
+     * it once [totalAvailable] distinct questions have all been shown, so a pool only
+     * recirculates after being genuinely exhausted — never before.
+     *
+     * Returns the selection plus whether previously-seen (or simply too few) questions
+     * had to be used, so callers can tell the user more content is coming instead of
+     * silently repeating.
+     */
+    private fun pickWithSeenTracking(
+        context: Context, scopeKey: String, candidates: List<Question>, totalAvailable: Int, n: Int
+    ): Pair<List<Question>, Boolean> {
+        val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
+        val seenKey = "seen_ids_$scopeKey"
+        var seenIds = (prefs.getString(seenKey, "") ?: "").split(",").mapNotNull { it.toIntOrNull() }.toSet()
+
+        // If the whole pool was already shown, resetting makes it look "fresh" again below —
+        // but the user is still about to see already-seen content, so remember that here.
+        val poolJustExhausted = totalAvailable > 0 && seenIds.size >= totalAvailable
+        if (poolJustExhausted) seenIds = emptySet()
+
+        val distinct = candidates.distinctBy { it.id }
+        val fresh = distinct.filter { it.id !in seenIds }
+        val stale = distinct.filter { it.id in seenIds }
+        val recycled = poolJustExhausted || fresh.size < n
+
+        val selected = if (fresh.size >= n) fresh.shuffled().take(n)
+            else (fresh + stale.shuffled()).take(n)
+
+        val windowSize = totalAvailable.coerceAtLeast(n)
+        val updatedSeen = (selected.map { it.id } + seenIds.toList()).distinct().take(windowSize)
+        prefs.edit().putString(seenKey, updatedSeen.joinToString(",")).apply()
+
+        return selected to recycled
+    }
+
+    private suspend fun fetchSimulationQuestions(context: Context, config: ExamConfig, isUnlocked: Boolean): QuestionFetchResult = withContext(Dispatchers.IO) {
         val weekKey = getWeekKey()
         val prefKey = "weekly_simulation_${config.examType}_${if (isUnlocked) "premium" else "free"}_$weekKey"
         val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
         val cachedIds = prefs.getString(prefKey, null)
-        
+
         if (cachedIds != null) {
             val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
             val qs = questionDao.getQuestionsByIds(ids)
-            if (qs.size >= config.totalQuestions * 0.8) return@withContext qs.padTo(config.totalQuestions).shuffled()
+            if (qs.size >= config.totalQuestions * 0.8)
+                return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions).shuffled())
         }
 
-        val newQs = (if (isUnlocked) {
-            questionDao.getRandomQuestions(config.examType, config.totalQuestions)
+        val scopeKey = "simulation_${config.examType}_${if (isUnlocked) "premium" else "free"}"
+        val totalAvailable = if (isUnlocked) questionDao.getExamQuestionCount(config.examType)
+                             else questionDao.getFreeExamQuestionCount(config.examType)
+        val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
+        val candidates = if (isUnlocked) {
+            questionDao.getRandomQuestions(config.examType, candidateCount)
         } else {
-            questionDao.getFreeQuestions(config.examType, config.totalQuestions)
-        }).padTo(config.totalQuestions)
+            questionDao.getFreeQuestions(config.examType, candidateCount)
+        }
+        val (newQs, recycled) = pickWithSeenTracking(context, scopeKey, candidates, totalAvailable, config.totalQuestions)
 
         prefs.edit().putString(prefKey, newQs.joinToString(",") { it.id.toString() }).apply()
-        newQs
+        QuestionFetchResult(newQs.padTo(config.totalQuestions), recycled)
     }
 
-    private suspend fun fetchDailyQuizQuestions(context: Context, config: ExamConfig, isUnlocked: Boolean): List<Question> = withContext(Dispatchers.IO) {
+    private suspend fun fetchDailyQuizQuestions(context: Context, config: ExamConfig, isUnlocked: Boolean): QuestionFetchResult = withContext(Dispatchers.IO) {
         val today = java.text.SimpleDateFormat("yyyyMMdd", java.util.Locale.getDefault()).format(java.util.Date())
         val prefKey = "daily_quiz_${config.examType}_$today"
         val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
@@ -171,17 +255,20 @@ class MockTestRepository(context: Context) {
         if (cachedIds != null) {
             val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
             val qs = questionDao.getQuestionsByIds(ids)
-            if (qs.size >= config.totalQuestions * 0.8) return@withContext qs.shuffled()
+            if (qs.size >= config.totalQuestions * 0.8) return@withContext QuestionFetchResult(qs.shuffled())
         }
 
         val recentPrefKey = "recent_daily_quiz_ids_${config.examType}"
         val recentIdsString = prefs.getString(recentPrefKey, "") ?: ""
         var recentIds = recentIdsString.split(",").mapNotNull { it.toIntOrNull() }.toSet()
 
-        // Full-cycle exhaustion check: if all available questions have been seen, reset and re-circulate
+        // Full-cycle exhaustion check: if all available questions have been seen, reset and re-circulate.
+        // Remember that this happened — after resetting, the pool looks "fresh" again below, but the
+        // user is still about to see already-seen content, so recycled must stay true regardless.
         val totalAvailable = if (isUnlocked) questionDao.getExamQuestionCount(config.examType)
                              else questionDao.getFreeExamQuestionCount(config.examType)
-        if (totalAvailable > 0 && recentIds.size >= totalAvailable) {
+        val poolJustExhausted = totalAvailable > 0 && recentIds.size >= totalAvailable
+        if (poolJustExhausted) {
             prefs.edit().remove(recentPrefKey).apply()
             recentIds = emptySet()
         }
@@ -195,6 +282,7 @@ class MockTestRepository(context: Context) {
         }
 
         val filtered = candidates.filter { it.id !in recentIds }
+        val recycled = poolJustExhausted || filtered.size < config.totalQuestions
         val finalQuestions = when {
             filtered.size >= config.totalQuestions -> filtered.take(config.totalQuestions)
             filtered.isNotEmpty() -> {
@@ -220,13 +308,13 @@ class MockTestRepository(context: Context) {
         val updatedRecentIds = (todayIds + recentIds.toList()).distinct().take(windowSize)
         prefs.edit().putString(recentPrefKey, updatedRecentIds.joinToString(",")).apply()
 
-        finalQuestions.padTo(config.totalQuestions)
+        QuestionFetchResult(finalQuestions.padTo(config.totalQuestions), recycled)
     }
 
-    private suspend fun fetchAdaptiveQuestions(config: ExamConfig): List<Question> {
+    private suspend fun fetchAdaptiveQuestions(config: ExamConfig): Pair<List<Question>, Boolean> {
         val uid = currentUid()
         val allChapterQs = questionDao.getQuestionsByChapterOnce(config.examType, config.subject!!, config.chapter!!)
-        if (allChapterQs.isEmpty()) return emptyList()
+        if (allChapterQs.isEmpty()) return emptyList<Question>() to false
 
         val exposureMap = fetchExposureHistory(uid)
         
@@ -259,9 +347,9 @@ class MockTestRepository(context: Context) {
             result.addAll(remaining.take(total - result.size))
         }
 
-        // padTo handles the edge case where the chapter pool is smaller than total —
-        // it loops through the pool as many times as needed to fill every slot
-        return result.padTo(total).shuffled()
+        // padTo now trims to distinct questions rather than looping through the pool,
+        // so a chapter pool smaller than total simply yields a shorter, non-repeating test
+        return result.padTo(total).shuffled() to (allChapterQs.size < total)
     }
 
     private suspend fun fetchExposureHistory(uid: String): Map<String, QuestionExposure> = withContext(Dispatchers.IO) {
@@ -503,15 +591,14 @@ class MockTestRepository(context: Context) {
 
     // ─── Helpers ────────────────────────────────────────────────────────────
 
-    /** Re-circulates [this] list until it has at least [n] entries. No-op if already large enough. */
-    private fun List<Question>.padTo(n: Int): List<Question> {
-        if (size >= n || isEmpty()) return this
-        val result = toMutableList()
-        val pool = shuffled()
-        var i = 0
-        while (result.size < n) { result.add(pool[i % pool.size]); i++ }
-        return result
-    }
+    /**
+     * Deduplicates [this] by question id, capped at [n]. Previously this re-circulated
+     * the pool to always reach [n] entries, which inserted duplicate questions into a
+     * single test whenever the underlying pool was smaller than [n]. A shorter test with
+     * only distinct questions is strictly better than a full-length test with repeats.
+     */
+    private fun List<Question>.padTo(n: Int): List<Question> =
+        distinctBy { it.id }.take(n)
 
     // ─── Seed sample questions (called once on first launch) ────────────────
 

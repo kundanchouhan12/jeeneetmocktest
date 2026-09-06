@@ -416,7 +416,7 @@ object PrefManager {
     // 0 = follow system, 1 = force light, 2 = force dark
 
     fun getDarkModePreference(ctx: Context): Int =
-        prefs(ctx).getInt("dark_mode_pref", 1) // default: light
+        prefs(ctx).getInt("dark_mode_pref", 2) // default: dark (see MockTestApplication.onCreate)
 
     fun setDarkModePreference(ctx: Context, mode: Int) =
         prefs(ctx).edit().putInt("dark_mode_pref", mode).apply()

@@ -111,6 +111,15 @@ interface QuestionDao {
     @Query("SELECT COUNT(*) FROM questions WHERE examType = :exam AND isPremium = 0")
     suspend fun getFreeExamQuestionCount(exam: String): Int
 
+    @Query("SELECT COUNT(*) FROM questions WHERE examType = :exam AND subject = :subject AND chapter = :chapter")
+    suspend fun getChapterQuestionCount(exam: String, subject: String, chapter: String): Int
+
+    @Query("SELECT COUNT(*) FROM questions WHERE examType = :exam AND subject = :subject")
+    suspend fun getSubjectQuestionCount(exam: String, subject: String): Int
+
+    @Query("SELECT COUNT(*) FROM questions WHERE examType = :exam AND subject = :subject AND isPremium = 0")
+    suspend fun getFreeSubjectQuestionCount(exam: String, subject: String): Int
+
     @Query("SELECT COUNT(*) FROM questions")
     suspend fun getTotalCount(): Int
 
@@ -449,5 +458,20 @@ abstract class MockTestDatabase : RoomDatabase() {
                 .fallbackToDestructiveMigration()
                 .build().also { INSTANCE = it }
             }
+
+        /**
+         * Test-only. Robolectric resets its native SQLite layer at the start of every
+         * test method, but this singleton (and the Room connection pool it holds) would
+         * otherwise survive across methods within the same test class, causing
+         * "Illegal connection pointer" crashes on the second DB-touching test. Call this
+         * from @Before/@After in any test that uses getInstance() so each method gets a
+         * fresh database bound to that method's own native environment.
+         */
+        fun resetForTests() {
+            synchronized(this) {
+                INSTANCE?.close()
+                INSTANCE = null
+            }
+        }
     }
 }

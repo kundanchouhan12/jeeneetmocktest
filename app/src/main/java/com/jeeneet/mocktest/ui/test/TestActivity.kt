@@ -318,11 +318,18 @@ class TestActivity : AppCompatActivity() {
 
     private fun fetchAndStartTest(config: ExamConfig, adUnlocked: Boolean, isFullMock: Boolean, exam: String) {
         lifecycleScope.launch {
-            val questions = repo.getQuestionsForConfig(this@TestActivity, config, adUnlocked)
+            val (questions, recycled) = repo.getQuestionsForConfig(this@TestActivity, config, adUnlocked)
             if (questions.isEmpty()) {
                 Toast.makeText(this@TestActivity, "Questions will be added soon. Please check back later!", Toast.LENGTH_LONG).show()
                 finish()
                 return@launch
+            }
+            if (recycled) {
+                Toast.makeText(
+                    this@TestActivity,
+                    "You've covered all the current questions here — we're adding more soon!",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             if (isFullMock) {
                 PrefManager.incrementFullMocksGeneratedToday(this@TestActivity)

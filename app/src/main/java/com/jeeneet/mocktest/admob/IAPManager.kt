@@ -108,7 +108,10 @@ class IAPManager(private val context: Context) : PurchasesUpdatedListener {
             ))
             .build()
 
-        billingClient.queryProductDetailsAsync(params) { result, productDetailsList ->
+        billingClient.queryProductDetailsAsync(params) { result, productDetailsResult ->
+            // billing-ktx 8.x: the callback's second param is now a QueryProductDetailsResult
+            // wrapper (with productDetailsList / unfetchedProductList), not a raw List directly.
+            val productDetailsList = productDetailsResult.productDetailsList
             if (result.responseCode != BillingClient.BillingResponseCode.OK || productDetailsList.isEmpty()) {
                 Log.w(TAG, "Product not found: $productId (code ${result.responseCode})")
                 onPurchaseFailed?.invoke(result.responseCode)

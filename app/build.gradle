@@ -14,14 +14,14 @@ if (localPropsFile.exists()) {
 
 android {
     namespace 'com.jeeneet.mocktest'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.jeeneet.mocktest"
         minSdk 24
-        targetSdk 35
-        versionCode 17
-        versionName "1.1.0"
+        targetSdk 36
+        versionCode 18
+        versionName "1.2.0"
         buildConfigField "String", "GEMINI_API_KEY", "\"${localProps.getProperty('gemini.api.key', '')}\""
     }
 
@@ -105,10 +105,15 @@ dependencies {
     implementation 'com.google.ads.mediation:facebook:6.17.0.0'
 
     // AdMob Mediation — Unity Ads
+    // Adapter version 4.15.0.0 wraps Unity Ads SDK 4.15.0 — the SDK itself must be bundled
+    // too, or UnityMediationAdapter fails to initialize and every waterfall request routed
+    // to Unity fails with "Unable to instantiate mediation adapter class" in production
+    // (test ad unit IDs never exercise mediation, so this was invisible in debug/testing).
     implementation 'com.google.ads.mediation:unity:4.15.0.0'
+    implementation 'com.unity3d.ads:unity-ads:4.15.0'
 
     // Google Play Billing (IAP)
-    implementation 'com.android.billingclient:billing-ktx:7.1.1'
+    implementation 'com.android.billingclient:billing-ktx:8.0.0'
 
     // Google Play In-App Updates
     implementation 'com.google.android.play:app-update-ktx:2.1.0'

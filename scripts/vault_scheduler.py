@@ -45,6 +45,26 @@ def init_firebase(creds_path: str) -> None:
     firebase_admin.initialize_app(credentials.Certificate(creds_path))
 
 
+def select_vault_questions(pool: list, recently_used_ids: set, count: int) -> list:
+    """
+    Picks up to `count` items from `pool` (anything with a `.id` attribute),
+    preferring ones not in `recently_used_ids`. Only dips into previously-used
+    ones to top up once the fresh pool can't fill `count` on its own.
+
+    Pure and I/O-free (no Firestore calls) so it can be unit-tested directly —
+    see test_vault_scheduler.py.
+    """
+    fresh_pool = [d for d in pool if d.id not in recently_used_ids]
+    stale_pool = [d for d in pool if d.id in recently_used_ids]
+
+    count = min(count, len(pool))
+    fresh_n = min(count, len(fresh_pool))
+    selected = random.sample(fresh_pool, fresh_n)
+    if fresh_n < count:
+        selected += random.sample(stale_pool, count - fresh_n)
+    return selected
+
+
 def schedule_vault(db, target_date: str, exam_type: str, count: int) -> None:
     print(f"\n[vault] Scheduling {exam_type} vault for {target_date} ({count} questions)...")
     questions_ref = db.collection("questions")
@@ -82,11 +102,34 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int) -> None:
         print(f"  ERROR: No questions found in Firestore for exam '{exam_type}'. Skipping.")
         return
 
+    # 2b. Exclude questions used in previous vault cycles so the same set doesn't
+    #     get resampled every time this script runs. Each vault doc's id is
+    #     "vault_<date>_<originalDocId>"; recover the original id from it rather
+    #     than trusting in-document fields (which may not be stable across imports).
+    #     (Step 1 already deleted target_date's own vault docs, so every doc seen
+    #     here is genuine prior-cycle history.)
+    previous_vault_docs = (
+        questions_ref
+        .where("isDailyVault", "==", True)
+        .where("examType", "==", exam_type)
+        .get()
+    )
+    recently_used_ids = {
+        d.id.split("_", 2)[2] for d in previous_vault_docs if d.id.startswith("vault_")
+    }
+
+    fresh_pool_size = len([d for d in pool if d.id not in recently_used_ids])
+    if fresh_pool_size < count:
+        if fresh_pool_size == 0:
+            print(f"  NOTE: Every question has been vaulted before; re-circulating full pool for '{exam_type}'.")
+        else:
+            print(f"  NOTE: Only {fresh_pool_size} never-vaulted questions left; topping up with previously-vaulted ones.")
+
     if len(pool) < count:
         print(f"  WARNING: Pool has only {len(pool)} questions (wanted {count}). Using all.")
         count = len(pool)
 
-    selected = random.sample(pool, count)
+    selected = select_vault_questions(pool, recently_used_ids, count)
     group_id = f"{exam_type.lower()}_vault_{target_date}"
 
     # 3. Write new vault documents (originals are never modified)
