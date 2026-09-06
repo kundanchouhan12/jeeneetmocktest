@@ -104,10 +104,10 @@ def find_duplicates(docs: list) -> list:
     return duplicates_to_delete
 
 
-def purge_duplicates(db, dry_run: bool = False) -> int:
+def purge_duplicates(db, dry_run: bool = False, all_docs=None):
     print(f"\n🔍 Scanning Firestore for Duplicate Questions (Dry Run: {dry_run})...")
     questions_ref = db.collection('questions')
-    all_docs = questions_ref.get()
+    all_docs = all_docs if all_docs is not None else questions_ref.get()
     print(f"ℹ️ Total documents in Firestore: {len(all_docs)}")
 
     duplicates = find_duplicates(all_docs)
@@ -154,7 +154,8 @@ def purge_duplicates(db, dry_run: bool = False) -> int:
     else:
         print("🎉 No duplicates found! The question bank is 100% unique.")
 
-    return len(duplicates)
+    deleted_ids = {dup_id for dup_id, _, _ in duplicates} if not dry_run else set()
+    return len(duplicates), deleted_ids
 
 
 def main():

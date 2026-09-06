@@ -18,6 +18,7 @@ Usage:
 import argparse
 import os
 import sys
+import time
 import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -37,10 +38,10 @@ from web_question_ingestion import run_web_ingestion
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
 
-def run_cleanup_audit(db, dry_run: bool = False):
+def run_cleanup_audit(db, dry_run: bool = False, all_docs=None):
     print("\n🧹 Running Firestore Corrupted Question Audit...")
     questions_ref = db.collection('questions')
-    docs = questions_ref.get()
+    docs = all_docs if all_docs is not None else questions_ref.get()
 
     corrupted_docs = []
     for doc in docs:
@@ -90,28 +91,58 @@ def main():
     if not args.dry_run:
         db = init_firebase(args.creds)
 
+    # Fetch the question bank once and share it across the ingestion and
+    # pipeline dedup checks below, instead of each step re-reading the whole
+    # collection independently (was 2 full scans on a Firestore free-tier
+    # quota that's shared with live app traffic).
+    pre_write_docs = None
+    if not args.dry_run and db:
+        try:
+            pre_write_docs = db.collection('questions').get()
+        except Exception as e:
+            print(f"⚠️ Could not pre-fetch question bank for dedup: {e}")
+
     # Step 1: Web Question Ingestion & Noise Sanitization
     try:
-        run_web_ingestion(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db)
+        run_web_ingestion(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
     except Exception as e:
         print(f"❌ Error during Web Question Ingestion: {e}")
 
+    # Web ingestion and the AI pipeline both call the same Groq free-tier
+    # quota. Pause between them so step 2 doesn't start inside the same
+    # per-minute window step 1 just used up.
+    time.sleep(20)
+
     # Step 2: AI Question Generation Top-up
     try:
-        run_pipeline(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db)
+        run_pipeline(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
     except Exception as e:
         print(f"❌ Error during AI Question Generation Pipeline: {e}")
 
     if not args.dry_run and db:
-        # Step 2: Strict Deduplication Audit & Purge
+        # Re-fetch once now that steps 1-2 have written new docs, and share
+        # this single read across both audit steps below.
+        post_write_docs = None
         try:
-            purge_duplicates(db, dry_run=args.dry_run)
+            post_write_docs = db.collection('questions').get()
+        except Exception as e:
+            print(f"⚠️ Could not re-fetch question bank for audit steps: {e}")
+
+        # Step 2: Strict Deduplication Audit & Purge
+        deleted_dup_ids = set()
+        try:
+            _, deleted_dup_ids = purge_duplicates(db, dry_run=args.dry_run, all_docs=post_write_docs)
         except Exception as e:
             print(f"❌ Error during Deduplication Audit: {e}")
 
-        # Step 3: Clean up any corrupted questions
+        # Step 3: Clean up any corrupted questions. Drop docs purge_duplicates
+        # just deleted from the shared snapshot so the audit doesn't re-scan
+        # (and re-issue no-op deletes for) documents that no longer exist.
+        audit_docs = post_write_docs
+        if audit_docs is not None and deleted_dup_ids:
+            audit_docs = [d for d in audit_docs if d.id not in deleted_dup_ids]
         try:
-            run_cleanup_audit(db, dry_run=args.dry_run)
+            run_cleanup_audit(db, dry_run=args.dry_run, all_docs=audit_docs)
         except Exception as e:
             print(f"❌ Error during Corrupted Question Audit: {e}")
 

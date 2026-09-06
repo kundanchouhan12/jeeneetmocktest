@@ -32,6 +32,10 @@ GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "gsk_EdQFIAzfQTuRCNpthw25WGdyb3FYY
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 
+# Groq free tier is limited on requests/tokens per minute. Space consecutive
+# calls out so a single script run doesn't burn the whole per-minute quota.
+INTER_REQUEST_DELAY = 20
+
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
 OFFICIAL_CHAPTERS = {
@@ -246,8 +250,15 @@ def call_groq_api(prompt: str) -> str:
         try:
             resp = requests.post(GROQ_URL, json=body, headers=headers, timeout=45)
             if resp.status_code == 429:
-                wait_time = (attempt + 1) * 8
-                print(f"    ⏳ Rate limit (429) hit. Waiting {wait_time}s before retry...")
+                retry_after = resp.headers.get("retry-after")
+                if retry_after:
+                    try:
+                        wait_time = float(retry_after) + 1
+                    except ValueError:
+                        wait_time = (attempt + 1) * 20
+                else:
+                    wait_time = (attempt + 1) * 20
+                print(f"    ⏳ Rate limit (429) hit. Waiting {wait_time:.0f}s before retry...")
                 time.sleep(wait_time)
                 continue
             resp.raise_for_status()
@@ -322,7 +333,7 @@ Constraints:
     return processed
 
 
-def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_run: bool = False, db=None) -> dict:
+def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_run: bool = False, db=None, all_docs=None) -> dict:
     print(f"\n🌐 Running Web Question Ingestion & Noise Sanitizer (Target per subject: {count_per_subject}, Dry Run: {dry_run})...")
 
     exams = [target_exam] if target_exam else ["JEE", "NEET"]
@@ -331,7 +342,7 @@ def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_r
     existing_norm_texts = set()
     if db and not dry_run:
         try:
-            docs = db.collection('questions').get()
+            docs = all_docs if all_docs is not None else db.collection('questions').get()
             for d in docs:
                 q = d.to_dict()
                 norm = normalize_for_dedup(q.get('questionText', ''))
@@ -355,7 +366,7 @@ def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_r
 
             questions = fetch_web_questions_for_chapter(exam, subj, selected_chapter, count=count_per_subject)
             stats["fetched"] += len(questions)
-            time.sleep(2)
+            time.sleep(INTER_REQUEST_DELAY)
 
             for q in questions:
                 norm_text = normalize_for_dedup(q.get('questionText', ''))
