@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "The coefficient of x\u00b3 in the expansion of (1 + x) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "NUMERI CAL Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

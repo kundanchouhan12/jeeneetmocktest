@@ -371,7 +371,7 @@ class AISolutionActivity : AppCompatActivity() {
 
                     // 🔥 FALLBACK SYSTEM
                     text = if (parsed != null && parsed.toString().trim().isNotEmpty()) {
-                        com.jeeneet.mocktest.utils.MathRenderer.restoreMathTokens(parsed, latexList, textSize)
+                        com.jeeneet.mocktest.utils.MathRenderer.restoreMathTokens(parsed, latexList, textSize, textPrimary)
                     } else {
                         safeMarkdown
                     }

@@ -70,25 +70,14 @@
 # ─── MPAndroidChart ──────────────────────────────────────────────────────────
 -keep class com.github.mikephil.charting.** { *; }
 
-# ─── Unity Ads (mediation adapter present but SDK not bundled) ───────────────
--dontwarn com.unity3d.ads.IUnityAdsInitializationListener
--dontwarn com.unity3d.ads.IUnityAdsLoadListener
--dontwarn com.unity3d.ads.IUnityAdsShowListener
--dontwarn com.unity3d.ads.IUnityAdsTokenListener
--dontwarn com.unity3d.ads.UnityAds$UnityAdsInitializationError
--dontwarn com.unity3d.ads.UnityAds$UnityAdsLoadError
--dontwarn com.unity3d.ads.UnityAds$UnityAdsShowError
--dontwarn com.unity3d.ads.UnityAds
--dontwarn com.unity3d.ads.UnityAdsLoadOptions
--dontwarn com.unity3d.ads.UnityAdsShowOptions
--dontwarn com.unity3d.ads.metadata.MediationMetaData
--dontwarn com.unity3d.ads.metadata.MetaData
--dontwarn com.unity3d.services.banners.BannerErrorCode
--dontwarn com.unity3d.services.banners.BannerErrorInfo
--dontwarn com.unity3d.services.banners.BannerView$IListener
--dontwarn com.unity3d.services.banners.BannerView$Listener
--dontwarn com.unity3d.services.banners.BannerView
--dontwarn com.unity3d.services.banners.UnityBannerSize
+# ─── Unity Ads (SDK now bundled alongside the mediation adapter) ─────────────
+# Adapter reaches into the SDK via reflection during initialize() — same class of bug as
+# the Guava/Markwon crashes above. Keep everything so R8 can't strip what it can't see used.
+-keep class com.unity3d.ads.** { *; }
+-keep class com.unity3d.services.** { *; }
+-keep public class com.google.ads.mediation.unity.UnityMediationAdapter
+-dontwarn com.unity3d.ads.**
+-dontwarn com.unity3d.services.**
 
 # ─── Guava (transitive dep of Firebase/Firestore) ────────────────────────────
 # R8 strips Guava internals used by Firebase via reflection → runtime crashes.

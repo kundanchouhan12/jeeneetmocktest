@@ -25,7 +25,7 @@ object MathRenderer {
             return
         }
         try {
-            textView.text = buildSpannable(normalized, textView.textSize.coerceAtLeast(12f))
+            textView.text = buildSpannable(normalized, textView.textSize.coerceAtLeast(12f), textView.currentTextColor)
         } catch (e: Exception) {
             android.util.Log.w("MathRenderer", "render failed: ${e.message}")
             textView.text = normalized
@@ -45,9 +45,11 @@ object MathRenderer {
         if (!normalized.contains('$')) return    // no LaTeX — skip rendering entirely
 
         val sizePx = textView.textSize.coerceAtLeast(12f)
+        // Capture text color on main thread before jumping to Default dispatcher
+        val textColor = textView.currentTextColor
         try {
             val spanned = withContext(Dispatchers.Default) {
-                buildSpannable(normalized, sizePx)
+                buildSpannable(normalized, sizePx, textColor)
             }
             textView.text = spanned
         } catch (e: Throwable) {
@@ -60,7 +62,11 @@ object MathRenderer {
      * Parses [text] for $...$ and $$...$$ math segments and replaces each with
      * a JLatexMathDrawable image span. Safe to call on any thread.
      */
-    private fun buildSpannable(text: String, sizePx: Float): SpannableStringBuilder {
+    private fun buildSpannable(
+        text: String,
+        sizePx: Float,
+        textColor: Int = android.graphics.Color.BLACK
+    ): SpannableStringBuilder {
         val sb = SpannableStringBuilder()
         var lastEnd = 0
 
@@ -74,12 +80,13 @@ object MathRenderer {
             try {
                 val drawable = JLatexMathDrawable.builder(latex)
                     .textSize(sizePx)
+                    .color(textColor)   // ← respects dark/light mode text color
                     .padding(2)
                     .build()
                 drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
 
                 val start = sb.length
-                sb.append(" ") // non-breaking space as image placeholder
+                sb.append(" ") // non-breaking space as image placeholder
                 sb.setSpan(
                     ImageSpan(drawable, ImageSpan.ALIGN_BASELINE),
                     start, sb.length,
@@ -123,7 +130,12 @@ object MathRenderer {
     }
 
     /** Replaces tokens from [tokenizeMath] in an already-built Spanned/CharSequence with rendered LaTeX. */
-    fun restoreMathTokens(rendered: CharSequence, latexList: List<String>, sizePx: Float): CharSequence {
+    fun restoreMathTokens(
+        rendered: CharSequence,
+        latexList: List<String>,
+        sizePx: Float,
+        textColor: Int = android.graphics.Color.BLACK
+    ): CharSequence {
         if (latexList.isEmpty()) return rendered
         val sb = SpannableStringBuilder(rendered)
         // Replace back-to-front so earlier match ranges stay valid as the builder mutates.
@@ -133,6 +145,7 @@ object MathRenderer {
             try {
                 val drawable = JLatexMathDrawable.builder(latex)
                     .textSize(sizePx)
+                    .color(textColor)   // ← respects dark/light mode text color
                     .padding(2)
                     .build()
                 drawable.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)

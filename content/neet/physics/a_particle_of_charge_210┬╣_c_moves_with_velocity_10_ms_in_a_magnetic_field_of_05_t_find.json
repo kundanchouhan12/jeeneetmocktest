@@ -1,0 +1,38 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "A particle of charge 2\u00d710\u00b9 C moves with velocity 10 m/s in a magnetic field of 0.5 T. Find",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Torque acting on a magnetic dipole of moment M in a uniform field B at angle \u03b8 is:",
+    "options": [
+      "MB",
+      "MB sin\u03b8",
+      "MB cos\u03b8",
+      "MB tan\u03b8"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "A particle of charge 2\u00d710\u00b9 C moves with velocity 10 m/s in a magnetic field of 0.5 T. Find",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Diamagnetic materials have relative permeability:",
+    "options": [
+      "Greater than 1",
+      "Equal to 1",
+      "Less than 1",
+      "Zero"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

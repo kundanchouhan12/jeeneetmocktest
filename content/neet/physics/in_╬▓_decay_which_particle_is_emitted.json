@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Physics",
+    "chapter": "In \u03b2 decay, which particle is emitted?",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The mass number of an element changes in which decay?",
+    "options": [
+      "\u03b2-decay",
+      "\u03b3-decay",
+      "\u03b1-decay",
+      "Both B and C"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

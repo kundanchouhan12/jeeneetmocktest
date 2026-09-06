@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "The wavelength of an electron with kinetic energy 1.5 eV is (h = 6.63 \u00d7 10\u00b3, m = 9.1 \u00d7 10\u00b3\u00b9):",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Aufbau principle states that electrons occupy orbitals in order of:",
+    "options": [
+      "Decreasing energy",
+      "Increasing energy",
+      "Spin",
+      "Magnetic quantum number"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

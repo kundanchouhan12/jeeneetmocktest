@@ -63,4 +63,11 @@ def count_questions():
     print("=============================================\n")
 
 if __name__ == "__main__":
-    count_questions()
+    try:
+        count_questions()
+    except Exception as e:
+        if "Quota exceeded" in str(e) or "429" in str(e):
+            print("\n⚠️ Firestore Daily Free Tier Quota Exceeded for Today.")
+            print("   (This occurs after heavy cloud imports/scans. Quota resets automatically at Midnight UTC.)")
+        else:
+            print(f"\n⚠️ Error fetching stats: {e}")

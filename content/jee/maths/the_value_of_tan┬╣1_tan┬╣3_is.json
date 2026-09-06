@@ -1,0 +1,20 @@
+[
+  {
+    "examType": "JEE",
+    "subject": "Maths",
+    "chapter": "The value of tan\u00b9(1) + tan\u00b9(\u221a3) is:",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "",
+    "options": [
+      "[0, \u03c0]",
+      "[-\u03c0/2, \u03c0/2]",
+      "(-\u03c0, \u03c0)",
+      "[0, 2\u03c0]"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

@@ -1,0 +1,56 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "(B) Ca\u00b2 and Mg\u00b2 salts",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Soap works by forming a _____ with grease, making it water-soluble. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "(B) Ca\u00b2 and Mg\u00b2 salts",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Aspirin is chemically:",
+    "options": [
+      "Paracetamol",
+      "Acetylsalicylic acid",
+      "Ibuprofen",
+      "Morphine"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Chemistry",
+    "chapter": "(B) Ca\u00b2 and Mg\u00b2 salts",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Antacids contain _____ to neutralize excess stomach acid. Ans: ___________________________________________ Page 35 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]

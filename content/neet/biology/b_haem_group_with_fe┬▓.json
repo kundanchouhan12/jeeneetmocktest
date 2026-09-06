@@ -1,0 +1,164 @@
+[
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The normal pH of human blood is:",
+    "options": [
+      "6.8\u20137.0",
+      "7.0\u20137.2",
+      "7.35\u20137.45",
+      "7.5\u20137.8"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Insulin is produced by the _____ cells of the islets of Langerhans. Ans: ___________________________________________ Page 79 JEE + NEET Master Practice Workbook",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The enzyme pepsin in the stomach digests:",
+    "options": [
+      "Starch",
+      "Fats",
+      "Proteins",
+      "Nucleic acids"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Official answer key option C.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Peristalsis is the movement of the _____ in the alimentary canal. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Bowman's capsule is the site of _____ in the kidney. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The process of producing urine from blood involves filtration, reabsorption, and:",
+    "options": [
+      "Digestion",
+      "Secretion",
+      "Excretion only",
+      "Osmosis only"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "The primary function of the large intestine is:",
+    "options": [
+      "Digestion of proteins",
+      "Absorption of water and mineral salts",
+      "Secretion of bile",
+      "Production of enzymes"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Official answer key option B.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "What is the sliding filament theory of muscle contraction? Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  },
+  {
+    "examType": "NEET",
+    "subject": "Biology",
+    "chapter": "(B) Haem group with Fe\u00b2",
+    "difficulty": "Medium",
+    "year": 2024,
+    "questionText": "Acetylcholine is a _____ at the neuromuscular junction. Ans: ___________________________________________",
+    "options": [
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Official answer key option A.",
+    "isPremium": true,
+    "isDailyVault": false
+  }
+]
