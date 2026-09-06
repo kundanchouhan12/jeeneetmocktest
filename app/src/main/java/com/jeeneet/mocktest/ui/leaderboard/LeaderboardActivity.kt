@@ -134,10 +134,11 @@ class LeaderboardActivity : AppCompatActivity() {
             .collection("leaderboard").document(weekKey)
             .collection("scores")
             .orderBy("totalScore", Query.Direction.DESCENDING)
-            .limit(50)
+            .limit(100)
             .get()
             .addOnSuccessListener { snapshot ->
-                val filteredDocs = snapshot.documents.filter { (it.getLong("totalScore") ?: 0L) > 0L }
+                val MIN_QUALIFYING_SCORE = 50L
+                val filteredDocs = snapshot.documents.filter { (it.getLong("totalScore") ?: 0L) >= MIN_QUALIFYING_SCORE }
                 val entries = filteredDocs.mapIndexed { idx, doc ->
                     Entry(
                         uid            = doc.id,
@@ -150,7 +151,9 @@ class LeaderboardActivity : AppCompatActivity() {
                         isMe           = doc.id == currentUid
                     )
                 }
-                displayLeaderboard(weekLabel, weekKey, entries, currentUid)
+                val myDoc = snapshot.documents.firstOrNull { it.id == currentUid }
+                val myScore = myDoc?.getLong("totalScore") ?: 0L
+                displayLeaderboard(weekLabel, weekKey, entries, currentUid, myScore)
             }
             .addOnFailureListener { e ->
                 android.util.Log.e("Leaderboard", "Fetch failed", e)
@@ -158,7 +161,7 @@ class LeaderboardActivity : AppCompatActivity() {
             }
     }
 
-    private fun displayLeaderboard(weekLabel: String, weekKey: String, entries: List<Entry>, currentUid: String) {
+    private fun displayLeaderboard(weekLabel: String, weekKey: String, entries: List<Entry>, currentUid: String, myScore: Long = 0L) {
         contentContainer.removeAllViews()
 
         // Week info card
@@ -178,47 +181,58 @@ class LeaderboardActivity : AppCompatActivity() {
         infoInner.addView(uiTextView(UiText.CAPTION, resetInfo, textMuted, Gravity.CENTER).apply {
             setPadding(0, Space.XS.dp, 0, 0)
         })
+        infoInner.addView(uiTextView(UiText.CAPTION, "🎯 Min. 50 pts required to qualify", colorPrimary, Gravity.CENTER).apply {
+            setPadding(0, Space.XS.dp, 0, 0)
+        })
         infoCard.addView(infoInner)
         contentContainer.addView(infoCard)
 
         if (entries.isEmpty()) {
+            val emptyMsg = if (myScore > 0L) {
+                "Your current score is $myScore pts. Reach 50 pts to qualify for the leaderboard!"
+            } else {
+                "Score at least 50 points this week to claim the top spot on the leaderboard!"
+            }
             contentContainer.addView(uiEmptyView(
-                "🏆", "No rankings yet",
-                "Be the first to attempt a test this week and claim the top spot!"
+                "🏆", "No qualified rankings yet",
+                emptyMsg
             ))
             return
         }
 
-        // Top 10 ranked list (all ranks 1–10 shown below podium)
-        val top10 = entries.take(10)
-        if (top10.isNotEmpty()) {
-            contentContainer.addView(uiSectionLabel("🏅 Top 10 This Week"))
-            top10.forEach { contentContainer.addView(buildRankRow(it)) }
+        // Top 25 ranked list
+        val top25 = entries.take(25)
+        if (top25.isNotEmpty()) {
+            contentContainer.addView(uiSectionLabel("🏅 Top 25 Qualified Aspirants"))
+            top25.forEach { contentContainer.addView(buildRankRow(it)) }
         }
 
-        // User's own card if not in top 10
+        // User's own card if not in top 25
         val meEntry = entries.firstOrNull { it.isMe }
         val meRank = meEntry?.rank ?: -1
-        if (meEntry == null || meRank > 10) {
+        if (meEntry == null || meRank > 25) {
             contentContainer.addView(uiSectionLabel("Your Position"))
             if (meEntry != null) {
                 contentContainer.addView(buildRankRow(meEntry, isHighlighted = true))
             } else {
+                val statusText = if (myScore > 0L) {
+                    "Your current score: $myScore pts. Need ${50 - myScore} more pts to qualify!"
+                } else {
+                    "Score at least 50 points this week to appear on the leaderboard!"
+                }
                 contentContainer.addView(uiCard(
                     radius = Corner.L, elevation = Elev.NONE,
                     strokeDp = 0
                 ).apply {
                     layoutParams = lpRow(bottomDp = Space.S)
                     addView(uiTextView(UiText.BODY,
-                        "Take a test this week to appear on the leaderboard!",
+                        statusText,
                         textSecondary, Gravity.CENTER).apply {
                         setPadding(Space.XL.dp, Space.XL.dp, Space.XL.dp, Space.XL.dp)
                     })
                 })
             }
         }
-
-
     }
 
     private fun buildPodium(top3: List<Entry>): View {
