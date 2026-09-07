@@ -2,6 +2,7 @@ package com.jeeneet.mocktest.data.repository
 
 import android.content.Context
 import android.util.Log
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.jeeneet.mocktest.data.model.Power100Question
@@ -123,6 +124,15 @@ class Power100SyncManager(private val context: Context) {
 
             if (questions.size < raw.size) {
                 Log.w(TAG, "${raw.size - questions.size} questions skipped due to parse errors for $exam.")
+            }
+
+            // The nightly rebuild swaps in a fresh 100 questions at the same fixed
+            // positions — reset progress too, or a user's completed positions would
+            // silently point at brand-new, unattempted questions.
+            if (localVersion >= 0) {
+                val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
+                dao.resetProgress(uid, exam)
+                Log.i(TAG, "Power100 progress reset for $exam (v$localVersion -> v$remoteVersion)")
             }
 
             dao.deleteForExam(exam)

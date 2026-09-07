@@ -91,9 +91,14 @@ class QuestionSyncManager(private val context: Context) {
                 .whereEqualTo("packId", packId)
                 .get().await()
 
-            val questions = snapshot.documents.mapNotNull { doc ->
-                parseQuestion(doc.data ?: return@mapNotNull null)
-            }
+            // Vault documents are full copies of pack questions (same packId) tagged
+            // with isDailyVault — exclude them here or they'd double up as duplicate
+            // rows in the local pool that full/chapter tests draw from.
+            val questions = snapshot.documents
+                .filterNot { it.getBoolean("isDailyVault") == true }
+                .mapNotNull { doc ->
+                    parseQuestion(doc.data ?: return@mapNotNull null)
+                }
 
             if (questions.isNotEmpty()) {
                 questionDao.deletePremiumQuestionsBySubject(exam, subject)

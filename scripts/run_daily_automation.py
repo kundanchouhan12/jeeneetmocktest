@@ -30,6 +30,7 @@ except Exception:
 
 # Import sub-modules from scripts folder
 from auto_question_pipeline import run_pipeline, init_firebase
+from build_power100_live import run_power100_rebuild
 from cleanup_corrupted_questions import is_corrupted
 from purge_duplicate_questions import purge_duplicates
 from vault_scheduler import schedule_vault
@@ -154,7 +155,18 @@ def main():
         except Exception as e:
             print(f"❌ Error during Vault Scheduling: {e}")
 
-        # Step 4: Increment metadata version
+        # Step 4: Rebuild Power 100 for JEE and NEET from the now-cleaned live bank.
+        # Re-fetch rather than reuse audit_docs — that snapshot predates today's
+        # ingestion/pipeline/vault writes and would under-select from the newest content.
+        try:
+            print("\n🏆 Rebuilding Power 100...")
+            power100_docs = db.collection('questions').get()
+            for exam in ["JEE", "NEET"]:
+                run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
+        except Exception as e:
+            print(f"❌ Error during Power 100 Rebuild: {e}")
+
+        # Step 5: Increment metadata version
         try:
             db.collection('metadata').document('question_bank').set({
                 'version': firestore.Increment(1),
