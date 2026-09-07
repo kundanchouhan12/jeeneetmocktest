@@ -77,6 +77,30 @@ def repair_latex_json_escapes(text: str) -> str:
         i += 1
     return ''.join(out)
 
+
+_HAS_MATH_DELIMITER = re.compile(r'\$|\\\(|\\\[')
+_LOOKS_LIKE_LATEX = re.compile(r'\\[a-zA-Z]+|[{}]')
+
+
+def wrap_bare_latex(text: str) -> str:
+    """
+    The model sometimes returns option text as raw LaTeX (e.g. "\\frac{3}{2}")
+    without \\( \\) delimiters. MathRenderer.kt only converts delimited math
+    into a rendered image span, so undelimited LaTeX shows as ugly literal
+    text in the app. Wrap the whole string if it looks like LaTeX and isn't
+    already delimited.
+
+    Only safe to call on OPTIONS (short, either pure text or pure math in
+    this domain) — never on questionText/explanation, which are long mixed
+    prose where one embedded LaTeX fragment (e.g. "P_{ACO2}" mid-sentence)
+    would otherwise cause the entire paragraph to be wrapped as math.
+    """
+    if not text or _HAS_MATH_DELIMITER.search(text):
+        return text
+    if _LOOKS_LIKE_LATEX.search(text):
+        return f"\\({text}\\)"
+    return text
+
 OFFICIAL_CHAPTERS = {
     "Physics": [
         "Mathematics In Physics", "Units, Dimensions And Measurement",
@@ -365,7 +389,7 @@ Constraints:
     for item in items:
         item["questionText"] = sanitize_web_content(item.get("questionText", ""))
         item["explanation"] = sanitize_web_content(item.get("explanation", ""))
-        item["options"] = [sanitize_web_content(str(o)) for o in item.get("options", [])]
+        item["options"] = [wrap_bare_latex(sanitize_web_content(str(o))) for o in item.get("options", [])]
         item["examType"] = exam
         item["subject"] = subject
         item["chapter"] = chapter
