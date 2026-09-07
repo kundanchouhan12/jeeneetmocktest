@@ -37,6 +37,46 @@ INTER_REQUEST_DELAY = 20
 
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
+_JSON_TWO_CHAR_ESCAPES = set('"\\/')
+_HEX_DIGITS = set('0123456789abcdefABCDEF')
+
+
+def repair_latex_json_escapes(text: str) -> str:
+    """
+    The model is instructed to double-escape LaTeX backslashes for JSON, but
+    in practice mixes single- and double-escaped backslashes within the same
+    response (e.g. \\text{cm} next to \\\\text{cm}). A blanket regex that
+    doubles "any backslash not followed by a JSON escape char" mishandles
+    already-valid \\\\ pairs (it re-examines the second backslash on its own
+    and can triple it into an invalid \\\\\\)). This instead scans once,
+    left-to-right, consuming already-valid two-char escapes (\\", \\\\, \\/)
+    and \\uXXXX as atomic units, and treats every other backslash — including
+    \\b \\f \\n \\r \\t, which are virtually always LaTeX macro prefixes
+    (\\theta, \\frac, \\tan, ...) in this domain, not real control chars —
+    as a literal backslash needing to be doubled.
+    """
+    out = []
+    i, n = 0, len(text)
+    while i < n:
+        c = text[i]
+        if c == '\\' and i + 1 < n:
+            nxt = text[i + 1]
+            if nxt in _JSON_TWO_CHAR_ESCAPES:
+                out.append(c); out.append(nxt)
+                i += 2
+                continue
+            if nxt == 'u' and i + 5 < n and all(ch in _HEX_DIGITS for ch in text[i + 2:i + 6]):
+                out.append(text[i:i + 6])
+                i += 6
+                continue
+            out.append('\\\\')
+            i += 1
+            continue
+        out.append(c)
+        i += 1
+    return ''.join(out)
+
+
 OFFICIAL_CHAPTERS = {
     "Physics": [
         "Mathematics In Physics", "Units, Dimensions And Measurement",
@@ -215,7 +255,14 @@ def call_groq_api(prompt: str) -> str:
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.3,
-        "max_tokens": 3000
+        "max_tokens": 3000,
+        # openai/gpt-oss-20b is a reasoning model that spends completion
+        # tokens on a hidden chain-of-thought before writing the actual
+        # answer. Without this, a sufficiently detailed prompt could burn
+        # the entire max_tokens budget on reasoning and return empty
+        # content — which this script would then misreport as "rate limit
+        # or API error" even on a clean 200 response.
+        "reasoning_effort": "low"
     }
 
     max_retries = 5
@@ -280,7 +327,7 @@ Constraints:
             items = [items]
     except Exception:
         try:
-            fixed_json = re.sub(r'\\(?![/"\\bfnrtu])', r'\\\\', cleaned_json)
+            fixed_json = repair_latex_json_escapes(cleaned_json)
             items = json.loads(fixed_json)
             if not isinstance(items, list):
                 items = [items]
