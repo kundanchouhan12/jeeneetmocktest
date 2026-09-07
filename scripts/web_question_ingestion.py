@@ -36,6 +36,11 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 # calls out so a single script run doesn't burn the whole per-minute quota.
 INTER_REQUEST_DELAY = 20
 
+# Verification calls are much smaller (short answer, no full question/options/
+# explanation to write) than generation calls, so they can be spaced closer
+# together without risking the same per-minute token budget.
+VERIFY_REQUEST_DELAY = 5
+
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
 _JSON_TWO_CHAR_ESCAPES = set('"\\/')
@@ -285,36 +290,11 @@ def validate_web_question(q: dict) -> tuple[bool, str]:
     return True, ""
 
 
-def call_groq_api(prompt: str) -> str:
+def _post_groq(body: dict, max_retries: int = 5) -> str:
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json"
     }
-    body = {
-        "model": GROQ_MODEL,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "You are a web exam question scraper and sanitizer for Indian competitive exams (JEE Main & NEET). "
-                    "You output strictly valid JSON without markdown codeblock formatting or extra text. "
-                    "All math equations MUST be written in clean KaTeX LaTeX syntax (e.g. \\( E = mc^2 \\)). "
-                    "Do NOT include website names, URLs, page numbers, watermarks, or image dependencies."
-                )
-            },
-            {"role": "user", "content": prompt}
-        ],
-        "temperature": 0.3,
-        "max_tokens": 1800,
-        # openai/gpt-oss-20b is a reasoning model that spends completion
-        # tokens on a hidden chain-of-thought before writing the actual
-        # answer. Without this, it can burn the entire max_tokens budget
-        # on reasoning and return empty content — which this script would
-        # then misreport as "rate limit or API error" even on a clean 200.
-        "reasoning_effort": "low"
-    }
-
-    max_retries = 5
     for attempt in range(max_retries):
         try:
             resp = requests.post(GROQ_URL, json=body, headers=headers, timeout=45)
@@ -338,6 +318,81 @@ def call_groq_api(prompt: str) -> str:
                 raise e
             time.sleep(5)
     return ""
+
+
+def call_groq_api(prompt: str) -> str:
+    body = {
+        "model": GROQ_MODEL,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "You are a web exam question scraper and sanitizer for Indian competitive exams (JEE Main & NEET). "
+                    "You output strictly valid JSON without markdown codeblock formatting or extra text. "
+                    "All math equations MUST be written in clean KaTeX LaTeX syntax (e.g. \\( E = mc^2 \\)). "
+                    "Do NOT include website names, URLs, page numbers, watermarks, or image dependencies."
+                )
+            },
+            {"role": "user", "content": prompt}
+        ],
+        "temperature": 0.3,
+        "max_tokens": 1800,
+        # openai/gpt-oss-20b is a reasoning model that spends completion
+        # tokens on a hidden chain-of-thought before writing the actual
+        # answer. Without this, it can burn the entire max_tokens budget
+        # on reasoning and return empty content — which this script would
+        # then misreport as "rate limit or API error" even on a clean 200.
+        "reasoning_effort": "low"
+    }
+    return _post_groq(body)
+
+
+def verify_answer(exam: str, subject: str, chapter: str, question_text: str, options: list) -> int:
+    """
+    Independently re-derives the answer to an already-fetched/generated
+    question and returns the option index (0-3) it believes is correct, -1
+    if it can't confidently match any option, or -2 on an API/parse failure
+    ("couldn't verify", not "verification failed").
+
+    Deliberately does NOT set reasoning_effort here (unlike call_groq_api) —
+    generation optimizes for not burning its token budget on hidden
+    reasoning, but verification's entire purpose is accuracy, and its
+    response is short (no full question/options/explanation to write), so
+    full reasoning stays cheap.
+    """
+    opts_text = "\n".join(f"{i}: {o}" for i, o in enumerate(options))
+    prompt = f"""Solve this {exam} {subject} ({chapter}) question independently and rigorously, step by step. Then state which option is correct.
+
+Question: {question_text}
+
+Options:
+{opts_text}
+
+Respond with ONLY a raw JSON object, no markdown: {{"correctIndex": <0-3, or -1 if none of the options match your derived answer>}}"""
+    body = {
+        "model": GROQ_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0,
+        "max_tokens": 4000,
+    }
+    try:
+        raw = _post_groq(body)
+        if not raw:
+            # Same failure mode as generation: unrestricted reasoning can
+            # burn the whole budget on a hard problem before writing the
+            # answer. Retry once with reasoning capped so it's forced to
+            # actually answer instead of reasoning until it runs out.
+            body["reasoning_effort"] = "medium"
+            raw = _post_groq(body)
+        if not raw:
+            return -2
+        match = re.search(r'\{[^{}]*"correctIndex"[^{}]*\}', raw, re.DOTALL)
+        data = json.loads(match.group(0) if match else raw)
+        idx = data.get("correctIndex")
+        return idx if isinstance(idx, int) else -2
+    except Exception as e:
+        print(f"    ⚠️ Answer verification call failed: {e}")
+        return -2
 
 
 def fetch_web_questions_for_chapter(exam: str, subject: str, chapter: str, count: int = 5) -> list[dict]:
@@ -448,6 +503,18 @@ def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_r
                 if not is_valid:
                     stats["rejected"] += 1
                     stats["rejections"][reason] = stats["rejections"].get(reason, 0) + 1
+                    print(f"    ⚠️ Rejected web question: {reason}")
+                    continue
+
+                verified_idx = verify_answer(exam, subj, selected_chapter, q.get("questionText", ""), q.get("options", []))
+                time.sleep(VERIFY_REQUEST_DELAY)
+                claimed_idx = q.get("correctOption")
+                if verified_idx == -2:
+                    print("    ⚠️ Could not verify answer (API/parse failure) — keeping question, unverified.")
+                elif verified_idx != claimed_idx:
+                    stats["rejected"] += 1
+                    reason = f"Answer verification mismatch (claimed {claimed_idx}, verifier got {verified_idx})"
+                    stats["rejections"]["Answer Verification Mismatch"] = stats["rejections"].get("Answer Verification Mismatch", 0) + 1
                     print(f"    ⚠️ Rejected web question: {reason}")
                     continue
 

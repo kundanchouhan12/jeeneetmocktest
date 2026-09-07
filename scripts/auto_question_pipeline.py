@@ -35,6 +35,11 @@ GROQ_MODEL = "openai/gpt-oss-20b"
 # calls out so a single script run doesn't burn the whole per-minute quota.
 INTER_REQUEST_DELAY = 20
 
+# Verification calls are much smaller (short answer, no full question/options/
+# explanation to write) than generation calls, so they can be spaced closer
+# together without risking the same per-minute token budget.
+VERIFY_REQUEST_DELAY = 5
+
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
 _JSON_TWO_CHAR_ESCAPES = set('"\\/')
@@ -259,11 +264,37 @@ def validate_and_clean_question(q: dict) -> tuple[bool, str]:
     return True, ""
 
 
-def call_groq_api(prompt: str) -> str:
+def _post_groq(body: dict, max_retries: int = 5) -> str:
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json"
     }
+    for attempt in range(max_retries):
+        try:
+            resp = requests.post(GROQ_URL, json=body, headers=headers, timeout=45)
+            if resp.status_code == 429:
+                retry_after = resp.headers.get("retry-after")
+                if retry_after:
+                    try:
+                        wait_time = float(retry_after) + 1
+                    except ValueError:
+                        wait_time = (attempt + 1) * 20
+                else:
+                    wait_time = (attempt + 1) * 20
+                print(f"    ⏳ Rate limit (429) hit. Waiting {wait_time:.0f}s before retry...")
+                time.sleep(wait_time)
+                continue
+            resp.raise_for_status()
+            data = resp.json()
+            return data['choices'][0]['message']['content'].strip()
+        except Exception as e:
+            if attempt == max_retries - 1:
+                raise e
+            time.sleep(5)
+    return ""
+
+
+def call_groq_api(prompt: str) -> str:
     body = {
         "model": GROQ_MODEL,
         "messages": [
@@ -288,31 +319,55 @@ def call_groq_api(prompt: str) -> str:
         # or API error" even on a clean 200 response.
         "reasoning_effort": "low"
     }
+    return _post_groq(body)
 
-    max_retries = 5
-    for attempt in range(max_retries):
-        try:
-            resp = requests.post(GROQ_URL, json=body, headers=headers, timeout=45)
-            if resp.status_code == 429:
-                retry_after = resp.headers.get("retry-after")
-                if retry_after:
-                    try:
-                        wait_time = float(retry_after) + 1
-                    except ValueError:
-                        wait_time = (attempt + 1) * 20
-                else:
-                    wait_time = (attempt + 1) * 20
-                print(f"    ⏳ Rate limit (429) hit. Waiting {wait_time:.0f}s before retry...")
-                time.sleep(wait_time)
-                continue
-            resp.raise_for_status()
-            data = resp.json()
-            return data['choices'][0]['message']['content'].strip()
-        except Exception as e:
-            if attempt == max_retries - 1:
-                raise e
-            time.sleep(5)
-    return ""
+
+def verify_answer(exam: str, subject: str, chapter: str, question_text: str, options: list) -> int:
+    """
+    Independently re-derives the answer to an already-generated question and
+    returns the option index (0-3) it believes is correct, or -1 if it can't
+    confidently match any option, or -2 on an API/parse failure (caller
+    should treat -2 as "couldn't verify" rather than "verification failed").
+
+    Deliberately does NOT set reasoning_effort here (unlike call_groq_api) —
+    generation optimizes for not burning its token budget on hidden
+    reasoning, but verification's entire purpose is accuracy, and its
+    response is short (no full question/options/explanation to write), so
+    full reasoning stays cheap.
+    """
+    opts_text = "\n".join(f"{i}: {o}" for i, o in enumerate(options))
+    prompt = f"""Solve this {exam} {subject} ({chapter}) question independently and rigorously, step by step. Then state which option is correct.
+
+Question: {question_text}
+
+Options:
+{opts_text}
+
+Respond with ONLY a raw JSON object, no markdown: {{"correctIndex": <0-3, or -1 if none of the options match your derived answer>}}"""
+    body = {
+        "model": GROQ_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "temperature": 0,
+        "max_tokens": 4000,
+    }
+    try:
+        raw = _post_groq(body)
+        if not raw:
+            # Same failure mode as generation: unrestricted reasoning can
+            # burn the whole budget on a hard problem before writing the
+            # answer. Retry once with reasoning capped so it's forced to
+            # actually answer instead of reasoning until it runs out.
+            body["reasoning_effort"] = "medium"
+            raw = _post_groq(body)
+        if not raw:
+            return -2
+        match = re.search(r'\{[^{}]*"correctIndex"[^{}]*\}', raw, re.DOTALL)
+        data = json.loads(match.group(0) if match else raw)
+        idx = data.get("correctIndex")
+        return idx if isinstance(idx, int) else -2
+    except Exception as e:
+        print(f"    ⚠️ Answer verification call failed: {e}")
+        return -2
 
 
 def generate_questions(exam: str, subject: str, chapter: str, count: int = 5) -> list[dict]:
@@ -414,6 +469,18 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
                 if not is_valid:
                     stats["rejected"] += 1
                     stats["rejections"][reason] = stats["rejections"].get(reason, 0) + 1
+                    print(f"    ⚠️ Rejected question: {reason}")
+                    continue
+
+                verified_idx = verify_answer(exam, subj, selected_chapter, q.get("questionText", ""), q.get("options", []))
+                time.sleep(VERIFY_REQUEST_DELAY)
+                claimed_idx = q.get("correctOption")
+                if verified_idx == -2:
+                    print("    ⚠️ Could not verify answer (API/parse failure) — keeping question, unverified.")
+                elif verified_idx != claimed_idx:
+                    stats["rejected"] += 1
+                    reason = f"Answer verification mismatch (claimed {claimed_idx}, verifier got {verified_idx})"
+                    stats["rejections"]["Answer Verification Mismatch"] = stats["rejections"].get("Answer Verification Mismatch", 0) + 1
                     print(f"    ⚠️ Rejected question: {reason}")
                     continue
 
