@@ -2,10 +2,17 @@
 run_daily_automation.py — Master Automation Orchestrator for Daily Vault & Question Bank.
 
 Performs complete daily maintenance:
-1. Top up Firestore question bank with high-quality AI generated questions (`auto_question_pipeline.py`).
-2. Audit & purge corrupted or noisy questions (`cleanup_corrupted_questions.py`).
-3. Schedule Daily Vault questions for JEE and NEET (`vault_scheduler.py`).
-4. Bump Firestore metadata version timestamp so all mobile clients auto-sync.
+1. Fetch/sanitize web-sourced questions, independently answer-verified (`web_question_ingestion.py`).
+2. Top up Firestore question bank with high-quality AI generated questions, independently answer-verified (`auto_question_pipeline.py`).
+3. Purge duplicate questions (`purge_duplicate_questions.py`) and audit/purge corrupted or noisy questions (`cleanup_corrupted_questions.py`).
+4. Schedule Daily Vault questions for JEE and NEET (`vault_scheduler.py`).
+5. Rebuild Power 100 for JEE and NEET from the live, cleaned bank (`build_power100_live.py`).
+6. Bump Firestore metadata version timestamp so all mobile clients auto-sync.
+
+Any step that raises is caught, logged, and recorded — the run still attempts every
+remaining step, but if any step failed the script exits non-zero and prints a
+"FAILED STEP(S)" summary instead of claiming success, so a GitHub Actions run
+shows red instead of silently reporting green on a partial failure.
 
 Usage:
     # Full daily execution (live)
@@ -88,6 +95,8 @@ def main():
     print(f"🛡️ Mode              : {'DRY RUN' if args.dry_run else 'LIVE PRODUCTION'}")
     print("=================================================================")
 
+    failed_steps: list[str] = []
+
     db = None
     if not args.dry_run:
         db = init_firebase(args.creds)
@@ -108,6 +117,7 @@ def main():
         run_web_ingestion(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
     except Exception as e:
         print(f"❌ Error during Web Question Ingestion: {e}")
+        failed_steps.append(f"Web Question Ingestion: {e}")
 
     # Web ingestion and the AI pipeline both call the same Groq free-tier
     # quota. Pause between them so step 2 doesn't start inside the same
@@ -119,6 +129,7 @@ def main():
         run_pipeline(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
     except Exception as e:
         print(f"❌ Error during AI Question Generation Pipeline: {e}")
+        failed_steps.append(f"AI Question Generation Pipeline: {e}")
 
     if not args.dry_run and db:
         # Re-fetch once now that steps 1-2 have written new docs, and share
@@ -135,6 +146,7 @@ def main():
             _, deleted_dup_ids = purge_duplicates(db, dry_run=args.dry_run, all_docs=post_write_docs)
         except Exception as e:
             print(f"❌ Error during Deduplication Audit: {e}")
+            failed_steps.append(f"Deduplication Audit: {e}")
 
         # Step 3: Clean up any corrupted questions. Drop docs purge_duplicates
         # just deleted from the shared snapshot so the audit doesn't re-scan
@@ -146,6 +158,7 @@ def main():
             run_cleanup_audit(db, dry_run=args.dry_run, all_docs=audit_docs)
         except Exception as e:
             print(f"❌ Error during Corrupted Question Audit: {e}")
+            failed_steps.append(f"Corrupted Question Audit: {e}")
 
         # Step 3: Schedule Daily Vault for JEE and NEET
         try:
@@ -154,6 +167,7 @@ def main():
                 schedule_vault(db, target_date, exam, count=args.vault_count)
         except Exception as e:
             print(f"❌ Error during Vault Scheduling: {e}")
+            failed_steps.append(f"Vault Scheduling: {e}")
 
         # Step 4: Rebuild Power 100 for JEE and NEET from the now-cleaned live bank.
         # Re-fetch rather than reuse audit_docs — that snapshot predates today's
@@ -165,6 +179,7 @@ def main():
                 run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
         except Exception as e:
             print(f"❌ Error during Power 100 Rebuild: {e}")
+            failed_steps.append(f"Power 100 Rebuild: {e}")
 
         # Step 5: Increment metadata version
         try:
@@ -175,9 +190,18 @@ def main():
             print("\n🔄 Metadata version updated. Clients will automatically download the new vault!")
         except Exception as e:
             print(f"⚠️ Metadata update failed: {e}")
+            failed_steps.append(f"Metadata Version Update: {e}")
 
-    print("\n🎉 Daily Automation Completed Successfully!")
-    print("=================================================================\n")
+    print("\n=================================================================")
+    if failed_steps:
+        print(f"⚠️ Daily Automation Completed WITH {len(failed_steps)} FAILED STEP(S):")
+        for step in failed_steps:
+            print(f"   ❌ {step}")
+        print("=================================================================\n")
+        sys.exit(1)
+    else:
+        print("🎉 Daily Automation Completed Successfully!")
+        print("=================================================================\n")
 
 
 if __name__ == "__main__":

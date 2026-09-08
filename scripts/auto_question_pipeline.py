@@ -362,7 +362,11 @@ Respond with ONLY a raw JSON object, no markdown: {{"correctIndex": <0-3, or -1 
         if not raw:
             return -2
         match = re.search(r'\{[^{}]*"correctIndex"[^{}]*\}', raw, re.DOTALL)
-        data = json.loads(match.group(0) if match else raw)
+        candidate = match.group(0) if match else raw
+        try:
+            data = json.loads(candidate)
+        except Exception:
+            data = json.loads(repair_latex_json_escapes(candidate))
         idx = data.get("correctIndex")
         return idx if isinstance(idx, int) else -2
     except Exception as e:
