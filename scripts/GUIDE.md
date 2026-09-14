@@ -45,6 +45,16 @@ python scripts/manage.py schedule
 - Sets the reward to **+50 Coins**.
 - **Sends a Push Notification** to all users' phones instantly.
 
+### 3. Master Daily Automation (GitHub Actions)
+The daily automation runs automatically in the cloud every night at 12:00 AM IST (18:30 UTC) via `.github/workflows/daily_automation.yml`:
+```powershell
+python scripts/run_daily_automation.py
+```
+- **Web Ingestion**: Scrapes and sanitizes PCM/PCB web questions (`web_question_ingestion.py`).
+- **Dual-Pass Verification**: Independently re-derives answers before accepting.
+- **Daily Vault**: Auto-publishes 30 questions for JEE and 30 for NEET daily (`vault_scheduler.py`).
+- **Bi-Weekly Power 100**: Refreshes standard tests every **2 weeks (1st and 15th of the month)** (`build_power100_live.py`). To force a rebuild: `python scripts/run_daily_automation.py --force-power100`.
+
 ---
 
 ## 📄 Converting PDFs to JSON
