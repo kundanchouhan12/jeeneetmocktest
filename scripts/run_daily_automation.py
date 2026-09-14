@@ -84,6 +84,7 @@ def main():
     parser.add_argument("--count-per-subj", type=int, default=3, help="Questions to generate per subject (default: 3)")
     parser.add_argument("--vault-count", type=int, default=30, help="Vault questions per exam (default: 30)")
     parser.add_argument("--creds", default=SERVICE_ACCOUNT_PATH, help="Path to serviceAccountKey.json")
+    parser.add_argument("--force-power100", action="store_true", help="Force Power 100 rebuild regardless of bi-weekly schedule")
 
     args = parser.parse_args()
 
@@ -169,17 +170,21 @@ def main():
             print(f"❌ Error during Vault Scheduling: {e}")
             failed_steps.append(f"Vault Scheduling: {e}")
 
-        # Step 4: Rebuild Power 100 for JEE and NEET from the now-cleaned live bank.
-        # Re-fetch rather than reuse audit_docs — that snapshot predates today's
-        # ingestion/pipeline/vault writes and would under-select from the newest content.
-        try:
-            print("\n🏆 Rebuilding Power 100...")
-            power100_docs = db.collection('questions').get()
-            for exam in ["JEE", "NEET"]:
-                run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
-        except Exception as e:
-            print(f"❌ Error during Power 100 Rebuild: {e}")
-            failed_steps.append(f"Power 100 Rebuild: {e}")
+        # Step 4: Rebuild Power 100 for JEE and NEET bi-weekly (1st & 15th of each month, or when forced).
+        # Gives users 2 weeks to complete Power 100 standard tests without daily resets.
+        today = datetime.date.today()
+        is_power100_day = args.force_power100 or (today.day in (1, 15))
+        if is_power100_day:
+            try:
+                print(f"\n🏆 Rebuilding Power 100 (Bi-Weekly Schedule: Day {today.day})...")
+                power100_docs = db.collection('questions').get()
+                for exam in ["JEE", "NEET"]:
+                    run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
+            except Exception as e:
+                print(f"❌ Error during Power 100 Rebuild: {e}")
+                failed_steps.append(f"Power 100 Rebuild: {e}")
+        else:
+            print(f"\nℹ️ Skipping Power 100 Rebuild today (Runs bi-weekly on 1st & 15th of month; today is day {today.day}).")
 
         # Step 5: Increment metadata version
         try:
