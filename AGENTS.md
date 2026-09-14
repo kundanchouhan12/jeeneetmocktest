@@ -44,3 +44,14 @@ The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` 
 - **JEE (PCM)**: Physics, Chemistry, Maths (22 + 22 + 15 chapters).
 - **NEET (PCB)**: Physics, Chemistry, Biology (22 + 22 + 15 chapters).
 - **Official Chapters**: All questions are strictly mapped to Class 11 & Class 12 NTA NCERT chapters in `OFFICIAL_CHAPTERS`.
+
+---
+
+## 💡 Core Architecture Rationale & Play Store User Feedback
+
+- **The Problem Solved**: Users previously gave 1-star reviews ("the same question is being repeated again and again") because of legacy recirculation logic that reshuffled exhausted questions, and a vault scheduler that lacked deduplication.
+- **The Permanent Fix**:
+  - **Daily Fresh Supply**: `web_question_ingestion.py` + `auto_question_pipeline.py` automatically inject new unique questions every single night into Firestore so the bank never runs out.
+  - **Zero Duplicates Policy**: `purge_duplicate_questions.py` enforces normalized string fingerprint matching across all 3,300+ questions.
+  - **Progress Preservation**: Power 100 rebuilds bi-weekly (1st & 15th) so users don't lose test progress daily.
+
