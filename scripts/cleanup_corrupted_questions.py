@@ -64,7 +64,7 @@ def is_corrupted(q):
         if re.search(pat, text, re.IGNORECASE):
             return True, f"Incomplete equation pattern ({pat})"
 
-    # Rule 5: Text patterns indicating parsing failure / unsupported LaTeX
+    # Rule 5: Text patterns indicating parsing failure / unsupported LaTeX / web noise
     bad_patterns = [
         r'refer to standard textbooks',
         r'Note:\s*For SHORT ANSWER',
@@ -76,10 +76,14 @@ def is_corrupted(q):
         r'^\s*:\s*[A-D]\s*Note:',
         r'\\begin\{array\}',
         r'\\mbox\{',
+        r'Page\s*\d+',
+        r'Practice Workbook',
+        r'Answer Key\s*—',
     ]
+    all_content = text + " " + " ".join(str(o) for o in options) + " " + q.get('explanation', '')
     for pattern in bad_patterns:
-        if re.search(pattern, text, re.IGNORECASE):
-            return True, f"Matched bad pattern: {pattern}"
+        if re.search(pattern, all_content, re.IGNORECASE):
+            return True, f"Matched bad pattern in text/options: {pattern}"
             
     return False, ""
 

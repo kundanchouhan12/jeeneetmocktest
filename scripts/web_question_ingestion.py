@@ -203,7 +203,10 @@ def sanitize_web_content(text: str) -> str:
         r'all rights reserved.*$',
         r'follow us on.*$',
         r'master practice workbook.*$',
+        r'practice workbook.*$',
         r'refer to standard textbook.*$',
+        r'page\s*\d+.*$',
+        r'answer key.*$',
         r'[-_]{5,}'  # divider lines
     ]
     for pattern in patterns_to_remove:
