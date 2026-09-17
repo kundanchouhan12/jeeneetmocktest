@@ -9,7 +9,7 @@ This document persists key architecture decisions, automation schedules, and pip
 The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` and runs automatically every night at **12:00 AM IST (18:30 UTC)**.
 
 ### Pipeline Execution Order:
-1. **Web Question Ingestion (`scripts/web_question_ingestion.py`)**:
+1. **Web Question Ingestion (`scripts/web_question_ingestion.py` & `scripts/neet_web_question_ingestion.py`)**:
    - Extracts JEE (PCM) & NEET (PCB) questions from web educational sources.
    - **Sanitization**: Removes web noise, headers, footers, URLs, page numbers, and diagram dependencies.
    - **LaTeX Engine**: `repair_latex_json_escapes` left-to-right single pass scanner for mixed single/double backslashes; `wrap_bare_latex` for options math rendering.

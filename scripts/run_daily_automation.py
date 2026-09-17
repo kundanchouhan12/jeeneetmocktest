@@ -42,6 +42,7 @@ from cleanup_corrupted_questions import is_corrupted
 from purge_duplicate_questions import purge_duplicates
 from vault_scheduler import schedule_vault
 from web_question_ingestion import run_web_ingestion
+from neet_web_question_ingestion import run_neet_web_ingestion
 
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
@@ -113,9 +114,11 @@ def main():
         except Exception as e:
             print(f"⚠️ Could not pre-fetch question bank for dedup: {e}")
 
-    # Step 1: Web Question Ingestion & Noise Sanitization
+    # Step 1: Web Question Ingestion & Noise Sanitization (JEE & NEET)
     try:
-        run_web_ingestion(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
+        run_web_ingestion(count_per_subject=args.count_per_subj, target_exam="JEE", dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
+        time.sleep(INTER_REQUEST_DELAY if 'INTER_REQUEST_DELAY' in locals() else 10)
+        run_neet_web_ingestion(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
     except Exception as e:
         print(f"❌ Error during Web Question Ingestion: {e}")
         failed_steps.append(f"Web Question Ingestion: {e}")

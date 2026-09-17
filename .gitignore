@@ -8,6 +8,10 @@ google-services-admin*.json
 scripts/jee_power100.json
 scripts/neet_power100.json
 
+# Python cache
+__pycache__/
+*.pyc
+
 # Android build
 *.iml
 .gradle/
@@ -19,3 +23,5 @@ captures/
 .cxx/
 *.apk
 *.aab
+hs_err_pid7292.log
+hs_err_pid7292.log
