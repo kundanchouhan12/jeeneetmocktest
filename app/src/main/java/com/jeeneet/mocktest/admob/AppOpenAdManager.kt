@@ -65,6 +65,7 @@ class AppOpenAdManager(private val application: Application) :
         val activity = currentActivity ?: return
         if (activity.isAdExcluded()) return                    // Auth screens & test — skip
         if (PrefManager.isAdsRemoved(activity)) return
+        if (PrefManager.isFirstLaunch(activity)) return        // Skip App Open Ad on user's first launch session
         if (System.currentTimeMillis() - lastShownMs < SHOW_COOLDOWN) return
         if (!isAdAvailable()) {
             isShowPending = true   // Ad still loading (cold start) — show as soon as it's ready
@@ -100,7 +101,8 @@ class AppOpenAdManager(private val application: Application) :
                         isShowPending = false
                         val activity = currentActivity
                         if (activity != null && !activity.isAdExcluded() &&
-                            !PrefManager.isAdsRemoved(activity)) {
+                            !PrefManager.isAdsRemoved(activity) &&
+                            !PrefManager.isFirstLaunch(activity)) {
                             showAdIfAvailable(activity)
                         }
                     }

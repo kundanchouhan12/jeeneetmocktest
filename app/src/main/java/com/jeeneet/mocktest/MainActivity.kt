@@ -96,6 +96,20 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.StartIntentSenderForResult()
     ) { /* result ignored — flexible: user can dismiss; immediate: system handles retry */ }
 
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            try {
+                NotificationHelper.scheduleDailyReminder(this)
+                NotificationHelper.scheduleEveningReminder(this)
+                NotificationHelper.scheduleDailyVaultReminder(this)
+            } catch (e: Exception) {
+                android.util.Log.e("MainActivity", "Failed to schedule reminders: ${e.message}")
+            }
+        }
+    }
+
     // Persistent native ad container — created once, ad loaded/refreshed via loadNativeAd()
     private val nativeAdContainer by lazy {
         FrameLayout(this).apply {
@@ -234,6 +248,20 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         setIntent(intent)
         NotificationRouter.handle(this, intent)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        checkNotificationPermission()
+    }
+
+    private fun checkNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
+                != PackageManager.PERMISSION_GRANTED) {
+                notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+            }
+        }
     }
 
 
