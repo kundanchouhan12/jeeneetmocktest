@@ -82,7 +82,7 @@ def run_cleanup_audit(db, dry_run: bool = False, all_docs=None):
 def main():
     parser = argparse.ArgumentParser(description="Master Daily Automation for MockTestApp")
     parser.add_argument("--dry-run", action="store_true", help="Perform dry run without database writes")
-    parser.add_argument("--count-per-subj", type=int, default=3, help="Questions to generate per subject (default: 3)")
+    parser.add_argument("--count-per-subj", type=int, default=10, help="Questions to generate per subject (default: 10)")
     parser.add_argument("--vault-count", type=int, default=30, help="Vault questions per exam (default: 30)")
     parser.add_argument("--creds", default=SERVICE_ACCOUNT_PATH, help="Path to serviceAccountKey.json")
     parser.add_argument("--force-power100", action="store_true", help="Force Power 100 rebuild regardless of bi-weekly schedule")
