@@ -53,7 +53,23 @@ The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` 
 - **The Permanent Fix**:
   - **Daily Fresh Supply**: `web_question_ingestion.py` + `auto_question_pipeline.py` automatically inject new unique questions every single night into Firestore so the bank never runs out.
   - **Zero Duplicates Policy**: `purge_duplicate_questions.py` enforces normalized string fingerprint matching across all 3,300+ questions.
-  - **Progress Preservation**: Power 100 rebuilds bi-weekly (1st & 15th) so users don't lose test progress daily.
+  - **Progress Preservation (7-Day Cycle)**: Power 100 refreshes weekly (every Monday) so users have 7 days of stable test progress without daily resets.
+  - **Full Mock 7-Day Anti-Repetition**: Full-length 180 min (JEE) / 200 min (NEET) simulations and weekly mocks use ISO 8601 week keys (`YYYY-'W'ww`) with `pickWithSeenTracking` — questions never repeat week-over-week until the pool is fully exhausted.
+
+---
+
+## 🎯 Student Engagement & Retention Features (Added 2026-09-18)
+
+### 1. ⏱️ Exam Countdown Banner (`MainActivity.kt`, `PrefManager.kt`)
+- **Firestore Sourced**: Exam dates stored in `metadata/exam_dates` (`jee_main_session1`, `neet_ug`), cached in `PrefManager`.
+- **120-Day Visibility**: Banner auto-displays only within 120 days of exam date; auto-hides after the date passes or if > 120 days away.
+- **3 Urgency Tiers**: Critical (<15 days, red gradient), Urgent (15–45 days, amber), Standard (46–120 days, blue gradient).
+
+### 2. 🧠 "Revise My Mistakes" Error Notebook (`ReviseMyMistakesActivity.kt`, `MockTestRepository.kt`)
+- **Off-Main-Thread Processing**: Aggregation runs on `Dispatchers.IO` in `MockTestRepository.getWrongQuestions()`.
+- **Deduplication by `Question.id`**: Unique mistakes collected across all completed test history.
+- **Excludes Unattempted**: Only genuine wrong attempts (`ans != null && ans != correctOptionIndex`) are tracked.
+- **Bite-Sized Sessions**: Capped at 30 questions max per revision session with weakest-subject focus mode.
 
 ---
 
