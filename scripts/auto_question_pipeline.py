@@ -27,7 +27,10 @@ try:
 except Exception:
     pass
 
-GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "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")
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
+if not GROQ_API_KEY:
+    print("ERROR: GROQ_API_KEY environment variable is not set.")
+    sys.exit(1)
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL = "openai/gpt-oss-20b"
 

@@ -1,6 +1,7 @@
 # Firebase service account keys — NEVER commit these
 scripts/firebase-key.json
 scripts/*-key.json
+scripts/serviceAccountKey.json
 *.serviceAccountKey.json
 google-services-admin*.json
 
@@ -23,5 +24,9 @@ captures/
 .cxx/
 *.apk
 *.aab
-hs_err_pid7292.log
-hs_err_pid7292.log
+
+# JVM crash logs and debug screenshots
+hs_err_pid*.log
+replay_pid*.log
+*.png
+*.jpg

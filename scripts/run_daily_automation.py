@@ -117,7 +117,7 @@ def main():
     # Step 1: Web Question Ingestion & Noise Sanitization (JEE & NEET)
     try:
         run_web_ingestion(count_per_subject=args.count_per_subj, target_exam="JEE", dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
-        time.sleep(INTER_REQUEST_DELAY if 'INTER_REQUEST_DELAY' in locals() else 10)
+        time.sleep(20)  # Same inter-request delay as inside each ingestion script
         run_neet_web_ingestion(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
     except Exception as e:
         print(f"❌ Error during Web Question Ingestion: {e}")
