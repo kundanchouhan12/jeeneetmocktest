@@ -47,7 +47,7 @@ from neet_web_question_ingestion import run_neet_web_ingestion
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
 
-def run_cleanup_audit(db, dry_run: bool = False, all_docs=None):
+def run_cleanup_audit(db, dry_run: bool = False, all_docs=None) -> int:
     print("\n🧹 Running Firestore Corrupted Question Audit...")
     questions_ref = db.collection('questions')
     docs = all_docs if all_docs is not None else questions_ref.get()
@@ -77,6 +77,7 @@ def run_cleanup_audit(db, dry_run: bool = False, all_docs=None):
         print("  ✅ Purge complete.")
     elif corrupted_docs:
         print("  🔎 Dry run: Skipped deletion.")
+    return len(corrupted_docs)
 
 
 def main():
@@ -158,8 +159,9 @@ def main():
         audit_docs = post_write_docs
         if audit_docs is not None and deleted_dup_ids:
             audit_docs = [d for d in audit_docs if d.id not in deleted_dup_ids]
+        deleted_corrupt_count = 0
         try:
-            run_cleanup_audit(db, dry_run=args.dry_run, all_docs=audit_docs)
+            deleted_corrupt_count = run_cleanup_audit(db, dry_run=args.dry_run, all_docs=audit_docs)
         except Exception as e:
             print(f"❌ Error during Corrupted Question Audit: {e}")
             failed_steps.append(f"Corrupted Question Audit: {e}")
@@ -199,6 +201,26 @@ def main():
         except Exception as e:
             print(f"⚠️ Metadata update failed: {e}")
             failed_steps.append(f"Metadata Version Update: {e}")
+
+        # Step 6: Record Daily Health & Growth Summary Telemetry
+        try:
+            final_bank_docs = db.collection('questions').get()
+            total_jee = len([d for d in final_bank_docs if d.to_dict().get('examType') == 'JEE' and not d.id.startswith('vault_')])
+            total_neet = len([d for d in final_bank_docs if d.to_dict().get('examType') == 'NEET' and not d.id.startswith('vault_')])
+            db.collection('metadata').document('daily_health_summary').set({
+                'last_run_timestamp': firestore.SERVER_TIMESTAMP,
+                'target_vault_date': target_date,
+                'duplicates_purged_count': len(deleted_dup_ids),
+                'corrupted_purged_count': deleted_corrupt_count,
+                'live_total_jee': total_jee,
+                'live_total_neet': total_neet,
+                'vault_scheduled_jee': args.vault_count,
+                'vault_scheduled_neet': args.vault_count,
+                'failed_steps_count': len(failed_steps)
+            }, merge=True)
+            print(f"📊 Telemetry saved: {total_jee} JEE / {total_neet} NEET live questions in bank.")
+        except Exception as e:
+            print(f"⚠️ Telemetry summary update failed: {e}")
 
     print("\n=================================================================")
     if failed_steps:

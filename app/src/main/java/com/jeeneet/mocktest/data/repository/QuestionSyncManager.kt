@@ -6,6 +6,7 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.jeeneet.mocktest.data.model.IAPProducts
 import com.jeeneet.mocktest.data.model.Question
+import com.jeeneet.mocktest.utils.AnalyticsManager
 import com.jeeneet.mocktest.utils.PrefManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
@@ -53,7 +54,9 @@ class QuestionSyncManager(private val context: Context) {
      * all packs the user has already unlocked. Call this on app start (background).
      */
     suspend fun checkAndSyncIfNeeded() = withContext(Dispatchers.IO) {
+        val startTime = System.currentTimeMillis()
         try {
+            AnalyticsManager.syncStarted(context, "unlocked_packs")
             val meta = firestore.collection(COL_METADATA)
                 .document(DOC_QUESTION_BANK).get().await()
             val remoteVersion = (meta.getLong("version") ?: 0L).toInt()
@@ -63,11 +66,21 @@ class QuestionSyncManager(private val context: Context) {
                 Log.d(TAG, "Remote v$remoteVersion > local v$localVersion — syncing all unlocked packs")
                 syncAllUnlockedPacks()
                 PrefManager.setLastSyncedVersion(context, remoteVersion)
+                val totalLocal = questionDao.getTotalCount()
+                AnalyticsManager.syncCompleted(
+                    context,
+                    syncType = "unlocked_packs",
+                    version = remoteVersion,
+                    freshCount = 0,
+                    localTotal = totalLocal,
+                    durationMs = System.currentTimeMillis() - startTime
+                )
             } else {
                 Log.d(TAG, "Questions up to date at v$localVersion")
             }
         } catch (e: Exception) {
             Log.w(TAG, "Version check skipped (offline?): ${e.message}")
+            AnalyticsManager.syncFailed(context, "unlocked_packs", e.message ?: "network_error")
         }
     }
 
@@ -231,6 +244,15 @@ class QuestionSyncManager(private val context: Context) {
                         }
                     }
                     Log.d(TAG, "Daily Vault synced: ${questions.size} questions, next refresh: $nextRefresh")
+                    val localTotal = questionDao.getTotalCount()
+                    AnalyticsManager.syncCompleted(
+                        context,
+                        syncType = "daily_vault",
+                        version = 0,
+                        freshCount = questions.size,
+                        localTotal = localTotal,
+                        durationMs = 0L
+                    )
                 } else {
                     PrefManager.setLastVaultSyncDate(context, today)
                     Log.d(TAG, "Daily Vault group unchanged — updated sync date only")
@@ -252,6 +274,7 @@ class QuestionSyncManager(private val context: Context) {
         } catch (e: Exception) {
             // Don't stamp lastCheckedMs on failure so the next launch retries
             Log.w(TAG, "Daily Vault sync failed: ${e.message}")
+            AnalyticsManager.syncFailed(context, "daily_vault", e.message ?: "network_error")
         }
     }
 

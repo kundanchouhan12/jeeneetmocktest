@@ -139,12 +139,21 @@ class Power100SyncManager(private val context: Context) {
             dao.insertQuestions(questions)
             prefs.edit().putLong(versionKey(exam), remoteVersion).apply()
             Log.i(TAG, "Power100 synced for $exam: v$remoteVersion, ${questions.size} questions")
+            com.jeeneet.mocktest.utils.AnalyticsManager.syncCompleted(
+                context,
+                syncType = "power100_$exam",
+                version = remoteVersion.toInt(),
+                freshCount = questions.size,
+                localTotal = questions.size,
+                durationMs = 0L
+            )
             null // success
 
         } catch (e: Exception) {
             val msg = e.message ?: e.javaClass.simpleName
             Log.e(TAG, "Sync failed for $exam: $msg")
             // Don't update lastCheckedKey on failure — next launch will retry
+            com.jeeneet.mocktest.utils.AnalyticsManager.syncFailed(context, "power100_$exam", msg)
             msg
         }
     }

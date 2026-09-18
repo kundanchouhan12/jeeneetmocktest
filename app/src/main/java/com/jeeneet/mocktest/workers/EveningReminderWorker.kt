@@ -35,11 +35,16 @@ class EveningReminderWorker(ctx: Context, params: WorkerParameters) : Worker(ctx
                     NotificationHelper.showComebackNotif(ctx)
                 }
             }
-            // Fallback
             else -> {
                 NotificationHelper.showDailyReminderNotif(ctx, exam)
             }
         }
+
+        // Schedule 11 PM emergency alert if streak is at risk
+        if (streak > 0) {
+            NotificationHelper.scheduleStreakEmergency(ctx)
+        }
+
         return Result.success()
     }
 }

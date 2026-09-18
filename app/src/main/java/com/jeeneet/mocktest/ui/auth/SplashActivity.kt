@@ -115,8 +115,16 @@ class SplashActivity : AppCompatActivity() {
             val user = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
             val dest = when {
                 !PrefManager.isOnboardingDone(this@SplashActivity) -> OnboardingActivity::class.java
-                user != null && user.isEmailVerified               -> MainActivity::class.java
-                else                                               -> LoginActivity::class.java
+                user != null && user.isEmailVerified               -> {
+                    PrefManager.clearGuestMode(this@SplashActivity)
+                    MainActivity::class.java
+                }
+                else                                               -> {
+                    // Allow guest access — user will see home screen without logging in.
+                    // Login is prompted only when they attempt a restricted action (e.g. start test).
+                    PrefManager.setGuestMode(this@SplashActivity, true)
+                    MainActivity::class.java
+                }
             }
             startActivity(Intent(this@SplashActivity, dest))
             finish()

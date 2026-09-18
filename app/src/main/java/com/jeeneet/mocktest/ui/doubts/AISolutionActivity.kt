@@ -57,6 +57,7 @@ class AISolutionActivity : AppCompatActivity() {
             
             setContentView(buildLayout(modelUsed))
             renderSolution(originalSolution)
+            AnalyticsManager.screenView(this, "AISolutionActivity")
         } catch (e: Exception) {
             android.util.Log.e("AISolution", "CRASH in onCreate", e)
         }

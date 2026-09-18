@@ -546,7 +546,10 @@ class ScanActivity : AppCompatActivity() {
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(output: ImageCapture.OutputFileResults) {
                     decodeSafeBitmap(outFile.absolutePath)
-                        ?.let { showReviewMode(it) }
+                        ?.let {
+                            AnalyticsManager.doubtImageCaptured(this@ScanActivity, "camera")
+                            showReviewMode(it)
+                        }
                         ?: Toast.makeText(this@ScanActivity, "Failed to load captured image", Toast.LENGTH_SHORT).show()
                 }
                 override fun onError(e: ImageCaptureException) {
@@ -563,7 +566,10 @@ class ScanActivity : AppCompatActivity() {
             options.inSampleSize = calculateInSampleSize(options, 1024, 1024)
             options.inJustDecodeBounds = false
             contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) }
-        }.getOrNull()?.let { showReviewMode(it) }
+        }.getOrNull()?.let {
+            AnalyticsManager.doubtImageCaptured(this, "gallery")
+            showReviewMode(it)
+        }
             ?: Toast.makeText(this, "Failed to load image", Toast.LENGTH_SHORT).show()
     }
 
@@ -689,6 +695,8 @@ class ScanActivity : AppCompatActivity() {
         isProcessing = true
         loadingOverlay.visibility = View.VISIBLE
         analyzeBtn.isEnabled = false
+        val apiStartTime = System.currentTimeMillis()
+        AnalyticsManager.doubtCropConfirmed(this)
         AnalyticsManager.scanStarted(this)
 
         // Dynamic loading messages
@@ -735,6 +743,8 @@ class ScanActivity : AppCompatActivity() {
                     }
 
                     task.onSuccess { result ->
+                        val duration = System.currentTimeMillis() - apiStartTime
+                        AnalyticsManager.doubtApiLatency(this@ScanActivity, duration, isSuccess = true)
                         val fromCache = result.cacheStatus == CacheStatus.HIT
                         if (fromCache) AnalyticsManager.scanCacheHit(this@ScanActivity)
                         else {
@@ -753,6 +763,8 @@ class ScanActivity : AppCompatActivity() {
                         AISolutionActivity.start(this@ScanActivity, result.markdown, result.modelUsed)
                     }
                     .onFailure { error ->
+                        val duration = System.currentTimeMillis() - apiStartTime
+                        AnalyticsManager.doubtApiLatency(this@ScanActivity, duration, isSuccess = false)
                         isProcessing = false
                         msgJob.cancel()
                         loadingOverlay.visibility = View.GONE
@@ -775,6 +787,8 @@ class ScanActivity : AppCompatActivity() {
                 }
             }
             .addOnFailureListener { e ->
+                val duration = System.currentTimeMillis() - apiStartTime
+                AnalyticsManager.doubtApiLatency(this@ScanActivity, duration, isSuccess = false)
                 isProcessing = false
                 msgJob.cancel()
                 loadingOverlay.visibility = View.GONE

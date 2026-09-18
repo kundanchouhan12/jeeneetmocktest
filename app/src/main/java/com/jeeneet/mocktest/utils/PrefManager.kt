@@ -13,6 +13,13 @@ object PrefManager {
     fun isFirstLaunch(ctx: Context): Boolean = prefs(ctx).getBoolean("first_launch", true)
     fun setFirstLaunchDone(ctx: Context) = prefs(ctx).edit().putBoolean("first_launch", false).apply()
 
+    // Guest mode — user skipped login, browsing anonymously
+    fun isGuestMode(ctx: Context): Boolean = prefs(ctx).getBoolean("guest_mode", false)
+    fun setGuestMode(ctx: Context, enabled: Boolean) =
+        prefs(ctx).edit().putBoolean("guest_mode", enabled).apply()
+    fun clearGuestMode(ctx: Context) =
+        prefs(ctx).edit().putBoolean("guest_mode", false).apply()
+
     // ─── Per-user IAP state ───────────────────────────────────────────────────
     // All purchase flags are stored under the Firebase UID as a key prefix.
     // Switching accounts instantly restores the correct purchase state for each
@@ -632,4 +639,11 @@ object PrefManager {
         prefs(ctx).getLong("vault_last_checked_ms_${exam}_${uid()}", 0L)
     fun setVaultLastCheckedMs(ctx: Context, exam: String, ms: Long) =
         prefs(ctx).edit().putLong("vault_last_checked_ms_${exam}_${uid()}", ms).apply()
+
+    // ─── In-App Review ────────────────────────────────────────────────────────
+    fun hasShownReviewPrompt(ctx: Context): Boolean =
+        prefs(ctx).getBoolean("in_app_review_shown_${uid()}", false)
+
+    fun setReviewPromptShown(ctx: Context) =
+        prefs(ctx).edit().putBoolean("in_app_review_shown_${uid()}", true).apply()
 }

@@ -51,6 +51,7 @@ import com.jeeneet.mocktest.ui.streak.StreakCalendarActivity
 import com.jeeneet.mocktest.ui.style.*
 import com.jeeneet.mocktest.ui.test.TestActivity
 import com.jeeneet.mocktest.utils.AnalyticsManager
+import com.jeeneet.mocktest.utils.InAppReviewManager
 import com.jeeneet.mocktest.utils.NotificationHelper
 import com.jeeneet.mocktest.utils.PrefManager
 import com.jeeneet.mocktest.services.NotificationRouter
@@ -96,20 +97,6 @@ class MainActivity : AppCompatActivity() {
         ActivityResultContracts.StartIntentSenderForResult()
     ) { /* result ignored — flexible: user can dismiss; immediate: system handles retry */ }
 
-    private val notificationPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (isGranted) {
-            try {
-                NotificationHelper.scheduleDailyReminder(this)
-                NotificationHelper.scheduleEveningReminder(this)
-                NotificationHelper.scheduleDailyVaultReminder(this)
-            } catch (e: Exception) {
-                android.util.Log.e("MainActivity", "Failed to schedule reminders: ${e.message}")
-            }
-        }
-    }
-
     // Persistent native ad container — created once, ad loaded/refreshed via loadNativeAd()
     private val nativeAdContainer by lazy {
         FrameLayout(this).apply {
@@ -127,27 +114,22 @@ class MainActivity : AppCompatActivity() {
 
         // Status bar restored per user request
 
-        val user = try {
-            val auth = FirebaseAuth.getInstance()
-            val u = auth.currentUser
-            if (u == null || !u.isEmailVerified) {
-                if (u != null && !u.isEmailVerified) {
-                    Toast.makeText(this, "Please verify your email", Toast.LENGTH_SHORT).show()
-                    auth.signOut()
-                }
-                startActivity(Intent(this, com.jeeneet.mocktest.ui.auth.LoginActivity::class.java))
-                finish()
-                return
-            }
-            u
-        } catch (e: Exception) {
-            android.util.Log.e("MainActivity", "FirebaseAuth failed: ${e.message}")
-            startActivity(Intent(this, com.jeeneet.mocktest.ui.auth.LoginActivity::class.java))
-            finish()
-            return
-        }
+        val firebaseUser = try { FirebaseAuth.getInstance().currentUser } catch (e: Exception) { null }
+        val isGuest = firebaseUser == null || !firebaseUser.isEmailVerified
 
-        PrefManager.syncIAPUserIfNeeded(this, user.uid)
+        if (!isGuest) {
+            // Verified user — clear any stale guest flag and run full setup
+            PrefManager.clearGuestMode(this)
+            try {
+                PrefManager.syncIAPUserIfNeeded(this, firebaseUser!!.uid)
+            } catch (e: Exception) {
+                android.util.Log.e("MainActivity", "syncIAPUserIfNeeded failed: ${e.message}")
+            }
+        } else {
+            // Guest user — ensure guest flag is set (may arrive here from SplashActivity)
+            PrefManager.setGuestMode(this, true)
+            android.util.Log.d("MainActivity", "Running in guest mode — restricted features gated")
+        }
         fomoCount = PrefManager.getCachedDailyAttempts(this)
 
         // Initial permission check logic moved to onResume for better lifecycle handling
@@ -172,6 +154,21 @@ class MainActivity : AppCompatActivity() {
 
         val hasAnyAccess = PrefManager.isAllAccessUnlocked(this) ||
                 com.jeeneet.mocktest.data.model.IAPProducts.ALL_PACKS.any { PrefManager.isPackUnlocked(this, it) }
+        
+        // Initialize Firebase Analytics User Properties
+        try {
+            AnalyticsManager.setUserProperties(
+                ctx = this,
+                targetExam = selectedExam,
+                isPremium = hasAnyAccess,
+                streakDays = PrefManager.getStreak(this),
+                bankVersion = PrefManager.getLastSyncedVersion(this)
+            )
+            AnalyticsManager.screenView(this, "HomeScreen")
+        } catch (e: Exception) {
+            android.util.Log.e("MainActivity", "Failed to set analytics user properties: ${e.message}")
+        }
+
         if (hasAnyAccess) {
             lifecycleScope.launch {
                 try {
@@ -194,52 +191,56 @@ class MainActivity : AppCompatActivity() {
             android.util.Log.e("MainActivity", "Failed to check for updates: ${e.message}")
         }
 
-        try {
-            iapManager = IAPManager(this)
-            iapManager.onPurchaseSuccess = {
-                if (::contentLayout.isInitialized) runOnUiThread { buildContent() }
-            }
-            // Run Firestore sync only after Play restore completes so revocations from Play
-            // (e.g. refunded or expired test purchases) take precedence over stale Firestore docs.
-            iapManager.onRestoreComplete = {
-                if (!hasCompletedInitialSync) {
-                hasCompletedInitialSync = true
-                runOnUiThread {
-                    try {
-                        if (::iapManager.isInitialized) {
-                            iapManager.syncPurchasesFromFirestore {
-                                com.jeeneet.mocktest.data.repository.ScanRepository(this@MainActivity).syncWithCloud {
-                                    runOnUiThread {
-                                        try {
-                                            if (requiresHomeRefresh && ::contentLayout.isInitialized) buildContent()
-                                            val streak = PrefManager.getStreak(this@MainActivity)
-                                            com.jeeneet.mocktest.data.repository.AchievementManager.checkStreak(this@MainActivity, streak)
-                                            syncFcmToken()
-                                            lifecycleScope.launch {
-                                                QuestionSyncManager(this@MainActivity).syncDailyVault()
-                                                // Rebuild the vault card so "Syncing…" becomes "Questions Ready"
-                                                runOnUiThread {
-                                                    if (::contentLayout.isInitialized) buildContent()
+        if (!isGuest) {
+            // Only connect IAP and run Firestore sync for authenticated users.
+            // Guests have no purchase history to restore.
+            try {
+                iapManager = IAPManager(this)
+                iapManager.onPurchaseSuccess = {
+                    if (::contentLayout.isInitialized) runOnUiThread { buildContent() }
+                }
+                // Run Firestore sync only after Play restore completes so revocations from Play
+                // (e.g. refunded or expired test purchases) take precedence over stale Firestore docs.
+                iapManager.onRestoreComplete = {
+                    if (!hasCompletedInitialSync) {
+                    hasCompletedInitialSync = true
+                    runOnUiThread {
+                        try {
+                            if (::iapManager.isInitialized) {
+                                iapManager.syncPurchasesFromFirestore {
+                                    com.jeeneet.mocktest.data.repository.ScanRepository(this@MainActivity).syncWithCloud {
+                                        runOnUiThread {
+                                            try {
+                                                if (requiresHomeRefresh && ::contentLayout.isInitialized) buildContent()
+                                                val streak = PrefManager.getStreak(this@MainActivity)
+                                                com.jeeneet.mocktest.data.repository.AchievementManager.checkStreak(this@MainActivity, streak)
+                                                syncFcmToken()
+                                                lifecycleScope.launch {
+                                                    QuestionSyncManager(this@MainActivity).syncDailyVault()
+                                                    // Rebuild the vault card so "Syncing…" becomes "Questions Ready"
+                                                    runOnUiThread {
+                                                        if (::contentLayout.isInitialized) buildContent()
+                                                    }
                                                 }
+                                                NotificationRouter.handle(this@MainActivity, intent)
+                                            } catch (e: Exception) {
+                                                android.util.Log.e("MainActivity", "Post-sync UI update failed: ${e.message}")
                                             }
-                                            NotificationRouter.handle(this@MainActivity, intent)
-                                        } catch (e: Exception) {
-                                            android.util.Log.e("MainActivity", "Post-sync UI update failed: ${e.message}")
                                         }
                                     }
                                 }
                             }
+                        } catch (e: Exception) {
+                            android.util.Log.e("MainActivity", "Firestore sync failed: ${e.message}")
                         }
-                    } catch (e: Exception) {
-                        android.util.Log.e("MainActivity", "Firestore sync failed: ${e.message}")
                     }
+                    } // end if (!hasCompletedInitialSync)
                 }
-                } // end if (!hasCompletedInitialSync)
+                iapManager.connect()
+            } catch (e: Exception) {
+                android.util.Log.e("MainActivity", "IAPManager init failed: ${e.message}")
             }
-            iapManager.connect()
-        } catch (e: Exception) {
-            android.util.Log.e("MainActivity", "IAPManager init failed: ${e.message}")
-        }
+        } // end if (!isGuest)
 
         setContentView(buildLayoutWithDrawer())
     }
@@ -250,18 +251,131 @@ class MainActivity : AppCompatActivity() {
         NotificationRouter.handle(this, intent)
     }
 
-    override fun onResume() {
-        super.onResume()
-        checkNotificationPermission()
-    }
+    /**
+     * Shows a non-blocking bottom sheet prompting the guest to sign in or sign up.
+     * Replaces hard redirects to LoginActivity for restricted actions.
+     * The guest can tap "Later" to stay on the home screen.
+     */
+    fun requireLogin(actionLabel: String = "this feature") {
+        if (!PrefManager.isGuestMode(this)) return  // Already logged in — shouldn't be called
 
-    private fun checkNotificationPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS)
-                != PackageManager.PERMISSION_GRANTED) {
-                notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
-            }
+        val ctx = this
+        val sheet = com.google.android.material.bottomsheet.BottomSheetDialog(ctx)
+
+        val container = android.widget.LinearLayout(ctx).apply {
+            orientation = android.widget.LinearLayout.VERTICAL
+            val pad = (20 * resources.displayMetrics.density).toInt()
+            setPadding(pad, pad, pad, pad)
+            setBackgroundColor(android.graphics.Color.parseColor("#1E293B"))
         }
+
+        // Handle bar
+        container.addView(android.view.View(ctx).apply {
+            layoutParams = android.widget.LinearLayout.LayoutParams(
+                (40 * resources.displayMetrics.density).toInt(),
+                (4 * resources.displayMetrics.density).toInt()
+            ).also {
+                it.gravity = android.view.Gravity.CENTER_HORIZONTAL
+                it.bottomMargin = (16 * resources.displayMetrics.density).toInt()
+            }
+            setBackgroundColor(android.graphics.Color.parseColor("#4B5563"))
+            background = android.graphics.drawable.GradientDrawable().apply {
+                setColor(android.graphics.Color.parseColor("#4B5563"))
+                cornerRadius = 100f
+            }
+        })
+
+        // Title
+        container.addView(android.widget.TextView(ctx).apply {
+            text = "Sign in to continue"
+            textSize = 20f
+            setTextColor(android.graphics.Color.WHITE)
+            typeface = android.graphics.Typeface.create("sans-serif-medium", android.graphics.Typeface.BOLD)
+            gravity = android.view.Gravity.CENTER
+            layoutParams = android.widget.LinearLayout.LayoutParams(
+                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = (8 * resources.displayMetrics.density).toInt() }
+        })
+
+        // Subtitle
+        container.addView(android.widget.TextView(ctx).apply {
+            text = "Create a free account to access $actionLabel and track your progress."
+            textSize = 14f
+            setTextColor(android.graphics.Color.parseColor("#94A3B8"))
+            gravity = android.view.Gravity.CENTER
+            setLineSpacing(0f, 1.4f)
+            layoutParams = android.widget.LinearLayout.LayoutParams(
+                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = (24 * resources.displayMetrics.density).toInt() }
+        })
+
+        val dp = resources.displayMetrics.density
+
+        // Sign In button
+        val btnSignIn = android.widget.Button(ctx).apply {
+            text = "Sign In"
+            textSize = 16f
+            setTextColor(android.graphics.Color.WHITE)
+            isAllCaps = false
+            background = android.graphics.drawable.GradientDrawable().apply {
+                setColor(android.graphics.Color.parseColor("#F59E0B"))
+                cornerRadius = 12 * dp
+            }
+            layoutParams = android.widget.LinearLayout.LayoutParams(
+                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                (52 * dp).toInt()
+            ).also { it.bottomMargin = (10 * dp).toInt() }
+        }
+        btnSignIn.setOnClickListener {
+            sheet.dismiss()
+            startActivity(Intent(ctx, com.jeeneet.mocktest.ui.auth.LoginActivity::class.java))
+        }
+        container.addView(btnSignIn)
+
+        // Sign Up button
+        val btnSignUp = android.widget.Button(ctx).apply {
+            text = "Create Free Account"
+            textSize = 16f
+            setTextColor(android.graphics.Color.parseColor("#F59E0B"))
+            isAllCaps = false
+            background = android.graphics.drawable.GradientDrawable().apply {
+                setColor(android.graphics.Color.TRANSPARENT)
+                cornerRadius = 12 * dp
+                setStroke((1.5 * dp).toInt(), android.graphics.Color.parseColor("#F59E0B"))
+            }
+            layoutParams = android.widget.LinearLayout.LayoutParams(
+                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                (52 * dp).toInt()
+            ).also { it.bottomMargin = (16 * dp).toInt() }
+        }
+        btnSignUp.setOnClickListener {
+            sheet.dismiss()
+            startActivity(Intent(ctx, com.jeeneet.mocktest.ui.auth.SignupActivity::class.java))
+        }
+        container.addView(btnSignUp)
+
+        // Later / dismiss
+        container.addView(android.widget.TextView(ctx).apply {
+            text = "Maybe Later"
+            textSize = 14f
+            setTextColor(android.graphics.Color.parseColor("#64748B"))
+            gravity = android.view.Gravity.CENTER
+            isClickable = true
+            isFocusable = true
+            layoutParams = android.widget.LinearLayout.LayoutParams(
+                android.widget.LinearLayout.LayoutParams.MATCH_PARENT,
+                android.widget.LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = (8 * dp).toInt() }
+            setOnClickListener { sheet.dismiss() }
+        })
+
+        sheet.setContentView(container)
+        sheet.window?.findViewById<android.view.View>(com.google.android.material.R.id.design_bottom_sheet)?.let {
+            it.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        }
+        sheet.show()
     }
 
 
@@ -313,6 +427,7 @@ class MainActivity : AppCompatActivity() {
         fetchFomoCount()
         checkNotificationPermissionFlow()
         checkStreakFreeze()
+        InAppReviewManager.maybeRequestReview(this)
         try {
             appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
                 when {
@@ -2244,9 +2359,13 @@ class MainActivity : AppCompatActivity() {
             strokeDp = 2,
             strokeColor = strokeColor,
             onClick = if (done) ({}) else ({
-                requiresHomeRefresh = true
-                AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
-                    TestActivity.startDailyQuiz(this@MainActivity, selectedExam)
+                if (PrefManager.isGuestMode(this@MainActivity)) {
+                    requireLogin("mock tests")
+                } else {
+                    requiresHomeRefresh = true
+                    AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
+                        TestActivity.startDailyQuiz(this@MainActivity, selectedExam)
+                    }
                 }
             })
         ).apply {
@@ -2412,27 +2531,27 @@ class MainActivity : AppCompatActivity() {
             CategoryItem("📝", "Mock Test", "Practice with precision for $selectedExam success.",
                 ContextCompat.getColor(this, R.color.card_mock_test_start),
                 ContextCompat.getColor(this, R.color.card_mock_test_end)
-            ) { requiresHomeRefresh = true; MockTestListActivity.start(this, "mock_test", selectedExam) },
+            ) { if (PrefManager.isGuestMode(this)) { requireLogin("mock tests") } else { requiresHomeRefresh = true; MockTestListActivity.start(this, "mock_test", selectedExam) } },
             CategoryItem("⚡", "Physics Chapterwise Test", "Master each chapter with targeted tests.",
                 ContextCompat.getColor(this, R.color.card_physics_start),
                 ContextCompat.getColor(this, R.color.card_physics_end)
-            ) { requiresHomeRefresh = true; ChapterwiseListActivity.start(this, "Physics", selectedExam) },
+            ) { if (PrefManager.isGuestMode(this)) { requireLogin("chapterwise tests") } else { requiresHomeRefresh = true; ChapterwiseListActivity.start(this, "Physics", selectedExam) } },
             CategoryItem("🧪", "Chemistry Chapterwise Test", "Build fundamentals with chapter tests.",
                 ContextCompat.getColor(this, R.color.card_chemistry_start),
                 ContextCompat.getColor(this, R.color.card_chemistry_end)
-            ) { requiresHomeRefresh = true; ChapterwiseListActivity.start(this, "Chemistry", selectedExam) },
+            ) { if (PrefManager.isGuestMode(this)) { requireLogin("chapterwise tests") } else { requiresHomeRefresh = true; ChapterwiseListActivity.start(this, "Chemistry", selectedExam) } },
             CategoryItem(icon4, "$subject4 Chapterwise Test", sub4Text,
                 ContextCompat.getColor(this, R.color.card_maths_start),
                 ContextCompat.getColor(this, R.color.card_maths_end)
-            ) { requiresHomeRefresh = true; ChapterwiseListActivity.start(this, subject4, selectedExam) },
+            ) { if (PrefManager.isGuestMode(this)) { requireLogin("chapterwise tests") } else { requiresHomeRefresh = true; ChapterwiseListActivity.start(this, subject4, selectedExam) } },
             CategoryItem("📋", "Full Series", "Curated full-length mock test series.",
                 ContextCompat.getColor(this, R.color.card_full_test_start),
                 ContextCompat.getColor(this, R.color.card_full_test_end)
-            ) { requiresHomeRefresh = true; MockTestListActivity.start(this, "full_series", selectedExam) },
+            ) { if (PrefManager.isGuestMode(this)) { requireLogin("full test series") } else { requiresHomeRefresh = true; MockTestListActivity.start(this, "full_series", selectedExam) } },
             CategoryItem("📚", "$examLabel PYQs", "Real past year question papers for practice.",
                 ContextCompat.getColor(this, R.color.card_pyqs_start),
                 ContextCompat.getColor(this, R.color.card_pyqs_end)
-            ) { requiresHomeRefresh = true; MockTestListActivity.start(this, "pyqs", selectedExam) }
+            ) { if (PrefManager.isGuestMode(this)) { requireLogin("PYQ papers") } else { requiresHomeRefresh = true; MockTestListActivity.start(this, "pyqs", selectedExam) } }
         )
 
         val container = LinearLayout(this).apply {
@@ -2679,6 +2798,7 @@ class MainActivity : AppCompatActivity() {
     ) { isGranted ->
         if (isGranted) {
             NotificationHelper.scheduleEveningReminder(this)
+            NotificationHelper.scheduleMorningReminder(this)
             recreate() // refresh toolbar to hide bell
         }
     }
@@ -2686,6 +2806,7 @@ class MainActivity : AppCompatActivity() {
     private fun checkNotificationPermissionFlow() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
             NotificationHelper.scheduleEveningReminder(this)
+            NotificationHelper.scheduleMorningReminder(this)
             return
         }
 
@@ -2703,6 +2824,7 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             NotificationHelper.scheduleEveningReminder(this)
+            NotificationHelper.scheduleMorningReminder(this)
         }
     }
 
@@ -3750,9 +3872,13 @@ class MainActivity : AppCompatActivity() {
             onClick = if (isDailyQuizDone) ({
                 Toast.makeText(this, "Challenge already completed today!", Toast.LENGTH_SHORT).show()
             }) else ({
-                requiresHomeRefresh = true
-                AdManager.showInterstitial(this, bypassCooldown = true) {
-                    TestActivity.startDailyQuiz(this, selectedExam)
+                if (PrefManager.isGuestMode(this@MainActivity)) {
+                    requireLogin("Daily Quiz")
+                } else {
+                    requiresHomeRefresh = true
+                    AdManager.showInterstitial(this, bypassCooldown = true) {
+                        TestActivity.startDailyQuiz(this, selectedExam)
+                    }
                 }
             })
         ))
@@ -4232,6 +4358,7 @@ class MainActivity : AppCompatActivity() {
             layoutParams = LinearLayout.LayoutParams(-2, -2)
             setOnClickListener {
                 if (isDone) Toast.makeText(this@MainActivity, "Challenge already completed today!", Toast.LENGTH_SHORT).show()
+                else if (PrefManager.isGuestMode(this@MainActivity)) { requireLogin("Daily Quiz") }
                 else { requiresHomeRefresh = true; AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) { TestActivity.startDailyQuiz(this@MainActivity, selectedExam) } }
             }
         })

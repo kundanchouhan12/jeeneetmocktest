@@ -149,6 +149,21 @@ class LoginActivity : AppCompatActivity() {
             startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
         })
 
+        // Guest access — let users explore the app without signing in
+        container.addView(uiTextView(UiText.CAPTION, "Continue as Guest →", textMuted, Gravity.CENTER).apply {
+            setPadding(0, 0, 0, Space.XL.dp)
+            isClickable = true
+            isFocusable = true
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.topMargin = Space.S.dp }
+            setOnClickListener {
+                com.jeeneet.mocktest.utils.PrefManager.setGuestMode(this@LoginActivity, true)
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
+            }
+        })
+
         root.addView(container)
         return root
     }
@@ -223,6 +238,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun goToMain() {
+        com.jeeneet.mocktest.utils.PrefManager.clearGuestMode(this)
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

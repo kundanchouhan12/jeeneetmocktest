@@ -8,6 +8,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.jeeneet.mocktest.MainActivity
@@ -15,6 +16,8 @@ import com.jeeneet.mocktest.services.NotificationRouter
 import com.jeeneet.mocktest.workers.DailyReminderWorker
 import com.jeeneet.mocktest.workers.DailyVaultReminderWorker
 import com.jeeneet.mocktest.workers.EveningReminderWorker
+import com.jeeneet.mocktest.workers.MorningReminderWorker
+import com.jeeneet.mocktest.workers.StreakEmergencyWorker
 import java.util.Calendar
 import java.util.concurrent.TimeUnit
 
@@ -80,6 +83,36 @@ object NotificationHelper {
         WorkManager.getInstance(context).enqueueUniquePeriodicWork(
             "vault_reminder",
             ExistingPeriodicWorkPolicy.UPDATE,
+            work
+        )
+    }
+
+    fun scheduleMorningReminder(context: Context) {
+        val work = PeriodicWorkRequestBuilder<MorningReminderWorker>(1, TimeUnit.DAYS)
+            .setInitialDelay(delayUntilHour(7), TimeUnit.MILLISECONDS)
+            .addTag("morning_reminder")
+            .build()
+        WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+            "morning_reminder",
+            ExistingPeriodicWorkPolicy.KEEP,  // Don't reset existing schedule
+            work
+        )
+    }
+
+    /**
+     * Schedule a one-shot streak emergency notification ~3 hours after the evening reminder.
+     * Fires at ~11 PM if the user still hasn't completed today's quiz.
+     */
+    fun scheduleStreakEmergency(context: Context) {
+        val delayMs = delayUntilHour(23) // 11 PM
+        if (delayMs <= 0) return  // Already past 11 PM — skip
+        val work = OneTimeWorkRequestBuilder<StreakEmergencyWorker>()
+            .setInitialDelay(delayMs, TimeUnit.MILLISECONDS)
+            .addTag("streak_emergency")
+            .build()
+        WorkManager.getInstance(context).enqueueUniqueWork(
+            "streak_emergency",
+            androidx.work.ExistingWorkPolicy.REPLACE,
             work
         )
     }
@@ -234,6 +267,88 @@ object NotificationHelper {
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .build()
         safeNotify(context, NOTIF_ID_GENERAL, notif)
+    }
+
+    /**
+     * Social-proof win-back for users who haven't practiced in 3-7 days.
+     * Uses peer comparison to create FOMO without being pushy.
+     */
+    fun showSocialProofWinbackNotif(context: Context, examType: String = "JEE") {
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra(NotificationRouter.EXTRA_TYPE, NotificationRouter.TYPE_DAILY_TEST)
+            putExtra("open_daily_quiz", true)
+        }
+        val pending = PendingIntent.getActivity(
+            context, NOTIF_ID_GENERAL + 2, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val notif = NotificationCompat.Builder(context, CHANNEL_DAILY)
+            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setContentTitle("324 $examType aspirants practiced today 🏆")
+            .setContentText("Students like you scored 80%+ this week. Don't fall behind — one quiz, 5 minutes.")
+            .setStyle(NotificationCompat.BigTextStyle()
+                .bigText("Students like you scored 80%+ this week. Don't fall behind — one quiz takes just 5 minutes. ⚡"))
+            .setAutoCancel(true)
+            .setContentIntent(pending)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
+        safeNotify(context, NOTIF_ID_GENERAL + 2, notif)
+    }
+
+    /**
+     * Last-chance streak emergency sent at 11 PM.
+     * Only fires if the user has a streak ≥ 1 and quiz is not done.
+     */
+    fun showStreakEmergencyNotif(context: Context, streak: Int, examType: String = "JEE") {
+        if (streak == 0) return
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra(NotificationRouter.EXTRA_TYPE, NotificationRouter.TYPE_DAILY_TEST)
+            putExtra("open_daily_quiz", true)
+        }
+        val pending = PendingIntent.getActivity(
+            context, NOTIF_ID_GENERAL + 3, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val notif = NotificationCompat.Builder(context, CHANNEL_STREAK)
+            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setContentTitle("⏰ 1 hour left! Your $streak-day streak ends at midnight")
+            .setContentText("Just 10 $examType questions to keep your streak alive. Tap now — it only takes 5 minutes!")
+            .setStyle(NotificationCompat.BigTextStyle()
+                .bigText("Just 10 $examType questions to keep your streak alive. Tap now — it only takes 5 minutes! 🔥"))
+            .setAutoCancel(true)
+            .setContentIntent(pending)
+            .setPriority(NotificationCompat.PRIORITY_MAX)  // Heads-up notification
+            .setDefaults(NotificationCompat.DEFAULT_ALL)
+            .build()
+        safeNotify(context, NOTIF_ID_GENERAL + 3, notif)
+    }
+
+    /**
+     * New content unlock — fires after daily automation adds fresh questions.
+     * Drives installs by showing the app is actively updated.
+     */
+    fun showNewContentUnlockNotif(context: Context, examType: String = "JEE") {
+        val intent = Intent(context, MainActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            putExtra(NotificationRouter.EXTRA_TYPE, NotificationRouter.TYPE_DAILY_VAULT)
+        }
+        val pending = PendingIntent.getActivity(
+            context, NOTIF_ID_GENERAL + 4, intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+        val notif = NotificationCompat.Builder(context, CHANNEL_VAULT)
+            .setSmallIcon(android.R.drawable.ic_popup_reminder)
+            .setContentTitle("🔓 Fresh $examType questions unlocked!")
+            .setContentText("120 new questions added to your vault today. Your daily challenge is ready.")
+            .setStyle(NotificationCompat.BigTextStyle()
+                .bigText("120 new questions added tonight — curated, verified and ready for you. Start today's challenge! 🎯"))
+            .setAutoCancel(true)
+            .setContentIntent(pending)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .build()
+        safeNotify(context, NOTIF_ID_GENERAL + 4, notif)
     }
 
     private fun safeNotify(context: Context, id: Int, notif: android.app.Notification) {

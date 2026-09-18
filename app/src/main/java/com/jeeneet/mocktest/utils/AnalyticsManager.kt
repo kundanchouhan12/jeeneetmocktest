@@ -21,10 +21,97 @@ object AnalyticsManager {
         pairs.forEach { (k, v) -> putString(k, v) }
     }
 
+    // ─── User Properties ─────────────────────────────────────────────────────
+
+    /**
+     * Sets global user properties to segment and filter all events in Firebase Console.
+     */
+    fun setUserProperties(
+        ctx: Context,
+        targetExam: String? = null,
+        isPremium: Boolean? = null,
+        streakDays: Int? = null,
+        bankVersion: Int? = null
+    ) {
+        val fa = fa(ctx)
+        targetExam?.let { fa.setUserProperty("target_exam", it) }
+        isPremium?.let { fa.setUserProperty("user_tier", if (it) "premium" else "free") }
+        streakDays?.let {
+            val cohort = when {
+                it == 0 -> "0_days"
+                it in 1..3 -> "1_3_days"
+                it in 4..7 -> "4_7_days"
+                it in 8..30 -> "8_30_days"
+                else -> "30_plus_days"
+            }
+            fa.setUserProperty("streak_cohort", cohort)
+        }
+        bankVersion?.let { fa.setUserProperty("bank_version", it.toString()) }
+    }
+
+    fun setTargetExam(ctx: Context, exam: String) {
+        fa(ctx).setUserProperty("target_exam", exam)
+    }
+
+    fun setUserTier(ctx: Context, isPremium: Boolean) {
+        fa(ctx).setUserProperty("user_tier", if (isPremium) "premium" else "free")
+    }
+
+    // ─── Screen Tracking ──────────────────────────────────────────────────────
+
+    fun screenView(ctx: Context, screenName: String) {
+        log(ctx, FirebaseAnalytics.Event.SCREEN_VIEW, bundle(
+            FirebaseAnalytics.Param.SCREEN_NAME to screenName,
+            FirebaseAnalytics.Param.SCREEN_CLASS to screenName
+        ))
+    }
+
+    // ─── Sync & Bank Telemetry ────────────────────────────────────────────────
+
+    fun syncStarted(ctx: Context, syncType: String) =
+        log(ctx, "bank_sync_started", bundle("sync_type" to syncType))
+
+    fun syncCompleted(
+        ctx: Context,
+        syncType: String,
+        version: Int,
+        freshCount: Int,
+        localTotal: Int,
+        durationMs: Long
+    ) {
+        val params = Bundle().apply {
+            putString("sync_type", syncType)
+            putInt("bank_version", version)
+            putInt("fresh_count", freshCount)
+            putInt("local_total", localTotal)
+            putLong("duration_ms", durationMs)
+        }
+        log(ctx, "bank_sync_completed", params)
+    }
+
+    fun syncFailed(ctx: Context, syncType: String, reason: String) =
+        log(ctx, "bank_sync_failed", bundle("sync_type" to syncType, "reason" to reason.take(100)))
+
     // ─── Scan / Doubt Solver ──────────────────────────────────────────────────
 
     /** User tapped Analyze — API call is about to be made. */
     fun scanStarted(ctx: Context) = log(ctx, "scan_started")
+
+    /** User snapped or picked an image for doubt solving. */
+    fun doubtImageCaptured(ctx: Context, source: String) =
+        log(ctx, "doubt_image_captured", bundle("source" to source))
+
+    /** User confirmed the cropped doubt region. */
+    fun doubtCropConfirmed(ctx: Context) = log(ctx, "doubt_crop_confirmed")
+
+    /** Gemini / AI API duration and result status. */
+    fun doubtApiLatency(ctx: Context, durationMs: Long, isSuccess: Boolean) {
+        val params = Bundle().apply {
+            putLong("latency_ms", durationMs)
+            putString("status", if (isSuccess) "success" else "failure")
+        }
+        log(ctx, "doubt_api_latency", params)
+    }
 
     /** Returned instantly from Room cache (same image scanned before). */
     fun scanCacheHit(ctx: Context) = log(ctx, "scan_cache_hit")
@@ -73,21 +160,67 @@ object AnalyticsManager {
     // ─── Test flow ────────────────────────────────────────────────────────────
 
     /** User submitted a test. */
-    fun testCompleted(ctx: Context, examType: String, subject: String) =
-        log(ctx, "test_completed", bundle("exam_type" to examType, "subject" to subject))
+    fun testCompleted(ctx: Context, examType: String, subject: String, score: Int = 0, accuracy: Float = 0f) {
+        val params = Bundle().apply {
+            putString("exam_type", examType)
+            putString("subject", subject)
+            putInt("score", score)
+            putFloat("accuracy", accuracy)
+        }
+        log(ctx, "test_completed", params)
+    }
 
     /** User started a test (first question displayed). */
-    fun testStarted(ctx: Context, examType: String) =
-        log(ctx, "test_started", bundle("exam_type" to examType))
+    fun testStarted(ctx: Context, examType: String, testType: String = "practice") =
+        log(ctx, "test_started", bundle("exam_type" to examType, "test_type" to testType))
 
     // ─── Daily Vault ──────────────────────────────────────────────────────────
 
     /** User tapped on the Daily Vault card. */
-    fun vaultOpened(ctx: Context) = log(ctx, "vault_opened")
+    fun vaultOpened(ctx: Context, examType: String = "JEE") =
+        log(ctx, "vault_opened", bundle("exam_type" to examType))
 
-    /** User completed all 50 questions in the Daily Vault. */
-    fun vaultCompleted(ctx: Context, accuracy: Float) =
-        log(ctx, "vault_completed", Bundle().apply { putFloat("accuracy", accuracy) })
+    /** User answered a question within the vault. */
+    fun vaultQuestionAnswered(ctx: Context, questionNum: Int, isCorrect: Boolean, subject: String) {
+        val params = Bundle().apply {
+            putInt("question_number", questionNum)
+            putBoolean("is_correct", isCorrect)
+            putString("subject", subject)
+        }
+        log(ctx, "vault_q_answered", params)
+    }
+
+    /** User completed all questions in the Daily Vault. */
+    fun vaultCompleted(ctx: Context, accuracy: Float, score: Int = 0, examType: String = "JEE") {
+        val params = Bundle().apply {
+            putFloat("accuracy", accuracy)
+            putInt("score", score)
+            putString("exam_type", examType)
+        }
+        log(ctx, "vault_completed", params)
+    }
+
+    // ─── Power 100 Live ───────────────────────────────────────────────────────
+
+    /** User viewed Power 100 entry. */
+    fun power100Opened(ctx: Context, examType: String) =
+        log(ctx, "power100_opened", bundle("exam_type" to examType))
+
+    /** User started or resumed Power 100. */
+    fun power100Started(ctx: Context, examType: String, isResumed: Boolean) =
+        log(ctx, "power100_started", bundle("exam_type" to examType, "is_resumed" to isResumed.toString()))
+
+    /** User submitted Power 100. */
+    fun power100Submitted(ctx: Context, examType: String, score: Int, total: Int, accuracy: Float, durationSec: Long) {
+        val params = Bundle().apply {
+            putString("exam_type", examType)
+            putInt("score", score)
+            putInt("total", total)
+            putFloat("accuracy", accuracy)
+            putLong("duration_sec", durationSec)
+        }
+        log(ctx, "power100_submitted", params)
+    }
 
     // ─── Chapter flow ─────────────────────────────────────────────────────────
 
@@ -133,7 +266,22 @@ object AnalyticsManager {
     fun rewardedAdDismissed(ctx: Context, placement: String) =
         log(ctx, "rewarded_ad_dismissed", bundle("placement" to placement))
 
-    // ─── Phase 3: Telemetry ───────────────────────────────────────────────────
+    // ─── Telemetry & Content Quality ──────────────────────────────────────────
+
+    /** User reported an issue with a question. */
+    fun questionReported(ctx: Context, questionId: String, exam: String, subject: String, reason: String) {
+        val params = Bundle().apply {
+            putString("question_id", questionId.take(40))
+            putString("exam_type", exam)
+            putString("subject", subject)
+            putString("reason", reason.take(40))
+        }
+        log(ctx, "question_reported", params)
+    }
+
+    /** User reached a study streak milestone. */
+    fun streakMilestoneReached(ctx: Context, days: Int) =
+        log(ctx, "streak_milestone", Bundle().apply { putInt("days", days) })
 
     /** User used a hint in a test. */
     fun hintUsed(ctx: Context, questionId: Int) =

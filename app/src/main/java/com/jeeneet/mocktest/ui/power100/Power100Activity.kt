@@ -121,6 +121,13 @@ class Power100Activity : AppCompatActivity() {
             }
         })
 
+        try {
+            com.jeeneet.mocktest.utils.AnalyticsManager.power100Opened(this, exam)
+            com.jeeneet.mocktest.utils.AnalyticsManager.screenView(this, "Power100Activity")
+        } catch (e: Exception) {
+            android.util.Log.e("Power100Activity", "Analytics error: ${e.message}")
+        }
+
         loadData()
     }
 
@@ -541,11 +548,23 @@ class Power100Activity : AppCompatActivity() {
 
     private fun showQuestionView(index: Int) {
         if (questions.isEmpty() || index < 0 || index >= questions.size) return
+        val wasGrid = state == State.GRID
         state = State.QUESTION
         currentIndex = index
         gridLayout.visibility = View.GONE
         questionLayout.visibility = View.VISIBLE
         bindQuestion()
+        if (wasGrid) {
+            try {
+                com.jeeneet.mocktest.utils.AnalyticsManager.power100Started(
+                    this,
+                    exam,
+                    isResumed = progressMap.values.any { it.selectedOption >= 0 }
+                )
+            } catch (e: Exception) {
+                // Ignore analytics errors
+            }
+        }
     }
 
     private fun jumpToFirstUnattempted() {
