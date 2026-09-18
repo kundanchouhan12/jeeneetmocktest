@@ -88,6 +88,7 @@ class MainActivity : AppCompatActivity() {
     private val CONTENT_CACHE_TTL = 60_000L
     private var selectedPracticeTab = 0
     private var hasCompletedInitialSync = false
+    private var cachedWrongQuestionResult: com.jeeneet.mocktest.data.model.WrongQuestionResult? = null
 
     private val appUpdateManager by lazy { AppUpdateManagerFactory.create(this) }
     private val installStateListener = InstallStateUpdatedListener { state ->
@@ -190,6 +191,9 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             android.util.Log.e("MainActivity", "Failed to check for updates: ${e.message}")
         }
+
+        // Fetch exam dates for countdown banner (fire-and-forget, cached locally)
+        fetchExamDates()
 
         if (!isGuest) {
             // Only connect IAP and run Firestore sync for authenticated users.
@@ -1143,6 +1147,16 @@ class MainActivity : AppCompatActivity() {
             cachedTestResults = withContext(Dispatchers.IO) {
                 db.testResultDao().getAllResultsOnce(uid)
             }
+            // Fetch wrong question count on IO — no JSON processing on UI thread
+            cachedWrongQuestionResult = withContext(Dispatchers.IO) {
+                try {
+                    val repo = com.jeeneet.mocktest.data.repository.MockTestRepository(this@MainActivity)
+                    repo.getWrongQuestions(selectedExam)
+                } catch (e: Exception) {
+                    android.util.Log.e("MainActivity", "Failed to fetch wrong questions: ${e.message}")
+                    null
+                }
+            }
             lastContentBuildTime = System.currentTimeMillis()
             withContext(Dispatchers.Main) {
                 isContentBuilding = false
@@ -1163,11 +1177,20 @@ class MainActivity : AppCompatActivity() {
             tvCoinsBalance.text = "🪙 ${PrefManager.getCoins(this)}"
         }
 
+        // ─── 0. Exam Countdown Banner (≤120 days only) ─────────────────────
+        buildExamCountdownBanner()?.let { contentLayout.addView(it) }
+
         // ─── 1. Resume paused session ─────────────────────────────────────────
         buildMissionHeroCard()?.let { contentLayout.addView(it) }
 
         // ─── 2. Quick Actions — 4 icon tiles ─────────────────────────────────
         contentLayout.addView(buildQuickActionsGrid())
+
+        // ─── 2.5. Revise My Mistakes ──────────────────────────────────────────
+        buildReviseMyMistakesCard()?.let {
+            contentLayout.addView(uiSectionLabel("Revise"))
+            contentLayout.addView(it)
+        }
 
         // ─── 3. Today's Challenge (Daily Quiz) ───────────────────────────────
         contentLayout.addView(uiSectionLabel("Today's Challenge"))
@@ -4673,5 +4696,209 @@ class MainActivity : AppCompatActivity() {
 
         // Progress card skeleton
         contentLayout.addView(skeletonCard(100, radius = Corner.L))
+    }
+
+    // ─── Exam Countdown Banner ────────────────────────────────────────────────
+    // Reads cached date from PrefManager (set by fetchExamDates on launch).
+    // Returns null if > 120 days away or past exam date.
+
+    private fun fetchExamDates() {
+        lifecycleScope.launch {
+            try {
+                val doc = withContext(Dispatchers.IO) {
+                    val task = FirebaseFirestore.getInstance()
+                        .collection("metadata").document("exam_dates")
+                        .get(Source.SERVER)
+                    com.google.android.gms.tasks.Tasks.await(task, 5, java.util.concurrent.TimeUnit.SECONDS)
+                }
+                doc?.let { d ->
+                    d.getString("jee_main_date")?.let { PrefManager.setExamDate(this@MainActivity, "JEE", it) }
+                    d.getString("jee_main_label")?.let { PrefManager.setExamLabel(this@MainActivity, "JEE", it) }
+                    d.getString("neet_date")?.let { PrefManager.setExamDate(this@MainActivity, "NEET", it) }
+                    d.getString("neet_label")?.let { PrefManager.setExamLabel(this@MainActivity, "NEET", it) }
+                }
+            } catch (e: Exception) {
+                android.util.Log.d("MainActivity", "Exam dates fetch skipped (using cache): ${e.message}")
+            }
+        }
+    }
+
+    private fun buildExamCountdownBanner(): View? {
+        val dateStr = PrefManager.getExamDate(this, selectedExam)
+        if (dateStr.isEmpty()) return null
+
+        val examDate = try {
+            java.time.LocalDate.parse(dateStr)
+        } catch (e: Exception) { return null }
+
+        val today = java.time.LocalDate.now()
+        val daysLeft = java.time.temporal.ChronoUnit.DAYS.between(today, examDate).toInt()
+
+        // Only show when ≤ 120 days and exam hasn't passed
+        if (daysLeft > 120 || daysLeft < 0) return null
+
+        val label = PrefManager.getExamLabel(this, selectedExam).ifEmpty {
+            if (selectedExam == "JEE") "JEE Main 2027" else "NEET 2027"
+        }
+
+        // Urgency tiers: calm (>60), amber (30-60), red (<30)
+        val (gradStart, gradEnd, emoji) = when {
+            daysLeft <= 30 -> Triple("#DC2626", "#B91C1C", "🔥")
+            daysLeft <= 60 -> Triple("#D97706", "#B45309", "⚡")
+            else           -> Triple("#2563EB", "#1D4ED8", "📅")
+        }
+
+        val card = uiCard(radius = Corner.L, elevation = Elev.M).apply {
+            layoutParams = lpRow(bottomDp = Space.M)
+        }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER
+            background = GradientDrawable().apply {
+                orientation = GradientDrawable.Orientation.LEFT_RIGHT
+                colors = intArrayOf(Color.parseColor(gradStart), Color.parseColor(gradEnd))
+                cornerRadius = Corner.L.dpF
+            }
+            setPadding(Space.L.dp, Space.L.dp, Space.L.dp, Space.L.dp)
+        }
+
+        // Days number — large and bold
+        inner.addView(TextView(this).apply {
+            text = "$emoji  $daysLeft Days Left"
+            textSize = 22f
+            setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+        })
+
+        // Exam label
+        inner.addView(TextView(this).apply {
+            text = label
+            textSize = 13f
+            setTextColor(Color.parseColor("#DDFFFFFF"))
+            gravity = Gravity.CENTER
+            setPadding(0, 4.dp, 0, 0)
+        })
+
+        // Motivational sub-text based on urgency
+        val subText = when {
+            daysLeft <= 7  -> "Final week! Give it everything you've got!"
+            daysLeft <= 30 -> "Every hour counts. Stay focused!"
+            daysLeft <= 60 -> "Crunch time — practice daily!"
+            else           -> "Stay consistent. You've got this!"
+        }
+        inner.addView(TextView(this).apply {
+            text = subText
+            textSize = 11f
+            setTextColor(Color.parseColor("#BBFFFFFF"))
+            gravity = Gravity.CENTER
+            setPadding(0, 2.dp, 0, 0)
+        })
+
+        // Pulse animation for < 30 days urgency
+        if (daysLeft <= 30) {
+            android.animation.ObjectAnimator.ofFloat(inner, "alpha", 0.85f, 1f).apply {
+                duration = 1200
+                repeatMode = android.animation.ValueAnimator.REVERSE
+                repeatCount = android.animation.ValueAnimator.INFINITE
+                start()
+            }
+        }
+
+        card.addView(inner)
+        return card
+    }
+
+    // ─── Revise My Mistakes Card ─────────────────────────────────────────────
+    // Uses cachedWrongQuestionResult (fetched in buildContent on IO).
+
+    private fun buildReviseMyMistakesCard(): View? {
+        val result = cachedWrongQuestionResult ?: return null
+        if (result.questions.isEmpty()) return null
+
+        val totalWrong = result.questions.size
+        val testCount = result.fromTestCount
+
+        val card = uiCard(
+            radius = Corner.L,
+            elevation = Elev.M,
+            onClick = {
+                startActivity(android.content.Intent(this, com.jeeneet.mocktest.ui.revision.ReviseMyMistakesActivity::class.java).apply {
+                    putExtra("exam_type", selectedExam)
+                })
+            }
+        ).apply { layoutParams = lpRow(bottomDp = Space.M) }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            background = GradientDrawable().apply {
+                orientation = GradientDrawable.Orientation.TL_BR
+                colors = intArrayOf(Color.parseColor("#EA580C"), Color.parseColor("#DC2626"))
+                cornerRadius = Corner.L.dpF
+            }
+            setPadding(Space.L.dp, Space.L.dp, Space.L.dp, Space.L.dp)
+        }
+
+        // Header row with icon
+        val headerRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        headerRow.addView(TextView(this).apply {
+            text = "🎯"; textSize = 24f
+            setPadding(0, 0, Space.M.dp, 0)
+        })
+        val textCol = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+        }
+        textCol.addView(TextView(this).apply {
+            text = "Revise My Mistakes"
+            textSize = 16f
+            setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        textCol.addView(TextView(this).apply {
+            text = "$totalWrong wrong questions from $testCount tests"
+            textSize = 12f
+            setTextColor(Color.parseColor("#DDFFFFFF"))
+            setPadding(0, 2.dp, 0, 0)
+        })
+        headerRow.addView(textCol)
+        headerRow.addView(TextView(this).apply {
+            text = "›"; textSize = 24f; setTextColor(Color.WHITE)
+            typeface = Typeface.DEFAULT_BOLD
+            setPadding(8.dp, 0, 0, 0)
+        })
+        inner.addView(headerRow)
+
+        // Subject breakdown chips
+        if (result.bySubject.isNotEmpty()) {
+            val chipRow = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                setPadding(0, Space.S.dp, 0, 0)
+            }
+            result.bySubject.entries.sortedByDescending { it.value }.forEach { (subject, count) ->
+                chipRow.addView(TextView(this).apply {
+                    text = "$subject: $count"
+                    textSize = 10f
+                    setTextColor(Color.WHITE)
+                    background = GradientDrawable().apply {
+                        setColor(Color.parseColor("#33FFFFFF"))
+                        cornerRadius = Corner.PILL.dpF
+                    }
+                    setPadding(Space.M.dp, 4.dp, Space.M.dp, 4.dp)
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    ).also { it.marginEnd = Space.S.dp }
+                })
+            }
+            inner.addView(chipRow)
+        }
+
+        card.addView(inner)
+        return card
     }
 }

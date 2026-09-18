@@ -279,3 +279,13 @@ data class VaultMetadata(
     val avgScore: Float = 0f,
     val toughestQuestionId: Int = -1
 )
+
+// ─── Wrong Question Aggregation (Revise My Mistakes) ─────────────────────────
+
+data class WrongQuestionResult(
+    val questions: List<Question>,           // deduplicated wrong questions
+    val bySubject: Map<String, Int>,          // "Physics" → 5
+    val byChapter: Map<String, Int>,          // "Kinematics" → 3
+    val fromTestCount: Int                    // "from 8 tests"
+)
+

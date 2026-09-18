@@ -60,6 +60,7 @@
 
         <activity android:name=".ui.simulation.SimulationIntroActivity" android:screenOrientation="portrait" />
         <activity android:name=".ui.bookmarks.BookmarksActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.revision.ReviseMyMistakesActivity" android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="false"

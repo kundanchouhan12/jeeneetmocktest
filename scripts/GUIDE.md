@@ -53,7 +53,7 @@ python scripts/run_daily_automation.py
 - **Web Ingestion**: Scrapes and sanitizes PCM/PCB web questions (`web_question_ingestion.py`).
 - **Dual-Pass Verification**: Independently re-derives answers before accepting.
 - **Daily Vault**: Auto-publishes 30 questions for JEE and 30 for NEET daily (`vault_scheduler.py`).
-- **Bi-Weekly Power 100**: Refreshes standard tests every **2 weeks (1st and 15th of the month)** (`build_power100_live.py`). To force a rebuild: `python scripts/run_daily_automation.py --force-power100`.
+- **Weekly Power 100**: Refreshes standard tests every **7 days (every Monday)** (`build_power100_live.py`). To force a rebuild: `python scripts/run_daily_automation.py --force-power100`.
 
 ---
 

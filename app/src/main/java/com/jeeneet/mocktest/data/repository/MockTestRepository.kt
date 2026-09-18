@@ -505,6 +505,56 @@ class MockTestRepository(context: Context) {
 
     fun getTotalTestsTaken(): Flow<Int> = resultDao.getTotalTestsTaken(currentUid())
 
+    // ─── Revise My Mistakes — Wrong Question Aggregator ──────────────────────
+    // All heavy JSON deserialization runs on IO dispatcher.
+    // Deduplicates by Question.id. Unattempted (ans == null) are NOT counted as wrong.
+
+    suspend fun getWrongQuestions(examType: String): com.jeeneet.mocktest.data.model.WrongQuestionResult =
+        withContext(Dispatchers.IO) {
+            val uid = currentUid()
+            val allResults = resultDao.getAllResultsOnce(uid).filter { it.examType == examType }
+
+            val gson = Gson()
+            val questionListType = object : TypeToken<List<com.jeeneet.mocktest.data.model.Question>>() {}.type
+            val answerMapType = object : TypeToken<Map<String, Int?>>() {}.type
+
+            val seenIds = mutableSetOf<Int>()
+            val wrongQuestions = mutableListOf<com.jeeneet.mocktest.data.model.Question>()
+            var testsWithWrong = 0
+
+            allResults.forEach { r ->
+                if (r.questionsJson.isEmpty() || r.answersJson.isEmpty()) return@forEach
+                val questions = runCatching {
+                    gson.fromJson<List<com.jeeneet.mocktest.data.model.Question>>(r.questionsJson, questionListType)
+                }.getOrNull() ?: return@forEach
+                val answers = runCatching {
+                    gson.fromJson<Map<String, Int?>>(r.answersJson, answerMapType)
+                }.getOrNull() ?: return@forEach
+
+                var foundWrongInTest = false
+                questions.forEachIndexed { idx, q ->
+                    val ans = answers[idx.toString()]
+                    // Only count actually wrong answers — unattempted (null) are excluded
+                    if (ans != null && ans != q.correctOptionIndex && q.id !in seenIds) {
+                        seenIds.add(q.id)
+                        wrongQuestions.add(q)
+                        foundWrongInTest = true
+                    }
+                }
+                if (foundWrongInTest) testsWithWrong++
+            }
+
+            val bySubject = wrongQuestions.groupBy { it.subject }.mapValues { it.value.size }
+            val byChapter = wrongQuestions.groupBy { "${it.subject}: ${it.chapter}" }.mapValues { it.value.size }
+
+            com.jeeneet.mocktest.data.model.WrongQuestionResult(
+                questions = wrongQuestions,
+                bySubject = bySubject,
+                byChapter = byChapter,
+                fromTestCount = testsWithWrong
+            )
+        }
+
     // ─── Smart Practice Engine ───────────────────────────────────────────────
     // Builds a weighted question set: 60% weak topics, 30% medium, 10% strong
 

@@ -177,11 +177,13 @@ def main():
 
         # Step 4: Rebuild Power 100 for JEE and NEET bi-weekly (1st & 15th of each month, or when forced).
         # Gives users 2 weeks to complete Power 100 standard tests without daily resets.
+        # Step 4: Weekly Power 100 Rebuild (Runs every 7 days / Monday)
         today = datetime.date.today()
-        is_power100_day = args.force_power100 or (today.day in (1, 15))
+        # Weekly schedule: Every Monday (weekday == 0) runs every 7 days
+        is_power100_day = args.force_power100 or (today.weekday() == 0)
         if is_power100_day:
             try:
-                print(f"\n🏆 Rebuilding Power 100 (Bi-Weekly Schedule: Day {today.day})...")
+                print(f"\n🏆 Rebuilding Power 100 (Weekly Schedule: Day {today.strftime('%A')}, {today.isoformat()})...")
                 power100_docs = db.collection('questions').get()
                 for exam in ["JEE", "NEET"]:
                     run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
@@ -189,7 +191,7 @@ def main():
                 print(f"❌ Error during Power 100 Rebuild: {e}")
                 failed_steps.append(f"Power 100 Rebuild: {e}")
         else:
-            print(f"\nℹ️ Skipping Power 100 Rebuild today (Runs bi-weekly on 1st & 15th of month; today is day {today.day}).")
+            print(f"\nℹ️ Skipping Power 100 Rebuild today (Runs weekly every Monday; today is {today.strftime('%A')}).")
 
         # Step 5: Increment metadata version
         try:

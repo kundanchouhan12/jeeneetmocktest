@@ -20,8 +20,8 @@ The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` 
    - Audits normalized text fingerprints to ensure 100% uniqueness in Firestore.
 4. **Daily Vault Scheduler (`scripts/vault_scheduler.py`)**:
    - Schedules 30 questions for JEE and 30 for NEET daily for the next day.
-5. **Bi-Weekly Power 100 Rebuild (`scripts/build_power100_live.py`)**:
-   - **Schedule**: Power 100 refreshes **bi-weekly (1st and 15th of each month)** instead of daily to preserve user test progress for 2 weeks.
+5. **Weekly Power 100 Rebuild (`scripts/build_power100_live.py`)**:
+   - **Schedule**: Power 100 refreshes **every 7 days (every Monday)** to preserve user test progress across the week while refreshing regularly.
    - **Manual Override**: `python scripts/run_daily_automation.py --force-power100` forces an immediate rebuild.
 6. **App Auto-Sync**:
    - Bumps `metadata/question_bank` version counter so mobile clients auto-sync.

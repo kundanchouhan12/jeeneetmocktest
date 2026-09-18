@@ -646,4 +646,19 @@ object PrefManager {
 
     fun setReviewPromptShown(ctx: Context) =
         prefs(ctx).edit().putBoolean("in_app_review_shown_${uid()}", true).apply()
+
+    // ─── Exam Countdown Date Cache ────────────────────────────────────────────
+    // Firestore `metadata/exam_dates` is fetched once on app start, cached here.
+
+    fun getExamDate(ctx: Context, examType: String): String =
+        prefs(ctx).getString("exam_date_${examType.lowercase()}", "") ?: ""
+
+    fun setExamDate(ctx: Context, examType: String, dateStr: String) =
+        prefs(ctx).edit().putString("exam_date_${examType.lowercase()}", dateStr).apply()
+
+    fun getExamLabel(ctx: Context, examType: String): String =
+        prefs(ctx).getString("exam_label_${examType.lowercase()}", "") ?: ""
+
+    fun setExamLabel(ctx: Context, examType: String, label: String) =
+        prefs(ctx).edit().putString("exam_label_${examType.lowercase()}", label).apply()
 }
