@@ -139,6 +139,10 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int) -> None:
         q["isDailyVault"] = True
         q["vaultDate"] = target_date
         q["vaultGroupId"] = group_id
+        corr = q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption")
+        if corr is not None:
+            q["correctOptionIndex"] = corr
+            q["correctOption"] = corr
         new_ref = questions_ref.document(f"vault_{target_date}_{doc.id}")
         batch.set(new_ref, q)
     batch.commit()

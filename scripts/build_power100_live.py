@@ -109,11 +109,13 @@ def build_power100(db, exam: str, all_docs=None) -> list:
         options = q.get("options")
         if not isinstance(options, list) or len(options) != 4:
             continue
-        idx = q.get("correctOptionIndex")
+        idx = q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption")
         if not isinstance(idx, int) or isinstance(idx, bool) or not (0 <= idx <= 3):
             continue
         if not q.get("questionText"):
             continue
+        q["correctOptionIndex"] = idx
+        q["correctOption"] = idx
         by_subject.setdefault(subject, []).append(q)
 
     selected = []
@@ -131,7 +133,8 @@ def build_power100(db, exam: str, all_docs=None) -> list:
             "difficulty": q.get("difficulty", "Medium"),
             "questionText": q.get("questionText"),
             "options": q.get("options"),
-            "correctOptionIndex": q.get("correctOptionIndex"),
+            "correctOptionIndex": q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption"),
+            "correctOption": q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption"),
             "explanation": q.get("explanation", ""),
         }
         for q in selected

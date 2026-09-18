@@ -279,7 +279,11 @@ class QuestionSyncManager(private val context: Context) {
                 options            = (data["options"]           as? List<*>)
                                         ?.filterIsInstance<String>()
                                         ?.takeIf { it.size == 4 }  ?: return null,
-                correctOptionIndex = (data["correctOptionIndex"] as? Long)?.toInt() ?: return null,
+                correctOptionIndex = (data["correctOptionIndex"] as? Long)?.toInt()
+                                        ?: (data["correctOption"] as? Long)?.toInt()
+                                        ?: (data["correctOptionIndex"] as? Int)
+                                        ?: (data["correctOption"] as? Int)
+                                        ?: return null,
                 explanation        = data["explanation"]        as? String ?: "",
                 isPremium          = data["isPremium"]          as? Boolean ?: true,
                 isDailyVault       = data["isDailyVault"]       as? Boolean ?: false,

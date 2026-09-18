@@ -206,7 +206,7 @@ def validate_web_question(q: dict) -> tuple[bool, str]:
 
     text = sanitize_web_content(q.get('questionText', ''))
     options = q.get('options', [])
-    correct_opt = q.get('correctOption')
+    correct_opt = q.get('correctOptionIndex') if q.get('correctOptionIndex') is not None else q.get('correctOption')
     explanation = sanitize_web_content(q.get('explanation', ''))
     exam = q.get('examType', '')
     subject = q.get('subject', '')
@@ -400,6 +400,9 @@ Constraints:
         item["questionText"] = sanitize_web_content(item.get("questionText", ""))
         item["explanation"] = sanitize_web_content(item.get("explanation", ""))
         item["options"] = [wrap_bare_latex(sanitize_web_content(str(o))) for o in item.get("options", [])]
+        corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
+        item["correctOption"] = corr
+        item["correctOptionIndex"] = corr
         item["examType"] = "NEET"
         item["subject"] = subject
         item["chapter"] = chapter

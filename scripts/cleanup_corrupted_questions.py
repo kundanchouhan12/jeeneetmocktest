@@ -11,15 +11,6 @@ except Exception:
 
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
-if not os.path.exists(SERVICE_ACCOUNT_PATH):
-    print(f"ERROR: {SERVICE_ACCOUNT_PATH} not found!")
-    exit(1)
-
-if not firebase_admin._apps:
-    cred = credentials.Certificate(SERVICE_ACCOUNT_PATH)
-    firebase_admin.initialize_app(cred)
-db = firestore.client()
-
 def is_corrupted(q):
     text = q.get('questionText', '').strip()
     options = q.get('options', [])
@@ -88,6 +79,13 @@ def is_corrupted(q):
     return False, ""
 
 def cleanup(dry_run=True):
+    if not os.path.exists(SERVICE_ACCOUNT_PATH):
+        print(f"ERROR: {SERVICE_ACCOUNT_PATH} not found!")
+        exit(1)
+    if not firebase_admin._apps:
+        cred = credentials.Certificate(SERVICE_ACCOUNT_PATH)
+        firebase_admin.initialize_app(cred)
+    db = firestore.client()
     print(f"🔍 Scanning Firestore for corrupted questions (Dry Run: {dry_run})...")
     questions_ref = db.collection('questions')
     

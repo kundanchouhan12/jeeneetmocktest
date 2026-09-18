@@ -194,7 +194,7 @@ def validate_and_clean_question(q: dict) -> tuple[bool, str]:
 
     text = q.get('questionText', '').strip()
     options = q.get('options', [])
-    correct_opt = q.get('correctOption')
+    correct_opt = q.get('correctOptionIndex') if q.get('correctOptionIndex') is not None else q.get('correctOption')
     explanation = q.get('explanation', '').strip()
     exam = q.get('examType', '').strip()
     subject = q.get('subject', '').strip()
@@ -421,6 +421,9 @@ Constraints:
     processed = []
     for item in items:
         item["options"] = [wrap_bare_latex(str(o)) for o in item.get("options", [])]
+        corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
+        item["correctOption"] = corr
+        item["correctOptionIndex"] = corr
         item["examType"] = exam
         item["subject"] = subject
         item["chapter"] = chapter

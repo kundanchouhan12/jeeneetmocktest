@@ -162,7 +162,11 @@ class Power100SyncManager(private val context: Context) {
                 difficulty = map["difficulty"] as? String ?: "Medium",
                 questionText = map["questionText"] as? String ?: return null,
                 options = options,
-                correctOptionIndex = (map["correctOptionIndex"] as? Long)?.toInt() ?: return null,
+                correctOptionIndex = (map["correctOptionIndex"] as? Long)?.toInt()
+                                        ?: (map["correctOption"] as? Long)?.toInt()
+                                        ?: (map["correctOptionIndex"] as? Int)
+                                        ?: (map["correctOption"] as? Int)
+                                        ?: return null,
                 explanation = map["explanation"] as? String ?: ""
             )
         } catch (e: Exception) {
