@@ -342,7 +342,7 @@ def call_groq_api(prompt: str) -> str:
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.3,
-        "max_tokens": 1800,
+        "max_tokens": 4000,
         # openai/gpt-oss-20b is a reasoning model that spends completion
         # tokens on a hidden chain-of-thought before writing the actual
         # answer. Without this, it can burn the entire max_tokens budget

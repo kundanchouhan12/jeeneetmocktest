@@ -308,7 +308,7 @@ def call_groq_api(prompt: str) -> str:
             {"role": "user", "content": prompt}
         ],
         "temperature": 0.3,
-        "max_tokens": 1800,
+        "max_tokens": 4000,
         "reasoning_effort": "low"
     }
     return _post_groq(body)
