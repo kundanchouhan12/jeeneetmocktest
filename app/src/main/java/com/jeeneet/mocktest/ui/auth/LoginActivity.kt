@@ -143,25 +143,15 @@ class LoginActivity : AppCompatActivity() {
         card.addView(uiPrimaryButton("Login", onClick = { performLogin() }))
         card.addView(authOrDivider())
         card.addView(authGoogleButton(onClick = { startGoogleSignIn() }))
+        card.addView(authGuestButton(onClick = {
+            com.jeeneet.mocktest.utils.PrefManager.setGuestMode(this@LoginActivity, true)
+            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+            finish()
+        }))
 
         container.addView(card)
         container.addView(authFooter("Don't have an account?", "Sign Up") {
             startActivity(Intent(this@LoginActivity, SignupActivity::class.java))
-        })
-
-        // Guest access — let users explore the app without signing in
-        container.addView(uiTextView(UiText.CAPTION, "Continue as Guest →", textMuted, Gravity.CENTER).apply {
-            setPadding(0, 0, 0, Space.XL.dp)
-            isClickable = true
-            isFocusable = true
-            layoutParams = LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
-            ).also { it.topMargin = Space.S.dp }
-            setOnClickListener {
-                com.jeeneet.mocktest.utils.PrefManager.setGuestMode(this@LoginActivity, true)
-                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                finish()
-            }
         })
 
         root.addView(container)

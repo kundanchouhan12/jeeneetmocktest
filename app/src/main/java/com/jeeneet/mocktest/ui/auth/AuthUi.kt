@@ -258,3 +258,34 @@ fun Context.authGoogleButton(onClick: () -> Unit): LinearLayout =
         addView(gCircle)
         addView(uiTextView(UiText.BUTTON, "Sign in with Google", textPrimary))
     }
+
+// ─── Guest Mode prominent button ────────────────────────────────────────────
+
+fun Context.authGuestButton(onClick: () -> Unit): LinearLayout =
+    LinearLayout(this).apply {
+        orientation = LinearLayout.HORIZONTAL
+        gravity = Gravity.CENTER
+        background = GradientDrawable().apply {
+            setColor(bgSecondary)
+            cornerRadius = 14.dpF
+            setStroke(1.5f.dpF.toInt().coerceAtLeast(1), colorPrimary)
+        }
+        setPadding(Space.L.dp, 14.dp, Space.L.dp, 14.dp)
+        elevation = Elev.S.dpF
+        layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            54.dp
+        ).also { it.topMargin = Space.M.dp }
+        isClickable = true
+        isFocusable = true
+        setOnClickListener { onClick() }
+
+        addView(TextView(this@authGuestButton).apply {
+            text = "⚡  Continue as Guest"
+            textSize = 15f
+            setTextColor(colorPrimary)
+            gravity = Gravity.CENTER
+            typeface = android.graphics.Typeface.create("sans-serif-medium", android.graphics.Typeface.BOLD)
+        })
+    }
+
