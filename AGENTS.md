@@ -55,3 +55,26 @@ The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` 
   - **Zero Duplicates Policy**: `purge_duplicate_questions.py` enforces normalized string fingerprint matching across all 3,300+ questions.
   - **Progress Preservation**: Power 100 rebuilds bi-weekly (1st & 15th) so users don't lose test progress daily.
 
+---
+
+## 🚨 Mandatory Pipeline Verification Rules (Added 2026-09-18)
+
+> **Incident:** NEET daily vault showed only 7/30 questions because scripts wrote `correctOption`
+> but `QuestionSyncManager.parseQuestion()` read `correctOptionIndex` — missing field caused
+> silent `null` returns, dropping 23 questions. Full checklist: `docs/PIPELINE_VERIFICATION_CHECKLIST.md`
+
+### Before declaring ANY pipeline change "verified", you MUST check:
+
+1. **Field Name Cross-Check** — Grep the exact Firestore field names written by Python scripts and cross-reference against what `QuestionSyncManager.kt` and `Power100SyncManager.kt` `parseQuestion()` reads. Both `correctOption` AND `correctOptionIndex` must be written by every ingestion script.
+
+2. **Parseable Count, Not Written Count** — After vault scheduling, verify the number of **parseable** vault docs (all 6 required fields present: `examType`, `subject`, `chapter`, `questionText`, `options[4]`, `correctOptionIndex`) equals 30 — not just that 30 docs were written.
+
+3. **No Module-Level Firebase Init** — Any script imported by `run_daily_automation.py` must not connect to Firestore at import time. Firebase init must be inside a function, never at module top-level.
+
+4. **Dry-Run Completes Clean** — Run `python scripts/run_daily_automation.py --dry-run` and confirm no `ImportError`, no `FileNotFoundError`, and final output is `🎉 Daily Automation Completed Successfully!`
+
+5. **Vault Count Sanity** — JEE and NEET vaults for tomorrow's date must each have ≥ 27 questions (30 is target). Below 27 = bank too thin, increase ingestion count.
+
+### Firestore Field Invariant (must never break):
+All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion.py`, `auto_question_pipeline.py`) and the vault scheduler MUST always write BOTH `correctOption` and `correctOptionIndex` to every Firestore document, set to the same integer value.
+
