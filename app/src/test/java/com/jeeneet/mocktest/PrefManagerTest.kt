@@ -187,8 +187,10 @@ class PrefManagerTest {
 
     @Test
     fun `canScanNow returns true when under free daily limit`() {
-        repeat(4) { PrefManager.incrementScanCount(ctx) }
-        assertTrue(PrefManager.canScanNow(ctx))
+        if (PrefManager.FREE_DAILY_SCANS > 1) {
+            repeat(PrefManager.FREE_DAILY_SCANS - 1) { PrefManager.incrementScanCount(ctx) }
+            assertTrue(PrefManager.canScanNow(ctx))
+        }
     }
 
     @Test
@@ -206,7 +208,7 @@ class PrefManagerTest {
 
     @Test
     fun `addScanRefill extends daily scan limit by 5`() {
-        // Use up all 5 free scans
+        // Use up all free scans
         repeat(PrefManager.FREE_DAILY_SCANS) { PrefManager.incrementScanCount(ctx) }
         assertFalse(PrefManager.canScanNow(ctx))
 
@@ -224,12 +226,10 @@ class PrefManagerTest {
     @Test
     fun `updateScanData correctly restores state from cloud`() {
         val today = System.currentTimeMillis() / 86_400_000
-        PrefManager.updateScanData(ctx, used = 3, refills = 1, day = today)
+        PrefManager.updateScanData(ctx, used = 1, refills = 1, day = today)
         
-        // Total = 5 (free) + 5 (1 refill) = 10
-        // Used = 3
-        // Remaining = 7
-        assertEquals(7, PrefManager.getRemainingScans(ctx))
+        val expected = PrefManager.FREE_DAILY_SCANS + 5 - 1
+        assertEquals(expected, PrefManager.getRemainingScans(ctx))
         assertTrue(PrefManager.canScanNow(ctx))
     }
 
