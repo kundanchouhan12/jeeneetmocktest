@@ -307,6 +307,8 @@ def call_groq_api(prompt: str) -> str:
                     "You are an expert exam question creator for Indian competitive exams (JEE Main & NEET). "
                     "You output strictly valid JSON without markdown codeblock formatting or extra text. "
                     "All math equations MUST be written in clean KaTeX LaTeX syntax (e.g. \\( x^2 + y^2 = r^2 \\) or \\(\\int_0^1 x dx\\)). "
+                    "NEVER use \\ce{} mhchem notation — instead write chemical formulas as plain text or simple KaTeX (e.g. H_2O, SO_4^{2-}, MnO_4^-). "
+                    "NEVER embed literal \\n or \\t escape sequences inside string values; use actual whitespace or spaces. "
                     "Do NOT refer to external images, figures, or diagrams. Questions must be 100% self-contained in text and math."
                 )
             },
@@ -392,6 +394,8 @@ Constraints:
 1. NO image references or diagram dependencies. Describe all numerical/physical parameters explicitly in text.
 2. Make options distinct and realistic.
 3. Ensure LaTeX equations use double backslashes for JSON escaping (e.g., \\\\frac{{a}}{{b}}).
+4. NEVER use \\ce{{}} mhchem notation. Write chemical formulas as plain text or simple KaTeX (e.g. H_2O, CuSO_4, MnO_4^-).
+5. NEVER embed \\n or \\t escape sequences inside string values. Use actual spaces.
 """
     raw_response = call_groq_api(prompt)
     if not raw_response:

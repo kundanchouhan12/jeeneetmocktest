@@ -147,11 +147,19 @@ def sanitize_web_content(text: str) -> str:
     """
     Sanitizes raw web text by removing headers, footers, page numbers,
     watermarks, URLs, copyright tags, and web clutter.
+    Also strips literal \\n escape sequences that AI models sometimes embed
+    inside JSON string values (e.g. "question\\nA) ...") which render
+    as raw backslash-n in the Android app instead of a newline.
     """
     if not text:
         return ""
 
     t = text.strip()
+
+    # 0. Replace literal \n (two-char escape sequence in AI output) with a space.
+    #    These appear when the model writes \n inside a JSON string value instead
+    #    of using actual whitespace, e.g. "text\nA) option" -> "text A) option".
+    t = t.replace('\\n', ' ').replace('\\t', ' ')
 
     # 1. Strip URLs & Domain mentions
     t = re.sub(r'https?://\S+|www\.\S+', '', t, flags=re.IGNORECASE)
@@ -181,6 +189,7 @@ def sanitize_web_content(text: str) -> str:
         t = re.sub(pattern, '', t, flags=re.IGNORECASE | re.MULTILINE)
 
     # 4. Normalize spaces
+    t = re.sub(r'[ \t]{2,}', ' ', t)  # collapse multiple spaces
     t = re.sub(r'\n\s*\n+', '\n\n', t)
     return t.strip()
 
@@ -301,7 +310,9 @@ def call_groq_api(prompt: str) -> str:
                     "You are a web exam question scraper and sanitizer specialized in NEET (UG) Medical Entrance Exam. "
                     "You extract high-yield questions covering NCERT Physics, Chemistry, and Biology (Botany & Zoology). "
                     "You output strictly valid JSON without markdown codeblock formatting or extra text. "
-                    "All math and chemical formulas MUST be written in clean KaTeX LaTeX syntax (e.g. \\( E = mc^2 \\)). "
+                    "All math MUST be written in clean KaTeX LaTeX syntax using $ or \\( \\) delimiters (e.g. \\( E = mc^2 \\)). "
+                    "NEVER use \\ce{} mhchem notation — instead write chemical formulas as plain text or simple KaTeX (e.g. H_2O, SO_4^{2-}). "
+                    "NEVER embed literal \\n or \\t escape sequences inside string values; use actual whitespace or spaces. "
                     "Do NOT include website names, URLs, page numbers, watermarks, or image dependencies."
                 )
             },
@@ -371,6 +382,8 @@ Constraints:
 1. NO website URLs, page numbers, watermarks, or headers/footers.
 2. NO image references or diagram dependencies. Describe all anatomical/cellular/numerical parameters explicitly in text.
 3. Ensure options are distinct, unambiguous, and realistic NCERT options.
+4. NEVER use \\ce{{}} mhchem notation. Write chemical formulas as plain text or simple KaTeX (e.g. H_2O, CuSO_4, MnO_4^-).
+5. NEVER embed \\n or \\t escape sequences inside string values. Use actual spaces to separate list items within a sentence.
 """
     raw_response = call_groq_api(prompt)
     if not raw_response:
