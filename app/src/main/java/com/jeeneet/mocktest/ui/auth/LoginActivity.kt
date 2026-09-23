@@ -143,11 +143,12 @@ class LoginActivity : AppCompatActivity() {
         card.addView(uiPrimaryButton("Login", onClick = { performLogin() }))
         card.addView(authOrDivider())
         card.addView(authGoogleButton(onClick = { startGoogleSignIn() }))
-        card.addView(authGuestButton(onClick = {
-            com.jeeneet.mocktest.utils.PrefManager.setGuestMode(this@LoginActivity, true)
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            finish()
-        }))
+        // Guest mode hidden from UI as per requirements, preserving underlying functions for future if needed:
+        // card.addView(authGuestButton(onClick = {
+        //     com.jeeneet.mocktest.utils.PrefManager.setGuestMode(this@LoginActivity, true)
+        //     startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+        //     finish()
+        // }))
 
         container.addView(card)
         container.addView(authFooter("Don't have an account?", "Sign Up") {
