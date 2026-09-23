@@ -48,12 +48,12 @@ service cloud.firestore {
       allow read, write: if isAuth() && request.auth.uid == userId;
     }
 
-    // Leaderboard access rules
+    // Leaderboard access rules — public read so guest users can view rankings; authenticated write only
     match /leaderboard/{weekKey} {
-      allow read: if isAuth();
+      allow read: if true;
       
       match /scores/{userId} {
-        allow read: if isAuth();
+        allow read: if true;
         allow write: if isAuth() && request.auth.uid == userId;
       }
     }

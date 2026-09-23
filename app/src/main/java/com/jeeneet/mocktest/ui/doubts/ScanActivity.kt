@@ -27,6 +27,7 @@ import com.jeeneet.mocktest.R
 import com.jeeneet.mocktest.admob.AdManager
 import com.jeeneet.mocktest.data.repository.CacheStatus
 import com.jeeneet.mocktest.data.repository.GeminiRepository
+import com.jeeneet.mocktest.ui.auth.LoginActivity
 import com.jeeneet.mocktest.ui.home.ShopActivity
 import com.jeeneet.mocktest.ui.style.*
 import com.jeeneet.mocktest.utils.AnalyticsManager
@@ -335,9 +336,7 @@ class ScanActivity : AppCompatActivity() {
             Toast.makeText(this, "Set your Gemini API key in local.properties", Toast.LENGTH_LONG).show()
             return
         }
-        if (!PrefManager.canScanNow(this)) {
-            AnalyticsManager.scanLimitReached(this)
-            showScanLimitDialog()
+        if (!checkScanAllowed()) {
             return
         }
         // Hide keyboard
@@ -602,6 +601,24 @@ class ScanActivity : AppCompatActivity() {
 
     private fun updateScanCounter() {
         if (!::tvScanCounter.isInitialized) return
+        if (PrefManager.isGuestMode(this)) {
+            val remaining = maxOf(0, 2 - PrefManager.getScanCountToday(this))
+            when (remaining) {
+                0 -> {
+                    tvScanCounter.text = "🔒 Guest limit reached (0/2 left)"
+                    tvScanCounter.setTextColor(Color.parseColor("#EF4444"))
+                }
+                1 -> {
+                    tvScanCounter.text = "⚠️ Guest Mode: 1 scan left"
+                    tvScanCounter.setTextColor(Color.parseColor("#F59E0B"))
+                }
+                else -> {
+                    tvScanCounter.text = "🔒 Guest Mode: $remaining/2 scans left"
+                    tvScanCounter.setTextColor(textTertiary)
+                }
+            }
+            return
+        }
         if (PrefManager.isAllAccessUnlocked(this)) {
             tvScanCounter.text = "✨ Premium — Unlimited scans"
             tvScanCounter.setTextColor(goldPrimary)
@@ -626,11 +643,33 @@ class ScanActivity : AppCompatActivity() {
 
     private fun updateAnalyzeBtnText() {
         if (!::analyzeBtn.isInitialized) return
-        val canScan = PrefManager.canScanNow(this)
+        val canScan = if (PrefManager.isGuestMode(this)) {
+            PrefManager.getScanCountToday(this) < 2
+        } else {
+            PrefManager.canScanNow(this)
+        }
         analyzeBtn.text = if (canScan) "✨  Analyze with AI" else "🔒  Limit Reached"
     }
 
     // ─── Scan limit + paywall ─────────────────────────────────────────────────
+
+    private fun checkScanAllowed(): Boolean {
+        if (PrefManager.isGuestMode(this)) {
+            val used = PrefManager.getScanCountToday(this)
+            if (used >= 2) {
+                AnalyticsManager.scanLimitReached(this)
+                showGuestScanLimitDialog()
+                return false
+            }
+            return true
+        }
+        if (!PrefManager.canScanNow(this)) {
+            AnalyticsManager.scanLimitReached(this)
+            showScanLimitDialog()
+            return false
+        }
+        return true
+    }
 
     private fun onAnalyzeTapped() {
         if (isProcessing) return
@@ -642,12 +681,24 @@ class ScanActivity : AppCompatActivity() {
             Toast.makeText(this, "Set your Gemini API key in local.properties", Toast.LENGTH_LONG).show()
             return
         }
-        if (!PrefManager.canScanNow(this)) {
-            AnalyticsManager.scanLimitReached(this)
-            showScanLimitDialog()
+        if (!checkScanAllowed()) {
             return
         }
         analyzeImage()
+    }
+
+    private fun showGuestScanLimitDialog() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle("🔒 Guest Scan Limit Reached")
+            .setMessage(
+                "You have used your 2 free scans in Guest Mode.\n\n" +
+                "⚡ Login or create an account to unlock daily scans, detailed AI solutions, and sync your doubt history!"
+            )
+            .setPositiveButton("⚡ Login / Sign Up") { _, _ ->
+                startActivity(Intent(this, LoginActivity::class.java))
+            }
+            .setNegativeButton("Maybe Later", null)
+            .show()
     }
 
     private fun showScanLimitDialog() {

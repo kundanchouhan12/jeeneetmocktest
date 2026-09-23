@@ -203,6 +203,10 @@ class ShopActivity : AppCompatActivity() {
 
         if (!isOwned) {
             inner.addView(uiPrimaryButton("Buy ${item.price}", heightDp = 46) {
+                if (PrefManager.isGuestMode(this@ShopActivity) || com.google.firebase.auth.FirebaseAuth.getInstance().currentUser == null) {
+                    showGuestPurchaseDialog()
+                    return@uiPrimaryButton
+                }
                 if (PrefManager.isPackUnlocked(this@ShopActivity, item.productId) ||
                     (item.productId == IAPProducts.REMOVE_ADS && PrefManager.isAdsRemoved(this@ShopActivity)) ||
                     (item.productId == IAPProducts.ALL_ACCESS_YEARLY && PrefManager.isAllAccessUnlocked(this@ShopActivity))
@@ -228,4 +232,17 @@ class ShopActivity : AppCompatActivity() {
         return card
     }
 
+    private fun showGuestPurchaseDialog() {
+        com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setTitle("👑 Login Required to Purchase")
+            .setMessage(
+                "Please login or create an account before purchasing.\n\n" +
+                "This ensures your purchases and unlocked packs remain permanently saved to your account and accessible across all your devices."
+            )
+            .setPositiveButton("⚡ Login / Sign Up") { _, _ ->
+                startActivity(Intent(this, com.jeeneet.mocktest.ui.auth.LoginActivity::class.java))
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
 }

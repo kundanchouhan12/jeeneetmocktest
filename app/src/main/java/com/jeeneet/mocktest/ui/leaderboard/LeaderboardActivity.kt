@@ -18,7 +18,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import com.jeeneet.mocktest.ui.auth.LoginActivity
 import com.jeeneet.mocktest.ui.style.*
+import com.jeeneet.mocktest.utils.PrefManager
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -118,7 +120,8 @@ class LeaderboardActivity : AppCompatActivity() {
         if (!isOnline()) { displayError(); return }
         showLoading()
         val weekKey = getWeekKey()
-        val currentUid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
+        val isGuest = PrefManager.isGuestMode(this) || FirebaseAuth.getInstance().currentUser == null
+        val currentUid = if (isGuest) "" else (FirebaseAuth.getInstance().currentUser?.uid ?: "")
         val cal = Calendar.getInstance()
         val sdf = SimpleDateFormat("MMM d", Locale.getDefault())
         val weekStart = Calendar.getInstance().apply {
@@ -148,12 +151,12 @@ class LeaderboardActivity : AppCompatActivity() {
                         testsCompleted = doc.getLong("testsCompleted") ?: 0L,
                         streak         = (doc.getLong("streak") ?: 0L).toInt(),
                         rank           = idx + 1,
-                        isMe           = doc.id == currentUid
+                        isMe           = !isGuest && doc.id == currentUid
                     )
                 }
-                val myDoc = snapshot.documents.firstOrNull { it.id == currentUid }
+                val myDoc = if (isGuest || currentUid.isEmpty()) null else snapshot.documents.firstOrNull { it.id == currentUid }
                 val myScore = myDoc?.getLong("totalScore") ?: 0L
-                displayLeaderboard(weekLabel, weekKey, entries, currentUid, myScore)
+                displayLeaderboard(weekLabel, weekKey, entries, currentUid, myScore, isGuest)
             }
             .addOnFailureListener { e ->
                 android.util.Log.e("Leaderboard", "Fetch failed", e)
@@ -161,8 +164,48 @@ class LeaderboardActivity : AppCompatActivity() {
             }
     }
 
-    private fun displayLeaderboard(weekLabel: String, weekKey: String, entries: List<Entry>, currentUid: String, myScore: Long = 0L) {
+    private fun displayLeaderboard(
+        weekLabel: String,
+        weekKey: String,
+        entries: List<Entry>,
+        currentUid: String,
+        myScore: Long = 0L,
+        isGuest: Boolean = false
+    ) {
         contentContainer.removeAllViews()
+
+        // Guest Mode Top Banner
+        if (isGuest) {
+            val guestBanner = uiCard(
+                radius = Corner.L,
+                elevation = Elev.S,
+                background = bgSecondary,
+                strokeDp = 1,
+                strokeColor = colorPrimary
+            ).apply {
+                layoutParams = lpRow(bottomDp = Space.M)
+            }
+            val guestInner = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(Space.L.dp, Space.M.dp, Space.L.dp, Space.M.dp)
+            }
+            guestInner.addView(uiTextView(UiText.H3, "🔒 Guest Mode (Read-Only)", colorPrimary))
+            guestInner.addView(uiTextView(
+                UiText.LABEL,
+                "You are viewing live rankings. Please login to enter the weekly leaderboard, record your score, and compete with peers!",
+                textSecondary
+            ).apply {
+                setPadding(0, Space.XS.dp, 0, Space.M.dp)
+            })
+            guestInner.addView(uiPrimaryButton("⚡  Login / Sign Up to Join", heightDp = 44) {
+                startActivity(Intent(this@LeaderboardActivity, LoginActivity::class.java))
+            }.apply {
+                textSize = 14f
+                stateListAnimator = null
+            })
+            guestBanner.addView(guestInner)
+            contentContainer.addView(guestBanner)
+        }
 
         // Week info card
         val infoCard = uiCard(radius = Corner.L, elevation = Elev.NONE, strokeDp = 0).apply {
@@ -188,7 +231,9 @@ class LeaderboardActivity : AppCompatActivity() {
         contentContainer.addView(infoCard)
 
         if (entries.isEmpty()) {
-            val emptyMsg = if (myScore > 0L) {
+            val emptyMsg = if (isGuest) {
+                "No aspirants have qualified yet this week. Take tests to claim the top spot!"
+            } else if (myScore > 0L) {
                 "Your current score is $myScore pts. Reach 100 pts to qualify for the leaderboard!"
             } else {
                 "Score at least 100 points this week to claim the top spot on the leaderboard!"
@@ -208,12 +253,33 @@ class LeaderboardActivity : AppCompatActivity() {
         }
 
         // User's own card if not in top 25
-        val meEntry = entries.firstOrNull { it.isMe }
+        val meEntry = if (isGuest) null else entries.firstOrNull { it.isMe }
         val meRank = meEntry?.rank ?: -1
         if (meEntry == null || meRank > 25) {
             contentContainer.addView(uiSectionLabel("Your Position"))
             if (meEntry != null) {
                 contentContainer.addView(buildRankRow(meEntry, isHighlighted = true))
+            } else if (isGuest) {
+                contentContainer.addView(uiCard(
+                    radius = Corner.L, elevation = Elev.NONE,
+                    strokeDp = 0
+                ).apply {
+                    layoutParams = lpRow(bottomDp = Space.S)
+                    val cardCol = LinearLayout(this@LeaderboardActivity).apply {
+                        orientation = LinearLayout.VERTICAL
+                        setPadding(Space.L.dp, Space.M.dp, Space.L.dp, Space.M.dp)
+                    }
+                    cardCol.addView(uiTextView(UiText.BODY, "Login to record your tests and see your rank.", textSecondary, Gravity.CENTER))
+                    cardCol.addView(uiPrimaryButton("Login / Sign Up", heightDp = 40) {
+                        startActivity(Intent(this@LeaderboardActivity, LoginActivity::class.java))
+                    }.apply {
+                        textSize = 13f
+                        layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT, 40.dp
+                        ).also { it.topMargin = Space.S.dp }
+                    })
+                    addView(cardCol)
+                })
             } else {
                 val statusText = if (myScore > 0L) {
                     "Your current score: $myScore pts. Need ${100 - myScore} more pts to qualify!"

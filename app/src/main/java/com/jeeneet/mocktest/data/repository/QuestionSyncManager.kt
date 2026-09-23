@@ -136,19 +136,18 @@ class QuestionSyncManager(private val context: Context) {
         val exam = PrefManager.getSelectedExam(context)
 
         val savedGroupId = PrefManager.getVaultCurrentGroupId(context, exam)
-        val nextRefreshDate = PrefManager.getVaultNextRefreshDate(context, exam)
+        val snapshotDate = PrefManager.getVaultSnapshotDate(context, exam)
 
-        // Gate 1 — 7-day freeze: if we have questions and refresh date hasn't arrived, use cache
-        if (savedGroupId.isNotEmpty() && nextRefreshDate.isNotEmpty() && today < nextRefreshDate) {
+        // Gate 1 — Daily Freshness: If today's vault for this exam is already cached locally, skip Firestore call
+        if (snapshotDate == today && savedGroupId.isNotEmpty()) {
             val localCount = questionDao.getVaultQuestionsByGroupId(savedGroupId).size
             if (localCount > 0) {
-                Log.d(TAG, "Vault frozen until $nextRefreshDate — skipping sync ($localCount questions cached)")
+                Log.d(TAG, "Daily Vault for $today ($exam) is already up to date ($localCount questions cached)")
                 return@withContext
             }
         }
 
-        // Gate 2 — TTL: even after the freeze expires, only hit Firestore once per 6 hours
-        // (mirrors Power100SyncManager's 24h TTL to avoid redundant network calls)
+        // Gate 2 — TTL: If checked within the last 6 hours and we have cached questions, skip
         val lastCheckedMs = PrefManager.getVaultLastCheckedMs(context, exam)
         val cacheAge = System.currentTimeMillis() - lastCheckedMs
         if (savedGroupId.isNotEmpty() && cacheAge < VAULT_CHECK_TTL_MS) {
@@ -160,7 +159,7 @@ class QuestionSyncManager(private val context: Context) {
         }
 
         try {
-            Log.d(TAG, "Syncing Daily Vault for $today…")
+            Log.d(TAG, "Syncing Daily Vault for $today ($exam)…")
             val snapshot = firestore.collection(COL_QUESTIONS)
                 .whereEqualTo("vaultDate", today)
                 .get().await()
@@ -171,7 +170,7 @@ class QuestionSyncManager(private val context: Context) {
 
             // Reinstall / first-launch fallback: no cached vault and no vault for today —
             // fetch the most recently uploaded vault from Firestore regardless of age so
-            // users always see vault questions even if the script wasn't run this week.
+            // users always see vault questions even if the script wasn't run today.
             if (questions.isEmpty() && savedGroupId.isEmpty()) {
                 try {
                     val fallbackSnapshot = firestore.collection(COL_QUESTIONS)
@@ -183,7 +182,6 @@ class QuestionSyncManager(private val context: Context) {
                         parseQuestion(doc.data ?: return@mapNotNull null)
                     }
                     if (allFallback.isNotEmpty()) {
-                        // For each exam keep only questions from their most recent vault date
                         val jeeLatest = allFallback.filter { it.examType == "JEE" && it.vaultDate.isNotEmpty() }
                             .maxByOrNull { it.vaultDate }?.vaultDate
                         val neetLatest = allFallback.filter { it.examType == "NEET" && it.vaultDate.isNotEmpty() }
@@ -203,8 +201,8 @@ class QuestionSyncManager(private val context: Context) {
 
             if (questions.isNotEmpty()) {
                 val newGroupId = questions.firstOrNull { it.examType == exam }?.vaultGroupId ?: today
-                // Only replace questions if the group is different (new vault cycle)
-                if (newGroupId != savedGroupId) {
+                // Replace questions if group is new or snapshot date is not today
+                if (newGroupId != savedGroupId || snapshotDate != today) {
                     // Tidy up: remove vault questions older than 14 days
                     val cal = java.util.Calendar.getInstance()
                     cal.add(java.util.Calendar.DAY_OF_YEAR, -14)
@@ -215,9 +213,9 @@ class QuestionSyncManager(private val context: Context) {
                     questionDao.deleteDailyVaultQuestions("NEET", today)
                     questionDao.insertQuestions(questions)
 
-                    // Calculate next refresh date (7 days from today)
+                    // Calculate next refresh date (1 day from today for daily vault)
                     val refreshCal = java.util.Calendar.getInstance()
-                    refreshCal.add(java.util.Calendar.DAY_OF_YEAR, 7)
+                    refreshCal.add(java.util.Calendar.DAY_OF_YEAR, 1)
                     val nextRefresh = sdf.format(refreshCal.time)
 
                     PrefManager.setVaultCurrentGroupId(context, exam, newGroupId)
@@ -225,12 +223,12 @@ class QuestionSyncManager(private val context: Context) {
                     PrefManager.setVaultNextRefreshDate(context, exam, nextRefresh)
                     PrefManager.setLastVaultSyncDate(context, today)
 
-                    // Notify for the current exam immediately — don't wait for the 10 AM worker
+                    // Notify only for the user's currently selected exam
                     if (!PrefManager.isDailyVaultDoneToday(context, exam)) {
                         com.jeeneet.mocktest.utils.NotificationHelper.showDailyVaultNotif(context, exam)
                     }
 
-                    // If the batch has questions for both exams, save prefs for the other exam too
+                    // If the batch has questions for the other exam as well, update its prefs too
                     val otherExam = if (exam == "JEE") "NEET" else "JEE"
                     if (questions.any { it.examType == otherExam }) {
                         val otherGroupId = questions.firstOrNull { it.examType == otherExam }?.vaultGroupId ?: newGroupId
@@ -238,10 +236,6 @@ class QuestionSyncManager(private val context: Context) {
                         PrefManager.setVaultSnapshotDate(context, otherExam, today)
                         PrefManager.setVaultNextRefreshDate(context, otherExam, nextRefresh)
                         Log.d(TAG, "Also saved vault prefs for $otherExam")
-                        // Notify for the other exam too if it's not done
-                        if (!PrefManager.isDailyVaultDoneToday(context, otherExam)) {
-                            com.jeeneet.mocktest.utils.NotificationHelper.showDailyVaultNotif(context, otherExam)
-                        }
                     }
                     Log.d(TAG, "Daily Vault synced: ${questions.size} questions, next refresh: $nextRefresh")
                     val localTotal = questionDao.getTotalCount()
@@ -258,7 +252,7 @@ class QuestionSyncManager(private val context: Context) {
                     Log.d(TAG, "Daily Vault group unchanged — updated sync date only")
                 }
             } else {
-                // No new vault uploaded yet — keep serving the cached vault and retry tomorrow
+                // No new vault uploaded yet for today — keep serving cached vault and retry tomorrow
                 if (savedGroupId.isNotEmpty()) {
                     val refreshCal = java.util.Calendar.getInstance()
                     refreshCal.add(java.util.Calendar.DAY_OF_YEAR, 1)
@@ -269,10 +263,8 @@ class QuestionSyncManager(private val context: Context) {
                     Log.d(TAG, "No vault questions found for $today and no cached vault available")
                 }
             }
-            // Stamp the TTL timestamp on every successful Firestore call — mirrors Power100
             PrefManager.setVaultLastCheckedMs(context, exam, System.currentTimeMillis())
         } catch (e: Exception) {
-            // Don't stamp lastCheckedMs on failure so the next launch retries
             Log.w(TAG, "Daily Vault sync failed: ${e.message}")
             AnalyticsManager.syncFailed(context, "daily_vault", e.message ?: "network_error")
         }

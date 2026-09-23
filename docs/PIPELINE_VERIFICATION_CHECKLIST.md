@@ -122,12 +122,25 @@ Expected output:
 
 ---
 
-## 📋 What Was Fixed (2026-09-18)
+### 8. Daily Vault 1-Day Cadence & Rotation Verification
+
+> **Why this exists:** The Daily Vault previously had a 7-day freeze gate (`today < nextRefreshDate` with a 7-day offset copied from Power 100). Users saw the exact same 30 questions for 7 days.
+
+Verify:
+- [ ] `QuestionSyncManager.kt` bypass gate uses `snapshotDate == today` (Daily Freshness), NOT `today < nextRefreshDate`.
+- [ ] `QuestionSyncManager.kt` calculates `nextRefreshDate` by adding **1 day** (`refreshCal.add(DAY_OF_YEAR, 1)`), NOT 7 days.
+- [ ] `MainActivity.kt` checks `PrefManager.getVaultSnapshotDate(this, selectedExam) != todayStr` on launch and exam switch to force immediate background sync.
+- [ ] `Power100SyncManager.kt` maintains its 7-day weekly refresh cycle independently without affecting Daily Vault logic.
+
+---
+
+## 📋 What Was Fixed (2026-09-18 & 2026-09-23)
 
 | File | Fix Applied |
 |------|-------------|
-| `QuestionSyncManager.kt` | 4-level fallback: `correctOptionIndex as Long → correctOption as Long → correctOptionIndex as Int → correctOption as Int` |
-| `Power100SyncManager.kt` | Same 4-level fallback |
+| `QuestionSyncManager.kt` | 1) 4-level fallback for `correctOptionIndex/correctOption`. 2) Replaced 7-day freeze with 1-day freshness (`snapshotDate == today`) & 1-day refresh date calculation. |
+| `MainActivity.kt` | Added auto-sync check on resume/exam toggle whenever `snapshotDate != todayStr`. |
+| `Power100SyncManager.kt` | 4-level fallback for `correctOptionIndex/correctOption` (keeps 7-day weekly refresh). |
 | `neet_web_question_ingestion.py` | `item["correctOption"] = corr; item["correctOptionIndex"] = corr` in fetch loop |
 | `web_question_ingestion.py` | Same dual-field set |
 | `auto_question_pipeline.py` | Same dual-field set in `generate_questions()` |
@@ -142,3 +155,5 @@ Expected output:
 > **Never declare a pipeline change "verified" without checking:**
 > 1. That the Python field name matches what `parseQuestion()` in Kotlin reads
 > 2. That the **count of parseable vault docs** (not just written docs) equals 30
+> 3. That **Daily Vault checks daily freshness (`snapshotDate == today`)** with 1-day rotation, while **Power 100 retains 7-day weekly rotation**
+

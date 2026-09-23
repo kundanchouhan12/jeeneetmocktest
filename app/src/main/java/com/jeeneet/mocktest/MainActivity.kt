@@ -427,6 +427,17 @@ class MainActivity : AppCompatActivity() {
             requiresHomeRefresh = false
             if (::contentLayout.isInitialized) buildContent()
         }
+
+        // Daily Vault check: sync if today's vault isn't cached yet (e.g. app resumed on a new day)
+        val sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+        val todayStr = sdfDate.format(java.util.Date())
+        if (PrefManager.getVaultSnapshotDate(this, selectedExam) != todayStr) {
+            lifecycleScope.launch {
+                QuestionSyncManager(this@MainActivity).syncDailyVault()
+                if (::contentLayout.isInitialized) buildContent()
+            }
+        }
+
         refreshNavHeader()
         fetchFomoCount()
         checkNotificationPermissionFlow()
@@ -1094,9 +1105,11 @@ class MainActivity : AppCompatActivity() {
         PrefManager.setSelectedExam(this, selectedExam)
         requiresHomeRefresh = true
 
-        // If this exam has no cached vault (e.g. after reinstall), sync now so the
-        // vault card shows questions immediately rather than "unavailable".
-        if (PrefManager.getVaultCurrentGroupId(this, exam).isEmpty()) {
+        // If this exam has no cached vault for today, sync now so the
+        // vault card shows fresh questions immediately.
+        val sdfExam = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+        val todayDate = sdfExam.format(java.util.Date())
+        if (PrefManager.getVaultSnapshotDate(this, exam) != todayDate || PrefManager.getVaultCurrentGroupId(this, exam).isEmpty()) {
             lifecycleScope.launch {
                 QuestionSyncManager(this@MainActivity).syncDailyVault()
             }
@@ -1690,7 +1703,7 @@ class MainActivity : AppCompatActivity() {
             orientation = LinearLayout.HORIZONTAL
             layoutParams = lpRow(topDp = Space.S, bottomDp = Space.M)
         }
-        row.addView(chip("🔓", "Daily Vault", vaultSub, isVaultDone, vaultAction).apply {
+        row.addView(chip("🔓", "$selectedExam Vault", vaultSub, isVaultDone, vaultAction).apply {
             (layoutParams as LinearLayout.LayoutParams).marginEnd = Space.S.dp
         })
         row.addView(chip("🔥", "Challenge", challengeSub, isChallengeDone, challengeAction))
@@ -1731,9 +1744,8 @@ class MainActivity : AppCompatActivity() {
 
         val refreshLabel = when {
             isAwaitingFirstSync -> "Syncing vault questions…"
-            daysUntilRefresh == 0 -> "Vault refresh available today"
-            daysUntilRefresh == 1 -> "Next vault refresh tomorrow"
-            else -> "Next vault refresh in $daysUntilRefresh days"
+            snapshotDate == today -> "Next vault refresh in ${hours}h ${minutes}m"
+            else -> "New vault refresh available now!"
         }
 
         val snapshotLabel = if (snapshotDate.isNotEmpty() && snapshotDate != today) {
@@ -1821,9 +1833,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         val titleText = when {
-            isDone -> "Vault Completed ✅"
-            isAwaitingFirstSync -> "Daily Vault"
-            else -> "Daily Vault — Questions Ready"
+            isDone -> "$selectedExam Vault Completed ✅"
+            isAwaitingFirstSync -> "$selectedExam Daily Vault"
+            else -> "$selectedExam Daily Vault — Questions Ready"
         }
         textCol.addView(uiTextView(UiText.H2, titleText, textPrimary))
 

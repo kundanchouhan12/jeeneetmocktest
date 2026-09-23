@@ -70,13 +70,8 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int) -> None:
     questions_ref = db.collection("questions")
 
     # 1. Clean up any existing vault documents for this date + exam
-    existing = (
-        questions_ref
-        .where("isDailyVault", "==", True)
-        .where("vaultDate", "==", target_date)
-        .where("examType", "==", exam_type)
-        .get()
-    )
+    all_vault_docs = questions_ref.where("vaultDate", "==", target_date).get()
+    existing = [d for d in all_vault_docs if d.to_dict().get("isDailyVault") == True and d.to_dict().get("examType") == exam_type]
     if existing:
         print(f"  Removing {len(existing)} stale vault docs for {target_date}/{exam_type}...")
         batch = db.batch()

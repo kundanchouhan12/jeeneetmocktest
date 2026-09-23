@@ -91,6 +91,12 @@ The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` 
 
 5. **Vault Count Sanity** — JEE and NEET vaults for tomorrow's date must each have ≥ 27 questions (30 is target). Below 27 = bank too thin, increase ingestion count.
 
+6. **Daily Vault 1-Day Cadence Invariant**:
+   - **Incident Fixed**: Daily Vault previously locked local DB for 7 days (`today < nextRefreshDate` with 7-day offset copied from Power 100), causing users to see the same questions for a week.
+   - **Mandatory Cadence**: Daily Vault MUST check daily freshness (`snapshotDate == today`). Its refresh offset MUST be 1 day (`+1 day`), NEVER 7 days.
+   - **Power 100 Cadence**: Power 100 stays on a 7-day weekly refresh cycle (refreshes every Monday). Do not leak Power 100's 7-day freeze logic into Daily Vault.
+
 ### Firestore Field Invariant (must never break):
 All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion.py`, `auto_question_pipeline.py`) and the vault scheduler MUST always write BOTH `correctOption` and `correctOptionIndex` to every Firestore document, set to the same integer value.
+
 
