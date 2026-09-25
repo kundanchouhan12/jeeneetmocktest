@@ -430,12 +430,9 @@ class MainActivity : AppCompatActivity() {
 
         // Daily Vault check: sync if today's vault isn't cached yet (e.g. app resumed on a new day)
         val sdfDate = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-        val todayStr = sdfDate.format(java.util.Date())
-        if (PrefManager.getVaultSnapshotDate(this, selectedExam) != todayStr) {
-            lifecycleScope.launch {
-                QuestionSyncManager(this@MainActivity).syncDailyVault()
-                if (::contentLayout.isInitialized) buildContent()
-            }
+        lifecycleScope.launch {
+            QuestionSyncManager(this@MainActivity).syncDailyVault()
+            if (::contentLayout.isInitialized) buildContent()
         }
 
         refreshNavHeader()
@@ -1105,14 +1102,8 @@ class MainActivity : AppCompatActivity() {
         PrefManager.setSelectedExam(this, selectedExam)
         requiresHomeRefresh = true
 
-        // If this exam has no cached vault for today, sync now so the
-        // vault card shows fresh questions immediately.
-        val sdfExam = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
-        val todayDate = sdfExam.format(java.util.Date())
-        if (PrefManager.getVaultSnapshotDate(this, exam) != todayDate || PrefManager.getVaultCurrentGroupId(this, exam).isEmpty()) {
-            lifecycleScope.launch {
-                QuestionSyncManager(this@MainActivity).syncDailyVault()
-            }
+        lifecycleScope.launch {
+            QuestionSyncManager(this@MainActivity).syncDailyVault()
         }
 
         // Update header tab pills immediately so the user gets instant visual feedback

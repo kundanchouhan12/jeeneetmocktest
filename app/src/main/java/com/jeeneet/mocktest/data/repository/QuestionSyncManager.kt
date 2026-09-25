@@ -9,6 +9,8 @@ import com.jeeneet.mocktest.data.model.Question
 import com.jeeneet.mocktest.utils.AnalyticsManager
 import com.jeeneet.mocktest.utils.PrefManager
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
@@ -45,6 +47,7 @@ class QuestionSyncManager(private val context: Context) {
 
     private val firestore    = Firebase.firestore
     private val questionDao  = MockTestDatabase.getInstance(context).questionDao()
+    private val vaultMutex   = Mutex()
 
     // ─── Public API ───────────────────────────────────────────────────────────
 
@@ -129,6 +132,10 @@ class QuestionSyncManager(private val context: Context) {
      * Yesterday's Room vault is deleted only after a full 30-question set parses.
      */
     suspend fun syncDailyVault() = withContext(Dispatchers.IO) {
+        vaultMutex.withLock { syncDailyVaultLocked() }
+    }
+
+    private suspend fun syncDailyVaultLocked() {
         val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
         val today = sdf.format(java.util.Date())
         val exam = PrefManager.getSelectedExam(context)
@@ -136,20 +143,23 @@ class QuestionSyncManager(private val context: Context) {
         val savedGroupId = PrefManager.getVaultCurrentGroupId(context, exam)
         val snapshotDate = PrefManager.getVaultSnapshotDate(context, exam)
 
-        val localCountForGate = if (savedGroupId.isNotEmpty()) {
-            questionDao.getVaultQuestionsByGroupId(savedGroupId).count { it.examType == exam }
-        } else 0
+        val localRows = if (savedGroupId.isNotEmpty()) {
+            questionDao.getVaultQuestionsByGroupId(savedGroupId)
+        } else emptyList()
+        val cacheCompleteToday = DailyVaultContract.isCompleteCache(
+            localRows, exam, today, savedGroupId
+        )
 
-        if (QuestionFirestoreParser.shouldSkipVaultNetwork(
-                snapshotDate, today, savedGroupId, localCountForGate, EXPECTED_VAULT_COUNT
+        if (DailyVaultContract.shouldSkipNetwork(
+                snapshotDate, today, savedGroupId, cacheCompleteToday
             )
         ) {
-            Log.d(TAG, "Daily Vault for $today ($exam) already complete ($localCountForGate/$EXPECTED_VAULT_COUNT) — skipping Firestore")
-            return@withContext
+            Log.d(TAG, "Daily Vault for $today ($exam) already complete (${DailyVaultContract.EXPECTED_COUNT}) — skipping Firestore")
+            return
         }
 
-        if (localCountForGate in 1 until EXPECTED_VAULT_COUNT) {
-            Log.w(TAG, "Daily Vault cache incomplete ($localCountForGate/$EXPECTED_VAULT_COUNT for $exam) — retrying Firestore")
+        if (localRows.isNotEmpty() && !cacheCompleteToday) {
+            Log.w(TAG, "Daily Vault cache incomplete (${localRows.size}/$EXPECTED_VAULT_COUNT for $exam) — retrying Firestore")
         }
 
         try {
@@ -185,7 +195,15 @@ class QuestionSyncManager(private val context: Context) {
                 }
             }
 
-            if (questions.size == EXPECTED_VAULT_COUNT) {
+            val incomingDate = questions.firstOrNull()?.vaultDate.orEmpty()
+            val replaceToday = DailyVaultContract.isCompleteIncoming(questions, exam, today)
+            val replaceFallback = !replaceToday &&
+                savedGroupId.isEmpty() &&
+                incomingDate.isNotEmpty() &&
+                DailyVaultContract.isCompleteIncoming(questions, exam, incomingDate)
+
+            if (replaceToday || replaceFallback) {
+                val sourceDate = questions.first().vaultDate.ifEmpty { today }
                 val newGroupId = questions.first().vaultGroupId.ifEmpty { today }
                 questionDao.deleteAllDailyVaultForExam(exam)
                 questionDao.insertQuestions(questions)
@@ -194,7 +212,6 @@ class QuestionSyncManager(private val context: Context) {
                 refreshCal.add(java.util.Calendar.DAY_OF_YEAR, 1)
                 val nextRefresh = sdf.format(refreshCal.time)
 
-                val sourceDate = questions.first().vaultDate.ifEmpty { today }
                 PrefManager.setVaultCurrentGroupId(context, exam, newGroupId)
                 PrefManager.setVaultSnapshotDate(context, exam, sourceDate)
                 PrefManager.setVaultNextRefreshDate(context, exam, nextRefresh)
@@ -263,7 +280,9 @@ class QuestionSyncManager(private val context: Context) {
             val result = QuestionFirestoreParser.parseQuestion(data)
             val question = result.question
             if (question == null) {
-                Log.w(TAG, "parseQuestion drop ${doc.id}: ${result.dropReason}")
+                val examDrop = data["examType"]
+                val dateDrop = data["vaultDate"]
+                Log.w(TAG, "parseQuestion drop ${doc.id} exam=$examDrop vaultDate=$dateDrop: ${result.dropReason}")
             } else {
                 parsed += question
             }

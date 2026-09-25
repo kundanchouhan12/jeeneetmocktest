@@ -17,6 +17,9 @@ object QuestionFirestoreParser {
     fun parseQuestion(data: Map<String, Any>): ParseResult {
         val examType = data["examType"] as? String
             ?: return ParseResult(null, "examType missing/not string (${typeName(data["examType"])})")
+        if (examType !in DailyVaultContract.VALID_EXAMS) {
+            return ParseResult(null, "examType '$examType' is not JEE or NEET")
+        }
         val subject = data["subject"] as? String
             ?: return ParseResult(null, "subject missing/not string (${typeName(data["subject"])})")
         val chapter = data["chapter"] as? String
@@ -88,11 +91,12 @@ object QuestionFirestoreParser {
         today: String,
         savedGroupId: String,
         localCount: Int,
-        expectedCount: Int = EXPECTED_VAULT_COUNT
+        expectedCount: Int = EXPECTED_VAULT_COUNT,
+        cacheIsCompleteToday: Boolean? = null
     ): Boolean {
-        return savedGroupId.isNotEmpty() &&
-            snapshotDate == today &&
-            localCount == expectedCount
+        val complete = cacheIsCompleteToday
+            ?: (savedGroupId.isNotEmpty() && snapshotDate == today && localCount == expectedCount)
+        return DailyVaultContract.shouldSkipNetwork(snapshotDate, today, savedGroupId, complete)
     }
 
     private fun coerceIndex(raw: Any?): Int? {
