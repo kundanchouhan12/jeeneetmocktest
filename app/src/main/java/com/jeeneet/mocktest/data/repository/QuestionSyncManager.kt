@@ -40,8 +40,7 @@ class QuestionSyncManager(private val context: Context) {
         private const val COL_QUESTIONS     = "questions"
         private const val COL_METADATA      = "metadata"
         private const val DOC_QUESTION_BANK = "question_bank"
-        // Skip Firestore vault check if we already checked within this window
-        private const val VAULT_CHECK_TTL_MS = 6 * 60 * 60 * 1000L  // 6 hours
+        private const val EXPECTED_VAULT_COUNT = QuestionFirestoreParser.EXPECTED_VAULT_COUNT
     }
 
     private val firestore    = Firebase.firestore
@@ -126,9 +125,8 @@ class QuestionSyncManager(private val context: Context) {
     }
 
     /**
-     * Syncs today's curated questions (the Daily Vault) from Firestore.
-     * Questions are frozen until the next scheduled refresh date (7 days after last sync).
-     * Accessible to all users regardless of IAP status.
+     * Syncs today's Daily Vault for the selected exam only.
+     * Yesterday's Room vault is deleted only after a full 30-question set parses.
      */
     suspend fun syncDailyVault() = withContext(Dispatchers.IO) {
         val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
@@ -138,119 +136,88 @@ class QuestionSyncManager(private val context: Context) {
         val savedGroupId = PrefManager.getVaultCurrentGroupId(context, exam)
         val snapshotDate = PrefManager.getVaultSnapshotDate(context, exam)
 
-        // Gate 1 — Daily Freshness: If today's vault for this exam is already cached locally, skip Firestore call
-        if (snapshotDate == today && savedGroupId.isNotEmpty()) {
-            val localCount = questionDao.getVaultQuestionsByGroupId(savedGroupId).size
-            if (localCount > 0) {
-                Log.d(TAG, "Daily Vault for $today ($exam) is already up to date ($localCount questions cached)")
-                return@withContext
-            }
+        val localCountForGate = if (savedGroupId.isNotEmpty()) {
+            questionDao.getVaultQuestionsByGroupId(savedGroupId).count { it.examType == exam }
+        } else 0
+
+        if (QuestionFirestoreParser.shouldSkipVaultNetwork(
+                snapshotDate, today, savedGroupId, localCountForGate, EXPECTED_VAULT_COUNT
+            )
+        ) {
+            Log.d(TAG, "Daily Vault for $today ($exam) already complete ($localCountForGate/$EXPECTED_VAULT_COUNT) — skipping Firestore")
+            return@withContext
         }
 
-        // Gate 2 — TTL: If checked within the last 6 hours and we have cached questions, skip
-        val lastCheckedMs = PrefManager.getVaultLastCheckedMs(context, exam)
-        val cacheAge = System.currentTimeMillis() - lastCheckedMs
-        if (savedGroupId.isNotEmpty() && cacheAge < VAULT_CHECK_TTL_MS) {
-            val localCount = questionDao.getVaultQuestionsByGroupId(savedGroupId).size
-            if (localCount > 0) {
-                Log.d(TAG, "Vault TTL warm (${cacheAge / 60_000}m old) — skipping Firestore check")
-                return@withContext
-            }
+        if (localCountForGate in 1 until EXPECTED_VAULT_COUNT) {
+            Log.w(TAG, "Daily Vault cache incomplete ($localCountForGate/$EXPECTED_VAULT_COUNT for $exam) — retrying Firestore")
         }
 
         try {
             Log.d(TAG, "Syncing Daily Vault for $today ($exam)…")
             val snapshot = firestore.collection(COL_QUESTIONS)
                 .whereEqualTo("vaultDate", today)
+                .whereEqualTo("examType", exam)
+                .whereEqualTo("isDailyVault", true)
                 .get().await()
 
-            var questions = snapshot.documents.mapNotNull { doc ->
-                parseQuestion(doc.data ?: return@mapNotNull null)
-            }
+            var questions = parseVaultDocuments(snapshot.documents, "today=$today exam=$exam")
+                .filter { it.examType == exam && it.isDailyVault }
 
             // Reinstall / first-launch fallback: no cached vault and no vault for today —
-            // fetch the most recently uploaded vault from Firestore regardless of age so
-            // users always see vault questions even if the script wasn't run today.
+            // fetch the latest vault for this exam only.
             if (questions.isEmpty() && savedGroupId.isEmpty()) {
                 try {
                     val fallbackSnapshot = firestore.collection(COL_QUESTIONS)
-                        .whereGreaterThan("vaultDate", "")
+                        .whereEqualTo("examType", exam)
+                        .whereEqualTo("isDailyVault", true)
                         .orderBy("vaultDate", com.google.firebase.firestore.Query.Direction.DESCENDING)
-                        .limit(120L)
+                        .limit(EXPECTED_VAULT_COUNT.toLong())
                         .get().await()
-                    val allFallback = fallbackSnapshot.documents.mapNotNull { doc ->
-                        parseQuestion(doc.data ?: return@mapNotNull null)
+                    questions = parseVaultDocuments(fallbackSnapshot.documents, "fallback exam=$exam")
+                        .filter { it.examType == exam && it.isDailyVault }
+                    val latestDate = questions.maxByOrNull { it.vaultDate }?.vaultDate
+                    if (latestDate != null) {
+                        questions = questions.filter { it.vaultDate == latestDate }
                     }
-                    if (allFallback.isNotEmpty()) {
-                        val jeeLatest = allFallback.filter { it.examType == "JEE" && it.vaultDate.isNotEmpty() }
-                            .maxByOrNull { it.vaultDate }?.vaultDate
-                        val neetLatest = allFallback.filter { it.examType == "NEET" && it.vaultDate.isNotEmpty() }
-                            .maxByOrNull { it.vaultDate }?.vaultDate
-                        questions = allFallback.filter { q ->
-                            (q.examType == "JEE" && q.vaultDate == jeeLatest) ||
-                            (q.examType == "NEET" && q.vaultDate == neetLatest)
-                        }
-                        Log.d(TAG, "Vault fallback: ${questions.size} questions (JEE: $jeeLatest, NEET: $neetLatest)")
-                    } else {
-                        Log.d(TAG, "Vault fallback: no vault questions found in Firestore")
-                    }
+                    Log.d(TAG, "Vault fallback ($exam): ${questions.size} questions (date=$latestDate)")
                 } catch (e: Exception) {
                     Log.w(TAG, "Vault fallback query failed: ${e.message}")
                 }
             }
 
-            if (questions.isNotEmpty()) {
-                val newGroupId = questions.firstOrNull { it.examType == exam }?.vaultGroupId ?: today
-                // Replace questions if group is new or snapshot date is not today
-                if (newGroupId != savedGroupId || snapshotDate != today) {
-                    // Tidy up: remove vault questions older than 14 days
-                    val cal = java.util.Calendar.getInstance()
-                    cal.add(java.util.Calendar.DAY_OF_YEAR, -14)
-                    val oldDate = sdf.format(cal.time)
-                    questionDao.deleteOldVaultQuestions(oldDate)
+            if (questions.size == EXPECTED_VAULT_COUNT) {
+                val newGroupId = questions.first().vaultGroupId.ifEmpty { today }
+                questionDao.deleteAllDailyVaultForExam(exam)
+                questionDao.insertQuestions(questions)
 
-                    questionDao.deleteDailyVaultQuestions("JEE", today)
-                    questionDao.deleteDailyVaultQuestions("NEET", today)
-                    questionDao.insertQuestions(questions)
+                val refreshCal = java.util.Calendar.getInstance()
+                refreshCal.add(java.util.Calendar.DAY_OF_YEAR, 1)
+                val nextRefresh = sdf.format(refreshCal.time)
 
-                    // Calculate next refresh date (1 day from today for daily vault)
-                    val refreshCal = java.util.Calendar.getInstance()
-                    refreshCal.add(java.util.Calendar.DAY_OF_YEAR, 1)
-                    val nextRefresh = sdf.format(refreshCal.time)
+                val sourceDate = questions.first().vaultDate.ifEmpty { today }
+                PrefManager.setVaultCurrentGroupId(context, exam, newGroupId)
+                PrefManager.setVaultSnapshotDate(context, exam, sourceDate)
+                PrefManager.setVaultNextRefreshDate(context, exam, nextRefresh)
+                PrefManager.setLastVaultSyncDate(context, today)
 
-                    PrefManager.setVaultCurrentGroupId(context, exam, newGroupId)
-                    PrefManager.setVaultSnapshotDate(context, exam, today)
-                    PrefManager.setVaultNextRefreshDate(context, exam, nextRefresh)
-                    PrefManager.setLastVaultSyncDate(context, today)
-
-                    // Notify only for the user's currently selected exam
-                    if (!PrefManager.isDailyVaultDoneToday(context, exam)) {
-                        com.jeeneet.mocktest.utils.NotificationHelper.showDailyVaultNotif(context, exam)
-                    }
-
-                    // If the batch has questions for the other exam as well, update its prefs too
-                    val otherExam = if (exam == "JEE") "NEET" else "JEE"
-                    if (questions.any { it.examType == otherExam }) {
-                        val otherGroupId = questions.firstOrNull { it.examType == otherExam }?.vaultGroupId ?: newGroupId
-                        PrefManager.setVaultCurrentGroupId(context, otherExam, otherGroupId)
-                        PrefManager.setVaultSnapshotDate(context, otherExam, today)
-                        PrefManager.setVaultNextRefreshDate(context, otherExam, nextRefresh)
-                        Log.d(TAG, "Also saved vault prefs for $otherExam")
-                    }
-                    Log.d(TAG, "Daily Vault synced: ${questions.size} questions, next refresh: $nextRefresh")
-                    val localTotal = questionDao.getTotalCount()
-                    AnalyticsManager.syncCompleted(
-                        context,
-                        syncType = "daily_vault",
-                        version = 0,
-                        freshCount = questions.size,
-                        localTotal = localTotal,
-                        durationMs = 0L
-                    )
-                } else {
-                    PrefManager.setLastVaultSyncDate(context, today)
-                    Log.d(TAG, "Daily Vault group unchanged — updated sync date only")
+                if (!PrefManager.isDailyVaultDoneToday(context, exam)) {
+                    com.jeeneet.mocktest.utils.NotificationHelper.showDailyVaultNotif(context, exam)
                 }
+                Log.d(TAG, "Daily Vault replaced for $exam: ${questions.size} questions, next refresh: $nextRefresh")
+                val localTotal = questionDao.getTotalCount()
+                AnalyticsManager.syncCompleted(
+                    context,
+                    syncType = "daily_vault",
+                    version = 0,
+                    freshCount = questions.size,
+                    localTotal = localTotal,
+                    durationMs = 0L
+                )
+            } else if (questions.isNotEmpty()) {
+                Log.w(
+                    TAG,
+                    "Ignoring incomplete $exam vault (${questions.size}/$EXPECTED_VAULT_COUNT parseable) — keeping previous day"
+                )
             } else {
                 // No new vault uploaded yet for today — keep serving cached vault and retry tomorrow
                 if (savedGroupId.isNotEmpty()) {
@@ -280,36 +247,39 @@ class QuestionSyncManager(private val context: Context) {
         }
     }
 
-    @Suppress("UNCHECKED_CAST")
-    private fun parseQuestion(data: Map<String, Any>): Question? {
-        return try {
-            Question(
-                id                 = 0,   // Room auto-generates the local PK
-                examType           = data["examType"]           as? String ?: return null,
-                subject            = data["subject"]            as? String ?: return null,
-                chapter            = data["chapter"]            as? String ?: return null,
-                difficulty         = data["difficulty"]         as? String ?: "Medium",
-                year               = (data["year"]              as? Long)?.toInt() ?: 0,
-                questionText       = data["questionText"]       as? String ?: return null,
-                options            = (data["options"]           as? List<*>)
-                                        ?.filterIsInstance<String>()
-                                        ?.takeIf { it.size == 4 }  ?: return null,
-                correctOptionIndex = (data["correctOptionIndex"] as? Long)?.toInt()
-                                        ?: (data["correctOption"] as? Long)?.toInt()
-                                        ?: (data["correctOptionIndex"] as? Int)
-                                        ?: (data["correctOption"] as? Int)
-                                        ?: return null,
-                explanation        = data["explanation"]        as? String ?: "",
-                isPremium          = data["isPremium"]          as? Boolean ?: true,
-                isDailyVault       = data["isDailyVault"]       as? Boolean ?: false,
-                vaultDate          = data["vaultDate"]          as? String ?: "",
-                vaultGroupId       = data["vaultGroupId"]       as? String ?: ""
-            )
-        } catch (e: Exception) {
-            Log.w(TAG, "Skipping malformed question: ${e.message}")
-            null
+    private fun parseVaultDocuments(
+        documents: List<com.google.firebase.firestore.DocumentSnapshot>,
+        label: String
+    ): List<Question> {
+        val parsed = ArrayList<Question>(documents.size)
+        var empty = 0
+        documents.forEach { doc ->
+            val data = doc.data
+            if (data == null) {
+                empty++
+                Log.w(TAG, "parseQuestion drop ${doc.id}: empty data")
+                return@forEach
+            }
+            val result = QuestionFirestoreParser.parseQuestion(data)
+            val question = result.question
+            if (question == null) {
+                Log.w(TAG, "parseQuestion drop ${doc.id}: ${result.dropReason}")
+            } else {
+                parsed += question
+            }
         }
+        val jee = parsed.count { it.examType == "JEE" }
+        val neet = parsed.count { it.examType == "NEET" }
+        Log.d(
+            TAG,
+            "Vault $label: raw=${documents.size} empty=$empty " +
+                "parseable=${parsed.size} (JEE=$jee NEET=$neet) dropped=${documents.size - empty - parsed.size}"
+        )
+        return parsed
     }
+
+    private fun parseQuestion(data: Map<String, Any>): Question? =
+        QuestionFirestoreParser.parseQuestion(data).question
 
     private fun packToExamSubject(packId: String): Pair<String, String>? = when (packId) {
         IAPProducts.JEE_PHYSICS_PACK  -> "JEE"  to "Physics"

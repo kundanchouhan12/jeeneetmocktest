@@ -85,5 +85,40 @@ class SelectVaultQuestionsTest(unittest.TestCase):
         self.assertEqual(len({d.id for d in selected}), 5)
 
 
+class AndroidParseableTest(unittest.TestCase):
+
+    def _valid(self, **overrides):
+        q = {
+            "examType": "JEE",
+            "subject": "Maths",
+            "chapter": "Limits",
+            "questionText": "What is lim x→0 sin(x)/x ?",
+            "options": ["0", "1", "∞", "-1"],
+            "correctOptionIndex": 1,
+            "correctOption": 1,
+        }
+        q.update(overrides)
+        return q
+
+    def test_string_and_float_indexes_are_coerced(self):
+        from vault_scheduler import coerce_correct_index, is_android_parseable
+        self.assertEqual(coerce_correct_index("2"), 2)
+        self.assertEqual(coerce_correct_index(3.0), 3)
+        ok, reason = is_android_parseable(self._valid(correctOptionIndex="1", correctOption="1"))
+        self.assertTrue(ok, reason)
+
+    def test_numeric_options_are_coerced(self):
+        from vault_scheduler import coerce_options
+        self.assertEqual(coerce_options([1, 2, 3, 4]), ["1", "2", "3", "4"])
+
+    def test_rejects_missing_chapter(self):
+        from vault_scheduler import is_android_parseable
+        q = self._valid()
+        del q["chapter"]
+        ok, reason = is_android_parseable(q)
+        self.assertFalse(ok)
+        self.assertEqual(reason, "chapter")
+
+
 if __name__ == "__main__":
     unittest.main()

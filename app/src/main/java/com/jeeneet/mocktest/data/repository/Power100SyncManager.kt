@@ -160,9 +160,7 @@ class Power100SyncManager(private val context: Context) {
 
     private fun parseQuestion(exam: String, position: Int, map: Map<String, Any>): Power100Question? {
         return try {
-            @Suppress("UNCHECKED_CAST")
-            val options = (map["options"] as? List<*>)?.mapNotNull { it as? String }
-            if (options == null || options.size != 4) return null
+            val options = QuestionFirestoreParser.parseOptions(map["options"]) ?: return null
             Power100Question(
                 examType = exam,
                 position = position,
@@ -171,11 +169,7 @@ class Power100SyncManager(private val context: Context) {
                 difficulty = map["difficulty"] as? String ?: "Medium",
                 questionText = map["questionText"] as? String ?: return null,
                 options = options,
-                correctOptionIndex = (map["correctOptionIndex"] as? Long)?.toInt()
-                                        ?: (map["correctOption"] as? Long)?.toInt()
-                                        ?: (map["correctOptionIndex"] as? Int)
-                                        ?: (map["correctOption"] as? Int)
-                                        ?: return null,
+                correctOptionIndex = QuestionFirestoreParser.parseCorrectIndex(map) ?: return null,
                 explanation = map["explanation"] as? String ?: ""
             )
         } catch (e: Exception) {

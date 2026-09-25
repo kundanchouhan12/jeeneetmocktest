@@ -62,39 +62,39 @@ data class ScanHistory(
 @Dao
 interface QuestionDao {
 
-    @Query("SELECT * FROM questions WHERE examType = :exam ORDER BY RANDOM() LIMIT :limit")
+    @Query("SELECT * FROM questions WHERE examType = :exam AND isDailyVault = 0 ORDER BY RANDOM() LIMIT :limit")
     suspend fun getRandomQuestions(exam: String, limit: Int): List<Question>
 
     @Query("""
         SELECT * FROM questions 
-        WHERE examType = :exam AND subject = :subject 
+        WHERE examType = :exam AND subject = :subject AND isDailyVault = 0
         ORDER BY RANDOM() LIMIT :limit
     """)
     suspend fun getQuestionsBySubject(exam: String, subject: String, limit: Int): List<Question>
 
     @Query("""
         SELECT * FROM questions 
-        WHERE examType = :exam AND subject = :subject AND chapter = :chapter 
+        WHERE examType = :exam AND subject = :subject AND chapter = :chapter AND isDailyVault = 0
         ORDER BY RANDOM() LIMIT :limit
     """)
     suspend fun getQuestionsByChapter(exam: String, subject: String, chapter: String, limit: Int): List<Question>
 
     @Query("""
         SELECT * FROM questions 
-        WHERE examType = :exam AND subject = :subject AND chapter = :chapter
+        WHERE examType = :exam AND subject = :subject AND chapter = :chapter AND isDailyVault = 0
     """)
     suspend fun getQuestionsByChapterOnce(exam: String, subject: String, chapter: String): List<Question>
 
     @Query("""
         SELECT * FROM questions
-        WHERE examType = :exam AND isPremium = 0
+        WHERE examType = :exam AND isPremium = 0 AND isDailyVault = 0
         ORDER BY RANDOM() LIMIT :limit
     """)
     suspend fun getFreeQuestions(exam: String, limit: Int): List<Question>
 
     @Query("""
         SELECT * FROM questions
-        WHERE examType = :exam AND subject = :subject AND isPremium = 0
+        WHERE examType = :exam AND subject = :subject AND isPremium = 0 AND isDailyVault = 0
         ORDER BY RANDOM() LIMIT :limit
     """)
     suspend fun getFreeQuestionsBySubject(exam: String, subject: String, limit: Int): List<Question>
@@ -129,8 +129,8 @@ interface QuestionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertQuestion(question: Question)
 
-    /** Wipe cached premium questions for a pack before re-syncing fresh ones. */
-    @Query("DELETE FROM questions WHERE examType = :exam AND subject = :subject AND isPremium = 1")
+    /** Wipe cached premium pack questions. Never touch Daily Vault copies. */
+    @Query("DELETE FROM questions WHERE examType = :exam AND subject = :subject AND isPremium = 1 AND isDailyVault = 0")
     suspend fun deletePremiumQuestionsBySubject(exam: String, subject: String)
 
     /** Upsert — replaces existing row only when firestoreId matches (used for updates). */
@@ -139,7 +139,7 @@ interface QuestionDao {
 
     @Query("""
         SELECT * FROM questions
-        WHERE examType = :exam AND subject = :subject AND chapter IN (:chapters)
+        WHERE examType = :exam AND subject = :subject AND chapter IN (:chapters) AND isDailyVault = 0
         ORDER BY RANDOM() LIMIT :limit
     """)
     suspend fun getQuestionsByChapters(exam: String, subject: String, chapters: List<String>, limit: Int): List<Question>
@@ -155,6 +155,9 @@ interface QuestionDao {
 
     @Query("DELETE FROM questions WHERE isDailyVault = 1 AND vaultDate = :date AND examType = :exam")
     suspend fun deleteDailyVaultQuestions(exam: String, date: String)
+
+    @Query("DELETE FROM questions WHERE isDailyVault = 1 AND examType = :exam")
+    suspend fun deleteAllDailyVaultForExam(exam: String)
 
     @Query("DELETE FROM questions WHERE isDailyVault = 1 AND vaultDate < :beforeDate")
     suspend fun deleteOldVaultQuestions(beforeDate: String)

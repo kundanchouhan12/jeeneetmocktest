@@ -45,6 +45,53 @@ def init_firebase(creds_path: str) -> None:
     firebase_admin.initialize_app(credentials.Certificate(creds_path))
 
 
+def coerce_correct_index(value):
+    """Android parseQuestion accepts 0–3 as int/long only unless coerced here first."""
+    if isinstance(value, bool) or value is None:
+        return None
+    if isinstance(value, int) and value in (0, 1, 2, 3):
+        return value
+    if isinstance(value, float) and value in (0.0, 1.0, 2.0, 3.0):
+        return int(value)
+    if isinstance(value, str):
+        text = value.strip()
+        if text.isdigit() and int(text) in (0, 1, 2, 3):
+            return int(text)
+    return None
+
+
+def coerce_options(options):
+    if not isinstance(options, list) or len(options) != 4:
+        return None
+    out = []
+    for item in options:
+        if item is None:
+            return None
+        text = str(item).strip()
+        if not text:
+            return None
+        out.append(str(item) if not isinstance(item, str) else item)
+    return out
+
+
+def is_android_parseable(q: dict) -> tuple:
+    """Mirrors the fields Android QuestionFirestoreParser requires."""
+    if not isinstance(q.get("examType"), str) or not q["examType"].strip():
+        return False, "examType"
+    if not isinstance(q.get("subject"), str) or not q["subject"].strip():
+        return False, "subject"
+    if not isinstance(q.get("chapter"), str) or not q["chapter"].strip():
+        return False, "chapter"
+    if not isinstance(q.get("questionText"), str) or not q["questionText"].strip():
+        return False, "questionText"
+    if coerce_options(q.get("options")) is None:
+        return False, "options"
+    corr = q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption")
+    if coerce_correct_index(corr) is None:
+        return False, "correctOptionIndex"
+    return True, ""
+
+
 def select_vault_questions(pool: list, recently_used_ids: set, count: int) -> list:
     """
     Picks up to `count` items from `pool` (anything with a `.id` attribute),
@@ -93,8 +140,20 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int) -> None:
     # Exclude vault copies (their IDs start with "vault_")
     pool = [d for d in all_docs if not d.id.startswith("vault_")]
 
+    skipped = []
+    parseable = []
+    for d in pool:
+        ok, reason = is_android_parseable(d.to_dict() or {})
+        if ok:
+            parseable.append(d)
+        else:
+            skipped.append((d.id, reason))
+    if skipped:
+        print(f"  Skipping {len(skipped)} bank docs Android cannot parse (e.g. {skipped[0][0]}: {skipped[0][1]}).")
+    pool = parseable
+
     if len(pool) == 0:
-        print(f"  ERROR: No questions found in Firestore for exam '{exam_type}'. Skipping.")
+        print(f"  ERROR: No Android-parseable questions found in Firestore for exam '{exam_type}'. Skipping.")
         return
 
     # 2b. Exclude questions used in previous vault cycles so the same set doesn't
@@ -134,10 +193,14 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int) -> None:
         q["isDailyVault"] = True
         q["vaultDate"] = target_date
         q["vaultGroupId"] = group_id
-        corr = q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption")
-        if corr is not None:
-            q["correctOptionIndex"] = corr
-            q["correctOption"] = corr
+        # Vault is free for every user; isPremium=False also protects Room from pack wipes.
+        q["isPremium"] = False
+        q["options"] = coerce_options(q.get("options"))
+        corr = coerce_correct_index(
+            q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption")
+        )
+        q["correctOptionIndex"] = corr
+        q["correctOption"] = corr
         new_ref = questions_ref.document(f"vault_{target_date}_{doc.id}")
         batch.set(new_ref, q)
     batch.commit()

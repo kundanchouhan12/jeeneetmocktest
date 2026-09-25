@@ -1,0 +1,23 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "examType", "order": "ASCENDING" },
+        { "fieldPath": "isDailyVault", "order": "ASCENDING" },
+        { "fieldPath": "vaultDate", "order": "ASCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "questions",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "examType", "order": "ASCENDING" },
+        { "fieldPath": "isDailyVault", "order": "ASCENDING" },
+        { "fieldPath": "vaultDate", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}
