@@ -158,6 +158,20 @@ class VaultContractTest(unittest.TestCase):
             assert_selected_vault(selected, "NEET", "2026-09-26", 30)
         self.assertIn("need exactly 30", str(ctx.exception))
 
+    def test_assert_selected_fails_when_29_valid(self):
+        from vault_scheduler import VaultContractError, assert_selected_vault
+        selected = [PayloadDoc(f"q{i}", self._q(i)) for i in range(29)]
+        with self.assertRaises(VaultContractError) as ctx:
+            assert_selected_vault(selected, "JEE", "2026-09-26", 30)
+        self.assertIn("need exactly 30", str(ctx.exception))
+
+    def test_assert_selected_fails_when_31_provided(self):
+        from vault_scheduler import VaultContractError, assert_selected_vault
+        selected = [PayloadDoc(f"q{i}", self._q(i)) for i in range(31)]
+        with self.assertRaises(VaultContractError) as ctx:
+            assert_selected_vault(selected, "JEE", "2026-09-26", 30)
+        self.assertIn("need exactly 30", str(ctx.exception))
+
     def test_assert_selected_and_readback_30(self):
         from vault_scheduler import (
             assert_selected_vault, normalize_vault_payload, verify_written_vault,
@@ -383,6 +397,56 @@ class FirestoreWriteFailureTest(unittest.TestCase):
         kept = [d for d in db._store.values() if d.to_dict().get("vaultDate") == "2026-09-26"]
         self.assertEqual(len(kept), 30,
             "yesterday's valid vault must survive untouched when today's write fails")
+
+
+class SchedulerRerunTest(unittest.TestCase):
+    """schedule_vault() must be idempotent: re-running it for a date that's already
+    been scheduled must never leave more (or fewer) than exactly 30 vault docs, even
+    when a larger pool means the two runs can pick a different 30-question subset."""
+
+    def _source(self, i: int, exam: str = "JEE") -> dict:
+        return {
+            "examType": exam,
+            "subject": "Physics",
+            "chapter": "Kinematics",
+            "questionText": f"Unique rerun stem {i} for {exam}",
+            "options": ["A", "B", "C", "D"],
+            "correctOptionIndex": 0,
+            "correctOption": 0,
+            "explanation": "e",
+            "isDailyVault": False,
+        }
+
+    def test_rerun_same_date_leaves_exactly_30_not_60(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb()
+        for i in range(40):  # larger-than-count pool so the two runs can select differently
+            db.seed(f"src{i}", self._source(i))
+
+        schedule_vault(db, "2026-09-28", "JEE", count=30)
+        first = {d.id for d in db._store.values() if d.id.startswith("vault_")}
+        self.assertEqual(len(first), 30)
+
+        schedule_vault(db, "2026-09-28", "JEE", count=30)
+        second = {d.id for d in db._store.values() if d.id.startswith("vault_")}
+        self.assertEqual(len(second), 30,
+            "rerunning the scheduler for an already-scheduled date must never leave >30 vault docs")
+
+    def test_rerun_three_times_still_exactly_30(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb()
+        for i in range(50):
+            db.seed(f"src{i}", self._source(i))
+
+        for _ in range(3):
+            schedule_vault(db, "2026-09-29", "JEE", count=30)
+
+        final = [d for d in db._store.values() if d.id.startswith("vault_")]
+        self.assertEqual(len(final), 30)
+        dates = {d.to_dict().get("vaultDate") for d in final}
+        exams = {d.to_dict().get("examType") for d in final}
+        self.assertEqual(dates, {"2026-09-29"})
+        self.assertEqual(exams, {"JEE"})
 
 
 if __name__ == "__main__":

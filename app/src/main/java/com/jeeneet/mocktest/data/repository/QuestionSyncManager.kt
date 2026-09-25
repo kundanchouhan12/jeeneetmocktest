@@ -43,11 +43,19 @@ class QuestionSyncManager(private val context: Context) {
         private const val COL_METADATA      = "metadata"
         private const val DOC_QUESTION_BANK = "question_bank"
         private const val EXPECTED_VAULT_COUNT = QuestionFirestoreParser.EXPECTED_VAULT_COUNT
+
+        // A NEW QuestionSyncManager(context) is constructed at every call site (MainActivity
+        // onResume, the IAP-restore callback, switchExam, ...). An instance-level Mutex would
+        // give each of those its own lock and serialize nothing — two of those coroutines can
+        // genuinely overlap (e.g. onResume's syncDailyVault() racing the restore-complete
+        // callback's syncDailyVault() right after cold start) and interleave
+        // delete-then-insert, doubling up vault rows. Sharing one Mutex per process across
+        // every instance is what actually serializes concurrent syncDailyVault() calls.
+        private val vaultMutex = Mutex()
     }
 
     private val firestore    = Firebase.firestore
     private val questionDao  = MockTestDatabase.getInstance(context).questionDao()
-    private val vaultMutex   = Mutex()
 
     // ─── Public API ───────────────────────────────────────────────────────────
 
@@ -150,6 +158,13 @@ class QuestionSyncManager(private val context: Context) {
             localRows, exam, today, savedGroupId
         )
 
+        Log.d(
+            TAG,
+            "Vault check: today=$today exam=$exam savedGroupId='$savedGroupId' " +
+                "snapshotDate='$snapshotDate' roomCount=${localRows.size} " +
+                "cacheCompleteToday=$cacheCompleteToday"
+        )
+
         if (DailyVaultContract.shouldSkipNetwork(
                 snapshotDate, today, savedGroupId, cacheCompleteToday
             )
@@ -205,8 +220,23 @@ class QuestionSyncManager(private val context: Context) {
             if (replaceToday || replaceFallback) {
                 val sourceDate = questions.first().vaultDate.ifEmpty { today }
                 val newGroupId = questions.first().vaultGroupId.ifEmpty { today }
-                questionDao.deleteAllDailyVaultForExam(exam)
-                questionDao.insertQuestions(questions)
+                questionDao.replaceDailyVault(exam, questions)
+
+                // Defense-in-depth: the in-memory `questions` list was already proven
+                // complete by isCompleteIncoming() above, so this should always pass —
+                // but if a future Room/DAO change ever broke that guarantee, silently
+                // pointing PrefManager at a broken group would be worse than surfacing it.
+                val writtenRows = questionDao.getVaultQuestionsByGroupId(newGroupId)
+                if (!DailyVaultContract.isCompleteCache(writtenRows, exam, sourceDate, newGroupId)) {
+                    Log.e(
+                        TAG,
+                        "Vault write verification FAILED for $exam/$sourceDate group=$newGroupId " +
+                            "(read back ${writtenRows.size} rows, expected $EXPECTED_VAULT_COUNT) — " +
+                            "not updating pointers, will retry on next sync"
+                    )
+                    AnalyticsManager.syncFailed(context, "daily_vault", "post_write_verification_failed")
+                    return
+                }
 
                 val refreshCal = java.util.Calendar.getInstance()
                 refreshCal.add(java.util.Calendar.DAY_OF_YEAR, 1)

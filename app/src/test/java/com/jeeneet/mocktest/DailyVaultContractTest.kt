@@ -8,6 +8,8 @@ import com.jeeneet.mocktest.data.model.Question
 import com.jeeneet.mocktest.data.repository.DailyVaultContract
 import com.jeeneet.mocktest.data.repository.MockTestDatabase
 import com.jeeneet.mocktest.data.repository.QuestionFirestoreParser
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.*
 import org.junit.Before
@@ -235,5 +237,112 @@ class DailyVaultContractTest {
         )
         assertNull(result.question)
         assertTrue(result.dropReason!!.contains("JEE or NEET"))
+    }
+
+    // ─── Deeper root-cause audit additions (2026-09-25) ─────────────────────────
+
+    @Test
+    fun test13_twentyNineIsIncomplete() {
+        val rows = (1..29).map { vaultQ("JEE", "2026-09-25", "jee_vault_2026-09-25", it) }
+        assertFalse(DailyVaultContract.isCompleteCache(rows, "JEE", "2026-09-25", "jee_vault_2026-09-25"))
+        assertFalse(DailyVaultContract.isCompleteIncoming(rows, "JEE", "2026-09-25"))
+    }
+
+    @Test
+    fun test14_thirtyOneIsInvalidNotComplete() {
+        val rows = (1..31).map { vaultQ("JEE", "2026-09-25", "jee_vault_2026-09-25", it) }
+        assertFalse(DailyVaultContract.isCompleteCache(rows, "JEE", "2026-09-25", "jee_vault_2026-09-25"))
+        assertFalse(DailyVaultContract.isCompleteIncoming(rows, "JEE", "2026-09-25"))
+    }
+
+    @Test
+    fun test15_oneWrongVaultDateAmongThirtyMakesIncomplete() {
+        val rows = (1..30).map { n ->
+            vaultQ("JEE", if (n == 15) "2026-09-24" else "2026-09-25", "jee_vault_2026-09-25", n)
+        }
+        assertFalse(DailyVaultContract.isCompleteIncoming(rows, "JEE", "2026-09-25"))
+    }
+
+    @Test
+    fun test16_oneNonVaultFlaggedRowAmongThirtyMakesIncomplete() {
+        val rows = (1..30).map { n ->
+            vaultQ("JEE", "2026-09-25", "jee_vault_2026-09-25", n, isVault = (n != 20))
+        }
+        assertFalse(DailyVaultContract.isCompleteIncoming(rows, "JEE", "2026-09-25"))
+    }
+
+    @Test
+    fun test17_retryAfterIncompleteSucceedsWhenFullSetArrives() = runBlocking {
+        val dao = MockTestDatabase.getInstance(ctx).questionDao()
+        // A prior failed/partial sync left only 18 rows cached under today's group.
+        dao.insertQuestions((1..18).map { vaultQ("JEE", "2026-09-25", "jee_vault_2026-09-25", it) })
+        assertFalse(
+            DailyVaultContract.isCompleteCache(
+                dao.getVaultQuestionsByGroupId("jee_vault_2026-09-25"), "JEE", "2026-09-25", "jee_vault_2026-09-25"
+            )
+        )
+
+        // Firestore now has a genuinely complete 30 for today — retry must succeed.
+        val fullSet = thirty("JEE", "2026-09-25", "jee_vault_2026-09-25_retry")
+        assertTrue(DailyVaultContract.isCompleteIncoming(fullSet, "JEE", "2026-09-25"))
+        dao.replaceDailyVault("JEE", fullSet)
+
+        val finalRows = dao.getVaultQuestionsByGroupId("jee_vault_2026-09-25_retry")
+        assertEquals(30, finalRows.size)
+        assertTrue(DailyVaultContract.isCompleteCache(finalRows, "JEE", "2026-09-25", "jee_vault_2026-09-25_retry"))
+    }
+
+    @Test
+    fun test18_replaceDailyVaultAtomicSwap() = runBlocking {
+        val dao = MockTestDatabase.getInstance(ctx).questionDao()
+        dao.insertQuestions(thirty("JEE", "2026-09-24", "jee_vault_2026-09-24"))
+        dao.replaceDailyVault("JEE", thirty("JEE", "2026-09-25", "jee_vault_2026-09-25"))
+        assertEquals(0, dao.getVaultQuestionsByGroupId("jee_vault_2026-09-24").size)
+        assertEquals(30, dao.getVaultQuestionsByGroupId("jee_vault_2026-09-25").size)
+    }
+
+    /**
+     * Reproduces the real-world race: QuestionSyncManager is constructed fresh at every
+     * call site (onResume, the IAP-restore callback, switchExam, ...), so two coroutines
+     * can genuinely call replaceDailyVault() for the same exam at the same time. Each
+     * @Transaction call must still be serialized by Room — never interleaved into a
+     * doubled/mixed row set.
+     */
+    @Test
+    fun test19_concurrentReplaceDailyVaultNeverDoublesOrMixesRows() = runBlocking {
+        val dao = MockTestDatabase.getInstance(ctx).questionDao()
+        val batchA = thirty("JEE", "2026-09-27", "jee_vault_2026-09-27_A")
+        val batchB = thirty("JEE", "2026-09-27", "jee_vault_2026-09-27_B")
+
+        val jobA = async(Dispatchers.IO) { dao.replaceDailyVault("JEE", batchA) }
+        val jobB = async(Dispatchers.IO) { dao.replaceDailyVault("JEE", batchB) }
+        jobA.await()
+        jobB.await()
+
+        val all = dao.getDailyVaultQuestions("JEE", "2026-09-27")
+        assertEquals(
+            "two racing replaceDailyVault() calls must never leave a mixed/doubled 60-row state",
+            30, all.size
+        )
+        assertEquals(1, all.map { it.vaultGroupId }.toSet().size)
+    }
+
+    @Test
+    fun test20_concurrentJeeAndNeetReplaceStayIsolated() = runBlocking {
+        val dao = MockTestDatabase.getInstance(ctx).questionDao()
+        val jee = thirty("JEE", "2026-09-27", "jee_vault_2026-09-27")
+        val neet = thirty("NEET", "2026-09-27", "neet_vault_2026-09-27")
+
+        val jobJee = async(Dispatchers.IO) { dao.replaceDailyVault("JEE", jee) }
+        val jobNeet = async(Dispatchers.IO) { dao.replaceDailyVault("NEET", neet) }
+        jobJee.await()
+        jobNeet.await()
+
+        val jeeRows = dao.getDailyVaultQuestions("JEE", "2026-09-27")
+        val neetRows = dao.getDailyVaultQuestions("NEET", "2026-09-27")
+        assertEquals(30, jeeRows.size)
+        assertEquals(30, neetRows.size)
+        assertTrue(jeeRows.none { it.examType == "NEET" })
+        assertTrue(neetRows.none { it.examType == "JEE" })
     }
 }

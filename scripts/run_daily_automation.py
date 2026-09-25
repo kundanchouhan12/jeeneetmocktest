@@ -47,6 +47,27 @@ from neet_web_question_ingestion import run_neet_web_ingestion
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
 
+class FirebaseAuthError(Exception):
+    """Raised when the Firestore client can't actually be reached — e.g. a bad/expired
+    GitHub secret producing `invalid_grant: Invalid JWT Signature`. Kept as a distinct,
+    narrow exception (instead of a bare `except Exception` in main()) so a real auth/
+    connectivity failure is never silently swallowed into a generic caught-and-continue
+    step and always aborts the run with a non-zero exit."""
+
+
+def verify_firebase_connectivity(db) -> None:
+    """Confirms `db` is a working Firestore client by actually reading a document.
+    `init_firebase()` can return a client object even when the credentials are bad —
+    the failure only surfaces on first real network call — so this forces that call
+    up front instead of deferring it into whichever pipeline step happens to run first."""
+    if db is None:
+        raise FirebaseAuthError("Firebase init returned no client.")
+    try:
+        db.collection("metadata").document("question_bank").get()
+    except Exception as e:
+        raise FirebaseAuthError(f"Firebase authentication/connectivity failed: {e}") from e
+
+
 def run_cleanup_audit(db, dry_run: bool = False, all_docs=None) -> int:
     print("\n🧹 Running Firestore Corrupted Question Audit...")
     questions_ref = db.collection('questions')
@@ -107,13 +128,10 @@ def main():
             sys.exit(1)
         try:
             db = init_firebase(args.creds)
-            if db is None:
-                print("ERROR: Firebase init returned no client. Refusing to continue.")
-                sys.exit(1)
-            db.collection("metadata").document("question_bank").get()
+            verify_firebase_connectivity(db)
             print("✅ Firebase authentication succeeded (metadata/question_bank readable).")
-        except Exception as e:
-            print(f"ERROR: Firebase authentication/connectivity failed: {e}")
+        except FirebaseAuthError as e:
+            print(f"ERROR: {e}")
             print("GitHub secret FIREBASE_SERVICE_ACCOUNT may be invalid (invalid_grant / JWT).")
             sys.exit(1)
 

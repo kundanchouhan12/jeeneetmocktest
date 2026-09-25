@@ -159,6 +159,19 @@ interface QuestionDao {
     @Query("DELETE FROM questions WHERE isDailyVault = 1 AND examType = :exam")
     suspend fun deleteAllDailyVaultForExam(exam: String)
 
+    /**
+     * Atomically swap an exam's Daily Vault: delete-then-insert as one Room
+     * transaction so a crash/process-death between the two steps can't leave
+     * the cache with zero vault rows, and so two racing callers can never
+     * interleave into a mixed/doubled row set (each transaction is
+     * serialized by Room regardless of app-level locking).
+     */
+    @Transaction
+    suspend fun replaceDailyVault(exam: String, questions: List<Question>) {
+        deleteAllDailyVaultForExam(exam)
+        insertQuestions(questions)
+    }
+
     @Query("DELETE FROM questions WHERE isDailyVault = 1 AND vaultDate < :beforeDate")
     suspend fun deleteOldVaultQuestions(beforeDate: String)
 

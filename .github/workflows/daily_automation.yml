@@ -6,6 +6,16 @@ on:
     - cron: '30 18 * * *'
   workflow_dispatch: # Allows manual trigger from GitHub Actions tab
 
+# Without this, a manual "Run workflow" click while the nightly cron run is still
+# in progress starts a second run_daily_automation.py against the same Firestore
+# project — two independent schedule_vault() calls with no mutual exclusion
+# between them can transiently double up or thrash vault docs for the same date.
+# `cancel-in-progress: false` queues the newer run behind the current one instead
+# of killing a run mid Firestore-batch-write.
+concurrency:
+  group: daily-vault-automation
+  cancel-in-progress: false
+
 jobs:
   run-daily-automation:
     runs-on: ubuntu-latest
