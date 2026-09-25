@@ -188,13 +188,23 @@ def verify_written_vault(docs: list, exam_type: str, target_date: str, group_id:
 
 def select_vault_questions(pool: list, recently_used_ids: set, count: int) -> list:
     """
-    Picks up to `count` items from `pool`, preferring ones not in
+    Picks exactly `count` items from `pool`, preferring ones not in
     `recently_used_ids`. Pure / I/O-free for unit tests.
+
+    Raises VaultContractError if the pool is smaller than `count` — the Daily
+    Vault contract must never allow a silently shrunk (18/27/29-question)
+    selection, even if some future caller forgets the pool-size check that
+    schedule_vault() already does before calling this.
     """
+    if len(pool) < count:
+        raise VaultContractError(
+            f"select_vault_questions: pool has {len(pool)} candidates, need exactly {count}. "
+            "Refusing to silently shrink the Daily Vault selection."
+        )
+
     fresh_pool = [d for d in pool if d.id not in recently_used_ids]
     stale_pool = [d for d in pool if d.id in recently_used_ids]
 
-    count = min(count, len(pool))
     fresh_n = min(count, len(fresh_pool))
     selected = random.sample(fresh_pool, fresh_n) if fresh_n else []
     if fresh_n < count:

@@ -12,6 +12,15 @@ except Exception:
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
 def is_corrupted(q):
+    # Daily Vault documents are managed exclusively by vault_scheduler.py's own
+    # select/validate/write/read-back-verify contract (exactly 30 per exam/date).
+    # This heuristic-based cleanup — and anything else that imports is_corrupted,
+    # e.g. run_daily_automation.py's run_cleanup_audit() — must never flag or
+    # delete a live vault doc, or it can silently shrink an already-published
+    # 30-question vault below the contract without the scheduler ever knowing.
+    if q.get('isDailyVault') is True:
+        return False, ""
+
     text = q.get('questionText', '').strip()
     options = q.get('options', [])
     
@@ -90,16 +99,23 @@ def cleanup(dry_run=True):
     questions_ref = db.collection('questions')
     
     docs = questions_ref.get()
-    
+
     corrupted_docs = []
-    
+    vault_skipped = 0
+
     for doc in docs:
         q = doc.to_dict()
+        # Belt-and-suspenders: skip Daily Vault docs by id prefix too, in case a
+        # data anomaly ever left isDailyVault unset on an actual vault_* doc.
+        if q.get('isDailyVault') is True or doc.id.startswith('vault_'):
+            vault_skipped += 1
+            continue
         corrupted, reason = is_corrupted(q)
         if corrupted:
             corrupted_docs.append((doc.id, q, reason))
-            
-    print(f"\nFound {len(corrupted_docs)} corrupted questions out of {len(docs)} total questions.")
+
+    print(f"\nFound {len(corrupted_docs)} corrupted questions out of {len(docs)} total questions "
+          f"({vault_skipped} Daily Vault docs skipped/protected).")
     
     if corrupted_docs:
         print("\nExamples of corrupted questions found:")

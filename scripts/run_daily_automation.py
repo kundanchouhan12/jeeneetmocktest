@@ -74,13 +74,21 @@ def run_cleanup_audit(db, dry_run: bool = False, all_docs=None) -> int:
     docs = all_docs if all_docs is not None else questions_ref.get()
 
     corrupted_docs = []
+    vault_skipped = 0
     for doc in docs:
         q = doc.to_dict()
+        # Daily Vault docs are owned exclusively by vault_scheduler.py's own
+        # contract — never let this heuristic audit flag or delete one, or an
+        # already-published 30-question vault can silently shrink underneath it.
+        if q.get('isDailyVault') is True or doc.id.startswith('vault_'):
+            vault_skipped += 1
+            continue
         corrupted, reason = is_corrupted(q)
         if corrupted:
             corrupted_docs.append((doc.id, reason))
 
-    print(f"  • Scanned {len(docs)} total documents. Found {len(corrupted_docs)} corrupted/noisy entries.")
+    print(f"  • Scanned {len(docs)} total documents. Found {len(corrupted_docs)} corrupted/noisy entries "
+          f"({vault_skipped} Daily Vault docs skipped/protected).")
 
     if corrupted_docs and not dry_run:
         print(f"  ⚠️ Deleting {len(corrupted_docs)} corrupted questions...")
