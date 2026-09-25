@@ -102,7 +102,20 @@ def main():
 
     db = None
     if not args.dry_run:
-        db = init_firebase(args.creds)
+        if not os.path.exists(args.creds):
+            print(f"ERROR: Firebase credentials file not found: {args.creds}")
+            sys.exit(1)
+        try:
+            db = init_firebase(args.creds)
+            if db is None:
+                print("ERROR: Firebase init returned no client. Refusing to continue.")
+                sys.exit(1)
+            db.collection("metadata").document("question_bank").get()
+            print("✅ Firebase authentication succeeded (metadata/question_bank readable).")
+        except Exception as e:
+            print(f"ERROR: Firebase authentication/connectivity failed: {e}")
+            print("GitHub secret FIREBASE_SERVICE_ACCOUNT may be invalid (invalid_grant / JWT).")
+            sys.exit(1)
 
     # Fetch the question bank once and share it across the ingestion and
     # pipeline dedup checks below, instead of each step re-reading the whole
@@ -118,11 +131,15 @@ def main():
     # Step 1: Web Question Ingestion & Noise Sanitization (JEE & NEET)
     try:
         run_web_ingestion(count_per_subject=args.count_per_subj, target_exam="JEE", dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
-        time.sleep(20)  # Same inter-request delay as inside each ingestion script
+    except Exception as e:
+        print(f"❌ Error during JEE Web Question Ingestion: {e}")
+        failed_steps.append(f"JEE Web Question Ingestion: {e}")
+    try:
+        time.sleep(20)
         run_neet_web_ingestion(count_per_subject=args.count_per_subj, dry_run=args.dry_run, db=db, all_docs=pre_write_docs)
     except Exception as e:
-        print(f"❌ Error during Web Question Ingestion: {e}")
-        failed_steps.append(f"Web Question Ingestion: {e}")
+        print(f"❌ Error during NEET Web Question Ingestion: {e}")
+        failed_steps.append(f"NEET Web Question Ingestion: {e}")
 
     # Web ingestion and the AI pipeline both call the same Groq free-tier
     # quota. Pause between them so step 2 doesn't start inside the same
@@ -139,6 +156,7 @@ def main():
     if not args.dry_run and db:
         # Re-fetch once now that steps 1-2 have written new docs, and share
         # this single read across both audit steps below.
+        vault_ok = {"JEE": False, "NEET": False}
         post_write_docs = None
         try:
             post_write_docs = db.collection('questions').get()
@@ -170,7 +188,12 @@ def main():
         try:
             print("\n⚡ Scheduling Daily Vault Questions...")
             for exam in ["JEE", "NEET"]:
-                schedule_vault(db, target_date, exam, count=args.vault_count)
+                try:
+                    schedule_vault(db, target_date, exam, count=args.vault_count)
+                    vault_ok[exam] = True
+                except Exception as e:
+                    print(f"❌ Error during {exam} Daily Vault: {e}")
+                    failed_steps.append(f"{exam} Daily Vault: {e}")
         except Exception as e:
             print(f"❌ Error during Vault Scheduling: {e}")
             failed_steps.append(f"Vault Scheduling: {e}")
@@ -216,8 +239,8 @@ def main():
                 'corrupted_purged_count': deleted_corrupt_count,
                 'live_total_jee': total_jee,
                 'live_total_neet': total_neet,
-                'vault_scheduled_jee': args.vault_count,
-                'vault_scheduled_neet': args.vault_count,
+                'vault_scheduled_jee': 30 if vault_ok.get("JEE") else 0,
+                'vault_scheduled_neet': 30 if vault_ok.get("NEET") else 0,
                 'failed_steps_count': len(failed_steps)
             }, merge=True)
             print(f"📊 Telemetry saved: {total_jee} JEE / {total_neet} NEET live questions in bank.")

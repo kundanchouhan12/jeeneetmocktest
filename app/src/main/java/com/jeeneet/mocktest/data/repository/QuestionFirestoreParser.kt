@@ -15,17 +15,20 @@ object QuestionFirestoreParser {
     data class ParseResult(val question: Question?, val dropReason: String?)
 
     fun parseQuestion(data: Map<String, Any>): ParseResult {
-        val examType = data["examType"] as? String
+        val examType = (data["examType"] as? String)?.trim()
             ?: return ParseResult(null, "examType missing/not string (${typeName(data["examType"])})")
         if (examType !in DailyVaultContract.VALID_EXAMS) {
             return ParseResult(null, "examType '$examType' is not JEE or NEET")
         }
-        val subject = data["subject"] as? String
-            ?: return ParseResult(null, "subject missing/not string (${typeName(data["subject"])})")
-        val chapter = data["chapter"] as? String
-            ?: return ParseResult(null, "chapter missing/not string (${typeName(data["chapter"])})")
-        val questionText = data["questionText"] as? String
-            ?: return ParseResult(null, "questionText missing/not string (${typeName(data["questionText"])})")
+        val subject = (data["subject"] as? String)?.trim()
+            ?.takeIf { it.isNotBlank() }
+            ?: return ParseResult(null, "subject missing/blank (${typeName(data["subject"])})")
+        val chapter = (data["chapter"] as? String)?.trim()
+            ?.takeIf { it.isNotBlank() }
+            ?: return ParseResult(null, "chapter missing/blank (${typeName(data["chapter"])})")
+        val questionText = (data["questionText"] as? String)?.trim()
+            ?.takeIf { it.isNotBlank() }
+            ?: return ParseResult(null, "questionText missing/blank (${typeName(data["questionText"])})")
 
         val options = parseOptions(data["options"])
             ?: return ParseResult(null, optionsDropReason(data["options"]))
@@ -43,17 +46,17 @@ object QuestionFirestoreParser {
             examType = examType,
             subject = subject,
             chapter = chapter,
-            difficulty = data["difficulty"] as? String ?: "Medium",
+            difficulty = (data["difficulty"] as? String)?.trim() ?: "Medium",
             year = parseYear(data["year"]),
             questionText = questionText,
             options = options,
             correctOptionIndex = correct,
-            explanation = data["explanation"] as? String ?: "",
+            explanation = (data["explanation"] as? String)?.trim() ?: "",
             // Vault is free for every user; also keeps pack resync from matching these rows.
             isPremium = if (isDailyVault) false else (data["isPremium"] as? Boolean ?: true),
             isDailyVault = isDailyVault,
-            vaultDate = data["vaultDate"] as? String ?: "",
-            vaultGroupId = data["vaultGroupId"] as? String ?: ""
+            vaultDate = (data["vaultDate"] as? String).orEmpty().trim(),
+            vaultGroupId = (data["vaultGroupId"] as? String).orEmpty().trim()
         )
         return ParseResult(question, null)
     }

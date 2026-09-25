@@ -28,8 +28,14 @@ jobs:
         env:
           FIREBASE_CREDENTIALS_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
         run: |
+          if [ -z "$FIREBASE_CREDENTIALS_JSON" ]; then
+            echo "ERROR: GitHub secret FIREBASE_SERVICE_ACCOUNT is missing or empty."
+            exit 1
+          fi
+          python -c "import json,os; json.loads(os.environ['FIREBASE_CREDENTIALS_JSON']); print('Firebase service account JSON parsed OK')"
           mkdir -p scripts
-          echo "$FIREBASE_CREDENTIALS_JSON" > scripts/serviceAccountKey.json
+          printf '%s\n' "$FIREBASE_CREDENTIALS_JSON" > scripts/serviceAccountKey.json
+          test -s scripts/serviceAccountKey.json
 
       - name: Execute Master Daily Automation Pipeline
         env:

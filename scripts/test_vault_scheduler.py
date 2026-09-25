@@ -120,5 +120,270 @@ class AndroidParseableTest(unittest.TestCase):
         self.assertEqual(reason, "chapter")
 
 
+class PayloadDoc:
+    def __init__(self, doc_id: str, data: dict):
+        self.id = doc_id
+        self._data = data
+
+    def to_dict(self):
+        return dict(self._data)
+
+
+class VaultContractTest(unittest.TestCase):
+
+    def _q(self, i, exam="JEE"):
+        return {
+            "examType": exam,
+            "subject": "Physics",
+            "chapter": "Kinematics",
+            "questionText": f"Unique stem number {i} for {exam}",
+            "options": ["A", "B", "C", "D"],
+            "correctOptionIndex": 0,
+            "correctOption": 0,
+            "explanation": "because conservation of energy",
+            "isDailyVault": False,
+        }
+
+    def test_assert_selected_fails_when_only_18_valid(self):
+        from vault_scheduler import VaultContractError, assert_selected_vault
+        selected = [PayloadDoc(f"q{i}", self._q(i)) for i in range(18)]
+        with self.assertRaises(VaultContractError) as ctx:
+            assert_selected_vault(selected, "JEE", "2026-09-26", 30)
+        self.assertIn("need exactly 30", str(ctx.exception))
+
+    def test_assert_selected_fails_when_only_27_valid(self):
+        from vault_scheduler import VaultContractError, assert_selected_vault
+        selected = [PayloadDoc(f"q{i}", self._q(i)) for i in range(27)]
+        with self.assertRaises(VaultContractError) as ctx:
+            assert_selected_vault(selected, "NEET", "2026-09-26", 30)
+        self.assertIn("need exactly 30", str(ctx.exception))
+
+    def test_assert_selected_and_readback_30(self):
+        from vault_scheduler import (
+            assert_selected_vault, normalize_vault_payload, verify_written_vault,
+        )
+        selected = [PayloadDoc(f"src{i}", self._q(i)) for i in range(30)]
+        payloads, group_id = assert_selected_vault(selected, "JEE", "2026-09-26", 30)
+        self.assertEqual(len(payloads), 30)
+        self.assertEqual(group_id, "jee_vault_2026-09-26")
+        written = []
+        for src_id, payload in payloads:
+            written.append(PayloadDoc(f"vault_2026-09-26_{src_id}", payload))
+        verify_written_vault(written, "JEE", "2026-09-26", group_id, 30)
+
+    def test_wrong_exam_type_rejected(self):
+        from vault_scheduler import VaultContractError, assert_selected_vault
+        selected = [PayloadDoc(f"q{i}", self._q(i, exam="JEE")) for i in range(30)]
+        # Change one to NEET when target is JEE
+        selected[5]._data["examType"] = "NEET"
+        with self.assertRaises(VaultContractError):
+            assert_selected_vault(selected, "JEE", "2026-09-26", 30)
+
+    def test_malformed_questions_rejected(self):
+        from vault_scheduler import VaultContractError, assert_selected_vault
+        # Missing chapter
+        selected1 = [PayloadDoc(f"q{i}", self._q(i)) for i in range(30)]
+        del selected1[0]._data["chapter"]
+        with self.assertRaises(VaultContractError):
+            assert_selected_vault(selected1, "JEE", "2026-09-26", 30)
+
+        # Invalid answer index (4 out of range)
+        selected2 = [PayloadDoc(f"q{i}", self._q(i)) for i in range(30)]
+        selected2[0]._data["correctOptionIndex"] = 4
+        selected2[0]._data["correctOption"] = 4
+        with self.assertRaises(VaultContractError):
+            assert_selected_vault(selected2, "JEE", "2026-09-26", 30)
+
+        # Options not 4
+        selected3 = [PayloadDoc(f"q{i}", self._q(i)) for i in range(30)]
+        selected3[0]._data["options"] = ["A", "B", "C"]
+        with self.assertRaises(VaultContractError):
+            assert_selected_vault(selected3, "JEE", "2026-09-26", 30)
+
+    def test_readback_count_mismatch_fails(self):
+        from vault_scheduler import VaultContractError, verify_written_vault
+        # Only 29 written instead of 30
+        written = [PayloadDoc(f"vault_2026-09-26_src{i}", {
+            **self._q(i), "isDailyVault": True, "vaultDate": "2026-09-26", "vaultGroupId": "jee_vault_2026-09-26"
+        }) for i in range(29)]
+        with self.assertRaises(VaultContractError) as ctx:
+            verify_written_vault(written, "JEE", "2026-09-26", "jee_vault_2026-09-26", 30)
+        self.assertIn("read-back count 29 != 30", str(ctx.exception))
+
+    def test_duplicate_question_text_rejected(self):
+        from vault_scheduler import VaultContractError, assert_selected_vault
+        selected = [PayloadDoc(f"q{i}", self._q(i)) for i in range(30)]
+        selected[7]._data["questionText"] = selected[3]._data["questionText"]
+        with self.assertRaises(VaultContractError):
+            assert_selected_vault(selected, "JEE", "2026-09-26", 30)
+
+    def test_30_unique_over_three_days_from_100_pool(self):
+        pool = [FakeDoc(f"q{i}") for i in range(100)]
+        used = set()
+        seen = set()
+        for day in range(3):
+            selected = select_vault_questions(pool, used, 30)
+            ids = {d.id for d in selected}
+            self.assertEqual(len(ids), 30)
+            self.assertEqual(ids & seen, set(), f"day {day} repeated {ids & seen}")
+            seen |= ids
+            used |= ids
+
+
+# ─── In-memory Firestore fake for end-to-end schedule_vault() tests ───────────
+# Only the equality-where / batch.set / batch.delete / batch.commit surface
+# schedule_vault() actually calls is implemented.
+
+class FakeFirestoreDoc:
+    def __init__(self, doc_id: str, data: dict):
+        self.id = doc_id
+        self._data = dict(data)
+        self.reference = self  # batch.delete(doc.reference) just needs .id back
+
+    def to_dict(self):
+        return dict(self._data)
+
+
+class FakeQuery:
+    def __init__(self, store: dict, filters=None):
+        self._store = store
+        self._filters = filters or []
+
+    def where(self, field, op, value):
+        assert op == "==", "FakeQuery only supports equality filters"
+        return FakeQuery(self._store, self._filters + [(field, value)])
+
+    def get(self):
+        return [
+            doc for doc in self._store.values()
+            if all(doc.to_dict().get(f) == v for f, v in self._filters)
+        ]
+
+
+class FakeDocRef:
+    def __init__(self, store: dict, doc_id: str):
+        self._store = store
+        self.id = doc_id
+
+
+class FakeCollection:
+    def __init__(self, store: dict):
+        self._store = store
+
+    def where(self, field, op, value):
+        return FakeQuery(self._store).where(field, op, value)
+
+    def get(self):
+        return list(self._store.values())
+
+    def document(self, doc_id):
+        return FakeDocRef(self._store, doc_id)
+
+
+class FakeBatch:
+    def __init__(self, store: dict, fail: bool):
+        self._store = store
+        self._fail = fail
+        self._pending = []
+
+    def set(self, doc_ref, data):
+        self._pending.append(("set", doc_ref.id, data))
+
+    def delete(self, doc_ref):
+        self._pending.append(("delete", doc_ref.id, None))
+
+    def commit(self):
+        if self._fail:
+            raise RuntimeError("Simulated Firestore write failure (deadline exceeded)")
+        # Real Firestore batches are atomic — apply everything only on success.
+        for op, doc_id, data in self._pending:
+            if op == "set":
+                self._store[doc_id] = FakeFirestoreDoc(doc_id, data)
+            elif op == "delete":
+                self._store.pop(doc_id, None)
+
+
+class FakeDb:
+    """fail_batch_call selects which db.batch() call (1-indexed) raises on commit."""
+
+    def __init__(self, fail_batch_call: int = 0):
+        self._store: dict = {}
+        self._fail_batch_call = fail_batch_call
+        self._batch_calls = 0
+
+    def collection(self, name):
+        assert name == "questions"
+        return FakeCollection(self._store)
+
+    def batch(self):
+        self._batch_calls += 1
+        return FakeBatch(self._store, fail=(self._batch_calls == self._fail_batch_call))
+
+    def seed(self, doc_id: str, data: dict):
+        self._store[doc_id] = FakeFirestoreDoc(doc_id, data)
+
+
+class FirestoreWriteFailureTest(unittest.TestCase):
+
+    def _source(self, i: int, exam: str = "JEE") -> dict:
+        return {
+            "examType": exam,
+            "subject": "Physics",
+            "chapter": "Kinematics",
+            "questionText": f"Unique write-fail stem {i} for {exam}",
+            "options": ["A", "B", "C", "D"],
+            "correctOptionIndex": 0,
+            "correctOption": 0,
+            "explanation": "because conservation of energy",
+            "isDailyVault": False,
+        }
+
+    def test_failed_batch_commit_propagates_as_non_zero_failure(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb(fail_batch_call=1)
+        for i in range(30):
+            db.seed(f"src{i}", self._source(i))
+
+        with self.assertRaises(Exception) as ctx:
+            schedule_vault(db, "2026-09-27", "JEE", count=30)
+        self.assertIn("Simulated Firestore write failure", str(ctx.exception))
+
+    def test_failed_write_leaves_no_partial_vault_docs(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb(fail_batch_call=1)
+        for i in range(30):
+            db.seed(f"src{i}", self._source(i))
+
+        with self.assertRaises(Exception):
+            schedule_vault(db, "2026-09-27", "JEE", count=30)
+
+        vault_docs = [d for d in db._store.values() if d.id.startswith("vault_")]
+        self.assertEqual(len(vault_docs), 0,
+            "an atomic batch failure must not leave any half-written vault docs")
+
+    def test_old_valid_vault_preserved_when_todays_write_fails(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb(fail_batch_call=1)
+        # Yesterday's already-published, valid 30-question vault.
+        for i in range(30):
+            payload = self._source(i)
+            payload.update({
+                "isDailyVault": True,
+                "vaultDate": "2026-09-26",
+                "vaultGroupId": "jee_vault_2026-09-26",
+            })
+            db.seed(f"vault_2026-09-26_src{i}", payload)
+        # Fresh source pool available for today's target date.
+        for i in range(30):
+            db.seed(f"src{i}", self._source(i))
+
+        with self.assertRaises(Exception):
+            schedule_vault(db, "2026-09-27", "JEE", count=30)
+
+        kept = [d for d in db._store.values() if d.to_dict().get("vaultDate") == "2026-09-26"]
+        self.assertEqual(len(kept), 30,
+            "yesterday's valid vault must survive untouched when today's write fails")
+
+
 if __name__ == "__main__":
     unittest.main()

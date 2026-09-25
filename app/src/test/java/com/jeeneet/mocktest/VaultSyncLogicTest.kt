@@ -12,16 +12,10 @@ import org.robolectric.annotation.Config
 import java.text.SimpleDateFormat
 import java.util.*
 
-/**
- * Tests for the Daily Vault 7-day freeze logic.
- *
- * Covers:
- *  1. The `today < nextRefreshDate` string comparison used in
- *     QuestionSyncManager.syncDailyVault() to decide whether to skip
- *     the Firestore call.
- *  2. PrefManager vault TTL state (groupId, nextRefreshDate) persistence
- *     and per-exam isolation.
- */
+    /**
+     * Tests for Daily Vault PrefManager isolation (JEE vs NEET).
+     * The old 7-day freeze is NOT used by syncDailyVault(); skip is exact-30 today only.
+     */
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33], application = Application::class)
 class VaultSyncLogicTest {
