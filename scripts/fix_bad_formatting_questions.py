@@ -37,22 +37,13 @@ def init_firebase():
     return firestore.client()
 
 
+from web_question_ingestion import wrap_inline_latex, wrap_bare_latex
+
+
 # ── Detectors ──────────────────────────────────────────────────────────────────
 
 _LITERAL_NEWLINE = re.compile(r'\\n|\\t')
 _CE_NOTATION = re.compile(r'\\ce\{[^}]*\}')
-
-
-def needs_fix(q: dict) -> tuple:
-    """Returns (needs_fix: bool, reasons: list[str])."""
-    reasons = []
-    fields = [q.get('questionText', ''), q.get('explanation', '')] + [str(o) for o in q.get('options', [])]
-    full = ' '.join(fields)
-    if _LITERAL_NEWLINE.search(full):
-        reasons.append('literal_newline')
-    if _CE_NOTATION.search(full):
-        reasons.append('ce_notation')
-    return bool(reasons), reasons
 
 
 # ── Auto-fixers ────────────────────────────────────────────────────────────────
@@ -69,9 +60,22 @@ def _ce_replacer(m):
     return plain
 
 
-def fix_field(text: str) -> str:
+def fix_field_prose(text: str) -> str:
+    if not text:
+        return text
     t = text.replace('\\n', ' ').replace('\\t', ' ')
     t = _CE_NOTATION.sub(_ce_replacer, t)
+    t = wrap_inline_latex(t)
+    t = re.sub(r'[ \t]{2,}', ' ', t)
+    return t.strip()
+
+
+def fix_field_option(text: str) -> str:
+    if not text:
+        return text
+    t = text.replace('\\n', ' ').replace('\\t', ' ')
+    t = _CE_NOTATION.sub(_ce_replacer, t)
+    t = wrap_bare_latex(t)
     t = re.sub(r'[ \t]{2,}', ' ', t)
     return t.strip()
 
@@ -81,17 +85,17 @@ def fix_question(q: dict) -> dict:
     updates = {}
 
     qt = q.get('questionText', '')
-    fqt = fix_field(qt)
+    fqt = fix_field_prose(qt)
     if fqt != qt:
         updates['questionText'] = fqt
 
     exp = q.get('explanation', '')
-    fexp = fix_field(exp)
+    fexp = fix_field_prose(exp)
     if fexp != exp:
         updates['explanation'] = fexp
 
     opts = [str(o) for o in q.get('options', [])]
-    fopts = [fix_field(o) for o in opts]
+    fopts = [fix_field_option(o) for o in opts]
     if fopts != opts:
         updates['options'] = fopts
 
@@ -106,63 +110,63 @@ def main():
     args = parser.parse_args()
     dry = args.dry_run
 
-    print(f'\n{"DRY RUN" if dry else "LIVE FIX"} — Scanning questions for literal \\\\n and \\\\ce{{}} issues...\n')
+    print(f'\n{"DRY RUN" if dry else "LIVE FIX"} — Scanning questions for formula formatting & LaTeX wrapping...\n', flush=True)
 
     db = init_firebase()
+    if not db:
+        print("ERROR: Could not connect to Firestore.", flush=True)
+        return
+
     col = db.collection('questions')
 
-    total = scanned = fixed = skipped = 0
-    last_doc = None
+    total = scanned = fixed = 0
+    subjects = ["Chemistry", "Physics", "Maths", "Biology"]
 
-    while True:
-        q_ref = col.limit(500)
-        if last_doc:
-            q_ref = q_ref.start_after(last_doc)
-        docs = list(q_ref.stream())
-        if not docs:
-            break
+    for subj in subjects:
+        print(f"\n📚 Fetching questions for Subject: {subj}...", flush=True)
+        docs = list(col.where('subject', '==', subj).get())
+        print(f"  Fetched {len(docs)} documents for {subj}. Processing...", flush=True)
+
+        batch = db.batch() if not dry else None
+        batch_count = 0
 
         for doc in docs:
             total += 1
             q = doc.to_dict()
-            bad, reasons = needs_fix(q)
-            if not bad:
+            updates = fix_question(q)
+            if not updates:
                 continue
 
             scanned += 1
-            exam = q.get('examType', '?')
-            subj = q.get('subject', '?')
-            preview = q.get('questionText', '')[:80].replace('\n', ' ')
-            print(f'  [{exam}/{subj}] {doc.id[:20]}... | {", ".join(reasons)}')
-            print(f'    "{preview}"')
+            if scanned <= 10 or dry:
+                exam = q.get('examType', '?')
+                preview = updates.get('questionText', q.get('questionText', ''))[:80].replace('\n', ' ')
+                print(f'  [{exam}/{subj}] {doc.id[:20]}... | Updated: {list(updates.keys())}', flush=True)
+                print(f'    Preview: "{preview}"', flush=True)
 
-            updates = fix_question(q)
-            if not updates:
-                print(f'    ⚠️  No changes generated — skipping.')
-                skipped += 1
-                continue
-
-            if dry:
-                print(f'    → Would update: {list(updates.keys())}')
-            else:
-                col.document(doc.id).update(updates)
+            if not dry:
+                batch.update(doc.reference, updates)
+                batch_count += 1
                 fixed += 1
-                print(f'    ✅ Fixed: {list(updates.keys())}')
 
-        last_doc = docs[-1]
-        if len(docs) < 500:
-            break
+                if batch_count >= 400:
+                    batch.commit()
+                    print(f'  ⚡ Committed batch of {batch_count} updates for {subj}.', flush=True)
+                    batch = db.batch()
+                    batch_count = 0
 
-    print(f'\n{"─" * 55}')
-    print(f'Total scanned : {total}')
-    print(f'Issues found  : {scanned}')
+        if not dry and batch_count > 0:
+            batch.commit()
+            print(f'  ⚡ Committed final batch of {batch_count} updates for {subj}.', flush=True)
+
+    print(f'\n{"─" * 55}', flush=True)
+    print(f'Total scanned : {total}', flush=True)
+    print(f'Found to fix  : {scanned}', flush=True)
     if dry:
-        print(f'Would fix     : {scanned - skipped}')
-        print(f'\nRun without --dry-run to apply fixes.')
+        print(f'\nRun without --dry-run to apply fixes to Firestore.', flush=True)
     else:
-        print(f'Fixed         : {fixed}')
-        print(f'Skipped       : {skipped}')
-        print(f'\n✅ Cleanup complete.')
+        print(f'Total fixed   : {fixed}', flush=True)
+        print(f'\n✅ Firestore cleanup complete.', flush=True)
 
 
 if __name__ == '__main__':
