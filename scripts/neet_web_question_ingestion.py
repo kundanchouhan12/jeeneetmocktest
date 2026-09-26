@@ -79,6 +79,7 @@ _LOOKS_LIKE_LATEX = re.compile(r'\\[a-zA-Z]+|[{}]')
 def wrap_bare_latex(text: str) -> str:
     """
     Wraps bare option LaTeX strings in \\( \\) delimiters for KaTeX rendering in Android app.
+    Only safe to call on OPTIONS — not on long mixed-prose questionText/explanation.
     """
     if not text or _HAS_MATH_DELIMITER.search(text):
         return text
@@ -87,7 +88,44 @@ def wrap_bare_latex(text: str) -> str:
     return text
 
 
+# Matches individual bare LaTeX tokens inside mixed prose:
+# - Backslash-command fragments: \frac{3}{2}, \theta, \Delta, \sqrt{3}
+# - Chemical/physics subscript/superscript tokens: CH_3COO^-, H_2O, SO_4^{2-}, Ca(OH)_2, [Cr(H_2O)_6]^{3+}, 10^{-5}
+_BARE_LATEX_TOKEN = re.compile(
+    r'(?<!\$)'
+    r'(?:'
+    r'\\[a-zA-Z]+(?:\{[^}]*\})*(?:\^(?:\{[^}]+\}|[^\s{}$\\,;)]+)|_(?:\{[^}]+\}|[^\s{}$\\,;)]+))?'
+    r'|[A-Za-z0-9\(\)\[\]]+(?:_(?:\{[^}]+\}|[a-zA-Z0-9+\-]+)|\^(?:\{[^}]+\}|[a-zA-Z0-9+\-]+))+'
+    r'(?:[A-Za-z0-9\(\)\[\]]*(?:_(?:\{[^}]+\}|[a-zA-Z0-9+\-]+)|\^(?:\{[^}]+\}|[a-zA-Z0-9+\-]+))*)*'
+    r')'
+    r'(?!\$)'
+)
+
+
+def wrap_inline_latex(text: str) -> str:
+    """
+    Selectively wraps bare LaTeX tokens within mixed-prose questionText/explanation.
+    Unlike wrap_bare_latex() (which wraps the WHOLE string as math), this is safe
+    for long sentences — it wraps only individual fragments like CH_3COO^- or H_2O
+    with $...$ so MathRenderer.kt renders them correctly.
+
+    Example:
+        "The pH of CH_3COO^- solution is 8.9."
+        → "The pH of $CH_3COO^-$ solution is 8.9."
+    """
+    if not text:
+        return text
+    if _HAS_MATH_DELIMITER.search(text):
+        return text  # already delimited — don't double-process
+
+    def replacer(m: re.Match) -> str:
+        return f"${m.group(0)}$"
+
+    return _BARE_LATEX_TOKEN.sub(replacer, text)
+
+
 OFFICIAL_CHAPTERS = {
+
     "Physics": [
         "Mathematics In Physics", "Units, Dimensions And Measurement",
         "Motion In One Dimension", "Motion In Two Dimension",
@@ -422,8 +460,8 @@ Constraints:
 
     processed = []
     for item in items:
-        item["questionText"] = sanitize_web_content(item.get("questionText", ""))
-        item["explanation"] = sanitize_web_content(item.get("explanation", ""))
+        item["questionText"] = wrap_inline_latex(sanitize_web_content(item.get("questionText", "")))
+        item["explanation"] = wrap_inline_latex(sanitize_web_content(item.get("explanation", "")))
         item["options"] = [wrap_bare_latex(sanitize_web_content(str(o))) for o in item.get("options", [])]
         corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
         item["correctOption"] = corr

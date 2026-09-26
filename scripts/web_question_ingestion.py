@@ -109,6 +109,48 @@ def wrap_bare_latex(text: str) -> str:
         return f"\\({text}\\)"
     return text
 
+
+# Matches individual bare LaTeX tokens inside mixed prose:
+# - Backslash-command fragments: \frac{3}{2}, \theta, \Delta, \sqrt{3}
+# - Chemical/physics subscript/superscript tokens: CH_3COO^-, H_2O, SO_4^{2-}, Ca(OH)_2, [Cr(H_2O)_6]^{3+}, 10^{-5}
+# Does NOT match already-delimited math (those start with $ or \( \[).
+_BARE_LATEX_TOKEN = re.compile(
+    r'(?<!\$)'
+    r'(?:'
+    r'\\[a-zA-Z]+(?:\{[^}]*\})*(?:\^(?:\{[^}]+\}|[^\s{}$\\,;)]+)|_(?:\{[^}]+\}|[^\s{}$\\,;)]+))?'
+    r'|[A-Za-z0-9\(\)\[\]]+(?:_(?:\{[^}]+\}|[a-zA-Z0-9+\-]+)|\^(?:\{[^}]+\}|[a-zA-Z0-9+\-]+))+'
+    r'(?:[A-Za-z0-9\(\)\[\]]*(?:_(?:\{[^}]+\}|[a-zA-Z0-9+\-]+)|\^(?:\{[^}]+\}|[a-zA-Z0-9+\-]+))*)*'
+    r')'
+    r'(?!\$)'
+)
+
+
+def wrap_inline_latex(text: str) -> str:
+    """
+    Selectively wraps bare LaTeX tokens within mixed-prose questionText/explanation.
+    Scans text and wraps individual LaTeX fragments (chemical formulas, backslash
+    commands, scientific notation exponents) with $...$ so MathRenderer.kt renders them correctly.
+
+    Unlike wrap_bare_latex() (which wraps the WHOLE string), this is safe to call
+    on long sentences because it only wraps the specific tokens, not the surrounding text.
+
+    Example:
+        "The pH of CH_3COO^- solution is 8.9."
+        → "The pH of $CH_3COO^-$ solution is 8.9."
+    """
+    if not text:
+        return text
+    # If text already has math delimiters, don't double-process
+    if _HAS_MATH_DELIMITER.search(text):
+        return text
+
+    def replacer(m: re.Match) -> str:
+        token = m.group(0)
+        return f"${token}$"
+
+    return _BARE_LATEX_TOKEN.sub(replacer, text)
+
+
 OFFICIAL_CHAPTERS = {
     "Physics": [
         "Mathematics In Physics", "Units, Dimensions And Measurement",
@@ -474,8 +516,8 @@ Constraints:
 
     processed = []
     for item in items:
-        item["questionText"] = sanitize_web_content(item.get("questionText", ""))
-        item["explanation"] = sanitize_web_content(item.get("explanation", ""))
+        item["questionText"] = wrap_inline_latex(sanitize_web_content(item.get("questionText", "")))
+        item["explanation"] = wrap_inline_latex(sanitize_web_content(item.get("explanation", "")))
         item["options"] = [wrap_bare_latex(sanitize_web_content(str(o))) for o in item.get("options", [])]
         corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
         item["correctOption"] = corr

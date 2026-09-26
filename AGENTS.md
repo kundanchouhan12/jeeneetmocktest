@@ -122,5 +122,19 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
   - NEET UG: ~1,300 valid questions (requires 900 for 30d $\to$ 1.4x buffer).
   - Both exams are 100% mathematically safe from repeating questions for a full month even during temporary ingestion downtime.
 
+### 3. 🔍 Safe STEM Deduplication Normalization (`scripts/purge_duplicate_questions.py`, `scripts/vault_scheduler.py`)
+- **The Problem Solved**: Overly aggressive text stripping that deletes numbers, math operators (`+`, `-`, `*`, `/`, `^`, `=`), and trigonometric/calculus commands (`\sin`, `\cos`, `\sqrt`, `\frac`) can cause distinct STEM questions (e.g. `2 + 2` vs `2 + 3`, or `\sin x` vs `\cos x`) to be falsely flagged as duplicates.
+- **The Safe Normalization Fix**:
+  - **Preserves Critical STEM Semantics**: Numbers (`0-9`, decimals), math operators (`+`, `-`, `*`, `/`, `^`, `=`, `<`, `>`, `%`), LaTeX functions (`\sin`, `\cos`, `\tan`, `\sqrt`, `\frac`, `\Delta`, `\theta`), chemical formulas (`CH_3COO^-`, `H_2O`), and variables (`x`, `y`).
+  - **Normalizes Formatting Differences Only**: Math delimiters (`$..$`, `\(..\)`), styling wrappers (`\text{..}`, `\mathrm{..}`), sub/superscript braces (`_{3}` $\to$ `_3`), trailing sentence punctuation (`?`, `.`, `!`), case, and multi-spaces.
+  - Applied across both Firestore deduplication purges and Daily Vault scheduling.
+
+### 4. 🧪 Inline LaTeX & Chemical Formula Auto-Wrapping (`wrap_inline_latex`)
+- **The Problem Solved**: Chemistry formulas (e.g. `CH_3COO^-`, `SO_4^{2-}`, `Ca(OH)_2`) and exponents (e.g. `10^{-5}`) generated without `$..$` or `\(..\)` delimiters caused `MathRenderer.kt` to skip rendering entirely (showing raw markup). Conversely, whole-string `wrap_bare_latex()` cannot be used on long prose because one token wraps the whole paragraph into a single math block.
+- **The Permanent Fix**:
+  - `wrap_inline_latex()` uses a granular `_BARE_LATEX_TOKEN` scanner to wrap individual chemical formulas, KaTeX commands, and scientific notation exponents with `$...$` delimiters inside `questionText` and `explanation`.
+  - Applied across `web_question_ingestion.py`, `neet_web_question_ingestion.py`, and `auto_question_pipeline.py`.
+  - Verified by 57/57 passing automated test suite (`scripts/test_latex_rendering.py`, `scripts/test_vault_scheduler.py`).
+
 
 

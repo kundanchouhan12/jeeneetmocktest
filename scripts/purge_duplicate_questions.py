@@ -39,20 +39,51 @@ def init_firebase(creds_path: str = SERVICE_ACCOUNT_PATH):
 
 
 def normalize_text(text: str) -> str:
-    """
-    Normalizes question text by stripping LaTeX formatting,
-    punctuation, numbers, and extra spaces for accurate deduplication.
+    r"""
+    Safely normalizes STEM question text for deduplication without losing
+    mathematical meaning, numbers, operators, or scientific terminology.
+    Preserves:
+      - Numbers (0-9, decimals)
+      - Math operators (+, -, *, /, ^, =, <, >, %)
+      - LaTeX commands (\sin, \cos, \tan, \sqrt, \frac, \Delta, \theta, etc.)
+      - Chemical formulas & variables (x, y, CH_3COO^-, H_2O, etc.)
+    Normalizes:
+      - Delimiters ($...$, \(...\), \[...\])
+      - Wrapper macros (\text{..}, \mathrm{..}, \mathbf{..} -> ..)
+      - Sub/superscript braces (_{3} -> _3, ^{2} -> ^2)
+      - Trailing sentence punctuation & quotes (?, ., !, :, ;, ", ')
+      - Casing & whitespace
     """
     if not text:
         return ""
-    # Strip LaTeX delimiters and commands
-    t = re.sub(r'\\\(|\\\)|\\\[|\\\]|\$', '', text)
-    t = re.sub(r'\\text\{([^}]*)\}', r'\1', t)
-    t = re.sub(r'\\[a-zA-Z]+', '', t)
-    # Strip non-alphanumeric chars
-    t = re.sub(r'[^a-zA-Z0-9\s]', '', t)
-    # Lowercase & collapse spaces
-    return re.sub(r'\s+', ' ', t).strip().lower()
+
+    t = text.strip().lower()
+
+    # 1. Normalize double backslashes to single backslash
+    t = re.sub(r'\\\\', r'\\', t)
+
+    # 2. Strip math delimiters ($...$, \(...\), \[...\]) but keep math inside
+    t = re.sub(r'\\\(|\\\)|\\\[|\\\]|\$', '', t)
+
+    # 3. Unwrap styling/formatting macros without deleting inner content
+    t = re.sub(r'\\(?:text|mathrm|mathbf|mathit|textrm|textbf|textit)\{([^}]*)\}', r'\1', t)
+    t = re.sub(r'\\left\s*([(\[{|.])', r'\1', t)
+    t = re.sub(r'\\right\s*([)\]}|.])', r'\1', t)
+
+    # 4. Normalize braces in sub/superscripts: _{3} -> _3, ^{2-} -> ^2-
+    t = re.sub(r'(_|\^)\{([a-zA-Z0-9+\-]+)\}', r'\1\2', t)
+
+    # 5. Normalize common operator aliases: \times -> *, \cdot -> *, \div -> /
+    t = re.sub(r'\\times\b', '*', t)
+    t = re.sub(r'\\cdot\b', '*', t)
+    t = re.sub(r'\\div\b', '/', t)
+
+    # 6. Strip trailing sentence punctuation and quotes (keeps operators & numbers)
+    t = re.sub(r'[?.!;:\"\'`~]+(?=\s|$)', '', t)
+    t = re.sub(r'["\'`]', '', t)
+
+    # 7. Lowercase & collapse spaces
+    return re.sub(r'\s+', ' ', t).strip()
 
 
 def find_duplicates(docs: list) -> list:

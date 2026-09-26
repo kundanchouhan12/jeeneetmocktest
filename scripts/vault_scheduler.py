@@ -62,8 +62,16 @@ def coerce_options(options):
     return out
 
 
+from purge_duplicate_questions import normalize_text
+
+
 def question_fingerprint(q: dict) -> str:
-    return re.sub(r"\s+", " ", str(q.get("questionText") or "").strip().lower())
+    r"""
+    Normalized fingerprint for deduplication — uses purge_duplicate_questions.normalize_text()
+    to safely normalize LaTeX formatting, delimiters, and minor trailing punctuation without
+    losing numbers, math operators (+, -, *, /, ^, =, <, >), or scientific commands (\sin, \cos, etc.).
+    """
+    return normalize_text(str(q.get("questionText") or ""))
 
 
 def validate_source_question(q: dict, exam_type: str, doc_id: str = "") -> tuple:

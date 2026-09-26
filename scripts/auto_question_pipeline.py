@@ -109,6 +109,40 @@ def wrap_bare_latex(text: str) -> str:
     return text
 
 
+# Matches individual bare LaTeX tokens inside mixed prose:
+# - Backslash-command fragments: \frac{3}{2}, \theta, \Delta, \sqrt{3}
+# - Chemical/physics subscript/superscript tokens: CH_3COO^-, H_2O, SO_4^{2-}, Ca(OH)_2, [Cr(H_2O)_6]^{3+}, 10^{-5}
+_BARE_LATEX_TOKEN = re.compile(
+    r'(?<!\$)'
+    r'(?:'
+    r'\\[a-zA-Z]+(?:\{[^}]*\})*(?:\^(?:\{[^}]+\}|[^\s{}$\\,;)]+)|_(?:\{[^}]+\}|[^\s{}$\\,;)]+))?'
+    r'|[A-Za-z0-9\(\)\[\]]+(?:_(?:\{[^}]+\}|[a-zA-Z0-9+\-]+)|\^(?:\{[^}]+\}|[a-zA-Z0-9+\-]+))+'
+    r'(?:[A-Za-z0-9\(\)\[\]]*(?:_(?:\{[^}]+\}|[a-zA-Z0-9+\-]+)|\^(?:\{[^}]+\}|[a-zA-Z0-9+\-]+))*)*'
+    r')'
+    r'(?!\$)'
+)
+
+
+def wrap_inline_latex(text: str) -> str:
+    """
+    Selectively wraps bare LaTeX tokens within mixed-prose questionText/explanation.
+    Scans text and wraps individual LaTeX fragments (chemical formulas, backslash
+    commands, scientific notation exponents) with $...$ so MathRenderer.kt renders them correctly.
+
+    Unlike wrap_bare_latex() (which wraps the WHOLE string), this is safe to call
+    on long sentences because it only wraps the specific tokens, not the surrounding text.
+    """
+    if not text:
+        return text
+    if _HAS_MATH_DELIMITER.search(text):
+        return text
+
+    def replacer(m: re.Match) -> str:
+        return f"${m.group(0)}$"
+
+    return _BARE_LATEX_TOKEN.sub(replacer, text)
+
+
 OFFICIAL_CHAPTERS = {
     "Physics": [
         "Mathematics In Physics", "Units, Dimensions And Measurement",
@@ -436,6 +470,8 @@ Constraints:
 
     processed = []
     for item in items:
+        item["questionText"] = wrap_inline_latex(str(item.get("questionText", "")))
+        item["explanation"] = wrap_inline_latex(str(item.get("explanation", "")))
         item["options"] = [wrap_bare_latex(str(o)) for o in item.get("options", [])]
         corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
         item["correctOption"] = corr
