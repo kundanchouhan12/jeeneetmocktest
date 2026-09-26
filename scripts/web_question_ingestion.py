@@ -305,7 +305,10 @@ def validate_web_question(q: dict) -> tuple[bool, str]:
     return True, ""
 
 
-def _post_groq(body: dict, max_retries: int = 5) -> str:
+MAX_RETRY_AFTER_SECS = 45  # Cap on Retry-After sleep to prevent workflow stalling
+
+
+def _post_groq(body: dict, max_retries: int = 3) -> str:
     headers = {
         "Authorization": f"Bearer {GROQ_API_KEY}",
         "Content-Type": "application/json"
@@ -319,10 +322,15 @@ def _post_groq(body: dict, max_retries: int = 5) -> str:
                     try:
                         wait_time = float(retry_after) + 1
                     except ValueError:
-                        wait_time = (attempt + 1) * 20
+                        wait_time = (attempt + 1) * 15
                 else:
-                    wait_time = (attempt + 1) * 20
-                print(f"    ⏳ Rate limit (429) hit. Waiting {wait_time:.0f}s before retry...")
+                    wait_time = (attempt + 1) * 15
+
+                if wait_time > MAX_RETRY_AFTER_SECS:
+                    print(f"    ⚠️ Rate limit (429) requested excessive wait ({wait_time:.0f}s > {MAX_RETRY_AFTER_SECS}s). Skipping further retries for this request.")
+                    return ""
+
+                print(f"    ⏳ Rate limit (429) hit. Waiting {wait_time:.0f}s before retry (attempt {attempt + 1}/{max_retries})...")
                 time.sleep(wait_time)
                 continue
             resp.raise_for_status()
@@ -330,7 +338,8 @@ def _post_groq(body: dict, max_retries: int = 5) -> str:
             return data['choices'][0]['message']['content'].strip()
         except Exception as e:
             if attempt == max_retries - 1:
-                raise e
+                print(f"    ❌ Groq API error on final attempt: {e}")
+                return ""
             time.sleep(5)
     return ""
 
