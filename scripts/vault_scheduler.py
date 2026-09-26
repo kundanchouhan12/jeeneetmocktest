@@ -18,6 +18,7 @@ from firebase_admin import credentials, firestore
 
 VALID_EXAMS = ["JEE", "NEET"]
 EXPECTED_VAULT_COUNT = 30
+COOLDOWN_DAYS = 30
 
 
 class VaultContractError(Exception):
@@ -186,29 +187,88 @@ def verify_written_vault(docs: list, exam_type: str, target_date: str, group_id:
         raise VaultContractError(f"{exam_type} {target_date}: duplicate source ids on read-back")
 
 
-def select_vault_questions(pool: list, recently_used_ids: set, count: int) -> list:
+def select_vault_questions(
+    pool: list,
+    vault_history=None,
+    count: int = EXPECTED_VAULT_COUNT,
+    target_date: str = None,
+    cooldown_days: int = COOLDOWN_DAYS,
+    recently_used_ids=None,
+) -> list:
     """
-    Picks exactly `count` items from `pool`, preferring ones not in
-    `recently_used_ids`. Pure / I/O-free for unit tests.
+    Picks exactly `count` items from `pool` according to the 3-Tier Freshness Policy:
+      - Tier 1 (Never Used): Questions that have never appeared in any historical Daily Vault.
+        Highest priority. Selected first.
+      - Tier 2 (Cooldown Cleared): Questions whose latest historical Daily Vault date is
+        strictly MORE than `cooldown_days` before `target_date`. Selected using LRU
+        (oldest last-served date first).
+      - Tier 3 (Active Cooldown): Questions whose latest Daily Vault date is within the
+        last `cooldown_days` (<= cooldown_days). Strictly excluded.
 
-    Raises VaultContractError if the pool is smaller than `count` — the Daily
-    Vault contract must never allow a silently shrunk (18/27/29-question)
-    selection, even if some future caller forgets the pool-size check that
-    schedule_vault() already does before calling this.
+    Raises VaultContractError if:
+      - Total pool has fewer than `count` candidates.
+      - Combined Tier 1 + Tier 2 has fewer than `count` candidates (refuses to violate cooldown).
     """
+    if vault_history is None and recently_used_ids is not None:
+        vault_history = recently_used_ids
+    elif vault_history is None:
+        vault_history = {}
+
     if len(pool) < count:
         raise VaultContractError(
             f"select_vault_questions: pool has {len(pool)} candidates, need exactly {count}. "
             "Refusing to silently shrink the Daily Vault selection."
         )
 
-    fresh_pool = [d for d in pool if d.id not in recently_used_ids]
-    stale_pool = [d for d in pool if d.id in recently_used_ids]
+    if target_date is None:
+        target_dt = datetime.date.today() + datetime.timedelta(days=1)
+    elif isinstance(target_date, datetime.date):
+        target_dt = target_date
+    else:
+        target_dt = datetime.date.fromisoformat(str(target_date))
 
-    fresh_n = min(count, len(fresh_pool))
-    selected = random.sample(fresh_pool, fresh_n) if fresh_n else []
-    if fresh_n < count:
-        selected += random.sample(stale_pool, count - fresh_n)
+    history_dict = vault_history if isinstance(vault_history, dict) else {k: None for k in vault_history}
+
+    tier1 = []  # Fresh / never used
+    tier2 = []  # (last_served_dt, doc) -> Cooldown cleared
+    tier3 = []  # Active cooldown
+
+    for doc in pool:
+        last_date_val = history_dict.get(doc.id)
+        if last_date_val is None and doc.id in history_dict and not isinstance(vault_history, dict):
+            # Legacy test compatibility when a raw set of IDs with no dates is passed
+            tier2.append((datetime.date.min, doc))
+        elif last_date_val is None:
+            tier1.append(doc)
+        else:
+            try:
+                if isinstance(last_date_val, datetime.date):
+                    last_dt = last_date_val
+                else:
+                    last_dt = datetime.date.fromisoformat(str(last_date_val))
+                days_ago = (target_dt - last_dt).days
+                if days_ago > cooldown_days:
+                    tier2.append((last_dt, doc))
+                else:
+                    tier3.append(doc)
+            except Exception:
+                tier2.append((datetime.date.min, doc))
+
+    fresh_n = min(count, len(tier1))
+    selected = random.sample(tier1, fresh_n) if fresh_n else []
+
+    needed_from_cooldown = count - fresh_n
+    if needed_from_cooldown > 0:
+        if len(tier2) < needed_from_cooldown:
+            raise VaultContractError(
+                f"select_vault_questions: need {count} questions, but only {len(tier1)} fresh and "
+                f"{len(tier2)} cooldown-cleared questions available ({len(tier3)} in active {cooldown_days}-day cooldown). "
+                f"Refusing to violate the {cooldown_days}-day cooldown policy."
+            )
+        # Sort Tier 2 by oldest last-served date first (LRU)
+        tier2.sort(key=lambda item: (item[0], item[1].id))
+        selected += [doc for _, doc in tier2[:needed_from_cooldown]]
+
     return selected
 
 
@@ -257,20 +317,34 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_V
         .where("examType", "==", exam_type)
         .get()
     )
-    recently_used_ids = {
-        d.id.split("_", 2)[2] for d in previous_vault_docs
-        if d.id.startswith("vault_") and d.id.count("_") >= 2
-        and d.to_dict().get("vaultDate") != target_date
-    }
+    # Build map of source_id -> latest vaultDate (ignoring target_date itself for idempotency)
+    vault_history: dict[str, str] = {}
+    for d in previous_vault_docs:
+        doc_id = d.id
+        q_data = d.to_dict() or {}
+        vdate = q_data.get("vaultDate")
+        if not vdate or vdate == target_date:
+            continue
+        if doc_id.startswith("vault_") and doc_id.count("_") >= 2:
+            src_id = doc_id.split("_", 2)[2]
+            if src_id not in vault_history or vdate > vault_history[src_id]:
+                vault_history[src_id] = vdate
 
-    fresh_pool_size = len([d for d in pool if d.id not in recently_used_ids])
-    if fresh_pool_size < count:
-        if fresh_pool_size == 0:
-            print(f"  NOTE: Every question has been vaulted before; re-circulating full pool for '{exam_type}'.")
-        else:
-            print(f"  NOTE: Only {fresh_pool_size} never-vaulted questions left; topping up with previously-vaulted ones.")
+    target_dt = datetime.date.fromisoformat(target_date)
+    fresh_count = len([d for d in pool if d.id not in vault_history])
+    cooldown_cleared_count = len([
+        d for d in pool if d.id in vault_history and
+        (target_dt - datetime.date.fromisoformat(vault_history[d.id])).days > COOLDOWN_DAYS
+    ])
+    active_cooldown_count = len([
+        d for d in pool if d.id in vault_history and
+        (target_dt - datetime.date.fromisoformat(vault_history[d.id])).days <= COOLDOWN_DAYS
+    ])
+    print(f"  • {exam_type} Pool Breakdown: {fresh_count} fresh (never-vaulted), "
+          f"{cooldown_cleared_count} cooldown-cleared (> {COOLDOWN_DAYS}d), "
+          f"{active_cooldown_count} active cooldown (<= {COOLDOWN_DAYS}d).")
 
-    selected = select_vault_questions(pool, recently_used_ids, count)
+    selected = select_vault_questions(pool, vault_history, count, target_date=target_date, cooldown_days=COOLDOWN_DAYS)
     payloads, group_id = assert_selected_vault(selected, exam_type, target_date, count)
 
     new_ids = []

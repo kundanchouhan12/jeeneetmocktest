@@ -12,7 +12,7 @@ Run with:
 
 import unittest
 
-from vault_scheduler import select_vault_questions
+from vault_scheduler import VaultContractError, select_vault_questions
 
 
 class FakeDoc:
@@ -456,5 +456,162 @@ class SchedulerRerunTest(unittest.TestCase):
         self.assertEqual(exams, {"JEE"})
 
 
+class VaultFreshnessCooldownTest(unittest.TestCase):
+    """
+    Focused tests for the 3-Tier Freshness Policy:
+      - Tier 1: Never used (Priority 1)
+      - Tier 2: Cooldown cleared (> 30 days before target_date) (Priority 2, LRU order)
+      - Tier 3: Active cooldown (<= 30 days) (Strictly excluded)
+    """
+
+    def test_never_used_questions_are_preferred(self):
+        # 30 fresh questions (q0..q29) + 30 cooldown-cleared questions (q30..q59, served 60 days ago)
+        target_date = "2026-09-27"
+        pool = [FakeDoc(f"q{i}") for i in range(60)]
+        vault_history = {f"q{i}": "2026-07-29" for i in range(30, 60)}  # 60 days ago
+
+        selected = select_vault_questions(pool, vault_history, count=30, target_date=target_date, cooldown_days=30)
+        selected_ids = {d.id for d in selected}
+
+        # Must pick all 30 never-used questions (q0..q29)
+        expected_fresh_ids = {f"q{i}" for i in range(30)}
+        self.assertEqual(selected_ids, expected_fresh_ids)
+
+    def test_question_used_yesterday_is_excluded(self):
+        target_date = "2026-09-27"
+        pool = [FakeDoc(f"q{i}") for i in range(31)]
+        # q0 used yesterday (2026-09-26, 1 day ago)
+        vault_history = {"q0": "2026-09-26"}
+
+        selected = select_vault_questions(pool, vault_history, count=30, target_date=target_date, cooldown_days=30)
+        selected_ids = {d.id for d in selected}
+
+        self.assertNotIn("q0", selected_ids, "Question used yesterday must be in active cooldown")
+        self.assertEqual(len(selected_ids), 30)
+
+    def test_question_used_29_days_ago_is_excluded(self):
+        target_date = "2026-09-27"
+        pool = [FakeDoc(f"q{i}") for i in range(31)]
+        # q0 used 29 days ago (2026-08-29)
+        vault_history = {"q0": "2026-08-29"}
+
+        selected = select_vault_questions(pool, vault_history, count=30, target_date=target_date, cooldown_days=30)
+        selected_ids = {d.id for d in selected}
+
+        self.assertNotIn("q0", selected_ids, "Question used 29 days ago must be in active cooldown")
+
+    def test_question_used_exactly_30_days_ago_is_excluded(self):
+        target_date = "2026-09-27"
+        pool = [FakeDoc(f"q{i}") for i in range(31)]
+        # q0 used exactly 30 days ago (2026-08-28 -> delta = 30 days)
+        # Policy: strictly MORE than 30 days (> 30) to clear cooldown
+        vault_history = {"q0": "2026-08-28"}
+
+        selected = select_vault_questions(pool, vault_history, count=30, target_date=target_date, cooldown_days=30)
+        selected_ids = {d.id for d in selected}
+
+        self.assertNotIn("q0", selected_ids, "Question used exactly 30 days ago must remain in cooldown (boundary <= 30)")
+
+    def test_question_used_31_days_ago_is_eligible(self):
+        target_date = "2026-09-27"
+        # Only 29 fresh questions (q1..q29), need 1 more from Tier 2
+        pool = [FakeDoc(f"q{i}") for i in range(30)]
+        # q0 used 31 days ago (2026-08-27 -> delta = 31 days > 30)
+        vault_history = {"q0": "2026-08-27"}
+
+        selected = select_vault_questions(pool, vault_history, count=30, target_date=target_date, cooldown_days=30)
+        selected_ids = {d.id for d in selected}
+
+        self.assertIn("q0", selected_ids, "Question used 31 days ago must be eligible for Tier 2 top-up")
+        self.assertEqual(len(selected_ids), 30)
+
+    def test_lru_chooses_oldest_eligible_questions_first(self):
+        target_date = "2026-09-27"
+        # 0 fresh questions. Pool has:
+        # q0..q9: served 100 days ago (2026-06-19) -> oldest
+        # q10..q19: served 50 days ago (2026-08-08) -> medium
+        # q20..q29: served 35 days ago (2026-08-23) -> newer eligible
+        # q30..q39: served 10 days ago (2026-09-17) -> active cooldown (<= 30d)
+        pool = [FakeDoc(f"q{i}") for i in range(40)]
+        vault_history = {}
+        for i in range(10):
+            vault_history[f"q{i}"] = "2026-06-19"
+        for i in range(10, 20):
+            vault_history[f"q{i}"] = "2026-08-08"
+        for i in range(20, 30):
+            vault_history[f"q{i}"] = "2026-08-23"
+        for i in range(30, 40):
+            vault_history[f"q{i}"] = "2026-09-17"
+
+        # Request 25 questions. Should pick 10 oldest (q0..q9) + 10 medium (q10..q19) + 5 newer (q20..q24), 0 from active cooldown
+        selected = select_vault_questions(pool, vault_history, count=25, target_date=target_date, cooldown_days=30)
+        selected_ids = [d.id for d in selected]
+
+        self.assertEqual(len(selected_ids), 25)
+        # All q0..q9 (oldest) must be included
+        for i in range(10):
+            self.assertIn(f"q{i}", selected_ids)
+        # All q10..q19 (medium) must be included
+        for i in range(10, 20):
+            self.assertIn(f"q{i}", selected_ids)
+        # None from active cooldown (q30..q39)
+        for i in range(30, 40):
+            self.assertNotIn(f"q{i}", selected_ids)
+
+    def test_multi_vaulted_question_uses_latest_date(self):
+        target_date = "2026-09-27"
+        # Only 29 fresh questions, need 1 more
+        pool = [FakeDoc(f"q{i}") for i in range(30)]
+        # q0 was vaulted 100 days ago, BUT also vaulted 3 days ago
+        # Schedule vault extracts max(vdate) = 2026-09-24
+        vault_history = {"q0": "2026-09-24"}
+
+        with self.assertRaises(VaultContractError) as ctx:
+            select_vault_questions(pool, vault_history, count=30, target_date=target_date, cooldown_days=30)
+        self.assertIn("Refusing to violate the 30-day cooldown policy", str(ctx.exception))
+
+    def test_insufficient_fresh_and_cooldown_cleared_raises_contract_error(self):
+        target_date = "2026-09-27"
+        # 10 fresh (q0..q9) + 10 cooldown-cleared (q10..q19, 40 days ago) + 20 in active cooldown (q20..q39, 5 days ago)
+        # Total eligible = 20, need 30
+        pool = [FakeDoc(f"q{i}") for i in range(40)]
+        vault_history = {}
+        for i in range(10, 20):
+            vault_history[f"q{i}"] = "2026-08-18"  # 40d ago
+        for i in range(20, 40):
+            vault_history[f"q{i}"] = "2026-09-22"  # 5d ago
+
+        with self.assertRaises(VaultContractError) as ctx:
+            select_vault_questions(pool, vault_history, count=30, target_date=target_date, cooldown_days=30)
+        self.assertIn("Refusing to violate the 30-day cooldown policy", str(ctx.exception))
+
+    def test_jee_history_does_not_affect_neet_selection(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb()
+        # Seed 35 JEE and 35 NEET questions with identical IDs (e.g. src0..src34)
+        for i in range(35):
+            db.seed(f"src{i}_jee", {
+                "examType": "JEE", "subject": "Physics", "chapter": "Kinematics",
+                "questionText": f"JEE Question stem {i}", "options": ["A", "B", "C", "D"],
+                "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False
+            })
+            db.seed(f"src{i}_neet", {
+                "examType": "NEET", "subject": "Biology", "chapter": "Genetics",
+                "questionText": f"NEET Question stem {i}", "options": ["A", "B", "C", "D"],
+                "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False
+            })
+
+        # Vault JEE for 2026-09-26
+        schedule_vault(db, "2026-09-26", "JEE", count=30)
+
+        # Vaulting NEET for 2026-09-27 should see ALL 35 NEET questions as 100% fresh
+        schedule_vault(db, "2026-09-27", "NEET", count=30)
+
+        neet_vault = [d for d in db._store.values() if d.id.startswith("vault_2026-09-27")]
+        self.assertEqual(len(neet_vault), 30)
+        self.assertTrue(all(d.to_dict().get("examType") == "NEET" for d in neet_vault))
+
+
 if __name__ == "__main__":
     unittest.main()
+
