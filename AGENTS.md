@@ -99,4 +99,28 @@ The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` 
 ### Firestore Field Invariant (must never break):
 All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion.py`, `auto_question_pipeline.py`) and the vault scheduler MUST always write BOTH `correctOption` and `correctOptionIndex` to every Firestore document, set to the same integer value.
 
+---
+
+## 🛡️ Production Incidents & Architectural Fixes (2026-09-26)
+
+### 1. ⚡ Groq 429 Rate-Limit Hardening (Workflow #34 Root Cause & Resolution)
+- **Incident**: Workflow #34 hung for 6 hours until GitHub Actions cancelled it. Ingestion repeatedly received HTTP 429 with large upstream `Retry-After` headers (307s, 591s, 1488s = ~25 min) and slept synchronously in uncapped `time.sleep()` loops, preventing execution from ever reaching Daily Vault Scheduling.
+- **The Permanent Fix**:
+  - `MAX_RETRY_AFTER_SECS = 45`: If upstream requests a wait $> 45\text{s}$, `_post_groq()` skips further retries immediately with **zero sleep**, returning `""` gracefully.
+  - `max_retries`: Reduced from 5 to 3.
+  - **Graceful Non-fatal Skips**: Callers (`fetch_web_questions_for_chapter`, `generate_questions`, `verify_answer`) treat `""` as empty output, skip upload without writing partial/corrupt data, and allow the pipeline to proceed directly to Daily Vault scheduling in $< 2\text{--}3$ minutes.
+
+### 2. 🧠 3-Tier Freshness & 30-Day LRU Anti-Repeat Cooldown (`scripts/vault_scheduler.py`)
+- **The Problem Solved**: Previously, `recently_used_ids` had no time dimension (a question used yesterday was in the same bucket as one used 6 months ago). When unvaulted supply ran low, it sampled uniformly at random from all stale questions, creating a risk that questions from yesterday/last week would repeat.
+- **The 3-Tier Policy**:
+  - **Tier 1 (Fresh / Never Used)**: Questions that have never appeared in any historical Daily Vault. Selected first (highest priority).
+  - **Tier 2 (Cooldown Cleared)**: Questions whose latest `vaultDate` is strictly **MORE than 30 days** before `target_date` ($(\text{target\_date} - \text{last\_vault\_date}).\text{days} > 30$). Selected using **Least-Recently-Used (LRU)** order (oldest served questions chosen first).
+  - **Tier 3 (Active Cooldown)**: Questions served within the last 30 days ($\le 30\text{ days}$). **Strictly blacklisted and never selected**.
+- **Strict Contract Guard**: If $\text{len}(\text{Tier 1}) + \text{len}(\text{Tier 2}) < 30$, raises `VaultContractError` and halts rather than violating the 30-day cooldown policy.
+- **Reservoir Capacity**:
+  - JEE Main: ~2,000 valid questions (requires 900 for 30d $\to$ 2.2x buffer).
+  - NEET UG: ~1,300 valid questions (requires 900 for 30d $\to$ 1.4x buffer).
+  - Both exams are 100% mathematically safe from repeating questions for a full month even during temporary ingestion downtime.
+
+
 
