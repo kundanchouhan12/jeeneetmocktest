@@ -11,7 +11,7 @@ try:
 except Exception:
     pass
 
-API_KEY = "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"
+API_KEY = os.environ.get("GROQ_API_KEY", "")
 GROQ_URL = "https://api.groq.com/openai/v1/chat/completions"
 
 # Mapping from MathonGo PDF filename prefixes to official app chapters
