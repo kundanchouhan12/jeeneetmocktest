@@ -71,7 +71,7 @@ CEREBRAS_URL     = "https://api.cerebras.ai/v1/chat/completions"
 CEREBRAS_MODEL   = "gpt-oss-120b"
 
 # ── Groq (fallback when Cerebras is rate-limited) ─────────────────────────────
-GROQ_API_KEY = "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"
+GROQ_API_KEY = os.environ.get("GROQ_API_KEY", "")
 GROQ_URL     = "https://api.groq.com/openai/v1/chat/completions"
 GROQ_MODEL   = "llama-3.3-70b-versatile"
 

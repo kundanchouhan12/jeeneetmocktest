@@ -23,6 +23,7 @@ android {
         versionCode 19
         versionName "1.2.1"
         buildConfigField "String", "GEMINI_API_KEY", "\"${localProps.getProperty('gemini.api.key', '')}\""
+        buildConfigField "String", "GROQ_API_KEY", "\"${localProps.getProperty('groq.api.key', '')}\""
     }
 
     signingConfigs {

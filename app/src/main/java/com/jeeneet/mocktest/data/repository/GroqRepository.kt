@@ -23,8 +23,8 @@ class GroqRepository(private val context: Context) {
          * IMPORTANT:
          * Move this key to BuildConfig or backend in production.
          */
-        private const val API_KEY =
-            "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"
+        private val API_KEY =
+            com.jeeneet.mocktest.BuildConfig.GROQ_API_KEY
 
         private const val BASE_URL =
             "https://api.groq.com/openai/v1/chat/completions"
