@@ -12,6 +12,7 @@ import os
 import random
 import re
 import sys
+import time
 
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -143,10 +144,7 @@ def assert_selected_vault(selected: list, exam_type: str, target_date: str, coun
     ids = [d.id for d in selected]
     if len(set(ids)) != count:
         raise VaultContractError(f"{exam_type} {target_date}: duplicate source document IDs in selection")
-    if force:
-        group_id = f"{exam_type.lower()}_vault_{target_date}_{int(time.time())}"
-    else:
-        group_id = f"{exam_type.lower()}_vault_{target_date}"
+    group_id = f"{exam_type.lower()}_vault_{target_date}_{int(time.time())}"
     payloads = []
     fingerprints = []
     for doc in selected:
@@ -320,10 +318,6 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_V
     print(f"\n[vault] Scheduling {exam_type} vault for {target_date} ({count} questions)...")
     if count != EXPECTED_VAULT_COUNT:
         raise VaultContractError(f"Daily Vault count must be {EXPECTED_VAULT_COUNT}, got {count}")
-
-    if not force and is_vault_complete_in_firestore(db, target_date, exam_type, count):
-        print(f"  ✅ Vault for {exam_type}/{target_date} is already complete ({count} valid docs) — skipping re-write.")
-        return
 
     questions_ref = db.collection("questions")
 

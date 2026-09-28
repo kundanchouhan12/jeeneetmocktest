@@ -158,21 +158,6 @@ class QuestionSyncManager(private val context: Context) {
             localRows, exam, today, savedGroupId
         )
 
-        Log.d(
-            TAG,
-            "Vault check: today=$today exam=$exam savedGroupId='$savedGroupId' " +
-                "snapshotDate='$snapshotDate' roomCount=${localRows.size} " +
-                "cacheCompleteToday=$cacheCompleteToday"
-        )
-
-        if (DailyVaultContract.shouldSkipNetwork(
-                snapshotDate, today, savedGroupId, cacheCompleteToday
-            )
-        ) {
-            Log.d(TAG, "Daily Vault for $today ($exam) already complete (${DailyVaultContract.EXPECTED_COUNT}) — skipping Firestore")
-            return
-        }
-
         if (localRows.isNotEmpty() && !cacheCompleteToday) {
             Log.w(TAG, "Daily Vault cache incomplete (${localRows.size}/$EXPECTED_VAULT_COUNT for $exam) — retrying Firestore")
         }
@@ -187,6 +172,12 @@ class QuestionSyncManager(private val context: Context) {
 
             var questions = parseVaultDocuments(snapshot.documents, "today=$today exam=$exam")
                 .filter { it.examType == exam && it.isDailyVault }
+
+            val incomingGroupId = questions.firstOrNull()?.vaultGroupId.orEmpty()
+            if (incomingGroupId.isNotEmpty() && incomingGroupId == savedGroupId && snapshotDate == today && cacheCompleteToday) {
+                Log.d(TAG, "Daily Vault for $today ($exam) group='$savedGroupId' already up to date — skipping Room replace")
+                return
+            }
 
             // Reinstall / first-launch fallback: no cached vault and no vault for today —
             // fetch the latest vault for this exam only.
