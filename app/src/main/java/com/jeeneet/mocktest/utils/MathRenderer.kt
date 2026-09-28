@@ -75,7 +75,9 @@ object MathRenderer {
             sb.append(text, lastEnd, match.range.first)
 
             // Group 1 = $$...$$ content, Group 2 = $...$ content
-            val latex = match.groupValues[1].ifEmpty { match.groupValues[2] }.trim()
+            val latex = MhchemCompat.expand(
+                match.groupValues[1].ifEmpty { match.groupValues[2] }.trim()
+            )
 
             try {
                 val drawable = JLatexMathDrawable.builder(latex)
@@ -123,7 +125,9 @@ object MathRenderer {
         val normalized = normalize(text)
         val latexList = mutableListOf<String>()
         val tokenized = MATH_PATTERN.replace(normalized) { match ->
-            val latex = match.groupValues[1].ifEmpty { match.groupValues[2] }.trim()
+            val latex = MhchemCompat.expand(
+                match.groupValues[1].ifEmpty { match.groupValues[2] }.trim()
+            )
             latexList.add(latex)
             "$TOKEN_START${latexList.size - 1}$TOKEN_END"
         }
@@ -142,7 +146,7 @@ object MathRenderer {
         // Replace back-to-front so earlier match ranges stay valid as the builder mutates.
         for (match in TOKEN_PATTERN.findAll(rendered).toList().asReversed()) {
             val idx = match.groupValues[1].toIntOrNull() ?: continue
-            val latex = latexList.getOrNull(idx) ?: continue
+            val latex = MhchemCompat.expand(latexList.getOrNull(idx) ?: continue)
             try {
                 val drawable = JLatexMathDrawable.builder(latex)
                     .textSize(sizePx)
@@ -164,10 +168,11 @@ object MathRenderer {
         return sb
     }
 
-    private fun normalize(text: String): String = text
-        .replace("\\(", "$").replace("\\)", "$")
-        .replace("\\[", "$$").replace("\\]", "$$")
-        .replace(Regex("\\[math\\](.*?)\\[/math\\]", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
-        .replace(Regex("<math>(.*?)</math>", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
-        .replace(Regex("\\\\mbox\\{(.*?)\\}")) { it.groupValues[1] }
+    private fun normalize(text: String): String = MhchemCompat.expand(
+        text.replace("\\(", "$").replace("\\)", "$")
+            .replace("\\[", "$$").replace("\\]", "$$")
+            .replace(Regex("\\[math\\](.*?)\\[/math\\]", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
+            .replace(Regex("<math>(.*?)</math>", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
+            .replace(Regex("\\\\mbox\\{(.*?)\\}")) { it.groupValues[1] }
+    )
 }

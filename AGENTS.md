@@ -18,6 +18,11 @@ The daily pipeline is orchestrated via `.github/workflows/daily_automation.yml` 
    - Generates additional high-yield questions using Groq (`reasoning_effort: "low"`).
 3. **Deduplication & Corruption Audit (`scripts/purge_duplicate_questions.py`, `scripts/cleanup_corrupted_questions.py`)**:
    - Audits normalized text fingerprints to ensure 100% uniqueness in Firestore.
+3b. **Formatting Auto-Fix (`scripts/fix_bad_formatting_questions.py` → `run_formatting_fix`)**:
+   - Runs AFTER dedup/cleanup and BEFORE vault scheduling so the vault only ever copies already-clean source questions.
+   - **In-place UPDATE, never delete**: expands mhchem `\ce{...}` → plain KaTeX (`strip_ce_notation`, preserving existing `$...$`/`\(..\)` delimiters — no double `$ $...$ $`), strips literal `\n`/`\t`, and wraps bare LaTeX/chemical tokens with `$...$`. Also heals already-published vault docs without shrinking the vault (safe under the exact-30 contract).
+   - **Idempotent & quota-cheap**: a clean question produces zero writes; reuses the pipeline's shared question snapshot (no extra full read).
+   - **Why it exists**: models sometimes emit `\ce{}` despite prompt instructions not to; shipped JLaTeXMath renders raw `\ce{}` as literal text (Play Store chemistry-formula bug, 2026-09-27).
 4. **Daily Vault Scheduler (`scripts/vault_scheduler.py`)**:
    - Schedules 30 questions for JEE and 30 for NEET daily for the next day.
 5. **Weekly Power 100 Rebuild (`scripts/build_power100_live.py`)**:

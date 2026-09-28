@@ -39,6 +39,7 @@ except Exception:
 from auto_question_pipeline import run_pipeline, init_firebase
 from build_power100_live import run_power100_rebuild
 from cleanup_corrupted_questions import is_corrupted
+from fix_bad_formatting_questions import run_formatting_fix
 from purge_duplicate_questions import purge_duplicates
 from vault_scheduler import schedule_vault
 from web_question_ingestion import run_web_ingestion
@@ -209,6 +210,18 @@ def main():
         except Exception as e:
             print(f"❌ Error during Corrupted Question Audit: {e}")
             failed_steps.append(f"Corrupted Question Audit: {e}")
+
+        # Step 3b: Formatting Auto-Fix — expand mhchem \ce{}, strip literal \n/\t,
+        # and wrap bare LaTeX/chemical tokens with $...$ so MathRenderer.kt renders
+        # them. MUST run AFTER cleanup and BEFORE vault scheduling so the vault only
+        # ever copies already-clean source questions. Fixes are in-place UPDATES
+        # (never deletes), so they also heal already-published vault docs without
+        # shrinking the vault. Reuses the shared snapshot — no extra full read.
+        try:
+            run_formatting_fix(db, dry_run=args.dry_run, all_docs=audit_docs)
+        except Exception as e:
+            print(f"❌ Error during Formatting Auto-Fix: {e}")
+            failed_steps.append(f"Formatting Auto-Fix: {e}")
 
         # Step 3: Schedule Daily Vault for JEE and NEET
         try:

@@ -99,6 +99,19 @@ class MathRendererNormalizeTest {
     }
 
     @Test
+    fun `mhchem ce command is expanded to ordinary TeX`() {
+        val result = normalize("\$ \\ce{K2Cr2O7} \$")
+        assertEquals("\$ K_{2}Cr_{2}O_{7} \$", result)
+        assertFalse(result.contains("\\ce"))
+    }
+
+    @Test
+    fun `backslash-paren wrapped ce options expand`() {
+        val result = normalize("\\(\\ce{NaClO3}\\)")
+        assertEquals("\$NaClO_{3}\$", result)
+    }
+
+    @Test
     fun `empty string returns empty string`() {
         assertEquals("", normalize(""))
     }

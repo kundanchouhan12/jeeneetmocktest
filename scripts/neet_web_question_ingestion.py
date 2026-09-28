@@ -112,13 +112,42 @@ def wrap_inline_latex(text: str) -> str:
     """
     if not text:
         return text
-    if _HAS_MATH_DELIMITER.search(text):
-        return text  # already delimited — don't double-process
-
     def replacer(m: re.Match) -> str:
         return f"${m.group(0)}$"
 
-    return _BARE_LATEX_TOKEN.sub(replacer, text)
+    # Preserve existing math blocks while still wrapping bare tokens outside them.
+    parts = []
+    last = 0
+    for match in re.finditer(r'\$[^$]*\$|\\\(.*?\\\)|\\\[.*?\\\]', text, flags=re.DOTALL):
+        parts.append(_BARE_LATEX_TOKEN.sub(replacer, text[last:match.start()]))
+        parts.append(match.group(0))
+        last = match.end()
+    parts.append(_BARE_LATEX_TOKEN.sub(replacer, text[last:]))
+    return ''.join(parts)
+
+
+_CE_BLOCK = re.compile(r'\\+ce\{((?:[^{}]|\{[^{}]*\})*)\}')
+
+
+def _expand_ce_inner(inner: str) -> str:
+    """Converts the body of an mhchem \\ce{...} block into plain KaTeX.
+    Mirrors app-side MhchemCompat.kt so Firestore never stores raw \\ce{}."""
+    s = inner.strip()
+    s = s.replace('<=>', r' \leftrightarrow ').replace('<->', r' \leftrightarrow ')
+    s = s.replace('->', r' \rightarrow ').replace('<-', r' \leftarrow ')
+    s = re.sub(r'([A-Za-z\)\]])(?<!_)(\d+)', r'\1_{\2}', s)
+    s = re.sub(r'\s{2,}', ' ', s)
+    return s.strip()
+
+
+def strip_ce_notation(text: str) -> str:
+    """Replaces every \\ce{...} (mhchem) block with equivalent plain KaTeX,
+    keeping any surrounding $...$ / \\(..\\) delimiters intact rather than adding
+    new ones. JLaTeXMath on shipped builds cannot render \\ce{}, so it must never
+    reach Firestore (the raw markup shows verbatim to users otherwise)."""
+    if not text or 'ce{' not in text:
+        return text
+    return _CE_BLOCK.sub(lambda m: _expand_ce_inner(m.group(1)), text)
 
 
 OFFICIAL_CHAPTERS = {
@@ -191,10 +220,17 @@ def sanitize_web_content(text: str) -> str:
 
     t = text.strip()
 
-    # 0. Replace literal \n (two-char escape sequence in AI output) with a space.
-    #    These appear when the model writes \n inside a JSON string value instead
-    #    of using actual whitespace, e.g. "text\nA) option" -> "text A) option".
-    t = t.replace('\\n', ' ').replace('\\t', ' ')
+    # 0. Replace literal \n / \t escape artifacts while preserving common n/t
+    #    LaTeX commands. A generic lowercase lookahead is insufficient because
+    #    prose such as ``\tcol2`` must still be cleaned.
+    # Preserve valid LaTeX commands beginning with n/t while removing literal
+    # escape artifacts such as ``\\tcol2`` and ``\\nA)``.
+    _latex_nt_commands = (
+        't|tan|tanh|text|textbf|textit|textrm|textsf|texttt|theta|thetas|times|'
+        'tilde|top|to|today|triangle|tau|nabla|natural|nearrow|neg|neq|newcommand|'
+        'nexists|ni|nmid|not|nu|nwarrow|nolinebreak|nolimits'
+    )
+    t = re.sub(rf'\\(?!(?:{_latex_nt_commands})(?![A-Za-z]))[nt]', ' ', t)
 
     # 1. Strip URLs & Domain mentions
     t = re.sub(r'https?://\S+|www\.\S+', '', t, flags=re.IGNORECASE)
@@ -457,9 +493,9 @@ Constraints:
 
     processed = []
     for item in items:
-        item["questionText"] = wrap_inline_latex(sanitize_web_content(item.get("questionText", "")))
-        item["explanation"] = wrap_inline_latex(sanitize_web_content(item.get("explanation", "")))
-        item["options"] = [wrap_bare_latex(sanitize_web_content(str(o))) for o in item.get("options", [])]
+        item["questionText"] = wrap_inline_latex(strip_ce_notation(sanitize_web_content(item.get("questionText", ""))))
+        item["explanation"] = wrap_inline_latex(strip_ce_notation(sanitize_web_content(item.get("explanation", ""))))
+        item["options"] = [wrap_bare_latex(strip_ce_notation(sanitize_web_content(str(o)))) for o in item.get("options", [])]
         corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
         item["correctOption"] = corr
         item["correctOptionIndex"] = corr

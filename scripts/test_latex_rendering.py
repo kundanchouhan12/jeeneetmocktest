@@ -22,9 +22,9 @@ if 'firebase_admin' not in sys.modules:
 # Set dummy GROQ_API_KEY so scripts can import without sys.exit
 os.environ["GROQ_API_KEY"] = os.environ.get("GROQ_API_KEY", "dummy_test_key")
 
-from web_question_ingestion import wrap_inline_latex as web_wrap_inline, wrap_bare_latex as web_wrap_bare
-from neet_web_question_ingestion import wrap_inline_latex as neet_wrap_inline
-from auto_question_pipeline import wrap_inline_latex as auto_wrap_inline, wrap_bare_latex as auto_wrap_bare
+from web_question_ingestion import wrap_inline_latex as web_wrap_inline, wrap_bare_latex as web_wrap_bare, strip_ce_notation as web_strip_ce
+from neet_web_question_ingestion import wrap_inline_latex as neet_wrap_inline, strip_ce_notation as neet_strip_ce
+from auto_question_pipeline import wrap_inline_latex as auto_wrap_inline, wrap_bare_latex as auto_wrap_bare, strip_ce_notation as auto_strip_ce
 
 
 class TestLatexRendering(unittest.TestCase):
@@ -62,10 +62,118 @@ class TestLatexRendering(unittest.TestCase):
         self.assertEqual(neet_wrap_inline(text), text)
         self.assertEqual(auto_wrap_inline(text), text)
 
+    def test_bare_math_outside_existing_delimiter_is_wrapped(self):
+        text = r"Given $x^2$, use \theta and \text{Na}."
+        expected = r"Given $x^2$, use $\theta$ and $\text{Na}$."
+        self.assertEqual(web_wrap_inline(text), expected)
+        self.assertEqual(neet_wrap_inline(text), expected)
+        self.assertEqual(auto_wrap_inline(text), expected)
+
     def test_wrap_bare_latex_options(self):
         self.assertEqual(web_wrap_bare("\\frac{3}{2}"), "\\(\\frac{3}{2}\\)")
         self.assertEqual(auto_wrap_bare("\\frac{3}{2}"), "\\(\\frac{3}{2}\\)")
         self.assertEqual(web_wrap_bare("None of these"), "None of these")
+
+
+from web_question_ingestion import sanitize_web_content as web_sanitize
+from neet_web_question_ingestion import sanitize_web_content as neet_sanitize
+from fix_bad_formatting_questions import fix_field_prose, fix_field_option
+
+
+class TestLiteralEscapeStripPreservesLatex(unittest.TestCase):
+    """Stripping literal \\n/\\t escape artifacts must NOT eat LaTeX commands that
+    start with n or t (\\theta, \\times, \\text, \\tan, \\nu, \\nabla, \\neq, ...).
+    Regression for the 2026-09-27 near-miss where a blind .replace('\\n',' ')
+    turned \\theta into 'heta' across ~1000 questions."""
+
+    def test_sanitize_preserves_n_t_latex_commands(self):
+        for s in (web_sanitize, neet_sanitize):
+            self.assertIn('\\theta', s(r'Angle is \theta here.'))
+            self.assertIn('\\times', s(r'Area 3 \times 4.'))
+            self.assertIn('\\text{Na}', s(r'Ion \text{Na}^+ present.'))
+            self.assertIn('\\tan', s(r'Value of \tan x.'))
+            self.assertIn('\\nu', s(r'Frequency \nu given.'))
+            self.assertIn('\\nabla', s(r'Operator \nabla acts.'))
+
+    def test_sanitize_still_strips_real_escape_artifacts(self):
+        for s in (web_sanitize, neet_sanitize):
+            self.assertNotIn('\\n', s('Question stem\\nA) first option'))
+            self.assertNotIn('\\t', s('col1\\tcol2 values'))
+
+    def test_fix_fields_preserve_n_t_latex_commands(self):
+        for command in (r'\to', r'\text{Na}^+', r'\theta', r'\times', r'\tan',
+                        r'\nu', r'\nabla', r'\frac{1}{2}', r'\sqrt{x}'):
+            output = fix_field_prose(command)
+            self.assertIn(command, output, command)
+            self.assertNotIn(command[1:], output.replace(command, ''), command)
+        self.assertIn('\\text{Na}', fix_field_option(r'\text{Na}^+ ion'))
+
+    def test_implication_expression_is_not_corrupted(self):
+        value = r'$(p \land q) \lor (p \to q)$'
+        self.assertEqual(fix_field_prose(value), value)
+        self.assertEqual(fix_field_option(value), value)
+
+    def test_allowlisted_legacy_whitespace_commands_are_restored(self):
+        cases = (
+            ('\\\text{m}', r'\text{m}'),
+            ('\\\theta', r'\theta'),
+            ('\\\nabla f', r'\nabla f'),
+        )
+        for broken, expected in cases:
+            self.assertIn(expected.split()[0], fix_field_prose(broken))
+
+    def test_unknown_legacy_whitespace_artifact_is_not_guessed(self):
+        value = '\\\tunknown{m}'
+        self.assertIn(value, fix_field_prose(value))
+
+    def test_fix_strips_literal_escape_before_prose(self):
+        self.assertNotIn('\\n', fix_field_prose(r'Question\nA) first option'))
+        self.assertNotIn('\\t', fix_field_option(r'col1\tcol2 values'))
+
+
+class TestStripCeNotation(unittest.TestCase):
+    """mhchem \\ce{...} must be converted to plain KaTeX at ingestion — shipped
+    JLaTeXMath builds render \\ce{} as raw literal text (Play Store screenshot bug)."""
+
+    def _all(self, text):
+        return [web_strip_ce(text), neet_strip_ce(text), auto_strip_ce(text)]
+
+    def test_disproportionation_option_from_screenshot(self):
+        # Exact broken option from the reported NEET/JEE vault screenshot.
+        text = "$ \\ce{ClO3^- -> ClO4^- + Cl^-} $"
+        expected = "$ ClO_{3}^- \\rightarrow ClO_{4}^- + Cl^- $"
+        for out in self._all(text):
+            self.assertEqual(out, expected)
+            self.assertNotIn("\\ce", out)
+
+    def test_no_double_dollar_delimiters(self):
+        # Must preserve the existing $...$ wrapper, never produce "$ $...$ $".
+        for out in self._all("$ \\ce{H2O} $"):
+            self.assertEqual(out, "$ H_{2}O $")
+            self.assertNotIn("$ $", out)
+
+    def test_reaction_with_parentheses_subscripts(self):
+        text = "\\ce{Cu + 2AgNO3 -> Cu(NO3)2 + 2Ag}"
+        for out in self._all(text):
+            self.assertNotIn("\\ce", out)
+            self.assertIn("AgNO_{3}", out)
+            self.assertIn("Cu(NO_{3})_{2}", out)
+            self.assertIn("\\rightarrow", out)
+
+    def test_double_backslash_ce_also_stripped(self):
+        for out in self._all("\\\\ce{K2Cr2O7}"):
+            self.assertNotIn("ce{", out)
+            self.assertIn("K_{2}Cr_{2}O_{7}", out)
+
+    def test_reversible_equilibrium_arrow(self):
+        for out in self._all("\\ce{N2 + 3H2 <=> 2NH3}"):
+            self.assertIn("\\leftrightarrow", out)
+            self.assertNotIn("\\ce", out)
+
+    def test_plain_text_without_ce_untouched(self):
+        text = "Which of the following is a disproportionation reaction?"
+        for out in self._all(text):
+            self.assertEqual(out, text)
 
 
 from purge_duplicate_questions import normalize_text

@@ -131,13 +131,42 @@ def wrap_inline_latex(text: str) -> str:
     """
     if not text:
         return text
-    if _HAS_MATH_DELIMITER.search(text):
-        return text
-
     def replacer(m: re.Match) -> str:
         return f"${m.group(0)}$"
 
-    return _BARE_LATEX_TOKEN.sub(replacer, text)
+    # Preserve existing math blocks while still wrapping bare tokens outside them.
+    parts = []
+    last = 0
+    for match in re.finditer(r'\$[^$]*\$|\\\(.*?\\\)|\\\[.*?\\\]', text, flags=re.DOTALL):
+        parts.append(_BARE_LATEX_TOKEN.sub(replacer, text[last:match.start()]))
+        parts.append(match.group(0))
+        last = match.end()
+    parts.append(_BARE_LATEX_TOKEN.sub(replacer, text[last:]))
+    return ''.join(parts)
+
+
+_CE_BLOCK = re.compile(r'\\+ce\{((?:[^{}]|\{[^{}]*\})*)\}')
+
+
+def _expand_ce_inner(inner: str) -> str:
+    """Converts the body of an mhchem \\ce{...} block into plain KaTeX.
+    Mirrors app-side MhchemCompat.kt so Firestore never stores raw \\ce{}."""
+    s = inner.strip()
+    s = s.replace('<=>', r' \leftrightarrow ').replace('<->', r' \leftrightarrow ')
+    s = s.replace('->', r' \rightarrow ').replace('<-', r' \leftarrow ')
+    s = re.sub(r'([A-Za-z\)\]])(?<!_)(\d+)', r'\1_{\2}', s)
+    s = re.sub(r'\s{2,}', ' ', s)
+    return s.strip()
+
+
+def strip_ce_notation(text: str) -> str:
+    """Replaces every \\ce{...} (mhchem) block with equivalent plain KaTeX,
+    keeping any surrounding $...$ / \\(..\\) delimiters intact rather than adding
+    new ones. JLaTeXMath on shipped builds cannot render \\ce{}, so it must never
+    reach Firestore (the raw markup shows verbatim to users otherwise)."""
+    if not text or 'ce{' not in text:
+        return text
+    return _CE_BLOCK.sub(lambda m: _expand_ce_inner(m.group(1)), text)
 
 
 OFFICIAL_CHAPTERS = {
@@ -467,9 +496,9 @@ Constraints:
 
     processed = []
     for item in items:
-        item["questionText"] = wrap_inline_latex(str(item.get("questionText", "")))
-        item["explanation"] = wrap_inline_latex(str(item.get("explanation", "")))
-        item["options"] = [wrap_bare_latex(str(o)) for o in item.get("options", [])]
+        item["questionText"] = wrap_inline_latex(strip_ce_notation(str(item.get("questionText", ""))))
+        item["explanation"] = wrap_inline_latex(strip_ce_notation(str(item.get("explanation", ""))))
+        item["options"] = [wrap_bare_latex(strip_ce_notation(str(o))) for o in item.get("options", [])]
         corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
         item["correctOption"] = corr
         item["correctOptionIndex"] = corr
