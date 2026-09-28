@@ -67,6 +67,7 @@ object MhchemCompat {
         s = s.replace("<=>", """\leftrightarrow """)
         s = s.replace("->", """\rightarrow """)
         s = s.replace("<-", """\leftarrow """)
+        s = ARROW_SPACE_REGEX.replace(s) { m -> m.groupValues[1] + " " }
         // H2O / K2Cr2O7 / (NO3)2 → TeX subscripts. Skip digits already after _.
         s = SUBSCRIPT_DIGITS.replace(s) { m ->
             val prev = m.groupValues[1]
@@ -76,5 +77,6 @@ object MhchemCompat {
         return s
     }
 
+    private val ARROW_SPACE_REGEX = Regex("""(\\rightarrow|\\leftarrow|\\leftrightarrow)\s+""")
     private val SUBSCRIPT_DIGITS = Regex("""([A-Za-z)])(?!_)(\d+)""")
 }
