@@ -47,9 +47,7 @@ jobs:
             echo "ERROR: GitHub secret FIREBASE_SERVICE_ACCOUNT is missing or empty."
             exit 1
           fi
-          python -c "import json,os; json.loads(os.environ['FIREBASE_CREDENTIALS_JSON']); print('Firebase service account JSON parsed OK')"
-          mkdir -p scripts
-          printf '%s\n' "$FIREBASE_CREDENTIALS_JSON" > scripts/serviceAccountKey.json
+          python -c "import json, os; data = os.environ['FIREBASE_CREDENTIALS_JSON']; json.loads(data); os.makedirs('scripts', exist_ok=True); open('scripts/serviceAccountKey.json', 'w', encoding='utf-8').write(data); print('Firebase service account written OK')"
           test -s scripts/serviceAccountKey.json
 
       - name: Execute Master Daily Automation Pipeline
