@@ -120,11 +120,15 @@ def main():
 
     args = parser.parse_args()
 
-    target_date = (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    ist_tz = datetime.timezone(datetime.timedelta(hours=5, minutes=30))
+    ist_now = datetime.datetime.now(ist_tz)
+    today_ist = ist_now.date().strftime("%Y-%m-%d")
+    tomorrow_ist = (ist_now.date() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
+    target_dates = [today_ist, tomorrow_ist]
 
     print("=================================================================")
-    print(f"⏰ Starting Daily Vault & Question Bank Automation [{datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}]")
-    print(f"📅 Target Vault Date : {target_date}")
+    print(f"⏰ Starting Daily Vault & Question Bank Automation [{ist_now.strftime('%Y-%m-%d %H:%M:%S IST')}]")
+    print(f"📅 Target Vault Dates: {target_dates} (IST)")
     print(f"🛡️ Mode              : {'DRY RUN' if args.dry_run else 'LIVE PRODUCTION'}")
     print("=================================================================")
 
@@ -223,16 +227,17 @@ def main():
             print(f"❌ Error during Formatting Auto-Fix: {e}")
             failed_steps.append(f"Formatting Auto-Fix: {e}")
 
-        # Step 3: Schedule Daily Vault for JEE and NEET
+        # Step 3: Schedule Daily Vault for JEE and NEET (Ensures BOTH Today IST & Tomorrow IST are ready)
         try:
-            print("\n⚡ Scheduling Daily Vault Questions...")
-            for exam in ["JEE", "NEET"]:
-                try:
-                    schedule_vault(db, target_date, exam, count=args.vault_count)
-                    vault_ok[exam] = True
-                except Exception as e:
-                    print(f"❌ Error during {exam} Daily Vault: {e}")
-                    failed_steps.append(f"{exam} Daily Vault: {e}")
+            print(f"\n⚡ Scheduling Daily Vault Questions for dates {target_dates} (IST)...")
+            for vdate in target_dates:
+                for exam in ["JEE", "NEET"]:
+                    try:
+                        schedule_vault(db, vdate, exam, count=args.vault_count)
+                        vault_ok[exam] = True
+                    except Exception as e:
+                        print(f"❌ Error during {exam} Daily Vault for {vdate}: {e}")
+                        failed_steps.append(f"{exam} Daily Vault ({vdate}): {e}")
         except Exception as e:
             print(f"❌ Error during Vault Scheduling: {e}")
             failed_steps.append(f"Vault Scheduling: {e}")
@@ -273,7 +278,7 @@ def main():
             total_neet = len([d for d in final_bank_docs if d.to_dict().get('examType') == 'NEET' and not d.id.startswith('vault_')])
             db.collection('metadata').document('daily_health_summary').set({
                 'last_run_timestamp': firestore.SERVER_TIMESTAMP,
-                'target_vault_date': target_date,
+                'target_vault_date': tomorrow_ist,
                 'duplicates_purged_count': len(deleted_dup_ids),
                 'corrupted_purged_count': deleted_corrupt_count,
                 'live_total_jee': total_jee,

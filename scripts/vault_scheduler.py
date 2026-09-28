@@ -292,10 +292,36 @@ def _dedupe_pool(pool: list) -> list:
     return unique
 
 
+def is_vault_complete_in_firestore(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT) -> bool:
+    try:
+        docs = (
+            db.collection("questions")
+            .where("vaultDate", "==", target_date)
+            .where("examType", "==", exam_type)
+            .where("isDailyVault", "==", True)
+            .get()
+        )
+        if len(docs) != count:
+            return False
+        valid = 0
+        for doc in docs:
+            d = doc.to_dict() or {}
+            if d.get("vaultGroupId") and len(d.get("options", [])) == 4 and d.get("correctOptionIndex") is not None:
+                valid += 1
+        return valid == count
+    except Exception:
+        return False
+
+
 def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT) -> None:
     print(f"\n[vault] Scheduling {exam_type} vault for {target_date} ({count} questions)...")
     if count != EXPECTED_VAULT_COUNT:
         raise VaultContractError(f"Daily Vault count must be {EXPECTED_VAULT_COUNT}, got {count}")
+
+    if is_vault_complete_in_firestore(db, target_date, exam_type, count):
+        print(f"  ✅ Vault for {exam_type}/{target_date} is already complete ({count} valid docs) — skipping re-write.")
+        return
+
     questions_ref = db.collection("questions")
 
     all_docs = questions_ref.where("examType", "==", exam_type).get()
