@@ -141,5 +141,13 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
   - Applied across `web_question_ingestion.py`, `neet_web_question_ingestion.py`, and `auto_question_pipeline.py`.
   - Verified by 57/57 passing automated test suite (`scripts/test_latex_rendering.py`, `scripts/test_vault_scheduler.py`).
 
+### 5. 🔄 Unconditional Vault Publishing & Client Cache Replacement (2026-09-28)
+- **The Problem Solved**: Previously, `schedule_vault()` skipped scheduling if 30 questions already existed in Firestore for that target date, and `QuestionSyncManager.kt` skipped Firestore sync if 30 local Room rows were cached. Manual workflow triggers and scheduled runs were unable to force fresh Daily Vault questions to mobile clients without manual data wipes.
+- **The Permanent Fix**:
+  - **Pipeline (`scripts/vault_scheduler.py`)**: Removed `is_vault_complete_in_firestore` skip check. Every workflow run unconditionally selects 30 fresh questions for JEE and 30 for NEET under the 30-day anti-repeat cooldown policy.
+  - **Timestamped `vaultGroupId`**: `assert_selected_vault()` generates a fresh timestamped ID (`<exam>_vault_<target_date>_<timestamp>`) on every run.
+  - **Android Client (`QuestionSyncManager.kt`)**: Removed `shouldSkipNetwork(...)` pre-network skip. The app queries Firestore first; whenever `incomingGroupId != savedGroupId`, it invalidates the local Room cache and reinstalls the 30 new questions.
+
+
 
 
