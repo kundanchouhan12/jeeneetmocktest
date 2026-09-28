@@ -63,10 +63,16 @@ def verify_firebase_connectivity(db) -> None:
     up front instead of deferring it into whichever pipeline step happens to run first."""
     if db is None:
         raise FirebaseAuthError("Firebase init returned no client.")
-    try:
-        db.collection("metadata").document("question_bank").get()
-    except Exception as e:
-        raise FirebaseAuthError(f"Firebase authentication/connectivity failed: {e}") from e
+    last_err = None
+    for attempt in range(1, 4):
+        try:
+            db.collection("metadata").document("question_bank").get()
+            return
+        except Exception as e:
+            last_err = e
+            if attempt < 3:
+                time.sleep(5)
+    raise FirebaseAuthError(f"Firebase authentication/connectivity failed: {last_err}") from last_err
 
 
 def run_cleanup_audit(db, dry_run: bool = False, all_docs=None) -> int:
