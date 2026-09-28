@@ -117,6 +117,7 @@ def main():
     parser.add_argument("--vault-count", type=int, default=30, help="Vault questions per exam (default: 30)")
     parser.add_argument("--creds", default=SERVICE_ACCOUNT_PATH, help="Path to serviceAccountKey.json")
     parser.add_argument("--force-power100", action="store_true", help="Force Power 100 rebuild regardless of bi-weekly schedule")
+    parser.add_argument("--force-vault", action="store_true", help="Force Daily Vault re-scheduling with a fresh group ID")
 
     args = parser.parse_args()
 
@@ -233,7 +234,7 @@ def main():
             for vdate in target_dates:
                 for exam in ["JEE", "NEET"]:
                     try:
-                        schedule_vault(db, vdate, exam, count=args.vault_count)
+                        schedule_vault(db, vdate, exam, count=args.vault_count, force=args.force_vault)
                         vault_ok[exam] = True
                     except Exception as e:
                         print(f"❌ Error during {exam} Daily Vault for {vdate}: {e}")

@@ -134,7 +134,7 @@ def normalize_vault_payload(source: dict, exam_type: str, target_date: str, grou
     return q
 
 
-def assert_selected_vault(selected: list, exam_type: str, target_date: str, count: int = EXPECTED_VAULT_COUNT):
+def assert_selected_vault(selected: list, exam_type: str, target_date: str, count: int = EXPECTED_VAULT_COUNT, force: bool = False):
     if len(selected) != count:
         raise VaultContractError(
             f"{exam_type} {target_date}: selected {len(selected)} questions, need exactly {count}. "
@@ -143,7 +143,10 @@ def assert_selected_vault(selected: list, exam_type: str, target_date: str, coun
     ids = [d.id for d in selected]
     if len(set(ids)) != count:
         raise VaultContractError(f"{exam_type} {target_date}: duplicate source document IDs in selection")
-    group_id = f"{exam_type.lower()}_vault_{target_date}"
+    if force:
+        group_id = f"{exam_type.lower()}_vault_{target_date}_{int(time.time())}"
+    else:
+        group_id = f"{exam_type.lower()}_vault_{target_date}"
     payloads = []
     fingerprints = []
     for doc in selected:
@@ -313,12 +316,12 @@ def is_vault_complete_in_firestore(db, target_date: str, exam_type: str, count: 
         return False
 
 
-def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT) -> None:
+def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT, force: bool = False) -> None:
     print(f"\n[vault] Scheduling {exam_type} vault for {target_date} ({count} questions)...")
     if count != EXPECTED_VAULT_COUNT:
         raise VaultContractError(f"Daily Vault count must be {EXPECTED_VAULT_COUNT}, got {count}")
 
-    if is_vault_complete_in_firestore(db, target_date, exam_type, count):
+    if not force and is_vault_complete_in_firestore(db, target_date, exam_type, count):
         print(f"  ✅ Vault for {exam_type}/{target_date} is already complete ({count} valid docs) — skipping re-write.")
         return
 
@@ -379,7 +382,7 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_V
           f"{active_cooldown_count} active cooldown (<= {COOLDOWN_DAYS}d).")
 
     selected = select_vault_questions(pool, vault_history, count, target_date=target_date, cooldown_days=COOLDOWN_DAYS)
-    payloads, group_id = assert_selected_vault(selected, exam_type, target_date, count)
+    payloads, group_id = assert_selected_vault(selected, exam_type, target_date, count, force=force)
 
     new_ids = []
     batch = db.batch()
