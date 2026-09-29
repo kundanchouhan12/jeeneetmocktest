@@ -17,8 +17,14 @@ import os
 import sys
 import uuid
 import urllib.parse
-import requests
-from PIL import Image, ImageChops
+try:
+    from PIL import Image, ImageChops
+    HAS_PIL = True
+except ImportError:
+    Image = None
+    ImageChops = None
+    HAS_PIL = False
+
 
 # Ensure utf-8 stdout on Windows consoles
 if hasattr(sys.stdout, 'reconfigure'):
@@ -53,6 +59,9 @@ def compress_diagram_to_webp(image_bytes: bytes, max_width: int = MAX_DIAGRAM_WI
     """
     Cleans, crops, downscales and compresses diagram bytes into WebP.
     """
+    if not HAS_PIL or Image is None:
+        print("    ⚠️ Pillow (PIL) is not installed; skipping diagram compression.")
+        return None
     try:
         img = Image.open(io.BytesIO(image_bytes))
 
