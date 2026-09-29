@@ -257,7 +257,7 @@ private class BookmarkAdapter(
         inner.addView(tvAnswer)
 
         card.addView(inner)
-        return VH(card, tvBadge, tvSubject, tvChapter, btnRemove, tvQuestion, tvAnswer)
+        return VH(card, inner, tvBadge, tvSubject, tvChapter, btnRemove, tvQuestion, tvAnswer)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
@@ -270,6 +270,17 @@ private class BookmarkAdapter(
                 holder.root.setOnClickListener(null)
                 holder.btnRemove.setOnClickListener { onRemoveRegular(q) }
                 com.jeeneet.mocktest.utils.MathRenderer.render(holder.tvQuestion, q.questionText)
+
+                holder.inner.findViewWithTag<View>("bdiagram")?.let { holder.inner.removeView(it) }
+                if (!q.imageUrl.isNullOrBlank()) {
+                    val dCard = com.jeeneet.mocktest.utils.DiagramRenderer.buildDiagramCard(
+                        context = holder.root.context,
+                        imageUrl = q.imageUrl,
+                        label = "Diagram"
+                    ).apply { tag = "bdiagram" }
+                    val qIdx = holder.inner.indexOfChild(holder.tvQuestion)
+                    if (qIdx >= 0) holder.inner.addView(dCard, qIdx + 1)
+                }
 
                 if (q.options.isNotEmpty()) {
                     val correctLabel = listOf("A", "B", "C", "D").getOrNull(q.correctOptionIndex) ?: ""
@@ -289,6 +300,17 @@ private class BookmarkAdapter(
                 holder.btnRemove.setOnClickListener { onRemovePower100(q) }
                 com.jeeneet.mocktest.utils.MathRenderer.render(holder.tvQuestion, q.questionText)
 
+                holder.inner.findViewWithTag<View>("bdiagram")?.let { holder.inner.removeView(it) }
+                if (!q.imageUrl.isNullOrBlank()) {
+                    val dCard = com.jeeneet.mocktest.utils.DiagramRenderer.buildDiagramCard(
+                        context = holder.root.context,
+                        imageUrl = q.imageUrl,
+                        label = "Diagram"
+                    ).apply { tag = "bdiagram" }
+                    val qIdx = holder.inner.indexOfChild(holder.tvQuestion)
+                    if (qIdx >= 0) holder.inner.addView(dCard, qIdx + 1)
+                }
+
                 val correctLabel = listOf("A", "B", "C", "D").getOrNull(q.correctOptionIndex) ?: ""
                 val correctText = q.options.getOrNull(q.correctOptionIndex) ?: ""
                 com.jeeneet.mocktest.utils.MathRenderer.render(holder.tvAnswer, "Answer: ($correctLabel) $correctText")
@@ -299,6 +321,7 @@ private class BookmarkAdapter(
 
     class VH(
         val root: View,
+        val inner: LinearLayout,
         val tvBadge: TextView,
         val tvSubject: TextView,
         val tvChapter: TextView,

@@ -125,8 +125,9 @@ dependencies {
     // Gson
     implementation 'com.google.code.gson:gson:2.11.0'
 
-    // RecyclerView
+    // RecyclerView & ViewPager2
     implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.viewpager2:viewpager2:1.1.0'
 
     // MPAndroidChart
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
@@ -148,6 +149,9 @@ dependencies {
 
     // JLatexMath — renders LaTeX/math as image spans in TextViews (used directly via JLatexMathDrawable)
     implementation 'io.noties.markwon:ext-latex:4.6.2'
+
+    // Coil (Image Loading & Caching)
+    implementation 'io.coil-kt:coil:2.6.0'
 
     // WorkManager
     implementation 'androidx.work:work-runtime-ktx:2.10.0'

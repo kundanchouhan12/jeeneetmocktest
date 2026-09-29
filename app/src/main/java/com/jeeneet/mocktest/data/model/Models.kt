@@ -38,7 +38,12 @@ data class Question(
     val isPremium: Boolean = false,
     val isDailyVault: Boolean = false,
     val vaultDate: String = "", // Format: yyyy-MM-dd
-    val vaultGroupId: String = ""
+    val vaultGroupId: String = "",
+
+    // ─── Diagram & Image Support ───
+    val imageUrl: String? = null,
+    val solutionImageUrl: String? = null,
+    val optionImageUrls: List<String> = emptyList()
 )
 
 // ─── Exam configuration ───────────────────────────────────────────────────────
@@ -181,11 +186,17 @@ data class SavedTestSession(
 
 class Converters {
     @TypeConverter
-    fun fromStringList(value: List<String>): String = Gson().toJson(value)
+    fun fromStringList(value: List<String>?): String = Gson().toJson(value ?: emptyList<String>())
 
     @TypeConverter
-    fun toStringList(value: String): List<String> =
-        Gson().fromJson(value, object : TypeToken<List<String>>() {}.type)
+    fun toStringList(value: String?): List<String> {
+        if (value.isNullOrBlank()) return emptyList()
+        return try {
+            Gson().fromJson(value, object : TypeToken<List<String>>() {}.type) ?: emptyList()
+        } catch (_: Exception) {
+            emptyList()
+        }
+    }
 }
 
 // ─── IAP Product IDs ─────────────────────────────────────────────────────────
@@ -247,7 +258,12 @@ data class Power100Question(
     val questionText: String,
     val options: List<String>,  // always 4 options
     val correctOptionIndex: Int,
-    val explanation: String
+    val explanation: String,
+
+    // ─── Diagram & Image Support ───
+    val imageUrl: String? = null,
+    val solutionImageUrl: String? = null,
+    val optionImageUrls: List<String> = emptyList()
 )
 
 @Entity(tableName = "power100_progress", primaryKeys = ["userId", "examType", "position"])

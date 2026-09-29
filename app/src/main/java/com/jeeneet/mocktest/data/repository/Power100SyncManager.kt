@@ -161,6 +161,12 @@ class Power100SyncManager(private val context: Context) {
     private fun parseQuestion(exam: String, position: Int, map: Map<String, Any>): Power100Question? {
         return try {
             val options = QuestionFirestoreParser.parseOptions(map["options"]) ?: return null
+            val imageUrl = (map["imageUrl"] as? String)?.trim()?.takeIf { it.isNotBlank() }
+            val solutionImageUrl = (map["solutionImageUrl"] as? String)?.trim()?.takeIf { it.isNotBlank() }
+            val optionImageUrls = (map["optionImageUrls"] as? List<*>)
+                ?.mapNotNull { (it as? String)?.trim()?.takeIf { s -> s.isNotBlank() } }
+                ?: emptyList()
+
             Power100Question(
                 examType = exam,
                 position = position,
@@ -170,7 +176,10 @@ class Power100SyncManager(private val context: Context) {
                 questionText = map["questionText"] as? String ?: return null,
                 options = options,
                 correctOptionIndex = QuestionFirestoreParser.parseCorrectIndex(map) ?: return null,
-                explanation = map["explanation"] as? String ?: ""
+                explanation = map["explanation"] as? String ?: "",
+                imageUrl = imageUrl,
+                solutionImageUrl = solutionImageUrl,
+                optionImageUrls = optionImageUrls
             )
         } catch (e: Exception) {
             Log.w(TAG, "Failed to parse question at position $position: ${e.message}")

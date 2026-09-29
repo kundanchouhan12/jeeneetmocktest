@@ -17,6 +17,7 @@ if 'firebase_admin' not in sys.modules:
     sys.modules['firebase_admin'] = types.ModuleType('firebase_admin')
     sys.modules['firebase_admin'].credentials = types.SimpleNamespace(Certificate=lambda x: x)
     sys.modules['firebase_admin'].firestore = types.SimpleNamespace()
+    sys.modules['firebase_admin'].storage = types.SimpleNamespace(bucket=lambda *a, **k: types.SimpleNamespace(blob=lambda *b, **kb: types.SimpleNamespace()))
     sys.modules['firebase_admin']._apps = {}
 
 # Set dummy GROQ_API_KEY so scripts can import without sys.exit

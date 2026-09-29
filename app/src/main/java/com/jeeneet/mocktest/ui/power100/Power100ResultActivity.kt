@@ -457,6 +457,15 @@ class Power100ResultActivity : AppCompatActivity() {
                 textSize = 13f; maxLines = 2; ellipsize = android.text.TextUtils.TruncateAt.END
             }.also { com.jeeneet.mocktest.utils.MathRenderer.render(it, q.questionText) })
 
+            if (!q.imageUrl.isNullOrBlank()) {
+                val dCard = com.jeeneet.mocktest.utils.DiagramRenderer.buildDiagramCard(
+                    context = this@Power100ResultActivity,
+                    imageUrl = q.imageUrl,
+                    label = "Q.${q.position} Diagram"
+                )
+                holder.root.addView(dCard)
+            }
+
             val prog = progressMap[q.position]
             if (prog != null && prog.selectedOption >= 0) {
                 val yourAnswerText = "Your answer: ${('A' + prog.selectedOption)}. ${q.options.getOrNull(prog.selectedOption) ?: ""}"

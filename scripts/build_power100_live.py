@@ -126,8 +126,9 @@ def build_power100(db, exam: str, all_docs=None) -> list:
             print(f"  WARNING: {exam}/{subject} only has {len(picked)}/{target} eligible questions.")
         selected.extend(picked)
 
-    return [
-        {
+    result = []
+    for q in selected:
+        item = {
             "subject": q.get("subject"),
             "chapter": q.get("chapter", ""),
             "difficulty": q.get("difficulty", "Medium"),
@@ -137,8 +138,14 @@ def build_power100(db, exam: str, all_docs=None) -> list:
             "correctOption": q.get("correctOptionIndex") if q.get("correctOptionIndex") is not None else q.get("correctOption"),
             "explanation": q.get("explanation", ""),
         }
-        for q in selected
-    ]
+        if q.get("imageUrl"):
+            item["imageUrl"] = q["imageUrl"]
+        if q.get("solutionImageUrl"):
+            item["solutionImageUrl"] = q["solutionImageUrl"]
+        if q.get("optionImageUrls"):
+            item["optionImageUrls"] = q["optionImageUrls"]
+        result.append(item)
+    return result
 
 
 def run_power100_rebuild(exam: str, dry_run: bool = False, db=None, all_docs=None) -> bool:

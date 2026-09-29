@@ -773,6 +773,23 @@ class Power100Activity : AppCompatActivity() {
         lifecycleScope.launch {
             com.jeeneet.mocktest.utils.MathRenderer.renderAsync(tvQuestionText, q.questionText)
         }
+
+        // Remove existing diagram if any (tag = "qdiagram")
+        val contentLayout = tvQuestionText.parent as? LinearLayout
+        contentLayout?.findViewWithTag<View>("qdiagram")?.let { contentLayout.removeView(it) }
+
+        if (!q.imageUrl.isNullOrBlank()) {
+            val diagramCard = com.jeeneet.mocktest.utils.DiagramRenderer.buildDiagramCard(
+                context = this,
+                imageUrl = q.imageUrl,
+                label = "Q.${pos} Diagram"
+            ).apply { tag = "qdiagram" }
+            val qTextIdx = contentLayout?.indexOfChild(tvQuestionText) ?: -1
+            if (qTextIdx >= 0 && contentLayout != null) {
+                contentLayout.addView(diagramCard, qTextIdx + 1)
+            }
+        }
+
         tvBookmark.text = if (prog?.isBookmarked == true) "★" else "☆"
 
         optionsGroup.removeAllViews()

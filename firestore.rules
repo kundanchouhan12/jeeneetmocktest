@@ -1,93 +1,93 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    
+
     // Helper: Is the user authenticated?
     function isAuth() {
       return request.auth != null;
     }
 
-    // Helper: Is the vault discussion still active (within 48 hours)?
-    function isVaultActive(vaultDate) {
-      // vaultDate is YYYY-MM-DD. This is a simplified check.
-      // For strict 48h, we'd need a timestamp field in the vault doc.
-      return true; // Simplified for now, logic handled by client + timestamp checks
-    }
-
+    // Daily Vault: metadata & questions are read-only for users (written by admin pipeline)
     match /daily_vaults/{vaultId} {
-      allow read: if isAuth();
-      allow write: if false; // Only admin scripts can write metadata
+      allow read: if true;
+      allow write: if false;
 
+      // Vault Community Discussions: students can chat & ask doubts
       match /discussions/{commentId} {
-        allow read: if isAuth();
-        
-        // Rules for creating a comment
-        allow create: if isAuth() 
+        allow read: if true;
+
+        // Creating a comment: requires auth, payload length limits, uid verification
+        allow create: if isAuth()
           && request.resource.data.userId == request.auth.uid
           && request.resource.data.message.size() <= 300
           && request.resource.data.username.size() <= 30
           && request.resource.data.timestamp > 0;
 
-        // Only owner can delete their comment
+        // Only comment author can delete
         allow delete: if isAuth() && resource.data.userId == request.auth.uid;
-        
-        // Updates only for reporting or liking (limited)
+
+        // Only 'likes' count or 'isReported' flag can be updated by other students
         allow update: if isAuth() && (
           request.resource.data.diff(resource.data).affectedKeys().hasOnly(['isReported', 'likes'])
         );
       }
 
+      // Vault question poll/vote: students vote on question quality/difficulty
       match /question_votes/{userId} {
         allow read: if isAuth();
         allow write: if isAuth() && request.auth.uid == userId;
       }
     }
 
-    // User profiles and all nested sub-collections (purchases, question history, etc.)
-    match /users/{userId}/{document=**} {
+    // User profiles & all nested subcollections (purchases, question_history, bookmarks)
+    match /users/{userId} {
       allow read, write: if isAuth() && request.auth.uid == userId;
+
+      match /{allSubcollections=**} {
+        allow read, write: if isAuth() && request.auth.uid == userId;
+      }
     }
 
-    // Leaderboard access rules — public read so guest users can view rankings; authenticated write only
+    // Weekly Leaderboard: public read so all students (including guests) see rankings
     match /leaderboard/{weekKey} {
       allow read: if true;
-      
+
       match /scores/{userId} {
         allow read: if true;
         allow write: if isAuth() && request.auth.uid == userId;
       }
     }
 
-    // Questions collection
+    // Question Bank: public read so all students (including guest mode) can sync questions;
+    // writes strictly forbidden (written exclusively by backend Python pipelines via Admin SDK).
     match /questions/{questionId} {
-      allow read: if isAuth();
-      allow write: if false; // Only admin scripts can write questions
-    }
-
-    // Metadata version collection
-    match /metadata/{metadataId} {
-      allow read: if isAuth();
-      allow write: if false; // Only admin scripts can write metadata
-    }
-
-    // App config (force-update flags, feature gates) — read-only for clients
-    match /app_config/{docId} {
-      allow read: if isAuth();
+      allow read: if true;
       allow write: if false;
     }
 
-    // Daily attempt counter — used for FOMO count display and analytics
-    // Any authenticated user can read and increment; no per-user restriction needed.
+    // Metadata (question_bank version counter, exam_dates countdown banner)
+    match /metadata/{metadataId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // App config (version control, feature flags, maintenance mode)
+    match /app_config/{docId} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Daily active attempt counter (used for FOMO / social proof banners)
     match /dailyStats/{date} {
-      allow read: if isAuth();
+      allow read: if true;
       allow write: if isAuth();
     }
 
-    // Power 100 — fixed curated question sets for JEE and NEET.
-    // Read-only for all authenticated users; written only by the admin script.
+    // Power 100 standard curated tests for JEE and NEET
     match /standard_tests/{exam} {
-      allow read: if isAuth();
+      allow read: if true;
       allow write: if false;
     }
   }
 }
+

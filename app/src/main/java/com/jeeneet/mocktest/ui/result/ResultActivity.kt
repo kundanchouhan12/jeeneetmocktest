@@ -17,6 +17,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.button.MaterialButton
 import com.google.gson.Gson
@@ -355,7 +356,13 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun buildScoreCard(): View {
-        val card = uiCard(radius = Corner.L, elevation = Elev.M, background = bgSecondary).apply {
+        val card = uiCard(
+            radius = Corner.XL,
+            elevation = Elev.M,
+            background = bgSecondary,
+            strokeDp = 1,
+            strokeColor = dividerColor
+        ).apply {
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
             ).also { it.topMargin = -Space.XXL.dp; it.bottomMargin = Space.L.dp }
@@ -374,17 +381,16 @@ class ResultActivity : AppCompatActivity() {
             max = 100
             progressDrawable = GradientDrawable().apply {
                 shape = GradientDrawable.RING
-                setStroke(8.dp, Color.parseColor("#E2E8F0"))
+                setStroke(8.dp, ColorUtils.setAlphaComponent(dividerColor, 120))
                 setSize(100.dp, 100.dp)
             }
             layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
         }
-        // Overlay actual progress with a custom drawable or just use two progress bars
         progressAccuracy = android.widget.ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal).apply {
             max = 100
             progressDrawable = GradientDrawable().apply {
                 shape = GradientDrawable.RING
-                setStroke(8.dp, correctGreen)
+                setStroke(8.dp, Color.parseColor("#10B981"))
                 setSize(100.dp, 100.dp)
             }
             layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT)
@@ -416,7 +422,7 @@ class ResultActivity : AppCompatActivity() {
             gravity = Gravity.BOTTOM
         }
         tvScore = TextView(this).apply {
-            text = "0"; textSize = 32f; setTextColor(colorPrimary)
+            text = "0"; textSize = 34f; setTextColor(colorPrimary)
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
         }
         tvMaxScore = uiTextView(UiText.BODY, "/ 0", textMuted).apply {
@@ -430,19 +436,20 @@ class ResultActivity : AppCompatActivity() {
             orientation = LinearLayout.HORIZONTAL
             setPadding(0, 8.dp, 0, 0)
         }
-        tvCorrect = statChip(correctGreen)
-        tvWrong = statChip(wrongRed)
-        tvSkipped = statChip(reviewOrange)
+        tvCorrect = statChip(Color.parseColor("#10B981"))
+        tvWrong = statChip(Color.parseColor("#EF4444"))
+        tvSkipped = statChip(Color.parseColor("#F59E0B"))
         
         statsChipRow.addView(tvCorrect)
-        statsChipRow.addView(spacerH(8))
+        statsChipRow.addView(spacerH(6))
         statsChipRow.addView(tvWrong)
-        statsChipRow.addView(spacerH(8))
+        statsChipRow.addView(spacerH(6))
         statsChipRow.addView(tvSkipped)
         rightCol.addView(statsChipRow)
         
         tvTimeTaken = uiTextView(UiText.CAPTION, "Time Taken : --", textTertiary).apply {
             setPadding(0, 8.dp, 0, 0)
+            textSize = 12f
         }
         rightCol.addView(tvTimeTaken)
         
@@ -452,11 +459,11 @@ class ResultActivity : AppCompatActivity() {
     }
 
     private fun statChip(color: Int) = TextView(this).apply {
-        text = "0"; textSize = 11f; setTextColor(Color.WHITE)
+        text = "0"; textSize = 11.5f; setTextColor(color)
         typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
         gravity = Gravity.CENTER
-        background = roundedFill(color, Corner.PILL)
-        setPadding(10.dp, 2.dp, 10.dp, 2.dp)
+        background = roundedFill(ColorUtils.setAlphaComponent(color, 25), Corner.PILL)
+        setPadding(10.dp, 3.dp, 10.dp, 3.dp)
     }
 
     private fun statValueView(color: Int) = TextView(this).apply {

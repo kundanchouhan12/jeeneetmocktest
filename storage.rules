@@ -1,0 +1,11 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    // STEM question and solution diagrams are public for students to read.
+    // Writes are strictly restricted to the backend automation Admin SDK service account.
+    match /questions/diagrams/{allPaths=**} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

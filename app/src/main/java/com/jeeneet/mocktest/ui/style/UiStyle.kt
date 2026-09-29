@@ -16,6 +16,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
 import com.jeeneet.mocktest.R
@@ -352,6 +353,58 @@ fun Context.uiBadge(
     setTextColor(textColor)
     background = roundedFill(bgColor, radius)
     setPadding(Space.S.dp, Space.XS.dp, Space.S.dp, Space.XS.dp)
+}
+
+/** Creates a modern pill badge with transparent alpha tint and optional icon. */
+fun Context.uiModernBadge(
+    text: String,
+    accentColor: Int,
+    icon: String? = null,
+    alpha: Int = 30,
+    radiusDp: Float = Corner.PILL
+): LinearLayout = LinearLayout(this).apply {
+    orientation = LinearLayout.HORIZONTAL
+    gravity = Gravity.CENTER_VERTICAL
+    val bg = ColorUtils.setAlphaComponent(accentColor, alpha)
+    background = roundedFill(bg, radiusDp)
+    setPadding(Space.M.dp, 5.dp, Space.M.dp, 5.dp)
+
+    if (icon != null) {
+        addView(TextView(context).apply {
+            this.text = icon
+            textSize = 11f
+            layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 4.dp }
+        })
+    }
+    addView(uiTextView(UiText.OVERLINE, text, accentColor).apply {
+        textSize = 10.5f
+        typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        letterSpacing = 0.05f
+    })
+}
+
+/** Smooth rounded linear progress bar with custom colors */
+fun Context.uiModernProgressBar(
+    progress: Int,
+    max: Int = 100,
+    progressColor: Int = colorPrimary,
+    trackColor: Int = bgTertiary,
+    heightDp: Int = 6,
+    radiusDp: Float = Corner.PILL
+): android.widget.ProgressBar = android.widget.ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal).apply {
+    layoutParams = LinearLayout.LayoutParams(
+        LinearLayout.LayoutParams.MATCH_PARENT, heightDp.dp
+    )
+    this.max = max
+    this.progress = progress
+    val trackDrawable = roundedFill(trackColor, radiusDp)
+    val progressDrawable = roundedFill(progressColor, radiusDp)
+    val clip = android.graphics.drawable.ClipDrawable(progressDrawable, Gravity.START, android.graphics.drawable.ClipDrawable.HORIZONTAL)
+    val layers = android.graphics.drawable.LayerDrawable(arrayOf(trackDrawable, clip)).apply {
+        setId(0, android.R.id.background)
+        setId(1, android.R.id.progress)
+    }
+    this.progressDrawable = layers
 }
 
 // ─── Empty state — big emoji + title + subtitle ─────────────────────────────

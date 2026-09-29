@@ -111,8 +111,13 @@ def find_duplicates(docs: list) -> list:
 
         # Check 1: Exact normalized signature match
         if norm in seen_signatures:
-            orig_id = seen_signatures[norm]
-            duplicates_to_delete.append((d_id, orig_id, "Exact normalized text match"))
+            orig_id, orig_has_img = seen_signatures[norm]
+            curr_has_img = bool(q.get('imageUrl') and str(q.get('imageUrl')).strip())
+            if curr_has_img and not orig_has_img:
+                duplicates_to_delete.append((orig_id, d_id, "Exact normalized text match (preferring question with diagram)"))
+                seen_signatures[norm] = (d_id, curr_has_img)
+            else:
+                duplicates_to_delete.append((d_id, orig_id, "Exact normalized text match"))
             continue
 
         # Check 2: Prefix hash match for fuzzy duplicates
@@ -127,7 +132,8 @@ def find_duplicates(docs: list) -> list:
                     break
 
         if not found_fuzzy:
-            seen_signatures[norm] = d_id
+            has_img = bool(q.get('imageUrl') and str(q.get('imageUrl')).strip())
+            seen_signatures[norm] = (d_id, has_img)
             if prefix not in seen_prefixes:
                 seen_prefixes[prefix] = []
             seen_prefixes[prefix].append((d_id, norm))

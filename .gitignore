@@ -30,3 +30,11 @@ hs_err_pid*.log
 replay_pid*.log
 *.png
 *.jpg
+_newkey*.json
+*.err
+*.log
+_bf*
+.history/
+.claude-launcher/
+.vscode/
+

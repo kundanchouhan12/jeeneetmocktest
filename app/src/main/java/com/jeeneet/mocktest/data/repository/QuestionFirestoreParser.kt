@@ -41,6 +41,12 @@ object QuestionFirestoreParser {
             )
 
         val isDailyVault = data["isDailyVault"] as? Boolean ?: false
+        val imageUrl = (data["imageUrl"] as? String)?.trim()?.takeIf { it.isNotBlank() }
+        val solutionImageUrl = (data["solutionImageUrl"] as? String)?.trim()?.takeIf { it.isNotBlank() }
+        val optionImageUrls = (data["optionImageUrls"] as? List<*>)
+            ?.mapNotNull { (it as? String)?.trim()?.takeIf { s -> s.isNotBlank() } }
+            ?: emptyList()
+
         val question = Question(
             id = 0,
             examType = examType,
@@ -56,7 +62,10 @@ object QuestionFirestoreParser {
             isPremium = if (isDailyVault) false else (data["isPremium"] as? Boolean ?: true),
             isDailyVault = isDailyVault,
             vaultDate = (data["vaultDate"] as? String).orEmpty().trim(),
-            vaultGroupId = (data["vaultGroupId"] as? String).orEmpty().trim()
+            vaultGroupId = (data["vaultGroupId"] as? String).orEmpty().trim(),
+            imageUrl = imageUrl,
+            solutionImageUrl = solutionImageUrl,
+            optionImageUrls = optionImageUrls
         )
         return ParseResult(question, null)
     }

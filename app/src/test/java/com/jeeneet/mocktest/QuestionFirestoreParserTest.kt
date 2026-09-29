@@ -100,4 +100,35 @@ class QuestionFirestoreParserTest {
             )
         )
     }
+
+    @Test
+    fun `diagram fields parse correctly when present`() {
+        val result = QuestionFirestoreParser.parseQuestion(
+            baseMap(mapOf(
+                "imageUrl" to "https://storage.googleapis.com/test/q1.webp",
+                "solutionImageUrl" to "https://storage.googleapis.com/test/sol1.webp",
+                "optionImageUrls" to listOf("https://storage.googleapis.com/test/optA.webp")
+            ))
+        )
+        assertNotNull(result.question)
+        assertEquals("https://storage.googleapis.com/test/q1.webp", result.question!!.imageUrl)
+        assertEquals("https://storage.googleapis.com/test/sol1.webp", result.question!!.solutionImageUrl)
+        assertEquals(listOf("https://storage.googleapis.com/test/optA.webp"), result.question!!.optionImageUrls)
+    }
+
+    @Test
+    fun `blank diagram fields coerce to null and empty list`() {
+        val result = QuestionFirestoreParser.parseQuestion(
+            baseMap(mapOf(
+                "imageUrl" to "   ",
+                "solutionImageUrl" to "",
+                "optionImageUrls" to emptyList<String>()
+            ))
+        )
+        assertNotNull(result.question)
+        assertNull(result.question!!.imageUrl)
+        assertNull(result.question!!.solutionImageUrl)
+        assertTrue(result.question!!.optionImageUrls.isEmpty())
+    }
 }
+

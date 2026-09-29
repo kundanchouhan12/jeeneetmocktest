@@ -21,7 +21,8 @@ import sys
 import time
 import requests
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, firestore, storage
+from diagram_processor import process_and_upload_diagram, DEFAULT_BUCKET_NAME
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -203,7 +204,9 @@ def init_firebase(creds_path: str = SERVICE_ACCOUNT_PATH):
     if not os.path.exists(creds_path):
         print(f"⚠️ Warning: Credentials file not found at {creds_path}")
         return None
-    firebase_admin.initialize_app(credentials.Certificate(creds_path))
+    firebase_admin.initialize_app(credentials.Certificate(creds_path), {
+        'storageBucket': DEFAULT_BUCKET_NAME
+    })
     return firestore.client()
 
 
@@ -307,9 +310,11 @@ def validate_web_question(q: dict) -> tuple[bool, str]:
         r'in the given (figure|diagram|circuit|graph)',
         r'from the given (figure|diagram|graph)'
     ]
+    has_image = bool(q.get('imageUrl') and str(q.get('imageUrl')).strip())
     for pattern in image_indicators:
         if re.search(pattern, text, re.IGNORECASE):
-            return False, f"Image/Diagram dependency detected ('{pattern}')"
+            if not has_image:
+                return False, f"Image/Diagram dependency detected ('{pattern}') without valid imageUrl"
 
     # 3. Options validation
     if not isinstance(options, list) or len(options) != 4:
@@ -517,7 +522,12 @@ def run_neet_web_ingestion(count_per_subject: int = 5, target_subject: str = Non
     stats = {"fetched": 0, "passed_filter": 0, "rejected": 0, "imported": 0, "rejections": {}}
 
     existing_norm_texts = set()
+    bucket = None
     if db and not dry_run:
+        try:
+            bucket = storage.bucket(DEFAULT_BUCKET_NAME)
+        except Exception as e:
+            print(f"⚠️ Could not initialize Storage bucket: {e}")
         try:
             docs = all_docs if all_docs is not None else db.collection('questions').get()
             for d in docs:
@@ -572,6 +582,22 @@ def run_neet_web_ingestion(count_per_subject: int = 5, target_subject: str = Non
 
             q_content = f"{q['examType']}_{q['subject']}_{q['questionText'].strip()}"
             q["id"] = "q_" + hashlib.md5(q_content.encode('utf-8')).hexdigest()
+
+            # Process & upload diagram assets if present
+            if bucket and (q.get("imageUrl") or q.get("solutionImageUrl")):
+                if q.get("imageUrl"):
+                    cdn_url = process_and_upload_diagram(
+                        q["imageUrl"], q["examType"], q["subject"], q["id"], is_solution=False, bucket=bucket
+                    )
+                    if cdn_url:
+                        q["imageUrl"] = cdn_url
+                if q.get("solutionImageUrl"):
+                    sol_url = process_and_upload_diagram(
+                        q["solutionImageUrl"], q["examType"], q["subject"], q["id"], is_solution=True, bucket=bucket
+                    )
+                    if sol_url:
+                        q["solutionImageUrl"] = sol_url
+
             existing_norm_texts.add(norm_text)
             stats["passed_filter"] += 1
             batch_to_import.append(q)

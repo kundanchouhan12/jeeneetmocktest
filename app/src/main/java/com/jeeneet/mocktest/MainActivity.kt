@@ -24,7 +24,10 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.play.core.appupdate.AppUpdateManagerFactory
 import com.google.android.play.core.appupdate.AppUpdateOptions
 import com.google.android.play.core.install.InstallStateUpdatedListener
@@ -38,6 +41,8 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.jeeneet.mocktest.admob.AdManager
 import com.jeeneet.mocktest.admob.IAPManager
+import com.jeeneet.mocktest.data.model.ExamConfig
+import com.jeeneet.mocktest.data.model.Question
 import com.jeeneet.mocktest.data.model.SavedTestSession
 import com.jeeneet.mocktest.data.repository.MockTestDatabase
 import com.jeeneet.mocktest.data.repository.QuestionSyncManager
@@ -89,6 +94,8 @@ class MainActivity : AppCompatActivity() {
     private var selectedPracticeTab = 0
     private var hasCompletedInitialSync = false
     private var cachedWrongQuestionResult: com.jeeneet.mocktest.data.model.WrongQuestionResult? = null
+    private var heroCarouselHandler: android.os.Handler? = null
+    private var heroCarouselRunnable: Runnable? = null
 
     private val appUpdateManager by lazy { AppUpdateManagerFactory.create(this) }
     private val installStateListener = InstallStateUpdatedListener { state ->
@@ -461,6 +468,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        try { heroCarouselHandler?.removeCallbacksAndMessages(null) } catch (_: Exception) {}
         try { AdManager.destroyNativeAd(nativeAdContainer) } catch (_: Exception) {}
         try { AdManager.cleanup() } catch (_: Exception) {}
         try { if (::iapManager.isInitialized) iapManager.disconnect() } catch (_: Exception) {}
@@ -1181,57 +1189,46 @@ class MainActivity : AppCompatActivity() {
             tvCoinsBalance.text = "🪙 ${PrefManager.getCoins(this)}"
         }
 
-        // ─── 0. Exam Countdown Banner (≤120 days only) ─────────────────────
-        buildExamCountdownBanner()?.let { contentLayout.addView(it) }
-
-        // ─── 1. Resume paused session ─────────────────────────────────────────
-        buildMissionHeroCard()?.let { contentLayout.addView(it) }
+        // ─── 1. Dynamic Hero Carousel (Resume / Focus Banner / Error Notebook / Power 100) ───
+        buildHeroCarousel()?.let { contentLayout.addView(it) }
 
         // ─── 2. Quick Actions — 4 icon tiles ─────────────────────────────────
         contentLayout.addView(buildQuickActionsGrid())
 
-        // ─── 2.5. Revise My Mistakes ──────────────────────────────────────────
-        buildReviseMyMistakesCard()?.let {
-            contentLayout.addView(uiSectionLabel("Revise"))
-            contentLayout.addView(it)
-        }
-
-        // ─── 3. Today's Challenge (Daily Quiz) ───────────────────────────────
+        // ─── 3. Today's Challenge (Daily Quiz - 10 Qs) ───────────────────────
         contentLayout.addView(uiSectionLabel("Today's Challenge"))
-        contentLayout.addView(buildDailyQuizCard())
+        contentLayout.addView(buildDailyQuizCard().apply { tag = "daily_quiz_card" })
+
+        // ─── 4. Daily Vault (Flagship 30 PYQs with 30-day anti-repeat pool) ────
+        contentLayout.addView(uiSectionLabel("Daily Vault"))
+        contentLayout.addView(buildDailyVaultCard().apply { tag = "daily_vault_card" })
 
         // ─── 5. Practice (Mock Tests + PYQs) ─────────────────────────────────
         contentLayout.addView(uiSectionLabel("Practice"))
         contentLayout.addView(buildMainTestCards())
 
-        // ─── 5b. Special — Power 100 ──────────────────────────────────────────
+        // ─── 6. Special — Power 100 ──────────────────────────────────────────
         contentLayout.addView(uiSectionLabel("Special"))
-        contentLayout.addView(buildPower100Card())
-
-        // ─── 6. Daily Vault ───────────────────────────────────────────────────
-        contentLayout.addView(uiSectionLabel("Daily Vault"))
-        contentLayout.addView(buildDailyVaultCard())
+        contentLayout.addView(buildPower100Card().apply { tag = "power100_card" })
 
         // ─── 7. Continue Practice (Subjects) ─────────────────────────────────
         contentLayout.addView(uiSectionLabel("Continue Practice"))
         contentLayout.addView(buildSubjectsSection())
 
-        // ─── 8. Your Progress ────────────────────────────────────────────────
+        // ─── 8. Full Length Mock Test ────────────────────────────────────────
+        contentLayout.addView(uiSectionLabel("Full Length Mock Test"))
+        buildWeeklyNewTestBanner()?.let { contentLayout.addView(it) }
+        contentLayout.addView(buildSimulationCard().apply { tag = "simulation_card" })
+
+        // ─── 9. Activity & Dynamic Analytics ──────────────────────────────────
         contentLayout.addView(uiSectionLabel("Your Progress"))
         contentLayout.addView(buildYourProgressCard())
-
-        // ─── 9. Weekly Mock + Full Mock Test ─────────────────────────────────
-        contentLayout.addView(uiSectionLabel("Full Mock Test"))
-        buildWeeklyNewTestBanner()?.let { contentLayout.addView(it) }
-        contentLayout.addView(buildSimulationCard())
+        contentLayout.addView(buildActivityHeatmap())
 
         // ─── 10. Recent Doubts carousel ───────────────────────────────────────
         buildRecentDoubtsCarousel()?.let { contentLayout.addView(it) }
 
-        // ─── 11. Activity Heatmap ─────────────────────────────────────────────
-        contentLayout.addView(buildActivityHeatmap())
-
-        // ─── 12. Native ad ────────────────────────────────────────────────────
+        // ─── 11. Native ad ────────────────────────────────────────────────────
         contentLayout.addView(nativeAdContainer)
         AdManager.loadNativeAd(this, nativeAdContainer)
 
@@ -1445,62 +1442,97 @@ class MainActivity : AppCompatActivity() {
 
     private fun buildPower100Card(): View {
         val card = uiCard(
-            radius = Corner.L,
-            elevation = Elev.L,
+            radius = Corner.XL,
+            elevation = Elev.M,
             background = bgSecondary,
-            strokeDp = 2,
-            strokeColor = Color.parseColor("#F59E0B"),
+            strokeDp = 1,
+            strokeColor = ColorUtils.setAlphaComponent(goldPrimary, 80),
             onClick = {
                 requiresHomeRefresh = true
                 Power100Activity.start(this, selectedExam)
             }
         ).apply { layoutParams = lpRow(bottomDp = Space.M) }
 
-        val inner = LinearLayout(this).apply {
+        val outer = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
+
+        // Top Header Badge Bar
+        val topBadgeBar = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            background = android.graphics.drawable.GradientDrawable(
-                android.graphics.drawable.GradientDrawable.Orientation.LEFT_RIGHT,
-                intArrayOf(Color.parseColor("#92400E"), Color.parseColor("#B45309"))
-            ).apply { cornerRadius = Corner.L.dpF }
-            setPadding(Space.L.dp, 18.dp, Space.L.dp, 18.dp)
+            setPadding(Space.L.dp, Space.L.dp, Space.L.dp, 0)
         }
+        topBadgeBar.addView(uiModernBadge("TOP 100", goldPrimary, "🏆", alpha = 30))
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("EVERY MON", Color.parseColor("#F59E0B"), "⚡", alpha = 20))
+        outer.addView(topBadgeBar)
 
-        // Lightning icon box
-        inner.addView(uiIconBox(52, Color.parseColor("#33FFFFFF"), emoji = "⚡", emojiSize = 24f, oval = true).apply {
-            (layoutParams as LinearLayout.LayoutParams).marginEnd = Space.M.dp
-        })
-
-        val textCol = LinearLayout(this).apply {
+        // Middle Content Row
+        val inner = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            setPadding(Space.L.dp, Space.M.dp, Space.L.dp, Space.M.dp)
         }
 
-        val titleRow = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL; gravity = Gravity.CENTER_VERTICAL
-        }
-        titleRow.addView(uiTextView(UiText.H3, "Power 100", Color.WHITE).apply {
+        inner.addView(uiTextView(UiText.H2, "$selectedExam Power 100", textPrimary).apply {
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
-            layoutParams = LinearLayout.LayoutParams(-2, -2).apply { marginEnd = Space.S.dp }
         })
-        titleRow.addView(TextView(this).apply {
-            text = "NEW"; textSize = 9f; setTextColor(Color.parseColor("#92400E"))
-            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
-            background = roundedFill(goldPrimary, Corner.PILL)
-            setPadding(Space.S.dp, 2.dp, Space.S.dp, 2.dp)
-        })
-        textCol.addView(titleRow)
-        textCol.addView(uiTextView(UiText.CAPTION, "Fixed set of 100 must-know $selectedExam questions. Track your progress over time.", Color.parseColor("#FDE68A")).apply {
-            textSize = 11f; setPadding(0, 4.dp, 0, 0)
-        })
-        inner.addView(textCol)
 
-        inner.addView(TextView(this).apply {
-            text = "›"; textSize = 24f; setTextColor(Color.parseColor("#FDE68A"))
-            typeface = Typeface.DEFAULT_BOLD
-            setPadding(Space.S.dp, 0, 0, 0)
+        inner.addView(uiTextView(UiText.CAPTION, "100 curated must-know questions covering 100% of high-yield exam chapters.", textSecondary).apply {
+            setPadding(0, 3.dp, 0, Space.M.dp)
+            textSize = 12f
         })
-        card.addView(inner)
+
+        // Subject Breakdown Pills (PCM / PCB) in Horizontal Scroll View to guarantee no text-wrapping
+        val subjectScroll = HorizontalScrollView(this).apply {
+            isHorizontalScrollBarEnabled = false
+            layoutParams = LinearLayout.LayoutParams(-1, -2).also { it.bottomMargin = Space.M.dp }
+        }
+        val subjectRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        val subj3 = if (selectedExam == "JEE") "Maths 34" to "📐" else "Biology 34" to "🧬"
+        val pills = listOf(
+            Triple("Physics 33", "⚡", Color.parseColor("#3B82F6")),
+            Triple("Chemistry 33", "🧪", Color.parseColor("#10B981")),
+            Triple(subj3.first, subj3.second, Color.parseColor("#8B5CF6"))
+        )
+        pills.forEach { (name, ic, col) ->
+            subjectRow.addView(TextView(this).apply {
+                text = "$ic $name"
+                textSize = 11f
+                setTextColor(col)
+                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                background = roundedFill(ColorUtils.setAlphaComponent(col, 25), Corner.PILL)
+                setPadding(12.dp, 4.dp, 12.dp, 4.dp)
+                isSingleLine = true
+                maxLines = 1
+                layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 8.dp }
+            })
+        }
+        subjectScroll.addView(subjectRow)
+        inner.addView(subjectScroll)
+
+        // Prominent Action Button
+        val btnAction = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            background = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                intArrayOf(Color.parseColor("#D97706"), Color.parseColor("#F59E0B"))
+            ).apply { cornerRadius = Corner.M.dpF }
+            setPadding(Space.L.dp, 12.dp, Space.L.dp, 12.dp)
+            elevation = Elev.S.dpF
+        }
+        btnAction.addView(TextView(this).apply {
+            text = "Start Power 100 Challenge (100 Qs) →"
+            textSize = 13.5f
+            setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(btnAction)
+        outer.addView(inner)
+
+        card.addView(outer)
         return card
     }
 
@@ -1713,18 +1745,10 @@ class MainActivity : AppCompatActivity() {
         val nextRefreshDate = PrefManager.getVaultNextRefreshDate(this, selectedExam)
         val snapshotDate = PrefManager.getVaultSnapshotDate(this, selectedExam)
 
-        // Days until next refresh
-        val daysUntilRefresh = if (nextRefreshDate.isNotEmpty()) {
-            try {
-                val next = sdf.parse(nextRefreshDate) ?: java.util.Date()
-                ((next.time - System.currentTimeMillis()) / 86_400_000L).toInt().coerceAtLeast(0)
-            } catch (_: Exception) { 0 }
-        } else 0
-
         val hasQuestions = savedGroupId.isNotEmpty()
         val isAwaitingFirstSync = !hasQuestions
 
-        // Time until midnight (for same-day expiry)
+        // Time until midnight (for daily refresh countdown)
         val now = java.util.Calendar.getInstance()
         val midnight = java.util.Calendar.getInstance().apply {
             set(java.util.Calendar.HOUR_OF_DAY, 24); set(java.util.Calendar.MINUTE, 0); set(java.util.Calendar.SECOND, 0)
@@ -1733,29 +1757,18 @@ class MainActivity : AppCompatActivity() {
         val hours = diffMs / 3_600_000
         val minutes = (diffMs % 3_600_000) / 60_000
 
-        val refreshLabel = when {
-            isAwaitingFirstSync -> "Syncing vault questions…"
-            snapshotDate == today -> "Next vault refresh in ${hours}h ${minutes}m"
-            else -> "New vault refresh available now!"
-        }
-
-        val snapshotLabel = if (snapshotDate.isNotEmpty() && snapshotDate != today) {
-            val parts = snapshotDate.split("-")
-            if (parts.size == 3) "Questions from ${parts[2]} ${monthAbbrev(parts[1].toIntOrNull() ?: 1)}" else ""
-        } else ""
-
         val accentColor = when {
             isDone -> Color.parseColor("#10B981")
             isAwaitingFirstSync -> Color.parseColor("#64748B")
-            else -> goldPrimary
+            else -> colorPrimary
         }
 
         val card = uiCard(
-            radius = Corner.L,
+            radius = Corner.XL,
             elevation = Elev.M,
             background = bgSecondary,
-            strokeDp = 2,
-            strokeColor = accentColor,
+            strokeDp = 1,
+            strokeColor = ColorUtils.setAlphaComponent(accentColor, 70),
             onClick = {
                 AnalyticsManager.vaultOpened(this@MainActivity)
                 val startVaultAction = {
@@ -1764,8 +1777,8 @@ class MainActivity : AppCompatActivity() {
                             val lastQs = PrefManager.getLastDailyVaultQuestionsJson(this@MainActivity, selectedExam)
                             if (lastQs != null) {
                                 com.google.android.material.dialog.MaterialAlertDialogBuilder(this@MainActivity)
-                                    .setTitle("Daily Vault Completed!")
-                                    .setMessage("You have already completed this Vault.\n\nRevision Mode lets you re-attempt these questions for practice. Your next fresh vault arrives in $daysUntilRefresh day${if (daysUntilRefresh != 1) "s" else ""}.")
+                                    .setTitle("Daily Vault Completed! 🎉")
+                                    .setMessage("You have already completed today's 30 Vault questions.\n\nStart Revision Mode to re-attempt and sharpen your speed!")
                                     .setPositiveButton("Start Revision") { _, _ ->
                                         TestActivity.startRevision(this@MainActivity, selectedExam, lastQs)
                                     }
@@ -1775,7 +1788,6 @@ class MainActivity : AppCompatActivity() {
                             }
                         }
 
-                        // Load by group ID first (persistent), fall back to today's date
                         val vaultQs = withContext(Dispatchers.IO) {
                             if (savedGroupId.isNotEmpty()) {
                                 MockTestDatabase.getInstance(this@MainActivity).questionDao()
@@ -1798,8 +1810,8 @@ class MainActivity : AppCompatActivity() {
                             TestActivity.startWithQuestions(this@MainActivity, config, vaultQs)
                         } else {
                             com.google.android.material.dialog.MaterialAlertDialogBuilder(this@MainActivity)
-                                .setTitle("Vault Questions Unavailable")
-                                .setMessage("Your vault questions are being prepared. Please check back in a few minutes — we'll notify you when they're ready!")
+                                .setTitle("Vault Updating")
+                                .setMessage("Today's 30 fresh questions are syncing in the background. Please check back in a moment!")
                                 .setPositiveButton("OK", null)
                                 .show()
                         }
@@ -1812,62 +1824,90 @@ class MainActivity : AppCompatActivity() {
 
         val outer = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
 
-        val inner = LinearLayout(this).apply {
+        // Top Status & Timer Bar
+        val topBadgeBar = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(Space.L.dp, 20.dp, Space.L.dp, 20.dp)
+            setPadding(Space.L.dp, Space.L.dp, Space.L.dp, 0)
         }
-
-        val textCol = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
-        }
-
-        val titleText = when {
-            isDone -> "$selectedExam Vault Completed ✅"
-            isAwaitingFirstSync -> "$selectedExam Daily Vault"
-            else -> "$selectedExam Daily Vault — Questions Ready"
-        }
-        textCol.addView(uiTextView(UiText.H2, titleText, textPrimary))
-
         if (isDone) {
-            textCol.addView(uiTextView(UiText.CAPTION, "🎉 Revision Mode Active", Color.parseColor("#10B981")).apply {
-                setPadding(0, 4.dp, 0, 0)
-            })
-            textCol.addView(uiTextView(UiText.CAPTION, "🔄 $refreshLabel", textTertiary).apply {
-                setPadding(0, 2.dp, 0, 0)
-            })
-        } else if (isAwaitingFirstSync) {
-            textCol.addView(uiTextView(UiText.CAPTION, "⏳ $refreshLabel", textTertiary).apply {
-                setPadding(0, 4.dp, 0, 0)
-            })
+            topBadgeBar.addView(uiModernBadge("COMPLETED ✓", Color.parseColor("#10B981"), "🎉"))
         } else {
-            if (snapshotLabel.isNotEmpty()) {
-                textCol.addView(uiTextView(UiText.CAPTION, "📅 $snapshotLabel", textTertiary).apply {
-                    setPadding(0, 4.dp, 0, 0)
-                })
-            }
-            textCol.addView(uiTextView(UiText.CAPTION, "💰 +50 Coins Reward • 30 Curated PYQs", goldPrimary).apply {
-                setPadding(0, if (snapshotLabel.isNotEmpty()) 2.dp else 4.dp, 0, 0)
-            })
-            textCol.addView(uiTextView(UiText.CAPTION, "🔄 $refreshLabel", textTertiary).apply {
-                setPadding(0, 2.dp, 0, 0)
-            })
+            topBadgeBar.addView(uiModernBadge("TODAY'S VAULT", colorPrimary, "🟢"))
+        }
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("+50 🪙", goldPrimary, "💰", alpha = 25).apply {
+            (layoutParams as? LinearLayout.LayoutParams)?.marginEnd = 6.dp
+        })
+        topBadgeBar.addView(uiModernBadge("${hours}h ${minutes}m", textTertiary, "⏱️", alpha = 20))
+        outer.addView(topBadgeBar)
+
+        // Middle Content Row
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(Space.L.dp, Space.M.dp, Space.L.dp, Space.M.dp)
         }
 
-        inner.addView(textCol)
-        inner.addView(TextView(this).apply {
-            text = when {
-                isAwaitingFirstSync -> "⏳"
-                isDone -> "✅"
-                else -> "🔓"
-            }
-            textSize = 24f
-            setPadding(Space.M.dp, 0, 0, 0)
+        inner.addView(uiTextView(UiText.H2, "$selectedExam Daily Vault (30 PYQs)", textPrimary).apply {
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
         })
+
+        // Subject Breakdown Pills (PCM / PCB) in Horizontal Scroll View to prevent squishing
+        val subjectScroll = HorizontalScrollView(this).apply {
+            isHorizontalScrollBarEnabled = false
+            layoutParams = LinearLayout.LayoutParams(-1, -2).also {
+                it.topMargin = Space.S.dp
+                it.bottomMargin = Space.M.dp
+            }
+        }
+        val subjectRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        val subj3 = if (selectedExam == "JEE") "Maths" to "📐" else "Biology" to "🧬"
+        val pills = listOf(
+            Triple("Physics 10", "⚡", Color.parseColor("#3B82F6")),
+            Triple("Chemistry 10", "🧪", Color.parseColor("#10B981")),
+            Triple("${subj3.first} 10", subj3.second, Color.parseColor("#8B5CF6"))
+        )
+        pills.forEach { (name, ic, col) ->
+            subjectRow.addView(TextView(this).apply {
+                text = "$ic $name"
+                textSize = 11f
+                setTextColor(col)
+                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                background = roundedFill(ColorUtils.setAlphaComponent(col, 25), Corner.PILL)
+                setPadding(12.dp, 4.dp, 12.dp, 4.dp)
+                isSingleLine = true
+                maxLines = 1
+                layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 8.dp }
+            })
+        }
+        subjectScroll.addView(subjectRow)
+        inner.addView(subjectScroll)
+
+        // Prominent Action Button
+        val btnAction = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            background = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                if (isDone) intArrayOf(Color.parseColor("#059669"), Color.parseColor("#10B981"))
+                else intArrayOf(Color.parseColor("#4F46E5"), Color.parseColor("#6366F1"))
+            ).apply { cornerRadius = Corner.M.dpF }
+            setPadding(Space.L.dp, 12.dp, Space.L.dp, 12.dp)
+            elevation = Elev.S.dpF
+        }
+        btnAction.addView(TextView(this).apply {
+            text = if (isDone) "Re-attempt / Revise Vault (30 Qs) →" else "Start Today's Vault (30 Qs) →"
+            textSize = 13.5f
+            setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(btnAction)
         outer.addView(inner)
 
-        // Discussion Row — clean divider + light row
+        // Bottom Discussion Row
         outer.addView(View(this).apply {
             setBackgroundColor(dividerColor)
             layoutParams = LinearLayout.LayoutParams(-1, 1.dp)
@@ -1885,11 +1925,11 @@ class MainActivity : AppCompatActivity() {
                 com.jeeneet.mocktest.ui.vault.VaultDiscussionActivity.start(this@MainActivity, today)
             }
         }
-        discussRow.addView(uiTextView(UiText.CAPTION, "💬  Discuss with aspirants", textSecondary).apply {
+        discussRow.addView(uiTextView(UiText.CAPTION, "💬  Discuss today's 30 questions with aspirants", textSecondary).apply {
             layoutParams = LinearLayout.LayoutParams(0, -2, 1f)
             textSize = 12f
         })
-        discussRow.addView(uiTextView(UiText.OVERLINE, "Open →", colorPrimary).apply {
+        discussRow.addView(uiTextView(UiText.OVERLINE, "Join →", colorPrimary).apply {
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
         })
         outer.addView(discussRow)
@@ -3319,75 +3359,762 @@ class MainActivity : AppCompatActivity() {
 
     // ─── New UI methods for redesigned home screen ────────────────────────────
 
-    /** Purple-gradient mission card — resume saved test or show today's priority. */
-    private fun buildMissionHeroCard(): View? {
+    // ─── Dynamic Hero Carousel (Slider for Resume, Focus Banner, Error Notebook, Power 100) ───
+
+    private enum class HeroSlideType {
+        RESUME,
+        FOCUS_BANNER,
+        DAILY_QUIZ,
+        FULL_MOCK,
+        POWER100,
+        MISTAKES
+    }
+
+    private fun buildHeroCarousel(): View? {
+        val slideTypes = mutableListOf<HeroSlideType>()
+
+        // 1. Resume paused session — ONLY if user has an active saved session
         val savedJson = PrefManager.getSavedTestSessionJson(this)
         if (savedJson != null) {
-            val saved = runCatching { Gson().fromJson(savedJson, com.jeeneet.mocktest.data.model.SavedTestSession::class.java) }.getOrNull() ?: return null
-            val config = runCatching { Gson().fromJson(saved.configJson, com.jeeneet.mocktest.data.model.ExamConfig::class.java) }.getOrNull() ?: return null
-            val h = saved.timeLeftSeconds / 3600
-            val m = (saved.timeLeftSeconds % 3600) / 60
-            val s = saved.timeLeftSeconds % 60
-            val timeStr = if (h > 0) "%02d:%02d:%02d".format(h, m, s) else "%02d:%02d".format(m, s)
-            val testLabel = if (config.subject != null) "${config.subject}" else "${config.examType} Full Mock"
-            val chapterLabel = config.chapter ?: testLabel
-
-            val card = uiCard(radius = Corner.L, elevation = Elev.M, onClick = {
-                TestActivity.resume(this)
-            }).apply { layoutParams = lpRow(bottomDp = Space.M) }
-
-            val inner = LinearLayout(this).apply {
-                orientation = LinearLayout.VERTICAL
-                background = GradientDrawable().apply {
-                    orientation = GradientDrawable.Orientation.TL_BR
-                    colors = intArrayOf(Color.parseColor("#4F46E5"), Color.parseColor("#7C3AED"))
-                    cornerRadius = Corner.L.dpF
-                }
-                setPadding(Space.L.dp, Space.XL.dp, Space.L.dp, Space.L.dp)
+            val saved = runCatching { Gson().fromJson(savedJson, SavedTestSession::class.java) }.getOrNull()
+            if (saved != null) {
+                slideTypes.add(HeroSlideType.RESUME)
             }
-            inner.addView(uiTextView(UiText.OVERLINE, "Continue Your Journey", Color.parseColor("#CCFFFFFF")).apply {
-                textSize = 10f
-            })
-            inner.addView(uiTextView(UiText.H2, testLabel, Color.WHITE).apply {
-                setPadding(0, 4.dp, 0, 2.dp)
-                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
-            })
-            inner.addView(uiTextView(UiText.CAPTION, "📚 $chapterLabel  ·  ⏱ $timeStr remaining", Color.parseColor("#CCE0E7FF")).apply {
-                textSize = 12f; setPadding(0, 0, 0, Space.L.dp)
-            })
-            inner.addView(TextView(this).apply {
-                text = "📋"; textSize = 24f
-                setPadding(0, 0, 0, Space.S.dp)
-                layoutParams = LinearLayout.LayoutParams(-2, -2)
-            })
-
-            val btnRow = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                gravity = Gravity.CENTER_VERTICAL
-            }
-            btnRow.addView(TextView(this).apply {
-                text = "→  Resume Test"
-                textSize = 13f; setTextColor(Color.parseColor("#4F46E5"))
-                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
-                background = roundedFill(Color.WHITE, Corner.XL)
-                setPadding(Space.L.dp, Space.S.dp, Space.L.dp, Space.S.dp)
-                setOnClickListener { TestActivity.resume(this@MainActivity) }
-            })
-            btnRow.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
-            btnRow.addView(TextView(this).apply {
-                text = "Discard"; textSize = 12f; setTextColor(Color.parseColor("#AAFFFFFF"))
-                setPadding(Space.M.dp, Space.S.dp, 0, Space.S.dp)
-                setOnClickListener { PrefManager.clearSavedTestSession(this@MainActivity); buildContent() }
-            })
-            inner.addView(btnRow)
-            card.addView(inner)
-            return card
         }
 
-        // No saved session — return null (daily challenge has its own dedicated card)
-        val isVaultDone = PrefManager.isDailyVaultDoneToday(this, selectedExam)
-        val isChallengeDone = PrefManager.isDailyQuizDoneToday(this)
-        return null
+        // 2. Focus Banner — ALWAYS shown (Target Exam, Countdown if ≤120d, Daily Vault value props)
+        slideTypes.add(HeroSlideType.FOCUS_BANNER)
+
+        // 3. Daily Quiz Challenge — ALWAYS shown (10-min daily test & consistency booster)
+        slideTypes.add(HeroSlideType.DAILY_QUIZ)
+
+        // 4. Full Length Mock Simulation — ALWAYS shown (Real NTA 3-hour exam simulation & AIR ranker)
+        slideTypes.add(HeroSlideType.FULL_MOCK)
+
+        // 5. Power 100 Spotlight — Weekly elite challenge
+        slideTypes.add(HeroSlideType.POWER100)
+
+        // 6. Error Notebook — ONLY shown if user has mistakes logged
+        val wrongResult = cachedWrongQuestionResult
+        if (wrongResult != null && wrongResult.questions.isNotEmpty()) {
+            slideTypes.add(HeroSlideType.MISTAKES)
+        }
+
+        if (slideTypes.isEmpty()) return null
+
+        val root = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = lpRow(bottomDp = Space.M)
+        }
+
+        val viewPager = ViewPager2(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                218.dp
+            )
+            offscreenPageLimit = slideTypes.size.coerceAtLeast(1)
+            clipToPadding = false
+            clipChildren = false
+        }
+
+        viewPager.adapter = object : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+            override fun getItemViewType(position: Int): Int = slideTypes[position].ordinal
+
+            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+                val frame = FrameLayout(parent.context).apply {
+                    layoutParams = ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        ViewGroup.LayoutParams.MATCH_PARENT
+                    )
+                }
+                val type = HeroSlideType.values()[viewType]
+                val slideView = when (type) {
+                    HeroSlideType.RESUME -> buildResumeSlideCard()
+                    HeroSlideType.FOCUS_BANNER -> buildFocusBannerSlideCard()
+                    HeroSlideType.DAILY_QUIZ -> buildDailyQuizSlideCard()
+                    HeroSlideType.FULL_MOCK -> buildFullMockSlideCard()
+                    HeroSlideType.POWER100 -> buildPower100SlideCard()
+                    HeroSlideType.MISTAKES -> buildMistakesSlideCard()
+                }
+                frame.addView(slideView)
+                return object : RecyclerView.ViewHolder(frame) {}
+            }
+
+            override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {}
+            override fun getItemCount(): Int = slideTypes.size
+        }
+
+        var startX = 0f
+        var startY = 0f
+        (viewPager.getChildAt(0) as? RecyclerView)?.setOnTouchListener { v, event ->
+            when (event.action) {
+                android.view.MotionEvent.ACTION_DOWN -> {
+                    startX = event.x
+                    startY = event.y
+                    v.parent.requestDisallowInterceptTouchEvent(true)
+                }
+                android.view.MotionEvent.ACTION_MOVE -> {
+                    val dx = Math.abs(event.x - startX)
+                    val dy = Math.abs(event.y - startY)
+                    if (dx > dy) {
+                        v.parent.requestDisallowInterceptTouchEvent(true)
+                    } else {
+                        v.parent.requestDisallowInterceptTouchEvent(false)
+                    }
+                }
+                android.view.MotionEvent.ACTION_UP, android.view.MotionEvent.ACTION_CANCEL -> {
+                    v.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            false
+        }
+
+        root.addView(viewPager)
+
+        // Dots Indicator (only if > 1 slide)
+        if (slideTypes.size > 1) {
+            val dotsLayout = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER
+                setPadding(0, 8.dp, 0, 4.dp)
+            }
+            val dotViews = slideTypes.indices.map { i ->
+                View(this).apply {
+                    val isFirst = i == 0
+                    layoutParams = LinearLayout.LayoutParams(
+                        if (isFirst) 18.dp else 6.dp,
+                        6.dp
+                    ).also { it.marginEnd = 6.dp }
+                    background = GradientDrawable().apply {
+                        cornerRadius = 3.dpF
+                        setColor(if (isFirst) colorPrimary else ColorUtils.setAlphaComponent(textSecondary, 70))
+                    }
+                    dotsLayout.addView(this)
+                }
+            }
+
+            viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    dotViews.forEachIndexed { idx, dot ->
+                        val isSelected = idx == position
+                        dot.layoutParams = (dot.layoutParams as LinearLayout.LayoutParams).apply {
+                            width = if (isSelected) 18.dp else 6.dp
+                        }
+                        (dot.background as? GradientDrawable)?.setColor(
+                            if (isSelected) colorPrimary else ColorUtils.setAlphaComponent(textSecondary, 70)
+                        )
+                        dot.requestLayout()
+                    }
+                }
+            })
+
+            // Auto-paging every 5 seconds
+            heroCarouselHandler?.removeCallbacksAndMessages(null)
+            val handler = android.os.Handler(android.os.Looper.getMainLooper())
+            heroCarouselHandler = handler
+            val runnable = object : Runnable {
+                override fun run() {
+                    if (!isFinishing && !isDestroyed && viewPager.isAttachedToWindow) {
+                        val count = slideTypes.size
+                        if (count > 1) {
+                            val next = (viewPager.currentItem + 1) % count
+                            viewPager.setCurrentItem(next, true)
+                            handler.postDelayed(this, 5000L)
+                        }
+                    }
+                }
+            }
+            heroCarouselRunnable = runnable
+            handler.postDelayed(runnable, 5000L)
+
+            viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageScrollStateChanged(state: Int) {
+                    if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                        handler.removeCallbacks(runnable)
+                        handler.postDelayed(runnable, 8000L)
+                    }
+                }
+            })
+
+            root.addView(dotsLayout)
+        }
+
+        return root
+    }
+
+    private fun buildResumeSlideCard(): View {
+        val savedJson = PrefManager.getSavedTestSessionJson(this)
+        val saved = runCatching { Gson().fromJson(savedJson, SavedTestSession::class.java) }.getOrNull()
+        val config = runCatching { Gson().fromJson(saved?.configJson, com.jeeneet.mocktest.data.model.ExamConfig::class.java) }.getOrNull()
+
+        val h = (saved?.timeLeftSeconds ?: 0) / 3600
+        val m = ((saved?.timeLeftSeconds ?: 0) % 3600) / 60
+        val s = (saved?.timeLeftSeconds ?: 0) % 60
+        val timeStr = if (h > 0) "%02d:%02d:%02d".format(h, m, s) else "%02d:%02d".format(m, s)
+        val testLabel = if (config?.subject != null) "${config.subject}" else "${config?.examType ?: selectedExam} Full Mock"
+        val chapterLabel = config?.chapter ?: testLabel
+
+        val card = uiCard(radius = Corner.XL, elevation = Elev.M, strokeDp = 1, strokeColor = ColorUtils.setAlphaComponent(Color.parseColor("#818CF8"), 80), onClick = {
+            TestActivity.resume(this)
+        }).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+            background = GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                intArrayOf(Color.parseColor("#3730A3"), Color.parseColor("#5B21B6"))
+            ).apply { cornerRadius = Corner.XL.dpF }
+            setPadding(16.dp, 12.dp, 16.dp, 12.dp)
+        }
+
+        val topBadgeBar = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        topBadgeBar.addView(uiModernBadge("IN PROGRESS", Color.parseColor("#C7D2FE"), "⚡", alpha = 35))
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge(timeStr, Color.parseColor("#FDE68A"), "⏱️", alpha = 30))
+        inner.addView(topBadgeBar)
+
+        inner.addView(uiTextView(UiText.H2, testLabel, Color.WHITE).apply {
+            setPadding(0, 6.dp, 0, 2.dp)
+            textSize = 16.5f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(uiTextView(UiText.CAPTION, "📚 $chapterLabel  ·  Auto-saved", Color.parseColor("#E0E7FF")).apply {
+            textSize = 12f
+            setPadding(0, 0, 0, 10.dp)
+        })
+
+        val btnRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        btnRow.addView(TextView(this).apply {
+            text = "Resume Test →"
+            textSize = 12.5f
+            setTextColor(Color.parseColor("#3730A3"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            background = roundedFill(Color.WHITE, Corner.PILL)
+            setPadding(16.dp, 7.dp, 16.dp, 7.dp)
+            elevation = Elev.S.dpF
+            setOnClickListener { TestActivity.resume(this@MainActivity) }
+        })
+        btnRow.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        btnRow.addView(TextView(this).apply {
+            text = "Discard"
+            textSize = 12f
+            setTextColor(Color.parseColor("#C7D2FE"))
+            setPadding(12.dp, 6.dp, 4.dp, 6.dp)
+            setOnClickListener {
+                com.google.android.material.dialog.MaterialAlertDialogBuilder(this@MainActivity)
+                    .setTitle("Discard Test?")
+                    .setMessage("Are you sure you want to discard this test session? Your saved progress will be lost.")
+                    .setPositiveButton("Discard") { _, _ ->
+                        PrefManager.clearSavedTestSession(this@MainActivity)
+                        buildContent()
+                    }
+                    .setNegativeButton("Cancel", null)
+                    .show()
+            }
+        })
+        inner.addView(btnRow)
+
+        card.addView(inner)
+        return card
+    }
+
+    private fun buildFocusBannerSlideCard(): View {
+        val dateStr = PrefManager.getExamDate(this, selectedExam)
+        val examDate = runCatching { java.time.LocalDate.parse(dateStr) }.getOrNull()
+        val daysLeft = if (examDate != null) {
+            val diff = java.time.temporal.ChronoUnit.DAYS.between(java.time.LocalDate.now(), examDate).toInt()
+            if (diff in 0..120) diff else null
+        } else null
+
+        val examLabel = PrefManager.getExamLabel(this, selectedExam).ifEmpty {
+            if (selectedExam == "JEE") "JEE Main 2026" else "NEET 2026"
+        }
+
+        val card = uiCard(radius = Corner.XL, elevation = Elev.M, strokeDp = 1, strokeColor = ColorUtils.setAlphaComponent(Color.parseColor("#3B82F6"), 80), onClick = {
+            val vaultView = contentLayout.findViewWithTag<View>("daily_vault_card")
+            if (vaultView != null) {
+                mainScrollView.smoothScrollTo(0, vaultView.top - 20.dp)
+            }
+        }).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+            background = GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                intArrayOf(Color.parseColor("#0F172A"), Color.parseColor("#1E3A8A"))
+            ).apply { cornerRadius = Corner.XL.dpF }
+            setPadding(16.dp, 12.dp, 16.dp, 12.dp)
+        }
+
+        val topBadgeBar = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        if (daysLeft != null) {
+            val badgeColor = if (daysLeft <= 30) Color.parseColor("#EF4444") else Color.parseColor("#F59E0B")
+            topBadgeBar.addView(uiModernBadge("$examLabel: $daysLeft DAYS LEFT", badgeColor, "🔥", alpha = 30))
+        } else {
+            topBadgeBar.addView(uiModernBadge("TARGET $selectedExam 2026", Color.parseColor("#60A5FA"), "🎯", alpha = 30))
+        }
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("DAILY +50 🪙", Color.parseColor("#FDE68A"), "💰", alpha = 25))
+        inner.addView(topBadgeBar)
+
+        inner.addView(uiTextView(UiText.H2, "Daily High-Yield Practice", Color.WHITE).apply {
+            setPadding(0, 6.dp, 0, 2.dp)
+            textSize = 16.5f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(uiTextView(UiText.CAPTION, "30 fresh PYQs every morning · 30-day anti-repeat pool · LaTeX", Color.parseColor("#94A3B8")).apply {
+            textSize = 11.5f
+            setPadding(0, 0, 0, 8.dp)
+        })
+
+        val tagRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, 0, 0, 10.dp)
+        }
+        val tags = listOf(
+            Triple("✨ 0 Duplicates", Color.parseColor("#10B981"), 25),
+            Triple("📐 KaTeX Math", Color.parseColor("#8B5CF6"), 25),
+            Triple("⚡ AI Hints", Color.parseColor("#3B82F6"), 25)
+        )
+        tags.forEach { (text, color, alpha) ->
+            tagRow.addView(TextView(this).apply {
+                this.text = text
+                textSize = 10f
+                setTextColor(color)
+                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                background = roundedFill(ColorUtils.setAlphaComponent(color, alpha), Corner.PILL)
+                setPadding(8.dp, 3.dp, 8.dp, 3.dp)
+                layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 6.dp }
+            })
+        }
+        inner.addView(tagRow)
+
+        val btnExplore = TextView(this).apply {
+            text = "Explore Today's Vault (30 Qs) →"
+            textSize = 12.5f
+            setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+            background = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                intArrayOf(Color.parseColor("#2563EB"), Color.parseColor("#4F46E5"))
+            ).apply { cornerRadius = Corner.PILL.dpF }
+            setPadding(16.dp, 7.dp, 16.dp, 7.dp)
+            elevation = Elev.S.dpF
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            setOnClickListener {
+                val vaultView = contentLayout.findViewWithTag<View>("daily_vault_card")
+                if (vaultView != null) {
+                    mainScrollView.smoothScrollTo(0, vaultView.top - 20.dp)
+                }
+            }
+        }
+        inner.addView(btnExplore)
+
+        card.addView(inner)
+        return card
+    }
+
+    private fun buildMistakesSlideCard(): View {
+        val result = cachedWrongQuestionResult
+        val totalWrong = result?.questions?.size ?: 0
+        val testCount = result?.fromTestCount ?: 0
+
+        val card = uiCard(radius = Corner.XL, elevation = Elev.M, strokeDp = 1, strokeColor = ColorUtils.setAlphaComponent(Color.parseColor("#EF4444"), 80), onClick = {
+            startActivity(Intent(this, com.jeeneet.mocktest.ui.revision.ReviseMyMistakesActivity::class.java).apply {
+                putExtra("exam_type", selectedExam)
+            })
+        }).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+            background = GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                intArrayOf(Color.parseColor("#7F1D1D"), Color.parseColor("#991B1B"))
+            ).apply { cornerRadius = Corner.XL.dpF }
+            setPadding(16.dp, 12.dp, 16.dp, 12.dp)
+        }
+
+        val topBadgeBar = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        topBadgeBar.addView(uiModernBadge("ERROR NOTEBOOK", Color.parseColor("#FCA5A5"), "🔥", alpha = 35))
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("$totalWrong MISTAKES", Color.parseColor("#F87171"), "🎯", alpha = 30))
+        inner.addView(topBadgeBar)
+
+        inner.addView(uiTextView(UiText.H2, "Revise My Mistakes", Color.WHITE).apply {
+            setPadding(0, 6.dp, 0, 2.dp)
+            textSize = 16.5f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(uiTextView(UiText.CAPTION, "Master $totalWrong past mistakes from $testCount tests to eliminate weak concepts.", Color.parseColor("#FEE2E2")).apply {
+            textSize = 11.5f
+            setPadding(0, 0, 0, 8.dp)
+        })
+
+        val chipRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, 0, 0, 10.dp)
+        }
+        result?.bySubject?.entries?.sortedByDescending { it.value }?.forEach { (subject, count) ->
+            val col = when (subject) {
+                "Physics" -> Color.parseColor("#93C5FD")
+                "Chemistry" -> Color.parseColor("#6EE7B7")
+                else -> Color.parseColor("#C4B5FD")
+            }
+            chipRow.addView(TextView(this).apply {
+                text = "$subject: $count"
+                textSize = 10f
+                setTextColor(col)
+                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                background = roundedFill(ColorUtils.setAlphaComponent(Color.BLACK, 40), Corner.PILL)
+                setPadding(8.dp, 3.dp, 8.dp, 3.dp)
+                layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 6.dp }
+            })
+        }
+        inner.addView(chipRow)
+
+        val btnAction = TextView(this).apply {
+            text = "Start Error Revision ($totalWrong Qs) →"
+            textSize = 12.5f
+            setTextColor(Color.parseColor("#7F1D1D"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+            background = roundedFill(Color.WHITE, Corner.PILL)
+            setPadding(16.dp, 7.dp, 16.dp, 7.dp)
+            elevation = Elev.S.dpF
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            setOnClickListener {
+                startActivity(Intent(this@MainActivity, com.jeeneet.mocktest.ui.revision.ReviseMyMistakesActivity::class.java).apply {
+                    putExtra("exam_type", selectedExam)
+                })
+            }
+        }
+        inner.addView(btnAction)
+
+        card.addView(inner)
+        return card
+    }
+
+    private fun buildPower100SlideCard(): View {
+        val card = uiCard(radius = Corner.XL, elevation = Elev.M, strokeDp = 1, strokeColor = ColorUtils.setAlphaComponent(Color.parseColor("#F59E0B"), 80), onClick = {
+            Power100Activity.start(this, selectedExam)
+        }).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+            background = GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                intArrayOf(Color.parseColor("#78350F"), Color.parseColor("#B45309"))
+            ).apply { cornerRadius = Corner.XL.dpF }
+            setPadding(16.dp, 12.dp, 16.dp, 12.dp)
+        }
+
+        val topBadgeBar = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        topBadgeBar.addView(uiModernBadge("TOP 100 CHALLENGE", Color.parseColor("#FDE68A"), "🏆", alpha = 35))
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("EVERY MON", Color.parseColor("#FCD34D"), "⚡", alpha = 30))
+        inner.addView(topBadgeBar)
+
+        inner.addView(uiTextView(UiText.H2, "$selectedExam Power 100", Color.WHITE).apply {
+            setPadding(0, 4.dp, 0, 2.dp)
+            textSize = 16.5f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(uiTextView(UiText.CAPTION, "100 curated must-know questions covering 100% of high-yield chapters.", Color.parseColor("#FEF3C7")).apply {
+            textSize = 11.5f
+            setPadding(0, 0, 0, 6.dp)
+        })
+
+        val chipRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, 0, 0, 8.dp)
+        }
+        val subjects = if (selectedExam == "JEE") listOf("⚡ Physics 33", "🧪 Chemistry 33", "📐 Maths 34")
+                       else listOf("⚡ Physics 25", "🧪 Chemistry 25", "🧬 Biology 50")
+        subjects.forEach { subj ->
+            chipRow.addView(TextView(this).apply {
+                text = subj
+                textSize = 10f
+                setTextColor(Color.WHITE)
+                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                background = roundedFill(ColorUtils.setAlphaComponent(Color.BLACK, 40), Corner.PILL)
+                setPadding(8.dp, 3.dp, 8.dp, 3.dp)
+                layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 6.dp }
+            })
+        }
+        inner.addView(chipRow)
+
+        val btnAction = TextView(this).apply {
+            text = "Start Power 100 Challenge (100 Qs) →"
+            textSize = 12.5f
+            setTextColor(Color.parseColor("#78350F"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+            background = roundedFill(Color.WHITE, Corner.PILL)
+            setPadding(16.dp, 7.dp, 16.dp, 7.dp)
+            elevation = Elev.S.dpF
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            setOnClickListener { Power100Activity.start(this@MainActivity, selectedExam) }
+        }
+        inner.addView(btnAction)
+
+        card.addView(inner)
+        return card
+    }
+
+    private fun buildDailyQuizSlideCard(): View {
+        val isDone = PrefManager.isDailyQuizDoneToday(this)
+        val card = uiCard(
+            radius = Corner.XL,
+            elevation = Elev.M,
+            strokeDp = 1,
+            strokeColor = ColorUtils.setAlphaComponent(Color.parseColor("#10B981"), 80),
+            onClick = {
+                val quizView = contentLayout.findViewWithTag<View>("daily_quiz_card")
+                if (quizView != null) {
+                    mainScrollView.smoothScrollTo(0, quizView.top - 20.dp)
+                } else if (!isDone) {
+                    AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
+                        TestActivity.startDailyQuiz(this@MainActivity, selectedExam)
+                    }
+                }
+            }
+        ).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+            background = GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                intArrayOf(Color.parseColor("#064E3B"), Color.parseColor("#047857"))
+            ).apply { cornerRadius = Corner.XL.dpF }
+            setPadding(16.dp, 12.dp, 16.dp, 12.dp)
+        }
+
+        val topBadgeBar = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        topBadgeBar.addView(uiModernBadge(if (isDone) "QUIZ COMPLETED" else "DAILY 10-MIN CHALLENGE", Color.parseColor("#6EE7B7"), if (isDone) "✅" else "⚡", alpha = 35))
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("+15 COINS", Color.parseColor("#FDE68A"), "💰", alpha = 25))
+        inner.addView(topBadgeBar)
+
+        inner.addView(uiTextView(UiText.H2, "Daily Quick Quiz", Color.WHITE).apply {
+            setPadding(0, 4.dp, 0, 2.dp)
+            textSize = 16.5f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(uiTextView(UiText.CAPTION, "10 high-yield questions every morning. Build study consistency, sharpen speed, and maintain your streak!", Color.parseColor("#A7F3D0")).apply {
+            textSize = 11.5f
+            setPadding(0, 0, 0, 6.dp)
+        })
+
+        val tagRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, 0, 0, 8.dp)
+        }
+        val tags = listOf(
+            Triple("⏱️ 10 Mins", Color.parseColor("#34D399"), 25),
+            Triple("🎯 Multi-Subject", Color.parseColor("#60A5FA"), 25),
+            Triple("🔥 Streak Booster", Color.parseColor("#FBBF24"), 25)
+        )
+        tags.forEach { (text, color, alpha) ->
+            tagRow.addView(TextView(this).apply {
+                this.text = text
+                textSize = 10f
+                setTextColor(color)
+                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                background = roundedFill(ColorUtils.setAlphaComponent(color, alpha), Corner.PILL)
+                setPadding(8.dp, 3.dp, 8.dp, 3.dp)
+                layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 6.dp }
+            })
+        }
+        inner.addView(tagRow)
+
+        val btnAction = TextView(this).apply {
+            text = if (isDone) "Review Today's Quiz →" else "Take Today's Quiz (10 Qs) →"
+            textSize = 12.5f
+            setTextColor(Color.parseColor("#064E3B"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+            background = roundedFill(Color.WHITE, Corner.PILL)
+            setPadding(16.dp, 7.dp, 16.dp, 7.dp)
+            elevation = Elev.S.dpF
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            setOnClickListener {
+                if (isDone) {
+                    val quizView = contentLayout.findViewWithTag<View>("daily_quiz_card")
+                    if (quizView != null) mainScrollView.smoothScrollTo(0, quizView.top - 20.dp)
+                } else {
+                    AdManager.showInterstitial(this@MainActivity, bypassCooldown = true) {
+                        TestActivity.startDailyQuiz(this@MainActivity, selectedExam)
+                    }
+                }
+            }
+        }
+        inner.addView(btnAction)
+
+        card.addView(inner)
+        return card
+    }
+
+    private fun buildFullMockSlideCard(): View {
+        val duration = if (selectedExam == "JEE") "180 MINS" else "200 MINS"
+        val qCount = if (selectedExam == "JEE") "75 Qs" else "180/200 Qs"
+        val card = uiCard(
+            radius = Corner.XL,
+            elevation = Elev.M,
+            strokeDp = 1,
+            strokeColor = ColorUtils.setAlphaComponent(Color.parseColor("#6366F1"), 80),
+            onClick = {
+                val simView = contentLayout.findViewWithTag<View>("simulation_card")
+                if (simView != null) {
+                    mainScrollView.smoothScrollTo(0, simView.top - 20.dp)
+                } else {
+                    requiresHomeRefresh = true
+                    startActivity(Intent(this, com.jeeneet.mocktest.ui.simulation.SimulationIntroActivity::class.java))
+                }
+            }
+        ).apply {
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        }
+
+        val inner = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            layoutParams = FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+            background = GradientDrawable(
+                GradientDrawable.Orientation.TL_BR,
+                intArrayOf(Color.parseColor("#1E1B4B"), Color.parseColor("#312E81"))
+            ).apply { cornerRadius = Corner.XL.dpF }
+            setPadding(16.dp, 12.dp, 16.dp, 12.dp)
+        }
+
+        val topBadgeBar = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        topBadgeBar.addView(uiModernBadge("NTA EXAM SIMULATION", Color.parseColor("#A5B4FC"), "🏆", alpha = 35))
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge(duration, Color.parseColor("#FDE68A"), "⏱️", alpha = 25))
+        inner.addView(topBadgeBar)
+
+        inner.addView(uiTextView(UiText.H2, "Full Length Mock ($qCount)", Color.WHITE).apply {
+            setPadding(0, 4.dp, 0, 2.dp)
+            textSize = 16.5f
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(uiTextView(UiText.CAPTION, "Real exam environment with official NTA timer, +4/-1 negative marking, question palette & AIR prediction.", Color.parseColor("#C7D2FE")).apply {
+            textSize = 11.5f
+            setPadding(0, 0, 0, 6.dp)
+        })
+
+        val tagRow = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, 0, 0, 8.dp)
+        }
+        val tags = listOf(
+            Triple("🎯 Full Syllabus", Color.parseColor("#818CF8"), 25),
+            Triple("📉 -1 Marking", Color.parseColor("#F87171"), 25),
+            Triple("📊 AIR Ranker", Color.parseColor("#34D399"), 25)
+        )
+        tags.forEach { (text, color, alpha) ->
+            tagRow.addView(TextView(this).apply {
+                this.text = text
+                textSize = 10f
+                setTextColor(color)
+                typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                background = roundedFill(ColorUtils.setAlphaComponent(color, alpha), Corner.PILL)
+                setPadding(8.dp, 3.dp, 8.dp, 3.dp)
+                layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 6.dp }
+            })
+        }
+        inner.addView(tagRow)
+
+        val btnAction = TextView(this).apply {
+            text = "Start Full Simulation →"
+            textSize = 12.5f
+            setTextColor(Color.parseColor("#1E1B4B"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+            background = roundedFill(Color.WHITE, Corner.PILL)
+            setPadding(16.dp, 7.dp, 16.dp, 7.dp)
+            elevation = Elev.S.dpF
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+            setOnClickListener {
+                requiresHomeRefresh = true
+                startActivity(Intent(this@MainActivity, com.jeeneet.mocktest.ui.simulation.SimulationIntroActivity::class.java))
+            }
+        }
+        inner.addView(btnAction)
+
+        card.addView(inner)
+        return card
     }
 
     private fun buildQuickActionsGrid(): View {
@@ -3990,51 +4717,51 @@ class MainActivity : AppCompatActivity() {
         onClick: () -> Unit
     ): View {
         val card = uiCard(
-            radius = Corner.L, elevation = Elev.M,
+            radius = Corner.XL, elevation = Elev.M,
             strokeDp = if (strokeColor != Color.TRANSPARENT) 1 else 0,
-            strokeColor = strokeColor,
+            strokeColor = if (strokeColor != Color.TRANSPARENT) ColorUtils.setAlphaComponent(strokeColor, 80) else Color.TRANSPARENT,
             onClick = onClick
         ).apply {
-            layoutParams = LinearLayout.LayoutParams(148.dp, -2).also { it.marginEnd = Space.M.dp }
+            layoutParams = LinearLayout.LayoutParams(152.dp, -2).also { it.marginEnd = Space.M.dp }
         }
         val inner = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             background = GradientDrawable().apply {
                 orientation = GradientDrawable.Orientation.TL_BR
                 colors = intArrayOf(startColor, endColor)
-                cornerRadius = Corner.L.dpF
+                cornerRadius = Corner.XL.dpF
             }
             setPadding(Space.M.dp, Space.M.dp, Space.M.dp, Space.M.dp)
         }
         inner.addView(TextView(this).apply {
-            text = badge; textSize = 9f; setTextColor(badgeColor)
+            text = badge; textSize = 9.5f; setTextColor(badgeColor)
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             background = GradientDrawable().apply {
-                setColor(Color.argb(30, Color.red(badgeColor), Color.green(badgeColor), Color.blue(badgeColor)))
+                setColor(ColorUtils.setAlphaComponent(badgeColor, 35))
                 cornerRadius = Corner.PILL.dpF
-                setStroke(1.dp, Color.argb(80, Color.red(badgeColor), Color.green(badgeColor), Color.blue(badgeColor)))
+                setStroke(1.dp, ColorUtils.setAlphaComponent(badgeColor, 90))
             }
             setPadding(8.dp, 3.dp, 8.dp, 3.dp)
             layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.bottomMargin = Space.S.dp }
         })
         inner.addView(FrameLayout(this).apply {
-            layoutParams = LinearLayout.LayoutParams(44.dp, 44.dp).also { it.bottomMargin = Space.S.dp }
-            background = GradientDrawable().apply { shape = GradientDrawable.OVAL; setColor(Color.parseColor("#33FFFFFF")) }
+            layoutParams = LinearLayout.LayoutParams(42.dp, 42.dp).also { it.bottomMargin = Space.S.dp }
+            background = GradientDrawable().apply { shape = GradientDrawable.OVAL; setColor(Color.parseColor("#26FFFFFF")) }
             addView(TextView(this@MainActivity).apply {
                 text = icon; textSize = 20f; gravity = Gravity.CENTER
                 layoutParams = FrameLayout.LayoutParams(-1, -1)
             })
         })
         inner.addView(uiTextView(UiText.H3, title, Color.WHITE).apply {
-            textSize = 13f; typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
-            setPadding(0, 0, 0, 4.dp)
+            textSize = 13.5f; typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            setPadding(0, 0, 0, 3.dp)
         })
-        inner.addView(uiTextView(UiText.CAPTION, subtitle, Color.parseColor("#AAFFFFFF")).apply {
-            textSize = 10f; setPadding(0, 0, 0, Space.M.dp)
+        inner.addView(uiTextView(UiText.CAPTION, subtitle, Color.parseColor("#B3FFFFFF")).apply {
+            textSize = 10.5f; setPadding(0, 0, 0, Space.M.dp)
             maxLines = 1; ellipsize = android.text.TextUtils.TruncateAt.END
         })
         inner.addView(TextView(this).apply {
-            text = "→  $btnText"; textSize = 11f; setTextColor(Color.parseColor("#1A1A1A"))
+            text = "→  $btnText"; textSize = 11f; setTextColor(Color.parseColor("#0F172A"))
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             background = roundedFill(Color.WHITE, Corner.PILL)
             gravity = Gravity.CENTER_VERTICAL or Gravity.START
@@ -4824,8 +5551,11 @@ class MainActivity : AppCompatActivity() {
         val testCount = result.fromTestCount
 
         val card = uiCard(
-            radius = Corner.L,
+            radius = Corner.XL,
             elevation = Elev.M,
+            background = bgSecondary,
+            strokeDp = 1,
+            strokeColor = ColorUtils.setAlphaComponent(Color.parseColor("#EF4444"), 80),
             onClick = {
                 startActivity(android.content.Intent(this, com.jeeneet.mocktest.ui.revision.ReviseMyMistakesActivity::class.java).apply {
                     putExtra("exam_type", selectedExam)
@@ -4833,75 +5563,80 @@ class MainActivity : AppCompatActivity() {
             }
         ).apply { layoutParams = lpRow(bottomDp = Space.M) }
 
-        val inner = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            background = GradientDrawable().apply {
-                orientation = GradientDrawable.Orientation.TL_BR
-                colors = intArrayOf(Color.parseColor("#EA580C"), Color.parseColor("#DC2626"))
-                cornerRadius = Corner.L.dpF
-            }
-            setPadding(Space.L.dp, Space.L.dp, Space.L.dp, Space.L.dp)
-        }
+        val outer = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
 
-        // Header row with icon
-        val headerRow = LinearLayout(this).apply {
+        // Top Header Badge Bar
+        val topBadgeBar = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
+            setPadding(Space.L.dp, Space.L.dp, Space.L.dp, 0)
         }
-        headerRow.addView(TextView(this).apply {
-            text = "🎯"; textSize = 24f
-            setPadding(0, 0, Space.M.dp, 0)
-        })
-        val textCol = LinearLayout(this).apply {
+        topBadgeBar.addView(uiModernBadge("ERROR NOTEBOOK", Color.parseColor("#EF4444"), "🔥", alpha = 25))
+        topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("$totalWrong MISTAKES", Color.parseColor("#DC2626"), "🎯", alpha = 20))
+        outer.addView(topBadgeBar)
+
+        // Middle Content Row
+        val inner = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+            setPadding(Space.L.dp, Space.M.dp, Space.L.dp, Space.M.dp)
         }
-        textCol.addView(TextView(this).apply {
-            text = "Revise My Mistakes"
-            textSize = 16f
-            setTextColor(Color.WHITE)
+
+        inner.addView(uiTextView(UiText.H2, "Revise My Mistakes", textPrimary).apply {
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
         })
-        textCol.addView(TextView(this).apply {
-            text = "$totalWrong wrong questions from $testCount tests"
+
+        inner.addView(uiTextView(UiText.CAPTION, "Master $totalWrong past mistakes from $testCount tests to eliminate weak concepts.", textSecondary).apply {
+            setPadding(0, 3.dp, 0, Space.M.dp)
             textSize = 12f
-            setTextColor(Color.parseColor("#DDFFFFFF"))
-            setPadding(0, 2.dp, 0, 0)
         })
-        headerRow.addView(textCol)
-        headerRow.addView(TextView(this).apply {
-            text = "›"; textSize = 24f; setTextColor(Color.WHITE)
-            typeface = Typeface.DEFAULT_BOLD
-            setPadding(8.dp, 0, 0, 0)
-        })
-        inner.addView(headerRow)
 
         // Subject breakdown chips
         if (result.bySubject.isNotEmpty()) {
             val chipRow = LinearLayout(this).apply {
                 orientation = LinearLayout.HORIZONTAL
-                setPadding(0, Space.S.dp, 0, 0)
+                setPadding(0, 0, 0, Space.M.dp)
             }
             result.bySubject.entries.sortedByDescending { it.value }.forEach { (subject, count) ->
+                val col = when (subject) {
+                    "Physics" -> Color.parseColor("#3B82F6")
+                    "Chemistry" -> Color.parseColor("#10B981")
+                    else -> Color.parseColor("#8B5CF6")
+                }
                 chipRow.addView(TextView(this).apply {
                     text = "$subject: $count"
-                    textSize = 10f
-                    setTextColor(Color.WHITE)
-                    background = GradientDrawable().apply {
-                        setColor(Color.parseColor("#33FFFFFF"))
-                        cornerRadius = Corner.PILL.dpF
-                    }
+                    textSize = 10.5f
+                    setTextColor(col)
+                    typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+                    background = roundedFill(ColorUtils.setAlphaComponent(col, 25), Corner.PILL)
                     setPadding(Space.M.dp, 4.dp, Space.M.dp, 4.dp)
-                    layoutParams = LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.WRAP_CONTENT,
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    ).also { it.marginEnd = Space.S.dp }
+                    layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 6.dp }
                 })
             }
             inner.addView(chipRow)
         }
 
-        card.addView(inner)
+        // Action Button
+        val btnAction = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER
+            background = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                intArrayOf(Color.parseColor("#DC2626"), Color.parseColor("#EF4444"))
+            ).apply { cornerRadius = Corner.M.dpF }
+            setPadding(Space.L.dp, 12.dp, Space.L.dp, 12.dp)
+            elevation = Elev.S.dpF
+        }
+        btnAction.addView(TextView(this).apply {
+            text = "Start Error Revision ($totalWrong Qs) →"
+            textSize = 13.5f
+            setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        })
+        inner.addView(btnAction)
+        outer.addView(inner)
+
+        card.addView(outer)
         return card
     }
 }

@@ -234,7 +234,9 @@ def init_firebase(creds_path: str = SERVICE_ACCOUNT_PATH):
     if not os.path.exists(creds_path):
         print(f"⚠️ Warning: Credentials file not found at {creds_path}")
         return None
-    firebase_admin.initialize_app(credentials.Certificate(creds_path))
+    firebase_admin.initialize_app(credentials.Certificate(creds_path), {
+        'storageBucket': 'apps-273d9.firebasestorage.app'
+    })
     return firestore.client()
 
 

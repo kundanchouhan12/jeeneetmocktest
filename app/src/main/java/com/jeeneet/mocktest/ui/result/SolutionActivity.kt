@@ -84,7 +84,9 @@ class SolutionActivity : AppCompatActivity() {
                 questionText = q.questionText,
                 correctAnswer = correctText,
                 explanation = q.explanation,
-                isCorrect = isCorrect
+                isCorrect = isCorrect,
+                imageUrl = q.imageUrl,
+                solutionImageUrl = q.solutionImageUrl
             ))
         }
 
@@ -104,7 +106,9 @@ class SolutionActivity : AppCompatActivity() {
         questionText: String,
         correctAnswer: String,
         explanation: String,
-        isCorrect: Boolean
+        isCorrect: Boolean,
+        imageUrl: String? = null,
+        solutionImageUrl: String? = null
     ): View {
         val card = uiCard(
             radius = Corner.L,
@@ -151,6 +155,16 @@ class SolutionActivity : AppCompatActivity() {
         com.jeeneet.mocktest.utils.MathRenderer.render(tvQuestion, questionText)
         inner.addView(tvQuestion)
 
+        // Question Diagram (if any)
+        if (!imageUrl.isNullOrBlank()) {
+            val diagramCard = com.jeeneet.mocktest.utils.DiagramRenderer.buildDiagramCard(
+                context = this,
+                imageUrl = imageUrl,
+                label = "Q$number Diagram"
+            )
+            inner.addView(diagramCard)
+        }
+
         // Correct answer callout
         val answerBox = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -189,6 +203,17 @@ class SolutionActivity : AppCompatActivity() {
         }
         com.jeeneet.mocktest.utils.MathRenderer.render(tvExplanation, explanation)
         expBox.addView(tvExplanation)
+
+        // Solution Step Diagram (if any)
+        if (!solutionImageUrl.isNullOrBlank()) {
+            val solDiagramCard = com.jeeneet.mocktest.utils.DiagramRenderer.buildDiagramCard(
+                context = this,
+                imageUrl = solutionImageUrl,
+                label = "Q$number Solution Diagram"
+            )
+            expBox.addView(solDiagramCard)
+        }
+
         inner.addView(expBox)
 
         card.addView(inner)

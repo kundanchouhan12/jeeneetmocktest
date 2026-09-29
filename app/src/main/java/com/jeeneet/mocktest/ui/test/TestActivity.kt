@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.graphics.ColorUtils
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
@@ -117,12 +118,12 @@ class TestActivity : AppCompatActivity() {
     private lateinit var tvBookmarkStar: TextView
     private lateinit var tvQuestionText: TextView
     private lateinit var radioGroup: RadioGroup
-    private lateinit var btnPrevious: MaterialButton
-    private lateinit var btnNext: MaterialButton
-    private lateinit var btnClear: MaterialButton
-    private lateinit var btnMarkReview: MaterialButton
-    private lateinit var btnHint: MaterialButton
-    private lateinit var btnSubmit: MaterialButton
+    private lateinit var btnPrevious: TextView
+    private lateinit var btnNext: TextView
+    private lateinit var btnClear: TextView
+    private lateinit var btnMarkReview: TextView
+    private lateinit var btnHint: TextView
+    private lateinit var btnSubmit: TextView
     private lateinit var btnPause: View
     private lateinit var rvPalette: RecyclerView
     private lateinit var paletteAdapter: QuestionPaletteAdapter
@@ -416,39 +417,79 @@ class TestActivity : AppCompatActivity() {
         optionLabelDrawables.clear()
         optionLabelViews.clear()
 
-        // Question header with number + marking scheme
-        val markingText = "Question ${index + 1}/${sess.questions.size}"
-        val markingScheme = "+${sess.config.correctMarks.toInt()} / ${sess.config.negativeMarks.toInt()}"
+        // Question header with subject badge + question counter + marking scheme pill
         val qHeaderRow = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
-            ).also { it.bottomMargin = 6.dp }
+            ).also { it.bottomMargin = 10.dp }
         }
+
+        val (subjEmoji, subjColor) = when (q.subject) {
+            "Physics" -> "⚡" to Color.parseColor("#3B82F6")
+            "Chemistry" -> "🧪" to Color.parseColor("#10B981")
+            "Maths" -> "📐" to Color.parseColor("#8B5CF6")
+            "Biology" -> "🧬" to Color.parseColor("#8B5CF6")
+            else -> "📝" to colorPrimary
+        }
+
         qHeaderRow.addView(TextView(this).apply {
-            text = markingText; textSize = 13f; setTextColor(textSecondary)
+            text = "$subjEmoji ${q.subject}"
+            textSize = 11f
+            setTextColor(subjColor)
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            background = roundedFill(ColorUtils.setAlphaComponent(subjColor, 25), Corner.PILL)
+            setPadding(Space.M.dp, 4.dp, Space.M.dp, 4.dp)
+        })
+
+        qHeaderRow.addView(TextView(this).apply {
+            text = "Q ${index + 1} of ${sess.questions.size}"
+            textSize = 12f
+            setTextColor(textSecondary)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            setPadding(Space.M.dp, 0, 0, 0)
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         })
+
         qHeaderRow.addView(TextView(this).apply {
-            text = markingScheme; textSize = 12f; setTextColor(textTertiary)
+            text = "+${sess.config.correctMarks.toInt()} / ${sess.config.negativeMarks.toInt()}"
+            textSize = 11f
+            setTextColor(Color.parseColor("#10B981"))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            background = roundedFill(ColorUtils.setAlphaComponent(Color.parseColor("#10B981"), 25), Corner.PILL)
+            setPadding(Space.M.dp, 3.dp, Space.M.dp, 3.dp)
         })
+
         // Remove previously added question header if any (tag = "qheader")
         val questionContainer = radioGroup.parent as? LinearLayout
         questionContainer?.findViewWithTag<View>("qheader")?.let { questionContainer.removeView(it) }
         qHeaderRow.tag = "qheader"
         questionContainer?.addView(qHeaderRow, questionContainer.indexOfChild(tvQuestionText))
 
+        // Remove previously added diagram if any (tag = "qdiagram")
+        questionContainer?.findViewWithTag<View>("qdiagram")?.let { questionContainer.removeView(it) }
+        if (!q.imageUrl.isNullOrBlank()) {
+            val diagramCard = com.jeeneet.mocktest.utils.DiagramRenderer.buildDiagramCard(
+                context = this,
+                imageUrl = q.imageUrl,
+                label = "Q.${index + 1} Diagram"
+            ).apply { tag = "qdiagram" }
+            val qTextIdx = questionContainer?.indexOfChild(tvQuestionText) ?: -1
+            if (qTextIdx >= 0 && questionContainer != null) {
+                questionContainer.addView(diagramCard, qTextIdx + 1)
+            }
+        }
+
         val selectedColor = colorPrimary
-        val selectedBg = Color.argb(20, Color.red(selectedColor), Color.green(selectedColor), Color.blue(selectedColor))
+        val selectedBg = ColorUtils.setAlphaComponent(selectedColor, 28)
 
         q.options.forEachIndexed { i, option ->
             val isSelected = sess.answers[index] == i
 
             val cardDrawable = GradientDrawable().apply {
                 setColor(if (isSelected) selectedBg else bgSecondary)
-                cornerRadius = Corner.M.dpF
+                cornerRadius = 14.dpF
                 setStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) selectedColor else dividerColor)
             }
             optionCardDrawables.add(cardDrawable)
@@ -474,7 +515,7 @@ class TestActivity : AppCompatActivity() {
             val tvLabel = TextView(this).apply {
                 text = ('A' + i).toString()
                 textSize = 13f
-                setTextColor(if (isSelected) Color.WHITE else textTertiary)
+                setTextColor(if (isSelected) Color.WHITE else textSecondary)
                 typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
                 gravity = Gravity.CENTER
                 background = labelDrawable
@@ -482,12 +523,11 @@ class TestActivity : AppCompatActivity() {
             }
             optionLabelViews.add(tvLabel)
             val tvOption = TextView(this).apply {
-                textSize = 14f
+                textSize = 14.5f
                 setTextColor(textPrimary)
                 layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
             }
             // Launch async so LaTeX parsing on Dispatchers.Default doesn't block the main thread.
-            // Plain text shows instantly; math replaces it once rendered.
             lifecycleScope.launch {
                 com.jeeneet.mocktest.utils.MathRenderer.renderAsync(tvOption, option)
             }
@@ -495,24 +535,20 @@ class TestActivity : AppCompatActivity() {
             optionCard.addView(tvLabel)
             optionCard.addView(tvOption)
             optionCard.setOnClickListener {
-                // ① Instantly paint this option selected — no LiveData round-trip needed.
-                //    This runs immediately even if setMarkdown() is still rendering on the
-                //    main thread somewhere, because this executes in the same message.
                 val prev = viewModel.session.value?.answers?.get(index) ?: -1
-                val selBg = Color.argb(20, Color.red(colorPrimary), Color.green(colorPrimary), Color.blue(colorPrimary))
+                val selBg = ColorUtils.setAlphaComponent(colorPrimary, 28)
                 if (prev != i) {
                     if (prev in optionCardDrawables.indices) {
                         optionCardDrawables[prev].setColor(bgSecondary)
                         optionCardDrawables[prev].setStroke(1.dp, dividerColor)
                         optionLabelDrawables[prev].setColor(bgTertiary)
-                        optionLabelViews[prev].setTextColor(textTertiary)
+                        optionLabelViews[prev].setTextColor(textSecondary)
                     }
                     optionCardDrawables[i].setColor(selBg)
                     optionCardDrawables[i].setStroke(2.dp, colorPrimary)
                     optionLabelDrawables[i].setColor(colorPrimary)
                     optionLabelViews[i].setTextColor(Color.WHITE)
                 }
-                // ② Persist to ViewModel (triggers LiveData → updateOptionHighlight — redundant but correct)
                 viewModel.selectAnswer(i)
             }
             radioGroup.addView(optionCard)
@@ -522,11 +558,11 @@ class TestActivity : AppCompatActivity() {
         val existingReport = radioGroup.parent?.let { (it as? LinearLayout)?.findViewWithTag<View>("report_btn") }
         if (existingReport == null) {
             (radioGroup.parent as? LinearLayout)?.addView(TextView(this).apply {
-                text = "⚑ Report"; textSize = 13f; setTextColor(textMuted)
+                text = "⚑ Report question error"; textSize = 12f; setTextColor(textMuted)
                 tag = "report_btn"
-                setPadding(0, 8.dp, 0, 4.dp)
+                setPadding(0, 10.dp, 0, 4.dp)
                 setOnClickListener {
-                    Toast.makeText(this@TestActivity, "Question reported. Thank you!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@TestActivity, "Question reported to our faculty. Thank you!", Toast.LENGTH_SHORT).show()
                 }
             })
         }
@@ -543,7 +579,7 @@ class TestActivity : AppCompatActivity() {
         val sess = viewModel.session.value ?: return
         val selectedAnswer = sess.answers[index]
         val selectedColor = colorPrimary
-        val selectedBg = Color.argb(20, Color.red(selectedColor), Color.green(selectedColor), Color.blue(selectedColor))
+        val selectedBg = ColorUtils.setAlphaComponent(selectedColor, 28)
 
         optionCardDrawables.forEachIndexed { i, d ->
             val sel = selectedAnswer == i
@@ -554,7 +590,7 @@ class TestActivity : AppCompatActivity() {
             d.setColor(if (selectedAnswer == i) selectedColor else bgTertiary)
         }
         optionLabelViews.forEachIndexed { i, tv ->
-            tv.setTextColor(if (selectedAnswer == i) Color.WHITE else textTertiary)
+            tv.setTextColor(if (selectedAnswer == i) Color.WHITE else textSecondary)
         }
         val isMarked = sess.isMarkedForReview(index)
         btnMarkReview.text = if (isMarked) "Unmark" else "Mark Review"
@@ -672,27 +708,37 @@ class TestActivity : AppCompatActivity() {
         }
         // Pause button
         btnPause = TextView(this).apply {
-            text = "⏸ Pause"; textSize = 13f; setTextColor(textTertiary)
+            text = "⏸ Pause"; textSize = 12.5f; setTextColor(textSecondary)
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             background = GradientDrawable().apply {
-                setColor(bgSecondary); cornerRadius = 20.dpF
+                setColor(bgSecondary); cornerRadius = Corner.PILL.dpF
+                setStroke(1.dp, dividerColor)
             }
-            setPadding(14.dp, 8.dp, 14.dp, 8.dp)
+            setPadding(14.dp, 7.dp, 14.dp, 7.dp)
             setOnClickListener { showExitDialog() }
         }
         // Timer with alarm icon
         tvTimer = TextView(this).apply {
-            textSize = 15f; setTextColor(textPrimary)
+            textSize = 16f; setTextColor(textPrimary)
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             gravity = Gravity.CENTER
             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
         }
         // Submit button
-        btnSubmit = com.google.android.material.button.MaterialButton(this).apply {
-            text = "SUBMIT"; textSize = 13f; setTextColor(Color.WHITE)
-            backgroundTintList = android.content.res.ColorStateList.valueOf(colorPrimary)
-            isAllCaps = true; stateListAnimator = null
-            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 40.dp)
+        btnSubmit = TextView(this).apply {
+            text = "SUBMIT"; textSize = 12.5f; setTextColor(Color.WHITE)
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+            background = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                intArrayOf(Color.parseColor("#4F46E5"), Color.parseColor("#6366F1"))
+            ).apply { cornerRadius = Corner.PILL.dpF }
+            elevation = Elev.S.dpF
+            setPadding(18.dp, 8.dp, 18.dp, 8.dp)
+            isClickable = true; isFocusable = true
+            val tv = android.util.TypedValue()
+            if (theme.resolveAttribute(android.R.attr.selectableItemBackground, tv, true) && tv.resourceId != 0)
+                foreground = ContextCompat.getDrawable(context, tv.resourceId)
             setOnClickListener { confirmSubmit() }
         }
         header.addView(btnPause); header.addView(tvTimer); header.addView(btnSubmit)
@@ -735,7 +781,7 @@ class TestActivity : AppCompatActivity() {
         // ── Question palette (horizontal scroll) ──
         rvPalette = RecyclerView(this).apply {
             layoutManager = LinearLayoutManager(this@TestActivity, LinearLayoutManager.HORIZONTAL, false)
-            setPadding(10.dp, 20.dp, 10.dp, 20.dp)  // centers 34dp+6dp-margin items in 80dp container
+            setPadding(10.dp, 14.dp, 10.dp, 14.dp)
         }
         paletteAdapter = QuestionPaletteAdapter(
             count = 0,
@@ -746,7 +792,7 @@ class TestActivity : AppCompatActivity() {
         val paletteContainer = FrameLayout(this).apply {
             setBackgroundColor(bgSecondary)
             addView(rvPalette)
-            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 80.dp)
+            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 68.dp)
         }
         root.addView(paletteContainer)
 
@@ -756,14 +802,14 @@ class TestActivity : AppCompatActivity() {
         }
         val questionContainer = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(18.dp, 18.dp, 18.dp, 10.dp)
+            setPadding(16.dp, 16.dp, 16.dp, 10.dp)
         }
         tvQuestionText = TextView(this).apply {
             textSize = 16f
             setTextColor(textPrimary)
             typeface = Typeface.create("sans-serif", Typeface.NORMAL)
             androidx.core.widget.TextViewCompat.setLineHeight(this, (24 * resources.displayMetrics.density).toInt())
-            setPadding(0, 0, 0, 20.dp)
+            setPadding(0, 0, 0, 16.dp)
         }
         radioGroup = RadioGroup(this)
         questionContainer.addView(tvQuestionText)
@@ -780,7 +826,7 @@ class TestActivity : AppCompatActivity() {
         // ── Bottom bar: [Hint] [Mark Review] | [Previous] [Clear] [Next] ──
         val bottomBar = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(16.dp, 12.dp, 16.dp, 16.dp)
+            setPadding(16.dp, 10.dp, 16.dp, 14.dp)
             setBackgroundColor(bgPrimary)
         }
         
@@ -790,36 +836,36 @@ class TestActivity : AppCompatActivity() {
             layoutParams = LinearLayout.LayoutParams(-1, -2).also { it.bottomMargin = 8.dp }
         }
 
-        btnHint = MaterialButton(this).apply {
-            text = "💡 Hint"; textSize = 11f
+        btnHint = TextView(this).apply {
+            text = "💡 Hint"; textSize = 12f
             setTextColor(textSecondary)
-            isAllCaps = false; stateListAnimator = null
-            insetTop = 0; insetBottom = 0
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
             background = GradientDrawable().apply {
-                cornerRadius = 8.dpF
+                cornerRadius = Corner.PILL.dpF
                 setColor(bgSecondary)
                 setStroke(1.dp, dividerColor)
             }
-            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 44.dp)
-                .also { it.marginEnd = 8.dp }
+            setPadding(16.dp, 8.dp, 16.dp, 8.dp)
+            isClickable = true; isFocusable = true
+            layoutParams = LinearLayout.LayoutParams(-2, -2).also { it.marginEnd = 8.dp }
             setOnClickListener { showHint() }
         }
         topRow.addView(btnHint)
 
-        btnMarkReview = MaterialButton(this).apply {
+        btnMarkReview = TextView(this).apply {
             text = "Mark Review"; textSize = 12f
             setTextColor(colorPrimary)
-            isAllCaps = false; stateListAnimator = null
-            insetTop = 0; insetBottom = 0
-            background = android.graphics.drawable.GradientDrawable().apply {
-                cornerRadius = 8.dpF
-                setColor(android.graphics.Color.argb(20,
-                    android.graphics.Color.red(colorPrimary),
-                    android.graphics.Color.green(colorPrimary),
-                    android.graphics.Color.blue(colorPrimary)))
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
+            background = GradientDrawable().apply {
+                cornerRadius = Corner.PILL.dpF
+                setColor(ColorUtils.setAlphaComponent(colorPrimary, 25))
                 setStroke(1.dp, colorPrimary)
             }
-            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 44.dp)
+            setPadding(16.dp, 8.dp, 16.dp, 8.dp)
+            isClickable = true; isFocusable = true
+            layoutParams = LinearLayout.LayoutParams(-2, -2)
         }
         topRow.addView(btnMarkReview)
         bottomBar.addView(topRow)
@@ -829,37 +875,44 @@ class TestActivity : AppCompatActivity() {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
         }
-        btnPrevious = MaterialButton(this).apply {
-            text = "←"; textSize = 26f
+        btnPrevious = TextView(this).apply {
+            text = "←"; textSize = 22f
             setTextColor(textPrimary)
-            isAllCaps = false; stateListAnimator = null
+            gravity = Gravity.CENTER
             background = GradientDrawable().apply {
-                cornerRadius = Corner.M.dpF
+                cornerRadius = 14.dpF
                 setColor(bgSecondary)
                 setStroke(1.dp, dividerColor)
             }
-            layoutParams = LinearLayout.LayoutParams(64.dp, 52.dp).also { it.marginEnd = 8.dp }
+            layoutParams = LinearLayout.LayoutParams(60.dp, 48.dp).also { it.marginEnd = 8.dp }
+            isClickable = true; isFocusable = true
         }
-        btnClear = MaterialButton(this).apply {
-            text = "Clear Selection"; textSize = 12f
+        btnClear = TextView(this).apply {
+            text = "Clear Selection"; textSize = 12.5f
             setTextColor(textSecondary)
-            isAllCaps = false; stateListAnimator = null
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+            gravity = Gravity.CENTER
             background = GradientDrawable().apply {
-                cornerRadius = Corner.M.dpF
+                cornerRadius = 14.dpF
                 setColor(bgSecondary)
                 setStroke(1.dp, dividerColor)
             }
-            layoutParams = LinearLayout.LayoutParams(0, 44.dp, 1f).also { it.marginEnd = 8.dp }
+            layoutParams = LinearLayout.LayoutParams(0, 48.dp, 1f).also { it.marginEnd = 8.dp }
+            isClickable = true; isFocusable = true
         }
-        btnNext = MaterialButton(this).apply {
-            text = "→"; textSize = 26f
+        btnNext = TextView(this).apply {
+            text = "→"; textSize = 22f
             setTextColor(Color.WHITE)
-            isAllCaps = false; stateListAnimator = null
-            background = GradientDrawable().apply {
-                cornerRadius = Corner.M.dpF
-                setColor(colorPrimary)
+            gravity = Gravity.CENTER
+            background = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                intArrayOf(Color.parseColor("#4F46E5"), Color.parseColor("#6366F1"))
+            ).apply {
+                cornerRadius = 14.dpF
             }
-            layoutParams = LinearLayout.LayoutParams(64.dp, 52.dp)
+            elevation = Elev.S.dpF
+            layoutParams = LinearLayout.LayoutParams(60.dp, 48.dp)
+            isClickable = true; isFocusable = true
         }
         navRow.addView(btnPrevious); navRow.addView(btnClear); navRow.addView(btnNext)
         bottomBar.addView(navRow)

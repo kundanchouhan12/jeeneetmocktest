@@ -148,6 +148,20 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
   - **Timestamped `vaultGroupId`**: `assert_selected_vault()` generates a fresh timestamped ID (`<exam>_vault_<target_date>_<timestamp>`) on every run.
   - **Android Client (`QuestionSyncManager.kt`)**: Removed `shouldSkipNetwork(...)` pre-network skip. The app queries Firestore first; whenever `incomingGroupId != savedGroupId`, it invalidates the local Room cache and reinstalls the 30 new questions.
 
+### 6. 🖼️ End-to-End Image-Based STEM Questions & Diagram Pipeline (2026-09-29)
+- **The Problem Solved**:
+  - Previously, ~35% of JEE Physics (circuits, ray optics, kinematics), ~25% of Chemistry (reaction mechanisms, stereochemistry), and ~40% of NEET Biology (cell structures, anatomy, genetic crosses) were rejected because ingestion discarded any question containing `"refer to the given figure"`.
+- **Division of Labor Across Pipelines**:
+  - **Web Ingestion (`web_question_ingestion.py`, `neet_web_question_ingestion.py`)**: Responsible for extracting real PYQ diagrams. When diagram questions are parsed, `diagram_processor.py` auto-trims whitespace borders, downscales to mobile-optimal width ($\le 800\text{px}$), compresses to WebP ($q=85, \sim 25\text{--}45\text{KB}$), and uploads to Firebase Cloud Storage (`apps-273d9.firebasestorage.app`) with persistent download tokens (`imageUrl`, `solutionImageUrl`, `optionImageUrls`).
+  - **AI Question Pipeline (`auto_question_pipeline.py`)**: Strictly remains 100% self-contained text/LaTeX equations to prevent AI hallucination of fake diagram URLs.
+- **Android Mobile Client Architecture**:
+  - **Room Database Migration (`v16 -> v17`)**: Added `imageUrl`, `solutionImageUrl`, and `optionImageUrls` to `Question` and `Power100Question` entities.
+  - **High-Performance Image Caching**: Integrated Coil (`io.coil-kt:coil:2.6.0`) with disk and memory LRU caching.
+  - **Dynamic Interactive Diagram Card & Full-Screen Modal (`DiagramRenderer.kt`)**:
+    - `buildDiagramCard`: Clean dark-mode border, 220dp max height, aspect ratio maintenance, and "🔍 Tap to Zoom" pill badge.
+    - `showZoomDialog`: Full-screen immersive modal featuring `ZoomableImageView` with smooth pinch-to-zoom ($1\times - 5\times$), double-tap toggle, pan boundary clamping, and 1-handed zoom controls (`[-]`, `[+]`, `[↺ Fit]`, `[✕ Close]`).
+    - Integrated across `TestActivity`, `Power100Activity`, and `SolutionActivity`.
+
 
 
 
