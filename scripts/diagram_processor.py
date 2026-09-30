@@ -103,22 +103,40 @@ def compress_diagram_to_webp(image_bytes: bytes, max_width: int = MAX_DIAGRAM_WI
         return None
 
 
+GITHUB_REPO_RAW_URL = "https://raw.githubusercontent.com/kundanchouhan12/jeeneetmocktest/main"
+
+
+def save_local_diagram(webp_bytes: bytes, storage_path: str) -> str:
+    """Saves diagram to local repo diagrams/ directory and returns permanent GitHub Raw CDN URL."""
+    rel_path = storage_path.replace("\\", "/")
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    full_local_path = os.path.join(repo_root, rel_path)
+    os.makedirs(os.path.dirname(full_local_path), exist_ok=True)
+    with open(full_local_path, "wb") as f:
+        f.write(webp_bytes)
+    return f"{GITHUB_REPO_RAW_URL}/{rel_path}"
+
+
 def upload_diagram_to_storage(webp_bytes: bytes, bucket, storage_path: str) -> str | None:
     """
     Uploads WebP bytes to Firebase Storage bucket and returns permanent CDN download URL.
+    Falls back to repository CDN if bucket is not initialized or unreachable.
     """
-    try:
-        blob = bucket.blob(storage_path)
-        token = str(uuid.uuid4())
-        blob.metadata = {"firebaseStorageDownloadTokens": token}
-        blob.upload_from_string(webp_bytes, content_type="image/webp")
+    if bucket:
+        try:
+            blob = bucket.blob(storage_path)
+            token = str(uuid.uuid4())
+            blob.metadata = {"firebaseStorageDownloadTokens": token}
+            blob.upload_from_string(webp_bytes, content_type="image/webp")
 
-        encoded_path = urllib.parse.quote(blob.name, safe='')
-        public_url = f"https://firebasestorage.googleapis.com/v0/b/{bucket.name}/o/{encoded_path}?alt=media&token={token}"
-        return public_url
-    except Exception as e:
-        print(f"    ⚠️ Firebase Storage upload failed for {storage_path}: {e}")
-        return None
+            encoded_path = urllib.parse.quote(blob.name, safe='')
+            public_url = f"https://firebasestorage.googleapis.com/v0/b/{bucket.name}/o/{encoded_path}?alt=media&token={token}"
+            return public_url
+        except Exception as e:
+            print(f"    ⚠️ Firebase Storage upload failed for {storage_path}: {e}")
+            print("    🔄 Using reliable GitHub CDN fallback...")
+    
+    return save_local_diagram(webp_bytes, storage_path)
 
 
 def process_and_upload_diagram(
@@ -131,11 +149,8 @@ def process_and_upload_diagram(
 ) -> str | None:
     """
     End-to-end pipeline: takes source URL or raw bytes, optimizes to WebP,
-    uploads to Firebase Storage, and returns the CDN public URL.
+    uploads to Firebase Storage (or repository CDN fallback), and returns the CDN public URL.
     """
-    if not bucket:
-        print("    ℹ️ No Storage bucket provided; skipping upload.")
-        return None
 
     if isinstance(source_url_or_bytes, str):
         if "firebasestorage.googleapis.com" in source_url_or_bytes:

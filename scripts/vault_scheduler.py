@@ -264,7 +264,21 @@ def select_vault_questions(
                 tier2.append((datetime.date.min, doc))
 
     fresh_n = min(count, len(tier1))
-    selected = random.sample(tier1, fresh_n) if fresh_n else []
+    if fresh_n:
+        # Prioritize picking diagram questions (up to 5) so daily vaults contain rich STEM diagrams
+        def has_diagram(doc):
+            data = doc.to_dict() if hasattr(doc, "to_dict") and callable(doc.to_dict) else (doc if isinstance(doc, dict) else getattr(doc, "__dict__", {}))
+            return bool(data.get("imageUrl"))
+
+        tier1_diagrams = [d for d in tier1 if has_diagram(d)]
+        tier1_text = [d for d in tier1 if not has_diagram(d)]
+        target_diags = min(5, len(tier1_diagrams))
+        selected_diags = random.sample(tier1_diagrams, target_diags) if target_diags else []
+        needed_text = fresh_n - len(selected_diags)
+        selected_text = random.sample(tier1_text, min(needed_text, len(tier1_text))) if needed_text > 0 else []
+        selected = selected_diags + selected_text
+    else:
+        selected = []
 
     needed_from_cooldown = count - fresh_n
     if needed_from_cooldown > 0:
