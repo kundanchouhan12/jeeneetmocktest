@@ -427,7 +427,170 @@ def generate_pedigree_chart(
 
 
 # ─────────────────────────────────────────────────────────────────────────────
-# 7. HIGH-YIELD CURATED PYQ DIAGRAM BANK
+# 7. MATHEMATICS: Coordinate Geometry & Function Graphs
+# ─────────────────────────────────────────────────────────────────────────────
+def generate_math_geometry_graph(
+    geom_type: str = "circle_tangent",
+    r: float = 5.0,
+    px: float = 3.0,
+    py: float = 4.0,
+    **kwargs
+) -> bytes:
+    """Renders deterministic mathematical graphs for JEE Coordinate Geometry & Calculus."""
+    r = float(kwargs.get("radius", kwargs.get("r", r)))
+    px = float(kwargs.get("point_x", kwargs.get("px", px)))
+    py = float(kwargs.get("point_y", kwargs.get("py", py)))
+
+    fig, ax = _create_base_figure(figsize=(5.5, 5.0))
+    ax.set_title("Coordinate Geometry (Circle & Tangent)", color=TEXT_COLOR, fontsize=13, fontweight='bold', pad=12)
+
+    # Coordinate Axes
+    limit = r + 2.5
+    ax.axhline(0, color=LINE_COLOR, lw=1.2, linestyle="-")
+    ax.axvline(0, color=LINE_COLOR, lw=1.2, linestyle="-")
+
+    # Circle centered at (0, 0)
+    circle = patches.Circle((0, 0), r, edgecolor=ACCENT_BLUE, facecolor="none", lw=2.2, label=r"$x^2 + y^2 = r^2$")
+    ax.add_patch(circle)
+
+    # Point P(px, py) on circle
+    ax.plot(px, py, 'o', color=ACCENT_AMBER, markersize=8)
+    p_label = f"$P({px:g}, {py:g})$"
+    ax.text(px + 0.3, py + 0.3, p_label, color=ACCENT_AMBER, fontsize=11, fontweight='bold')
+
+    # Radius vector OP
+    ax.plot([0, px], [0, py], color=TEXT_COLOR, lw=1.5, linestyle="--")
+    ax.text(px/2 - 0.4, py/2 + 0.2, f"$r={r:g}$", color=TEXT_COLOR, fontsize=10.5)
+
+    # Tangent line at P: slope m_t = -px/py
+    if abs(py) > 1e-4:
+        m_t = -px / py
+        x_vals = np.linspace(px - 3.5, px + 3.5, 50)
+        y_vals = py + m_t * (x_vals - px)
+        ax.plot(x_vals, y_vals, color=ACCENT_RED, lw=2.0, label="Tangent Line")
+    else:
+        ax.axvline(px, color=ACCENT_RED, lw=2.0)
+
+    ax.set_xlim(-limit, limit)
+    ax.set_ylim(-limit, limit)
+    ax.set_aspect('equal')
+    ax.grid(True, color=GRID_COLOR, linestyle="--", alpha=0.6)
+    return _fig_to_png_bytes(fig)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 8. BIOLOGY: Genetics Monohybrid / Punnett Square Cross
+# ─────────────────────────────────────────────────────────────────────────────
+def generate_punnett_square(
+    cross_type: str = "monohybrid",
+    gamete1: str = "A",
+    gamete2: str = "a",
+    **kwargs
+) -> bytes:
+    """Renders deterministic 2x2 Punnett square for NEET Genetics."""
+    g1 = kwargs.get("gamete1", gamete1)
+    g2 = kwargs.get("gamete2", gamete2)
+
+    fig, ax = _create_base_figure(figsize=(5.5, 4.5))
+    ax.set_title(r"Monohybrid Cross Punnett Square ($Aa \times Aa$)", color=TEXT_COLOR, fontsize=13, fontweight='bold', pad=12)
+
+    grid_data = [
+        ((1, 2), f"{g1}{g1}", ACCENT_BLUE, "Homozygous Dominant"),
+        ((2, 2), f"{g1}{g2}", ACCENT_GREEN, "Heterozygous"),
+        ((1, 1), f"{g1}{g2}", ACCENT_GREEN, "Heterozygous"),
+        ((2, 1), f"{g2}{g2}", ACCENT_RED, "Homozygous Recessive")
+    ]
+
+    for (gx, gy), genotype, color, desc in grid_data:
+        rect = patches.Rectangle((gx, gy), 1.0, 1.0, edgecolor=LINE_COLOR, facecolor=color, alpha=0.25, lw=2)
+        ax.add_patch(rect)
+        ax.text(gx + 0.5, gy + 0.55, genotype, color=TEXT_COLOR, fontsize=16, fontweight='bold', ha='center', va='center')
+        ax.text(gx + 0.5, gy + 0.25, desc, color=TEXT_COLOR, fontsize=8.5, ha='center', va='center', alpha=0.8)
+
+    # Outer border
+    outer = patches.Rectangle((1, 1), 2.0, 2.0, edgecolor=LINE_COLOR, facecolor="none", lw=2.5)
+    ax.add_patch(outer)
+
+    # Gamete Labels: Top
+    ax.text(1.5, 3.25, f"${g1}$", color=ACCENT_AMBER, fontsize=15, fontweight='bold', ha='center')
+    ax.text(2.5, 3.25, f"${g2}$", color=ACCENT_AMBER, fontsize=15, fontweight='bold', ha='center')
+    ax.text(2.0, 3.65, "Male Gametes ♂", color=ACCENT_AMBER, fontsize=11, fontweight='bold', ha='center')
+
+    # Gamete Labels: Left
+    ax.text(0.65, 2.5, f"${g1}$", color=ACCENT_AMBER, fontsize=15, fontweight='bold', va='center')
+    ax.text(0.65, 1.5, f"${g2}$", color=ACCENT_AMBER, fontsize=15, fontweight='bold', va='center')
+    ax.text(0.25, 2.0, "Female\nGametes\n♀", color=ACCENT_AMBER, fontsize=10, fontweight='bold', va='center', ha='center')
+
+    # Ratio Annotation below
+    ax.text(2.0, 0.4, r"Phenotypic Ratio: 3 Dominant : 1 Recessive", color=TEXT_COLOR, fontsize=11, fontweight='bold', ha='center')
+    ax.text(2.0, 0.05, r"Genotypic Ratio: 1 $AA$ : 2 $Aa$ : 1 $aa$", color=ACCENT_GREEN, fontsize=10.5, ha='center')
+
+    ax.set_xlim(0, 3.5)
+    ax.set_ylim(-0.2, 4.0)
+    ax.axis('off')
+    return _fig_to_png_bytes(fig)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 9. CHEMISTRY: Molecular Structure & Geometrical Isomerism
+# ─────────────────────────────────────────────────────────────────────────────
+def generate_organic_structure_diagram(
+    structure_type: str = "cis_trans",
+    compound: str = "But-2-ene",
+    **kwargs
+) -> bytes:
+    """Renders deterministic molecular structures & geometrical isomerism for JEE/NEET Chemistry."""
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.0, 3.8), facecolor=BG_COLOR)
+    for ax in (ax1, ax2):
+        ax.set_facecolor(BG_COLOR)
+        ax.axis('off')
+
+    # 1. Cis-Isomer (Left panel)
+    ax1.set_title("Cis-But-2-ene (Z)", color=ACCENT_BLUE, fontsize=12, fontweight='bold', pad=8)
+    ax1.plot([-0.6, 0.6], [0.05, 0.05], color=LINE_COLOR, lw=3)
+    ax1.plot([-0.6, 0.6], [-0.05, -0.05], color=LINE_COLOR, lw=3)
+    ax1.text(-0.6, 0, "C", color=TEXT_COLOR, fontsize=14, fontweight='bold', ha='center', va='center')
+    ax1.text(0.6, 0, "C", color=TEXT_COLOR, fontsize=14, fontweight='bold', ha='center', va='center')
+    ax1.plot([-0.6, -1.3], [0.15, 0.9], color=ACCENT_AMBER, lw=2.5)
+    ax1.plot([0.6, 1.3], [0.15, 0.9], color=ACCENT_AMBER, lw=2.5)
+    ax1.text(-1.35, 1.05, r"$\mathrm{CH_3}$", color=ACCENT_AMBER, fontsize=13, fontweight='bold', ha='center')
+    ax1.text(1.35, 1.05, r"$\mathrm{CH_3}$", color=ACCENT_AMBER, fontsize=13, fontweight='bold', ha='center')
+    ax1.plot([-0.6, -1.3], [-0.15, -0.9], color=TEXT_COLOR, lw=2)
+    ax1.plot([0.6, 1.3], [-0.15, -0.9], color=TEXT_COLOR, lw=2)
+    ax1.text(-1.35, -1.15, "H", color=TEXT_COLOR, fontsize=13, fontweight='bold', ha='center')
+    ax1.text(1.35, -1.15, "H", color=TEXT_COLOR, fontsize=13, fontweight='bold', ha='center')
+    ax1.text(0, -1.6, r"Dipole Moment $\mu > 0$ (Polar)", color=ACCENT_BLUE, fontsize=10.5, ha='center', fontweight='bold')
+    ax1.set_xlim(-2.0, 2.0)
+    ax1.set_ylim(-1.8, 1.5)
+
+    # 2. Trans-Isomer (Right panel)
+    ax2.set_title("Trans-But-2-ene (E)", color=ACCENT_GREEN, fontsize=12, fontweight='bold', pad=8)
+    ax2.plot([-0.6, 0.6], [0.05, 0.05], color=LINE_COLOR, lw=3)
+    ax2.plot([-0.6, 0.6], [-0.05, -0.05], color=LINE_COLOR, lw=3)
+    ax2.text(-0.6, 0, "C", color=TEXT_COLOR, fontsize=14, fontweight='bold', ha='center', va='center')
+    ax2.text(0.6, 0, "C", color=TEXT_COLOR, fontsize=14, fontweight='bold', ha='center', va='center')
+    ax2.plot([-0.6, -1.3], [0.15, 0.9], color=ACCENT_AMBER, lw=2.5)
+    ax2.plot([0.6, 1.3], [-0.15, -0.9], color=ACCENT_AMBER, lw=2.5)
+    ax2.text(-1.35, 1.05, r"$\mathrm{CH_3}$", color=ACCENT_AMBER, fontsize=13, fontweight='bold', ha='center')
+    ax2.text(1.35, -1.15, r"$\mathrm{CH_3}$", color=ACCENT_AMBER, fontsize=13, fontweight='bold', ha='center')
+    ax2.plot([-0.6, -1.3], [-0.15, -0.9], color=TEXT_COLOR, lw=2)
+    ax2.plot([0.6, 1.3], [0.15, 0.9], color=TEXT_COLOR, lw=2)
+    ax2.text(-1.35, -1.15, "H", color=TEXT_COLOR, fontsize=13, fontweight='bold', ha='center')
+    ax2.text(1.35, 1.05, "H", color=TEXT_COLOR, fontsize=13, fontweight='bold', ha='center')
+    ax2.text(0, -1.6, r"Dipole Moment $\mu \approx 0$ (Non-polar)", color=ACCENT_GREEN, fontsize=10.5, ha='center', fontweight='bold')
+    ax2.set_xlim(-2.0, 2.0)
+    ax2.set_ylim(-1.8, 1.5)
+
+    buf = io.BytesIO()
+    fig.tight_layout()
+    fig.savefig(buf, format='png', dpi=160, facecolor=fig.get_facecolor(), edgecolor='none')
+    plt.close(fig)
+    buf.seek(0)
+    return buf.read()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 10. HIGH-YIELD CURATED PYQ DIAGRAM BANK
 # ─────────────────────────────────────────────────────────────────────────────
 # Verified high-yield PYQ diagram assets mapped to NCERT chapters.
 # All image URLs point to reliable Wikimedia Commons / NCERT public domain assets.
@@ -526,5 +689,11 @@ def render_diagram_for_spec(spec_type: str, params: dict = None) -> bytes:
         return generate_reaction_coordinate(**p) if p else generate_reaction_coordinate()
     elif spec_type == "pedigree":
         return generate_pedigree_chart(**p) if p else generate_pedigree_chart()
+    elif spec_type in ("math_geometry", "geometry", "math_graph"):
+        return generate_math_geometry_graph(**p)
+    elif spec_type in ("punnett_square", "genetics_cross"):
+        return generate_punnett_square(**p)
+    elif spec_type in ("organic_structure", "chemical_structure", "structure"):
+        return generate_organic_structure_diagram(**p)
     else:
         return generate_pv_cycle_diagram()

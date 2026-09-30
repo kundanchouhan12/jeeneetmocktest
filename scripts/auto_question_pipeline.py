@@ -23,6 +23,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 
 import curriculum
+import curriculum_validator
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -328,10 +329,14 @@ def validate_and_clean_question(q: dict) -> tuple[bool, str]:
     if subject not in ("Physics", "Chemistry", "Maths", "Biology"):
         return False, f"Invalid subject: {subject}"
 
-    # 8. Curriculum taxonomy validation
-    is_curr_valid, curr_reason = curriculum.validate_question_against_curriculum(q)
-    if not is_curr_valid:
-        return False, f"Curriculum violation: {curr_reason}"
+    # 8. Full Curriculum Quality Gate Validation
+    val_res = curriculum_validator.validate_question(q)
+    if not val_res.is_valid:
+        return False, f"Quality gate failure [{val_res.failed_stage}]: {val_res.reason}"
+
+    # Enrich with validated metadata
+    for k, v in val_res.metadata.items():
+        q[k] = v
 
     return True, ""
 

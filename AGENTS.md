@@ -182,3 +182,23 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
 - **Pipeline Gates**:
   - `auto_question_pipeline.py` dynamically injects the official unit, topic, and allowed modes into the LLM system prompt (`curriculum.get_prompt_constraints()`), preventing off-syllabus drift.
   - `stem_diagram_pipeline.py`, `web_question_ingestion.py`, and `neet_web_question_ingestion.py` validate all questions against `curriculum.validate_question_against_curriculum()`.
+
+### 8. 🛡️ 7-Stage Curriculum Quality Gate & Honest Metadata Architecture (`scripts/curriculum_validator.py`)
+- **Strict 7-Stage Quality Gate**:
+  1. **Stage 1 (Curriculum)**: Exam, subject, official unit resolution via `curriculum.find_unit()`. Rejects unapproved units or hallucinated chapters.
+  2. **Stage 2 (Origin & AI Image Invariant)**: Checks `sourceType` (`PYQ`, `WEB_SOURCE`, `ORIGINAL_PRACTICE`, `AI_GENERATED`). Enforces `ai_image_generation: false` — rejects questions with generative AI URLs. Authentic PYQ diagrams require genuine PYQ source; practice diagrams require deterministic renderers.
+  3. **Stage 3 (Mode Compatibility)**: Validates that question mode (`TEXT`, `NUMERICAL`, `DIAGRAM`, `STRUCTURE`) is explicitly allowed in `curriculum.json` for that topic/unit.
+  4. **Stage 4 (Question & LaTeX Integrity)**: Checks questionText, options (exactly 4 non-empty), valid `correctOptionIndex` (0-3), and KaTeX syntax. Enforces no raw `\ce{}` notation.
+  5. **Stage 5 (Dual-Pass Math/Numerical Validation)**: For `NUMERICAL` questions, runs independent deterministic solver functions against `params` before publishing. Rejects questions where computed answer != options[correctOptionIndex].
+  6. **Stage 6 (Diagram/Structure Validation)**: For `DIAGRAM`/`STRUCTURE` questions, validates image byte signatures (PNG/WebP magic numbers), aspect ratio and dimensions ($\ge 200 \times 150$), parameter consistency between question prose and diagram spec, and topic label presence.
+  7. **Stage 7 (STEM-Safe Fingerprint Deduplication)**: Audits question against historical database using STEM-preserving fingerprints.
+- **Honest Metadata Schema**:
+  - `exam`: `JEE_MAIN` or `NEET_UG`
+  - `subject`: `Physics`, `Chemistry`, `Mathematics`, `Biology`
+  - `officialUnit`: Official syllabus unit name (e.g. `Kinematics`, `Genetics and Evolution`)
+  - `topic`: Granular NCERT topic (e.g. `Wheatstone Bridge`, `Pedigree Analysis`)
+  - `questionMode`: `TEXT` | `NUMERICAL` | `DIAGRAM` | `STRUCTURE`
+  - `sourceType`: `PYQ` | `WEB_SOURCE` | `ORIGINAL_PRACTICE` | `AI_GENERATED`
+  - `diagramRequired`: boolean
+  - `diagramSource`: `DETERMINISTIC` | `AUTHENTIC_SOURCE` | `NONE`
+  - `validationStatus`: `PASSED` | `FAILED`

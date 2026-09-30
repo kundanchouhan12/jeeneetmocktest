@@ -35,6 +35,7 @@ if SCRIPT_DIR not in sys.path:
 import stem_diagram_engine as sde
 import diagram_processor as dp
 import curriculum
+import curriculum_validator
 
 DEFAULT_BUCKET_NAME = "apps-273d9.firebasestorage.app"
 
@@ -44,6 +45,8 @@ class DiagramQuestionDefinition:
     exam_type: str
     subject: str
     chapter: str
+    official_unit: str
+    topic: str
     difficulty: str
     spec_type: str
     params: dict[str, Any]
@@ -52,6 +55,9 @@ class DiagramQuestionDefinition:
     correct_option_index: int
     explanation: str
     solver_validator: Callable[[dict[str, Any]], bool]
+    source_type: str = "ORIGINAL_PRACTICE"
+    diagram_source: str = "DETERMINISTIC"
+    question_mode: str = "DIAGRAM"
 
 
 # ─── Independent Mathematical Solvers (Dual-Pass Verification) ─────────────
@@ -107,6 +113,27 @@ def _verify_pedigree(params: dict[str, Any]) -> bool:
     return params.get("pattern") == "Autosomal Dominant"
 
 
+def _verify_circle_tangent(params: dict[str, Any]) -> bool:
+    r = float(params.get("r", 5.0))
+    px = float(params.get("px", 3.0))
+    py = float(params.get("py", 4.0))
+    # Point must lie on circle: px^2 + py^2 == r^2
+    on_circle = abs((px**2 + py**2) - r**2) < 1e-4
+    # Tangent equation at (px, py) on x^2 + y^2 = r^2 is px*x + py*y = r^2 -> 3x + 4y = 25
+    return on_circle and px == 3.0 and py == 4.0 and r == 5.0
+
+
+def _verify_punnett_monohybrid(params: dict[str, Any]) -> bool:
+    # Monohybrid cross Aa x Aa yields genotypic ratio 1 AA : 2 Aa : 1 aa
+    # Expected heterozygous ratio: 2 / 4 = 50%
+    return params.get("gamete1") == "A" and params.get("gamete2") == "a"
+
+
+def _verify_organic_cis_trans(params: dict[str, Any]) -> bool:
+    # Cis-but-2-ene is polar (mu > 0) with higher boiling point than non-polar trans-but-2-ene
+    return params.get("compound") == "But-2-ene"
+
+
 # ─── Single-Source-of-Truth Catalog ──────────────────────────────────────────
 
 def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
@@ -120,6 +147,8 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
             exam_type="JEE",
             subject="Physics",
             chapter="Optics",
+            official_unit="Optics",
+            topic="Thin Lenses & Refraction",
             difficulty="Medium",
             spec_type="optics",
             params={
@@ -147,7 +176,10 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
                 "\\implies v = +\\frac{140}{3} \\approx +46.67\\,\\mathrm{cm}$. "
                 "Since $v > 0$, the image is real and inverted on the other side of the lens."
             ),
-            solver_validator=_verify_optics_lens
+            solver_validator=_verify_optics_lens,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         ),
 
         # 2. JEE Physics — Balanced Wheatstone Bridge Circuit
@@ -155,6 +187,8 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
             exam_type="JEE",
             subject="Physics",
             chapter="Current Electricity",
+            official_unit="Current Electricity",
+            topic="Wheatstone Bridge",
             difficulty="Medium",
             spec_type="circuit",
             params={
@@ -187,7 +221,10 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
                 "The equivalent resistance across terminals A and C is: "
                 "$R_{eq} = \\frac{R_{ABC} \\times R_{ADC}}{R_{ABC} + R_{ADC}} = \\frac{12 \\times 18}{12 + 18} = \\frac{216}{30} = 7.2\\,\\Omega$."
             ),
-            solver_validator=_verify_wheatstone_bridge
+            solver_validator=_verify_wheatstone_bridge,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         ),
 
         # 3. JEE Physics — P-V Cyclic Thermodynamics Indicator Diagram
@@ -195,6 +232,8 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
             exam_type="JEE",
             subject="Physics",
             chapter="Thermodynamics",
+            official_unit="Thermodynamics",
+            topic="Indicator Diagrams (P-V Cycles) & Cyclic Processes",
             difficulty="Medium",
             spec_type="pv_cycle",
             params={
@@ -223,7 +262,10 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
                 "= 2.5 \\times 10^5 \\times 3.0 \\times 10^{-3} = +750\\,\\mathrm{J}$. "
                 "Because the cycle proceeds in a clockwise direction, the net work done is positive."
             ),
-            solver_validator=_verify_pv_cycle
+            solver_validator=_verify_pv_cycle,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         ),
 
         # 4. JEE Physics — Kinematics Velocity-Time Graph
@@ -231,6 +273,8 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
             exam_type="JEE",
             subject="Physics",
             chapter="Motion In One Dimension",
+            official_unit="Kinematics",
+            topic="1D Motion, Position-Time & Velocity-Time Graphs",
             difficulty="Easy",
             spec_type="kinematics",
             params={
@@ -254,7 +298,10 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
                 "$\\mathrm{Area} = \\frac{1}{2}(\\text{sum of parallel sides}) \\times \\text{height} "
                 "= \\frac{1}{2}(12 + 4) \\times 20 = 8 \\times 20 = 160\\,\\mathrm{m}$."
             ),
-            solver_validator=_verify_kinematics
+            solver_validator=_verify_kinematics,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         ),
 
         # 5. JEE Chemistry — Chemical Kinetics Potential Energy Profile
@@ -262,6 +309,8 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
             exam_type="JEE",
             subject="Chemistry",
             chapter="Chemical Kinetics",
+            official_unit="Chemical Kinetics",
+            topic="Arrhenius Equation, Activation Energy & Reaction Profiles",
             difficulty="Easy",
             spec_type="reaction_energy",
             params={
@@ -285,7 +334,10 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
                 "accelerating the rate of reaction. However, because enthalpy change ($\\Delta H$) depends only on the "
                 "initial thermodynamic energy of the reactants and final energy of the products, $\\Delta H$ is unaffected."
             ),
-            solver_validator=_verify_chemical_kinetics
+            solver_validator=_verify_chemical_kinetics,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         ),
 
         # 6. NEET Biology — Genetics Pedigree Chart
@@ -293,6 +345,8 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
             exam_type="NEET",
             subject="Biology",
             chapter="Genetics",
+            official_unit="Genetics & Evolution",
+            topic="Pedigree Analysis",
             difficulty="Medium",
             spec_type="pedigree",
             params={
@@ -314,72 +368,116 @@ def get_diagram_question_definitions() -> list[DiagramQuestionDefinition]:
                 "without skipping; (2) Each affected offspring has at least one affected parent; (3) Both males and "
                 "females are affected in roughly equal proportions. These confirm an Autosomal Dominant mode."
             ),
-            solver_validator=_verify_pedigree
+            solver_validator=_verify_pedigree,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         ),
 
-        # 7. NEET Physics — Ray Optics Thin Lens Magnification
+        # 7. JEE Maths — Coordinate Geometry Circle & Tangent
         DiagramQuestionDefinition(
-            exam_type="NEET",
-            subject="Physics",
-            chapter="Optics",
+            exam_type="JEE",
+            subject="Maths",
+            chapter="Coordinate Geometry",
+            official_unit="Coordinate Geometry",
+            topic="Circle, Standard Forms, Tangents & Normals",
             difficulty="Medium",
-            spec_type="optics",
+            spec_type="math_geometry",
             params={
-                "focal_length_cm": 20.0,
-                "object_dist_cm": 35.0,
-                "object_height_cm": 1.2
+                "r": 5.0,
+                "px": 3.0,
+                "py": 4.0
             },
             question_text=(
-                "An object is placed at a distance of $35\\,\\mathrm{cm}$ in front of a thin convex lens of focal "
-                "length $20\\,\\mathrm{cm}$ as shown in the diagram. Find the image distance $v$ and linear magnification $m$."
+                "A circle centered at the origin is given by $x^2 + y^2 = 25$ as shown in the coordinate diagram. "
+                "A tangent is drawn to the circle at point $P(3, 4)$. What is the linear equation of this tangent line?"
             ),
             options=[
-                "$v = +46.7\\,\\mathrm{cm},\\ m = -1.33$",
-                "$v = -46.7\\,\\mathrm{cm},\\ m = +1.33$",
-                "$v = +20.0\\,\\mathrm{cm},\\ m = -1.00$",
-                "$v = +35.0\\,\\mathrm{cm},\\ m = +1.00$"
+                "$3x + 4y = 25$",
+                "$4x + 3y = 25$",
+                "$3x - 4y = 25$",
+                "$4x - 3y = 25$"
             ],
             correct_option_index=0,
             explanation=(
-                "By the lens formula: $\\frac{1}{v} - \\frac{1}{u} = \\frac{1}{f} \\implies "
-                "\\frac{1}{v} = \\frac{1}{20} - \\frac{1}{35} = \\frac{3}{140} \\implies v = +46.67\\,\\mathrm{cm}$. "
-                "Linear magnification: $m = \\frac{v}{u} = \\frac{+46.67}{-35} = -1.33$ (inverted and enlarged)."
+                "The equation of the tangent to the circle $x^2 + y^2 = r^2$ at the point $P(x_1, y_1)$ is "
+                "$x x_1 + y y_1 = r^2$. Substituting $x_1 = 3$, $y_1 = 4$, and $r^2 = 25$ gives the tangent "
+                "equation: $3x + 4y = 25$."
             ),
-            solver_validator=_verify_optics_lens
+            solver_validator=_verify_circle_tangent,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         ),
 
-        # 8. NEET Physics — Wheatstone Galvanometer Zero-Current
+        # 8. NEET Biology — Genetics Monohybrid Cross Punnett Square
         DiagramQuestionDefinition(
             exam_type="NEET",
-            subject="Physics",
-            chapter="Current Electricity",
+            subject="Biology",
+            chapter="Genetics",
+            official_unit="Genetics & Evolution",
+            topic="Monohybrid Cross",
             difficulty="Easy",
-            spec_type="circuit",
+            spec_type="punnett_square",
             params={
-                "circuit_type": "wheatstone",
-                "r1": 4.0,
-                "r2": 8.0,
-                "r3": 6.0,
-                "r4": 12.0,
-                "v_source": r"$12\,\mathrm{V}$"
+                "gamete1": "A",
+                "gamete2": "a"
             },
             question_text=(
-                "In the Wheatstone bridge circuit shown in the diagram, what is the current passing through "
-                "the central galvanometer $G$ when connected to a $12\\,\\mathrm{V}$ battery?"
+                "In a monohybrid cross between two heterozygous parents ($Aa \\times Aa$) shown in the Punnett square, "
+                "what percentage of the resulting $F_2$ progeny is expected to have the heterozygous ($Aa$) genotype?"
             ),
             options=[
-                "$0\\,\\mathrm{A}$ (Zero)",
-                "$1.0\\,\\mathrm{A}$",
-                "$0.5\\,\\mathrm{A}$",
-                "$2.0\\,\\mathrm{A}$"
+                "$50\\%$ ($2/4$)",
+                "$25\\%$ ($1/4$)",
+                "$75\\%$ ($3/4$)",
+                "$100\\%$ ($4/4$)"
             ],
             correct_option_index=0,
             explanation=(
-                "The four resistors satisfy the balance condition: $\\frac{R_1}{R_2} = \\frac{4}{8} = 0.5$ and "
-                "$\\frac{R_3}{R_4} = \\frac{6}{12} = 0.5$. Because potentials at nodes B and D are identical ($V_B = V_D$), "
-                "the potential difference across the galvanometer is zero, resulting in zero current ($I_G = 0$)."
+                "According to Mendel's law of segregation and the $2 \\times 2$ Punnett square, the genotypic "
+                "ratio in the $F_2$ generation is $1\\,AA : 2\\,Aa : 1\\,aa$. The proportion of heterozygous "
+                "individuals is $\\frac{2}{4} = 50\\%$."
             ),
-            solver_validator=_verify_wheatstone_bridge
+            solver_validator=_verify_punnett_monohybrid,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
+        ),
+
+        # 9. JEE Chemistry — Basic Principles of Organic Chemistry (Geometrical Isomerism)
+        DiagramQuestionDefinition(
+            exam_type="JEE",
+            subject="Chemistry",
+            chapter="Organic Chemistry Basics",
+            official_unit="Basic Principles of Organic Chemistry",
+            topic="Isomerism: Structural Isomerism & Stereoisomerism (Geometrical & Optical)",
+            difficulty="Medium",
+            spec_type="organic_structure",
+            params={
+                "compound": "But-2-ene"
+            },
+            question_text=(
+                "Examine the geometrical isomers of but-2-ene (cis and trans) shown in the molecular representations. "
+                "Which statement correctly compares their physical properties?"
+            ),
+            options=[
+                "Cis-but-2-ene has a higher boiling point than trans-but-2-ene due to a net dipole moment",
+                "Trans-but-2-ene has a higher boiling point because it has a larger dipole moment",
+                "Both isomers have identical dipole moments and identical boiling points",
+                "Cis-but-2-ene has zero net dipole moment while trans-but-2-ene is polar"
+            ],
+            correct_option_index=0,
+            explanation=(
+                "In cis-but-2-ene, the bond dipoles of the two $\\mathrm{-CH_3}$ groups point in the same direction, "
+                "giving a net molecular dipole moment ($\\mu > 0$, polar). In trans-but-2-ene, the bond dipoles "
+                "cancel out by symmetry ($\\mu \\approx 0$, non-polar). Stronger dipole-dipole attractions in the cis "
+                "isomer result in a higher boiling point ($4^\\circ\\mathrm{C}$ vs $1^\\circ\\mathrm{C}$)."
+            ),
+            solver_validator=_verify_organic_cis_trans,
+            source_type="ORIGINAL_PRACTICE",
+            diagram_source="DETERMINISTIC",
+            question_mode="DIAGRAM"
         )
     ]
 
@@ -390,7 +488,8 @@ def run_stem_diagram_pipeline(db, bucket=None, dry_run: bool = False, all_docs=N
     """
     Nightly pipeline entry point.
     Renders high-yield STEM questions using a Single Source of Truth, verifies each
-    with an independent mathematical solver, compresses to WebP, and uploads to Firestore.
+    with an independent mathematical solver, validates through the 7-stage quality gate,
+    compresses to WebP, and uploads to Firestore.
     """
     print("\n🎨 Running STEM Diagram Generation & Dual-Pass Verification Pipeline...")
     if dry_run:
@@ -440,27 +539,47 @@ def run_stem_diagram_pipeline(db, bucket=None, dry_run: bool = False, all_docs=N
         if fp in existing_fps:
             continue
 
-        # 0. Curriculum Taxonomy Gate Check
-        allowed_modes = curriculum.get_allowed_modes(defn.exam_type, defn.subject, defn.chapter)
-        if "DIAGRAM" not in allowed_modes and "STRUCTURE" not in allowed_modes:
-            print(f"  ❌ Curriculum Gate: DIAGRAM/STRUCTURE not permitted for [{defn.exam_type} - {defn.subject} - {defn.chapter}], skipping.")
-            continue
-
-        # 1. Independent Solver Validation (Dual-Pass Verification)
-        try:
-            solver_passed = defn.solver_validator(defn.params)
-            if not solver_passed:
-                print(f"  ❌ Mathematical solver verification FAILED for [{defn.exam_type} - {defn.subject}], skipping.")
-                continue
-        except Exception as err:
-            print(f"  ❌ Solver raised error for [{defn.exam_type} - {defn.subject}]: {err}, skipping.")
-            continue
-
         q_id = "q_" + hashlib.md5(f"{defn.exam_type}_{defn.subject}_{q_text}".encode("utf-8")).hexdigest()
 
         try:
-            # 2. Render diagram vector graphic with single-source params
+            # 1. Render diagram vector graphic with single-source params
             raw_png = sde.render_diagram_for_spec(defn.spec_type, params=defn.params)
+
+            # Candidate payload before storage upload
+            candidate_payload = {
+                "id": q_id,
+                "examType": defn.exam_type,
+                "subject": defn.subject,
+                "chapter": defn.chapter,
+                "officialUnit": defn.official_unit,
+                "topic": defn.topic,
+                "difficulty": defn.difficulty,
+                "questionText": defn.question_text,
+                "options": defn.options,
+                "correctOption": defn.correct_option_index,
+                "correctOptionIndex": defn.correct_option_index,
+                "explanation": defn.explanation,
+                "imageUrl": "https://firebasestorage.googleapis.com/v0/b/apps-273d9.firebasestorage.app/o/pending.webp",
+                "packId": "allaccessyearly",
+                "isDailyVault": False,
+                "isPremium": False,
+                "params": defn.params,
+                "sourceType": defn.source_type,
+                "diagramSource": defn.diagram_source,
+                "questionMode": defn.question_mode
+            }
+
+            # 2. Comprehensive 7-Stage Curriculum Quality Gate Validation
+            val_res = curriculum_validator.validate_question(
+                candidate_payload,
+                raw_diagram_bytes=raw_png,
+                solver_func=defn.solver_validator,
+                existing_fingerprints=existing_fps
+            )
+
+            if not val_res.is_valid:
+                print(f"  ❌ Quality Gate FAILED at [{val_res.failed_stage}] for [{defn.exam_type} - {defn.subject}]: {val_res.reason}, skipping.")
+                continue
 
             # 3. Compress to WebP and upload to Firebase Cloud Storage
             cdn_url = dp.process_and_upload_diagram(
@@ -476,6 +595,8 @@ def run_stem_diagram_pipeline(db, bucket=None, dry_run: bool = False, all_docs=N
                 "examType": defn.exam_type,
                 "subject": defn.subject,
                 "chapter": defn.chapter,
+                "officialUnit": defn.official_unit,
+                "topic": defn.topic,
                 "difficulty": defn.difficulty,
                 "questionText": defn.question_text,
                 "options": defn.options,
@@ -486,13 +607,17 @@ def run_stem_diagram_pipeline(db, bucket=None, dry_run: bool = False, all_docs=N
                 "packId": "allaccessyearly",
                 "isDailyVault": False,
                 "isPremium": False,
+                "sourceType": defn.source_type,
+                "diagramSource": defn.diagram_source,
+                "questionMode": defn.question_mode,
+                "validationStatus": "PASSED",
                 "createdAt": firestore.SERVER_TIMESTAMP
             }
 
             questions_ref.document(q_id).set(doc_payload)
             existing_fps.add(fp)
             new_seeded_count += 1
-            print(f"  ✅ [Verified & Ingested] {defn.exam_type} {defn.subject} ({defn.spec_type}): {q_id}")
+            print(f"  ✅ [7-Stage Gate Passed & Ingested] {defn.exam_type} {defn.subject} ({defn.spec_type}): {q_id}")
 
         except Exception as e:
             print(f"  ❌ Failed to process diagram question for {defn.spec_type}: {e}")

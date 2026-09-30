@@ -24,6 +24,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore, storage
 from diagram_processor import process_and_upload_diagram, DEFAULT_BUCKET_NAME
 import curriculum
+import curriculum_validator
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -382,11 +383,13 @@ def validate_web_question(q: dict) -> tuple[bool, str]:
     if not explanation or len(explanation) < 15:
         return False, "Explanation missing or too brief (< 15 chars)"
 
-    # 6. Chapter & Curriculum validation
-    is_in_official = (subject in OFFICIAL_CHAPTERS and chapter in OFFICIAL_CHAPTERS[subject])
-    unit = curriculum.find_unit(exam, subject, chapter)
-    if not is_in_official and not unit:
-        return False, f"Chapter '{chapter}' not in official curriculum or app chapter list"
+    # 6. Full 7-Stage Curriculum Quality Gate Validation
+    val_res = curriculum_validator.validate_question(q)
+    if not val_res.is_valid:
+        return False, f"Quality gate failure [{val_res.failed_stage}]: {val_res.reason}"
+
+    for k, v in val_res.metadata.items():
+        q[k] = v
 
     return True, ""
 

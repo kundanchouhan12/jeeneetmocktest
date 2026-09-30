@@ -1,11 +1,12 @@
 """
 seed_pyq_diagram_questions.py
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Generates, optimizes to WebP, uploads to Firebase Cloud Storage, and seeds
-authentic JEE & NEET STEM diagram questions directly into Firestore.
+Seeder for Original Practice STEM diagram questions generated deterministically
+from single-source parameters.
 
-Also updates today's Daily Vault (2026-09-30) so students immediately see
-diagram-based questions with pinch-to-zoom in the app!
+Honest Metadata Invariant:
+- Labeled as `sourceType = "ORIGINAL_PRACTICE"`, `diagramSource = "DETERMINISTIC"`
+- NEVER falsely labeled as authentic PYQs.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 """
 
@@ -24,6 +25,8 @@ if SCRIPT_DIR not in sys.path:
 
 import stem_diagram_engine as sde
 import diagram_processor as dp
+import curriculum
+import curriculum_validator
 
 SERVICE_ACCOUNT_PATH = os.path.join(SCRIPT_DIR, "serviceAccountKey.json")
 DEFAULT_BUCKET_NAME = "apps-273d9.firebasestorage.app"
@@ -203,6 +206,22 @@ def seed_diagram_questions(target_vault_date: str = "2026-09-30"):
         q_id = "q_" + hashlib.md5(f"{item['examType']}_{item['subject']}_{item['questionText']}".encode('utf-8')).hexdigest()
         item["id"] = q_id
 
+        # Candidate item enrichment
+        item["sourceType"] = "ORIGINAL_PRACTICE"
+        item["diagramSource"] = "DETERMINISTIC"
+        item["questionMode"] = "DIAGRAM"
+        unit = curriculum.find_unit(item["examType"], item["subject"], item["chapter"])
+        item["officialUnit"] = unit.get("unit_name", item["chapter"]) if unit else item["chapter"]
+        item["topic"] = item["chapter"]
+
+        val_res = curriculum_validator.validate_question(
+            item,
+            raw_diagram_bytes=raw_png
+        )
+        if not val_res.is_valid:
+            print(f"    ❌ Quality Gate FAILED at [{val_res.failed_stage}]: {val_res.reason}, skipping.")
+            continue
+
         # Compress to WebP and upload to Firebase Storage
         print(f"  🎨 Generating WebP diagram for [{item['examType']} - {item['subject']}] ({spec_type})...")
         cdn_url = dp.process_and_upload_diagram(raw_png, item["examType"], item["subject"], q_id, is_solution=False, bucket=bucket)
@@ -214,6 +233,7 @@ def seed_diagram_questions(target_vault_date: str = "2026-09-30"):
         item["imageUrl"] = cdn_url
         item["packId"] = "allaccessyearly"
         item["isDailyVault"] = False
+        item["validationStatus"] = "PASSED"
         item["createdAt"] = firestore.SERVER_TIMESTAMP
 
         # Save to main question bank

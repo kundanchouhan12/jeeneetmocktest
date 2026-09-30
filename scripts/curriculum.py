@@ -214,6 +214,11 @@ def detect_question_mode(q: dict[str, Any]) -> str:
     options = [str(o) for o in q.get("options", [])]
     combined = f"{q_text} {' '.join(options)} {expl}"
 
+    # 0. Explicit questionMode if valid
+    explicit_mode = q.get("questionMode") or q.get("question_mode")
+    if explicit_mode in {"TEXT", "NUMERICAL", "DIAGRAM", "STRUCTURE"}:
+        return str(explicit_mode)
+
     # 1. Image present
     if image_url:
         # Check if chemical structure or visual diagram
@@ -240,9 +245,17 @@ def detect_question_mode(q: dict[str, Any]) -> str:
     # Checks for numeric options or calculation keywords
     numeric_opt_count = 0
     for opt in options:
-        # Strip KaTeX wrappers $ ... $
-        clean_opt = re.sub(r"[\$\(\)\\\s]", "", opt)
-        if re.match(r"^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?(\s*[a-zA-Z/%Ωμ°]*)?$", clean_opt):
+        # Strip KaTeX math spacing like \,, \;, \!, \quad
+        clean_opt = re.sub(r"\\[,;!]", "", opt)
+        # Strip macros like \mathrm{...}, \text{...}, \mathbf{...}
+        clean_opt = re.sub(r"\\(mathrm|text|mathbf|bf)\{[^}]*\}", "", clean_opt)
+        # Strip any remaining LaTeX commands like \times, \pm, etc.
+        clean_opt = re.sub(r"\\[a-zA-Z]+", "", clean_opt)
+        # Strip formatting delimiters $, (, ), {, }, \, whitespace, commas
+        clean_opt = re.sub(r"[\$\(\)\{\}\\\s,;]", "", clean_opt)
+        # Strip trailing unit symbols
+        clean_opt = re.sub(r"[a-zA-Z/%Ωμ°^~]+$", "", clean_opt).strip()
+        if re.match(r"^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$", clean_opt) and clean_opt:
             numeric_opt_count += 1
 
     math_calc_keywords = [
