@@ -49,5 +49,18 @@ class TestDiagramPipeline(unittest.TestCase):
             self.assertTrue(len(defn.explanation) > 20)
 
 
+    def test_curriculum_gate_compliance(self):
+        """Every diagram definition must belong to an approved curriculum unit that allows DIAGRAM/STRUCTURE."""
+        import curriculum
+        for defn in self.definitions:
+            with self.subTest(exam=defn.exam_type, subject=defn.subject, chapter=defn.chapter):
+                allowed_modes = curriculum.get_allowed_modes(defn.exam_type, defn.subject, defn.chapter)
+                self.assertTrue(
+                    "DIAGRAM" in allowed_modes or "STRUCTURE" in allowed_modes,
+                    f"Curriculum gate failure: {defn.exam_type} {defn.subject} {defn.chapter} does not allow DIAGRAM/STRUCTURE (modes: {allowed_modes})"
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
+

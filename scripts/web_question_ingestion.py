@@ -23,6 +23,7 @@ import requests
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
 from diagram_processor import process_and_upload_diagram, DEFAULT_BUCKET_NAME
+import curriculum
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -381,9 +382,11 @@ def validate_web_question(q: dict) -> tuple[bool, str]:
     if not explanation or len(explanation) < 15:
         return False, "Explanation missing or too brief (< 15 chars)"
 
-    # 6. Chapter validation
-    if subject in OFFICIAL_CHAPTERS and chapter not in OFFICIAL_CHAPTERS[subject]:
-        return False, f"Chapter '{chapter}' not in official app chapter list"
+    # 6. Chapter & Curriculum validation
+    is_in_official = (subject in OFFICIAL_CHAPTERS and chapter in OFFICIAL_CHAPTERS[subject])
+    unit = curriculum.find_unit(exam, subject, chapter)
+    if not is_in_official and not unit:
+        return False, f"Chapter '{chapter}' not in official curriculum or app chapter list"
 
     return True, ""
 

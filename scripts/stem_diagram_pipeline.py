@@ -34,6 +34,7 @@ if SCRIPT_DIR not in sys.path:
 
 import stem_diagram_engine as sde
 import diagram_processor as dp
+import curriculum
 
 DEFAULT_BUCKET_NAME = "apps-273d9.firebasestorage.app"
 
@@ -437,6 +438,12 @@ def run_stem_diagram_pipeline(db, bucket=None, dry_run: bool = False, all_docs=N
 
         # Deduplication check
         if fp in existing_fps:
+            continue
+
+        # 0. Curriculum Taxonomy Gate Check
+        allowed_modes = curriculum.get_allowed_modes(defn.exam_type, defn.subject, defn.chapter)
+        if "DIAGRAM" not in allowed_modes and "STRUCTURE" not in allowed_modes:
+            print(f"  ❌ Curriculum Gate: DIAGRAM/STRUCTURE not permitted for [{defn.exam_type} - {defn.subject} - {defn.chapter}], skipping.")
             continue
 
         # 1. Independent Solver Validation (Dual-Pass Verification)

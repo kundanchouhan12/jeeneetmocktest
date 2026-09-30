@@ -22,6 +22,8 @@ import requests
 import firebase_admin
 from firebase_admin import credentials, firestore
 
+import curriculum
+
 try:
     sys.stdout.reconfigure(encoding='utf-8')
 except Exception:
@@ -326,6 +328,11 @@ def validate_and_clean_question(q: dict) -> tuple[bool, str]:
     if subject not in ("Physics", "Chemistry", "Maths", "Biology"):
         return False, f"Invalid subject: {subject}"
 
+    # 8. Curriculum taxonomy validation
+    is_curr_valid, curr_reason = curriculum.validate_question_against_curriculum(q)
+    if not is_curr_valid:
+        return False, f"Curriculum violation: {curr_reason}"
+
     return True, ""
 
 
@@ -451,7 +458,11 @@ Respond with ONLY a raw JSON object, no markdown: {{"correctIndex": <0-3, or -1 
 
 
 def generate_questions(exam: str, subject: str, chapter: str, count: int = 5) -> list[dict]:
+    curriculum_constraints = curriculum.get_prompt_constraints(exam, subject, chapter)
+
     prompt = f"""
+{curriculum_constraints}
+
 Generate exactly {count} high-caliber multiple-choice questions for {exam} exam in the subject '{subject}', chapter '{chapter}'.
 
 Return a raw JSON array of objects. Each object MUST have these exact fields:
@@ -467,6 +478,7 @@ Constraints:
 3. Ensure LaTeX equations use double backslashes for JSON escaping (e.g., \\\\frac{{a}}{{b}}).
 4. NEVER use \\ce{{}} mhchem notation. Write chemical formulas as plain text or simple KaTeX (e.g. H_2O, CuSO_4, MnO_4^-).
 5. NEVER embed \\n or \\t escape sequences inside string values. Use actual spaces.
+6. Strictly adhere to the allowed question modes and syllabus topics specified in the Curriculum Constraint above.
 """
     raw_response = call_groq_api(prompt)
     if not raw_response:

@@ -162,6 +162,23 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
     - `showZoomDialog`: Full-screen immersive modal featuring `ZoomableImageView` with smooth pinch-to-zoom ($1\times - 5\times$), double-tap toggle, pan boundary clamping, and 1-handed zoom controls (`[-]`, `[+]`, `[↺ Fit]`, `[✕ Close]`).
     - Integrated across `TestActivity`, `Power100Activity`, and `SolutionActivity`.
 
-
-
-
+### 7. 🧬 Official JEE Main 2026 & NEET UG 2026 Syllabus & Question-Mode Architecture (2026-09-30)
+- **The Problem Solved**:
+  - Unstructured generation allowed AI to generate questions outside the official syllabus, invent non-standard question modes, or attempt decorative AI image generation for STEM/Chemistry/Maths.
+  - NEET Biology lacked granular topic-to-mode mapping, leading to inappropriate binary "all diagram" or "no diagram" assumptions.
+- **5-Level Taxonomy Architecture (`scripts/curriculum.json` & `scripts/curriculum.py`)**:
+  - `exam` $\to$ `subject` $\to$ `official_unit` $\to$ `topic` $\to$ `question_modes`
+  - **4 Question Modes**:
+    1. `T` (**TEXT**): Theory, conceptual, definitions, statement analysis.
+    2. `N` (**NUMERICAL**): Calculation, formula evaluation with dual-pass math validation.
+    3. `D` (**DIAGRAM**): Deterministic vector plots, ray optics, circuit diagrams, apparatus, waveforms.
+    4. `S` (**STRUCTURE**): Chemical structures, reaction mechanisms, molecular geometry, biological models.
+- **Strict Curricular Invariants**:
+  - **Zero Generative AI Images**: `ai_image_generation: false` across all subjects. Maths, Physics, and Chemistry diagrams are strictly rendered by deterministic Python/Matplotlib/SVG engines or authentic PYQ source images.
+  - **JEE Maths (14 Units)**: Selective deterministic graphs/Argand diagrams for Complex Numbers, Calculus, Conics, 3D, and Vectors. Chemical/biological `STRUCTURE` is strictly blacklisted.
+  - **JEE & NEET Physics (20 Units)**: First-class deterministic visual candidates for Kinematics, Laws of Motion, Rotation, Waves, Circuits, Optics, and Modern Physics.
+  - **JEE & NEET Chemistry (20 Units)**: Physical (T, N), Inorganic (T, S, D), Organic (T, S, D). Uses deterministic molecular structure representations.
+  - **NEET Biology (10 Broad Units)**: Structured into granular NCERT topic nodes with high visual priority in Structural Organisation (Unit 2), Human Physiology (Unit 5), and Genetics & Evolution (Unit 7).
+- **Pipeline Gates**:
+  - `auto_question_pipeline.py` dynamically injects the official unit, topic, and allowed modes into the LLM system prompt (`curriculum.get_prompt_constraints()`), preventing off-syllabus drift.
+  - `stem_diagram_pipeline.py`, `web_question_ingestion.py`, and `neet_web_question_ingestion.py` validate all questions against `curriculum.validate_question_against_curriculum()`.
