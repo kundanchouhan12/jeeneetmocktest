@@ -35,6 +35,20 @@ import kotlinx.coroutines.withContext
  *     version:            5    ← increment whenever you add/update questions
  *     lastUpdated:        Timestamp
  */
+enum class SyncState {
+    UPDATED,       // Brand new questions were downloaded from Firestore
+    UP_TO_DATE,    // Server checked: local cache already matches the latest published questions
+    FAILED         // Network or parsing failure
+}
+
+data class SyncSummary(
+    val vaultState: SyncState,
+    val power100State: SyncState
+) {
+    val hasNewContent: Boolean get() = vaultState == SyncState.UPDATED || power100State == SyncState.UPDATED
+    val isAllUpToDate: Boolean get() = vaultState == SyncState.UP_TO_DATE && power100State == SyncState.UP_TO_DATE
+}
+
 class QuestionSyncManager(private val context: Context) {
 
     companion object {
@@ -137,24 +151,26 @@ class QuestionSyncManager(private val context: Context) {
 
     /**
      * Force-syncs Daily Vault and Question Bank for [exam].
-     * Returns true if Daily Vault was refreshed or verified complete.
+     * Returns a [SyncSummary] indicating whether new questions were downloaded,
+     * or if the questions were already up to date.
      */
-    suspend fun forceSyncAll(exam: String): Boolean = withContext(Dispatchers.IO) {
-        val vaultSuccess = syncDailyVault(force = true)
+    suspend fun forceSyncAll(exam: String): SyncSummary = withContext(Dispatchers.IO) {
+        val vaultState = syncDailyVault(force = true)
         checkAndSyncIfNeeded()
-        vaultSuccess
+        val power100State = Power100SyncManager(context).forceSyncState(exam)
+        SyncSummary(vaultState, power100State)
     }
 
     /**
      * Syncs today's Daily Vault for the selected exam only.
-     * Yesterday's Room vault is deleted only after a full 30-question set parses.
-     * Set [force] = true to bypass local cache and force re-fetching from Firestore.
+     * Checks Firestore for today's vault. If incoming group ID matches local cache,
+     * it skips replacing Room and preserves progress.
      */
-    suspend fun syncDailyVault(force: Boolean = false): Boolean = withContext(Dispatchers.IO) {
+    suspend fun syncDailyVault(force: Boolean = false): SyncState = withContext(Dispatchers.IO) {
         vaultMutex.withLock { syncDailyVaultLocked(force) }
     }
 
-    private suspend fun syncDailyVaultLocked(force: Boolean = false): Boolean {
+    private suspend fun syncDailyVaultLocked(force: Boolean = false): SyncState {
         val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
         val today = sdf.format(java.util.Date())
         val exam = PrefManager.getSelectedExam(context)
@@ -185,9 +201,12 @@ class QuestionSyncManager(private val context: Context) {
                 .filter { it.examType == exam && it.isDailyVault }
 
             val incomingGroupId = questions.firstOrNull()?.vaultGroupId.orEmpty()
-            if (!force && incomingGroupId.isNotEmpty() && incomingGroupId == savedGroupId && snapshotDate == today && cacheCompleteToday) {
+
+            // Idempotent check: if the server's group ID matches what we already have cached
+            // and the cache is complete, DO NOT replace questions or reset progress!
+            if (incomingGroupId.isNotEmpty() && incomingGroupId == savedGroupId && snapshotDate == today && cacheCompleteToday) {
                 Log.d(TAG, "Daily Vault for $today ($exam) group='$savedGroupId' already up to date — skipping Room replace")
-                return true
+                return SyncState.UP_TO_DATE
             }
 
             // Reinstall / first-launch fallback: no cached vault and no vault for today —
@@ -224,10 +243,6 @@ class QuestionSyncManager(private val context: Context) {
                 val newGroupId = questions.first().vaultGroupId.ifEmpty { today }
                 questionDao.replaceDailyVault(exam, questions)
 
-                // Defense-in-depth: the in-memory `questions` list was already proven
-                // complete by isCompleteIncoming() above, so this should always pass —
-                // but if a future Room/DAO change ever broke that guarantee, silently
-                // pointing PrefManager at a broken group would be worse than surfacing it.
                 val writtenRows = questionDao.getVaultQuestionsByGroupId(newGroupId)
                 if (!DailyVaultContract.isCompleteCache(writtenRows, exam, sourceDate, newGroupId)) {
                     Log.e(
@@ -237,7 +252,7 @@ class QuestionSyncManager(private val context: Context) {
                             "not updating pointers, will retry on next sync"
                     )
                     AnalyticsManager.syncFailed(context, "daily_vault", "post_write_verification_failed")
-                    return false
+                    return SyncState.FAILED
                 }
 
                 val refreshCal = java.util.Calendar.getInstance()
@@ -249,10 +264,10 @@ class QuestionSyncManager(private val context: Context) {
                 PrefManager.setVaultNextRefreshDate(context, exam, nextRefresh)
                 PrefManager.setLastVaultSyncDate(context, today)
 
-                // Reset daily vault completed state so fresh questions can be taken immediately
-                if (force || newGroupId != savedGroupId) {
+                // ONLY reset daily vault completed state if a NEW group ID was genuinely published on server!
+                if (newGroupId != savedGroupId) {
                     PrefManager.resetDailyVaultDone(context, exam)
-                    Log.d(TAG, "Daily Vault reset done state for $exam because group changed to $newGroupId")
+                    Log.d(TAG, "Daily Vault reset done state for $exam because group changed from '$savedGroupId' to '$newGroupId'")
                 }
 
                 if (!PrefManager.isDailyVaultDoneToday(context, exam)) {
@@ -268,13 +283,13 @@ class QuestionSyncManager(private val context: Context) {
                     localTotal = localTotal,
                     durationMs = 0L
                 )
-                return true
+                return SyncState.UPDATED
             } else if (questions.isNotEmpty()) {
                 Log.w(
                     TAG,
                     "Ignoring incomplete $exam vault (${questions.size}/$EXPECTED_VAULT_COUNT parseable) — keeping previous day"
                 )
-                return false
+                return SyncState.FAILED
             } else {
                 // No new vault uploaded yet for today — keep serving cached vault and retry tomorrow
                 if (savedGroupId.isNotEmpty()) {
@@ -283,16 +298,17 @@ class QuestionSyncManager(private val context: Context) {
                     val retryDate = sdf.format(refreshCal.time)
                     PrefManager.setVaultNextRefreshDate(context, exam, retryDate)
                     Log.d(TAG, "No new vault found for $today — kept existing vault '$savedGroupId', retry on $retryDate")
+                    return SyncState.UP_TO_DATE
                 } else {
                     Log.d(TAG, "No vault questions found for $today and no cached vault available")
+                    return SyncState.FAILED
                 }
-                return false
             }
             PrefManager.setVaultLastCheckedMs(context, exam, System.currentTimeMillis())
         } catch (e: Exception) {
             Log.w(TAG, "Daily Vault sync failed: ${e.message}")
             AnalyticsManager.syncFailed(context, "daily_vault", e.message ?: "network_error")
-            return false
+            return SyncState.FAILED
         }
     }
 

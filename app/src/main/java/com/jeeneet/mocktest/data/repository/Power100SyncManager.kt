@@ -47,7 +47,7 @@ class Power100SyncManager(private val context: Context) {
      *   1. All 100 questions are already in Room, AND
      *   2. The last successful check was less than 24 hours ago.
      */
-    suspend fun checkAndSyncIfNeeded(exam: String) = withContext(Dispatchers.IO) {
+    suspend fun checkAndSyncIfNeeded(exam: String): SyncState = withContext(Dispatchers.IO) {
         val localCount   = dao.getCount(exam)
         val lastChecked  = prefs.getLong(lastCheckedKey(exam), 0L)
         val cacheAge     = System.currentTimeMillis() - lastChecked
@@ -55,27 +55,28 @@ class Power100SyncManager(private val context: Context) {
 
         if (cacheIsWarm) {
             Log.d(TAG, "$exam cache is fresh (${cacheAge / 60_000}m old). Skipping network check.")
-            return@withContext
+            return@withContext SyncState.UP_TO_DATE
         }
 
-        syncFromFirestore(exam)
+        syncFromFirestoreState(exam)
     }
 
     /**
-     * Bypasses the TTL and forces a full version check + re-download if needed.
-     * Useful for a manual "refresh" button or after the admin pushes a new set.
+     * Bypasses the TTL and checks Firestore for new versions without wiping
+     * the local version pointer. If Firestore version matches local, returns
+     * SyncState.UP_TO_DATE without altering questions or user test progress.
      */
-    /**
-     * Bypasses the TTL and forces a full version check + re-download if needed.
-     * Returns an error string on failure, or null on success.
-     */
-    suspend fun forceSync(exam: String): String? = withContext(Dispatchers.IO) {
+    suspend fun forceSyncState(exam: String): SyncState = withContext(Dispatchers.IO) {
         Log.i(TAG, "Force sync requested for $exam")
         prefs.edit()
             .remove(lastCheckedKey(exam))
-            .remove(versionKey(exam))
             .apply()
-        syncFromFirestore(exam)
+        syncFromFirestoreState(exam)
+    }
+
+    suspend fun forceSync(exam: String): String? = withContext(Dispatchers.IO) {
+        val state = forceSyncState(exam)
+        if (state == SyncState.FAILED) "Failed to sync Power 100 questions from server." else null
     }
 
     fun getLocalVersion(exam: String): Long  = prefs.getLong(versionKey(exam), -1L)
@@ -86,15 +87,14 @@ class Power100SyncManager(private val context: Context) {
 
     // ─── Private ──────────────────────────────────────────────────────────────
 
-    // Returns null on success, error message on failure
-    private suspend fun syncFromFirestore(exam: String): String? {
+    private suspend fun syncFromFirestoreState(exam: String): SyncState {
         return try {
             val doc = firestore.collection("standard_tests").document(exam).get().await()
 
             if (!doc.exists()) {
                 val msg = "No Power 100 data found in Firestore for $exam. Run the upload script first."
                 Log.w(TAG, msg)
-                return msg
+                return SyncState.FAILED
             }
 
             val remoteVersion = doc.getLong("version") ?: 0L
@@ -104,9 +104,9 @@ class Power100SyncManager(private val context: Context) {
             // Record that we checked — even if nothing changed, reset the TTL
             prefs.edit().putLong(lastCheckedKey(exam), System.currentTimeMillis()).apply()
 
-            if (remoteVersion <= localVersion && localCount > 0) {
-                Log.d(TAG, "$exam is up to date (v$localVersion, $localCount questions).")
-                return null
+            if (remoteVersion <= localVersion && localCount == 100) {
+                Log.d(TAG, "$exam is up to date (v$localVersion, $localCount questions). Skipping Room replace.")
+                return SyncState.UP_TO_DATE
             }
 
             @Suppress("UNCHECKED_CAST")
@@ -114,7 +114,7 @@ class Power100SyncManager(private val context: Context) {
             if (raw.isNullOrEmpty()) {
                 val msg = "Firestore document exists but questions field is empty for $exam."
                 Log.w(TAG, msg)
-                return msg
+                return SyncState.FAILED
             }
 
             val questions = raw.mapIndexedNotNull { idx, map -> parseQuestion(exam, idx + 1, map) }
@@ -122,17 +122,15 @@ class Power100SyncManager(private val context: Context) {
             if (questions.isEmpty()) {
                 val msg = "All ${raw.size} questions failed to parse for $exam."
                 Log.w(TAG, msg)
-                return msg
+                return SyncState.FAILED
             }
 
             if (questions.size < raw.size) {
                 Log.w(TAG, "${raw.size - questions.size} questions skipped due to parse errors for $exam.")
             }
 
-            // The nightly rebuild swaps in a fresh 100 questions at the same fixed
-            // positions — reset progress too, or a user's completed positions would
-            // silently point at brand-new, unattempted questions.
-            if (localVersion >= 0) {
+            // Only reset progress if a newer version was actually published on the server!
+            if (localVersion >= 0 && remoteVersion > localVersion) {
                 val uid = FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
                 dao.resetProgress(uid, exam)
                 Log.i(TAG, "Power100 progress reset for $exam (v$localVersion -> v$remoteVersion)")
@@ -150,14 +148,14 @@ class Power100SyncManager(private val context: Context) {
                 localTotal = questions.size,
                 durationMs = 0L
             )
-            null // success
+            SyncState.UPDATED
 
         } catch (e: Exception) {
             val msg = e.message ?: e.javaClass.simpleName
             Log.e(TAG, "Sync failed for $exam: $msg")
             // Don't update lastCheckedKey on failure — next launch will retry
             com.jeeneet.mocktest.utils.AnalyticsManager.syncFailed(context, "power100_$exam", msg)
-            msg
+            SyncState.FAILED
         }
     }
 

@@ -24,6 +24,7 @@ import com.jeeneet.mocktest.data.model.Power100Progress
 import com.jeeneet.mocktest.data.model.Power100Question
 import com.jeeneet.mocktest.data.repository.MockTestDatabase
 import com.jeeneet.mocktest.data.repository.Power100SyncManager
+import com.jeeneet.mocktest.data.repository.SyncState
 import com.jeeneet.mocktest.ui.style.*
 import com.jeeneet.mocktest.ui.style.Space
 import com.jeeneet.mocktest.utils.PrefManager
@@ -399,18 +400,41 @@ class Power100Activity : AppCompatActivity() {
             isClickable = true
             isFocusable = true
             setOnClickListener {
-                showLoadingOverlay("Syncing latest Power 100 questions…")
+                showLoadingOverlay("Checking for Power 100 updates…")
                 lifecycleScope.launch {
-                    val error = withContext(Dispatchers.IO) {
-                        Power100SyncManager(this@Power100Activity).forceSync(exam)
+                    val state = withContext(Dispatchers.IO) {
+                        Power100SyncManager(this@Power100Activity).forceSyncState(exam)
                     }
                     val db = MockTestDatabase.getInstance(this@Power100Activity)
                     questions = withContext(Dispatchers.IO) { db.power100Dao().getQuestionsForExam(exam) }
                     withContext(Dispatchers.Main) {
                         hideLoadingOverlay()
-                        refreshGridUi()
-                        val msg = if (error == null) "✅ Power 100 questions updated!" else "⚠️ $error"
-                        com.google.android.material.snackbar.Snackbar.make(rootFrame, msg, com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+                        when (state) {
+                            SyncState.UPDATED -> {
+                                val progressList = withContext(Dispatchers.IO) { db.power100Dao().getProgress(uid, exam) }
+                                progressMap = progressList.associateBy { it.position }.toMutableMap()
+                                refreshGridUi()
+                                com.google.android.material.snackbar.Snackbar.make(
+                                    rootFrame,
+                                    "✅ Fresh Power 100 questions updated from server!",
+                                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
+                                ).show()
+                            }
+                            SyncState.UP_TO_DATE -> {
+                                com.google.android.material.snackbar.Snackbar.make(
+                                    rootFrame,
+                                    "ℹ️ Power 100 is already up to date.",
+                                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
+                                ).show()
+                            }
+                            SyncState.FAILED -> {
+                                com.google.android.material.snackbar.Snackbar.make(
+                                    rootFrame,
+                                    "⚠️ Could not check for updates. Please check your connection.",
+                                    com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                     }
                 }
             }

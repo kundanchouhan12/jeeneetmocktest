@@ -1138,7 +1138,12 @@ class MainActivity : AppCompatActivity() {
         }.start()
     }
 
+    private var isSyncInProgress = false
+
     private fun forceSyncQuestionsWithProgress() {
+        if (isSyncInProgress) return
+        isSyncInProgress = true
+
         val progressDialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
             .setTitle("Syncing Questions 🔄")
             .setMessage("Checking for fresh questions and diagrams from the server...")
@@ -1147,16 +1152,14 @@ class MainActivity : AppCompatActivity() {
         progressDialog.show()
 
         lifecycleScope.launch {
-            val syncSuccess = try {
+            val summary = try {
                 withContext(Dispatchers.IO) {
-                    val syncMgr = QuestionSyncManager(this@MainActivity)
-                    val vaultOk = syncMgr.syncDailyVault(force = true)
-                    syncMgr.checkAndSyncIfNeeded()
-                    val p100Error = com.jeeneet.mocktest.data.repository.Power100SyncManager(this@MainActivity).forceSync(selectedExam)
-                    vaultOk || p100Error == null
+                    QuestionSyncManager(this@MainActivity).forceSyncAll(selectedExam)
                 }
             } catch (e: Exception) {
-                false
+                null
+            } finally {
+                isSyncInProgress = false
             }
 
             withContext(Dispatchers.Main) {
@@ -1164,23 +1167,31 @@ class MainActivity : AppCompatActivity() {
                     progressDialog.dismiss()
                 } catch (_: Exception) {}
 
-                // Invalidate local memory content cache
-                lastContentBuildTime = 0L
-                cachedTestResults = null
-                requiresHomeRefresh = true
-                buildContent()
-
                 val rootV = if (::mainScrollView.isInitialized) mainScrollView else window.decorView
-                if (syncSuccess) {
+
+                if (summary == null) {
                     com.google.android.material.snackbar.Snackbar.make(
                         rootV,
-                        "✅ Daily Vault & Power 100 refreshed successfully!",
+                        "⚠️ Unable to reach server. Please check your network.",
+                        com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+                    ).show()
+                } else if (summary.hasNewContent) {
+                    // Invalidate local memory content cache ONLY when genuine new content arrived
+                    lastContentBuildTime = 0L
+                    cachedTestResults = null
+                    requiresHomeRefresh = true
+                    buildContent()
+
+                    com.google.android.material.snackbar.Snackbar.make(
+                        rootV,
+                        "✅ Fresh questions updated from server!",
                         com.google.android.material.snackbar.Snackbar.LENGTH_LONG
                     ).show()
                 } else {
+                    // Questions are already up to date! Do NOT wipe or reload anything.
                     com.google.android.material.snackbar.Snackbar.make(
                         rootV,
-                        "ℹ️ Questions synced and verified up to date.",
+                        "ℹ️ Already up to date! Today's questions are current.",
                         com.google.android.material.snackbar.Snackbar.LENGTH_LONG
                     ).show()
                 }
