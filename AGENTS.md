@@ -202,3 +202,21 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
   - `diagramRequired`: boolean
   - `diagramSource`: `DETERMINISTIC` | `AUTHENTIC_SOURCE` | `NONE`
   - `validationStatus`: `PASSED` | `FAILED`
+
+### 9. 🏆 Curriculum-Driven Power 100 Architecture (`scripts/build_power100_live.py`)
+- **Common Generation & Quality Gate Pipeline**:
+  - Power 100 and Daily Vault share the **SAME single source of truth** (curriculum taxonomy, prompt constraints, and 7-stage quality gate). Power 100 does not have a separate content generator.
+  - Consumes only questions that pass all 7 stages of `curriculum_validator.py` (`validationStatus == "PASSED"`) and resolve cleanly to official 2026 syllabus units.
+- **Configurable Subject Distribution**:
+  - Centralized in `scripts/curriculum.json` (`power100_config`):
+    - **JEE Main**: Physics 31, Chemistry 36, Maths 33 (= 100 questions). Strictly zero Biology.
+    - **NEET UG**: Physics 25, Chemistry 25, Biology 50 (= 100 questions). Strictly zero Maths.
+- **Syllabus Breadth & Deduplication**:
+  - Balances questions broadly across official NCERT units (capped at `max_per_unit = 4` per unit).
+  - Enforces STEM-safe fingerprint uniqueness across all 100 questions.
+- **Full Question-Mode & Diagram Support**:
+  - Supports `TEXT`, `NUMERICAL`, `DIAGRAM`, and `STRUCTURE`.
+  - Diagram and structure questions carry full metadata (`imageUrl`, `solutionImageUrl`, `optionImageUrls`, `diagramSource`) seamlessly consumed by the Android client (`Power100Activity.kt` and `Power100ResultActivity.kt` via `DiagramRenderer.kt`).
+- **Android Offline Cache & Invalidation**:
+  - Power 100 uploads to `standard_tests/{exam}` with an auto-incremented `version`.
+  - Android client (`Power100SyncManager.kt`) detects the version bump, invalidates local Room cache, and resets progress cleanly without manual interventions.

@@ -10300,5 +10300,47 @@
         ]
       }
     }
+  },
+  "power100_config": {
+    "JEE": {
+      "total_questions": 100,
+      "subject_distribution": {
+        "Physics": 31,
+        "Chemistry": 36,
+        "Maths": 33
+      },
+      "max_per_unit": 4,
+      "difficulty_weights": {
+        "Easy": 3,
+        "Medium": 3,
+        "Hard": 1
+      },
+      "allowed_modes": [
+        "TEXT",
+        "NUMERICAL",
+        "DIAGRAM",
+        "STRUCTURE"
+      ]
+    },
+    "NEET": {
+      "total_questions": 100,
+      "subject_distribution": {
+        "Physics": 25,
+        "Chemistry": 25,
+        "Biology": 50
+      },
+      "max_per_unit": 4,
+      "difficulty_weights": {
+        "Easy": 3,
+        "Medium": 3,
+        "Hard": 1
+      },
+      "allowed_modes": [
+        "TEXT",
+        "NUMERICAL",
+        "DIAGRAM",
+        "STRUCTURE"
+      ]
+    }
   }
 }

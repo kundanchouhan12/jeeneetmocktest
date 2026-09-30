@@ -342,3 +342,19 @@ def validate_question_against_curriculum(q: dict[str, Any]) -> tuple[bool, str]:
             return False, f"Mode '{mode}' not permitted for unit '{unit.get('unit_name')}' (Allowed: {allowed_modes})"
 
     return True, "Valid"
+
+
+def get_power100_config(exam: str) -> dict[str, Any]:
+    """
+    Returns the Power 100 curriculum configuration for an exam.
+    Includes total_questions, subject_distribution, max_per_unit, difficulty_weights, allowed_modes.
+    """
+    cur = get_curriculum()
+    configs = cur.get("power100_config", {})
+    norm_exam = exam.strip().upper()
+    if norm_exam in ("JEE", "JEE_MAIN"):
+        return configs.get("JEE", {})
+    elif norm_exam in ("NEET", "NEET_UG"):
+        return configs.get("NEET", {})
+    return configs.get(norm_exam, {})
+

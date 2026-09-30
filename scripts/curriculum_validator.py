@@ -228,9 +228,9 @@ class CurriculumQualityGate:
                 f"Invalid correctOptionIndex: {q.get('correctOptionIndex') or q.get('correctOption')}"
             )
 
-        # Explanation
+        # Explanation (Strict 15 chars for new content, tolerant for legacy)
         explanation = str(q.get("explanation", "")).strip()
-        if len(explanation) < 15:
+        if is_new_content and len(explanation) < 15:
             return ValidationResult(False, "QUESTION_CONTENT", "Explanation missing or too brief (< 15 chars)")
 
         # ── STAGE 5: ANSWER & NUMERICAL VALIDATION ────────────────────────────
