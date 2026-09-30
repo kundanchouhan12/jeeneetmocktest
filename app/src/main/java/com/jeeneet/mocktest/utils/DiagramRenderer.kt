@@ -9,6 +9,7 @@ import android.graphics.PointF
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.view.GestureDetector
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.ScaleGestureDetector
@@ -337,6 +338,7 @@ object DiagramRenderer {
         private var currentScale = 1.0f
 
         private lateinit var scaleDetector: ScaleGestureDetector
+        private lateinit var gestureDetector: GestureDetector
 
         companion object {
             private const val NONE = 0
@@ -358,6 +360,22 @@ object DiagramRenderer {
                     if (newScale in minScale..maxScale) {
                         currentScale = newScale
                         currentMatrix.postScale(scaleFactor, scaleFactor, detector.focusX, detector.focusY)
+                        clampMatrixTranslation()
+                        imageMatrix = currentMatrix
+                    }
+                    return true
+                }
+            })
+
+            gestureDetector = GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
+                override fun onDoubleTap(e: MotionEvent): Boolean {
+                    if (currentScale > 1.2f) {
+                        fitToScreen()
+                    } else {
+                        val targetZoom = 2.5f
+                        val factor = targetZoom / currentScale
+                        currentScale = targetZoom
+                        currentMatrix.postScale(factor, factor, e.x, e.y)
                         clampMatrixTranslation()
                         imageMatrix = currentMatrix
                     }
@@ -412,6 +430,7 @@ object DiagramRenderer {
         @SuppressLint("ClickableViewAccessibility")
         override fun onTouchEvent(event: MotionEvent): Boolean {
             scaleDetector.onTouchEvent(event)
+            gestureDetector.onTouchEvent(event)
 
             val currentPoint = PointF(event.x, event.y)
 
@@ -436,12 +455,6 @@ object DiagramRenderer {
                 }
                 MotionEvent.ACTION_UP, MotionEvent.ACTION_POINTER_UP -> {
                     mode = NONE
-                    val totalDeltaX = kotlin.math.abs(currentPoint.x - startTouch.x)
-                    val totalDeltaY = kotlin.math.abs(currentPoint.y - startTouch.y)
-                    // Double-tap zoom toggle
-                    if (totalDeltaX < 10 && totalDeltaY < 10 && event.action == MotionEvent.ACTION_UP) {
-                        // handled if needed
-                    }
                 }
             }
             return true

@@ -59,12 +59,23 @@ def _fig_to_png_bytes(fig) -> bytes:
 # 1. THERMODYNAMICS: P-V Indicator Cycles
 # ─────────────────────────────────────────────────────────────────────────────
 def generate_pv_cycle_diagram(
-    cycle_type: str = "carnot",
+    cycle_type: str = "rectangular",
     labels: tuple = ("A", "B", "C", "D"),
     p_range: tuple = (1, 5),
-    v_range: tuple = (1, 6)
+    v_range: tuple = (1, 6),
+    p1_bar: float = 2.0,
+    p2_bar: float = 4.5,
+    v1_liters: float = 2.0,
+    v2_liters: float = 5.0,
+    **kwargs
 ) -> bytes:
     """Renders a closed P-V indicator diagram with directional arrows."""
+    cycle_type = kwargs.get("cycle_type", cycle_type)
+    v1 = float(kwargs.get("v1_liters", v1_liters))
+    v2 = float(kwargs.get("v2_liters", v2_liters))
+    p1 = float(kwargs.get("p1_bar", p1_bar))
+    p2 = float(kwargs.get("p2_bar", p2_bar))
+
     fig, ax = _create_base_figure()
 
     ax.set_xlabel(r"Volume $V\ (\mathrm{m^3})$", color=TEXT_COLOR, fontsize=12, labelpad=8)
@@ -72,8 +83,6 @@ def generate_pv_cycle_diagram(
     ax.set_title("P-V Indicator Diagram", color=TEXT_COLOR, fontsize=13, fontweight='bold', pad=12)
 
     if cycle_type == "rectangular":
-        v1, v2 = 2.0, 5.0
-        p1, p2 = 2.0, 4.5
         xs = [v1, v2, v2, v1, v1]
         ys = [p1, p1, p2, p2, p1]
         ax.plot(xs, ys, color=ACCENT_BLUE, linewidth=2.5)
@@ -124,16 +133,27 @@ def generate_pv_cycle_diagram(
 # ─────────────────────────────────────────────────────────────────────────────
 def generate_ray_optics_diagram(
     optic_type: str = "biconvex_lens",
-    focal_length: float = 2.0,
-    object_dist: float = 3.5,
-    object_height: float = 1.2
+    focal_length_cm: float = 20.0,
+    object_dist_cm: float = 35.0,
+    object_height_cm: float = 1.2,
+    **kwargs
 ) -> bytes:
-    """Renders a standard geometric optics ray tracing diagram."""
-    fig, ax = _create_base_figure(figsize=(6.5, 4.2))
+    """Renders a standard geometric optics ray tracing diagram with explicit numerical dimensions."""
+    focal_length_cm = float(kwargs.get("focal_length", focal_length_cm))
+    object_dist_cm = float(kwargs.get("object_dist", object_dist_cm))
+    object_height_cm = float(kwargs.get("object_height", object_height_cm))
+
+    fig, ax = _create_base_figure(figsize=(6.8, 4.5))
 
     ax.set_title("Ray Optics: Image Formation", color=TEXT_COLOR, fontsize=13, fontweight='bold', pad=10)
     # Principal axis
     ax.axhline(0, color=LINE_COLOR, linestyle="-", linewidth=1.2, alpha=0.7)
+
+    # Scale canvas: scale focal length to ~2.0
+    scale = 2.0 / focal_length_cm
+    f = focal_length_cm * scale
+    obj_dist = object_dist_cm * scale
+    obj_h = max(0.8, min(1.8, object_height_cm))
 
     # Lens at x = 0
     lens_h = 2.8
@@ -143,40 +163,58 @@ def generate_ray_optics_diagram(
     ax.axvline(0, color=ACCENT_BLUE, linestyle="--", linewidth=1.0, alpha=0.6)
 
     # Focal points
-    ax.plot([-focal_length, focal_length], [0, 0], 'o', color=ACCENT_AMBER, markersize=6)
-    ax.text(-focal_length, -0.35, r"$F_1$", color=TEXT_COLOR, fontsize=11, ha="center")
-    ax.text(focal_length, -0.35, r"$F_2$", color=TEXT_COLOR, fontsize=11, ha="center")
+    ax.plot([-f, f], [0, 0], 'o', color=ACCENT_AMBER, markersize=6)
+    ax.text(-f, -0.35, r"$F_1$", color=TEXT_COLOR, fontsize=11, ha="center")
+    ax.text(f, -0.35, r"$F_2$", color=TEXT_COLOR, fontsize=11, ha="center")
 
     # 2F points
-    ax.plot([-2*focal_length, 2*focal_length], [0, 0], 'o', color=ACCENT_AMBER, markersize=5)
-    ax.text(-2*focal_length, -0.35, r"$2F_1$", color=TEXT_COLOR, fontsize=11, ha="center")
-    ax.text(2*focal_length, -0.35, r"$2F_2$", color=TEXT_COLOR, fontsize=11, ha="center")
+    ax.plot([-2*f, 2*f], [0, 0], 'o', color=ACCENT_AMBER, markersize=5)
+    ax.text(-2*f, -0.35, r"$2F_1$", color=TEXT_COLOR, fontsize=11, ha="center")
+    ax.text(2*f, -0.35, r"$2F_2$", color=TEXT_COLOR, fontsize=11, ha="center")
 
-    # Object at x = -object_dist
-    obj_x = -object_dist
-    ax.annotate('', xy=(obj_x, object_height), xytext=(obj_x, 0),
+    # Object at x = -obj_dist
+    obj_x = -obj_dist
+    ax.annotate('', xy=(obj_x, obj_h), xytext=(obj_x, 0),
                 arrowprops=dict(arrowstyle="-|>", color=ACCENT_GREEN, lw=2.5, mutation_scale=15))
-    ax.text(obj_x, object_height + 0.15, "Object", color=ACCENT_GREEN, fontsize=11, ha="center", fontweight='bold')
+    h_str = f"{object_height_cm:g}"
+    ax.text(obj_x, obj_h + 0.15, f"Object ({h_str} cm)", color=ACCENT_GREEN, fontsize=10.5, ha="center", fontweight='bold')
+
+    # Dimension line for object distance u below axis
+    dim_y = -0.85
+    ax.annotate('', xy=(obj_x, dim_y), xytext=(0, dim_y),
+                arrowprops=dict(arrowstyle="<->", color=ACCENT_GREEN, lw=1.2))
+    u_str = f"{object_dist_cm:g}"
+    ax.text(obj_x / 2, dim_y - 0.25, f"$u = {u_str}\\,\\mathrm{{cm}}$",
+            color=ACCENT_GREEN, fontsize=10.5, ha="center", fontweight='bold')
+
+    # Dimension line for focal length f below axis
+    foc_dim_y = -0.85
+    ax.annotate('', xy=(0, foc_dim_y), xytext=(f, foc_dim_y),
+                arrowprops=dict(arrowstyle="<->", color=ACCENT_AMBER, lw=1.2))
+    f_str = f"{focal_length_cm:g}"
+    ax.text(f / 2, foc_dim_y - 0.25, f"$f = {f_str}\\,\\mathrm{{cm}}$",
+            color=ACCENT_AMBER, fontsize=10.5, ha="center", fontweight='bold')
 
     # Image calculation: 1/v - 1/u = 1/f -> 1/v = 1/f + 1/(-u)
-    u = -object_dist
-    f = focal_length
-    v = (f * u) / (u + f)
-    m = v / u
-    img_h = m * object_height
+    u_phys = -object_dist_cm
+    f_phys = focal_length_cm
+    v_phys = (f_phys * u_phys) / (u_phys + f_phys)
+    m = v_phys / u_phys
+    v = v_phys * scale
+    img_h = m * obj_h
 
     # Image arrow
     ax.annotate('', xy=(v, img_h), xytext=(v, 0),
                 arrowprops=dict(arrowstyle="-|>", color=ACCENT_RED, lw=2.5, mutation_scale=15))
-    ax.text(v, img_h - 0.25 if img_h < 0 else img_h + 0.15, "Image", color=ACCENT_RED, fontsize=11, ha="center", fontweight='bold')
+    ax.text(v, img_h - 0.28 if img_h < 0 else img_h + 0.15, "Image", color=ACCENT_RED, fontsize=11, ha="center", fontweight='bold')
 
     # Ray 1: Parallel to axis, then through F2
-    ax.plot([obj_x, 0, v], [object_height, object_height, img_h], color=ACCENT_AMBER, linewidth=1.5, linestyle="-")
+    ax.plot([obj_x, 0, v], [obj_h, obj_h, img_h], color=ACCENT_AMBER, linewidth=1.5, linestyle="-")
     # Ray 2: Through optical center (0, 0)
-    ax.plot([obj_x, v], [object_height, img_h], color=TEXT_COLOR, linewidth=1.5, linestyle="--", alpha=0.9)
+    ax.plot([obj_x, v], [obj_h, img_h], color=TEXT_COLOR, linewidth=1.5, linestyle="--", alpha=0.9)
 
     ax.set_xlim(-5.5, 6.0)
-    ax.set_ylim(-2.2, 2.5)
+    ax.set_ylim(-2.0, 2.5)
     ax.axis('off')
     return _fig_to_png_bytes(fig)
 
@@ -186,10 +224,20 @@ def generate_ray_optics_diagram(
 # ─────────────────────────────────────────────────────────────────────────────
 def generate_circuit_diagram(
     circuit_type: str = "wheatstone",
-    r_labels: tuple = (r"$R_1 = 4\,\Omega$", r"$R_2 = 8\,\Omega$", r"$R_3 = 6\,\Omega$", r"$R_4 = 12\,\Omega$", r"$G$"),
-    v_source: str = r"$12\,\mathrm{V}$"
+    r1: float = 4.0,
+    r2: float = 8.0,
+    r3: float = 6.0,
+    r4: float = 12.0,
+    v_source: str = r"$12\,\mathrm{V}$",
+    **kwargs
 ) -> bytes:
     """Renders high-clarity bridge or ladder resistor circuits."""
+    r_labels = kwargs.get(
+        "r_labels",
+        (f"$R_1 = {r1:g}\\,\\Omega$", f"$R_2 = {r2:g}\\,\\Omega$", f"$R_3 = {r3:g}\\,\\Omega$", f"$R_4 = {r4:g}\\,\\Omega$", r"$G$")
+    )
+    v_source = kwargs.get("v_source", v_source)
+
     fig, ax = _create_base_figure(figsize=(6.2, 4.5))
 
     ax.set_title("Circuit Diagram", color=TEXT_COLOR, fontsize=13, fontweight='bold', pad=12)
@@ -218,7 +266,7 @@ def generate_circuit_diagram(
             ax.text(pt[0] - 0.25 if pt[0] == 1.5 else (pt[0] + 0.2 if pt[0] == 5.5 else pt[0]),
                     pt[1] + offset_y, label, color=TEXT_COLOR, fontsize=12, fontweight='bold', ha='center')
 
-        # Resistor Labels
+        # Resistor Labels: Branch ABC has R1 (A->B) & R2 (B->C); Branch ADC has R3 (A->D) & R4 (D->C)
         ax.text(2.3, 3.4, r_labels[0], color=ACCENT_BLUE, fontsize=11, fontweight='bold')
         ax.text(4.4, 3.4, r_labels[1], color=ACCENT_BLUE, fontsize=11, fontweight='bold')
         ax.text(2.3, 1.5, r_labels[2], color=ACCENT_BLUE, fontsize=11, fontweight='bold')
@@ -243,10 +291,20 @@ def generate_circuit_diagram(
 # ─────────────────────────────────────────────────────────────────────────────
 def generate_kinematics_graph(
     graph_type: str = "vt",
-    t_vals: list = [0, 4, 8, 12],
-    v_vals: list = [0, 20, 20, 0]
+    t_vals: list = None,
+    v_vals: list = None,
+    **kwargs
 ) -> bytes:
     """Renders kinematic motion graphs with highlighted acceleration & displacement regions."""
+    if t_vals is None:
+        t_total = float(kwargs.get("t_total", 12.0))
+        t_const = float(kwargs.get("t_const", 4.0))
+        t_acc = (t_total - t_const) / 2.0
+        t_vals = [0.0, t_acc, t_acc + t_const, t_total]
+    if v_vals is None:
+        v_max = float(kwargs.get("v_max", 20.0))
+        v_vals = [0.0, v_max, v_max, 0.0]
+
     fig, ax = _create_base_figure()
 
     ax.plot(t_vals, v_vals, color=ACCENT_GREEN, linewidth=2.8, marker='o', markersize=6)
@@ -274,7 +332,8 @@ def generate_kinematics_graph(
 def generate_reaction_coordinate(
     reaction_type: str = "exothermic",
     ea: float = 45.0,
-    delta_h: float = -20.0
+    delta_h: float = -20.0,
+    **kwargs
 ) -> bytes:
     """Renders chemical kinetics activation energy (Ea) and enthalpy profile."""
     fig, ax = _create_base_figure()
@@ -315,9 +374,14 @@ def generate_reaction_coordinate(
 # 6. NEET BIOLOGY: Pedigree Chart (Mendelian Genetics)
 # ─────────────────────────────────────────────────────────────────────────────
 def generate_pedigree_chart(
-    trait_type: str = "autosomal_dominant"
+    trait_type: str = "autosomal_dominant",
+    **kwargs
 ) -> bytes:
     """Renders standard genetic pedigree charts for NEET Genetics."""
+    pattern = kwargs.get("pattern", "Autosomal Dominant")
+    if pattern:
+        trait_type = pattern.lower().replace(" ", "_")
+
     fig, ax = _create_base_figure(figsize=(6, 4))
     ax.set_title(f"Genetics Pedigree Chart ({trait_type.replace('_', ' ').title()})",
                  color=TEXT_COLOR, fontsize=13, fontweight='bold', pad=12)
@@ -447,19 +511,20 @@ PYQ_DIAGRAM_REPOSITORY = [
 ]
 
 
-def render_diagram_for_spec(spec_type: str) -> bytes:
+def render_diagram_for_spec(spec_type: str, params: dict = None) -> bytes:
     """Dispatches generation to the matching specialized vector renderer."""
+    p = params or {}
     if spec_type == "pv_cycle":
-        return generate_pv_cycle_diagram("rectangular")
+        return generate_pv_cycle_diagram(**p) if p else generate_pv_cycle_diagram("rectangular")
     elif spec_type == "optics":
-        return generate_ray_optics_diagram()
+        return generate_ray_optics_diagram(**p)
     elif spec_type == "circuit":
-        return generate_circuit_diagram()
+        return generate_circuit_diagram(**p)
     elif spec_type == "kinematics":
-        return generate_kinematics_graph()
+        return generate_kinematics_graph(**p) if p else generate_kinematics_graph()
     elif spec_type == "reaction_energy":
-        return generate_reaction_coordinate()
+        return generate_reaction_coordinate(**p) if p else generate_reaction_coordinate()
     elif spec_type == "pedigree":
-        return generate_pedigree_chart()
+        return generate_pedigree_chart(**p) if p else generate_pedigree_chart()
     else:
         return generate_pv_cycle_diagram()
