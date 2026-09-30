@@ -62,43 +62,65 @@ class CurriculumQualityGate:
         q: dict[str, Any],
         raw_diagram_bytes: Optional[bytes] = None,
         solver_func: Optional[Callable[[dict[str, Any]], bool]] = None,
-        existing_fingerprints: Optional[Set[str]] = None
+        existing_fingerprints: Optional[Set[str]] = None,
+        is_new_content: bool = True
     ) -> ValidationResult:
         """
         Executes the full 7-stage quality gate sequentially.
-        Halts immediately on the first failed stage with exact rejection reason.
+        Halts immediately on the first failed stage with exact rejection reason for NEW content.
+        For EXISTING content (is_new_content=False), never rejects or deletes unmapped questions;
+        instead marks curriculumStatus='UNMAPPED' and preserves all data intact.
         """
         enriched_meta: dict[str, Any] = {}
 
         # ── STAGE 1: CURRICULUM VALIDATION ────────────────────────────────────
         exam = str(q.get("examType", "")).strip().upper()
         if exam not in VALID_EXAMS:
-            return ValidationResult(False, "CURRICULUM", f"Invalid examType: '{exam}' (Must be JEE or NEET)")
+            if is_new_content:
+                return ValidationResult(False, "CURRICULUM", f"Invalid examType: '{exam}' (Must be JEE or NEET)")
+            enriched_meta["curriculumStatus"] = "UNMAPPED"
+            enriched_meta["unmappedReason"] = f"Invalid examType: '{exam}'"
 
         subject = str(q.get("subject", "")).strip().capitalize()
         if subject not in VALID_SUBJECTS:
-            return ValidationResult(False, "CURRICULUM", f"Invalid subject: '{subject}'")
+            if is_new_content:
+                return ValidationResult(False, "CURRICULUM", f"Invalid subject: '{subject}'")
+            enriched_meta["curriculumStatus"] = "UNMAPPED"
+            enriched_meta["unmappedReason"] = f"Invalid subject: '{subject}'"
 
-        if exam == "JEE" and subject == "Biology":
-            return ValidationResult(False, "CURRICULUM", "Biology is not a JEE Main subject")
-        if exam == "NEET" and subject == "Maths":
-            return ValidationResult(False, "CURRICULUM", "Maths is not a NEET UG subject")
+        if is_new_content:
+            if exam == "JEE" and subject == "Biology":
+                return ValidationResult(False, "CURRICULUM", "Biology is not a JEE Main subject")
+            if exam == "NEET" and subject == "Maths":
+                return ValidationResult(False, "CURRICULUM", "Maths is not a NEET UG subject")
 
         chapter = str(q.get("chapter", "")).strip()
         if not chapter:
-            return ValidationResult(False, "CURRICULUM", "Chapter/Unit name is missing")
-
-        unit = curriculum.find_unit(exam, subject, chapter)
-        if not unit:
-            return ValidationResult(
-                False, "CURRICULUM",
-                f"Chapter '{chapter}' does not resolve to an official 2026 syllabus unit for {exam} {subject}"
-            )
-
-        official_unit = unit.get("unit_name", chapter)
-        topic_name = str(q.get("topic", "")).strip()
-        topic = curriculum.find_topic(exam, subject, official_unit, topic_name) if topic_name else None
-        resolved_topic = topic.get("topic", topic_name) if topic else (topic_name or official_unit)
+            if is_new_content:
+                return ValidationResult(False, "CURRICULUM", "Chapter/Unit name is missing")
+            enriched_meta["curriculumStatus"] = "UNMAPPED"
+            enriched_meta["unmappedReason"] = "Chapter/Unit name is missing"
+            official_unit = "Unknown"
+            resolved_topic = "Unknown"
+        else:
+            unit = curriculum.find_unit(exam, subject, chapter)
+            if not unit:
+                if is_new_content:
+                    return ValidationResult(
+                        False, "CURRICULUM",
+                        f"Chapter '{chapter}' does not resolve to an official 2026 syllabus unit for {exam} {subject}"
+                    )
+                # For existing questions: preserve 100% intact and mark UNMAPPED
+                enriched_meta["curriculumStatus"] = "UNMAPPED"
+                enriched_meta["unmappedReason"] = f"Chapter '{chapter}' does not resolve to an official 2026 syllabus unit"
+                official_unit = chapter
+                resolved_topic = chapter
+            else:
+                enriched_meta["curriculumStatus"] = "MAPPED"
+                official_unit = unit.get("unit_name", chapter)
+                topic_name = str(q.get("topic", "")).strip()
+                topic = curriculum.find_topic(exam, subject, official_unit, topic_name) if topic_name else None
+                resolved_topic = topic.get("topic", topic_name) if topic else (topic_name or official_unit)
 
         enriched_meta["officialUnit"] = official_unit
         enriched_meta["topic"] = resolved_topic
@@ -115,13 +137,15 @@ class CurriculumQualityGate:
                 source_type = "AI_GENERATED"
 
         if source_type not in VALID_SOURCE_TYPES:
-            return ValidationResult(
-                False, "SOURCE_AI",
-                f"Invalid sourceType '{source_type}'. Allowed: {VALID_SOURCE_TYPES}"
-            )
+            if is_new_content:
+                return ValidationResult(
+                    False, "SOURCE_AI",
+                    f"Invalid sourceType '{source_type}'. Allowed: {VALID_SOURCE_TYPES}"
+                )
+            source_type = "ORIGINAL_PRACTICE"
 
         # Honest labeling invariant: synthetic practice questions cannot be mislabeled as PYQs
-        if source_type == "PYQ" and q.get("params") and not q.get("pyq_paper_source"):
+        if is_new_content and source_type == "PYQ" and q.get("params") and not q.get("pyq_paper_source"):
             if not q.get("year"):
                 return ValidationResult(
                     False, "SOURCE_AI",
@@ -137,26 +161,29 @@ class CurriculumQualityGate:
 
         mode = str(mode).strip().upper()
         if mode not in VALID_QUESTION_MODES:
-            return ValidationResult(False, "MODE", f"Invalid questionMode '{mode}'. Allowed: {VALID_QUESTION_MODES}")
+            if is_new_content:
+                return ValidationResult(False, "MODE", f"Invalid questionMode '{mode}'. Allowed: {VALID_QUESTION_MODES}")
+            mode = "TEXT"
 
-        # Subject-specific mode bans
-        if subject == "Maths" and mode == "STRUCTURE":
-            return ValidationResult(False, "MODE", "STRUCTURE mode is strictly forbidden in Mathematics")
-        if subject == "Physics" and mode == "STRUCTURE":
-            return ValidationResult(False, "MODE", "STRUCTURE mode is strictly forbidden in Physics")
+        if is_new_content:
+            # Subject-specific mode bans
+            if subject == "Maths" and mode == "STRUCTURE":
+                return ValidationResult(False, "MODE", "STRUCTURE mode is strictly forbidden in Mathematics")
+            if subject == "Physics" and mode == "STRUCTURE":
+                return ValidationResult(False, "MODE", "STRUCTURE mode is strictly forbidden in Physics")
 
-        # Check against official allowed modes for this topic/unit
-        allowed_modes = curriculum.get_allowed_modes(exam, subject, official_unit, resolved_topic)
-        if mode not in allowed_modes:
-            # Tolerant fallback: TEXT questions with mild numbers allowed if TEXT is permitted
-            if mode == "NUMERICAL" and "TEXT" in allowed_modes and not q.get("imageUrl"):
-                mode = "TEXT"
-            else:
-                return ValidationResult(
-                    False, "MODE",
-                    f"Mode '{mode}' not permitted for {exam} {subject} [{official_unit} -> {resolved_topic}]. "
-                    f"Allowed modes: {allowed_modes}"
-                )
+            # Check against official allowed modes for this topic/unit
+            allowed_modes = curriculum.get_allowed_modes(exam, subject, official_unit, resolved_topic)
+            if mode not in allowed_modes:
+                # Tolerant fallback: TEXT questions with mild numbers allowed if TEXT is permitted
+                if mode == "NUMERICAL" and "TEXT" in allowed_modes and not q.get("imageUrl"):
+                    mode = "TEXT"
+                else:
+                    return ValidationResult(
+                        False, "MODE",
+                        f"Mode '{mode}' not permitted for {exam} {subject} [{official_unit} -> {resolved_topic}]. "
+                        f"Allowed modes: {allowed_modes}"
+                    )
 
         enriched_meta["questionMode"] = mode
         enriched_meta["diagramRequired"] = (mode == "DIAGRAM")
@@ -248,13 +275,14 @@ class CurriculumQualityGate:
                 if not (image_url.startswith("https://") or image_url.startswith("http://")):
                     return ValidationResult(False, "DIAGRAM_STRUCTURE", f"Malformed imageUrl: '{image_url}'")
             else:
-                return ValidationResult(
-                    False, "DIAGRAM_STRUCTURE",
-                    "Question mode is DIAGRAM but neither raw_diagram_bytes nor imageUrl was provided"
-                )
+                if is_new_content:
+                    return ValidationResult(
+                        False, "DIAGRAM_STRUCTURE",
+                        "Question mode is DIAGRAM but neither raw_diagram_bytes nor imageUrl was provided"
+                    )
 
             # 3. Single-Source Parameter Consistency Check
-            if params:
+            if is_new_content and params:
                 for p_key, p_val in params.items():
                     if isinstance(p_val, (int, float)) and abs(p_val) > 0.001:
                         # Check that parameter is cited in the question text or options
@@ -290,12 +318,59 @@ def validate_question(
     q: dict[str, Any],
     raw_diagram_bytes: Optional[bytes] = None,
     solver_func: Optional[Callable[[dict[str, Any]], bool]] = None,
-    existing_fingerprints: Optional[Set[str]] = None
+    existing_fingerprints: Optional[Set[str]] = None,
+    is_new_content: bool = True
 ) -> ValidationResult:
-    """Convenience helper function."""
+    """Convenience helper function for 7-stage quality gate validation."""
     return CurriculumQualityGate.validate(
         q,
         raw_diagram_bytes=raw_diagram_bytes,
         solver_func=solver_func,
-        existing_fingerprints=existing_fingerprints
+        existing_fingerprints=existing_fingerprints,
+        is_new_content=is_new_content
     )
+
+
+def safe_classify_existing_question(q: dict[str, Any]) -> dict[str, Any]:
+    """
+    Safely enriches an existing question with curriculum metadata without changing
+    or deleting any existing content.
+    - Preserves questionText, options, correctOptionIndex, id, imageUrl, explanation.
+    - If chapter maps to 2026 syllabus, adds officialUnit, topic, curriculumStatus='MAPPED'.
+    - If chapter does not map, preserves original chapter and sets curriculumStatus='UNMAPPED'.
+    - NEVER mutates or strips existing fields.
+    """
+    out = dict(q)
+    exam = str(q.get("examType", "")).strip().upper()
+    subject = str(q.get("subject", "")).strip().capitalize()
+    chapter = str(q.get("chapter", "")).strip()
+
+    unit = curriculum.find_unit(exam, subject, chapter) if (exam and subject and chapter) else None
+    if unit:
+        out["officialUnit"] = unit.get("unit_name", chapter)
+        topic_name = str(q.get("topic", "")).strip()
+        topic = curriculum.find_topic(exam, subject, out["officialUnit"], topic_name) if topic_name else None
+        out["topic"] = topic.get("topic", topic_name) if topic else (topic_name or out["officialUnit"])
+        out["curriculumStatus"] = "MAPPED"
+    else:
+        out["curriculumStatus"] = "UNMAPPED"
+        out["unmappedReason"] = f"Chapter '{chapter}' not found in official 2026 syllabus for {exam} {subject}"
+
+    # Determine mode safely without modifying options
+    mode = q.get("questionMode") or curriculum.detect_question_mode(q)
+    out["questionMode"] = mode
+    out["diagramRequired"] = bool(q.get("imageUrl") or mode == "DIAGRAM")
+
+    # Preserve or assign honest source type
+    if not out.get("sourceType"):
+        if out.get("year"):
+            out["sourceType"] = "PYQ"
+        elif out.get("imageUrl"):
+            out["sourceType"] = "WEB_SOURCE"
+        else:
+            out["sourceType"] = "ORIGINAL_PRACTICE"
+
+    if out.get("imageUrl") and not out.get("diagramSource"):
+        out["diagramSource"] = "AUTHENTIC_SOURCE" if out.get("sourceType") in ("PYQ", "WEB_SOURCE") else "DETERMINISTIC"
+
+    return out

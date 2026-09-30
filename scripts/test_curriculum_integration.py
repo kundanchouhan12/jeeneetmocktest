@@ -237,6 +237,73 @@ class TestCurriculumIntegration(unittest.TestCase):
         self.assertEqual(res.failed_stage, "DUPLICATE")
         self.assertIn("Duplicate question detected", res.reason)
 
+    # 12. Backward Compatibility: Existing Content Kept Intact Even If Unmapped
+    def test_12_existing_content_preservation_unmapped_kept_intact(self):
+        # A question from an unmapped chapter (e.g. Environmental Chemistry)
+        legacy_q = {
+            "id": "legacy_doc_12345",
+            "examType": "JEE",
+            "subject": "Chemistry",
+            "chapter": "Environmental Chemistry",
+            "questionText": "Which of the following is not a greenhouse gas?",
+            "options": ["CO2", "CH4", "N2", "O3"],
+            "correctOptionIndex": 2,
+            "explanation": "Nitrogen (N2) is not a greenhouse gas.",
+            "isDailyVault": False
+        }
+        # With is_new_content=False, question must NOT be rejected or failed
+        res = curriculum_validator.validate_question(legacy_q, is_new_content=False)
+        self.assertTrue(res.is_valid, "Legacy questions must remain valid and intact")
+        self.assertEqual(res.metadata["curriculumStatus"], "UNMAPPED")
+        self.assertIn("Environmental Chemistry", res.metadata["unmappedReason"])
+
+        # Also verify safe_classify_existing_question preserves all fields
+        enriched = curriculum_validator.safe_classify_existing_question(legacy_q)
+        self.assertEqual(enriched["id"], "legacy_doc_12345")
+        self.assertEqual(enriched["questionText"], legacy_q["questionText"])
+        self.assertEqual(enriched["options"], legacy_q["options"])
+        self.assertEqual(enriched["correctOptionIndex"], 2)
+        self.assertEqual(enriched["curriculumStatus"], "UNMAPPED")
+
+    # 13. Existing Image Questions: Preserved Without Re-rendering
+    def test_13_existing_image_question_preserved_without_re_render(self):
+        legacy_img_q = {
+            "id": "legacy_img_999",
+            "examType": "NEET",
+            "subject": "Biology",
+            "chapter": "Cell : Structure and Functions",
+            "questionText": "Identify the marked organelle in the cell structure.",
+            "options": ["Mitochondria", "Golgi apparatus", "Ribosome", "Endoplasmic Reticulum"],
+            "correctOptionIndex": 0,
+            "explanation": "The marked organelle is the mitochondrion.",
+            "imageUrl": "https://storage.googleapis.com/apps-273d9.appspot.com/legacy_cell.png"
+        }
+        res = curriculum_validator.validate_question(legacy_img_q, is_new_content=False)
+        self.assertTrue(res.is_valid)
+        self.assertEqual(res.metadata["curriculumStatus"], "MAPPED")
+        self.assertEqual(res.metadata["officialUnit"], "Cell Structure & Function")
+
+        enriched = curriculum_validator.safe_classify_existing_question(legacy_img_q)
+        self.assertEqual(enriched["imageUrl"], "https://storage.googleapis.com/apps-273d9.appspot.com/legacy_cell.png")
+        self.assertEqual(enriched["diagramSource"], "AUTHENTIC_SOURCE")
+
+    # 14. Power 100 Content Invariance
+    def test_14_power100_invariance(self):
+        power100_item = {
+            "subject": "Physics",
+            "chapter": "Current Electricity",
+            "difficulty": "Medium",
+            "questionText": "State Ohm's law relation for a uniform conductor.",
+            "options": ["V = IR", "V = I/R", "V = I^2 R", "V = R/I"],
+            "correctOptionIndex": 0,
+            "explanation": "Ohm's law gives V = IR."
+        }
+        enriched = curriculum_validator.safe_classify_existing_question(power100_item)
+        self.assertEqual(enriched["questionText"], power100_item["questionText"])
+        self.assertEqual(enriched["options"], power100_item["options"])
+        self.assertEqual(enriched["correctOptionIndex"], 0)
+
 
 if __name__ == "__main__":
     unittest.main()
+

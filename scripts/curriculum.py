@@ -63,6 +63,13 @@ def get_official_units(exam: str, subject: str) -> list[dict[str, Any]]:
     return subject_data.get("units", [])
 
 
+def _norm_tokens(s: str) -> set[str]:
+    """Extracts significant stemmed word tokens (stripping trailing 's' for plural normalization)."""
+    s = s.lower().replace("&", "and").replace("-", " ")
+    s = re.sub(r"[^a-z0-9 ]", "", s)
+    return set(re.sub(r"s$", "", w) for w in s.split() if len(w) > 2)
+
+
 def find_unit(exam: str, subject: str, unit_or_chapter: str) -> Optional[dict[str, Any]]:
     """
     Finds an official unit given a unit name, NCERT chapter alias, or legacy chapter.
@@ -93,6 +100,28 @@ def find_unit(exam: str, subject: str, unit_or_chapter: str) -> Optional[dict[st
             norm_alias = _normalize(alias)
             if norm_query in norm_alias or norm_alias in norm_query:
                 return u
+
+    # 4. Token overlap match (handles plurals, word reordering, e.g. "Cell : Structure and Functions")
+    query_tokens = _norm_tokens(unit_or_chapter)
+    if query_tokens:
+        best_unit = None
+        best_score = 0.0
+        for u in units:
+            unit_tokens = _norm_tokens(u.get("unit_name", ""))
+            if unit_tokens:
+                overlap = len(query_tokens & unit_tokens) / max(len(query_tokens), len(unit_tokens))
+                if overlap > best_score:
+                    best_score = overlap
+                    best_unit = u
+            for alias in u.get("ncert_chapters", []):
+                alias_tokens = _norm_tokens(alias)
+                if alias_tokens:
+                    overlap = len(query_tokens & alias_tokens) / max(len(query_tokens), len(alias_tokens))
+                    if overlap > best_score:
+                        best_score = overlap
+                        best_unit = u
+        if best_score >= 0.6:
+            return best_unit
 
     return None
 
