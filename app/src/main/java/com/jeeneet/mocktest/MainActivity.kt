@@ -821,7 +821,8 @@ class MainActivity : AppCompatActivity() {
             NavEntry("🏅", "Achievements",      Color.parseColor("#F59E0B")) { requiresHomeRefresh = true; com.jeeneet.mocktest.ui.achievements.AchievementsActivity.start(this); close() },
             NavEntry("👤", "Profile",           Color.parseColor("#64748B")) { requiresHomeRefresh = true; startActivity(Intent(this, com.jeeneet.mocktest.ui.profile.ProfileActivity::class.java)); close() },
             NavEntry("👑", "Upgrade Premium",   Color.parseColor("#F59E0B")) { requiresHomeRefresh = true; com.jeeneet.mocktest.ui.home.ShopActivity.start(this); close() },
-            NavEntry("📅", "AI Study Plan",     Color.parseColor("#10B981")) { startActivity(Intent(this, com.jeeneet.mocktest.ui.insights.InsightsActivity::class.java)); close() }
+            NavEntry("📅", "AI Study Plan",     Color.parseColor("#10B981")) { startActivity(Intent(this, com.jeeneet.mocktest.ui.insights.InsightsActivity::class.java)); close() },
+            NavEntry("🔄", "Sync Fresh Questions", Color.parseColor("#0EA5E9")) { close(); forceSyncQuestionsWithProgress() }
         )
 
         navItems.forEach { entry -> container.addView(buildNavItem(entry.icon, entry.label, entry.color, entry.action)) }
@@ -1135,6 +1136,55 @@ class MainActivity : AppCompatActivity() {
             contentLayout.alpha = 1f
             buildContent()
         }.start()
+    }
+
+    private fun forceSyncQuestionsWithProgress() {
+        val progressDialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
+            .setTitle("Syncing Questions 🔄")
+            .setMessage("Checking for fresh questions and diagrams from the server...")
+            .setCancelable(false)
+            .create()
+        progressDialog.show()
+
+        lifecycleScope.launch {
+            val syncSuccess = try {
+                withContext(Dispatchers.IO) {
+                    val syncMgr = QuestionSyncManager(this@MainActivity)
+                    val vaultOk = syncMgr.syncDailyVault(force = true)
+                    syncMgr.checkAndSyncIfNeeded()
+                    vaultOk
+                }
+            } catch (e: Exception) {
+                false
+            }
+
+            withContext(Dispatchers.Main) {
+                try {
+                    progressDialog.dismiss()
+                } catch (_: Exception) {}
+
+                // Invalidate local memory content cache
+                lastContentBuildTime = 0L
+                cachedTestResults = null
+                requiresHomeRefresh = true
+                buildContent()
+
+                val rootV = if (::mainScrollView.isInitialized) mainScrollView else window.decorView
+                if (syncSuccess) {
+                    com.google.android.material.snackbar.Snackbar.make(
+                        rootV,
+                        "✅ Daily Vault refreshed with 30 fresh questions!",
+                        com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+                    ).show()
+                } else {
+                    com.google.android.material.snackbar.Snackbar.make(
+                        rootV,
+                        "ℹ️ Questions synced and verified up to date.",
+                        com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+                    ).show()
+                }
+            }
+        }
     }
 
     // ─── Content (rebuilt on resume / exam switch) ────────────────────────────
@@ -1778,9 +1828,12 @@ class MainActivity : AppCompatActivity() {
                             if (lastQs != null) {
                                 com.google.android.material.dialog.MaterialAlertDialogBuilder(this@MainActivity)
                                     .setTitle("Daily Vault Completed! 🎉")
-                                    .setMessage("You have already completed today's 30 Vault questions.\n\nStart Revision Mode to re-attempt and sharpen your speed!")
+                                    .setMessage("You have already completed today's 30 Vault questions.\n\nStart Revision Mode to re-attempt and sharpen your speed, or Sync Fresh Questions if new questions were published!")
                                     .setPositiveButton("Start Revision") { _, _ ->
                                         TestActivity.startRevision(this@MainActivity, selectedExam, lastQs)
+                                    }
+                                    .setNeutralButton("🔄 Sync Fresh") { _, _ ->
+                                        forceSyncQuestionsWithProgress()
                                     }
                                     .setNegativeButton("Cancel", null)
                                     .show()
@@ -1813,6 +1866,9 @@ class MainActivity : AppCompatActivity() {
                                 .setTitle("Vault Updating")
                                 .setMessage("Today's 30 fresh questions are syncing in the background. Please check back in a moment!")
                                 .setPositiveButton("OK", null)
+                                .setNeutralButton("🔄 Sync Now") { _, _ ->
+                                    forceSyncQuestionsWithProgress()
+                                }
                                 .show()
                         }
                     }
@@ -1836,6 +1892,14 @@ class MainActivity : AppCompatActivity() {
             topBadgeBar.addView(uiModernBadge("TODAY'S VAULT", colorPrimary, "🟢"))
         }
         topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("Sync", Color.parseColor("#0EA5E9"), "🔄", alpha = 25).apply {
+            (layoutParams as? LinearLayout.LayoutParams)?.marginEnd = 6.dp
+            isClickable = true
+            isFocusable = true
+            setOnClickListener {
+                forceSyncQuestionsWithProgress()
+            }
+        })
         topBadgeBar.addView(uiModernBadge("+50 🪙", goldPrimary, "💰", alpha = 25).apply {
             (layoutParams as? LinearLayout.LayoutParams)?.marginEnd = 6.dp
         })

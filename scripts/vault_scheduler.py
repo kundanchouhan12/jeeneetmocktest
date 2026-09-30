@@ -464,6 +464,16 @@ def main() -> None:
     for exam in exams:
         schedule_vault(db, target, exam, args.count)
 
+    try:
+        db.collection("metadata").document("question_bank").set({
+            "version": int(time.time()),
+            "lastUpdated": firestore.SERVER_TIMESTAMP,
+            "vault_date": target,
+        }, merge=True)
+        print("  [metadata] Bumped question_bank version timestamp.")
+    except Exception as e:
+        print(f"  [metadata] Warning: Could not update question_bank metadata: {e}")
+
     print("\n[vault] Done. App will sync on next launch.")
 
 

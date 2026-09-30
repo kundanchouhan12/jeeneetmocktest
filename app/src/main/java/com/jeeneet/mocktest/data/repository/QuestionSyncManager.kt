@@ -69,8 +69,8 @@ class QuestionSyncManager(private val context: Context) {
             AnalyticsManager.syncStarted(context, "unlocked_packs")
             val meta = firestore.collection(COL_METADATA)
                 .document(DOC_QUESTION_BANK).get().await()
-            val remoteVersion = (meta.getLong("version") ?: 0L).toInt()
-            val localVersion  = PrefManager.getLastSyncedVersion(context)
+            val remoteVersion = meta.getLong("version") ?: 0L
+            val localVersion  = PrefManager.getLastSyncedVersionLong(context)
 
             if (remoteVersion > localVersion) {
                 Log.d(TAG, "Remote v$remoteVersion > local v$localVersion — syncing all unlocked packs")
@@ -80,7 +80,7 @@ class QuestionSyncManager(private val context: Context) {
                 AnalyticsManager.syncCompleted(
                     context,
                     syncType = "unlocked_packs",
-                    version = remoteVersion,
+                    version = (remoteVersion % Int.MAX_VALUE).toInt(),
                     freshCount = 0,
                     localTotal = totalLocal,
                     durationMs = System.currentTimeMillis() - startTime
@@ -136,14 +136,25 @@ class QuestionSyncManager(private val context: Context) {
     }
 
     /**
-     * Syncs today's Daily Vault for the selected exam only.
-     * Yesterday's Room vault is deleted only after a full 30-question set parses.
+     * Force-syncs Daily Vault and Question Bank for [exam].
+     * Returns true if Daily Vault was refreshed or verified complete.
      */
-    suspend fun syncDailyVault() = withContext(Dispatchers.IO) {
-        vaultMutex.withLock { syncDailyVaultLocked() }
+    suspend fun forceSyncAll(exam: String): Boolean = withContext(Dispatchers.IO) {
+        val vaultSuccess = syncDailyVault(force = true)
+        checkAndSyncIfNeeded()
+        vaultSuccess
     }
 
-    private suspend fun syncDailyVaultLocked() {
+    /**
+     * Syncs today's Daily Vault for the selected exam only.
+     * Yesterday's Room vault is deleted only after a full 30-question set parses.
+     * Set [force] = true to bypass local cache and force re-fetching from Firestore.
+     */
+    suspend fun syncDailyVault(force: Boolean = false): Boolean = withContext(Dispatchers.IO) {
+        vaultMutex.withLock { syncDailyVaultLocked(force) }
+    }
+
+    private suspend fun syncDailyVaultLocked(force: Boolean = false): Boolean {
         val sdf = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
         val today = sdf.format(java.util.Date())
         val exam = PrefManager.getSelectedExam(context)
@@ -163,7 +174,7 @@ class QuestionSyncManager(private val context: Context) {
         }
 
         try {
-            Log.d(TAG, "Syncing Daily Vault for $today ($exam)…")
+            Log.d(TAG, "Syncing Daily Vault for $today ($exam, force=$force)…")
             val snapshot = firestore.collection(COL_QUESTIONS)
                 .whereEqualTo("vaultDate", today)
                 .whereEqualTo("examType", exam)
@@ -174,9 +185,9 @@ class QuestionSyncManager(private val context: Context) {
                 .filter { it.examType == exam && it.isDailyVault }
 
             val incomingGroupId = questions.firstOrNull()?.vaultGroupId.orEmpty()
-            if (incomingGroupId.isNotEmpty() && incomingGroupId == savedGroupId && snapshotDate == today && cacheCompleteToday) {
+            if (!force && incomingGroupId.isNotEmpty() && incomingGroupId == savedGroupId && snapshotDate == today && cacheCompleteToday) {
                 Log.d(TAG, "Daily Vault for $today ($exam) group='$savedGroupId' already up to date — skipping Room replace")
-                return
+                return true
             }
 
             // Reinstall / first-launch fallback: no cached vault and no vault for today —
@@ -226,7 +237,7 @@ class QuestionSyncManager(private val context: Context) {
                             "not updating pointers, will retry on next sync"
                     )
                     AnalyticsManager.syncFailed(context, "daily_vault", "post_write_verification_failed")
-                    return
+                    return false
                 }
 
                 val refreshCal = java.util.Calendar.getInstance()
@@ -237,6 +248,12 @@ class QuestionSyncManager(private val context: Context) {
                 PrefManager.setVaultSnapshotDate(context, exam, sourceDate)
                 PrefManager.setVaultNextRefreshDate(context, exam, nextRefresh)
                 PrefManager.setLastVaultSyncDate(context, today)
+
+                // Reset daily vault completed state so fresh questions can be taken immediately
+                if (force || newGroupId != savedGroupId) {
+                    PrefManager.resetDailyVaultDone(context, exam)
+                    Log.d(TAG, "Daily Vault reset done state for $exam because group changed to $newGroupId")
+                }
 
                 if (!PrefManager.isDailyVaultDoneToday(context, exam)) {
                     com.jeeneet.mocktest.utils.NotificationHelper.showDailyVaultNotif(context, exam)
@@ -251,11 +268,13 @@ class QuestionSyncManager(private val context: Context) {
                     localTotal = localTotal,
                     durationMs = 0L
                 )
+                return true
             } else if (questions.isNotEmpty()) {
                 Log.w(
                     TAG,
                     "Ignoring incomplete $exam vault (${questions.size}/$EXPECTED_VAULT_COUNT parseable) — keeping previous day"
                 )
+                return false
             } else {
                 // No new vault uploaded yet for today — keep serving cached vault and retry tomorrow
                 if (savedGroupId.isNotEmpty()) {
@@ -267,11 +286,13 @@ class QuestionSyncManager(private val context: Context) {
                 } else {
                     Log.d(TAG, "No vault questions found for $today and no cached vault available")
                 }
+                return false
             }
             PrefManager.setVaultLastCheckedMs(context, exam, System.currentTimeMillis())
         } catch (e: Exception) {
             Log.w(TAG, "Daily Vault sync failed: ${e.message}")
             AnalyticsManager.syncFailed(context, "daily_vault", e.message ?: "network_error")
+            return false
         }
     }
 

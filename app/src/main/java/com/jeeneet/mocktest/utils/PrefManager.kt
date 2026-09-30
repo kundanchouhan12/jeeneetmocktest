@@ -180,8 +180,13 @@ object PrefManager {
 
     // Question bank sync versioning
     fun getLastSyncedVersion(ctx: Context): Int = prefs(ctx).getInt("question_bank_version", 0)
-    fun setLastSyncedVersion(ctx: Context, version: Int) =
-        prefs(ctx).edit().putInt("question_bank_version", version).apply()
+    fun getLastSyncedVersionLong(ctx: Context): Long =
+        prefs(ctx).getLong("question_bank_version_long", prefs(ctx).getInt("question_bank_version", 0).toLong())
+    fun setLastSyncedVersion(ctx: Context, version: Long) =
+        prefs(ctx).edit()
+            .putLong("question_bank_version_long", version)
+            .putInt("question_bank_version", (version % Int.MAX_VALUE).toInt())
+            .apply()
 
     // App version tracking — used to detect installs vs upgrades
     fun getStoredVersionCode(ctx: Context): Int = prefs(ctx).getInt("app_version_code", 0)
@@ -608,6 +613,13 @@ object PrefManager {
     fun markDailyVaultDone(ctx: Context, exam: String) {
         val today = System.currentTimeMillis() / 86_400_000
         prefs(ctx).edit().putLong("daily_vault_day_${exam}_${uid()}", today).apply()
+    }
+
+    fun resetDailyVaultDone(ctx: Context, exam: String) {
+        prefs(ctx).edit()
+            .remove("daily_vault_day_${exam}_${uid()}")
+            .remove("last_daily_vault_qs_${exam}_${uid()}")
+            .apply()
     }
 
     fun saveLastDailyVaultQuestionsJson(ctx: Context, exam: String, json: String) {
