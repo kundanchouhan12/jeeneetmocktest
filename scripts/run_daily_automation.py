@@ -44,6 +44,7 @@ from purge_duplicate_questions import purge_duplicates
 from vault_scheduler import schedule_vault
 from web_question_ingestion import run_web_ingestion
 from neet_web_question_ingestion import run_neet_web_ingestion
+from stem_diagram_pipeline import run_stem_diagram_pipeline
 
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 
@@ -190,6 +191,13 @@ def main():
     except Exception as e:
         print(f"❌ Error during AI Question Generation Pipeline: {e}")
         failed_steps.append(f"AI Question Generation Pipeline: {e}")
+
+    # Step 2b: STEM Diagram Question Generation & Ingestion (JEE & NEET)
+    try:
+        run_stem_diagram_pipeline(db=db, dry_run=args.dry_run, all_docs=pre_write_docs)
+    except Exception as e:
+        print(f"❌ Error during STEM Diagram Pipeline: {e}")
+        failed_steps.append(f"STEM Diagram Pipeline: {e}")
 
     if not args.dry_run and db:
         # Re-fetch once now that steps 1-2 have written new docs, and share

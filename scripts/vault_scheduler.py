@@ -263,13 +263,13 @@ def select_vault_questions(
             except Exception:
                 tier2.append((datetime.date.min, doc))
 
+    def has_diagram(doc):
+        data = doc.to_dict() if hasattr(doc, "to_dict") and callable(doc.to_dict) else (doc if isinstance(doc, dict) else getattr(doc, "__dict__", {}))
+        return bool(data.get("imageUrl"))
+
     fresh_n = min(count, len(tier1))
     if fresh_n:
         # Prioritize picking diagram questions (up to 5) so daily vaults contain rich STEM diagrams
-        def has_diagram(doc):
-            data = doc.to_dict() if hasattr(doc, "to_dict") and callable(doc.to_dict) else (doc if isinstance(doc, dict) else getattr(doc, "__dict__", {}))
-            return bool(data.get("imageUrl"))
-
         tier1_diagrams = [d for d in tier1 if has_diagram(d)]
         tier1_text = [d for d in tier1 if not has_diagram(d)]
         target_diags = min(5, len(tier1_diagrams))
@@ -280,7 +280,7 @@ def select_vault_questions(
     else:
         selected = []
 
-    needed_from_cooldown = count - fresh_n
+    needed_from_cooldown = count - len(selected)
     if needed_from_cooldown > 0:
         if len(tier2) < needed_from_cooldown:
             raise VaultContractError(
@@ -289,8 +289,22 @@ def select_vault_questions(
                 f"Refusing to violate the {cooldown_days}-day cooldown policy."
             )
         # Sort Tier 2 by oldest last-served date first (LRU)
-        tier2.sort(key=lambda item: (item[0], item[1].id))
-        selected += [doc for _, doc in tier2[:needed_from_cooldown]]
+        # If current selection has fewer than 3 diagrams, prioritize any cooldown-cleared diagram questions
+        current_diags = len([d for d in selected if has_diagram(d)])
+        if current_diags < 3:
+            t2_diags = [(dt, d) for dt, d in tier2 if has_diagram(d)]
+            t2_other = [(dt, d) for dt, d in tier2 if not has_diagram(d)]
+            t2_diags.sort(key=lambda item: (item[0], item[1].id))
+            t2_other.sort(key=lambda item: (item[0], item[1].id))
+            take_diags = min(3 - current_diags, len(t2_diags), needed_from_cooldown)
+            picked_t2_diags = [d for _, d in t2_diags[:take_diags]]
+            needed_rem = needed_from_cooldown - len(picked_t2_diags)
+            pool_rem = t2_diags[take_diags:] + t2_other
+            pool_rem.sort(key=lambda item: (item[0], item[1].id))
+            selected += picked_t2_diags + [doc for _, doc in pool_rem[:needed_rem]]
+        else:
+            tier2.sort(key=lambda item: (item[0], item[1].id))
+            selected += [doc for _, doc in tier2[:needed_from_cooldown]]
 
     return selected
 
