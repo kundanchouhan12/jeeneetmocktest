@@ -71,7 +71,10 @@ class Power100SyncManager(private val context: Context) {
      */
     suspend fun forceSync(exam: String): String? = withContext(Dispatchers.IO) {
         Log.i(TAG, "Force sync requested for $exam")
-        prefs.edit().remove(lastCheckedKey(exam)).apply()
+        prefs.edit()
+            .remove(lastCheckedKey(exam))
+            .remove(versionKey(exam))
+            .apply()
         syncFromFirestore(exam)
     }
 

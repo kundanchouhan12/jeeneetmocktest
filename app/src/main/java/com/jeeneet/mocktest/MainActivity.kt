@@ -1152,7 +1152,8 @@ class MainActivity : AppCompatActivity() {
                     val syncMgr = QuestionSyncManager(this@MainActivity)
                     val vaultOk = syncMgr.syncDailyVault(force = true)
                     syncMgr.checkAndSyncIfNeeded()
-                    vaultOk
+                    val p100Error = com.jeeneet.mocktest.data.repository.Power100SyncManager(this@MainActivity).forceSync(selectedExam)
+                    vaultOk || p100Error == null
                 }
             } catch (e: Exception) {
                 false
@@ -1173,7 +1174,7 @@ class MainActivity : AppCompatActivity() {
                 if (syncSuccess) {
                     com.google.android.material.snackbar.Snackbar.make(
                         rootV,
-                        "✅ Daily Vault refreshed with 30 fresh questions!",
+                        "✅ Daily Vault & Power 100 refreshed successfully!",
                         com.google.android.material.snackbar.Snackbar.LENGTH_LONG
                     ).show()
                 } else {
@@ -1513,6 +1514,14 @@ class MainActivity : AppCompatActivity() {
         }
         topBadgeBar.addView(uiModernBadge("TOP 100", goldPrimary, "🏆", alpha = 30))
         topBadgeBar.addView(View(this).apply { layoutParams = LinearLayout.LayoutParams(0, 0, 1f) })
+        topBadgeBar.addView(uiModernBadge("Sync", Color.parseColor("#0EA5E9"), "🔄", alpha = 25).apply {
+            (layoutParams as? LinearLayout.LayoutParams)?.marginEnd = 6.dp
+            isClickable = true
+            isFocusable = true
+            setOnClickListener {
+                forceSyncQuestionsWithProgress()
+            }
+        })
         topBadgeBar.addView(uiModernBadge("EVERY MON", Color.parseColor("#F59E0B"), "⚡", alpha = 20))
         outer.addView(topBadgeBar)
 

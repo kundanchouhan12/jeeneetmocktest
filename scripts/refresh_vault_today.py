@@ -34,6 +34,7 @@ def main():
     parser = argparse.ArgumentParser(description="Force refresh today's Daily Vault in Firestore")
     parser.add_argument("--exam", choices=["JEE", "NEET"], default=None, help="Limit to specific exam")
     parser.add_argument("--creds", default=SERVICE_ACCOUNT_PATH, help="Path to service account JSON")
+    parser.add_argument("--power100", action="store_true", help="Also rebuild Power 100 sets for the exam(s)")
     args = parser.parse_args()
 
     today_str = datetime.date.today().strftime("%Y-%m-%d")
@@ -51,6 +52,16 @@ def main():
         except Exception as e:
             print(f"❌ Failed to schedule {exam} vault: {e}")
 
+    if args.power100:
+        from build_power100_live import run_power100_rebuild
+        print("\n⚡ Rebuilding Power 100 sets...")
+        for exam in exams:
+            try:
+                run_power100_rebuild(exam, db=db)
+                print(f"✅ {exam} Power 100 rebuilt from live question bank!")
+            except Exception as e:
+                print(f"❌ Failed to rebuild {exam} Power 100: {e}")
+
     try:
         new_version = int(time.time())
         db.collection("metadata").document("question_bank").set({
@@ -66,8 +77,8 @@ def main():
     print("\n=================================================================")
     print("🎉 Done! To see the new questions on your phone:")
     print("   1. Open the MockTest app.")
-    print("   2. Tap the '🔄 Sync' badge on the Daily Vault card (or Drawer menu -> '🔄 Sync Fresh Questions').")
-    print("   3. The app will immediately load the fresh 30 questions into your test!")
+    print("   2. Tap the '🔄 Sync' badge on the Daily Vault or Power 100 card (or Drawer menu -> '🔄 Sync Fresh Questions').")
+    print("   3. The app will immediately load the fresh questions into your test!")
     print("=================================================================\n")
 
 

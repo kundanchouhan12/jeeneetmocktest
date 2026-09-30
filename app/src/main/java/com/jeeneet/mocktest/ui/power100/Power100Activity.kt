@@ -390,6 +390,31 @@ class Power100Activity : AppCompatActivity() {
             background = roundedFill(Color.argb(20, Color.red(colorPrimary), Color.green(colorPrimary), Color.blue(colorPrimary)), Corner.PILL)
             setPadding(Space.M.dp, 4.dp, Space.M.dp, 4.dp)
         })
+
+        // Force-refresh button
+        row.addView(TextView(this).apply {
+            text = "🔄"
+            textSize = 15f
+            setPadding(Space.M.dp, 4.dp, 0, 4.dp)
+            isClickable = true
+            isFocusable = true
+            setOnClickListener {
+                showLoadingOverlay("Syncing latest Power 100 questions…")
+                lifecycleScope.launch {
+                    val error = withContext(Dispatchers.IO) {
+                        Power100SyncManager(this@Power100Activity).forceSync(exam)
+                    }
+                    val db = MockTestDatabase.getInstance(this@Power100Activity)
+                    questions = withContext(Dispatchers.IO) { db.power100Dao().getQuestionsForExam(exam) }
+                    withContext(Dispatchers.Main) {
+                        hideLoadingOverlay()
+                        refreshGridUi()
+                        val msg = if (error == null) "✅ Power 100 questions updated!" else "⚠️ $error"
+                        com.google.android.material.snackbar.Snackbar.make(rootFrame, msg, com.google.android.material.snackbar.Snackbar.LENGTH_SHORT).show()
+                    }
+                }
+            }
+        })
         return row
     }
 
