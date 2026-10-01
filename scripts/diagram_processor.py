@@ -103,8 +103,64 @@ def compress_diagram_to_webp(image_bytes: bytes, max_width: int = MAX_DIAGRAM_WI
         return None
 
 
+try:
+    import cloudinary
+    import cloudinary.uploader
+    HAS_CLOUDINARY = True
+except ImportError:
+    cloudinary = None
+    HAS_CLOUDINARY = False
+
+# Default Cloudinary credentials from configuration or environment
+DEFAULT_CLOUDINARY_URL = "cloudinary://755953873123215:RuKFj4VtH_fAApciLyBuClSwFGc@s9ckjajw"
+
 JSDELIVR_REPO_RAW_URL = "https://cdn.jsdelivr.net/gh/kundanchouhan12/jeeneetmocktest@main"
 GITHUB_REPO_RAW_URL = "https://raw.githubusercontent.com/kundanchouhan12/jeeneetmocktest/main"
+
+
+def init_cloudinary() -> bool:
+    """Configures Cloudinary client using environment or default credentials."""
+    if not HAS_CLOUDINARY:
+        return False
+    if "CLOUDINARY_URL" not in os.environ:
+        os.environ["CLOUDINARY_URL"] = DEFAULT_CLOUDINARY_URL
+    try:
+        cloudinary.config(
+            cloud_name=os.environ.get("CLOUDINARY_CLOUD_NAME", "s9ckjajw"),
+            api_key=os.environ.get("CLOUDINARY_API_KEY", "755953873123215"),
+            api_secret=os.environ.get("CLOUDINARY_API_SECRET", "RuKFj4VtH_fAApciLyBuClSwFGc"),
+            secure=True
+        )
+        return True
+    except Exception as e:
+        print(f"    ⚠️ Cloudinary configuration error: {e}")
+        return False
+
+
+def upload_diagram_to_cloudinary(
+    webp_bytes: bytes,
+    exam: str,
+    subject: str,
+    doc_id: str,
+    suffix: str = ""
+) -> str | None:
+    """Uploads WebP bytes to Cloudinary media CDN and returns high-speed secure URL."""
+    if not init_cloudinary():
+        return None
+    try:
+        public_id = f"{doc_id}{suffix}"
+        folder = f"mocktestapp/diagrams/{exam.lower()}/{subject.lower()}"
+        res = cloudinary.uploader.upload(
+            webp_bytes,
+            public_id=public_id,
+            folder=folder,
+            resource_type="image",
+            overwrite=True
+        )
+        return res.get("secure_url")
+    except Exception as e:
+        print(f"    ⚠️ Cloudinary upload failed for {doc_id}{suffix}: {e}")
+        return None
 
 
 def save_local_diagram(webp_bytes: bytes, storage_path: str) -> str:
@@ -126,11 +182,30 @@ def save_local_diagram(webp_bytes: bytes, storage_path: str) -> str:
     return f"{JSDELIVR_REPO_RAW_URL}/{rel_path}"
 
 
-def upload_diagram_to_storage(webp_bytes: bytes, bucket, storage_path: str) -> str | None:
+def upload_diagram_to_storage(
+    webp_bytes: bytes,
+    bucket,
+    storage_path: str,
+    exam: str = "jee",
+    subject: str = "physics",
+    doc_id: str = "diagram",
+    suffix: str = ""
+) -> str | None:
     """
-    Uploads WebP bytes to Firebase Storage bucket and returns permanent CDN download URL.
-    Falls back to repository CDN if bucket is not initialized or unreachable.
+    Tiered upload strategy:
+    1. Cloudinary Media CDN (Primary cloud storage target)
+    2. Firebase Storage (if bucket provisioned)
+    3. jsDelivr / GitHub repository CDN fallback (with local asset pre-bundling)
     """
+    # 1. Local mirror so assets are always bundled for offline testing
+    local_cdn_url = save_local_diagram(webp_bytes, storage_path)
+
+    # 2. Upload to Cloudinary (primary cloud delivery)
+    cloudinary_url = upload_diagram_to_cloudinary(webp_bytes, exam, subject, doc_id, suffix)
+    if cloudinary_url:
+        return cloudinary_url
+
+    # 3. Upload to Firebase Storage bucket if accessible
     if bucket:
         try:
             blob = bucket.blob(storage_path)
@@ -143,9 +218,9 @@ def upload_diagram_to_storage(webp_bytes: bytes, bucket, storage_path: str) -> s
             return public_url
         except Exception as e:
             print(f"    ⚠️ Firebase Storage upload failed for {storage_path}: {e}")
-            print("    🔄 Using reliable GitHub CDN fallback...")
-    
-    return save_local_diagram(webp_bytes, storage_path)
+
+    # 4. Fallback to jsDelivr CDN
+    return local_cdn_url
 
 
 def process_and_upload_diagram(
@@ -178,7 +253,10 @@ def process_and_upload_diagram(
     suffix = "_sol" if is_solution else ""
     storage_path = f"questions/diagrams/{exam.lower()}/{subject.lower()}/{doc_id}{suffix}.webp"
 
-    return upload_diagram_to_storage(webp_bytes, bucket, storage_path)
+    return upload_diagram_to_storage(
+        webp_bytes, bucket, storage_path,
+        exam=exam, subject=subject, doc_id=doc_id, suffix=suffix
+    )
 
 
 if __name__ == "__main__":
