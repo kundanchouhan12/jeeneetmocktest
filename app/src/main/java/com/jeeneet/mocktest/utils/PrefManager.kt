@@ -673,4 +673,26 @@ object PrefManager {
 
     fun setExamLabel(ctx: Context, examType: String, label: String) =
         prefs(ctx).edit().putString("exam_label_${examType.lowercase()}", label).apply()
+
+    // ─── In-App Update Prompt Preferences ─────────────────────────────────────
+    fun getLastUpdatePromptDismissed(ctx: Context): Long =
+        prefs(ctx).getLong("last_update_prompt_dismissed", 0L)
+
+    fun getLastDismissedUpdateVersion(ctx: Context): Int =
+        prefs(ctx).getInt("last_update_prompt_version", 0)
+
+    fun setUpdatePromptDismissed(ctx: Context, versionCode: Int) =
+        prefs(ctx).edit()
+            .putLong("last_update_prompt_dismissed", System.currentTimeMillis())
+            .putInt("last_update_prompt_version", versionCode)
+            .apply()
+
+    fun shouldShowUpdatePrompt(ctx: Context, latestVersionCode: Int): Boolean {
+        val lastDismissedVersion = getLastDismissedUpdateVersion(ctx)
+        // If a newer release than previous dismissal, prompt immediately
+        if (latestVersionCode > lastDismissedVersion) return true
+        val lastDismissedTime = getLastUpdatePromptDismissed(ctx)
+        val dayMillis = 24 * 60 * 60 * 1000L
+        return (System.currentTimeMillis() - lastDismissedTime) > dayMillis
+    }
 }

@@ -490,57 +490,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkFirestoreForForceUpdate() {
         try {
-            val db = FirebaseFirestore.getInstance()
-            // Source.SERVER bypasses the offline cache so a freshly-updated app doesn't
-            // keep seeing a stale forceUpdateEnabled=true document and loop forever.
-            db.collection("app_config").document("version_control")
-                .get(Source.SERVER)
-                .addOnSuccessListener { document ->
-                    if (isDestroyed || isFinishing) return@addOnSuccessListener
-                    if (document != null && document.exists()) {
-                        val minRequiredVersion = document.getLong("minRequiredVersionCode") ?: 0L
-                        val forceUpdate = document.getBoolean("forceUpdateEnabled") ?: false
-                        val currentVersion = com.jeeneet.mocktest.BuildConfig.VERSION_CODE.toLong()
-
-                        if (currentVersion < minRequiredVersion && forceUpdate) {
-                            showForceUpdateDialog()
-                        } else {
-                            checkForUpdate()
-                        }
-                    } else {
-                        checkForUpdate()
-                    }
+            com.jeeneet.mocktest.utils.InAppUpdateManager.checkForUpdate(this) {
+                // If no remote popup is required or pending, check Google Play Core update
+                if (!isDestroyed && !isFinishing) {
+                    checkForUpdate()
                 }
-                .addOnFailureListener {
-                    // Network unavailable — skip force-update check and try Play update normally
-                    if (!isDestroyed && !isFinishing) checkForUpdate()
-                }
+            }
         } catch (e: Exception) {
-            android.util.Log.e("MainActivity", "Firestore force update check failed: ${e.message}")
-            checkForUpdate()
-        }
-    }
-
-    private fun showForceUpdateDialog() {
-        if (isDestroyed || isFinishing) return
-        runOnUiThread {
-            if (isDestroyed || isFinishing) return@runOnUiThread
-            androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("🚨 Critical Update Required")
-                .setMessage("A new, improved version of the app is available with critical fixes and exciting new features. Please update to continue using the app.")
-                .setCancelable(false)
-                .setPositiveButton("Update Now") { _, _ ->
-                    PrefManager.openPlayStore(this)
-                    // Kill the process immediately so no pending Firebase callbacks can
-                    // fire on a destroyed Activity context after finishAffinity().
-                    finishAffinity()
-                    android.os.Process.killProcess(android.os.Process.myPid())
-                }
-                .setNegativeButton("Exit") { _, _ ->
-                    finishAffinity()
-                    android.os.Process.killProcess(android.os.Process.myPid())
-                }
-                .show()
+            android.util.Log.e("MainActivity", "In-App update check failed: ${e.message}")
+            if (!isDestroyed && !isFinishing) checkForUpdate()
         }
     }
 

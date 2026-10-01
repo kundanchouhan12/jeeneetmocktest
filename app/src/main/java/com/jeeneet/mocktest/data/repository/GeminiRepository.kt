@@ -19,13 +19,11 @@ import java.util.concurrent.TimeUnit
 class GeminiRepository(private val context: Context) {
 
     companion object {
-        // 🔥 Prioritize stable models for Free Tier
+        // 🔥 Prioritize stable, verified active models
         private val MODELS = listOf(
-            "gemini-flash-latest",
             "gemini-2.5-flash",
-            "gemini-2.0-flash",
-            "gemini-pro-latest",
-            "gemini-2.5-pro"
+            "gemini-flash-lite-latest",
+            "gemini-flash-latest"
         )
         private fun endpointFor(model: String) =
             "https://generativelanguage.googleapis.com/v1beta/models/$model:generateContent"
@@ -367,8 +365,8 @@ class GeminiRepository(private val context: Context) {
                     }
 
                     if (e.httpCode == 404 || e.httpCode == 400 || e.httpCode == 403) {
-                        onStatus("Error ${e.httpCode} on $model. Trying next…")
-                        delay(2000)
+                        onStatus("Connecting to backup AI engine…")
+                        delay(1000)
                         break 
                     }
 

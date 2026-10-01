@@ -37,4 +37,5 @@ _bf*
 .history/
 .claude-launcher/
 .vscode/
+local.properties
 

@@ -22,8 +22,10 @@ android {
         targetSdk 36
         versionCode 19
         versionName "1.2.1"
-        buildConfigField "String", "GEMINI_API_KEY", "\"${localProps.getProperty('gemini.api.key', '')}\""
-        buildConfigField "String", "GROQ_API_KEY", "\"${localProps.getProperty('groq.api.key', '')}\""
+        def geminiKey = localProps.getProperty('gemini.api.key') ?: System.getenv('GEMINI_API_KEY') ?: ''
+        def groqKey = localProps.getProperty('groq.api.key') ?: System.getenv('GROQ_API_KEY') ?: ''
+        buildConfigField "String", "GEMINI_API_KEY", "\"${geminiKey}\""
+        buildConfigField "String", "GROQ_API_KEY", "\"${groqKey}\""
     }
 
     signingConfigs {
