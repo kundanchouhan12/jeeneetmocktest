@@ -130,22 +130,22 @@ class GeminiRepository(private val context: Context) {
                 }
             }
 
-            // 3. Try Groq (Primary — fast, high free-tier limits) when OCR text is available.
-            //    Groq is text-only, so with no OCR text we must go straight to Gemini Vision.
-            var finalModel = "Gemini 1.5 Flash"
-            val result = if (!ocrText.isNullOrBlank()) {
+            // 3. Try Groq (if configured and OCR text is available), otherwise Gemini Vision directly
+            var finalModel = "Gemini 2.5 Flash"
+            val result = if (!ocrText.isNullOrBlank() && GroqRepository.isAvailable()) {
                 try {
                     finalModel = "Llama 3 (Groq)"
                     onStatus("Solving with Groq... ⚡")
                     GroqRepository(context).solve(ocrText).getOrThrow()
                 } catch (e: Exception) {
-                    onStatus("Groq busy. Trying Gemini Vision...")
+                    onStatus("Switching to Gemini Vision...")
                     callWithRetry(onStatus) {
                         finalModel = it
                         callVisionApi(base64, it)
                     }
                 }
             } else {
+                onStatus("Analyzing with Gemini Vision... ⚡")
                 callWithRetry(onStatus) {
                     finalModel = it
                     callVisionApi(base64, it)
@@ -235,14 +235,23 @@ class GeminiRepository(private val context: Context) {
                 return@runCatching SolveResult(solution, CacheStatus.MISS, "Local Bank")
             }
 
-            // 4. Try Groq (Primary — fast, high free-tier limits), fall back to Gemini
-            var finalModel = "Llama 3 (Groq)"
-            val result = try {
-                onStatus("Solving with Groq... ⚡")
-                GroqRepository(context).solve(question).getOrThrow()
-            } catch (e: Exception) {
-                onStatus("Groq busy. Trying Gemini...")
-                finalModel = "Gemini 1.5 Flash"
+            // 4. Try Groq (if configured), otherwise Gemini directly
+            var finalModel = "Gemini 2.5 Flash"
+            val result = if (GroqRepository.isAvailable()) {
+                try {
+                    finalModel = "Llama 3 (Groq)"
+                    onStatus("Solving with Groq... ⚡")
+                    GroqRepository(context).solve(question).getOrThrow()
+                } catch (e: Exception) {
+                    onStatus("Switching to Gemini AI...")
+                    finalModel = "Gemini 2.5 Flash"
+                    callWithRetry(onStatus) {
+                        finalModel = it
+                        callTextApi(question, it)
+                    }
+                }
+            } else {
+                onStatus("Solving with Gemini AI... ⚡")
                 callWithRetry(onStatus) {
                     finalModel = it
                     callTextApi(question, it)

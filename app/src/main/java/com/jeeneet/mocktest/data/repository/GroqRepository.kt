@@ -35,6 +35,9 @@ class GroqRepository(private val context: Context) {
         private const val MODEL =
             "llama-3.3-70b-versatile"
 
+        fun isAvailable(): Boolean =
+            API_KEY.isNotBlank() && API_KEY != "YOUR_GROQ_API_KEY"
+
         private val client = OkHttpClient.Builder()
             .connectTimeout(20, TimeUnit.SECONDS)
             .readTimeout(60, TimeUnit.SECONDS)
