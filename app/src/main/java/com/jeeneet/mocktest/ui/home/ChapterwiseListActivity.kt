@@ -744,55 +744,9 @@ class ChapterwiseListActivity : AppCompatActivity() {
 
     // ─── Chapter data ─────────────────────────────────────────────────────────
 
-    private fun chaptersForSubject(subject: String): List<String> = when (subject) {
-        "Physics" -> listOf(
-            "Mathematics In Physics", "Units, Dimensions And Measurement",
-            "Motion In One Dimension", "Motion In Two Dimension",
-            "Newton's Laws Of Motion", "Friction",
-            "Work, Energy, Power And Collision", "Rotational Motion",
-            "Gravitation", "Simple Harmonic Motion",
-            "Elasticity", "Fluid Mechanics",
-            "Thermal Physics", "Kinetic Theory Of Gases",
-            "Thermodynamics", "Wave Motion",
-            "Electrostatics", "Current Electricity",
-            "Magnetic Effect Of Current", "Electromagnetic Induction",
-            "Optics", "Modern Physics"
-        )
-        "Chemistry" -> listOf(
-            "Some Basic Concepts Of Chemistry", "Structure Of Atom",
-            "Classification Of Elements", "Chemical Bonding",
-            "States Of Matter", "Thermodynamics",
-            "Equilibrium", "Redox Reactions",
-            "Hydrogen", "S-Block Elements",
-            "P-Block Elements", "Organic Chemistry Basics",
-            "Hydrocarbons", "Environmental Chemistry",
-            "Solid State", "Solutions",
-            "Electrochemistry", "Chemical Kinetics",
-            "Surface Chemistry", "Coordination Compounds",
-            "Aldehydes, Ketones And Carboxylic Acids", "Biomolecules"
-        )
-        "Maths" -> listOf(
-            "Sets, Relations, And Functions", "Complex Numbers & Quadratic Equations",
-            "Matrices & Determinants", "Permutations And Combinations",
-            "Binomial Theorem", "Sequence & Series",
-            "Limit, Continuity & Differentiability", "Integral Calculus",
-            "Coordinate Geometry", "Three Dimensional Geometry",
-            "Vector Algebra", "Probability",
-            "Trigonometry", "Mathematical Reasoning",
-            "Statistics"
-        )
-        "Biology" -> listOf(
-            "Cell Biology", "Genetics",
-            "Evolution", "Human Physiology",
-            "Plant Physiology", "Reproduction",
-            "Ecology", "Biomolecules",
-            "Microbes In Human Welfare", "Biotechnology",
-            "Animal Kingdom", "Plant Kingdom",
-            "Morphology Of Flowering Plants", "Anatomy Of Flowering Plants",
-            "Structural Organisation In Animals"
-        )
-        else -> emptyList()
-    }
+    private fun chaptersForSubject(subject: String): List<String> =
+        com.jeeneet.mocktest.data.model.OfficialSyllabus.getUnits(subject, exam)
+
 
     private fun subjectIcon(): String = when (subject) {
         "Physics"   -> "⚡"

@@ -144,6 +144,19 @@ interface QuestionDao {
     """)
     suspend fun getQuestionsByChapters(exam: String, subject: String, chapters: List<String>, limit: Int): List<Question>
 
+    @Query("""
+        SELECT * FROM questions
+        WHERE examType = :exam AND subject = :subject AND chapter IN (:chapters) AND isDailyVault = 0
+    """)
+    suspend fun getQuestionsByChaptersOnce(exam: String, subject: String, chapters: List<String>): List<Question>
+
+    @Query("""
+        SELECT COUNT(*) FROM questions
+        WHERE examType = :exam AND subject = :subject AND chapter IN (:chapters) AND isDailyVault = 0
+    """)
+    suspend fun getChapterQuestionCountByAliases(exam: String, subject: String, chapters: List<String>): Int
+
+
     @Query("SELECT * FROM questions WHERE id IN (:ids) ORDER BY RANDOM()")
     suspend fun getQuestionsByIds(ids: List<Int>): List<Question>
 

@@ -63,6 +63,19 @@ def get_official_units(exam: str, subject: str) -> list[dict[str, Any]]:
     return subject_data.get("units", [])
 
 
+def get_official_chapters_dict() -> dict[str, list[str]]:
+    """
+    Returns official NTA 2026 units per subject derived directly from curriculum.json.
+    Single source of truth for all ingestion, generation, and import pipelines.
+    """
+    return {
+        "Physics": [u["unit_name"] for u in get_official_units("JEE", "Physics")],
+        "Chemistry": [u["unit_name"] for u in get_official_units("JEE", "Chemistry")],
+        "Maths": [u["unit_name"] for u in get_official_units("JEE", "Maths")],
+        "Biology": [u["unit_name"] for u in get_official_units("NEET", "Biology")],
+    }
+
+
 def _norm_tokens(s: str) -> set[str]:
     """Extracts significant stemmed word tokens (stripping trailing 's' for plural normalization)."""
     s = s.lower().replace("&", "and").replace("-", " ")
@@ -70,15 +83,50 @@ def _norm_tokens(s: str) -> set[str]:
     return set(re.sub(r"s$", "", w) for w in s.split() if len(w) > 2)
 
 
+DELETED_NTA_CHAPTERS: set[str] = {
+    # Chemistry (Completely deleted from JEE Main & NEET UG by NTA)
+    "states of matter", "gaseous state", "liquid state", "gaseous and liquid states",
+    "solid state", "the solid state",
+    "surface chemistry",
+    "hydrogen",
+    "s block elements", "the s block elements", "s block element",
+    "general principles and processes of isolation of elements", "metallurgy",
+    "environmental chemistry",
+    "polymers",
+    "chemistry in everyday life",
+    # Mathematics (Completely deleted from JEE Main by NTA)
+    "mathematical reasoning",
+    "principle of mathematical induction", "mathematical induction",
+    # Physics (Completely deleted from JEE Main by NTA)
+    "communication systems", "communications systems",
+    # Biology (Completely deleted from NCERT & NEET UG by NTA)
+    "reproduction in organisms",
+    "strategies for enhancement in food production",
+    "environmental issues",
+    "digestion and absorption",
+    "transport in plants",
+    "mineral nutrition",
+}
+
+
+def is_deleted_chapter(unit_or_chapter: str) -> bool:
+    """Returns True if the chapter was explicitly deleted from the official NTA 2026 syllabus."""
+    return _normalize(unit_or_chapter) in DELETED_NTA_CHAPTERS
+
+
 def find_unit(exam: str, subject: str, unit_or_chapter: str) -> Optional[dict[str, Any]]:
     """
     Finds an official unit given a unit name, NCERT chapter alias, or legacy chapter.
     Returns unit dict or None.
+    Rejects any chapter that was dropped from the official NTA syllabus.
     """
-    units = get_official_units(exam, subject)
     norm_query = _normalize(unit_or_chapter)
     if not norm_query:
         return None
+    if norm_query in DELETED_NTA_CHAPTERS:
+        return None
+
+    units = get_official_units(exam, subject)
 
     # 1. Exact or normalized match on unit_name
     for u in units:

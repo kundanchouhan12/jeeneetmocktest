@@ -85,10 +85,11 @@ class MockTestRepository(context: Context) {
                         return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions))
                 }
 
+                val aliases = com.jeeneet.mocktest.data.model.OfficialSyllabus.getAliasesForUnit(config.subject!!, config.chapter)
                 val (questions, recycled) = if (isUnlocked) fetchAdaptiveQuestions(config) else run {
-                    val totalAvailable = questionDao.getChapterQuestionCount(config.examType, config.subject!!, config.chapter)
+                    val totalAvailable = questionDao.getChapterQuestionCountByAliases(config.examType, config.subject!!, aliases)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-                    val candidates = questionDao.getQuestionsByChapter(config.examType, config.subject!!, config.chapter, candidateCount)
+                    val candidates = questionDao.getQuestionsByChapters(config.examType, config.subject!!, aliases, candidateCount)
                     pickWithSeenTracking(
                         context, "chapter_${config.examType}_${config.subject}_${config.chapter}",
                         candidates, totalAvailable, config.totalQuestions
@@ -111,7 +112,7 @@ class MockTestRepository(context: Context) {
 
                     if (cachedIds != null) {
                         val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
-                        val qs = questionDao.getQuestionsByIds(ids)
+                        val qs = questionDao.getQuestionsByIds(ids).filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                         if (qs.size >= config.totalQuestions * 0.8)
                             return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions).shuffled())
                     }
@@ -119,6 +120,7 @@ class MockTestRepository(context: Context) {
                     val totalAvailable = questionDao.getFreeExamQuestionCount(config.examType)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
                     val candidates = questionDao.getFreeQuestions(config.examType, candidateCount)
+                        .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (newQs, recycled) = pickWithSeenTracking(
                         context, "free_${config.examType}", candidates, totalAvailable, config.totalQuestions
                     )
@@ -130,6 +132,7 @@ class MockTestRepository(context: Context) {
                     val totalAvailable = questionDao.getFreeSubjectQuestionCount(config.examType, config.subject)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
                     val candidates = questionDao.getFreeQuestionsBySubject(config.examType, config.subject, candidateCount)
+                        .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (qs, recycled) = pickWithSeenTracking(
                         context, "free_subject_${config.examType}_${config.subject}", candidates, totalAvailable, config.totalQuestions
                     )
@@ -138,6 +141,7 @@ class MockTestRepository(context: Context) {
                     val totalAvailable = questionDao.getFreeExamQuestionCount(config.examType)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
                     val candidates = questionDao.getFreeQuestions(config.examType, candidateCount)
+                        .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (qs, recycled) = pickWithSeenTracking(
                         context, "free_${config.examType}", candidates, totalAvailable, config.totalQuestions
                     )
@@ -150,6 +154,7 @@ class MockTestRepository(context: Context) {
                     val totalAvailable = questionDao.getSubjectQuestionCount(config.examType, config.subject)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
                     val candidates = questionDao.getQuestionsBySubject(config.examType, config.subject, candidateCount)
+                        .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (qs, recycled) = pickWithSeenTracking(
                         context, "premium_subject_${config.examType}_${config.subject}", candidates, totalAvailable, config.totalQuestions
                     )
@@ -164,7 +169,7 @@ class MockTestRepository(context: Context) {
 
                     if (cachedIds != null) {
                         val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
-                        val qs = questionDao.getQuestionsByIds(ids)
+                        val qs = questionDao.getQuestionsByIds(ids).filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                         if (qs.size >= config.totalQuestions * 0.8)
                             return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions).shuffled())
                     }
@@ -172,6 +177,7 @@ class MockTestRepository(context: Context) {
                     val totalAvailable = questionDao.getExamQuestionCount(config.examType)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
                     val candidates = questionDao.getRandomQuestions(config.examType, candidateCount)
+                        .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (newQs, recycled) = pickWithSeenTracking(
                         context, "premium_full_${config.examType}", candidates, totalAvailable, config.totalQuestions
                     )
@@ -275,11 +281,12 @@ class MockTestRepository(context: Context) {
 
         // Fetch a larger candidate pool to select from to avoid repeats
         val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-        val candidates = if (isUnlocked) {
+        val rawCandidates = if (isUnlocked) {
             questionDao.getRandomQuestions(config.examType, candidateCount)
         } else {
             questionDao.getFreeQuestions(config.examType, candidateCount)
         }
+        val candidates = rawCandidates.filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
 
         val filtered = candidates.filter { it.id !in recentIds }
         val recycled = poolJustExhausted || filtered.size < config.totalQuestions
@@ -313,7 +320,8 @@ class MockTestRepository(context: Context) {
 
     private suspend fun fetchAdaptiveQuestions(config: ExamConfig): Pair<List<Question>, Boolean> {
         val uid = currentUid()
-        val allChapterQs = questionDao.getQuestionsByChapterOnce(config.examType, config.subject!!, config.chapter!!)
+        val aliases = com.jeeneet.mocktest.data.model.OfficialSyllabus.getAliasesForUnit(config.subject!!, config.chapter!!)
+        val allChapterQs = questionDao.getQuestionsByChaptersOnce(config.examType, config.subject!!, aliases)
         if (allChapterQs.isEmpty()) return emptyList<Question>() to false
 
         val exposureMap = fetchExposureHistory(uid)

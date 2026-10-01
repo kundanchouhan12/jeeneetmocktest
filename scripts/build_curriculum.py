@@ -724,12 +724,8 @@ NEET_BIOLOGY_UNITS = [
     {
         "unit_number": 4,
         "unit_name": "Plant Physiology",
-        "ncert_chapters": ["Plant Physiology", "Transport in Plants", "Mineral Nutrition", "Photosynthesis in Higher Plants", "Respiration in Plants", "Plant Growth and Development"],
+        "ncert_chapters": ["Plant Physiology", "Photosynthesis in Higher Plants", "Respiration in Plants", "Plant Growth and Development"],
         "topics": [
-            create_topic("Water Relations, Water Potential, Osmosis & Plasmolysis", ["TEXT", "NUMERICAL", "DIAGRAM"], "NUMERICAL", diagram_source="SOURCE_OR_DETERMINISTIC"),
-            create_topic("Transpiration, Stomatal Mechanism & Phloem Translocation (Mass Flow Hypothesis)", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
-            create_topic("Mineral Nutrition: Essential Elements & Deficiency Symptoms", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
-            create_topic("Nitrogen Cycle & Biological Nitrogen Fixation (Nitrogenase Enzyme)", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Photosynthesis Overview & Chloroplast Pigment Systems (PS I & PS II)", ["TEXT", "DIAGRAM", "STRUCTURE"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Light Reaction, Z-Scheme & Photophosphorylation (Cyclic & Non-Cyclic)", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Calvin Cycle (C3 Pathway), C4 Pathway & CAM Mechanism", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
@@ -738,7 +734,7 @@ NEET_BIOLOGY_UNITS = [
             create_topic("Krebs Cycle (TCA Cycle) & Electron Transport System (ETS/Oxidative Phosphorylation)", ["TEXT", "DIAGRAM", "NUMERICAL"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Fermentation, Respiratory Quotient (RQ) & Energy Output Calculations", ["TEXT", "NUMERICAL"], "NUMERICAL"),
             create_topic("Plant Growth Regulators: Auxins, Gibberellins, Cytokinins, Ethylene & Abscisic Acid", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
-            create_topic("Photoperiodism, Vernalization & Seed Dormancy", ["TEXT"], "TEXT"),
+            create_topic("Nitrogen Cycle & Biological Nitrogen Fixation (Nitrogenase Enzyme)", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
         ]
     },
     {
@@ -746,8 +742,6 @@ NEET_BIOLOGY_UNITS = [
         "unit_name": "Human Physiology",
         "ncert_chapters": ["Human Physiology", "Breathing and Exchange of Gases", "Body Fluids and Circulation", "Excretory Products and their Elimination", "Locomotion and Movement", "Neural Control and Coordination", "Chemical Coordination and Integration"],
         "topics": [
-            create_topic("Digestive System Anatomy, Histology of Alimentary Canal & Digestive Glands", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
-            create_topic("Digestion & Absorption of Food, Dental Formula & Disorders", ["TEXT", "NUMERICAL", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Breathing Mechanism, Respiratory System Anatomy & Respiratory Volumes/Capacities", ["TEXT", "NUMERICAL", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Gas Exchange at Alveolar & Tissue Levels, Oxygen Dissociation Curves", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Blood Composition, ABO & Rh Blood Groups, Blood Clotting Cascade", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
@@ -762,7 +756,6 @@ NEET_BIOLOGY_UNITS = [
             create_topic("Human Nervous System & Neuron Ultrastructure", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Conduction of Nerve Impulse (Depolarisation/Repolarisation) & Synapse", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Reflex Arc & Brain Anatomy (Forebrain, Midbrain, Hindbrain)", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
-            create_topic("Sense Organs: Anatomy of Eye & Ear", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Endocrine Glands (Pituitary, Thyroid, Parathyroid, Adrenal, Pancreas, Gonads)", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Hormones Action Mechanism (Peptide vs Steroid Hormones) & Feedback Loops", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
         ]
@@ -772,7 +765,6 @@ NEET_BIOLOGY_UNITS = [
         "unit_name": "Reproduction",
         "ncert_chapters": ["Reproduction", "Sexual Reproduction in Flowering Plants", "Human Reproduction", "Reproductive Health"],
         "topics": [
-            create_topic("Modes of Reproduction (Asexual & Sexual Modes in Organisms)", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Flower Anatomy & Microsporogenesis (Pollen Grain Development)", ["TEXT", "DIAGRAM", "STRUCTURE"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Megasporogenesis & Embryo Sac Development (Monosporic 7-Celled 8-Nucleate)", ["TEXT", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Pollination Agents & Outbreeding Devices", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
@@ -878,7 +870,6 @@ NEET_BIOLOGY_UNITS = [
             create_topic("Biodiversity Patterns: Latitudinal Gradients & Species-Area Relationship Curves", ["TEXT", "NUMERICAL", "DIAGRAM"], "DIAGRAM", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Loss of Biodiversity ('The Evil Quartet') & Causes", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
             create_topic("Biodiversity Conservation: In-situ vs Ex-situ Strategies", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
-            create_topic("Environmental Issues & Pollution Control (Air, Water, Solid Waste, Global Warming, Ozone Depletion)", ["TEXT", "DIAGRAM"], "TEXT", diagram_source="SOURCE_OR_DETERMINISTIC"),
         ]
     }
 ]

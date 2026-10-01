@@ -8427,78 +8427,11 @@
             "unit_name": "Plant Physiology",
             "ncert_chapters": [
               "Plant Physiology",
-              "Transport in Plants",
-              "Mineral Nutrition",
               "Photosynthesis in Higher Plants",
               "Respiration in Plants",
               "Plant Growth and Development"
             ],
             "topics": [
-              {
-                "topic": "Water Relations, Water Potential, Osmosis & Plasmolysis",
-                "allowed_modes": [
-                  "TEXT",
-                  "NUMERICAL",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "NUMERICAL",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
-              {
-                "topic": "Transpiration, Stomatal Mechanism & Phloem Translocation (Mass Flow Hypothesis)",
-                "allowed_modes": [
-                  "TEXT",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "DIAGRAM",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
-              {
-                "topic": "Mineral Nutrition: Essential Elements & Deficiency Symptoms",
-                "allowed_modes": [
-                  "TEXT",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "TEXT",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
-              {
-                "topic": "Nitrogen Cycle & Biological Nitrogen Fixation (Nitrogenase Enzyme)",
-                "allowed_modes": [
-                  "TEXT",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "DIAGRAM",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
               {
                 "topic": "Photosynthesis Overview & Chloroplast Pigment Systems (PS I & PS II)",
                 "allowed_modes": [
@@ -8631,12 +8564,13 @@
                 ]
               },
               {
-                "topic": "Photoperiodism, Vernalization & Seed Dormancy",
+                "topic": "Nitrogen Cycle & Biological Nitrogen Fixation (Nitrogenase Enzyme)",
                 "allowed_modes": [
-                  "TEXT"
+                  "TEXT",
+                  "DIAGRAM"
                 ],
-                "preferred_mode": "TEXT",
-                "diagram_source": "NONE",
+                "preferred_mode": "DIAGRAM",
+                "diagram_source": "SOURCE_OR_DETERMINISTIC",
                 "ai_image_generation": false,
                 "ai_generation_allowed": true,
                 "difficulty_range": [
@@ -8660,39 +8594,6 @@
               "Chemical Coordination and Integration"
             ],
             "topics": [
-              {
-                "topic": "Digestive System Anatomy, Histology of Alimentary Canal & Digestive Glands",
-                "allowed_modes": [
-                  "TEXT",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "DIAGRAM",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
-              {
-                "topic": "Digestion & Absorption of Food, Dental Formula & Disorders",
-                "allowed_modes": [
-                  "TEXT",
-                  "NUMERICAL",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "TEXT",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
               {
                 "topic": "Breathing Mechanism, Respiratory System Anatomy & Respiratory Volumes/Capacities",
                 "allowed_modes": [
@@ -8919,22 +8820,6 @@
                 ]
               },
               {
-                "topic": "Sense Organs: Anatomy of Eye & Ear",
-                "allowed_modes": [
-                  "TEXT",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "DIAGRAM",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
-              {
                 "topic": "Endocrine Glands (Pituitary, Thyroid, Parathyroid, Adrenal, Pancreas, Gonads)",
                 "allowed_modes": [
                   "TEXT",
@@ -8978,22 +8863,6 @@
               "Reproductive Health"
             ],
             "topics": [
-              {
-                "topic": "Modes of Reproduction (Asexual & Sexual Modes in Organisms)",
-                "allowed_modes": [
-                  "TEXT",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "TEXT",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
               {
                 "topic": "Flower Anatomy & Microsporogenesis (Pollen Grain Development)",
                 "allowed_modes": [
@@ -10265,22 +10134,6 @@
               },
               {
                 "topic": "Biodiversity Conservation: In-situ vs Ex-situ Strategies",
-                "allowed_modes": [
-                  "TEXT",
-                  "DIAGRAM"
-                ],
-                "preferred_mode": "TEXT",
-                "diagram_source": "SOURCE_OR_DETERMINISTIC",
-                "ai_image_generation": false,
-                "ai_generation_allowed": true,
-                "difficulty_range": [
-                  "Easy",
-                  "Medium",
-                  "Hard"
-                ]
-              },
-              {
-                "topic": "Environmental Issues & Pollution Control (Air, Water, Solid Waste, Global Warming, Ozone Depletion)",
                 "allowed_modes": [
                   "TEXT",
                   "DIAGRAM"

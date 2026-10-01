@@ -101,6 +101,12 @@ def validate_source_question(q: dict, exam_type: str, doc_id: str = "") -> tuple
             return False, f"corrupted:{reason}"
     except Exception:
         pass
+    try:
+        import curriculum
+        if curriculum.is_deleted_chapter(q.get("chapter", "")):
+            return False, f"deleted_syllabus_chapter:{q.get('chapter')}"
+    except Exception:
+        pass
     return True, ""
 
 
