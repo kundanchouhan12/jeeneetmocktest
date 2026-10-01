@@ -9,6 +9,7 @@ import android.graphics.PointF
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.util.AttributeSet
+import android.util.Log
 import android.view.GestureDetector
 import android.view.Gravity
 import android.view.MotionEvent
@@ -41,9 +42,55 @@ import kotlin.math.min
 /**
  * High-performance diagram renderer for STEM (JEE/NEET) questions and solutions.
  * Supports Coil disk/memory caching, aspect-ratio cards, dark mode eye-comfort framing,
+ * local bundled asset fallback (100% offline), jsDelivr unblocked CDN fallback,
  * and a full-screen pinch-to-zoom modal with double-tap & pan gestures.
  */
 object DiagramRenderer {
+
+    private const val TAG = "DiagramRenderer"
+    private var bundledAssetsCache: Set<String>? = null
+
+    /**
+     * Checks if a diagram filename exists pre-bundled in `app/src/main/assets/diagrams/`.
+     */
+    fun isBundledAsset(context: Context, filename: String): Boolean {
+        val cache = bundledAssetsCache ?: run {
+            val list = try {
+                context.assets.list("diagrams")?.toSet() ?: emptySet()
+            } catch (e: Exception) {
+                emptySet()
+            }
+            bundledAssetsCache = list
+            list
+        }
+        return cache.contains(filename)
+    }
+
+    /**
+     * Resolves prioritized sources for a diagram URL:
+     * 1. Local offline asset (`file:///android_asset/diagrams/...`) if pre-bundled
+     * 2. jsDelivr global multi-edge CDN if from GitHub repository (unblocked in India)
+     * 3. Original network URL
+     */
+    fun resolveDiagramSources(context: Context, rawUrl: String): List<String> {
+        val list = mutableListOf<String>()
+        val filename = rawUrl.substringAfterLast("/").substringBefore("?")
+        if (filename.endsWith(".webp", ignoreCase = true) ||
+            filename.endsWith(".png", ignoreCase = true) ||
+            filename.endsWith(".jpg", ignoreCase = true)) {
+            if (isBundledAsset(context, filename)) {
+                list.add("file:///android_asset/diagrams/$filename")
+            }
+        }
+        if (rawUrl.contains("raw.githubusercontent.com/kundanchouhan12/jeeneetmocktest/main/")) {
+            val relPath = rawUrl.substringAfter("raw.githubusercontent.com/kundanchouhan12/jeeneetmocktest/main/")
+            list.add("https://cdn.jsdelivr.net/gh/kundanchouhan12/jeeneetmocktest@main/$relPath")
+            list.add(rawUrl)
+        } else {
+            list.add(rawUrl)
+        }
+        return list.distinct()
+    }
 
     /**
      * Builds an in-line diagram card for [TestActivity], [Power100Activity], and [SolutionActivity].
@@ -130,27 +177,46 @@ object DiagramRenderer {
             visibility = View.GONE
         }
 
-        fun loadImage() {
+        val sources = resolveDiagramSources(context, imageUrl)
+        var currentSourceIdx = 0
+        var activeSuccessUrl: String = imageUrl
+
+        fun tryLoadSource() {
+            if (currentSourceIdx >= sources.size) {
+                progress.visibility = View.GONE
+                tvError.visibility = View.VISIBLE
+                badge.visibility = View.GONE
+                return
+            }
+            val targetUrl = sources[currentSourceIdx]
             progress.visibility = View.VISIBLE
             tvError.visibility = View.GONE
-            ivDiagram.load(imageUrl) {
+            ivDiagram.load(targetUrl) {
                 crossfade(true)
                 listener(
                     onSuccess = { _, _ ->
                         progress.visibility = View.GONE
                         tvError.visibility = View.GONE
                         badge.visibility = View.VISIBLE
+                        activeSuccessUrl = targetUrl
+                        Log.d(TAG, "Diagram loaded successfully from: $targetUrl")
                     },
-                    onError = { _, _ ->
-                        progress.visibility = View.GONE
-                        tvError.visibility = View.VISIBLE
-                        badge.visibility = View.GONE
+                    onError = { _, result ->
+                        Log.w(TAG, "Diagram load failed for $targetUrl: ${result.throwable.message}")
+                        currentSourceIdx++
+                        if (currentSourceIdx < sources.size) {
+                            tryLoadSource()
+                        } else {
+                            progress.visibility = View.GONE
+                            tvError.visibility = View.VISIBLE
+                            badge.visibility = View.GONE
+                        }
                     }
                 )
             }
         }
 
-        loadImage()
+        tryLoadSource()
 
         canvasContainer.addView(ivDiagram)
         canvasContainer.addView(progress)
@@ -163,10 +229,16 @@ object DiagramRenderer {
         // Click to open full-screen pinch-to-zoom modal (or retry if failed)
         card.setOnClickListener {
             if (tvError.visibility == View.VISIBLE) {
-                loadImage()
+                currentSourceIdx = 0
+                tryLoadSource()
             } else {
-                showZoomDialog(context, imageUrl, label)
+                showZoomDialog(context, activeSuccessUrl, label)
             }
+        }
+
+        tvError.setOnClickListener {
+            currentSourceIdx = 0
+            tryLoadSource()
         }
 
         return card
@@ -207,25 +279,43 @@ object DiagramRenderer {
         }
         root.addView(tvModalError)
 
+        val modalSources = resolveDiagramSources(context, imageUrl)
+        var modalSourceIdx = 0
+
         fun loadModalImage() {
+            if (modalSourceIdx >= modalSources.size) {
+                zoomProgress.visibility = View.GONE
+                tvModalError.visibility = View.VISIBLE
+                return
+            }
+            val targetUrl = modalSources[modalSourceIdx]
             zoomProgress.visibility = View.VISIBLE
             tvModalError.visibility = View.GONE
-            zoomView.load(imageUrl) {
+            zoomView.load(targetUrl) {
                 crossfade(true)
                 listener(
                     onSuccess = { _, _ ->
                         zoomProgress.visibility = View.GONE
                         tvModalError.visibility = View.GONE
                     },
-                    onError = { _, _ ->
-                        zoomProgress.visibility = View.GONE
-                        tvModalError.visibility = View.VISIBLE
+                    onError = { _, result ->
+                        Log.w(TAG, "Modal diagram load failed for $targetUrl: ${result.throwable.message}")
+                        modalSourceIdx++
+                        if (modalSourceIdx < modalSources.size) {
+                            loadModalImage()
+                        } else {
+                            zoomProgress.visibility = View.GONE
+                            tvModalError.visibility = View.VISIBLE
+                        }
                     }
                 )
             }
         }
         loadModalImage()
-        tvModalError.setOnClickListener { loadModalImage() }
+        tvModalError.setOnClickListener {
+            modalSourceIdx = 0
+            loadModalImage()
+        }
 
         // Top Control Bar
         val topBar = LinearLayout(context).apply {
