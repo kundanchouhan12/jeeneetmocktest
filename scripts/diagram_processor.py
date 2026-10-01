@@ -103,18 +103,27 @@ def compress_diagram_to_webp(image_bytes: bytes, max_width: int = MAX_DIAGRAM_WI
         return None
 
 
+JSDELIVR_REPO_RAW_URL = "https://cdn.jsdelivr.net/gh/kundanchouhan12/jeeneetmocktest@main"
 GITHUB_REPO_RAW_URL = "https://raw.githubusercontent.com/kundanchouhan12/jeeneetmocktest/main"
 
 
 def save_local_diagram(webp_bytes: bytes, storage_path: str) -> str:
-    """Saves diagram to local repo diagrams/ directory and returns permanent GitHub Raw CDN URL."""
+    """Saves diagram to local repo diagrams/ directory and returns permanent jsDelivr CDN URL."""
     rel_path = storage_path.replace("\\", "/")
     repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     full_local_path = os.path.join(repo_root, rel_path)
     os.makedirs(os.path.dirname(full_local_path), exist_ok=True)
     with open(full_local_path, "wb") as f:
         f.write(webp_bytes)
-    return f"{GITHUB_REPO_RAW_URL}/{rel_path}"
+
+    # Also mirror into app/src/main/assets/diagrams/ so future APK builds include it offline
+    filename = os.path.basename(rel_path)
+    asset_file = os.path.join(repo_root, "app", "src", "main", "assets", "diagrams", filename)
+    os.makedirs(os.path.dirname(asset_file), exist_ok=True)
+    with open(asset_file, "wb") as af:
+        af.write(webp_bytes)
+
+    return f"{JSDELIVR_REPO_RAW_URL}/{rel_path}"
 
 
 def upload_diagram_to_storage(webp_bytes: bytes, bucket, storage_path: str) -> str | None:
