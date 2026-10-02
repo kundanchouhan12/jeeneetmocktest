@@ -156,6 +156,21 @@ interface QuestionDao {
     """)
     suspend fun getChapterQuestionCountByAliases(exam: String, subject: String, chapters: List<String>): Int
 
+    @Query("""
+        SELECT * FROM questions
+        WHERE examType = :exam AND subject = :subject AND chapter IN (:chapters)
+          AND isPremium = 0 AND isDailyVault = 0
+        ORDER BY RANDOM() LIMIT :limit
+    """)
+    suspend fun getFreeQuestionsByChapters(exam: String, subject: String, chapters: List<String>, limit: Int): List<Question>
+
+    @Query("""
+        SELECT COUNT(*) FROM questions
+        WHERE examType = :exam AND subject = :subject AND chapter IN (:chapters)
+          AND isPremium = 0 AND isDailyVault = 0
+    """)
+    suspend fun getFreeChapterQuestionCountByAliases(exam: String, subject: String, chapters: List<String>): Int
+
 
     @Query("SELECT * FROM questions WHERE id IN (:ids) ORDER BY RANDOM()")
     suspend fun getQuestionsByIds(ids: List<Int>): List<Question>

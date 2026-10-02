@@ -64,6 +64,7 @@ class ResultActivity : AppCompatActivity() {
     private lateinit var nativeAdContainer: FrameLayout
     private lateinit var rankPredictionContainer: FrameLayout
     private lateinit var btnPracticeWrong: com.google.android.material.button.MaterialButton
+    private lateinit var btnUnlockNext10: com.google.android.material.button.MaterialButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -156,6 +157,13 @@ class ResultActivity : AppCompatActivity() {
         val wrongCount = r.wrong
         btnPracticeWrong.text = if (wrongCount > 0) "🎯  Retry $wrongCount Wrong Questions" else "🎯  Retry Wrong Questions"
         btnPracticeWrong.visibility = if (wrongCount > 0) View.VISIBLE else View.GONE
+
+        val qList = runCatching {
+            Gson().fromJson<List<Question>>(r.questionsJson, object : TypeToken<List<Question>>() {}.type)
+        }.getOrNull()
+        val chapter = qList?.firstOrNull()?.chapter
+        val isChapterTest = !chapter.isNullOrBlank() && r.totalQuestions <= 15
+        btnUnlockNext10.visibility = if (isChapterTest) View.VISIBLE else View.GONE
 
         buildQuestionGrid(r)
         rankPredictionContainer.removeAllViews()
@@ -603,6 +611,18 @@ class ResultActivity : AppCompatActivity() {
             orientation = LinearLayout.VERTICAL
             layoutParams = lpRow(bottomDp = Space.M)
         }
+        btnUnlockNext10 = MaterialButton(this).apply {
+            text = "🎬  Unlock Next 10 Questions (Watch Ad)"; textSize = 14f
+            setTextColor(Color.WHITE)
+            backgroundTintList = ColorStateList.valueOf(Color.parseColor("#10B981"))
+            isAllCaps = false; stateListAnimator = null
+            visibility = View.GONE
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, 52.dp
+            ).also { it.bottomMargin = Space.S.dp }
+            setOnClickListener { unlockNext10Questions() }
+        }
+        col.addView(btnUnlockNext10)
         btnPracticeWrong = MaterialButton(this).apply {
             text = "🎯  Retry Wrong Questions"; textSize = 14f
             setTextColor(Color.WHITE)
@@ -627,6 +647,40 @@ class ResultActivity : AppCompatActivity() {
             setOnClickListener { unlockSolutions() }
         })
         return col
+    }
+
+    private fun unlockNext10Questions() {
+        val r = currentResult ?: return
+        val questions = runCatching {
+            Gson().fromJson<List<Question>>(r.questionsJson, object : TypeToken<List<Question>>() {}.type)
+        }.getOrNull() ?: return
+        val chapter = questions.firstOrNull()?.chapter ?: return
+        val exam = r.examType
+        val subject = r.subject
+
+        val hasAccess = PrefManager.isAllAccessUnlocked(this) ||
+            PrefManager.isPackUnlocked(this, com.jeeneet.mocktest.data.repository.MockTestRepository(this).getProductIdForExamSubject(exam, subject))
+
+        if (hasAccess) {
+            TestActivity.start(this, exam, subject, chapter, adUnlocked = true, totalQuestions = 10)
+            finish()
+            return
+        }
+
+        AnalyticsManager.rewardedAdShown(this, "next_10_unlock")
+        AdManager.showRewarded(
+            activity = this,
+            onRewarded = {
+                TestActivity.start(this, exam, subject, chapter, adUnlocked = true, totalQuestions = 10)
+                finish()
+            },
+            onNotAvailable = {
+                Toast.makeText(this, "No ad available right now. Please check your internet connection.", Toast.LENGTH_SHORT).show()
+            },
+            onLoading = {
+                Toast.makeText(this, "Loading ad to unlock next 10 questions…", Toast.LENGTH_SHORT).show()
+            }
+        )
     }
 
     private fun practiceWrongQuestions() {

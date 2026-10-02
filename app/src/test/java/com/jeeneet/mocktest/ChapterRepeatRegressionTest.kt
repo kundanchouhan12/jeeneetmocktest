@@ -113,4 +113,30 @@ class ChapterRepeatRegressionTest {
         assertTrue("once genuinely exhausted, recirculation is expected and should be flagged to the user",
             fifth.recycled)
     }
+
+    @Test
+    fun `free user chapter test fetches only free questions without mixing premium`() = runBlocking {
+        val chapter = "FreeVsPremium_$uniqueSuffix"
+        val subject = "Physics"
+        // 10 free questions and 10 premium questions
+        val freeQs = (1..10).map { pyqQuestion(subject, chapter, year = 2020 + it % 5).copy(isPremium = false) }
+        val premiumQs = (11..20).map { pyqQuestion(subject, chapter, year = 2020 + it % 5).copy(isPremium = true) }
+        val dao = MockTestDatabase.getInstance(ctx).questionDao()
+        dao.insertQuestions(freeQs)
+        dao.insertQuestions(premiumQs)
+
+        val config = ExamConfig(
+            examType = "JEE", subject = subject, chapter = chapter,
+            totalQuestions = 10, durationMinutes = 15,
+            correctMarks = 4f, negativeMarks = -1f
+        )
+        // Free user session (adUnlocked = false, not purchased)
+        val freeResult = repo.getQuestionsForConfig(ctx, config, adUnlocked = false)
+        assertTrue("Free session should not be empty", freeResult.questions.isNotEmpty())
+        assertTrue("Free session should NEVER contain premium questions", freeResult.questions.none { it.isPremium })
+
+        // Ad-unlocked session gets access
+        val adResult = repo.getQuestionsForConfig(ctx, config, adUnlocked = true)
+        assertTrue("Ad-unlocked session should return questions", adResult.questions.isNotEmpty())
+    }
 }

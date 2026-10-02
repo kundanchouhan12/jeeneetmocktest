@@ -751,12 +751,38 @@ class ChapterwiseListActivity : AppCompatActivity() {
                 else "Not attempted yet"
             }
         }
+
+        val isFreeChapter = index < 3
+        val isUnlocked = isFreeChapter ||
+            PrefManager.isAllAccessUnlocked(this) ||
+            PrefManager.isPackUnlocked(this, currentProductId)
+
+        val startBtnText = if (isUnlocked) "▶  Start Test (30 Qs)" else "▶  Practice 10 Free Qs"
+
         MaterialAlertDialogBuilder(this)
             .setTitle("$subject · ${chapter.take(30)}")
             .setView(dlgContent)
-            .setPositiveButton("▶  Start Test") { _, _ ->
+            .setPositiveButton(startBtnText) { _, _ ->
                 AnalyticsManager.chapterTestStarted(this, subject, chapter)
-                startChapterTest(chapter, index)
+                if (isUnlocked) {
+                    startChapterTest(chapter, index)
+                } else {
+                    TestActivity.start(this, exam, subject, chapter = chapter, totalQuestions = 10)
+                }
+            }
+            .apply {
+                if (!isUnlocked) {
+                    setNeutralButton("🎬 Watch Ad (Next 10 Qs)") { _, _ ->
+                        AdManager.showRewarded(
+                            activity = this@ChapterwiseListActivity,
+                            onRewarded = {
+                                TestActivity.start(this@ChapterwiseListActivity, exam, subject, chapter = chapter, adUnlocked = true, totalQuestions = 10)
+                            },
+                            onNotAvailable = { Toast.makeText(this@ChapterwiseListActivity, "No ad available right now.", Toast.LENGTH_SHORT).show() },
+                            onLoading = { Toast.makeText(this@ChapterwiseListActivity, "Loading ad…", Toast.LENGTH_SHORT).show() }
+                        )
+                    }
+                }
             }
             .setNegativeButton("Cancel", null)
             .show()
@@ -780,23 +806,22 @@ class ChapterwiseListActivity : AppCompatActivity() {
             .setTitle("Unlock $subject Pack")
             .setMessage("Unlock the $subject pack for ₹49 to practice all chapters.\n\n💡 Tip: First 3 chapters are always FREE!")
             .setPositiveButton("Buy ₹49") { _, _ -> ShopActivity.start(this) }
-            .setNeutralButton(if (alreadyUsedToday) "Free try used ✓" else "Watch Ad (Free Today)") { _, _ ->
-                if (alreadyUsedToday) return@setNeutralButton
+            .setNeutralButton("🎬 Watch Ad (Next 10 Qs)") { _, _ ->
                 AnalyticsManager.chapterAdUnlockAttempted(this, subject, chapter)
                 AnalyticsManager.rewardedAdShown(this, "chapter_unlock")
                 AdManager.showRewarded(
                     activity = this,
                     onRewarded = {
                         PrefManager.markAdFreeUnlockUsed(this)
-                        TestActivity.start(this, exam, subject, chapter, adUnlocked = true)
+                        TestActivity.start(this, exam, subject, chapter = chapter, adUnlocked = true, totalQuestions = 10)
                     },
                     onNotAvailable = { Toast.makeText(this, "No ad available. Try again later.", Toast.LENGTH_SHORT).show() },
                     onLoading = { Toast.makeText(this, "Loading ad…", Toast.LENGTH_SHORT).show() }
                 )
             }
-            .setNegativeButton("Try 10 Free Qs") { _, _ ->
+            .setNegativeButton("Practice 10 Free Qs") { _, _ ->
                 AdManager.showInterstitial(this, bypassCooldown = true) {
-                    TestActivity.start(this, exam, subject, chapter = null, totalQuestions = 10)
+                    TestActivity.start(this, exam, subject, chapter = chapter, totalQuestions = 10)
                 }
             }
             .show()

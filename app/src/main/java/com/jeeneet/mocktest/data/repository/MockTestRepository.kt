@@ -76,7 +76,7 @@ class MockTestRepository(context: Context) {
                 val today = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
                 val cacheKey = "chapter_daily_${config.examType}_${config.subject}_${config.chapter}_$today"
                 val prefs = context.getSharedPreferences("mock_test_prefs", android.content.Context.MODE_PRIVATE)
-                val cachedIds = prefs.getString(cacheKey, null)
+                val cachedIds = if (!adUnlocked) prefs.getString(cacheKey, null) else null
 
                 if (cachedIds != null) {
                     val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
@@ -87,16 +87,21 @@ class MockTestRepository(context: Context) {
 
                 val aliases = com.jeeneet.mocktest.data.model.OfficialSyllabus.getAliasesForUnit(config.subject!!, config.chapter)
                 val (questions, recycled) = if (isUnlocked) fetchAdaptiveQuestions(config) else run {
-                    val totalAvailable = questionDao.getChapterQuestionCountByAliases(config.examType, config.subject!!, aliases)
+                    val freeCount = questionDao.getFreeChapterQuestionCountByAliases(config.examType, config.subject!!, aliases)
+                    val totalAvailable = if (freeCount > 0) freeCount else questionDao.getChapterQuestionCountByAliases(config.examType, config.subject!!, aliases)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-                    val candidates = questionDao.getQuestionsByChapters(config.examType, config.subject!!, aliases, candidateCount)
+                    val candidates = if (freeCount > 0) {
+                        questionDao.getFreeQuestionsByChapters(config.examType, config.subject!!, aliases, candidateCount)
+                    } else {
+                        questionDao.getQuestionsByChapters(config.examType, config.subject!!, aliases, candidateCount)
+                    }
                     pickWithSeenTracking(
                         context, "chapter_${config.examType}_${config.subject}_${config.chapter}",
                         candidates, totalAvailable, config.totalQuestions
                     )
                 }
 
-                if (questions.isNotEmpty())
+                if (questions.isNotEmpty() && !adUnlocked)
                     prefs.edit().putString(cacheKey, questions.joinToString(",") { it.id.toString() }).apply()
 
                 return@withContext QuestionFetchResult(questions.padTo(config.totalQuestions), recycled)
@@ -500,8 +505,11 @@ class MockTestRepository(context: Context) {
         } catch (_: Exception) {}
     }
 
-    private fun currentUid(): String =
+    private fun currentUid(): String = try {
         com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
+    } catch (_: Exception) {
+        "guest"
+    }
 
     fun getAllResults(): Flow<List<TestResult>> = resultDao.getAllResults(currentUid())
 
