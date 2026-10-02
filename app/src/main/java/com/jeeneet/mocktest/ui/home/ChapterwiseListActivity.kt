@@ -496,9 +496,11 @@ class ChapterwiseListActivity : AppCompatActivity() {
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             textSize = 14f
         })
+        val topics = com.jeeneet.mocktest.data.repository.CurriculumRepository.getTopics(this, exam, subject, chapter)
         if (attemptedQs > 0) {
-            textCol.addView(uiTextView(UiText.CAPTION,
-                "Attempted: $attemptedQs / $totalQs questions", textMuted).apply {
+            val subtitleText = if (topics.isNotEmpty()) "Attempted: $attemptedQs / $totalQs qs · ${topics.size} Topics"
+                               else "Attempted: $attemptedQs / $totalQs questions"
+            textCol.addView(uiTextView(UiText.CAPTION, subtitleText, textMuted).apply {
                 textSize = 11f; setPadding(0, 2.dp, 0, 4.dp)
             })
             textCol.addView(ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal).apply {
@@ -509,7 +511,9 @@ class ChapterwiseListActivity : AppCompatActivity() {
                 layoutParams = LinearLayout.LayoutParams(-1, 5.dp)
             })
         } else {
-            textCol.addView(uiTextView(UiText.CAPTION, "Not attempted yet", textMuted).apply {
+            val subtitleText = if (topics.isNotEmpty()) "${topics.size} NCERT Topics · Not attempted"
+                               else "Not attempted yet"
+            textCol.addView(uiTextView(UiText.CAPTION, subtitleText, textMuted).apply {
                 textSize = 11f; setPadding(0, 2.dp, 0, 0)
             })
         }
@@ -679,6 +683,62 @@ class ChapterwiseListActivity : AppCompatActivity() {
             addView(tvLastVal)
         })
         dlgContent.addView(grid)
+
+        val topics = com.jeeneet.mocktest.data.repository.CurriculumRepository.getTopics(this, exam, subject, chapter)
+        val modes = com.jeeneet.mocktest.data.repository.CurriculumRepository.getAllowedModes(this, exam, subject, chapter)
+
+        if (modes.isNotEmpty()) {
+            val modesRow = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER_VERTICAL
+                layoutParams = lpRow(bottomDp = Space.S)
+            }
+            modes.forEach { mode ->
+                val (label, color) = when (mode) {
+                    "TEXT" -> "Theory" to Color.parseColor("#3B82F6")
+                    "NUMERICAL" -> "Numerical" to Color.parseColor("#F59E0B")
+                    "DIAGRAM" -> "Diagrams" to Color.parseColor("#10B981")
+                    "STRUCTURE" -> "Structures" to Color.parseColor("#EC4899")
+                    else -> mode to colorPrimary
+                }
+                modesRow.addView(uiBadge(label, color, tintedBg(color, alpha = 26)),
+                    LinearLayout.LayoutParams(-2, -2).apply { marginEnd = 6.dp })
+            }
+            dlgContent.addView(modesRow)
+        }
+
+        if (topics.isNotEmpty()) {
+            dlgContent.addView(uiTextView(UiText.OVERLINE, "SYLLABUS TOPICS COVERED", textTertiary).apply {
+                setPadding(0, Space.XS.dp, 0, 4.dp)
+                textSize = 10f
+            })
+            val topicsContainer = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                background = roundedFill(bgPrimary, Corner.S)
+                setPadding(Space.M.dp, Space.S.dp, Space.M.dp, Space.S.dp)
+                layoutParams = lpRow(bottomDp = Space.M)
+            }
+            topics.take(4).forEach { topic ->
+                topicsContainer.addView(LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    gravity = Gravity.CENTER_VERTICAL
+                    setPadding(0, 2.dp, 0, 2.dp)
+                    addView(TextView(this@ChapterwiseListActivity).apply {
+                        text = "• "; textSize = 12f; setTextColor(subjectAccent)
+                    })
+                    addView(uiTextView(UiText.CAPTION, topic.topic, textPrimary).apply {
+                        textSize = 11f
+                    })
+                })
+            }
+            if (topics.size > 4) {
+                topicsContainer.addView(uiTextView(UiText.OVERLINE, "+ ${topics.size - 4} more topics", textMuted).apply {
+                    setPadding(10.dp, 2.dp, 0, 2.dp)
+                    textSize = 9f
+                })
+            }
+            dlgContent.addView(topicsContainer)
+        }
         lifecycleScope.launch(Dispatchers.IO) {
             val uid = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser?.uid ?: ""
             val last = MockTestDatabase.getInstance(this@ChapterwiseListActivity)
