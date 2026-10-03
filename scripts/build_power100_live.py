@@ -76,12 +76,28 @@ def get_subject_targets(exam: str) -> dict[str, int]:
 def _select_for_subject(pool: list[dict[str, Any]], target: int, max_per_unit: int = 4) -> list[dict[str, Any]]:
     """
     Selects balanced questions for a subject:
-    - Balances difficulty
+    - Actively prioritizes authentic STEM visual/diagram/structure questions
+    - Balances difficulty across foundational levels
     - Caps each official unit at max_per_unit to ensure syllabus breadth
     - Enforces zero duplicate fingerprints within the selection
     """
     random.shuffle(pool)
-    pool.sort(key=lambda q: DIFFICULTY_WEIGHT.get(q.get("difficulty", "Medium"), 2), reverse=True)
+
+    def is_stem_visual(q: dict[str, Any]) -> bool:
+        return bool(
+            q.get("imageUrl") or
+            q.get("diagramRequired") or
+            q.get("questionMode") in ("DIAGRAM", "STRUCTURE")
+        )
+
+    # Sort so visual/STEM diagram questions are chosen first across units
+    pool.sort(
+        key=lambda q: (
+            1 if is_stem_visual(q) else 0,
+            DIFFICULTY_WEIGHT.get(q.get("difficulty", "Medium"), 2)
+        ),
+        reverse=True
+    )
 
     unit_count: dict[str, int] = {}
     selected: list[dict[str, Any]] = []
@@ -110,6 +126,8 @@ def _select_for_subject(pool: list[dict[str, Any]], target: int, max_per_unit: i
                 selected.append(q)
                 seen_fps.add(fp)
 
+    # Randomize final selection order so diagram questions are naturally distributed
+    random.shuffle(selected)
     return selected[:target]
 
 
@@ -229,6 +247,14 @@ def run_power100_rebuild(exam: str, dry_run: bool = False, db=None, all_docs=Non
     if len(questions) != 100:
         print(f"  ERROR: Built {len(questions)}/100 questions for {norm_exam} — bank too thin, skipping push.")
         return False
+
+    # Always keep local JSON cache in sync with the clean rebuild
+    local_file = os.path.join(SCRIPT_DIR, f"{norm_exam.lower()}_power100.json")
+    try:
+        with open(local_file, "w", encoding="utf-8") as f:
+            json.dump(questions, f, indent=2, ensure_ascii=False)
+    except Exception as e:
+        print(f"  ⚠️ Could not save local backup to {local_file}: {e}")
 
     # Validate against update_power100 requirements
     from update_power100 import validate, upload

@@ -237,25 +237,30 @@ class TestCurriculumIntegration(unittest.TestCase):
         self.assertEqual(res.failed_stage, "DUPLICATE")
         self.assertIn("Duplicate question detected", res.reason)
 
-    # 12. Backward Compatibility: Existing Content Kept Intact Even If Unmapped
+    # 12. Backward Compatibility: Existing Content Kept Intact Even If Unmapped (Unless Deleted by NTA)
     def test_12_existing_content_preservation_unmapped_kept_intact(self):
-        # A question from an unmapped chapter (e.g. Environmental Chemistry)
+        # A question from an unmapped chapter (e.g. Advanced Applied Materials, not on deleted list)
         legacy_q = {
             "id": "legacy_doc_12345",
             "examType": "JEE",
             "subject": "Chemistry",
-            "chapter": "Environmental Chemistry",
+            "chapter": "Advanced Applied Materials",
             "questionText": "Which of the following is not a greenhouse gas?",
             "options": ["CO2", "CH4", "N2", "O3"],
             "correctOptionIndex": 2,
             "explanation": "Nitrogen (N2) is not a greenhouse gas.",
             "isDailyVault": False
         }
-        # With is_new_content=False, question must NOT be rejected or failed
+        # With is_new_content=False, question must NOT be rejected if merely unmapped
         res = curriculum_validator.validate_question(legacy_q, is_new_content=False)
-        self.assertTrue(res.is_valid, "Legacy questions must remain valid and intact")
+        self.assertTrue(res.is_valid, "Legacy unmapped questions must remain valid")
         self.assertEqual(res.metadata["curriculumStatus"], "UNMAPPED")
-        self.assertIn("Environmental Chemistry", res.metadata["unmappedReason"])
+        self.assertIn("Advanced Applied Materials", res.metadata["unmappedReason"])
+
+        # But explicitly deleted chapters (e.g. Environmental Chemistry) MUST be rejected
+        deleted_q = dict(legacy_q, chapter="Environmental Chemistry")
+        del_res = curriculum_validator.validate_question(deleted_q, is_new_content=False)
+        self.assertFalse(del_res.is_valid, "Deleted syllabus chapters must be rejected unconditionally")
 
         # Also verify safe_classify_existing_question preserves all fields
         enriched = curriculum_validator.safe_classify_existing_question(legacy_q)

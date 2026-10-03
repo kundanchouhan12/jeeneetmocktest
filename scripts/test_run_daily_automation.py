@@ -10,7 +10,12 @@ Run with:
 """
 
 import os
+import sys
 import unittest
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, SCRIPT_DIR)
 
 # auto_question_pipeline (imported by run_daily_automation at module load time) raises
 # at import time if GROQ_API_KEY is unset. Only the Firebase-connectivity helper is

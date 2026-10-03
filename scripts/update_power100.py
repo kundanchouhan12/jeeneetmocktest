@@ -68,6 +68,10 @@ def validate(questions: list, exam: str) -> None:
         if bad:
             raise ValueError(f"Q{i}: corrupted question detected ({reason})")
 
+        import curriculum
+        if curriculum.is_deleted_chapter(q.get("chapter", "")):
+            raise ValueError(f"Q{i}: chapter '{q.get('chapter')}' is in the deleted NTA syllabus list")
+
     print(f"✓ Validation passed: {len(questions)} questions for {exam}")
 
 

@@ -266,7 +266,7 @@ def main():
         if is_power100_day:
             try:
                 print(f"\n🏆 Rebuilding Power 100 (Weekly Schedule: Day {today.strftime('%A')}, {today.isoformat()})...")
-                power100_docs = db.collection('questions').get()
+                power100_docs = audit_docs if audit_docs is not None else db.collection('questions').get()
                 for exam in ["JEE", "NEET"]:
                     run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
             except Exception as e:
@@ -288,7 +288,7 @@ def main():
 
         # Step 6: Record Daily Health & Growth Summary Telemetry
         try:
-            final_bank_docs = db.collection('questions').get()
+            final_bank_docs = audit_docs if audit_docs is not None else db.collection('questions').get()
             total_jee = len([d for d in final_bank_docs if d.to_dict().get('examType') == 'JEE' and not d.id.startswith('vault_')])
             total_neet = len([d for d in final_bank_docs if d.to_dict().get('examType') == 'NEET' and not d.id.startswith('vault_')])
             db.collection('metadata').document('daily_health_summary').set({

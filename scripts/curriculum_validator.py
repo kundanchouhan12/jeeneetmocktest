@@ -104,6 +104,11 @@ class CurriculumQualityGate:
             official_unit = "Unknown"
             resolved_topic = "Unknown"
         else:
+            if curriculum.is_deleted_chapter(chapter):
+                return ValidationResult(
+                    False, "CURRICULUM",
+                    f"Chapter '{chapter}' was explicitly deleted from the official 2026 NTA/NCERT syllabus"
+                )
             unit = curriculum.find_unit(exam, subject, chapter)
             if not unit:
                 if is_new_content:

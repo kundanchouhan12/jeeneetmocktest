@@ -237,7 +237,7 @@ class MockTestRepository(context: Context) {
 
         if (cachedIds != null) {
             val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
-            val qs = questionDao.getQuestionsByIds(ids)
+            val qs = questionDao.getQuestionsByIds(ids).filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
             if (qs.size >= config.totalQuestions * 0.8)
                 return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions).shuffled())
         }
@@ -246,11 +246,12 @@ class MockTestRepository(context: Context) {
         val totalAvailable = if (isUnlocked) questionDao.getExamQuestionCount(config.examType)
                              else questionDao.getFreeExamQuestionCount(config.examType)
         val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-        val candidates = if (isUnlocked) {
+        val rawCandidates = if (isUnlocked) {
             questionDao.getRandomQuestions(config.examType, candidateCount)
         } else {
             questionDao.getFreeQuestions(config.examType, candidateCount)
         }
+        val candidates = rawCandidates.filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
         val (newQs, recycled) = pickWithSeenTracking(context, scopeKey, candidates, totalAvailable, config.totalQuestions)
 
         prefs.edit().putString(prefKey, newQs.joinToString(",") { it.id.toString() }).apply()
