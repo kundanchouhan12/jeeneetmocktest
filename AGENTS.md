@@ -220,3 +220,30 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
 - **Android Offline Cache & Invalidation**:
   - Power 100 uploads to `standard_tests/{exam}` with an auto-incremented `version`.
   - Android client (`Power100SyncManager.kt`) detects the version bump, invalidates local Room cache, and resets progress cleanly without manual interventions.
+
+### 10. 🧹 Deep LaTeX/OCR Corruption Purge & Quality Gate Hardening (2026-10-03)
+- **The Problem Solved**:
+  - Four user-reported defects in live Power 100 tests revealed legacy corruption:
+    1. **Q.34/100**: Unescaped Python/JSON string literals evaluated `\f` as form feed (`\x0c`) and `\r` as carriage return (`\x0d`), degrading `\frac` $\to$ `rac{` and `\right` $\to$ `ight)`, plus legacy inclusion of deleted syllabus chapters (`Environmental Chemistry`).
+    2. **Q.35/100**: Oversized 50+ char inline LaTeX chemical reaction (`$Cu + HNO_3 \to \dots$`) exceeded mobile screen line width, causing `JLatexMathDrawable`'s rigid non-wrapping `ImageSpan` to overflow into the right canvas void (showing as a blank line).
+    3. **Q.98/100**: Legacy OCR scrapers from coaching PDFs (`scripts/extracted/Maths/Circle.json`) dropped watermarked diagrams/equations, leaving `Circle Circle Circle Circle` wrapped in `$$$\text{Circle}$$$`. Unbalanced triple dollar signs trapped subsequent English prose into KaTeX math mode, stripping all whitespace and rendering text in math italics.
+    4. **Q.99/100**: Unrelated watermark trigonometric matrices glued to AP determinant problems with nested `$$$` and `$ ... $` inside `\begin{vmatrix}`, causing parser crashes and blank matrix rendering.
+- **Root Cause Context**:
+  - Prior to the 7-stage curriculum quality gate, old bulk-extracted questions sat dormant in Firestore. Although the daily pipeline protected newly generated questions, dormant legacy records remained unverified.
+- **Permanent Architectural Fixes**:
+  1. **Comprehensive Corruption Scanner (`scripts/cleanup_corrupted_questions.py`)**:
+     - **Rule 6 (Broken LaTeX Escapes)**: Detects orphan `rac{`, `ight)`, `eft(`, `imes`, `qrt{`, `egin{`, `heta`, and ASCII control characters `\x0c`, `\x0d`.
+     - **Rule 7 (Delimiter Integrity)**: Detects triple/quadruple dollar signs (`$$$+`) across both `questionText` and `explanation`.
+     - **Rule 8 (Prose in Math)**: Detects English sentences trapped inside math delimiters (`$centre of circle$`, `$when the equation$`).
+     - **Rule 9 (Missing Equation Holes)**: Detects OCR placeholders (`\text{Circle}`, `Circle Circle`, and blank equation/matrix prompts).
+  2. **Stage 4 Gate Integration (`scripts/curriculum_validator.py`)**:
+     - `CurriculumQualityGate.validate()` Stage 4 now mandatorily executes `is_corrupted()`. Any corrupted or broken question is rejected immediately.
+  3. **Master Firestore Bank Purge**:
+     - 38 corrupted legacy documents permanently deleted from the `questions` collection with auto-incremented `/metadata/question_bank` version counter.
+  4. **Android Client Defensive Resilience (`MathRenderer.kt`)**:
+     - `normalize()` safely strips ASCII control characters (`\u000C`, `\r`, `\u0008`) and collapses multiple dollar delimiters (`[$]{3,}` $\to$ `$$`) before JLatexMath parsing.
+  5. **Clean Power 100 Rebuild**:
+     - Rebuilt and verified with **0 flagged questions**:
+       - **JEE Power 100**: Version **18** (Physics 31, Chemistry 36, Maths 33 = 100 questions, zero Biology, zero deleted chapters).
+       - **NEET Power 100**: Version **16** (Physics 25, Chemistry 25, Biology 50 = 100 questions, zero Maths).
+
