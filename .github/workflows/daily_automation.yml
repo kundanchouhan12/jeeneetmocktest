@@ -10,6 +10,10 @@ on:
         description: 'Force Daily Vault re-scheduling with a fresh group ID'
         type: boolean
         default: true
+      force_power100:
+        description: 'Force Power 100 rebuild regardless of weekly Monday schedule'
+        type: boolean
+        default: false
 
 # Without this, a manual "Run workflow" click while the nightly cron run is still
 # in progress starts a second run_daily_automation.py against the same Firestore
@@ -58,11 +62,16 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL || 'cloudinary://755953873123215:RuKFj4VtH_fAApciLyBuClSwFGc@s9ckjajw' }}
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ inputs.force_vault }}" = "true" ]; then
-            python scripts/run_daily_automation.py --force-vault
-          else
-            python scripts/run_daily_automation.py
+          EXTRA_FLAGS=""
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            if [ "${{ inputs.force_vault }}" = "true" ]; then
+              EXTRA_FLAGS="$EXTRA_FLAGS --force-vault"
+            fi
+            if [ "${{ inputs.force_power100 }}" = "true" ]; then
+              EXTRA_FLAGS="$EXTRA_FLAGS --force-power100"
+            fi
           fi
+          python scripts/run_daily_automation.py $EXTRA_FLAGS
 
       - name: Commit and Push Newly Ingested Diagram Assets
         run: |
