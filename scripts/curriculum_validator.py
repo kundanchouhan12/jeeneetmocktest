@@ -26,6 +26,7 @@ if SCRIPT_DIR not in sys.path:
 
 import curriculum
 from vault_scheduler import question_fingerprint, coerce_options, coerce_correct_index
+from cleanup_corrupted_questions import is_corrupted
 
 
 @dataclasses.dataclass
@@ -198,6 +199,11 @@ class CurriculumQualityGate:
         for pat in NOISE_PATTERNS:
             if re.search(pat, q_text, re.IGNORECASE):
                 return ValidationResult(False, "QUESTION_CONTENT", f"Prohibited noise pattern detected: '{pat}'")
+
+        # Deep corruption, missing equations, and broken LaTeX check
+        corrupted, reason = is_corrupted(q)
+        if corrupted:
+            return ValidationResult(False, "QUESTION_CONTENT", f"Corrupted question detected: {reason}")
 
         # KaTeX / Formatting sanity check
         if r'\ce{' in q_text:

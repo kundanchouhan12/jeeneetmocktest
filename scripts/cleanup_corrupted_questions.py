@@ -84,6 +84,50 @@ def is_corrupted(q):
     for pattern in bad_patterns:
         if re.search(pattern, all_content, re.IGNORECASE):
             return True, f"Matched bad pattern in text/options: {pattern}"
+
+    # Rule 6: Broken LaTeX escape prefixes (form-feed, carriage-return, or missing slash)
+    broken_latex_patterns = [
+        (r'(?<![\\a-zA-Z])rac\{', 'Broken \\frac (orphan rac{)'),
+        (r'\x0crac\{', 'Form-feed broken \\frac (\\x0crac{)'),
+        (r'(?<![\\a-zA-Z])ight[\)\]\}|\.]', 'Broken \\right (orphan ight)'),
+        (r'\x0dight', 'Carriage-return broken \\right (\\x0dight)'),
+        (r'(?<![\\a-zA-Z])eft[\(\[\{]', 'Broken \\left (orphan eft)'),
+        (r'(?<![\\a-zA-Z])egin\{', 'Broken \\begin (orphan egin{)'),
+        (r'(?<![\\a-zA-Z])qrt\{', 'Broken \\sqrt (orphan qrt{)'),
+        (r'(?<![\\a-zA-Z])imes\b', 'Broken \\times (orphan imes)'),
+        (r'(?<![\\a-zA-Z])heta\b', 'Broken \\theta (orphan heta)'),
+        (r'\\lim_\{[^}]*\b[a-zA-Z]\s+o\s*0', 'Broken \\to in limit (orphan o0)'),
+    ]
+    for pat, desc in broken_latex_patterns:
+        if re.search(pat, all_content):
+            return True, desc
+
+    # Rule 7: Corrupted delimiter syntax (multiple dollar signs $$$+)
+    if '$$$' in all_content:
+        return True, "Multiple dollar signs ($$$+)"
+
+    # Rule 8: Prose trapped inside LaTeX math delimiters
+    prose_in_math = re.compile(
+        r'\$([^$]*\b(?:centre of circle|is joined with|and lastly|when the equation|further centre)\b[^$]*)\$',
+        re.IGNORECASE
+    )
+    m = prose_in_math.search(all_content)
+    if m:
+        return True, f"English prose trapped inside math delimiters: {m.group(1)[:30]}"
+
+    # Rule 9: Missing equation / matrix holes from OCR or PDF scrapers
+    missing_equation_patterns = [
+        (r'following\s+(?:four\s+)?equations\s+are\s+given\s*:\s*(?:\$*\\text\{Circle\}\$*|\s|\n|Circle|\d)+If the centre',
+         'Missing circle equations'),
+        (r'determinant of the matrix\s+(?:then\s+the\s+value|is\s+zero|\$*\\begin\{vmatrix\}\$*\s*\$*\\sin)',
+         'Mangled/Missing matrix in determinant question'),
+        (r'when the equation\s+(?:is balanced|balanced using)',
+         'Missing chemical equation before balanced'),
+        (r'\\text\{Circle\}', 'Scraped placeholder \\text{Circle}'),
+    ]
+    for pat, desc in missing_equation_patterns:
+        if re.search(pat, text, re.IGNORECASE):
+            return True, desc
             
     return False, ""
 

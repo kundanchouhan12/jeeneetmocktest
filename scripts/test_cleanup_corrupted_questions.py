@@ -52,5 +52,58 @@ class DailyVaultProtectionTest(unittest.TestCase):
         self.assertFalse(corrupted)
 
 
+    def test_broken_latex_frac_flagged(self):
+        q = {
+            "questionText": r"The value is given by \Delta F = 5.35 \ln\left( rac{C}{C_0} \right)",
+            "options": ["1.0", "2.0", "3.0", "4.0"],
+        }
+        corrupted, reason = is_corrupted(q)
+        self.assertTrue(corrupted)
+        self.assertIn("rac{", reason)
+
+    def test_broken_latex_right_flagged(self):
+        q = {
+            "questionText": r"The fraction is \left( \frac{a}{b} ight) in magnitude.",
+            "options": ["1", "2", "3", "4"],
+        }
+        corrupted, reason = is_corrupted(q)
+        self.assertTrue(corrupted)
+        self.assertIn("ight", reason)
+
+    def test_multiple_dollar_signs_flagged(self):
+        q = {
+            "questionText": r"For the system of equations $$$x + y = 2$$$ find x.",
+            "options": ["1", "2", "3", "4"],
+        }
+        corrupted, reason = is_corrupted(q)
+        self.assertTrue(corrupted)
+        self.assertIn("Multiple dollar signs", reason)
+
+    def test_missing_equation_circle_flagged(self):
+        q = {
+            "questionText": "For the four circles, the following four equations are given: Circle Circle Circle Circle If the centre of circle 1 is joined with centre of circle 2...",
+            "options": ["Rhombus", "Square", "Rectangle", "Parallelogram"],
+        }
+        corrupted, reason = is_corrupted(q)
+        self.assertTrue(corrupted)
+
+    def test_missing_equation_determinant_flagged(self):
+        q = {
+            "questionText": "If a, b, c are in AP with common difference d and the determinant of the matrix is zero, then the value of d is",
+            "options": ["72", "12", "36", "6"],
+        }
+        corrupted, reason = is_corrupted(q)
+        self.assertTrue(corrupted)
+
+    def test_clean_math_question_not_flagged(self):
+        q = {
+            "questionText": r"Find the value of $x$ such that $\lim_{x \to 0} \frac{\sin x}{x} = 1$.",
+            "options": ["0", "1", "2", "3"],
+        }
+        corrupted, reason = is_corrupted(q)
+        self.assertFalse(corrupted, f"Clean question should not be flagged: {reason}")
+
+
 if __name__ == "__main__":
     unittest.main()
+

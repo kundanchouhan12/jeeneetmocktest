@@ -132,4 +132,22 @@ class MathRendererNormalizeTest {
         assertFalse("[math] should not remain", result.contains("[math]"))
         assertFalse("<math> should not remain", result.contains("<math>"))
     }
+
+    // ─── Delimiter Collapsing & Control Char Stripping ──────────────────────────
+
+    @Test
+    fun `triple and quadruple dollar signs are collapsed to double dollar signs`() {
+        val input = "\$\$\$x^2\$\$\$ and \$\$\$\$y^2\$\$\$\$"
+        val result = normalize(input)
+        assertEquals("\$\$x^2\$\$ and \$\$y^2\$\$", result)
+    }
+
+    @Test
+    fun `stray control characters form feed carriage return and backspace are stripped`() {
+        val input = "\$\u000Cx^2\r + \u0008y^2\$"
+        val result = normalize(input)
+        assertEquals("\$x^2 + y^2\$", result)
+    }
 }
+
+

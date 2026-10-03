@@ -169,7 +169,11 @@ object MathRenderer {
     }
 
     private fun normalize(text: String): String = MhchemCompat.expand(
-        text.replace("\\(", "$").replace("\\)", "$")
+        text.replace("\u000C", "") // Form feed \x0c
+            .replace("\r", "")     // Carriage return \x0d
+            .replace("\u0008", "") // Backspace \x08
+            .replace(Regex("""[$]{3,}""")) { "$$" } // Collapse $$$+ to $$
+            .replace("\\(", "$").replace("\\)", "$")
             .replace("\\[", "$$").replace("\\]", "$$")
             .replace(Regex("\\[math\\](.*?)\\[/math\\]", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
             .replace(Regex("<math>(.*?)</math>", RegexOption.DOT_MATCHES_ALL)) { "$$${it.groupValues[1]}$$" }
