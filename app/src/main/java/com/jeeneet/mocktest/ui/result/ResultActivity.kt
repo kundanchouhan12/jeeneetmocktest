@@ -653,13 +653,16 @@ class ResultActivity : AppCompatActivity() {
         val r = currentResult ?: return
         val questions = runCatching {
             Gson().fromJson<List<Question>>(r.questionsJson, object : TypeToken<List<Question>>() {}.type)
-        }.getOrNull() ?: return
-        val chapter = questions.firstOrNull()?.chapter ?: return
-        val exam = r.examType
-        val subject = r.subject
+        }.getOrNull() ?: emptyList()
+        
+        val exam = r.examType.ifBlank { "JEE" }
+        val subject = r.subject.ifBlank { null }
+        // If all questions in test belong to a single chapter, treat as chapter test
+        val distinctChapters = questions.mapNotNull { it.chapter.takeIf { c -> c.isNotBlank() } }.distinct()
+        val chapter = if (distinctChapters.size == 1) distinctChapters.first() else null
 
         val hasAccess = PrefManager.isAllAccessUnlocked(this) ||
-            PrefManager.isPackUnlocked(this, com.jeeneet.mocktest.data.repository.MockTestRepository(this).getProductIdForExamSubject(exam, subject))
+            (subject != null && PrefManager.isPackUnlocked(this, com.jeeneet.mocktest.data.repository.MockTestRepository(this).getProductIdForExamSubject(exam, subject)))
 
         if (hasAccess) {
             TestActivity.start(this, exam, subject, chapter, adUnlocked = true, totalQuestions = 10)

@@ -119,7 +119,7 @@ class MockTestRepository(context: Context) {
                     val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
                     val cachedIds = prefs.getString(prefKey, null)
 
-                    if (cachedIds != null) {
+                    if (cachedIds != null && !adUnlocked) {
                         val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
                         val qs = questionDao.getQuestionsByIds(ids).filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                         if (qs.size >= config.totalQuestions * 0.8)
