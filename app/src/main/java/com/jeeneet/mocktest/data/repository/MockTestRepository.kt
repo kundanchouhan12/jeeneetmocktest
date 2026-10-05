@@ -126,9 +126,9 @@ class MockTestRepository(context: Context) {
                             return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions).shuffled())
                     }
 
-                    val totalAvailable = questionDao.getFreeExamQuestionCount(config.examType)
+                    val totalAvailable = questionDao.getExamQuestionCount(config.examType)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-                    val candidates = questionDao.getFreeQuestions(config.examType, candidateCount)
+                    val candidates = questionDao.getRandomQuestions(config.examType, candidateCount)
                         .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (newQs, recycled) = pickWithSeenTracking(
                         context, "free_${config.examType}", candidates, totalAvailable, config.totalQuestions
@@ -138,18 +138,18 @@ class MockTestRepository(context: Context) {
                 }
 
                 return@withContext if (config.subject != null) {
-                    val totalAvailable = questionDao.getFreeSubjectQuestionCount(config.examType, config.subject)
+                    val totalAvailable = questionDao.getSubjectQuestionCount(config.examType, config.subject)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-                    val candidates = questionDao.getFreeQuestionsBySubject(config.examType, config.subject, candidateCount)
+                    val candidates = questionDao.getQuestionsBySubject(config.examType, config.subject, candidateCount)
                         .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (qs, recycled) = pickWithSeenTracking(
                         context, "free_subject_${config.examType}_${config.subject}", candidates, totalAvailable, config.totalQuestions
                     )
                     QuestionFetchResult(qs.padTo(config.totalQuestions), recycled)
                 } else {
-                    val totalAvailable = questionDao.getFreeExamQuestionCount(config.examType)
+                    val totalAvailable = questionDao.getExamQuestionCount(config.examType)
                     val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-                    val candidates = questionDao.getFreeQuestions(config.examType, candidateCount)
+                    val candidates = questionDao.getRandomQuestions(config.examType, candidateCount)
                         .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
                     val (qs, recycled) = pickWithSeenTracking(
                         context, "free_${config.examType}", candidates, totalAvailable, config.totalQuestions
