@@ -248,12 +248,9 @@ fun Context.uiHeader(
     onBack: (() -> Unit)? = null,
     trailing: View? = null
 ): LinearLayout {
-    val activity = this as android.app.Activity
-    // White header — dark status bar icons (light status bar)
-    activity.window.statusBarColor = ContextCompat.getColor(this, R.color.bg_secondary)
-    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-        activity.window.decorView.systemUiVisibility =
-            activity.window.decorView.systemUiVisibility or android.view.View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+    (this as? android.app.Activity)?.window?.let { win ->
+        win.statusBarColor = ContextCompat.getColor(this, R.color.bg_secondary)
+        androidx.core.view.WindowCompat.getInsetsController(win, win.decorView).isAppearanceLightStatusBars = true
     }
     return LinearLayout(this).apply {
         orientation = LinearLayout.HORIZONTAL
@@ -438,9 +435,13 @@ fun Context.uiColoredToolbar(
     bgColor: Int,
     onBack: (() -> Unit)? = null
 ): LinearLayout {
-    val activity = this as android.app.Activity
-    activity.window.statusBarColor = bgColor
-    val statusBarHeight = with(activity.resources) {
+    val activity = this as? android.app.Activity
+    activity?.window?.let { win ->
+        win.statusBarColor = bgColor
+        val isLightBg = androidx.core.graphics.ColorUtils.calculateLuminance(bgColor) > 0.5
+        androidx.core.view.WindowCompat.getInsetsController(win, win.decorView).isAppearanceLightStatusBars = isLightBg
+    }
+    val statusBarHeight = with(this.resources) {
         val id = getIdentifier("status_bar_height", "dimen", "android")
         if (id > 0) getDimensionPixelSize(id) else 0
     }
