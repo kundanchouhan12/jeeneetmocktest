@@ -163,6 +163,7 @@ class TestViewModel(application: Application, private val repository: MockTestRe
         val isDailyVault = sess.config.isDailyVault
         viewModelScope.launch {
             PrefManager.clearSavedTestSession(getApplication())
+            repository.markChapterSetSubmitted(getApplication(), sess.config)
             PrefManager.incrementTotalQuestionsSolved(getApplication(), result.attempted)
             
             if (isDailyQuiz) PrefManager.markDailyQuizDone(getApplication())

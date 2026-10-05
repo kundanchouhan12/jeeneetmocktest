@@ -486,6 +486,37 @@ Constraints:
     return processed
 
 
+def pick_lowest_coverage_chapter(exam: str, subj: str, chapters: list, db) -> str:
+    """
+    Counts existing Firestore documents for each chapter in (exam, subj)
+    and selects the chapter with the FEWEST existing questions.
+    Guarantees that new/thin chapters are prioritized for daily ingestion.
+    """
+    if not db or not chapters:
+        return random.choice(chapters) if chapters else ""
+    try:
+        docs = db.collection('questions').where('examType', '==', exam).where('subject', '==', subj).select(['chapter']).get()
+        counts = {c: 0 for c in chapters}
+        for d in docs:
+            ch = d.to_dict().get('chapter', '')
+            if ch in counts:
+                counts[ch] += 1
+            else:
+                for c in chapters:
+                    if c.lower() in ch.lower() or ch.lower() in c.lower():
+                        counts[c] += 1
+                        break
+        sorted_chapters = sorted(chapters, key=lambda c: counts.get(c, 0))
+        lowest_count = counts.get(sorted_chapters[0], 0)
+        candidates = [c for c in sorted_chapters if counts.get(c, 0) <= lowest_count + 3]
+        selected = random.choice(candidates)
+        print(f"  📊 Chapter distribution for [{exam} - {subj}]: lowest count is {lowest_count} -> Selected '{selected}'")
+        return selected
+    except Exception as e:
+        print(f"⚠️ Could not compute chapter counts: {e}")
+        return random.choice(chapters)
+
+
 def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: bool = False, db=None, all_docs=None) -> dict:
     print(f"\n🚀 Running Automated Question Pipeline (Target per subject: {count_per_subject}, Dry Run: {dry_run})...")
 
@@ -510,7 +541,7 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
             if not chapters:
                 continue
 
-            selected_chapter = random.choice(chapters)
+            selected_chapter = pick_lowest_coverage_chapter(exam, subj, chapters, db)
             print(f"  📚 Generating {count_per_subject} questions for [{exam} - {subj}] -> Chapter: '{selected_chapter}'...")
 
             questions = generate_questions(exam, subj, selected_chapter, count=count_per_subject)

@@ -640,7 +640,7 @@ class ChapterwiseListActivity : AppCompatActivity() {
 
     private fun showChapterPreScreen(chapter: String, index: Int) {
         AnalyticsManager.chapterPreScreenShown(this, subject, chapter)
-        val qCount   = when (index % 3) { 0 -> 30; 1 -> 45; else -> 60 }
+        val qCount   = 0 // placeholder; replaced asynchronously with the real DB count below
         val timeMins = qCount
         val difficulty = when {
             index < 5  -> "Easy–Medium"
@@ -669,8 +669,39 @@ class ChapterwiseListActivity : AppCompatActivity() {
                 typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
             })
         }
-        grid.addView(infoRow("Questions", "$qCount"))
-        grid.addView(infoRow("Time Limit", "$timeMins min"))
+        val tvQCount = uiTextView(UiText.CAPTION, "…", textPrimary).apply {
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        }
+        val tvTime = uiTextView(UiText.CAPTION, "…", textPrimary).apply {
+            typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
+        }
+        fun valueRow(label: String, valueView: TextView) = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL; layoutParams = lpRow(bottomDp = Space.XS)
+            addView(uiTextView(UiText.CAPTION, label, textTertiary).apply {
+                layoutParams = LinearLayout.LayoutParams(0, -2, 1f)
+            })
+            addView(valueView)
+        }
+        grid.addView(valueRow("Questions", tvQCount))
+        grid.addView(valueRow("Time Limit", tvTime))
+        lifecycleScope.launch(Dispatchers.IO) {
+            val aliases = com.jeeneet.mocktest.data.model.OfficialSyllabus.getAliasesForUnit(subject, chapter)
+            var real = MockTestDatabase.getInstance(this@ChapterwiseListActivity).questionDao()
+                .getChapterQuestionCountByAliases(exam, subject, aliases)
+
+            if (real < 10 && NetworkUtils.isNetworkAvailable(this@ChapterwiseListActivity)) {
+                com.jeeneet.mocktest.data.repository.QuestionSyncManager(this@ChapterwiseListActivity)
+                    .syncChapterQuestionsFromFirestore(exam, subject, chapter)
+                real = MockTestDatabase.getInstance(this@ChapterwiseListActivity).questionDao()
+                    .getChapterQuestionCountByAliases(exam, subject, aliases)
+            }
+
+            withContext(Dispatchers.Main) {
+                val testQs = if (real >= 10) 10 else real
+                tvQCount.text = if (real > 10) "10 Qs ($real in bank)" else "$real"
+                tvTime.text = "${testQs.coerceAtLeast(10)} min"
+            }
+        }
         grid.addView(infoRow("Difficulty", difficulty))
         val tvLastVal = uiTextView(UiText.CAPTION, "Loading…", textPrimary).apply {
             typeface = Typeface.create("sans-serif-medium", Typeface.BOLD)
@@ -757,7 +788,13 @@ class ChapterwiseListActivity : AppCompatActivity() {
             PrefManager.isAllAccessUnlocked(this) ||
             PrefManager.isPackUnlocked(this, currentProductId)
 
-        val startBtnText = if (isUnlocked) "▶  Start Test (30 Qs)" else "▶  Practice 10 Free Qs"
+        val setSubmitted = com.jeeneet.mocktest.data.repository.MockTestRepository(this)
+            .isChapterSetSubmitted(this, exam, subject, chapter)
+        val startBtnText = when {
+            isUnlocked -> "▶  Start Test (30 Qs)"
+            setSubmitted -> "↻  Reattempt Same 10 Qs"
+            else -> "▶  Practice 10 Free Qs"
+        }
 
         MaterialAlertDialogBuilder(this)
             .setTitle("$subject · ${chapter.take(30)}")

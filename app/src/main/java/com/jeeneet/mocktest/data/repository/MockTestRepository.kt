@@ -70,41 +70,45 @@ class MockTestRepository(context: Context) {
                 return@withContext fetchDailyQuizQuestions(context, config, isUnlocked)
             }
 
-            // Chapter tests: cache the daily question set so reopening the same chapter
-            // shows the same questions instead of a new random draw each time
+            // Chapter tests: check local count; if < totalQuestions, sync live from Firestore first
             if (config.chapter != null) {
+                val aliases = com.jeeneet.mocktest.data.model.OfficialSyllabus.getAliasesForUnit(config.subject!!, config.chapter)
+                val localCount = questionDao.getChapterQuestionCountByAliases(config.examType, config.subject!!, aliases)
+                if (localCount < config.totalQuestions && com.jeeneet.mocktest.utils.NetworkUtils.isNetworkAvailable(context)) {
+                    QuestionSyncManager(context).syncChapterQuestionsFromFirestore(config.examType, config.subject!!, config.chapter)
+                }
+
+                val prefs = context.getSharedPreferences("mock_test_prefs", android.content.Context.MODE_PRIVATE)
+                val paidAccess = isUnlocked && !adUnlocked
+
+                // Free / ad-unlocked users: persistent 10-question set per chapter
+                if (!paidAccess) {
+                    return@withContext fetchPersistentFreeSet(context, config, adUnlocked) {
+                        questionDao.getQuestionsByChaptersOnce(config.examType, config.subject!!, aliases)
+                    }
+                }
+
+                // ── Paid users: daily cached adaptive set (unchanged) ──
                 val today = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
                 val cacheKey = "chapter_daily_${config.examType}_${config.subject}_${config.chapter}_$today"
-                val prefs = context.getSharedPreferences("mock_test_prefs", android.content.Context.MODE_PRIVATE)
-                val cachedIds = if (!adUnlocked) prefs.getString(cacheKey, null) else null
-
+                val cachedIds = prefs.getString(cacheKey, null)
                 if (cachedIds != null) {
                     val ids = cachedIds.split(",").mapNotNull { it.toIntOrNull() }
                     val qs = questionDao.getQuestionsByIds(ids)
                     if (qs.size >= config.totalQuestions * 0.8)
                         return@withContext QuestionFetchResult(qs.padTo(config.totalQuestions))
                 }
-
-                val aliases = com.jeeneet.mocktest.data.model.OfficialSyllabus.getAliasesForUnit(config.subject!!, config.chapter)
-                val (questions, recycled) = if (isUnlocked) fetchAdaptiveQuestions(config) else run {
-                    val freeCount = questionDao.getFreeChapterQuestionCountByAliases(config.examType, config.subject!!, aliases)
-                    val totalAvailable = if (freeCount > 0) freeCount else questionDao.getChapterQuestionCountByAliases(config.examType, config.subject!!, aliases)
-                    val candidateCount = (config.totalQuestions * 5).coerceAtLeast(50)
-                    val candidates = if (freeCount > 0) {
-                        questionDao.getFreeQuestionsByChapters(config.examType, config.subject!!, aliases, candidateCount)
-                    } else {
-                        questionDao.getQuestionsByChapters(config.examType, config.subject!!, aliases, candidateCount)
-                    }
-                    pickWithSeenTracking(
-                        context, "chapter_${config.examType}_${config.subject}_${config.chapter}",
-                        candidates, totalAvailable, config.totalQuestions
-                    )
-                }
-
-                if (questions.isNotEmpty() && !adUnlocked)
+                val (questions, recycled) = fetchAdaptiveQuestions(config)
+                if (questions.isNotEmpty())
                     prefs.edit().putString(cacheKey, questions.joinToString(",") { it.id.toString() }).apply()
-
                 return@withContext QuestionFetchResult(questions.padTo(config.totalQuestions), recycled)
+            }
+
+            // Subject-wise PYQ / mock tests for free & ad-unlocked users: same persistent set rules
+            if (config.subject != null && !(isUnlocked && !adUnlocked)) {
+                return@withContext fetchPersistentFreeSet(context, config, adUnlocked) {
+                    questionDao.getQuestionsBySubject(config.examType, config.subject, 5000)
+                }
             }
 
             if (!isUnlocked) {
@@ -191,6 +195,83 @@ class MockTestRepository(context: Context) {
                 }
             }
         }
+
+    /**
+     * Persistent free set (chapter or subject/PYQ tests):
+     * • Free start → always the current set (same questions until a rewarded ad is watched).
+     * • Paused/exited → same set again (answers restored by the saved-session resume).
+     * • Submitted + ad watched → next unseen questions become the current set.
+     * Real PYQs (year > 0) and free-tagged questions are preferred.
+     */
+    private suspend fun fetchPersistentFreeSet(
+        context: Context, config: ExamConfig, adUnlocked: Boolean, loadPool: suspend () -> List<Question>
+    ): QuestionFetchResult {
+        val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
+        val setKey = chapterSetKey(config)
+        val currentIds = (prefs.getString(setKey, null) ?: "").split(",").mapNotNull { it.toIntOrNull() }
+        val submitted = prefs.getBoolean("${setKey}_submitted", false)
+        val current = if (currentIds.isEmpty()) emptyList()
+            else questionDao.getQuestionsByIds(currentIds).sortedBy { currentIds.indexOf(it.id) }
+
+        val n = config.totalQuestions
+        // If cached set is smaller than requested total (e.g. cached when only 2 questions existed), ignore stale cache and draw a full set
+        if (current.size >= n && (!adUnlocked || !submitted)) return QuestionFetchResult(current)
+
+        var all = loadPool().filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
+
+        // If local chapter pool has fewer than n questions, pad from the subject pool so users always get a full 10-question session
+        if (all.size < n && config.subject != null) {
+            val subjectPool = questionDao.getQuestionsBySubject(config.examType, config.subject!!, 100)
+                .filter { !com.jeeneet.mocktest.data.model.OfficialSyllabus.isDeletedChapter(it.chapter) }
+            all = (all + subjectPool).distinctBy { it.id }
+        }
+
+        val availableNew = all.filter { it.id !in currentIds }
+        // If all available questions were already in currentIds (e.g., small chapter pool), reset currentIds filter so ad unlock fetches fresh set
+        val candidatePool = if (availableNew.isEmpty() && adUnlocked) all else availableNew
+
+        val (picked, recycled) = if (current.isEmpty() && !adUnlocked) {
+            val first = all.shuffled()
+                .sortedWith(compareBy<Question>({ it.isPremium }, { it.year <= 0 }))
+                .take(n)
+            recordSeen(context, chapterSeenKey(config), first.map { it.id }, all.size)
+            first to (first.size < n)
+        } else {
+            pickWithSeenTracking(context, chapterSeenKey(config), candidatePool, all.size, n)
+        }
+        if (picked.isNotEmpty()) {
+            prefs.edit()
+                .putString(setKey, picked.joinToString(",") { it.id.toString() })
+                .putBoolean("${setKey}_submitted", false)
+                .apply()
+        }
+        return QuestionFetchResult(picked, recycled)
+    }
+
+    private fun chapterSetKey(config: ExamConfig) =
+        "chapter_set_${config.examType}_${config.subject}_${config.chapter}"
+
+    private fun chapterSeenKey(config: ExamConfig) =
+        "chapter_${config.examType}_${config.subject}_${config.chapter}"
+
+    private fun recordSeen(context: Context, scopeKey: String, ids: List<Int>, window: Int) {
+        val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
+        val key = "seen_ids_$scopeKey"
+        val old = (prefs.getString(key, "") ?: "").split(",").mapNotNull { it.toIntOrNull() }
+        val updated = (ids + old).distinct().take(window.coerceAtLeast(ids.size))
+        prefs.edit().putString(key, updated.joinToString(",")).apply()
+    }
+
+    /** Called when a free/ad chapter test is submitted: the next new set now requires an ad. */
+    fun markChapterSetSubmitted(context: Context, config: ExamConfig) {
+        if (config.chapter == null || config.subject == null) return
+        context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE).edit()
+            .putBoolean("${chapterSetKey(config)}_submitted", true).apply()
+    }
+
+    fun isChapterSetSubmitted(context: Context, exam: String, subject: String, chapter: String): Boolean =
+        context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
+            .getBoolean("chapter_set_${exam}_${subject}_${chapter}_submitted", false)
 
     /**
      * Fills up to [n] questions from [candidates], preferring ones not already served
@@ -672,6 +753,43 @@ class MockTestRepository(context: Context) {
     suspend fun seedSampleQuestions() = withContext(Dispatchers.IO) {
         questionDao.insertQuestions(sampleQuestions())
     }
+
+    private data class BankQuestion(
+        val examType: String, val subject: String, val chapter: String,
+        val difficulty: String?, val year: Int?, val questionText: String,
+        val options: List<String>, val correctOptionIndex: Int, val explanation: String?,
+        val isPremium: Boolean?, val imageUrl: String?
+    )
+
+    /**
+     * Seeds assets/chapter_questions.json (2026 official-unit mapped, first 10 per unit free)
+     * so every chapter has real content on first launch, with no network needed.
+     * Re-runs whenever [BANK_VERSION] is bumped; rows already cached are skipped.
+     */
+    suspend fun seedChapterBank(context: Context) = withContext(Dispatchers.IO) {
+        val prefs = context.getSharedPreferences("mock_test_prefs", Context.MODE_PRIVATE)
+        if (prefs.getInt("chapter_bank_version", 0) >= BANK_VERSION) return@withContext
+        try {
+            val json = context.assets.open("chapter_questions.json").bufferedReader(Charsets.UTF_8).use { it.readText() }
+            val type = object : com.google.gson.reflect.TypeToken<List<BankQuestion>>() {}.type
+            val bank: List<BankQuestion> = com.google.gson.Gson().fromJson(json, type)
+            val fresh = bank.filter { questionDao.countByText(it.examType, it.questionText) == 0 }.map {
+                Question(
+                    examType = it.examType, subject = it.subject, chapter = it.chapter,
+                    difficulty = it.difficulty ?: "Medium", year = it.year ?: 0,
+                    questionText = it.questionText, options = it.options,
+                    correctOptionIndex = it.correctOptionIndex, explanation = it.explanation ?: "",
+                    isPremium = it.isPremium ?: false, imageUrl = it.imageUrl
+                )
+            }
+            if (fresh.isNotEmpty()) questionDao.insertQuestions(fresh)
+            prefs.edit().putInt("chapter_bank_version", BANK_VERSION).apply()
+        } catch (e: Exception) {
+            android.util.Log.e("MockTestRepository", "Chapter bank seed failed: ${e.message}")
+        }
+    }
+
+    private companion object { const val BANK_VERSION = 3 }
 
     private fun sampleQuestions(): List<Question> = physicsQuestions() + chemistryQuestions() + mathsQuestions() + biologyQuestions()
 

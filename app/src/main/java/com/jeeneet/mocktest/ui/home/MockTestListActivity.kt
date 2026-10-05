@@ -457,27 +457,26 @@ class MockTestListActivity : AppCompatActivity() {
         AdManager.showBanner(this, adContainer)
         dialogView.addView(adContainer)
 
-        val alreadyUsedToday = PrefManager.hasUsedAdFreeUnlockToday(this)
+        val setSubmitted = subject != null && com.jeeneet.mocktest.data.repository.MockTestRepository(this)
+            .isChapterSetSubmitted(this, exam, subject, "null")
         val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(this)
             .setTitle("Unlock $subject Pack")
             .setView(dialogView)
             .setPositiveButton("Buy ₹49") { _, _ -> ShopActivity.start(this) }
-            .setNeutralButton(if (alreadyUsedToday) "Free try used ✓" else "Watch Ad (Free Today)") { _, _ ->
-                if (alreadyUsedToday) return@setNeutralButton
+            .setNeutralButton("🎬 Watch Ad (Next 10 Qs)") { _, _ ->
                 AnalyticsManager.rewardedAdShown(this, "mock_test_unlock")
                 AdManager.showRewarded(
                     activity = this,
                     onRewarded = {
-                        PrefManager.markAdFreeUnlockUsed(this)
-                        TestActivity.start(this, exam, subject, adUnlocked = true)
+                        TestActivity.start(this, exam, subject, adUnlocked = true, totalQuestions = 10)
                     },
                     onNotAvailable = { Toast.makeText(this, "No ad available. Try again later.", Toast.LENGTH_SHORT).show() },
                     onLoading = { Toast.makeText(this, "Loading ad…", Toast.LENGTH_SHORT).show() },
                     placement = "unlock_pack"
                 )
             }
-            .setNegativeButton("Try 10 Free Qs") { _, _ ->
-                // Limit to 10 questions for the free trial path
+            .setNegativeButton(if (setSubmitted) "Reattempt Same 10" else "Try 10 Free Qs") { _, _ ->
+                // Free path: the same persistent 10 until submitted + ad watched
                 AdManager.showInterstitial(this, bypassCooldown = true) {
                     TestActivity.start(this, exam, subject, totalQuestions = 10)
                 }

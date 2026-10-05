@@ -155,6 +155,7 @@ class MainActivity : AppCompatActivity() {
                     repo.seedSampleQuestions()
                     PrefManager.setFirstLaunchDone(this@MainActivity)
                 }
+                repo.seedChapterBank(this@MainActivity)
             } catch (e: Exception) {
                 android.util.Log.e("MainActivity", "Failed to seed questions: ${e.message}")
             }

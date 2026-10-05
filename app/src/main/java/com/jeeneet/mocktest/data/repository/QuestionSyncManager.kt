@@ -322,6 +322,49 @@ class QuestionSyncManager(private val context: Context) {
         }
     }
 
+    /**
+     * Syncs questions for a specific chapter from Firestore into Room DB if network is available.
+     * Useful for newly added chapters or chapters with low local question counts.
+     */
+    suspend fun syncChapterQuestionsFromFirestore(exam: String, subject: String, chapter: String): Int = withContext(Dispatchers.IO) {
+        try {
+            val aliases = com.jeeneet.mocktest.data.model.OfficialSyllabus.getAliasesForUnit(subject, chapter)
+            Log.d(TAG, "Fetching Firestore questions for chapter '$chapter' (aliases=$aliases)…")
+
+            val snapshot = firestore.collection(COL_QUESTIONS)
+                .whereEqualTo("examType", exam)
+                .whereEqualTo("subject", subject)
+                .get().await()
+
+            val lowerAliases = aliases.map { it.lowercase().trim() }.toSet()
+            val questions = snapshot.documents
+                .filterNot { it.getBoolean("isDailyVault") == true }
+                .mapNotNull { doc ->
+                    val data = doc.data ?: return@mapNotNull null
+                    val qChapter = (data["chapter"] as? String)?.lowercase()?.trim() ?: ""
+                    if (qChapter in lowerAliases || lowerAliases.any { alias -> qChapter.contains(alias) || alias.contains(qChapter) }) {
+                        parseQuestion(data)
+                    } else null
+                }
+
+            if (questions.isNotEmpty()) {
+                val newQuestions = questions.filter { q ->
+                    questionDao.countByText(q.examType, q.questionText) == 0
+                }
+                if (newQuestions.isNotEmpty()) {
+                    questionDao.insertQuestions(newQuestions)
+                    Log.d(TAG, "Inserted ${newQuestions.size} new Firestore questions for chapter '$chapter'")
+                }
+                return@withContext questions.size
+            } else {
+                Log.d(TAG, "No matching Firestore questions found for chapter '$chapter'")
+            }
+        } catch (e: Exception) {
+            Log.w(TAG, "Firestore chapter sync failed for '$chapter': ${e.message}")
+        }
+        return@withContext 0
+    }
+
     private fun parseVaultDocuments(
         documents: List<com.google.firebase.firestore.DocumentSnapshot>,
         label: String

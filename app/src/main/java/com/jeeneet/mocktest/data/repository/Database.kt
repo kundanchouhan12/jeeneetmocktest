@@ -123,6 +123,9 @@ interface QuestionDao {
     @Query("SELECT COUNT(*) FROM questions")
     suspend fun getTotalCount(): Int
 
+    @Query("SELECT COUNT(*) FROM questions WHERE examType = :exam AND questionText = :text")
+    suspend fun countByText(exam: String, text: String): Int
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertQuestions(questions: List<Question>)
 
