@@ -248,7 +248,7 @@ def main():
             for vdate in target_dates:
                 for exam in ["JEE", "NEET"]:
                     try:
-                        schedule_vault(db, vdate, exam, count=args.vault_count, force=args.force_vault)
+                        schedule_vault(db, vdate, exam, count=args.vault_count, force=args.force_vault, all_docs=audit_docs)
                         vault_ok[exam] = True
                     except Exception as e:
                         print(f"❌ Error during {exam} Daily Vault for {vdate}: {e}")

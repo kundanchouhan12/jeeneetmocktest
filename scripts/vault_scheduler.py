@@ -348,15 +348,19 @@ def is_vault_complete_in_firestore(db, target_date: str, exam_type: str, count: 
         return False
 
 
-def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT, force: bool = False) -> None:
+def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT, force: bool = False, all_docs=None) -> None:
     print(f"\n[vault] Scheduling {exam_type} vault for {target_date} ({count} questions)...")
     if count != EXPECTED_VAULT_COUNT:
         raise VaultContractError(f"Daily Vault count must be {EXPECTED_VAULT_COUNT}, got {count}")
 
     questions_ref = db.collection("questions")
 
-    all_docs = questions_ref.where("examType", "==", exam_type).get()
-    pool = [d for d in all_docs if not d.id.startswith("vault_")]
+    if all_docs is not None:
+        all_exam_docs = [d for d in all_docs if (d.to_dict() or {}).get("examType") == exam_type]
+    else:
+        all_exam_docs = questions_ref.where("examType", "==", exam_type).get()
+
+    pool = [d for d in all_exam_docs if not d.id.startswith("vault_")]
 
     skipped = []
     parseable = []
@@ -376,12 +380,19 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_V
             "Refusing to write an incomplete Daily Vault."
         )
 
-    previous_vault_docs = (
-        questions_ref
-        .where("isDailyVault", "==", True)
-        .where("examType", "==", exam_type)
-        .get()
-    )
+    if all_docs is not None:
+        previous_vault_docs = [
+            d for d in all_docs
+            if (d.to_dict() or {}).get("isDailyVault") is True
+            and (d.to_dict() or {}).get("examType") == exam_type
+        ]
+    else:
+        previous_vault_docs = (
+            questions_ref
+            .where("isDailyVault", "==", True)
+            .where("examType", "==", exam_type)
+            .get()
+        )
     # Build map of source_id -> latest vaultDate (ignoring target_date itself for idempotency)
     vault_history: dict[str, str] = {}
     for d in previous_vault_docs:
