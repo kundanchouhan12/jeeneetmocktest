@@ -257,23 +257,44 @@ def main():
             print(f"❌ Error during Vault Scheduling: {e}")
             failed_steps.append(f"Vault Scheduling: {e}")
 
-        # Step 4: Rebuild Power 100 for JEE and NEET bi-weekly (1st & 15th of each month, or when forced).
-        # Gives users 2 weeks to complete Power 100 standard tests without daily resets.
-        # Step 4: Weekly Power 100 Rebuild (Runs every 7 days / Monday)
-        today = datetime.date.today()
-        # Weekly schedule: Every Monday (weekday == 0) runs every 7 days
-        is_power100_day = args.force_power100 or (today.weekday() == 0)
+        # Step 4: Weekly Power 100 Rebuild (Runs every 7 days / Monday IST, or when forced/overdue)
+        today_ist_date = ist_now.date()
+        last_p100_date_str = None
+        if not args.dry_run and db:
+            try:
+                p100_meta = db.collection('metadata').document('power100_status').get()
+                if p100_meta.exists:
+                    last_p100_date_str = p100_meta.to_dict().get('lastRebuildDate')
+            except Exception:
+                pass
+
+        days_since_p100 = 999
+        if last_p100_date_str:
+            try:
+                last_dt = datetime.date.fromisoformat(last_p100_date_str)
+                days_since_p100 = (today_ist_date - last_dt).days
+            except Exception:
+                pass
+
+        # Trigger if forced, if today is Monday in IST (weekday 0), or if >= 7 days since last rebuild
+        is_power100_day = args.force_power100 or (today_ist_date.weekday() == 0) or (days_since_p100 >= 7)
         if is_power100_day:
             try:
-                print(f"\n🏆 Rebuilding Power 100 (Weekly Schedule: Day {today.strftime('%A')}, {today.isoformat()})...")
+                reason = "Forced" if args.force_power100 else ("Monday Schedule" if today_ist_date.weekday() == 0 else f"Overdue ({days_since_p100}d)")
+                print(f"\n🏆 Rebuilding Power 100 ({reason}: Day {today_ist_date.strftime('%A')} IST, {today_ist})...")
                 power100_docs = audit_docs if audit_docs is not None else db.collection('questions').get()
                 for exam in ["JEE", "NEET"]:
                     run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
+                if not args.dry_run and db:
+                    db.collection('metadata').document('power100_status').set({
+                        'lastRebuildDate': today_ist,
+                        'lastUpdated': firestore.SERVER_TIMESTAMP
+                    }, merge=True)
             except Exception as e:
                 print(f"❌ Error during Power 100 Rebuild: {e}")
                 failed_steps.append(f"Power 100 Rebuild: {e}")
         else:
-            print(f"\nℹ️ Skipping Power 100 Rebuild today (Runs weekly every Monday; today is {today.strftime('%A')}).")
+            print(f"\nℹ️ Skipping Power 100 Rebuild today (Runs weekly every Monday IST; today is {today_ist_date.strftime('%A')} IST, last rebuild: {last_p100_date_str or 'N/A'}).")
 
         # Step 5: Increment metadata version
         try:
