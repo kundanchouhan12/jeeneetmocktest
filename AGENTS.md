@@ -247,3 +247,17 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
        - **JEE Power 100**: Version **18** (Physics 31, Chemistry 36, Maths 33 = 100 questions, zero Biology, zero deleted chapters).
        - **NEET Power 100**: Version **16** (Physics 25, Chemistry 25, Biology 50 = 100 questions, zero Maths).
 
+
+
+---
+
+## 🚀 Instant Release Feature Broadcast (`scripts/publish_app_version.py`)
+
+- **Instant In-App Feature Popup for All Users**:
+  - Triggers the dark-mode "New Version Available! 🚀" feature popup for all active app users (old & new versions) with a 1-tap redirect to the Play Store link (`https://play.google.com/store/apps/details?id=com.jeeneet.mocktest&pli=1`).
+- **Master Broadcast Command**:
+  ```bash
+  python scripts/publish_app_version.py --code 999 --name "1.2.2" --notes "Feature 1, Feature 2, Feature 3"
+  ```
+- **Why Code 999 Works**:
+  - Existing installed app clients compare `installedVersionCode < latestVersionCode`. Setting `code 999` evaluates to `TRUE` across all installed app versions (v1.0, v1.2.1, v1.2.2, etc.), triggering the non-blocking update/feature popup immediately on launch without requiring a new AAB build.
