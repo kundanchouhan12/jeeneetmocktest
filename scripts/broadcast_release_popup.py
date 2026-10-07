@@ -64,9 +64,8 @@ def init_firestore():
     return firestore.client()
 
 
-def broadcast_release(notes: list = None, is_force: bool = False, title: str = "", message: str = ""):
+def broadcast_release(notes: list = None, is_force: bool = False, title: str = "", message: str = "", dry_run: bool = False):
     version_code, version_name = parse_app_version()
-    db = init_firestore()
 
     if not notes:
         notes = [
@@ -95,18 +94,30 @@ def broadcast_release(notes: list = None, is_force: bool = False, title: str = "
         "title": title,
         "message": message,
         "releaseNotes": notes,
-        "playStoreUrl": PLAY_STORE_URL,
-        "updatedAt": firestore.SERVER_TIMESTAMP
+        "playStoreUrl": PLAY_STORE_URL
     }
 
     print("=================================================================")
     print(f"🚀 Broadcasting Release Popup for Version {version_name} (Build {version_code})")
     print(f"🔗 Target Play Store Link: {PLAY_STORE_URL}")
     print(f"🛡️ Mandatory / Force Update : {'YES' if is_force else 'NO (Recommended)'}")
+    print(f"🧪 Execution Mode          : {'DRY RUN (No Firestore writes)' if dry_run else 'LIVE PRODUCTION'}")
     print("=================================================================")
     print("📋 Feature Highlights:")
     for note in notes:
         print(f"   • {note}")
+
+    if dry_run:
+        print("\n🔎 DRY RUN PREVIEW (Firestore payload that would be written):")
+        import json
+        print(json.dumps(payload, indent=2, ensure_ascii=False))
+        print("=================================================================")
+        print("✅ Dry run successful. Zero changes made to Firestore.")
+        print("=================================================================")
+        return
+
+    db = init_firestore()
+    payload["updatedAt"] = firestore.SERVER_TIMESTAMP
 
     # Write to Firestore version documents
     db.collection('app_config').document('version_control').set(payload, merge=True)
@@ -126,6 +137,7 @@ def main():
     parser.add_argument("--force", action="store_true", help="Set update as mandatory")
     parser.add_argument("--title", type=str, default="", help="Custom dialog title")
     parser.add_argument("--message", type=str, default="", help="Custom dialog description")
+    parser.add_argument("--dry-run", action="store_true", help="Test script execution without modifying Firestore")
 
     args = parser.parse_args()
 
@@ -135,7 +147,8 @@ def main():
         notes=notes_list,
         is_force=args.force,
         title=args.title,
-        message=args.message
+        message=args.message,
+        dry_run=args.dry_run
     )
 
 
