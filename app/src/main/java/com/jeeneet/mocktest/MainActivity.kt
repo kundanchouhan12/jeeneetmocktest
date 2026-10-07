@@ -493,10 +493,9 @@ class MainActivity : AppCompatActivity() {
         try {
             com.jeeneet.mocktest.utils.InAppUpdateManager.checkForUpdate(this) {
                 if (!isDestroyed && !isFinishing) {
-                    com.jeeneet.mocktest.utils.FeatureAnnouncementManager.checkAndShow(this)
+                    checkForUpdate()
                 }
             }
-            com.jeeneet.mocktest.utils.FeatureAnnouncementManager.checkAndShow(this)
         } catch (e: Exception) {
             android.util.Log.e("MainActivity", "In-App update check failed: ${e.message}")
             if (!isDestroyed && !isFinishing) checkForUpdate()
