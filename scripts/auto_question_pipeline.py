@@ -85,6 +85,20 @@ def repair_latex_json_escapes(text: str) -> str:
     return ''.join(out)
 
 
+def repair_json_syntax(text: str) -> str:
+    """
+    Repairs common LLM JSON syntax errors such as missing comma delimiters
+    between JSON fields, objects in an array, or trailing commas.
+    """
+    # Fix missing commas between objects in array: } { -> }, {
+    text = re.sub(r'\}(\s*)\{', r'}, \1{', text)
+    # Fix missing commas between key-value properties: "val" "key": or ] "key": or } "key":
+    text = re.sub(r'("(?:[^"\\]|\\.)*"|\d+|true|false|null|\]|\})\s*(?="[a-zA-Z0-9_]+"\s*:)', r'\1, ', text)
+    # Fix trailing commas before ] or }: , ] -> ]
+    text = re.sub(r',\s*([\]\}])', r'\1', text)
+    return text
+
+
 _HAS_MATH_DELIMITER = re.compile(r'\$|\\\(|\\\[')
 _LOOKS_LIKE_LATEX = re.compile(r'\\[a-zA-Z]+|[{}]')
 
@@ -460,7 +474,7 @@ Constraints:
             items = [items]
     except Exception:
         try:
-            fixed_json = repair_latex_json_escapes(cleaned_json)
+            fixed_json = repair_json_syntax(repair_latex_json_escapes(cleaned_json))
             items = json.loads(fixed_json)
             if not isinstance(items, list):
                 items = [items]
