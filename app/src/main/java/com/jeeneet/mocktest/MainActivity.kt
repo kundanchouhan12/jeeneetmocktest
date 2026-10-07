@@ -492,11 +492,11 @@ class MainActivity : AppCompatActivity() {
     private fun checkFirestoreForForceUpdate() {
         try {
             com.jeeneet.mocktest.utils.InAppUpdateManager.checkForUpdate(this) {
-                // If no remote popup is required or pending, check Google Play Core update
                 if (!isDestroyed && !isFinishing) {
-                    checkForUpdate()
+                    com.jeeneet.mocktest.utils.FeatureAnnouncementManager.checkAndShow(this)
                 }
             }
+            com.jeeneet.mocktest.utils.FeatureAnnouncementManager.checkAndShow(this)
         } catch (e: Exception) {
             android.util.Log.e("MainActivity", "In-App update check failed: ${e.message}")
             if (!isDestroyed && !isFinishing) checkForUpdate()

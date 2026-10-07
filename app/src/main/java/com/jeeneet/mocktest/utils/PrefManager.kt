@@ -695,4 +695,11 @@ object PrefManager {
         val dayMillis = 24 * 60 * 60 * 1000L
         return (System.currentTimeMillis() - lastDismissedTime) > dayMillis
     }
+
+    // ─── Instant Broadcast Announcement Preferences ────────────────────────────
+    fun getLastSeenBroadcastId(ctx: Context): String =
+        prefs(ctx).getString("last_seen_broadcast_id_${uid()}", "") ?: ""
+
+    fun setLastSeenBroadcastId(ctx: Context, broadcastId: String) =
+        prefs(ctx).edit().putString("last_seen_broadcast_id_${uid()}", broadcastId).apply()
 }
