@@ -10163,6 +10163,7 @@
         "Maths": 33
       },
       "max_per_unit": 4,
+      "max_per_topic": 2,
       "difficulty_weights": {
         "Easy": 3,
         "Medium": 3,
@@ -10183,6 +10184,7 @@
         "Biology": 50
       },
       "max_per_unit": 4,
+      "max_per_topic": 2,
       "difficulty_weights": {
         "Easy": 3,
         "Medium": 3,

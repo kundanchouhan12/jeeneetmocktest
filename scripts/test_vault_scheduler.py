@@ -611,6 +611,58 @@ class VaultFreshnessCooldownTest(unittest.TestCase):
         self.assertEqual(len(neet_vault), 30)
         self.assertTrue(all(d.to_dict().get("examType") == "NEET" for d in neet_vault))
 
+    def test_jee_balanced_quotas_10_10_10(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb()
+        for i in range(15):
+            db.seed(f"p_{i}", {"examType": "JEE", "subject": "Physics", "chapter": f"Kinematics", "questionText": f"Unique JEE Physics question stem with enough length {i}", "options": ["A", "B", "C", "D"], "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False})
+            db.seed(f"c_{i}", {"examType": "JEE", "subject": "Chemistry", "chapter": f"Atomic Structure", "questionText": f"Unique JEE Chemistry question stem with enough length {i}", "options": ["A", "B", "C", "D"], "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False})
+            db.seed(f"m_{i}", {"examType": "JEE", "subject": "Maths", "chapter": f"Complex Numbers", "questionText": f"Unique JEE Mathematics question stem with enough length {i}", "options": ["A", "B", "C", "D"], "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False})
+
+        schedule_vault(db, "2026-10-15", "JEE", count=30)
+        vault_docs = [d.to_dict() for d in db._store.values() if d.id.startswith("vault_2026-10-15")]
+        self.assertEqual(len(vault_docs), 30)
+        subjects = [d.get("subject") for d in vault_docs]
+        self.assertEqual(subjects.count("Physics"), 10)
+        self.assertEqual(subjects.count("Chemistry"), 10)
+        self.assertEqual(subjects.count("Maths"), 10)
+
+    def test_neet_balanced_quotas_8_8_14(self):
+        from vault_scheduler import schedule_vault
+        db = FakeDb()
+        for i in range(12):
+            db.seed(f"np_{i}", {"examType": "NEET", "subject": "Physics", "chapter": f"Kinematics", "questionText": f"Unique NEET Physics question stem with enough length {i}", "options": ["A", "B", "C", "D"], "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False})
+            db.seed(f"nc_{i}", {"examType": "NEET", "subject": "Chemistry", "chapter": f"Chemical Bonding", "questionText": f"Unique NEET Chemistry question stem with enough length {i}", "options": ["A", "B", "C", "D"], "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False})
+        for i in range(20):
+            db.seed(f"nb_{i}", {"examType": "NEET", "subject": "Biology", "chapter": f"Genetics", "questionText": f"Unique NEET Biology question stem with enough length {i}", "options": ["A", "B", "C", "D"], "correctOptionIndex": 0, "correctOption": 0, "isDailyVault": False})
+
+        schedule_vault(db, "2026-10-15", "NEET", count=30)
+        vault_docs = [d.to_dict() for d in db._store.values() if d.id.startswith("vault_2026-10-15")]
+        self.assertEqual(len(vault_docs), 30)
+        subjects = [d.get("subject") for d in vault_docs]
+        self.assertEqual(subjects.count("Physics"), 8)
+        self.assertEqual(subjects.count("Chemistry"), 8)
+        self.assertEqual(subjects.count("Biology"), 14)
+
+    def test_topic_diversity_caps_questions_per_topic(self):
+        from vault_scheduler import select_vault_questions
+        # 10 questions across 5 topics (2 each)
+        pool = []
+        for i in range(20):
+            d = FakeDoc(f"q_{i}")
+            d.topic = f"Topic_{i % 5}"
+            d.subject = "Physics"
+            pool.append(d)
+
+        selected = select_vault_questions(pool, {}, count=10, max_per_topic=2, subject_quotas={"Physics": 10})
+        self.assertEqual(len(selected), 10)
+        topic_counts = {}
+        for d in selected:
+            t = getattr(d, "topic", "gen")
+            topic_counts[t] = topic_counts.get(t, 0) + 1
+        for t, cnt in topic_counts.items():
+            self.assertLessEqual(cnt, 2, f"Topic '{t}' exceeded max_per_topic cap (got {cnt})")
+
 
 if __name__ == "__main__":
     unittest.main()

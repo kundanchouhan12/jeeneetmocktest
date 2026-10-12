@@ -24,6 +24,7 @@ from firebase_admin import credentials, firestore
 
 import curriculum
 import curriculum_validator
+import syllabus_tracker
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -434,13 +435,14 @@ Respond with ONLY a raw JSON object, no markdown: {{"correctIndex": <0-3, or -1 
         return -2
 
 
-def generate_questions(exam: str, subject: str, chapter: str, count: int = 5) -> list[dict]:
-    curriculum_constraints = curriculum.get_prompt_constraints(exam, subject, chapter)
+def generate_questions(exam: str, subject: str, chapter: str, count: int = 5, topic: str = None) -> list[dict]:
+    curriculum_constraints = curriculum.get_prompt_constraints(exam, subject, chapter, topic_query=topic)
+    topic_clause = f", topic '{topic}'" if topic else ""
 
     prompt = f"""
 {curriculum_constraints}
 
-Generate exactly {count} high-caliber multiple-choice questions for {exam} exam in the subject '{subject}', chapter '{chapter}'.
+Generate exactly {count} high-caliber multiple-choice questions for {exam} exam in the subject '{subject}', chapter '{chapter}'{topic_clause}.
 
 Return a raw JSON array of objects. Each object MUST have these exact fields:
 - "questionText": string (clear problem statement with LaTeX math if needed)
@@ -496,6 +498,9 @@ Constraints:
         item["examType"] = exam
         item["subject"] = subject
         item["chapter"] = chapter
+        if topic:
+            item["topic"] = topic
+            item["officialUnit"] = chapter
         item["packId"] = PACK_IDS.get((exam, subject), "allaccessyearly")
         item["isDailyVault"] = False
         processed.append(item)
@@ -549,6 +554,7 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
         except Exception as e:
             print(f"⚠️ Could not fetch existing IDs for deduplication: {e}")
 
+    tracker = syllabus_tracker.get_tracker(db=db, all_docs=all_docs)
     batch_to_import = []
 
     for exam in exams:
@@ -558,13 +564,23 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
             if not chapters:
                 continue
 
-            selected_chapter = pick_lowest_coverage_chapter(exam, subj, chapters, db)
-            print(f"  📚 Generating {count_per_subject} questions for [{exam} - {subj}] -> Chapter: '{selected_chapter}'...")
+            active_topic = tracker.get_next_eligible_topic(exam, subj)
+            if active_topic:
+                selected_chapter = active_topic["unit_name"]
+                selected_topic = active_topic["topic_name"]
+                topic_id = active_topic["topic_id"]
+                print(f"  📚 [Syllabus Tracker] [{exam} - {subj}] -> Unit: '{selected_chapter}', Topic: '{selected_topic}' (State: {active_topic['state']}, Cycle {active_topic.get('cycle', 1)})...")
+            else:
+                selected_chapter = pick_lowest_coverage_chapter(exam, subj, chapters, db)
+                selected_topic = None
+                topic_id = None
+                print(f"  📚 Generating {count_per_subject} questions for [{exam} - {subj}] -> Chapter: '{selected_chapter}'...")
 
-            questions = generate_questions(exam, subj, selected_chapter, count=count_per_subject)
+            questions = generate_questions(exam, subj, selected_chapter, count=count_per_subject, topic=selected_topic)
             stats["generated"] += len(questions)
             time.sleep(INTER_REQUEST_DELAY)
 
+            topic_passed = []
             for q in questions:
                 q_id = generate_id(q)
                 if q_id in existing_ids:
@@ -593,7 +609,26 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
 
                 q["id"] = q_id
                 stats["passed_filter"] += 1
+                topic_passed.append(q)
                 batch_to_import.append(q)
+
+            if topic_id:
+                diff_counts = {}
+                for q in topic_passed:
+                    d = q.get("difficulty", "Medium")
+                    diff_counts[d] = diff_counts.get(d, 0) + 1
+                tracker.record_generation_attempt(
+                    topic_id,
+                    success=len(topic_passed) > 0,
+                    new_approved_count=len(topic_passed),
+                    difficulty_counts=diff_counts,
+                    error_reason=None if topic_passed else "No questions passed verification"
+                )
+
+    if db and not dry_run:
+        tracker.sync_to_firestore(db)
+    else:
+        tracker.save_local()
 
     print(f"\n📊 Quality Pipeline Summary:")
     print(f"   • Total Generated    : {stats['generated']}")

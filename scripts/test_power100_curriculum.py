@@ -318,12 +318,32 @@ class TestPower100Curriculum(unittest.TestCase):
 
     # 17. Power 100 and Daily Vault Do Not Corrupt Each Other
     def test_17_no_cross_corruption(self):
-        # Power 100 writes to standard_tests/{exam}
-        # Daily Vault writes to questions/vault_{date}_{id}
         power100_collection = "standard_tests"
         vault_collection = "questions"
         self.assertNotEqual(power100_collection, vault_collection)
 
+    # 18. Power 100 Enforces Topic Diversity Cap (max_per_topic = 2)
+    def test_18_power100_topic_diversity_cap(self):
+        pool = []
+        for i in range(12):
+            pool.append({
+                "officialUnit": "Kinematics",
+                "topic": f"Topic_{i % 4}",
+                "difficulty": "Medium",
+                "questionText": f"Question {i} on kinematics motion kinematics test topic stem text",
+                "options": ["A", "B", "C", "D"],
+                "correctOptionIndex": 0,
+            })
+        selected = build_power100_live._select_for_subject(pool, target=8, max_per_unit=8, max_per_topic=2)
+        self.assertEqual(len(selected), 8)
+        topic_counts = {}
+        for q in selected:
+            t = q.get("topic")
+            topic_counts[t] = topic_counts.get(t, 0) + 1
+        for t, cnt in topic_counts.items():
+            self.assertLessEqual(cnt, 2, f"Topic '{t}' exceeded max_per_topic cap (got {cnt})")
+
 
 if __name__ == "__main__":
     unittest.main()
+

@@ -25,6 +25,7 @@ from firebase_admin import credentials, firestore, storage
 from diagram_processor import process_and_upload_diagram, DEFAULT_BUCKET_NAME
 import curriculum
 import curriculum_validator
+import syllabus_tracker
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -533,12 +534,13 @@ Respond with ONLY a raw JSON object, no markdown: {{"correctIndex": <0-3, or -1 
         return -2
 
 
-def fetch_web_questions_for_chapter(exam: str, subject: str, chapter: str, count: int = 5) -> list[dict]:
+def fetch_web_questions_for_chapter(exam: str, subject: str, chapter: str, count: int = 5, topic: str = None) -> list[dict]:
     """
-    Fetches and sanitizes JEE/NEET questions from curated web sources mapped to the target chapter.
+    Fetches and sanitizes JEE/NEET questions from curated web sources mapped to the target chapter and topic.
     """
+    topic_clause = f", topic '{topic}'" if topic else ""
     prompt = f"""
-Search and extract exactly {count} standard high-yield questions for {exam} exam in '{subject}', chapter '{chapter}'.
+Search and extract exactly {count} standard high-yield questions for {exam} exam in '{subject}', chapter '{chapter}'{topic_clause}.
 
 Return a raw JSON array of objects. Each object MUST have these exact fields:
 - "questionText": string (sanitized problem statement with clean KaTeX LaTeX math)
@@ -591,6 +593,9 @@ Constraints:
         item["examType"] = exam
         item["subject"] = subject
         item["chapter"] = chapter
+        if topic:
+            item["topic"] = topic
+            item["officialUnit"] = chapter
         item["packId"] = PACK_IDS.get((exam, subject), "allaccessyearly")
         item["isDailyVault"] = False
         item["source"] = "web_ingested"
@@ -654,6 +659,7 @@ def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_r
         except Exception as e:
             print(f"⚠️ Could not fetch existing question signatures: {e}")
 
+    tracker = syllabus_tracker.get_tracker(db=db, all_docs=all_docs)
     batch_to_import = []
 
     for exam in exams:
@@ -663,13 +669,23 @@ def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_r
             if not chapters:
                 continue
 
-            selected_chapter = pick_lowest_coverage_chapter(exam, subj, chapters, db)
-            print(f"  🌐 Ingesting {count_per_subject} web questions for [{exam} - {subj}] -> Chapter: '{selected_chapter}'...")
+            active_topic = tracker.get_next_eligible_topic(exam, subj)
+            if active_topic:
+                selected_chapter = active_topic["unit_name"]
+                selected_topic = active_topic["topic_name"]
+                topic_id = active_topic["topic_id"]
+                print(f"  🌐 [Syllabus Tracker] Web Ingesting {count_per_subject} questions for [{exam} - {subj}] -> Unit: '{selected_chapter}', Topic: '{selected_topic}' (State: {active_topic['state']}, Cycle {active_topic.get('cycle', 1)})...")
+            else:
+                selected_chapter = pick_lowest_coverage_chapter(exam, subj, chapters, db)
+                selected_topic = None
+                topic_id = None
+                print(f"  🌐 Ingesting {count_per_subject} web questions for [{exam} - {subj}] -> Chapter: '{selected_chapter}'...")
 
-            questions = fetch_web_questions_for_chapter(exam, subj, selected_chapter, count=count_per_subject)
+            questions = fetch_web_questions_for_chapter(exam, subj, selected_chapter, count=count_per_subject, topic=selected_topic)
             stats["fetched"] += len(questions)
             time.sleep(INTER_REQUEST_DELAY)
 
+            topic_passed = []
             for q in questions:
                 norm_text = normalize_for_dedup(q.get('questionText', ''))
                 if norm_text in existing_norm_texts:
@@ -717,7 +733,27 @@ def run_web_ingestion(count_per_subject: int = 5, target_exam: str = None, dry_r
 
                 existing_norm_texts.add(norm_text)
                 stats["passed_filter"] += 1
+                topic_passed.append(q)
                 batch_to_import.append(q)
+
+            if topic_id:
+                diff_counts = {}
+                for q in topic_passed:
+                    d = q.get("difficulty", "Medium")
+                    diff_counts[d] = diff_counts.get(d, 0) + 1
+                tracker.record_generation_attempt(
+                    topic_id,
+                    success=len(topic_passed) > 0,
+                    new_approved_count=len(topic_passed),
+                    difficulty_counts=diff_counts,
+                    has_diagram=any(bool(q.get("imageUrl")) for q in topic_passed),
+                    error_reason=None if topic_passed else "No web questions passed verification"
+                )
+
+    if db and not dry_run:
+        tracker.sync_to_firestore(db)
+    else:
+        tracker.save_local()
 
     print(f"\n📊 Web Ingestion Summary:")
     print(f"   • Total Fetched      : {stats['fetched']}")

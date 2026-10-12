@@ -74,12 +74,13 @@ def get_subject_targets(exam: str) -> dict[str, int]:
     return {"Physics": 25, "Chemistry": 25, "Biology": 50}
 
 
-def _select_for_subject(pool: list[dict[str, Any]], target: int, max_per_unit: int = 4) -> list[dict[str, Any]]:
+def _select_for_subject(pool: list[dict[str, Any]], target: int, max_per_unit: int = 4, max_per_topic: int = 2) -> list[dict[str, Any]]:
     """
     Selects balanced questions for a subject:
     - Actively prioritizes authentic STEM visual/diagram/structure questions
     - Balances difficulty across foundational levels
     - Caps each official unit at max_per_unit to ensure syllabus breadth
+    - Caps each topic at max_per_topic to ensure granular topic diversity
     - Enforces zero duplicate fingerprints within the selection
     """
     random.shuffle(pool)
@@ -101,9 +102,11 @@ def _select_for_subject(pool: list[dict[str, Any]], target: int, max_per_unit: i
     )
 
     unit_count: dict[str, int] = {}
+    topic_count: dict[str, int] = {}
     selected: list[dict[str, Any]] = []
     seen_fps: set[str] = set()
 
+    # Pass 1: Enforce both unit-level and topic-level diversity
     for q in pool:
         if len(selected) >= target:
             break
@@ -111,13 +114,32 @@ def _select_for_subject(pool: list[dict[str, Any]], target: int, max_per_unit: i
         if fp in seen_fps:
             continue
         unit = q.get("officialUnit") or q.get("chapter", "")
+        topic = q.get("topic") or unit
         if unit_count.get(unit, 0) >= max_per_unit:
             continue
+        if topic_count.get(topic, 0) >= max_per_topic:
+            continue
         unit_count[unit] = unit_count.get(unit, 0) + 1
+        topic_count[topic] = topic_count.get(topic, 0) + 1
         selected.append(q)
         seen_fps.add(fp)
 
-    # Relax the per-unit cap if the pool couldn't fill the target otherwise.
+    # Pass 2: Relax topic cap if target not reached (permits multiple modes for important topics)
+    if len(selected) < target:
+        for q in pool:
+            if len(selected) >= target:
+                break
+            fp = question_fingerprint(q)
+            if fp in seen_fps:
+                continue
+            unit = q.get("officialUnit") or q.get("chapter", "")
+            if unit_count.get(unit, 0) >= max_per_unit:
+                continue
+            unit_count[unit] = unit_count.get(unit, 0) + 1
+            selected.append(q)
+            seen_fps.add(fp)
+
+    # Pass 3: Relax per-unit cap if the pool couldn't fill the target otherwise
     if len(selected) < target:
         for q in pool:
             if len(selected) >= target:
@@ -141,6 +163,7 @@ def build_power100(db, exam: str, all_docs=None) -> list[dict[str, Any]]:
     cfg = curriculum.get_power100_config(norm_exam)
     subject_targets = get_subject_targets(norm_exam)
     max_per_unit = cfg.get("max_per_unit", 4) if cfg else 4
+    max_per_topic = cfg.get("max_per_topic", 2) if cfg else 2
 
     docs = (
         all_docs if all_docs is not None
@@ -216,7 +239,7 @@ def build_power100(db, exam: str, all_docs=None) -> list[dict[str, Any]]:
     selected: list[dict[str, Any]] = []
     for subject, target in subject_targets.items():
         pool = by_subject.get(subject, [])
-        picked = _select_for_subject(pool, target, max_per_unit=max_per_unit)
+        picked = _select_for_subject(pool, target, max_per_unit=max_per_unit, max_per_topic=max_per_topic)
         if len(picked) < target:
             print(f"  WARNING: {norm_exam}/{subject} only has {len(picked)}/{target} eligible questions.")
         selected.extend(picked)

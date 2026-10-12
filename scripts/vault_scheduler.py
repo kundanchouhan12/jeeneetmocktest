@@ -21,6 +21,11 @@ VALID_EXAMS = ["JEE", "NEET"]
 EXPECTED_VAULT_COUNT = 30
 COOLDOWN_DAYS = 30
 
+DEFAULT_EXAM_QUOTAS = {
+    "JEE": {"Physics": 10, "Chemistry": 10, "Maths": 10},
+    "NEET": {"Physics": 8, "Chemistry": 8, "Biology": 14},
+}
+
 
 class VaultContractError(Exception):
     """Raised when a Daily Vault cannot be generated to the 30-valid-doc contract."""
@@ -202,55 +207,27 @@ def verify_written_vault(docs: list, exam_type: str, target_date: str, group_id:
         raise VaultContractError(f"{exam_type} {target_date}: duplicate source ids on read-back")
 
 
-def select_vault_questions(
-    pool: list,
-    vault_history=None,
-    count: int = EXPECTED_VAULT_COUNT,
-    target_date: str = None,
-    cooldown_days: int = COOLDOWN_DAYS,
-    recently_used_ids=None,
-) -> list:
-    """
-    Picks exactly `count` items from `pool` according to the 3-Tier Freshness Policy:
-      - Tier 1 (Never Used): Questions that have never appeared in any historical Daily Vault.
-        Highest priority. Selected first.
-      - Tier 2 (Cooldown Cleared): Questions whose latest historical Daily Vault date is
-        strictly MORE than `cooldown_days` before `target_date`. Selected using LRU
-        (oldest last-served date first).
-      - Tier 3 (Active Cooldown): Questions whose latest Daily Vault date is within the
-        last `cooldown_days` (<= cooldown_days). Strictly excluded.
+def _get_doc_data(doc) -> dict:
+    if hasattr(doc, "to_dict") and callable(doc.to_dict):
+        return doc.to_dict() or {}
+    if isinstance(doc, dict):
+        return doc
+    return getattr(doc, "__dict__", {})
 
-    Raises VaultContractError if:
-      - Total pool has fewer than `count` candidates.
-      - Combined Tier 1 + Tier 2 has fewer than `count` candidates (refuses to violate cooldown).
-    """
-    if vault_history is None and recently_used_ids is not None:
-        vault_history = recently_used_ids
-    elif vault_history is None:
-        vault_history = {}
 
-    if len(pool) < count:
-        raise VaultContractError(
-            f"select_vault_questions: pool has {len(pool)} candidates, need exactly {count}. "
-            "Refusing to silently shrink the Daily Vault selection."
-        )
+def _has_diagram(doc) -> bool:
+    data = _get_doc_data(doc)
+    return bool(data.get("imageUrl"))
 
-    if target_date is None:
-        target_dt = datetime.date.today() + datetime.timedelta(days=1)
-    elif isinstance(target_date, datetime.date):
-        target_dt = target_date
-    else:
-        target_dt = datetime.date.fromisoformat(str(target_date))
 
-    history_dict = vault_history if isinstance(vault_history, dict) else {k: None for k in vault_history}
-
+def _classify_pool(pool: list, history_dict: dict, target_dt: datetime.date, cooldown_days: int, is_raw_set: bool = False):
     tier1 = []  # Fresh / never used
     tier2 = []  # (last_served_dt, doc) -> Cooldown cleared
     tier3 = []  # Active cooldown
 
     for doc in pool:
         last_date_val = history_dict.get(doc.id)
-        if last_date_val is None and doc.id in history_dict and not isinstance(vault_history, dict):
+        if last_date_val is None and doc.id in history_dict and is_raw_set:
             # Legacy test compatibility when a raw set of IDs with no dates is passed
             tier2.append((datetime.date.min, doc))
         elif last_date_val is None:
@@ -268,51 +245,226 @@ def select_vault_questions(
                     tier3.append(doc)
             except Exception:
                 tier2.append((datetime.date.min, doc))
+    return tier1, tier2, tier3
 
-    def has_diagram(doc):
-        data = doc.to_dict() if hasattr(doc, "to_dict") and callable(doc.to_dict) else (doc if isinstance(doc, dict) else getattr(doc, "__dict__", {}))
-        return bool(data.get("imageUrl"))
 
-    fresh_n = min(count, len(tier1))
-    if fresh_n:
-        # Prioritize picking diagram questions (up to 5) so daily vaults contain rich STEM diagrams
-        tier1_diagrams = [d for d in tier1 if has_diagram(d)]
-        tier1_text = [d for d in tier1 if not has_diagram(d)]
-        target_diags = min(5, len(tier1_diagrams))
-        selected_diags = random.sample(tier1_diagrams, target_diags) if target_diags else []
+def _count_available(pool: list, history_dict: dict, target_dt: datetime.date, cooldown_days: int, is_raw_set: bool = False) -> int:
+    t1, t2, _ = _classify_pool(pool, history_dict, target_dt, cooldown_days, is_raw_set)
+    return len(t1) + len(t2)
+
+
+def _pick_with_topic_diversity(candidates: list, needed: int, max_per_topic: int = 2, shuffle: bool = True) -> list:
+    """Picks up to `needed` questions from `candidates`, enforcing topic diversity while preserving candidate order if shuffle=False."""
+    if not candidates or needed <= 0:
+        return []
+    items = list(candidates)
+    if shuffle:
+        random.shuffle(items)
+
+    # Check if distinct topics actually exist in candidates
+    topics_in_candidates = {(_get_doc_data(d).get("topic") or _get_doc_data(d).get("chapter")) for d in items}
+    topics_in_candidates.discard(None)
+
+    # If no topics are defined (e.g. FakeDoc in unit tests) or only 1 topic, take in original order
+    if len(topics_in_candidates) <= 1:
+        return items[:needed]
+
+    topic_counts = {}
+    picked = []
+
+    # Pass 1: Enforce max_per_topic
+    for d in items:
+        if len(picked) >= needed:
+            break
+        data = _get_doc_data(d)
+        topic = data.get("topic") or data.get("chapter") or "general"
+        if topic_counts.get(topic, 0) < max_per_topic:
+            picked.append(d)
+            topic_counts[topic] = topic_counts.get(topic, 0) + 1
+
+    # Pass 2: Relax if still needed
+    if len(picked) < needed:
+        picked_ids = {d.id for d in picked}
+        for d in items:
+            if len(picked) >= needed:
+                break
+            if d.id not in picked_ids:
+                picked.append(d)
+    return picked[:needed]
+
+
+def _select_from_sub_pool(
+    pool: list,
+    needed_count: int,
+    history_dict: dict,
+    target_dt: datetime.date,
+    cooldown_days: int,
+    max_per_topic: int = 2,
+    max_diagrams: int = 2,
+    is_raw_set: bool = False,
+) -> list:
+    tier1, tier2, tier3 = _classify_pool(pool, history_dict, target_dt, cooldown_days, is_raw_set)
+    total_avail = len(tier1) + len(tier2)
+    if total_avail < needed_count:
+        raise VaultContractError(
+            f"select_vault_questions: need {needed_count} questions, but only {len(tier1)} fresh and "
+            f"{len(tier2)} cooldown-cleared questions available ({len(tier3)} in active {cooldown_days}-day cooldown). "
+            f"Refusing to violate the {cooldown_days}-day cooldown policy."
+        )
+
+    selected = []
+    fresh_n = min(needed_count, len(tier1))
+    if fresh_n > 0:
+        t1_diags = [d for d in tier1 if _has_diagram(d)]
+        t1_text = [d for d in tier1 if not _has_diagram(d)]
+        target_diags = min(max_diagrams, len(t1_diags))
+        selected_diags = random.sample(t1_diags, target_diags) if target_diags else []
         needed_text = fresh_n - len(selected_diags)
-        selected_text = random.sample(tier1_text, min(needed_text, len(tier1_text))) if needed_text > 0 else []
+        selected_text = _pick_with_topic_diversity(t1_text, needed_text, max_per_topic=max_per_topic, shuffle=True)
         selected = selected_diags + selected_text
-    else:
-        selected = []
 
-    needed_from_cooldown = count - len(selected)
+    needed_from_cooldown = needed_count - len(selected)
     if needed_from_cooldown > 0:
-        if len(tier2) < needed_from_cooldown:
-            raise VaultContractError(
-                f"select_vault_questions: need {count} questions, but only {len(tier1)} fresh and "
-                f"{len(tier2)} cooldown-cleared questions available ({len(tier3)} in active {cooldown_days}-day cooldown). "
-                f"Refusing to violate the {cooldown_days}-day cooldown policy."
-            )
-        # Sort Tier 2 by oldest last-served date first (LRU)
-        # If current selection has fewer than 3 diagrams, prioritize any cooldown-cleared diagram questions
-        current_diags = len([d for d in selected if has_diagram(d)])
-        if current_diags < 3:
-            t2_diags = [(dt, d) for dt, d in tier2 if has_diagram(d)]
-            t2_other = [(dt, d) for dt, d in tier2 if not has_diagram(d)]
-            t2_diags.sort(key=lambda item: (item[0], item[1].id))
-            t2_other.sort(key=lambda item: (item[0], item[1].id))
-            take_diags = min(3 - current_diags, len(t2_diags), needed_from_cooldown)
-            picked_t2_diags = [d for _, d in t2_diags[:take_diags]]
-            needed_rem = needed_from_cooldown - len(picked_t2_diags)
-            pool_rem = t2_diags[take_diags:] + t2_other
-            pool_rem.sort(key=lambda item: (item[0], item[1].id))
-            selected += picked_t2_diags + [doc for _, doc in pool_rem[:needed_rem]]
-        else:
-            tier2.sort(key=lambda item: (item[0], item[1].id))
-            selected += [doc for _, doc in tier2[:needed_from_cooldown]]
+        current_diags = len([d for d in selected if _has_diagram(d)])
+        t2_diags = [(dt, d) for dt, d in tier2 if _has_diagram(d)]
+        t2_text = [(dt, d) for dt, d in tier2 if not _has_diagram(d)]
+        t2_diags.sort(key=lambda item: (item[0], item[1].id))
+        t2_text.sort(key=lambda item: (item[0], item[1].id))
 
-    return selected
+        picked_t2_diags = []
+        if current_diags < max_diagrams and t2_diags:
+            take_diags = min(max_diagrams - current_diags, len(t2_diags), needed_from_cooldown)
+            picked_t2_diags = [d for _, d in t2_diags[:take_diags]]
+            t2_diags = t2_diags[take_diags:]
+
+        needed_text_t2 = needed_from_cooldown - len(picked_t2_diags)
+        pool_rem = t2_diags + t2_text
+        pool_rem.sort(key=lambda item: (item[0], item[1].id))
+        picked_t2_text = _pick_with_topic_diversity([d for _, d in pool_rem], needed_text_t2, max_per_topic=max_per_topic, shuffle=False)
+        selected += picked_t2_diags + picked_t2_text
+
+    return selected[:needed_count]
+
+
+def select_vault_questions(
+    pool: list,
+    vault_history=None,
+    count: int = EXPECTED_VAULT_COUNT,
+    target_date: str = None,
+    cooldown_days: int = COOLDOWN_DAYS,
+    recently_used_ids=None,
+    subject_quotas: dict = None,
+    max_per_topic: int = 2,
+) -> list:
+    """
+    Picks exactly `count` items from `pool` according to the 3-Tier Freshness Policy & Subject Quotas:
+      - Subject Quotas: 10:10:10 PCM for JEE, 8:8:14 PCB for NEET daily practice set.
+      - Topic Diversity: limits max questions per topic within a daily set (max_per_topic=2).
+      - Diagram Integration: up to 2 STEM diagrams per subject (up to 5 total) in daily vaults.
+      - Tier 1 (Never Used): Questions that have never appeared in any historical Daily Vault.
+        Highest priority. Selected first.
+      - Tier 2 (Cooldown Cleared): Questions whose latest historical Daily Vault date is
+        strictly MORE than `cooldown_days` before `target_date`. Selected using LRU
+        (oldest last-served date first).
+      - Tier 3 (Active Cooldown): Questions whose latest Daily Vault date is within the
+        last `cooldown_days` (<= cooldown_days). Strictly excluded.
+
+    Raises VaultContractError if:
+      - Total pool has fewer than `count` candidates.
+      - Combined Tier 1 + Tier 2 has fewer than `count` candidates (refuses to violate cooldown).
+    """
+    is_raw_set = False
+    if vault_history is None and recently_used_ids is not None:
+        vault_history = recently_used_ids
+        is_raw_set = not isinstance(recently_used_ids, dict)
+    elif vault_history is not None:
+        is_raw_set = not isinstance(vault_history, dict)
+    else:
+        vault_history = {}
+
+    if len(pool) < count:
+        raise VaultContractError(
+            f"select_vault_questions: pool has {len(pool)} candidates, need exactly {count}. "
+            "Refusing to silently shrink the Daily Vault selection."
+        )
+
+    if target_date is None:
+        target_dt = datetime.date.today() + datetime.timedelta(days=1)
+    elif isinstance(target_date, datetime.date):
+        target_dt = target_date
+    else:
+        target_dt = datetime.date.fromisoformat(str(target_date))
+
+    history_dict = vault_history if isinstance(vault_history, dict) else {k: None for k in vault_history}
+
+    if not subject_quotas:
+        return _select_from_sub_pool(
+            pool, count, history_dict, target_dt, cooldown_days,
+            max_per_topic=max_per_topic, max_diagrams=5, is_raw_set=is_raw_set
+        )
+
+    # Subject-partitioned selection with safeguards & topic diversity
+    pool_by_subj = {s: [] for s in subject_quotas}
+    unmatched = []
+    for doc in pool:
+        data = _get_doc_data(doc)
+        s = data.get("subject")
+        if s in pool_by_subj:
+            pool_by_subj[s].append(doc)
+        else:
+            unmatched.append(doc)
+
+    avail_counts = {s: _count_available(pool_by_subj[s], history_dict, target_dt, cooldown_days, is_raw_set) for s in subject_quotas}
+    unmatched_avail = _count_available(unmatched, history_dict, target_dt, cooldown_days, is_raw_set)
+    total_avail = sum(avail_counts.values()) + unmatched_avail
+
+    if total_avail < count:
+        shortages = [f"{s} (avail {avail_counts[s]} < quota {req})" for s, req in subject_quotas.items() if avail_counts[s] < req]
+        raise VaultContractError(
+            f"select_vault_questions: total available pool is {total_avail} < {count}. "
+            f"Shortages detected: {', '.join(shortages) if shortages else 'overall shortage'}."
+        )
+
+    # Safeguard: check shortages and reallocate gracefully without compromising quality
+    allocated_quotas = {}
+    deficit = 0
+    for s, req in subject_quotas.items():
+        avail = avail_counts[s]
+        take = min(req, avail)
+        allocated_quotas[s] = take
+        if take < req:
+            deficit += (req - take)
+            print(f"  ⚠️ [Vault Safeguard] Shortage in subject '{s}': available={avail} < quota={req}")
+
+    if deficit > 0:
+        # Reallocate deficit to other subjects with surplus
+        for s in subject_quotas:
+            if deficit <= 0:
+                break
+            surplus = avail_counts[s] - allocated_quotas[s]
+            if surplus > 0:
+                extra = min(deficit, surplus)
+                allocated_quotas[s] += extra
+                deficit -= extra
+
+    selected = []
+    for s, alloc_n in allocated_quotas.items():
+        if alloc_n > 0:
+            subj_selected = _select_from_sub_pool(
+                pool_by_subj[s], alloc_n, history_dict, target_dt, cooldown_days,
+                max_per_topic=max_per_topic, max_diagrams=2, is_raw_set=is_raw_set
+            )
+            selected.extend(subj_selected)
+
+    if len(selected) < count and unmatched:
+        needed = count - len(selected)
+        extra = _select_from_sub_pool(
+            unmatched, needed, history_dict, target_dt, cooldown_days,
+            max_per_topic=max_per_topic, max_diagrams=1, is_raw_set=is_raw_set
+        )
+        selected.extend(extra)
+
+    return selected[:count]
 
 
 def _dedupe_pool(pool: list) -> list:
@@ -420,7 +572,16 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_V
           f"{cooldown_cleared_count} cooldown-cleared (> {COOLDOWN_DAYS}d), "
           f"{active_cooldown_count} active cooldown (<= {COOLDOWN_DAYS}d).")
 
-    selected = select_vault_questions(pool, vault_history, count, target_date=target_date, cooldown_days=COOLDOWN_DAYS)
+    quotas = DEFAULT_EXAM_QUOTAS.get(exam_type)
+    selected = select_vault_questions(
+        pool,
+        vault_history,
+        count,
+        target_date=target_date,
+        cooldown_days=COOLDOWN_DAYS,
+        subject_quotas=quotas,
+        max_per_topic=2,
+    )
     payloads, group_id = assert_selected_vault(selected, exam_type, target_date, count, force=force)
 
     new_ids = []
