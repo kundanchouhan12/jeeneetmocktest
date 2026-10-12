@@ -122,8 +122,12 @@ def generate_pv_cycle_diagram(
             ax.plot(vx, py, 'o', color=ACCENT_AMBER, markersize=8)
             ax.text(vx + 0.15, py + 0.15, name, color=TEXT_COLOR, fontsize=12, fontweight='bold')
 
-    ax.set_xlim(0.5, 6.0)
-    ax.set_ylim(0.5, 6.0)
+    if cycle_type == "rectangular":
+        ax.set_xlim(max(0.0, v1 - 0.8), v2 + 1.2)
+        ax.set_ylim(max(0.0, p1 - 0.8), p2 + 1.2)
+    else:
+        ax.set_xlim(0.5, 6.0)
+        ax.set_ylim(0.5, 6.0)
     ax.grid(True, linestyle="--", alpha=0.3, color=GRID_COLOR)
     return _fig_to_png_bytes(fig)
 
@@ -388,7 +392,9 @@ def generate_pedigree_chart(
 
     # Generation I
     # Male square: (1.5, 3.0), Female circle: (3.5, 3.0)
-    sq1 = patches.Rectangle((1.1, 2.7), 0.6, 0.6, edgecolor=TEXT_COLOR, facecolor=ACCENT_RED if trait_type == "autosomal_dominant" else BG_COLOR, lw=2)
+    is_dominant = (trait_type == "autosomal_dominant")
+    sq1_color = ACCENT_RED if is_dominant else BG_COLOR
+    sq1 = patches.Rectangle((1.1, 2.7), 0.6, 0.6, edgecolor=TEXT_COLOR, facecolor=sq1_color, lw=2)
     circ1 = patches.Circle((3.5, 3.0), 0.3, edgecolor=TEXT_COLOR, facecolor=BG_COLOR, lw=2)
     ax.add_patch(sq1)
     ax.add_patch(circ1)
@@ -399,10 +405,10 @@ def generate_pedigree_chart(
     ax.plot([1.0, 4.0], [2.0, 2.0], color=LINE_COLOR, lw=2)
 
     # Generation II (Offspring)
-    # Son (affected) at x=1.0, Daughter (unaffected) at x=2.5, Son (affected) at x=4.0
     sq2 = patches.Rectangle((0.7, 0.7), 0.6, 0.6, edgecolor=TEXT_COLOR, facecolor=ACCENT_RED, lw=2)
     circ2 = patches.Circle((2.5, 1.0), 0.3, edgecolor=TEXT_COLOR, facecolor=BG_COLOR, lw=2)
-    sq3 = patches.Rectangle((3.7, 0.7), 0.6, 0.6, edgecolor=TEXT_COLOR, facecolor=ACCENT_RED, lw=2)
+    sq3_color = ACCENT_RED if is_dominant else BG_COLOR
+    sq3 = patches.Rectangle((3.7, 0.7), 0.6, 0.6, edgecolor=TEXT_COLOR, facecolor=sq3_color, lw=2)
     ax.add_patch(sq2)
     ax.add_patch(circ2)
     ax.add_patch(sq3)
