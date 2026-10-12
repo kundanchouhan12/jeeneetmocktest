@@ -213,6 +213,8 @@ class CurriculumQualityGate:
         # KaTeX / Formatting sanity check
         if r'\ce{' in q_text:
             return ValidationResult(False, "QUESTION_CONTENT", "Raw \\ce{} mhchem found. Must use plain KaTeX.")
+        if re.search(r'\\lvert\b|\\rvert\b|\\lVert\b|\\rVert\b', q_text):
+            return ValidationResult(False, "QUESTION_CONTENT", "Unsupported amsmath delimiter macro (\\lvert/\\lVert). Must use standard | or \\|.")
 
         # Check options
         raw_options = q.get("options")

@@ -20,6 +20,16 @@ object PrefManager {
     fun clearGuestMode(ctx: Context) =
         prefs(ctx).edit().putBoolean("guest_mode", false).apply()
 
+    // Persistent Installation ID for telemetry
+    fun getInstallationId(ctx: Context): String {
+        var id = prefs(ctx).getString("installation_id", null)
+        if (id.isNullOrEmpty()) {
+            id = java.util.UUID.randomUUID().toString()
+            prefs(ctx).edit().putString("installation_id", id).apply()
+        }
+        return id
+    }
+
     // ─── Per-user IAP state ───────────────────────────────────────────────────
     // All purchase flags are stored under the Firebase UID as a key prefix.
     // Switching accounts instantly restores the correct purchase state for each

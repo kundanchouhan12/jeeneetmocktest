@@ -23,7 +23,7 @@ if 'firebase_admin' not in sys.modules:
 # Set dummy GROQ_API_KEY so scripts can import without sys.exit
 os.environ["GROQ_API_KEY"] = os.environ.get("GROQ_API_KEY", "dummy_test_key")
 
-from web_question_ingestion import wrap_inline_latex as web_wrap_inline, wrap_bare_latex as web_wrap_bare, strip_ce_notation as web_strip_ce
+from web_question_ingestion import wrap_inline_latex as web_wrap_inline, wrap_bare_latex as web_wrap_bare, strip_ce_notation as web_strip_ce, fix_latex_symbols_and_matrices
 from neet_web_question_ingestion import wrap_inline_latex as neet_wrap_inline, strip_ce_notation as neet_strip_ce
 from auto_question_pipeline import wrap_inline_latex as auto_wrap_inline, wrap_bare_latex as auto_wrap_bare, strip_ce_notation as auto_strip_ce
 
@@ -219,6 +219,31 @@ class TestSafeDeduplicationNormalization(unittest.TestCase):
         q1 = "For what values is f(x) > 0?"
         q2 = "For what values is f(x) < 0?"
         self.assertNotEqual(normalize_text(q1), normalize_text(q2))
+
+    def test_matrix_row_break_healing(self):
+        m1 = r"If \(E=\begin{pmatrix}a&b\c&d\end{pmatrix}\) and \(\det E=0\)"
+        expected1 = r"If \(E=\begin{pmatrix}a&b\\ c&d\end{pmatrix}\) and \(\det E=0\)"
+        self.assertEqual(fix_latex_symbols_and_matrices(m1), expected1)
+
+        m2 = r"\begin{pmatrix}2 & 0 & 1 \ 0 & 3 & 0 \ 1 & 0 & 2\end{pmatrix}"
+        expected2 = r"\begin{pmatrix}2 & 0 & 1 \\ 0 & 3 & 0 \\ 1 & 0 & 2\end{pmatrix}"
+        self.assertEqual(fix_latex_symbols_and_matrices(m2), expected2)
+
+        m3 = r"\begin{pmatrix}0&1\-1&0\end{pmatrix}"
+        expected3 = r"\begin{pmatrix}0&1\\ -1&0\end{pmatrix}"
+        self.assertEqual(fix_latex_symbols_and_matrices(m3), expected3)
+
+        m4 = r"Let $A = \begin{bmatrix} 0 & \sin\alpha \\ \sin\alpha & 0 \end{bmatrix}$"
+        self.assertEqual(fix_latex_symbols_and_matrices(m4), m4)
+
+    def test_vector_delimiter_conversion(self):
+        v1 = r"Let \(\vec{a}\) and \(\vec{b}\) such that \(\lvert\vec{a}\rvert=3\), \(\lvert\vec{b}\rvert=4\)"
+        expected1 = r"Let \(\vec{a}\) and \(\vec{b}\) such that \(|\vec{a}|=3\), \(|\vec{b}|=4\)"
+        self.assertEqual(fix_latex_symbols_and_matrices(v1), expected1)
+
+        v2 = r"Let \(\vec{u}\) such that \(\lVert\vec{u}\rVert=5\)"
+        expected2 = r"Let \(\vec{u}\) such that \(\|\vec{u}\|=5\)"
+        self.assertEqual(fix_latex_symbols_and_matrices(v2), expected2)
 
 
 if __name__ == "__main__":

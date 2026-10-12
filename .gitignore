@@ -38,4 +38,6 @@ _bf*
 .claude-launcher/
 .vscode/
 local.properties
-
+*.db
+scratch/
+scripts/scratch/

@@ -448,22 +448,24 @@ class MainActivity : AppCompatActivity() {
         checkNotificationPermissionFlow()
         checkStreakFreeze()
         InAppReviewManager.maybeRequestReview(this)
-        try {
-            appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
-                when {
-                    // Immediate update was interrupted (user switched apps) — force it to resume
-                    info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
-                        appUpdateManager.startUpdateFlowForResult(
-                            info, updateLauncher,
-                            AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build()
-                        )
+        if (com.jeeneet.mocktest.utils.InAppUpdateManager.IS_UPDATE_CHECK_ENABLED) {
+            try {
+                appUpdateManager.appUpdateInfo.addOnSuccessListener { info ->
+                    when {
+                        // Immediate update was interrupted (user switched apps) — force it to resume
+                        info.updateAvailability() == UpdateAvailability.DEVELOPER_TRIGGERED_UPDATE_IN_PROGRESS -> {
+                            appUpdateManager.startUpdateFlowForResult(
+                                info, updateLauncher,
+                                AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build()
+                            )
+                        }
+                        // Flexible update finished downloading while app was in background
+                        info.installStatus() == InstallStatus.DOWNLOADED -> showUpdateReadyBanner()
                     }
-                    // Flexible update finished downloading while app was in background
-                    info.installStatus() == InstallStatus.DOWNLOADED -> showUpdateReadyBanner()
                 }
+            } catch (e: Exception) {
+                android.util.Log.e("MainActivity", "Update check failed in onResume: ${e.message}")
             }
-        } catch (e: Exception) {
-            android.util.Log.e("MainActivity", "Update check failed in onResume: ${e.message}")
         }
     }
 
@@ -490,6 +492,7 @@ class MainActivity : AppCompatActivity() {
     // ─── In-App Update ────────────────────────────────────────────────────────
 
     private fun checkFirestoreForForceUpdate() {
+        if (!com.jeeneet.mocktest.utils.InAppUpdateManager.IS_UPDATE_CHECK_ENABLED) return
         try {
             com.jeeneet.mocktest.utils.InAppUpdateManager.checkForUpdate(this) {
                 if (!isDestroyed && !isFinishing) {
@@ -503,6 +506,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkForUpdate() {
+        if (!com.jeeneet.mocktest.utils.InAppUpdateManager.IS_UPDATE_CHECK_ENABLED) return
         appUpdateManager.registerListener(installStateListener)
         appUpdateManager.appUpdateInfo
             .addOnSuccessListener { info ->

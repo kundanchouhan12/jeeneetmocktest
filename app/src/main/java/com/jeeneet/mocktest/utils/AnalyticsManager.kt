@@ -3,9 +3,17 @@ package com.jeeneet.mocktest.utils
 import android.content.Context
 import android.os.Bundle
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 /**
- * Centralised wrapper around FirebaseAnalytics.
+ * Centralised wrapper around FirebaseAnalytics and Realtime Firestore Telemetry.
  * All event names use snake_case and are kept ≤40 chars (Firebase limit).
  */
 object AnalyticsManager {
@@ -19,6 +27,36 @@ object AnalyticsManager {
 
     private fun bundle(vararg pairs: Pair<String, String>) = Bundle().apply {
         pairs.forEach { (k, v) -> putString(k, v) }
+    }
+
+    private fun pingFirestoreTelemetry(ctx: Context, screenName: String) {
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                val installId = PrefManager.getInstallationId(ctx)
+                val dateStr = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+                val db = FirebaseFirestore.getInstance()
+
+                val data = hashMapOf(
+                    "lastActiveDate" to dateStr,
+                    "lastActiveTimestamp" to System.currentTimeMillis(),
+                    "lastScreen" to screenName,
+                    "device" to android.os.Build.MODEL,
+                    "osVersion" to android.os.Build.VERSION.RELEASE,
+                    "targetExam" to PrefManager.getSelectedExam(ctx),
+                    "uid" to PrefManager.uid()
+                )
+                db.collection("user_analytics").document(installId).set(data, SetOptions.merge())
+                
+                val pingData = hashMapOf(
+                    "date" to dateStr,
+                    "screen" to screenName,
+                    "timestamp" to System.currentTimeMillis()
+                )
+                db.collection("daily_user_pings").document("${dateStr}_${installId}_${screenName}").set(pingData, SetOptions.merge())
+            } catch (e: Exception) {
+                // Ignore telemetry errors silently
+            }
+        }
     }
 
     // ─── User Properties ─────────────────────────────────────────────────────
@@ -64,6 +102,7 @@ object AnalyticsManager {
             FirebaseAnalytics.Param.SCREEN_NAME to screenName,
             FirebaseAnalytics.Param.SCREEN_CLASS to screenName
         ))
+        pingFirestoreTelemetry(ctx, screenName)
     }
 
     // ─── Sync & Bank Telemetry ────────────────────────────────────────────────

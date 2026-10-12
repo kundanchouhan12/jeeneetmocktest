@@ -154,6 +154,9 @@ def _expand_ce_inner(inner: str) -> str:
     return s.strip()
 
 
+from web_question_ingestion import fix_latex_symbols_and_matrices
+
+
 def strip_ce_notation(text: str) -> str:
     """Replaces every \\ce{...} (mhchem) block with equivalent plain KaTeX,
     keeping any surrounding $...$ / \\(..\\) delimiters intact rather than adding
@@ -479,9 +482,9 @@ Constraints:
 
     processed = []
     for item in items:
-        item["questionText"] = wrap_inline_latex(strip_ce_notation(sanitize_web_content(item.get("questionText", ""))))
-        item["explanation"] = wrap_inline_latex(strip_ce_notation(sanitize_web_content(item.get("explanation", ""))))
-        item["options"] = [wrap_bare_latex(strip_ce_notation(sanitize_web_content(str(o)))) for o in item.get("options", [])]
+        item["questionText"] = wrap_inline_latex(fix_latex_symbols_and_matrices(strip_ce_notation(sanitize_web_content(item.get("questionText", "")))))
+        item["explanation"] = wrap_inline_latex(fix_latex_symbols_and_matrices(strip_ce_notation(sanitize_web_content(item.get("explanation", "")))))
+        item["options"] = [wrap_bare_latex(fix_latex_symbols_and_matrices(strip_ce_notation(sanitize_web_content(str(o))))) for o in item.get("options", [])]
         corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
         item["correctOption"] = corr
         item["correctOptionIndex"] = corr

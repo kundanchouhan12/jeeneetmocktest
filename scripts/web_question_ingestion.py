@@ -182,13 +182,66 @@ def _expand_ce_inner(inner: str) -> str:
 
 
 def strip_ce_notation(text: str) -> str:
-    """Replaces every \\ce{...} (mhchem) block with equivalent plain KaTeX,
-    keeping any surrounding $...$ / \\(..\\) delimiters intact rather than adding
-    new ones. JLaTeXMath on shipped builds cannot render \\ce{}, so it must never
+    r"""Replaces every \ce{...} (mhchem) block with equivalent plain KaTeX,
+    keeping any surrounding $...$ / \(..\) delimiters intact rather than adding
+    new ones. JLaTeXMath on shipped builds cannot render \ce{}, so it must never
     reach Firestore (the raw markup shows verbatim to users otherwise)."""
     if not text or 'ce{' not in text:
         return text
     return _CE_BLOCK.sub(lambda m: _expand_ce_inner(m.group(1)), text)
+
+
+_ALLOWED_MATRIX_COMMANDS = {
+    'begin', 'end', 'dots', 'cdots', 'vdots', 'ddots', 'quad', 'qquad',
+    'frac', 'sqrt', 'text', 'sin', 'cos', 'tan', 'alpha', 'beta', 'gamma',
+    'theta', 'lambda', 'mu', 'pi', 'sigma', 'omega', 'phi', 'psi',
+    'mathbf', 'mathrm', 'mathbb', 'mathcal', 'pm', 'mp', 'times', 'cdot',
+    'le', 'ge', 'leq', 'geq', 'neq', 'approx', 'hline', 'hspace', 'vspace'
+}
+
+
+def fix_latex_symbols_and_matrices(text: str) -> str:
+    """
+    1. Replaces amsmath delimiter macros (\\lvert, \\rvert, \\lVert, \\rVert) with
+       standard LaTeX delimiters (| and \\|) supported natively by JLaTeXMath.
+    2. Heals collapsed single-backslash row breaks (\\c, \\ 0, \\-1) inside
+       matrix environments (\\begin{pmatrix}, \\begin{bmatrix}, etc.) back into
+       valid LaTeX double backslash row breaks (\\\\).
+    """
+    if not text:
+        return text
+
+    # 1. Delimiter macros unsupported by JLaTeXMath
+    t = re.sub(r'\\lvert\b', '|', text)
+    t = re.sub(r'\\rvert\b', '|', t)
+    t = re.sub(r'\\lVert\b', r'\\|', t)
+    t = re.sub(r'\\rVert\b', r'\\|', t)
+
+    # 2. Fix collapsed single-backslash row breaks inside matrix environments
+    def fix_single_matrix(match):
+        env_open = match.group(1)
+        body = match.group(2)
+        env_close = match.group(3)
+
+        def repl_token(m):
+            token = m.group(0)
+            if token.startswith('\\\\'):
+                return token
+            cmd_match = re.match(r'\\([a-zA-Z]+)', token)
+            if cmd_match and cmd_match.group(1) in _ALLOWED_MATRIX_COMMANDS:
+                return token
+            rest = token[1:]
+            if rest.startswith(' '):
+                return '\\\\ ' + rest.lstrip()
+            else:
+                return '\\\\ ' + rest
+
+        body_fixed = re.sub(r'\\\\|\\(?:[a-zA-Z]+|\s+|[0-9\-+])', repl_token, body)
+        return f"{env_open}{body_fixed}{env_close}"
+
+    matrix_regex = re.compile(r'(\\begin\{(?:p|b|v|V)?matrix\})(.*?)(\\end\{(?:p|b|v|V)?matrix\})', re.DOTALL)
+    t = matrix_regex.sub(fix_single_matrix, t)
+    return t
 
 
 # Official Syllabus Units derived directly from curriculum.json (Single Source of Truth)
@@ -529,9 +582,9 @@ Constraints:
 
     processed = []
     for item in items:
-        item["questionText"] = wrap_inline_latex(strip_ce_notation(sanitize_web_content(item.get("questionText", ""))))
-        item["explanation"] = wrap_inline_latex(strip_ce_notation(sanitize_web_content(item.get("explanation", ""))))
-        item["options"] = [wrap_bare_latex(strip_ce_notation(sanitize_web_content(str(o)))) for o in item.get("options", [])]
+        item["questionText"] = wrap_inline_latex(fix_latex_symbols_and_matrices(strip_ce_notation(sanitize_web_content(item.get("questionText", "")))))
+        item["explanation"] = wrap_inline_latex(fix_latex_symbols_and_matrices(strip_ce_notation(sanitize_web_content(item.get("explanation", "")))))
+        item["options"] = [wrap_bare_latex(fix_latex_symbols_and_matrices(strip_ce_notation(sanitize_web_content(str(o))))) for o in item.get("options", [])]
         corr = item.get("correctOptionIndex") if item.get("correctOptionIndex") is not None else item.get("correctOption")
         item["correctOption"] = corr
         item["correctOptionIndex"] = corr

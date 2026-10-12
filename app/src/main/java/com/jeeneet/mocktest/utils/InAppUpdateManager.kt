@@ -40,6 +40,13 @@ object InAppUpdateManager {
 
     private const val TAG = "InAppUpdateManager"
 
+    /**
+     * Master switch to enable or disable In-App Update checks & popups.
+     * Set to false to disable all update popups temporarily.
+     * Set to true to re-enable them.
+     */
+    const val IS_UPDATE_CHECK_ENABLED = false
+
     data class AppUpdateConfig(
         val latestVersionCode: Int = 0,
         val latestVersionName: String = "",
@@ -62,6 +69,11 @@ object InAppUpdateManager {
         firestore: FirebaseFirestore = FirebaseFirestore.getInstance(),
         onNoUpdate: (() -> Unit)? = null
     ) {
+        if (!IS_UPDATE_CHECK_ENABLED) {
+            Log.d(TAG, "In-app update checks are currently disabled.")
+            return
+        }
+
         if (activity.isFinishing || activity.isDestroyed) return
 
         // Check app_config/version_control first with Source.SERVER to bypass stale cache
@@ -188,6 +200,7 @@ object InAppUpdateManager {
         config: AppUpdateConfig,
         isMandatory: Boolean
     ) {
+        if (!IS_UPDATE_CHECK_ENABLED) return
         if (activity.isFinishing || activity.isDestroyed) return
 
         val dialog = Dialog(activity)

@@ -44,7 +44,7 @@ def init_firebase():
     return firestore.client()
 
 
-from web_question_ingestion import wrap_inline_latex, wrap_bare_latex, strip_ce_notation
+from web_question_ingestion import wrap_inline_latex, wrap_bare_latex, strip_ce_notation, fix_latex_symbols_and_matrices
 
 
 # ── Detectors ─────────────────
@@ -112,11 +112,13 @@ def _strip_literal_escapes(t: str) -> str:
 # re-wrapping (the old local _ce_replacer produced broken double-delimited
 # "$ $...$ $" strings on already-wrapped options like the vault screenshot).
 
+
 def fix_field_prose(text: str) -> str:
     if not text:
         return text
     t = _strip_literal_escapes(text)
     t = strip_ce_notation(t)
+    t = fix_latex_symbols_and_matrices(t)
     t = wrap_inline_latex(t)
     t = re.sub(r'[ \t]{2,}', ' ', t)
     return t.strip()
@@ -127,6 +129,7 @@ def fix_field_option(text: str) -> str:
         return text
     t = _strip_literal_escapes(text)
     t = strip_ce_notation(t)
+    t = fix_latex_symbols_and_matrices(t)
     t = wrap_bare_latex(t)
     t = re.sub(r'[ \t]{2,}', ' ', t)
     return t.strip()
