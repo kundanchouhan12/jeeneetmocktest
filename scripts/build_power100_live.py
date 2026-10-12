@@ -26,6 +26,7 @@ Key Principles:
 
 import argparse
 import os
+import json
 import random
 import sys
 from typing import Any, Optional
@@ -151,10 +152,20 @@ def build_power100(db, exam: str, all_docs=None) -> list[dict[str, Any]]:
 
     for doc in docs:
         q = doc.to_dict() or {}
-        # 1. Strictly enforce exam isolation: no cross-exam contamination
+        # 1. Strictly enforce syllabus isolation:
+        # - Physics & Chemistry share the identical 20 NCERT units between JEE & NEET:
+        #   cross-sharing is permitted to maximize visual & foundational question pool.
+        # - Maths is strictly JEE (never allowed in NEET).
+        # - Biology is strictly NEET (never allowed in JEE).
         doc_exam = str(q.get("examType", "")).strip().upper()
-        if doc_exam != norm_exam:
-            continue
+        subject = str(q.get("subject", "")).strip().capitalize()
+        if subject in ("Physics", "Chemistry"):
+            if doc_exam not in ("JEE", "NEET"):
+                continue
+        else:
+            if doc_exam != norm_exam:
+                continue
+
         if q.get("isDailyVault") or doc.id.startswith("vault_"):
             continue
 
@@ -163,7 +174,6 @@ def build_power100(db, exam: str, all_docs=None) -> list[dict[str, Any]]:
         if corrupted:
             continue
 
-        subject = str(q.get("subject", "")).strip().capitalize()
         if subject not in subject_targets:
             continue
 
