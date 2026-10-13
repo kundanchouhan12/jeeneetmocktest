@@ -113,10 +113,60 @@ def _strip_literal_escapes(t: str) -> str:
 # "$ $...$ $" strings on already-wrapped options like the vault screenshot).
 
 
+def _strip_rogue_prose_slashes(text: str) -> str:
+    """Strips rogue double backslashes \\ in English prose that display verbatim in TextView."""
+    if '\\' not in text:
+        return text
+    parts = []
+    last = 0
+    # Match display math, inline math, or matrix environments
+    for match in re.finditer(r'\$\$[\s\S]*?\$\$|\$[^$\n]*?\$|\\\[[\s\S]*?\\\]|\\\(.*?\\\)|\\begin\{(?:p|b|v|V)?matrix\}[\s\S]*?\\end\{(?:p|b|v|V)?matrix\}', text):
+        prose = text[last:match.start()]
+        prose = re.sub(r'\\\\(?:\s*|$)', ' ', prose)
+        parts.append(prose)
+        parts.append(match.group(0))
+        last = match.end()
+    trailing = text[last:]
+    trailing = re.sub(r'\\\\(?:\s*|$)', ' ', trailing)
+    parts.append(trailing)
+    return ''.join(parts)
+
+
+def _normalize_math_delimiter_spacing(text: str) -> str:
+    """Ensures spaces around dollar delimiters: 'Let$O$be' -> 'Let $O$ be'."""
+    # Add space before opening dollar if preceded by word character
+    t = re.sub(r'(?<=[a-zA-Z0-9])(\$[^$\n]+?\$)', r' \1', text)
+    # Add space after closing dollar if followed by word character
+    t = re.sub(r'(\$[^$\n]+?\$)(?=[a-zA-Z0-9])', r'\1 ', t)
+    return t
+
+
+
+def _break_oversized_display_equations(text: str) -> str:
+    """Splits oversized chained display math (> 60 chars with multiple '=') across multiple lines so ImageSpan doesn't overflow mobile screens."""
+    def repl_display(m):
+        content = m.group(1).strip()
+        if len(content) > 60 and content.count('=') >= 2 and not any(env in content for env in ['matrix', 'cases', 'array', 'aligned']):
+            parts = [p.strip() for p in content.split('=')]
+            if len(parts) >= 2:
+                lines = [f"$${parts[0]} = {parts[1]}$$"]
+                for p in parts[2:]:
+                    lines.append(f"$$= {p}$$")
+                return "\n".join(lines)
+        return m.group(0)
+
+    t = re.sub(r'\$\$([\s\S]+?)\$\$', repl_display, text)
+    t = re.sub(r'\\\[([\s\S]+?)\\\]', repl_display, t)
+    return t
+
+
 def fix_field_prose(text: str) -> str:
     if not text:
         return text
     t = _strip_literal_escapes(text)
+    t = _strip_rogue_prose_slashes(t)
+    t = _normalize_math_delimiter_spacing(t)
+    t = _break_oversized_display_equations(t)
     t = strip_ce_notation(t)
     t = fix_latex_symbols_and_matrices(t)
     t = wrap_inline_latex(t)

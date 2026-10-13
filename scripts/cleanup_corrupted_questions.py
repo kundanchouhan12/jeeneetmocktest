@@ -128,7 +128,15 @@ def is_corrupted(q):
     for pat, desc in missing_equation_patterns:
         if re.search(pat, text, re.IGNORECASE):
             return True, desc
-            
+
+    # Rule 10: Diaeresis / lone-pair OCR corruption (\¨ or ¨)
+    if '¨' in all_content or r'\¨' in all_content:
+        return True, "Diaeresis/lone-pair OCR artifact (¨)"
+
+    # Rule 11: Incomplete structure statement with no chemical reaction/context
+    if re.search(r'^\s*(?:the\s+)?structure\s+of\s+(?:\$?[a-zA-Z]\$?|\s)*is\s*:\s*$', text, re.IGNORECASE):
+        return True, "Incomplete question asking for structure of undefined target"
+
     return False, ""
 
 def cleanup(dry_run=True):

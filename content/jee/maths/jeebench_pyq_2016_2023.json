@@ -185,7 +185,7 @@
     "chapter": "Vector Algebra",
     "difficulty": "Hard",
     "year": 2017,
-    "questionText": "Let$O$be the origin and let$P Q R$be an arbitrary triangle. The point$S$is such that\n\\[\n\\overrightarrow{O P} \\cdot \\overrightarrow{O Q}+\\overrightarrow{O R} \\cdot \\overrightarrow{O S}=\\overrightarrow{O R} \\cdot \\overrightarrow{O P}+\\overrightarrow{O Q} \\cdot \\overrightarrow{O S}=\\overrightarrow{O Q} \\cdot \\overrightarrow{O R}+\\overrightarrow{O P} \\cdot \\overrightarrow{O S}\n\\]\nThen the triangle$P Q R$has$S$as its",
+    "questionText": "Let $O$ be the origin and let $PQR$ be an arbitrary triangle. The point $S$ is such that:\n\n$$\\vec{OP} \\cdot \\vec{OQ} + \\vec{OR} \\cdot \\vec{OS} = \\vec{OR} \\cdot \\vec{OP} + \\vec{OQ} \\cdot \\vec{OS}$$\n$$= \\vec{OQ} \\cdot \\vec{OR} + \\vec{OP} \\cdot \\vec{OS}$$\n\nThen the triangle $PQR$ has $S$ as its",
     "options": [
       "centroid",
       "circumcentre",

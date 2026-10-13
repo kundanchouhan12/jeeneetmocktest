@@ -246,5 +246,71 @@ class TestSafeDeduplicationNormalization(unittest.TestCase):
         self.assertEqual(fix_latex_symbols_and_matrices(v2), expected2)
 
 
+from cleanup_corrupted_questions import is_corrupted
+
+
+class TestProseAndDisplayEquationHealing(unittest.TestCase):
+
+    def test_strip_rogue_prose_slashes(self):
+        text = r"In the reaction \\ 2 $MnO_4^-$ + 16 $H^+$ + 10 $e^-$ -> 2 $Mn^{2+}$"
+        res = fix_field_prose(text)
+        self.assertNotIn(r"\\", res)
+        self.assertIn("In the reaction 2", res)
+
+    def test_matrix_row_breaks_preserved_in_math(self):
+        text = r"Let $A = \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}$ and vector \\ 5."
+        res = fix_field_prose(text)
+        # Matrix \\ preserved
+        self.assertIn(r"\begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix}", res)
+        # Prose \\ stripped
+        self.assertNotIn(r"vector \\ 5", res)
+        self.assertIn("vector 5", res)
+
+    def test_math_delimiter_spacing(self):
+        text = "Let$O$be the origin and let$PQR$be an arbitrary triangle. The point$S$is such that"
+        res = fix_field_prose(text)
+        self.assertIn("Let $O$ be", res)
+        self.assertIn("let $PQR$ be", res)
+        self.assertIn("point $S$ is", res)
+
+    def test_break_oversized_display_equations(self):
+        long_eq = r"$$\overrightarrow{OP}\cdot\overrightarrow{OQ} + \overrightarrow{OR}\cdot\overrightarrow{OS} = \overrightarrow{OP}\cdot\overrightarrow{OR} + \overrightarrow{OQ}\cdot\overrightarrow{OS} = \overrightarrow{OP}\cdot\overrightarrow{OS} + \overrightarrow{OQ}\cdot\overrightarrow{OR}$$"
+        res = fix_field_prose(long_eq)
+        self.assertIn("\n", res)
+        self.assertTrue(res.count("$$") >= 4)  # At least 2 separate display equations
+
+
+class TestCorruptionAuditRules(unittest.TestCase):
+
+    def test_rule_10_diaeresis_lone_pair_ocr(self):
+        q = {
+            "questionText": "The compound gives precipitate.",
+            "options": [r"$(C_2H_5)_3\¨N$", "B", "C", "D"],
+            "explanation": ""
+        }
+        corrupted, reason = is_corrupted(q)
+        self.assertTrue(corrupted)
+        self.assertIn("Diaeresis", reason)
+
+    def test_rule_11_incomplete_structure_stem(self):
+        q1 = {"questionText": "The structure of $X$ is:", "options": ["A", "B", "C", "D"]}
+        corrupted, reason = is_corrupted(q1)
+        self.assertTrue(corrupted)
+        self.assertIn("undefined target", reason)
+
+        q2 = {"questionText": "structure of X is :", "options": ["A", "B", "C", "D"]}
+        corrupted, _ = is_corrupted(q2)
+        self.assertTrue(corrupted)
+
+    def test_valid_structure_question_not_flagged(self):
+        q = {
+            "questionText": "Toluene reacts with $Cl_2$ in presence of sunlight to give compound $X$. The structure of $X$ is:",
+            "options": ["A", "B", "C", "D"]
+        }
+        corrupted, _ = is_corrupted(q)
+        self.assertFalse(corrupted)
+
+
 if __name__ == "__main__":
     unittest.main()
+
