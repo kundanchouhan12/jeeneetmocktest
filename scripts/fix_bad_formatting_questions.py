@@ -134,11 +134,12 @@ def _strip_rogue_prose_slashes(text: str) -> str:
 
 def _normalize_math_delimiter_spacing(text: str) -> str:
     """Ensures spaces around dollar delimiters: 'Let$O$be' -> 'Let $O$ be'."""
-    # Add space before opening dollar if preceded by word character
-    t = re.sub(r'(?<=[a-zA-Z0-9])(\$[^$\n]+?\$)', r' \1', text)
-    # Add space after closing dollar if followed by word character
-    t = re.sub(r'(\$[^$\n]+?\$)(?=[a-zA-Z0-9])', r'\1 ', t)
+    # English word (2+ letters) directly before opening dollar: "Let$O$" -> "Let $O$"
+    t = re.sub(r'([a-zA-Z]{2,})\$([a-zA-Z0-9\\][^\$\s\n]*?)\$', r'\1 $\2$', text)
+    # Closing dollar directly before English word (2+ letters): "$O$be" -> "$O$ be"
+    t = re.sub(r'\$([a-zA-Z0-9\\][^\$\s\n]*?)\$([a-zA-Z]{2,})', r'$\1$ \2', t)
     return t
+
 
 
 

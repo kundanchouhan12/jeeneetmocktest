@@ -160,7 +160,7 @@ def wrap_inline_latex(text: str) -> str:
     # appeared anywhere in the sentence.
     parts = []
     last = 0
-    for match in re.finditer(r'\$[^$]*\$|\\\(.*?\\\)|\\\[.*?\\\]', text, flags=re.DOTALL):
+    for match in re.finditer(r'\$\$[\s\S]*?\$\$|\$[^$\n]*?\$|\\\[[\s\S]*?\\\]|\\\(.*?\\\)', text):
         parts.append(_BARE_LATEX_TOKEN.sub(replacer, text[last:match.start()]))
         parts.append(match.group(0))
         last = match.end()
