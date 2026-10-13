@@ -251,6 +251,22 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
 
 ---
 
+### 11. 🛡️ Mobile ImageSpan Canvas Overflow, Lone-Pair OCR & Rogue Prose Slashes (2026-10-13)
+- **The Problems Solved**:
+  1. **Blank Gap in TextView (Oversized Equations)**: Single-line chained display equations (>60 chars with multiple $=$, e.g. $\vec{OP}\cdot\vec{OQ} + \dots = \dots = \dots$) rendered as an atomic ImageSpan exceeding mobile screen width (~1080px). Android pushed the unbreakable span into the canvas overflow void, leaving an enormous empty vertical gap.
+  2. **Raw Unrendered LaTeX / Parser Crashes**: Legacy OCR scrapers converted `:N` lone pairs into diaeresis `\¨` (U+00A8), which crashes JLatexMath and triggered raw text fallbacks (e.g. `$(C_2H_5)_3\¨N$`).
+  3. **Unsolvable Diagram-Missing Questions**: OCR extracted incomplete stems like `"The structure of $X$ is:"` without the preceding chemical reaction diagram.
+  4. **Literal Backslashes in Prose**: Stray double backslashes in prose outside math mode (e.g. `In the reaction \\ 2 $MnO_4^-$`) printed verbatim as `\\ 2`.
+  5. **Triple Dollar Signs (`$$$`):** `wrap_inline_latex` regex matched `$[^$]*$` which failed on `$$...$$`, treating display equation contents as prose and wrapping inner commands with extra `$`, generating `$$$...$$$`.
+- **Permanent Automated Pipeline Defenses**:
+  - **`_break_oversized_display_equations` (`scripts/fix_bad_formatting_questions.py`)**: Automatically detects chained display math >60 chars with $\ge 2$ equal signs and breaks them into wrapped multi-line display equations (`$$...$$ \n $$= ...$$`).
+  - **Rules 10 & 11 (`scripts/cleanup_corrupted_questions.py`)**: Purges any question containing diaeresis artifacts (`\¨`, `¨`) or incomplete `"The structure of $X$ is:"` statements missing reaction context.
+  - **`_strip_rogue_prose_slashes` (`scripts/fix_bad_formatting_questions.py`)**: Automatically strips rogue `\\` in prose while preserving matrix row breaks inside math environments.
+  - **`wrap_inline_latex` Hardening**: Scans for `\$\$[\s\S]*?\$\$` display blocks first to preserve display math untouched without inner wrapping or triple dollars.
+  - **`_normalize_math_delimiter_spacing`**: Auto-spaces glued word boundaries (`Let$O$be` $\to$ `Let $O$ be`) without corrupting text between math blocks.
+
+---
+
 ## 🚀 Instant Release Feature Broadcast (`scripts/publish_app_version.py`)
 
 - **Instant In-App Feature Popup for All Users**:
