@@ -265,6 +265,42 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
   - **`wrap_inline_latex` Hardening**: Scans for `\$\$[\s\S]*?\$\$` display blocks first to preserve display math untouched without inner wrapping or triple dollars.
   - **`_normalize_math_delimiter_spacing`**: Auto-spaces glued word boundaries (`Let$O$be` $\to$ `Let $O$ be`) without corrupting text between math blocks.
 
+#### 📋 Regex & Architecture Pattern Catalog (Live Verification Rules)
+
+| Defect Pattern | Example Input | Normalized Output | Applied Rule / Regex Engine |
+|---|---|---|---|
+| **Rogue Prose Slash** | `In the reaction \\ 2 $MnO_4^-$` | `In the reaction 2 $MnO_4^-$` | `_strip_rogue_prose_slashes`: `re.sub(r'\\\\(?:\s*|$)', ' ', prose)` outside math blocks |
+| **Triple Dollars** | `$$\vec{OP}\cdot\vec{OQ}$$` | `$$\vec{OP}\cdot\vec{OQ}$$` | `wrap_inline_latex`: `r'\$\$[\s\S]*?\$\$\|\$[^$\n]*?\$\|\\\[.*?\\\]\|\\\(.*?\\\)'` protects display math first |
+| **Glued Delimiters** | `Let$O$be the origin` | `Let $O$ be the origin` | `_normalize_math_delimiter_spacing`: `r'([a-zA-Z]{2,})\$([a-zA-Z0-9\\][^$\s\n]*?)\$'` |
+| **Canvas Overflow** | `$$\vec{OP}\cdot\vec{OQ} = \dots = \dots$$` | `$$\vec{OP}\cdot\vec{OQ} = \dots$$ \n $$= \dots$$` | `_break_oversized_display_equations`: splits chained display equations > 60 chars with $\ge 2$ equal signs |
+| **Diaeresis Lone-Pair** | `$(C_2H_5)_3\¨N$` | **PURGED** | Rule 10 in `cleanup_corrupted_questions.py`: `'¨' in text or r'\¨' in text` |
+| **Incomplete Stem** | `The structure of $X$ is:` | **PURGED** | Rule 11 in `cleanup_corrupted_questions.py`: `r'^\s*(?:the\s+)?structure\s+of\s+(?:\$?[a-zA-Z]\$?|\s)*is\s*:\s*$'` |
+| **mhchem \ce{}** | `$\ce{ClO3^- -> ClO4^- + Cl^-}$` | `$ClO_{3}^- \rightarrow ClO_{4}^- + Cl^-$` | `strip_ce_notation`: expands to plain KaTeX without double-dollar wrapping |
+| **Collapsed Matrix** | `\begin{pmatrix}0&1\-1&0\end{pmatrix}` | `\begin{pmatrix}0&1\\ -1&0\end{pmatrix}` | `fix_latex_symbols_and_matrices`: heals `\c`, `\ 0`, `\-1` to `\\` |
+
+<!--
+=== MACHINE-READABLE REGEX REPAIR PATTERNS ===
+[PATTERN: ROGUE_PROSE_SLASH]
+  Scope: Prose text strictly outside $...$, $$...$$, \(...\), \[...\], and matrix blocks.
+  Regex: r'\\\\(?:\s*|$)' -> ' '
+  Test: "In the reaction \\ 2" -> "In the reaction 2"
+
+[PATTERN: DISPLAY_MATH_PROTECTION]
+  Scope: wrap_inline_latex scanner in web_question_ingestion.py, neet_web_question_ingestion.py, auto_question_pipeline.py.
+  Regex: r'\$\$[\s\S]*?\$\$|\$[^$\n]*?\$|\\\[[\s\S]*?\\\]|\\\(.*?\\\)'
+  Rule: Match $$...$$ BEFORE $...$ to prevent inner token wrapping and $$$ traps.
+
+[PATTERN: DELIMITER_SPACING_NORMALIZATION]
+  Scope: fix_field_prose in fix_bad_formatting_questions.py
+  Regex Pre:  r'([a-zA-Z]{2,})\$([a-zA-Z0-9\\][^\$\s\n]*?)\$' -> r'\1 $\2$'
+  Regex Post: r'\$([a-zA-Z0-9\\][^\$\s\n]*?)\$([a-zA-Z]{2,})' -> r'$\1$ \2'
+
+[PATTERN: OVERSIZED_DISPLAY_EQUATION_SPLIT]
+  Scope: Equations with length > 60 chars, count('=') >= 2, outside matrices.
+  Split Rule: First line "$$A = B$$", subsequent lines "$$= C$$"
+=== END MACHINE-READABLE REGEX REPAIR PATTERNS ===
+-->
+
 ---
 
 ## 🚀 Instant Release Feature Broadcast (`scripts/publish_app_version.py`)

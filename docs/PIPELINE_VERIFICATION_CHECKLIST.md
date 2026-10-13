@@ -134,7 +134,28 @@ Verify:
 
 ---
 
-## 📋 What Was Fixed (2026-09-18 & 2026-09-23)
+### 7. LaTeX, Display Math & Prose Formatting Invariants (2026-10-13)
+
+Before declaring any ingestion or formatting pipeline verified:
+- [ ] **No Raw `\\` in Prose**: English prose outside math environments must not contain literal double backslashes (e.g. `In the reaction \\ 2`). Use `_strip_rogue_prose_slashes()`.
+- [ ] **Display Math Protection**: `wrap_inline_latex()` must match `\$\$[\s\S]*?\$\$` before single `$` to avoid creating triple dollars `$$$` or wrapping internal math commands.
+- [ ] **Oversized Equation Split**: Chained display math > 60 chars with multiple `=` must be split across multi-line blocks (`$$...$$ \n $$= ...$$`) to prevent mobile `ImageSpan` canvas overflow blank gaps.
+- [ ] **Delimiter Word Spacing**: Math variables glued to text (e.g. `Let$O$be`) must be auto-spaced (`Let $O$ be`).
+- [ ] **Zero Lone-Pair Diaeresis**: Confirm no question contains `\¨` or `¨` (Rule 10 in `cleanup_corrupted_questions.py`).
+- [ ] **Zero Incomplete Stems**: Confirm no standalone `"The structure of $X$ is:"` without preceding reaction text exists (Rule 11).
+
+<!--
+=== CODE PATTERNS FOR LATEX & PROSE FORMATTING ===
+- _strip_rogue_prose_slashes: re.sub(r'\\\\(?:\s*|$)', ' ', prose)
+- wrap_inline_latex: r'\$\$[\s\S]*?\$\$|\$[^$\n]*?\$|\\\[[\s\S]*?\\\]|\\\(.*?\\\)'
+- _normalize_math_delimiter_spacing: r'([a-zA-Z]{2,})\$([a-zA-Z0-9\\][^\$\s\n]*?)\$' -> r'\1 $\2$'
+- _break_oversized_display_equations: len > 60 & count('=') >= 2 -> multi-line $$...$$
+=== END CODE PATTERNS ===
+-->
+
+---
+
+## 📋 What Was Fixed (2026-09-18, 2026-09-23 & 2026-10-13)
 
 | File | Fix Applied |
 |------|-------------|
