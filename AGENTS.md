@@ -313,3 +313,22 @@ All ingestion scripts (`web_question_ingestion.py`, `neet_web_question_ingestion
   ```
 - **Why Code 999 Works**:
   - Existing installed app clients compare `installedVersionCode < latestVersionCode`. Setting `code 999` evaluates to `TRUE` across all installed app versions (v1.0, v1.2.1, v1.2.2, etc.), triggering the non-blocking update/feature popup immediately on launch without requiring a new AAB build.
+
+---
+
+## ⚡ Dual-Provider LLM Architecture (`scripts/llm_client.py`) (Added 2026-10-17)
+
+- **The Problem Solved**:
+  - Groq free tier enforces a strict **6,000 TPM (Tokens Per Minute)** ceiling on reasoning/70B models. A single STEM question generation or verification batch with KaTeX LaTeX and detailed solutions consumes 3,000–4,500 tokens. Two consecutive calls blew past 6,000 TPM and triggered HTTP 429 with `Retry-After: 300s–1500s`, causing skipped batches and thin question supply.
+- **The Permanent Fix**:
+  - **Primary Provider (Google Gemini Flash)**:
+    - Free tier quota: **1,000,000 TPM** (~166x higher than Groq) and **1,500 requests/day**.
+    - Models: `gemini-2.5-flash` (primary), `gemini-flash-latest`, `gemini-2.5-flash-lite` (fallbacks).
+    - Uses Google's official OpenAI-compatible endpoint (`https://generativelanguage.googleapis.com/v1beta/openai/chat/completions`).
+    - **15 RPM Cooldown Pacing**: `_wait_for_gemini_cooldown()` enforces a 4.2-second minimum inter-request interval (`GEMINI_MIN_INTERVAL = 4.2s`), guaranteeing executions stay under 15 RPM.
+  - **Fallback Provider (Groq)**:
+    - If `GEMINI_API_KEY` is not set, or if Gemini returns 429 (`RESOURCE_EXHAUSTED`), 404, or network errors, `llm_client.post_llm()` automatically and seamlessly falls back to Groq (`openai/gpt-oss-20b` or `llama-3.3-70b-versatile`).
+    - Retains `MAX_RETRY_AFTER_SECS = 45` capping so no single failure can hang the workflow.
+  - **Unified Client Integration**:
+    - `auto_question_pipeline.py`, `web_question_ingestion.py`, and `neet_web_question_ingestion.py` route all generation and verification calls through `llm_client.post_llm()`.
+    - `.github/workflows/daily_automation.yml` passes both `GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}` and `GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}`.

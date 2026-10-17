@@ -9,8 +9,13 @@ Verifies:
 """
 
 import os
+import sys
 import unittest
 from unittest.mock import patch
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, SCRIPT_DIR)
 
 # Dummy API key to satisfy module imports
 os.environ.setdefault("GROQ_API_KEY", "test-dummy-groq-key")

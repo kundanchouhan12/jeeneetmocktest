@@ -59,6 +59,7 @@ jobs:
 
       - name: Execute Master Daily Automation Pipeline
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           CLOUDINARY_URL: ${{ secrets.CLOUDINARY_URL || 'cloudinary://755953873123215:RuKFj4VtH_fAApciLyBuClSwFGc@s9ckjajw' }}
         run: |

@@ -19,6 +19,11 @@ import random
 import re
 import sys
 import time
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, SCRIPT_DIR)
+
 import requests
 import firebase_admin
 from firebase_admin import credentials, firestore, storage
@@ -414,43 +419,19 @@ def validate_web_question(q: dict) -> tuple[bool, str]:
     return True, ""
 
 
-MAX_RETRY_AFTER_SECS = 45  # Cap on Retry-After sleep to prevent workflow stalling
+import llm_client
+
+MAX_RETRY_AFTER_SECS = llm_client.MAX_GROQ_RETRY_AFTER_SECS
 
 
 def _post_groq(body: dict, max_retries: int = 3) -> str:
-    headers = {
-        "Authorization": f"Bearer {GROQ_API_KEY}",
-        "Content-Type": "application/json"
-    }
-    for attempt in range(max_retries):
-        try:
-            resp = requests.post(GROQ_URL, json=body, headers=headers, timeout=45)
-            if resp.status_code == 429:
-                retry_after = resp.headers.get("retry-after")
-                if retry_after:
-                    try:
-                        wait_time = float(retry_after) + 1
-                    except ValueError:
-                        wait_time = (attempt + 1) * 15
-                else:
-                    wait_time = (attempt + 1) * 15
+    """Delegates to llm_client._post_groq for direct Groq calls and test compatibility."""
+    return llm_client._post_groq(body, max_retries=max_retries)
 
-                if wait_time > MAX_RETRY_AFTER_SECS:
-                    print(f"    ⚠️ Rate limit (429) requested excessive wait ({wait_time:.0f}s > {MAX_RETRY_AFTER_SECS}s). Skipping further retries for this request.")
-                    return ""
 
-                print(f"    ⏳ Rate limit (429) hit. Waiting {wait_time:.0f}s before retry (attempt {attempt + 1}/{max_retries})...")
-                time.sleep(wait_time)
-                continue
-            resp.raise_for_status()
-            data = resp.json()
-            return data['choices'][0]['message']['content'].strip()
-        except Exception as e:
-            if attempt == max_retries - 1:
-                print(f"    ❌ Groq API error on final attempt: {e}")
-                return ""
-            time.sleep(5)
-    return ""
+def _post_llm(body: dict, max_retries: int = 3) -> str:
+    """Multi-provider LLM caller: Gemini primary (1,000,000 TPM) with automatic Groq fallback."""
+    return llm_client.post_llm(body, max_retries=max_retries)
 
 
 def call_groq_api(prompt: str) -> str:
@@ -479,7 +460,7 @@ def call_groq_api(prompt: str) -> str:
         # then misreport as "rate limit or API error" even on a clean 200.
         "reasoning_effort": "low"
     }
-    return _post_groq(body)
+    return _post_llm(body)
 
 
 def verify_answer(exam: str, subject: str, chapter: str, question_text: str, options: list) -> int:
@@ -511,14 +492,14 @@ Respond with ONLY a raw JSON object, no markdown: {{"correctIndex": <0-3, or -1 
         "max_tokens": 4000,
     }
     try:
-        raw = _post_groq(body)
+        raw = _post_llm(body)
         if not raw:
             # Same failure mode as generation: unrestricted reasoning can
             # burn the whole budget on a hard problem before writing the
             # answer. Retry once with reasoning capped so it's forced to
             # actually answer instead of reasoning until it runs out.
             body["reasoning_effort"] = "medium"
-            raw = _post_groq(body)
+            raw = _post_llm(body)
         if not raw:
             return -2
         match = re.search(r'\{[^{}]*"correctIndex"[^{}]*\}', raw, re.DOTALL)

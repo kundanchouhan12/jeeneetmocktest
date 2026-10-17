@@ -27,6 +27,11 @@ import os
 import sys
 import time
 import datetime
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+if SCRIPT_DIR not in sys.path:
+    sys.path.insert(0, SCRIPT_DIR)
+
 import firebase_admin
 from firebase_admin import credentials, firestore
 
@@ -151,10 +156,13 @@ def main():
     tomorrow_ist = (ist_now.date() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
     target_dates = [today_ist, tomorrow_ist]
 
+    import llm_client
+
     print("=================================================================")
     print(f"⏰ Starting Daily Vault & Question Bank Automation [{ist_now.strftime('%Y-%m-%d %H:%M:%S IST')}]")
     print(f"📅 Target Vault Dates: {target_dates} (IST)")
     print(f"🛡️ Mode              : {'DRY RUN' if args.dry_run else 'LIVE PRODUCTION'}")
+    print(f"🤖 LLM Engine        : {llm_client.get_active_provider_summary()}")
     print("=================================================================")
 
     failed_steps: list[str] = []
