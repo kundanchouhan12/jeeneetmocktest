@@ -88,7 +88,8 @@ class ChapterRepeatRegressionTest {
         val seenAcrossSessions = mutableSetOf<Int>()
         repeat(4) { sessionIndex ->
             clearDailyCache(subject, chapter) // simulate opening the chapter test on a new day
-            val result = repo.getQuestionsForConfig(ctx, config)
+            val result = repo.getQuestionsForConfig(ctx, config, adUnlocked = sessionIndex > 0)
+            repo.markChapterSetSubmitted(ctx, config)
 
             val ids = result.questions.map { it.id }
             assertEquals("session ${sessionIndex + 1} should have no internal duplicates",
@@ -109,7 +110,7 @@ class ChapterRepeatRegressionTest {
 
         // 5th session: the pool is now fully exhausted, so recirculation (and the "recycled" flag) is expected.
         clearDailyCache(subject, chapter)
-        val fifth = repo.getQuestionsForConfig(ctx, config)
+        val fifth = repo.getQuestionsForConfig(ctx, config, adUnlocked = true)
         assertTrue("once genuinely exhausted, recirculation is expected and should be flagged to the user",
             fifth.recycled)
     }

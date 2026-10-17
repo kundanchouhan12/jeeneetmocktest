@@ -616,7 +616,7 @@ class MockTestRepository(context: Context) {
             val questionListType = object : TypeToken<List<com.jeeneet.mocktest.data.model.Question>>() {}.type
             val answerMapType = object : TypeToken<Map<String, Int?>>() {}.type
 
-            val seenIds = mutableSetOf<Int>()
+            val seenKeys = mutableSetOf<String>()
             val wrongQuestions = mutableListOf<com.jeeneet.mocktest.data.model.Question>()
             var testsWithWrong = 0
 
@@ -627,16 +627,20 @@ class MockTestRepository(context: Context) {
                 }.getOrNull() ?: return@forEach
                 val answers = runCatching {
                     gson.fromJson<Map<String, Int?>>(r.answersJson, answerMapType)
+                }.getOrNull() ?: runCatching {
+                    gson.fromJson<Map<Int, Int?>>(r.answersJson, object : TypeToken<Map<Int, Int?>>() {}.type)?.mapKeys { it.key.toString() }
                 }.getOrNull() ?: return@forEach
 
                 var foundWrongInTest = false
                 questions.forEachIndexed { idx, q ->
                     val ans = answers[idx.toString()]
                     // Only count actually wrong answers — unattempted (null) are excluded
-                    if (ans != null && ans != q.correctOptionIndex && q.id !in seenIds) {
-                        seenIds.add(q.id)
-                        wrongQuestions.add(q)
+                    if (ans != null && ans != q.correctOptionIndex) {
                         foundWrongInTest = true
+                        val questionKey = if (q.id > 0) "id_${q.id}" else "${q.subject}__${q.chapter}__${q.questionText.trim()}"
+                        if (seenKeys.add(questionKey)) {
+                            wrongQuestions.add(q)
+                        }
                     }
                 }
                 if (foundWrongInTest) testsWithWrong++

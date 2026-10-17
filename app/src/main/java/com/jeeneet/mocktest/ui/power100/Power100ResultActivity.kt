@@ -76,8 +76,9 @@ class Power100ResultActivity : AppCompatActivity() {
 
     private fun renderResult(content: LinearLayout) {
         val attempted = progressMap.values.count { it.selectedOption >= 0 }
+        val qMap = questions.associateBy { it.position }
         val correct = progressMap.values.count { p ->
-            p.selectedOption >= 0 && questions.getOrNull(p.position - 1)?.correctOptionIndex == p.selectedOption
+            p.selectedOption >= 0 && qMap[p.position]?.correctOptionIndex == p.selectedOption
         }
         val wrong = attempted - correct
         val powerScore = (correct * 1000 / 100).coerceAtMost(1000)

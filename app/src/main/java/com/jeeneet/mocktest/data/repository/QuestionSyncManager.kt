@@ -197,6 +197,8 @@ class QuestionSyncManager(private val context: Context) {
                 .whereEqualTo("isDailyVault", true)
                 .get().await()
 
+            PrefManager.setVaultLastCheckedMs(context, exam, System.currentTimeMillis())
+
             var questions = parseVaultDocuments(snapshot.documents, "today=$today exam=$exam")
                 .filter { it.examType == exam && it.isDailyVault }
 
@@ -304,7 +306,6 @@ class QuestionSyncManager(private val context: Context) {
                     return SyncState.FAILED
                 }
             }
-            PrefManager.setVaultLastCheckedMs(context, exam, System.currentTimeMillis())
         } catch (e: Exception) {
             Log.w(TAG, "Daily Vault sync failed: ${e.message}")
             AnalyticsManager.syncFailed(context, "daily_vault", e.message ?: "network_error")

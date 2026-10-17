@@ -45,8 +45,20 @@ from vault_scheduler import schedule_vault
 from web_question_ingestion import run_web_ingestion
 from neet_web_question_ingestion import run_neet_web_ingestion
 from stem_diagram_pipeline import run_stem_diagram_pipeline
+import syllabus_tracker
 
 SERVICE_ACCOUNT_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
+
+
+class MemDoc:
+    """In-memory Firestore document wrapper for snapshots patched in-flight."""
+    def __init__(self, doc_id: str, data: dict):
+        self.id = doc_id
+        self._data = data
+        self.reference = None
+
+    def to_dict(self):
+        return dict(self._data)
 
 
 class FirebaseAuthError(Exception):
@@ -76,7 +88,7 @@ def verify_firebase_connectivity(db) -> None:
     raise FirebaseAuthError(f"Firebase authentication/connectivity failed: {last_err}") from last_err
 
 
-def run_cleanup_audit(db, dry_run: bool = False, all_docs=None) -> int:
+def run_cleanup_audit(db, dry_run: bool = False, all_docs=None, deleted_ids_out: set = None) -> int:
     print("\n🧹 Running Firestore Corrupted Question Audit...")
     questions_ref = db.collection('questions')
     docs = all_docs if all_docs is not None else questions_ref.get()
@@ -104,6 +116,8 @@ def run_cleanup_audit(db, dry_run: bool = False, all_docs=None) -> int:
         count = 0
         for doc_id, _ in corrupted_docs:
             batch.delete(questions_ref.document(doc_id))
+            if deleted_ids_out is not None:
+                deleted_ids_out.add(doc_id)
             count += 1
             if count >= 450:
                 batch.commit()
@@ -114,6 +128,9 @@ def run_cleanup_audit(db, dry_run: bool = False, all_docs=None) -> int:
         print("  ✅ Purge complete.")
     elif corrupted_docs:
         print("  🔎 Dry run: Skipped deletion.")
+        if deleted_ids_out is not None:
+            for doc_id, _ in corrupted_docs:
+                deleted_ids_out.add(doc_id)
     return len(corrupted_docs)
 
 
@@ -202,7 +219,7 @@ def main():
     if not args.dry_run and db:
         # Re-fetch once now that steps 1-2 have written new docs, and share
         # this single read across both audit steps below.
-        vault_ok = {"JEE": False, "NEET": False}
+        vault_ok = {f"{exam}_{vdate}": False for exam in ["JEE", "NEET"] for vdate in target_dates}
         post_write_docs = None
         try:
             post_write_docs = db.collection('questions').get()
@@ -218,14 +235,17 @@ def main():
             failed_steps.append(f"Deduplication Audit: {e}")
 
         # Step 3: Clean up any corrupted questions. Drop docs purge_duplicates
-        # just deleted from the shared snapshot so the audit doesn't re-scan
-        # (and re-issue no-op deletes for) documents that no longer exist.
+        # and cleanup_audit delete from the shared snapshot so downstream steps
+        # (vault, power100) never select or re-scan corrupted questions.
         audit_docs = post_write_docs
         if audit_docs is not None and deleted_dup_ids:
             audit_docs = [d for d in audit_docs if d.id not in deleted_dup_ids]
         deleted_corrupt_count = 0
+        deleted_corrupt_ids = set()
         try:
-            deleted_corrupt_count = run_cleanup_audit(db, dry_run=args.dry_run, all_docs=audit_docs)
+            deleted_corrupt_count = run_cleanup_audit(db, dry_run=args.dry_run, all_docs=audit_docs, deleted_ids_out=deleted_corrupt_ids)
+            if audit_docs is not None and deleted_corrupt_ids:
+                audit_docs = [d for d in audit_docs if d.id not in deleted_corrupt_ids]
         except Exception as e:
             print(f"❌ Error during Corrupted Question Audit: {e}")
             failed_steps.append(f"Corrupted Question Audit: {e}")
@@ -235,9 +255,20 @@ def main():
         # them. MUST run AFTER cleanup and BEFORE vault scheduling so the vault only
         # ever copies already-clean source questions. Fixes are in-place UPDATES
         # (never deletes), so they also heal already-published vault docs without
-        # shrinking the vault. Reuses the shared snapshot — no extra full read.
+        # shrinking the vault. Reuses the shared snapshot and patches in-memory docs.
+        formatting_updates = {}
         try:
-            run_formatting_fix(db, dry_run=args.dry_run, all_docs=audit_docs)
+            run_formatting_fix(db, dry_run=args.dry_run, all_docs=audit_docs, updates_out=formatting_updates)
+            if formatting_updates and audit_docs is not None:
+                patched_docs = []
+                for d in audit_docs:
+                    if d.id in formatting_updates:
+                        merged = d.to_dict() or {}
+                        merged.update(formatting_updates[d.id])
+                        patched_docs.append(MemDoc(d.id, merged))
+                    else:
+                        patched_docs.append(d)
+                audit_docs = patched_docs
         except Exception as e:
             print(f"❌ Error during Formatting Auto-Fix: {e}")
             failed_steps.append(f"Formatting Auto-Fix: {e}")
@@ -245,14 +276,22 @@ def main():
         # Step 3: Schedule Daily Vault for JEE and NEET (Ensures BOTH Today IST & Tomorrow IST are ready)
         try:
             print(f"\n⚡ Scheduling Daily Vault Questions for dates {target_dates} (IST)...")
+            tracker = syllabus_tracker.get_tracker(db=db, all_docs=audit_docs)
             for vdate in target_dates:
                 for exam in ["JEE", "NEET"]:
                     try:
-                        schedule_vault(db, vdate, exam, count=args.vault_count, force=args.force_vault, all_docs=audit_docs)
-                        vault_ok[exam] = True
+                        written_vault = schedule_vault(db, vdate, exam, count=args.vault_count, force=args.force_vault, all_docs=audit_docs)
+                        vault_ok[f"{exam}_{vdate}"] = True
+                        if written_vault:
+                            if audit_docs is not None:
+                                for vid, vpayload in written_vault:
+                                    audit_docs.append(MemDoc(vid, vpayload))
+                            tracker.mark_questions_vaulted(exam, [p for _, p in written_vault], vdate)
                     except Exception as e:
                         print(f"❌ Error during {exam} Daily Vault for {vdate}: {e}")
                         failed_steps.append(f"{exam} Daily Vault ({vdate}): {e}")
+            if not args.dry_run and db:
+                tracker.sync_to_firestore(db)
         except Exception as e:
             print(f"❌ Error during Vault Scheduling: {e}")
             failed_steps.append(f"Vault Scheduling: {e}")
@@ -283,9 +322,13 @@ def main():
                 reason = "Forced" if args.force_power100 else ("Monday Schedule" if today_ist_date.weekday() == 0 else f"Overdue ({days_since_p100}d)")
                 print(f"\n🏆 Rebuilding Power 100 ({reason}: Day {today_ist_date.strftime('%A')} IST, {today_ist})...")
                 power100_docs = audit_docs if audit_docs is not None else db.collection('questions').get()
+                p100_all_ok = True
                 for exam in ["JEE", "NEET"]:
-                    run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
-                if not args.dry_run and db:
+                    ok = run_power100_rebuild(exam, dry_run=args.dry_run, db=db, all_docs=power100_docs)
+                    if not ok:
+                        p100_all_ok = False
+                        failed_steps.append(f"Power 100 Rebuild ({exam})")
+                if p100_all_ok and not args.dry_run and db:
                     db.collection('metadata').document('power100_status').set({
                         'lastRebuildDate': today_ist,
                         'lastUpdated': firestore.SERVER_TIMESTAMP
@@ -319,8 +362,8 @@ def main():
                 'corrupted_purged_count': deleted_corrupt_count,
                 'live_total_jee': total_jee,
                 'live_total_neet': total_neet,
-                'vault_scheduled_jee': 30 if vault_ok.get("JEE") else 0,
-                'vault_scheduled_neet': 30 if vault_ok.get("NEET") else 0,
+                'vault_scheduled_jee': 30 if vault_ok.get(f"JEE_{tomorrow_ist}") else 0,
+                'vault_scheduled_neet': 30 if vault_ok.get(f"NEET_{tomorrow_ist}") else 0,
                 'failed_steps_count': len(failed_steps)
             }, merge=True)
             print(f"📊 Telemetry saved: {total_jee} JEE / {total_neet} NEET live questions in bank.")

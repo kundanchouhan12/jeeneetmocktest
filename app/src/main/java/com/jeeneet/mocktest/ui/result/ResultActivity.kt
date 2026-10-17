@@ -197,6 +197,10 @@ class ResultActivity : AppCompatActivity() {
         }.getOrNull() ?: return
         val answers = runCatching {
             gson.fromJson<Map<Int, Int?>>(r.answersJson, object : TypeToken<Map<Int, Int?>>() {}.type)
+        }.getOrNull() ?: runCatching {
+            gson.fromJson<Map<String, Int?>>(r.answersJson, object : TypeToken<Map<String, Int?>>() {}.type)?.mapNotNull { (k, v) ->
+                k.toIntOrNull()?.let { it to v }
+            }?.toMap()
         }.getOrNull() ?: return
 
         val legendRow = LinearLayout(this).apply {
@@ -698,6 +702,10 @@ class ResultActivity : AppCompatActivity() {
         }.getOrNull() ?: return
         val answers = runCatching {
             gson.fromJson<Map<Int, Int?>>(r.answersJson, object : TypeToken<Map<Int, Int?>>() {}.type)
+        }.getOrNull() ?: runCatching {
+            gson.fromJson<Map<String, Int?>>(r.answersJson, object : TypeToken<Map<String, Int?>>() {}.type)?.mapNotNull { (k, v) ->
+                k.toIntOrNull()?.let { it to v }
+            }?.toMap()
         }.getOrNull() ?: return
 
         val wrongQuestions = questions.filterIndexed { idx, q ->

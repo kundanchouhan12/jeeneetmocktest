@@ -227,5 +227,31 @@ class RunFormattingFixTest(unittest.TestCase):
         self.assertEqual(vault._data["options"], before, "dry-run must not mutate docs")
 
 
+    def test_run_formatting_fix_populates_updates_out(self):
+        vault = FmtFakeDoc("vault_x", {
+            "examType": "NEET", "subject": "Chemistry", "isDailyVault": True,
+            "questionText": "Formula \\ce{H2O}", "options": ["$ \\ce{H2O} $", "b", "c", "d"],
+            "explanation": "water",
+        })
+        updates_out = {}
+        fixed, changed = run_formatting_fix(FmtFakeDb(), dry_run=False, all_docs=[vault], updates_out=updates_out)
+        self.assertEqual(fixed, 1)
+        self.assertIn("vault_x", updates_out)
+        self.assertIn("options", updates_out["vault_x"])
+        self.assertNotIn("\\ce", updates_out["vault_x"]["options"][0])
+
+    def test_run_cleanup_audit_populates_deleted_ids_out(self):
+        store = {
+            "vault_1": {"questionText": "A body moves with uniform acceleration.", "options": ["a", "b", "c", "d"], "isDailyVault": True},
+            "corrupt_1": {"questionText": "bad", "options": [], "isDailyVault": False},
+        }
+        db = SimpleFakeDb(store)
+        docs = [SimpleFakeDoc(doc_id, data) for doc_id, data in store.items()]
+        deleted_ids = set()
+        deleted_count = run_cleanup_audit(db, dry_run=False, all_docs=docs, deleted_ids_out=deleted_ids)
+        self.assertEqual(deleted_count, 1)
+        self.assertEqual(deleted_ids, {"corrupt_1"})
+
+
 if __name__ == "__main__":
     unittest.main()

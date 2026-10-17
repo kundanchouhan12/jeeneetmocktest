@@ -210,7 +210,7 @@ def fix_question(q: dict) -> dict:
 
 # ── Pipeline entry point ──────────────────
 
-def run_formatting_fix(db, dry_run: bool = False, all_docs=None) -> tuple[int, set]:
+def run_formatting_fix(db, dry_run: bool = False, all_docs=None, updates_out: dict = None) -> tuple[int, set]:
     """Scans the question bank and repairs formatting IN PLACE: strips literal
     \\n/\\t, expands mhchem \\ce{...} to plain KaTeX, and wraps bare LaTeX/chemical
     tokens with delimiters so MathRenderer.kt renders them.
@@ -221,6 +221,11 @@ def run_formatting_fix(db, dry_run: bool = False, all_docs=None) -> tuple[int, s
     Meant to run inside run_daily_automation.py AFTER dedup/cleanup and BEFORE
     vault scheduling, so the vault only ever copies already-clean source questions.
     Accepts the shared `all_docs` snapshot to avoid an extra full-collection read.
+
+    If `updates_out` is a dict, it is filled with {doc_id: applied_updates} so the
+    caller can patch its shared in-memory snapshot. Firestore snapshots are
+    immutable, so without this every later step (Daily Vault, Power 100) would
+    keep copying the PRE-fix text that was just repaired in Firestore.
 
     Returns (fixed_count, changed_ids).
     """
@@ -247,6 +252,8 @@ def run_formatting_fix(db, dry_run: bool = False, all_docs=None) -> tuple[int, s
             continue
 
         changed_ids.add(doc.id)
+        if updates_out is not None and not dry_run:
+            updates_out[doc.id] = updates
         if shown < 10:
             shown += 1
             exam = q.get('examType', '?')

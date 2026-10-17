@@ -258,7 +258,7 @@ class Power100Activity : AppCompatActivity() {
             MockTestDatabase.getInstance(this@Power100Activity).power100Dao().upsertProgress(progress)
         }
         // Award coins for correct answer (first time correct only)
-        val q = questions.getOrNull(position - 1) ?: return
+        val q = questions.find { it.position == position } ?: questions.getOrNull(position - 1) ?: return
         if (selectedOption == q.correctOptionIndex && existing?.selectedOption != q.correctOptionIndex) {
             PrefManager.addCoins(this, 4)
         }
@@ -444,8 +444,9 @@ class Power100Activity : AppCompatActivity() {
 
     private fun buildStatsBar(): View {
         val attempted = progressMap.values.count { it.selectedOption >= 0 }
+        val qMap = questions.associateBy { it.position }
         val correct = progressMap.values.count { p ->
-            p.selectedOption >= 0 && questions.getOrNull(p.position - 1)?.correctOptionIndex == p.selectedOption
+            p.selectedOption >= 0 && qMap[p.position]?.correctOptionIndex == p.selectedOption
         }
         val accuracy = if (attempted > 0) (correct * 100f / attempted).toInt() else 0
         val coinsEarned = correct * 4
@@ -548,8 +549,9 @@ class Power100Activity : AppCompatActivity() {
 
         // ── Stats ─────────────────────────────────────────────────────────────
         val attempted = progressMap.values.count { it.selectedOption >= 0 }
+        val qMap = questions.associateBy { it.position }
         val correct   = progressMap.values.count { p ->
-            p.selectedOption >= 0 && questions.getOrNull(p.position - 1)?.correctOptionIndex == p.selectedOption
+            p.selectedOption >= 0 && qMap[p.position]?.correctOptionIndex == p.selectedOption
         }
         val accuracy = if (attempted > 0) (correct * 100f / attempted).toInt() else 0
         if (::tvAttempted.isInitialized) {

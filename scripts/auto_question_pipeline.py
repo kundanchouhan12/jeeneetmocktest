@@ -25,6 +25,7 @@ from firebase_admin import credentials, firestore
 import curriculum
 import curriculum_validator
 import syllabus_tracker
+from vault_scheduler import question_fingerprint
 
 try:
     sys.stdout.reconfigure(encoding='utf-8')
@@ -546,13 +547,19 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
     stats = {"generated": 0, "passed_filter": 0, "rejected": 0, "imported": 0, "rejections": {}}
 
     existing_ids = set()
+    existing_fps = set()
     if db and not dry_run:
         try:
-            docs = all_docs if all_docs is not None else db.collection('questions').select([]).get()
-            existing_ids = {d.id for d in docs}
-            print(f"ℹ️ Found {len(existing_ids)} existing questions in Firestore for deduplication.")
+            docs = all_docs if all_docs is not None else db.collection('questions').get()
+            for d in docs:
+                existing_ids.add(d.id)
+                q_dict = d.to_dict() if hasattr(d, 'to_dict') else (d if isinstance(d, dict) else {})
+                fp = question_fingerprint(q_dict)
+                if fp:
+                    existing_fps.add(fp)
+            print(f"ℹ️ Found {len(existing_ids)} existing questions and {len(existing_fps)} STEM fingerprints for deduplication.")
         except Exception as e:
-            print(f"⚠️ Could not fetch existing IDs for deduplication: {e}")
+            print(f"⚠️ Could not fetch existing question fingerprints for deduplication: {e}")
 
     tracker = syllabus_tracker.get_tracker(db=db, all_docs=all_docs)
     batch_to_import = []
@@ -583,7 +590,8 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
             topic_passed = []
             for q in questions:
                 q_id = generate_id(q)
-                if q_id in existing_ids:
+                fp = question_fingerprint(q)
+                if q_id in existing_ids or (fp and fp in existing_fps):
                     stats["rejected"] += 1
                     stats["rejections"]["Duplicate Question"] = stats["rejections"].get("Duplicate Question", 0) + 1
                     continue
@@ -599,15 +607,21 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
                 time.sleep(VERIFY_REQUEST_DELAY)
                 claimed_idx = q.get("correctOption")
                 if verified_idx == -2:
-                    print("    ⚠️ Could not verify answer (API/parse failure) — keeping question, unverified.")
+                    q["answerVerified"] = False
+                    print("    ⚠️ Could not verify answer (API/parse failure) — keeping question, flagged unverified.")
                 elif verified_idx != claimed_idx:
                     stats["rejected"] += 1
                     reason = f"Answer verification mismatch (claimed {claimed_idx}, verifier got {verified_idx})"
                     stats["rejections"]["Answer Verification Mismatch"] = stats["rejections"].get("Answer Verification Mismatch", 0) + 1
                     print(f"    ⚠️ Rejected question: {reason}")
                     continue
+                else:
+                    q["answerVerified"] = True
 
                 q["id"] = q_id
+                existing_ids.add(q_id)
+                if fp:
+                    existing_fps.add(fp)
                 stats["passed_filter"] += 1
                 topic_passed.append(q)
                 batch_to_import.append(q)
@@ -625,11 +639,6 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
                     error_reason=None if topic_passed else "No questions passed verification"
                 )
 
-    if db and not dry_run:
-        tracker.sync_to_firestore(db)
-    else:
-        tracker.save_local()
-
     print(f"\n📊 Quality Pipeline Summary:")
     print(f"   • Total Generated    : {stats['generated']}")
     print(f"   • Passed Filter      : {stats['passed_filter']}")
@@ -638,6 +647,7 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
         print(f"   • Rejection Reasons  : {stats['rejections']}")
 
     if dry_run:
+        tracker.save_local()
         print(f"\n🔎 Dry run complete. Sample passed question:\n")
         if batch_to_import:
             sample = batch_to_import[0]
@@ -677,6 +687,12 @@ def run_pipeline(count_per_subject: int = 5, target_exam: str = None, dry_run: b
             print("🔄 Firestore question_bank metadata version updated.")
         except Exception as e:
             print(f"⚠️ Failed to update metadata version: {e}")
+
+    # Synchronize tracker state to Firestore now that questions are committed
+    if db and not dry_run:
+        tracker.sync_to_firestore(db)
+    else:
+        tracker.save_local()
 
     return stats
 

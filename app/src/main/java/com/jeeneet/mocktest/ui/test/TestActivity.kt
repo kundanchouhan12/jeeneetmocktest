@@ -45,6 +45,7 @@ class TestActivity : AppCompatActivity() {
         private const val EXTRA_SMART_PRACTICE = "extra_smart_practice"
         private const val EXTRA_SIMULATION     = "extra_simulation"
         private const val EXTRA_TOTAL_QUESTIONS = "extra_total_questions"
+        private const val EXTRA_CONFIG_JSON    = "extra_config_json"
 
         fun start(context: Context, exam: String, subject: String? = null, chapter: String? = null, 
                   adUnlocked: Boolean = false, totalQuestions: Int = 0) {
@@ -98,6 +99,7 @@ class TestActivity : AppCompatActivity() {
                 putExtra(EXTRA_CHAPTER, config.chapter)
                 putExtra(EXTRA_DAILY_QUIZ, config.isDailyQuiz)
                 val gson = com.google.gson.Gson()
+                putExtra(EXTRA_CONFIG_JSON, gson.toJson(config))
                 putExtra(EXTRA_QUESTIONS_JSON, gson.toJson(questions))
             })
         }
@@ -192,10 +194,25 @@ class TestActivity : AppCompatActivity() {
             val questions = runCatching { gson.fromJson<List<Question>>(questionsJson, type) }.getOrNull() ?: emptyList()
             if (questions.isEmpty()) { finish(); return }
             
+            val configJson = intent.getStringExtra(EXTRA_CONFIG_JSON)
+            val passedConfig = if (configJson != null) {
+                runCatching { gson.fromJson(configJson, ExamConfig::class.java) }.getOrNull()
+            } else null
+
             // Check if it's Daily Vault
-            val isVault = chapter == "Daily Vault"
-            val config = if (isVault) {
-                ExamConfig(exam, null, "Daily Vault", questions.size, questions.size, 4f, -1f, isDailyVault = true)
+            val isVault = chapter == "Daily Vault" || passedConfig?.isDailyVault == true
+            val config = passedConfig ?: if (isVault) {
+                ExamConfig(
+                    examType = exam,
+                    subject = null,
+                    chapter = "Daily Vault",
+                    totalQuestions = questions.size,
+                    durationMinutes = questions.size,
+                    correctMarks = 4f,
+                    negativeMarks = -1f,
+                    isDailyVault = true,
+                    vaultGroupId = questions.firstOrNull()?.vaultGroupId ?: ""
+                )
             } else {
                 ExamConfig(exam, questions.first().subject, chapter ?: "Revision", questions.size, 40, 4f, -1f, isSimulation = isSimulationMode)
             }

@@ -54,6 +54,32 @@ def slugify(text: str) -> str:
     return text[:40]
 
 
+_SUBJECT_ALIASES = {
+    "maths": "Maths", "math": "Maths", "mathematics": "Maths",
+    "physics": "Physics", "chemistry": "Chemistry", "biology": "Biology",
+}
+
+_DIFFICULTY_ALIASES = {"easy": "Easy", "medium": "Medium", "hard": "Hard"}
+
+
+def _norm_exam(value) -> str:
+    v = str(value or "").strip().upper()
+    if v.startswith("JEE"):
+        return "JEE"
+    if v.startswith("NEET"):
+        return "NEET"
+    return v
+
+
+def _norm_subject(value) -> str:
+    v = str(value or "").strip()
+    return _SUBJECT_ALIASES.get(v.lower(), v.capitalize())
+
+
+def _norm_difficulty(value) -> str:
+    return _DIFFICULTY_ALIASES.get(str(value or "").strip().lower(), "Medium")
+
+
 class SyllabusTracker:
     def __init__(self, curriculum_data: Optional[dict] = None):
         self.curriculum = curriculum_data or curriculum.get_curriculum()
@@ -108,6 +134,14 @@ class SyllabusTracker:
     def get_topic(self, topic_id: str) -> Optional[dict]:
         return self.topics.get(topic_id)
 
+    def _topic_index(self) -> Dict[tuple, str]:
+        """(exam, subject, lower(topic_name)) -> topic_id lookup."""
+        idx: Dict[tuple, str] = {}
+        for t_id, t in self.topics.items():
+            key = (t["exam"], t["subject"], str(t.get("topic_name", "")).strip().lower())
+            idx.setdefault(key, t_id)
+        return idx
+
     def get_topics_for_subject(self, exam: str, subject: str) -> List[dict]:
         res = [
             t for t in self.topics.values()
@@ -127,10 +161,13 @@ class SyllabusTracker:
         if not subject_topics:
             return None
 
-        # 1. Retry queue: Prioritize failed topics that haven't hit the MAX_RETRIES cap
+        # 1. Retry queue: Prioritize failed topics that haven't hit the MAX_RETRIES cap.
+        # A failed-but-retryable topic is left in CONTENT_GENERATION by
+        # record_generation_attempt(); NEEDS_REVIEW is reserved for topics that
+        # already exhausted MAX_RETRIES (quarantined), so it must not be matched here.
         retries = [
             t for t in subject_topics
-            if 0 < t["retry_count"] < MAX_RETRIES and t["state"] == TopicState.NEEDS_REVIEW.value
+            if 0 < t["retry_count"] < MAX_RETRIES and t["state"] == TopicState.CONTENT_GENERATION.value
         ]
         if retries:
             return retries[0]
@@ -143,28 +180,36 @@ class SyllabusTracker:
         # 3. Check for topics needing top-up (fewer than MIN_APPROVED_QUESTIONS_PER_TOPIC)
         thin_topics = [
             t for t in subject_topics
-            if t["approved_count"] < MIN_APPROVED_QUESTIONS_PER_TOPIC and t["retry_count"] < MAX_RETRIES
+            if t["approved_count"] < MIN_APPROVED_QUESTIONS_PER_TOPIC
+            and t["state"] not in (TopicState.COMPLETED.value, TopicState.NEEDS_REVIEW.value)
+            and t["retry_count"] < MAX_RETRIES
         ]
         if thin_topics:
             return thin_topics[0]
 
-        # 4. Cycle Progression / Revision pass
-        # Sort by oldest last_vault_date (or None)
+        # 4. Cycle Progression / Revision pass. Quarantined (NEEDS_REVIEW) topics
+        # neither block the cycle nor get served.
+        active = [t for t in subject_topics if t["state"] != TopicState.NEEDS_REVIEW.value]
+        if not active:
+            return None
+
+        # Bump the cycle exactly once: only when EVERY active topic has been
+        # vaulted (COMPLETED). After the bump all become REVISION_DUE, so this
+        # condition stays false until the whole revision pass is vaulted again.
+        if all(t["state"] == TopicState.COMPLETED.value for t in active):
+            new_cycle = self.cycle.setdefault(exam, {}).get(subject, 1) + 1
+            self.cycle[exam][subject] = new_cycle
+            for t in active:
+                t["state"] = TopicState.REVISION_DUE.value
+                t["cycle"] = new_cycle
+
+        # Sort by oldest last_vault_date (never-vaulted first)
         def sort_key(t):
             d = t.get("last_vault_date")
             return (0, "") if not d else (1, str(d))
 
-        subject_topics.sort(key=sort_key)
-        candidate = subject_topics[0]
-
-        # Mark cycle bump if advancing
-        current_cycle = self.cycle[exam].get(subject, 1)
-        if all(t["state"] in (TopicState.COMPLETED.value, TopicState.REVISION_DUE.value) for t in subject_topics):
-            self.cycle[exam][subject] = current_cycle + 1
-            for t in subject_topics:
-                t["state"] = TopicState.REVISION_DUE.value
-
-        return candidate
+        active.sort(key=sort_key)
+        return active[0]
 
     def record_generation_attempt(
         self,
@@ -222,6 +267,39 @@ class SyllabusTracker:
             topic["state"] = TopicState.COMPLETED.value
             self.last_updated = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
+    def mark_questions_vaulted(self, exam: str, questions: List[dict], vault_date: str) -> int:
+        """
+        Records that `questions` were published in the `exam` Daily Vault on
+        `vault_date`. Every matched topic gets its last_vault_date updated; it is
+        only promoted to COMPLETED once it actually has enough approved questions,
+        so a single vaulted question never stops generation for a thin topic.
+        Returns the number of distinct topics touched.
+        """
+        idx = self._topic_index()
+        ex = _norm_exam(exam)
+        touched = set()
+        promotable = (
+            TopicState.READY_TO_TEACH.value, TopicState.IN_PROGRESS.value,
+            TopicState.REVISION_DUE.value, TopicState.COMPLETED.value,
+        )
+        for q in questions or []:
+            top = str(q.get("topic", "")).strip().lower()
+            if not top:
+                continue
+            t_id = idx.get((ex, _norm_subject(q.get("subject")), top))
+            if not t_id or t_id in touched:
+                continue
+            touched.add(t_id)
+            topic = self.topics[t_id]
+            prev = topic.get("last_vault_date")
+            if not prev or str(vault_date) > str(prev):
+                topic["last_vault_date"] = vault_date
+            if topic["approved_count"] >= MIN_APPROVED_QUESTIONS_PER_TOPIC and topic["state"] in promotable:
+                topic["state"] = TopicState.COMPLETED.value
+        if touched:
+            self.last_updated = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        return len(touched)
+
     def get_coverage_summary(self, exam: Optional[str] = None) -> dict:
         """Calculates global metrics across all topics."""
         exams = [exam] if exam else ["JEE", "NEET"]
@@ -255,47 +333,64 @@ class SyllabusTracker:
 
     def hydrate_from_question_bank(self, all_docs):
         """
-        Scans existing Firestore question documents and populates baseline topic approved counts.
+        Recomputes per-topic approved counts from the live question bank.
+
+        IDEMPOTENT: counts are REPLACED with the bank's ground truth, never added
+        on top of the persisted state (the old additive version re-added the
+        entire bank on every daily run, inflating counts ~5x within a week).
+
+        Only questions whose `topic` exactly matches a curriculum topic are
+        counted. Legacy questions that only carry a chapter/unit are NOT
+        attributed to an arbitrary topic (the old fallback dumped every one of
+        them onto the first topic of the unit).
         """
         if not all_docs:
             return
 
+        idx = self._topic_index()
+        counts: Dict[str, dict] = {}
+
         for doc in all_docs:
+            doc_id = getattr(doc, "id", "") or ""
             q = doc.to_dict() if hasattr(doc, "to_dict") else doc
             if not q:
                 continue
+            # Daily Vault copies duplicate bank questions — never count them.
+            if q.get("isDailyVault") is True or str(doc_id).startswith("vault_"):
+                continue
 
-            exam = str(q.get("examType", "")).upper()
-            sub = str(q.get("subject", "")).capitalize()
-            ch = str(q.get("chapter", ""))
-            top = str(q.get("topic", ""))
-            diff = q.get("difficulty", "Medium")
-            has_img = bool(q.get("imageUrl"))
+            top = str(q.get("topic", "")).strip().lower()
+            if not top:
+                continue
+            t_id = idx.get((_norm_exam(q.get("examType")), _norm_subject(q.get("subject")), top))
+            if not t_id:
+                continue
 
-            # Match to topic node
-            matched_id = None
-            if top:
-                for t_id, t in self.topics.items():
-                    if t["exam"] == exam and t["subject"] == sub and t["topic_name"].lower() == top.lower():
-                        matched_id = t_id
-                        break
+            c = counts.setdefault(t_id, {"n": 0, "diff": {"Easy": 0, "Medium": 0, "Hard": 0}, "img": 0})
+            c["n"] += 1
+            d = _norm_difficulty(q.get("difficulty"))
+            c["diff"][d] = c["diff"].get(d, 0) + 1
+            if q.get("imageUrl"):
+                c["img"] += 1
 
-            if not matched_id and ch:
-                # Match by unit/chapter
-                for t_id, t in self.topics.items():
-                    if t["exam"] == exam and t["subject"] == sub:
-                        if ch.lower() in t["unit_name"].lower() or t["unit_name"].lower() in ch.lower():
-                            matched_id = t_id
-                            break
+        for t_id, node in self.topics.items():
+            c = counts.get(t_id)
+            node["approved_count"] = c["n"] if c else 0
+            node["difficulty_breakdown"] = c["diff"] if c else {"Easy": 0, "Medium": 0, "Hard": 0}
+            node["diagram_count"] = c["img"] if c else 0
 
-            if matched_id:
-                node = self.topics[matched_id]
-                node["approved_count"] += 1
-                node["difficulty_breakdown"][diff] = node["difficulty_breakdown"].get(diff, 0) + 1
-                if has_img:
-                    node["diagram_count"] += 1
-                if node["approved_count"] >= MIN_APPROVED_QUESTIONS_PER_TOPIC:
+            # Reconcile state with the real count. Never touch quarantined,
+            # vaulted, or revision topics — those states are owned elsewhere.
+            state = node.get("state")
+            if node["approved_count"] >= MIN_APPROVED_QUESTIONS_PER_TOPIC:
+                if state in (TopicState.NOT_STARTED.value, TopicState.CONTENT_GENERATION.value):
                     node["state"] = TopicState.READY_TO_TEACH.value
+            elif state == TopicState.READY_TO_TEACH.value:
+                # Was promoted on inflated counts — send it back for generation.
+                node["state"] = (
+                    TopicState.CONTENT_GENERATION.value if node["approved_count"] > 0
+                    else TopicState.NOT_STARTED.value
+                )
 
     def to_dict(self) -> dict:
         return {
@@ -304,19 +399,43 @@ class SyllabusTracker:
             "topics": self.topics
         }
 
+    # Per-topic progress fields that are safe to restore from persisted state.
+    # Curriculum-owned fields (ids, names, unit numbers, allowed_modes) always
+    # come from the current curriculum.json, never from stale saved state.
+    _PERSISTED_FIELDS = (
+        "state", "approved_count", "difficulty_breakdown", "diagram_count",
+        "last_processed_timestamp", "last_vault_date", "retry_count",
+        "failure_reasons", "cycle",
+    )
+
     def load_dict(self, data: dict):
         if not data:
             return
-        if "cycle" in data:
-            self.cycle = data["cycle"]
+        if "cycle" in data and isinstance(data["cycle"], dict):
+            for ex, subs in data["cycle"].items():
+                if isinstance(subs, dict):
+                    self.cycle.setdefault(ex, {}).update(subs)
         if "last_updated" in data:
             self.last_updated = data["last_updated"]
         if "topics" in data:
+            # Topic IDs embed the topic's list position, so inserting/removing a
+            # topic in curriculum.json shifts IDs. Fall back to matching by
+            # (exam, subject, topic_name) so progress follows the topic, and drop
+            # topics that no longer exist in the syllabus (orphans).
+            idx = self._topic_index()
             for t_id, t_val in data["topics"].items():
-                if t_id in self.topics:
-                    self.topics[t_id].update(t_val)
-                else:
-                    self.topics[t_id] = t_val
+                if not isinstance(t_val, dict):
+                    continue
+                target_id = t_id if t_id in self.topics else idx.get((
+                    t_val.get("exam"), t_val.get("subject"),
+                    str(t_val.get("topic_name", "")).strip().lower(),
+                ))
+                if not target_id:
+                    continue  # orphan: topic removed from the official syllabus
+                node = self.topics[target_id]
+                for k in self._PERSISTED_FIELDS:
+                    if k in t_val:
+                        node[k] = t_val[k]
 
     def save_local(self, filepath: str = STATE_FILE):
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
@@ -360,7 +479,9 @@ class SyllabusTracker:
                 # Store full state & summary
                 payload = self.to_dict()
                 payload["summary"] = self.get_coverage_summary()
-                db.collection("metadata").document("syllabus_tracker").set(payload, merge=True)
+                # Full overwrite (no merge): merge=True deep-merges the `topics`
+                # map, so topics removed from the curriculum would live forever.
+                db.collection("metadata").document("syllabus_tracker").set(payload)
             except Exception as e:
                 print(f"⚠️ Could not write metadata/syllabus_tracker to Firestore: {e}")
 

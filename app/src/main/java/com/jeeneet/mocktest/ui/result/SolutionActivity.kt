@@ -48,8 +48,16 @@ class SolutionActivity : AppCompatActivity() {
             questions = runCatching { gson.fromJson<List<Question>>(qJson, type) }.getOrNull() ?: emptyList()
         }
         if (!aJson.isNullOrEmpty()) {
-            val type = object : com.google.gson.reflect.TypeToken<Map<Int, Int?>>() {}.type
-            answers = runCatching { gson.fromJson<Map<Int, Int?>>(aJson, type) }.getOrNull() ?: emptyMap()
+            val parsed = runCatching {
+                val intType = object : com.google.gson.reflect.TypeToken<Map<Int, Int?>>() {}.type
+                gson.fromJson<Map<Int, Int?>>(aJson, intType)
+            }.getOrNull() ?: runCatching {
+                val strType = object : com.google.gson.reflect.TypeToken<Map<String, Int?>>() {}.type
+                gson.fromJson<Map<String, Int?>>(aJson, strType)?.mapNotNull { (k, v) ->
+                    k.toIntOrNull()?.let { it to v }
+                }?.toMap()
+            }.getOrNull()
+            answers = parsed ?: emptyMap()
         }
     }
 

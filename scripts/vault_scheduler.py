@@ -500,7 +500,7 @@ def is_vault_complete_in_firestore(db, target_date: str, exam_type: str, count: 
         return False
 
 
-def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT, force: bool = False, all_docs=None) -> None:
+def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_VAULT_COUNT, force: bool = False, all_docs=None) -> list:
     print(f"\n[vault] Scheduling {exam_type} vault for {target_date} ({count} questions)...")
     if count != EXPECTED_VAULT_COUNT:
         raise VaultContractError(f"Daily Vault count must be {EXPECTED_VAULT_COUNT}, got {count}")
@@ -619,6 +619,10 @@ def schedule_vault(db, target_date: str, exam_type: str, count: int = EXPECTED_V
         verify_written_vault(list(written), exam_type, target_date, group_id, count)
 
     print(f"  OK: Wrote and verified {count} vault questions for {exam_type} (groupId: {group_id})")
+    # Returned so callers sharing one `all_docs` snapshot across several target
+    # dates can add these docs to it — otherwise the next date's history won't
+    # see them and can re-select the exact same questions on consecutive days.
+    return [(f"vault_{target_date}_{source_id}", payload) for source_id, payload in payloads]
 
 
 def main() -> None:

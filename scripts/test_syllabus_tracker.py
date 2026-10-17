@@ -138,5 +138,76 @@ class TestSyllabusTracker(unittest.TestCase):
         self.assertEqual(restored_node["state"], TopicState.READY_TO_TEACH.value)
 
 
+    def test_hydrate_idempotent(self):
+        """Hydrating from question bank must replace counts idempotently and ignore vault docs."""
+        phy_topics = self.tracker.get_topics_for_subject("JEE", "Physics")
+        target_topic = phy_topics[0]
+        t_name = target_topic["topic_name"]
+
+        docs = [
+            {"examType": "JEE", "subject": "Physics", "topic": t_name, "difficulty": "Easy", "questionText": "Q1"},
+            {"examType": "JEE", "subject": "Physics", "topic": t_name, "difficulty": "Medium", "imageUrl": "https://img", "questionText": "Q2"},
+            {"examType": "JEE", "subject": "Physics", "topic": t_name, "difficulty": "Hard", "questionText": "Q3"},
+            # Vault doc must be ignored
+            {"examType": "JEE", "subject": "Physics", "topic": t_name, "isDailyVault": True, "questionText": "Q_vault"},
+        ]
+
+        # First hydration
+        self.tracker.hydrate_from_question_bank(docs)
+        node = self.tracker.get_topic(target_topic["topic_id"])
+        self.assertEqual(node["approved_count"], 3)
+        self.assertEqual(node["diagram_count"], 1)
+        self.assertEqual(node["difficulty_breakdown"]["Easy"], 1)
+        self.assertEqual(node["difficulty_breakdown"]["Medium"], 1)
+        self.assertEqual(node["difficulty_breakdown"]["Hard"], 1)
+        self.assertEqual(node["state"], TopicState.READY_TO_TEACH.value)
+
+        # Re-hydration with same docs MUST be idempotent (never 6 or 9)
+        self.tracker.hydrate_from_question_bank(docs)
+        node_again = self.tracker.get_topic(target_topic["topic_id"])
+        self.assertEqual(node_again["approved_count"], 3)
+        self.assertEqual(node_again["diagram_count"], 1)
+
+    def test_mark_questions_vaulted_batch(self):
+        """Batch vault marking should update last_vault_date and transition qualified topics to COMPLETED."""
+        chem_topics = self.tracker.get_topics_for_subject("JEE", "Chemistry")
+        t0 = chem_topics[0]
+        # Approve 3 questions so it qualifies
+        self.tracker.record_generation_attempt(t0["topic_id"], success=True, new_approved_count=3)
+        self.assertEqual(self.tracker.get_topic(t0["topic_id"])["state"], TopicState.READY_TO_TEACH.value)
+
+        # Mark vaulted via questions batch
+        vault_batch = [
+            {"examType": "JEE", "subject": "Chemistry", "topic": t0["topic_name"], "questionText": "Chem Q1"}
+        ]
+        touched = self.tracker.mark_questions_vaulted("JEE", vault_batch, "2026-10-18")
+        self.assertEqual(touched, 1)
+
+        node = self.tracker.get_topic(t0["topic_id"])
+        self.assertEqual(node["state"], TopicState.COMPLETED.value)
+        self.assertEqual(node["last_vault_date"], "2026-10-18")
+
+    def test_cycle_progression_single_bump(self):
+        """Completing a curriculum cycle bumps cycle by 1, transitions to REVISION_DUE, and does not repeatedly bump."""
+        topics = self.tracker.get_topics_for_subject("JEE", "Physics")
+        # Mark all topics COMPLETED with sufficient approved questions
+        for t in topics:
+            t["approved_count"] = 5
+            t["state"] = TopicState.COMPLETED.value
+            t["last_vault_date"] = "2026-09-01"
+
+        self.assertEqual(self.tracker.cycle["JEE"]["Physics"], 1)
+
+        # Next eligible topic should trigger cycle bump to 2 and transition topics to REVISION_DUE
+        next_t = self.tracker.get_next_eligible_topic("JEE", "Physics")
+        self.assertIsNotNone(next_t)
+        self.assertEqual(self.tracker.cycle["JEE"]["Physics"], 2)
+        self.assertEqual(next_t["state"], TopicState.REVISION_DUE.value)
+
+        # Calling get_next_eligible_topic again should NOT increment the cycle to 3
+        again_t = self.tracker.get_next_eligible_topic("JEE", "Physics")
+        self.assertEqual(self.tracker.cycle["JEE"]["Physics"], 2)
+
+
 if __name__ == "__main__":
     unittest.main()

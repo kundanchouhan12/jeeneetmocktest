@@ -17,6 +17,12 @@ import os
 import sys
 import uuid
 import urllib.parse
+import urllib.request
+try:
+    import requests
+except ImportError:
+    requests = None
+
 try:
     from PIL import Image, ImageChops
     HAS_PIL = True
@@ -46,10 +52,18 @@ def download_image(url: str, timeout: int = 15) -> bytes | None:
         return None
     try:
         headers = {"User-Agent": USER_AGENT}
-        resp = requests.get(url, headers=headers, timeout=timeout)
-        if resp.status_code == 200 and len(resp.content) > 200:
-            return resp.content
-        return None
+        if requests is not None:
+            resp = requests.get(url, headers=headers, timeout=timeout)
+            if resp.status_code == 200 and len(resp.content) > 200:
+                return resp.content
+            return None
+        else:
+            req = urllib.request.Request(url, headers=headers)
+            with urllib.request.urlopen(req, timeout=timeout) as resp:
+                content = resp.read()
+                if len(content) > 200:
+                    return content
+            return None
     except Exception as e:
         print(f"    ⚠️ Diagram download failed from {url[:60]}...: {e}")
         return None
