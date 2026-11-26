@@ -674,7 +674,6 @@ class ResultActivity : AppCompatActivity() {
             return
         }
 
-        AnalyticsManager.rewardedAdShown(this, "next_10_unlock")
         AdManager.showRewarded(
             activity = this,
             onRewarded = {
@@ -686,7 +685,8 @@ class ResultActivity : AppCompatActivity() {
             },
             onLoading = {
                 Toast.makeText(this, "Loading ad to unlock next 10 questions…", Toast.LENGTH_SHORT).show()
-            }
+            },
+            placement = "next_10_unlock"
         )
     }
 
@@ -772,14 +772,14 @@ class ResultActivity : AppCompatActivity() {
             SolutionActivity.start(this, res.questionsJson, res.answersJson)
             return
         }
-        AnalyticsManager.rewardedAdShown(this, "solution_unlock")
         AdManager.showRewarded(
             activity = this,
             onRewarded = { SolutionActivity.start(this, res.questionsJson, res.answersJson) },
             onNotAvailable = {
                 Toast.makeText(this, "No ad available. Connect to internet or purchase to unlock.", Toast.LENGTH_SHORT).show()
             },
-            onLoading = { Toast.makeText(this, "Loading ad, please wait…", Toast.LENGTH_SHORT).show() }
+            onLoading = { Toast.makeText(this, "Loading ad, please wait…", Toast.LENGTH_SHORT).show() },
+            placement = "solution_unlock"
         )
     }
 }

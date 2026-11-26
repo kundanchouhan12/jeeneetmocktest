@@ -23,6 +23,9 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import com.jeeneet.mocktest.data.model.AdUnitIds
 import com.jeeneet.mocktest.utils.PrefManager
+import java.lang.ref.WeakReference
+import java.util.Collections
+import java.util.WeakHashMap
 
 object AdManager {
 
@@ -32,18 +35,26 @@ object AdManager {
     private var interstitialAd: InterstitialAd? = null
     private var rewardedAd: RewardedAd? = null
     private var isInterstitialLoading = false
+    private var isInterstitialShowing = false  // guard against rapid-tap double-show
     private var isRewardedLoading = false
     private var isRewardedShowing = false  // guard against rapid-tap double-show
 
     // Queued callbacks — invoked automatically once the ad finishes loading
     private var pendingInterstitialCallback: (() -> Unit)? = null
+    private var pendingInterstitialActivityRef: WeakReference<Activity>? = null
+    private var pendingInterstitialBypassCooldown = false
     private var pendingRewardedOnRewarded: (() -> Unit)? = null
     private var pendingRewardedOnNotAvailable: (() -> Unit)? = null
+    private var pendingRewardedActivityRef: WeakReference<Activity>? = null
+    private var pendingRewardedPlacement: String = "unknown"
 
     private var rewardedRetryCount = 0
     private var interstitialRetryCount = 0
     private var lastInterstitialShownMs = 0L
     private const val INTERSTITIAL_COOLDOWN_MS = 30_000L // 30 seconds
+    // Don't block a user's navigation tap for more than 4s if an interstitial isn't ready yet;
+    // the background load continues so the next trigger has a cached ad ready immediately.
+    private const val INTERSTITIAL_QUEUE_TIMEOUT_MS = 4_000L
     // Must outlast the full retry backoff below (3s+6s+9s=18s of scheduled delay, plus
     // real network time per attempt) — otherwise this fires "not available" while a retry
     // is still in flight and about to succeed, even though the ad loads a few seconds later.
@@ -51,13 +62,18 @@ object AdManager {
 
     private val retryHandler = android.os.Handler(android.os.Looper.getMainLooper())
     private var interstitialRetryRunnable: Runnable? = null
+    private var interstitialTimeoutRunnable: Runnable? = null
     private var rewardedRetryRunnable: Runnable? = null
     private var rewardedTimeoutRunnable: Runnable? = null
     private var nativeAdRetryRunnable: Runnable? = null
     private var preloadedNativeAd: NativeAd? = null  // loaded ahead-of-time, not yet shown
     private var lastNativeLoadMs = 0L
     private const val NATIVE_REFRESH_MS = 30 * 60 * 1000L // stale after 30 min
-    private var isNativeAdLoading = false
+    private var isPreloadingNativeAd = false
+    private val loadingNativeContainers: MutableSet<FrameLayout> =
+        Collections.newSetFromMap(WeakHashMap())
+    private var pendingNativeContainerRef: WeakReference<FrameLayout>? = null
+    private var pendingNativeContextRef: WeakReference<Context>? = null
     // Video ads fill a larger slot and typically earn higher eCPM than static images.
     // LANDSCAPE aspect ratio matches our 160dp tall media slot well.
     private val nativeAdOptions: NativeAdOptions = NativeAdOptions.Builder()
@@ -115,11 +131,19 @@ object AdManager {
     // ─── Banner ───────────────────────────────────────────────────────────────
 
     fun showBanner(activity: Activity, container: FrameLayout) {
-        if (PrefManager.isAdsRemoved(activity)) { container.removeAllViews(); return }
+        if (PrefManager.isAdsRemoved(activity)) {
+            container.removeAllViews()
+            container.visibility = View.GONE
+            return
+        }
+        if (activity.isFinishing || activity.isDestroyed) return
+        container.visibility = View.GONE
         loadBannerWithRetry(activity, container, retryCount = 0)
     }
 
     private fun loadBannerWithRetry(activity: Activity, container: FrameLayout, retryCount: Int) {
+        if (activity.isFinishing || activity.isDestroyed) return
+        val appContext = activity.applicationContext
         val adSize = getAdSize(activity)
         val adView = AdView(activity).apply {
             setAdSize(adSize)
@@ -128,6 +152,17 @@ object AdManager {
 
         adView.adListener = object : AdListener() {
             override fun onAdLoaded() {
+                if (activity.isFinishing || activity.isDestroyed) {
+                    adView.destroy()
+                    return
+                }
+                adView.setOnPaidEventListener { adValue ->
+                    Log.d(TAG, "[Revenue] Banner: ${adValue.valueMicros}µ ${adValue.currencyCode} prec=${adValue.precisionType}")
+                    com.jeeneet.mocktest.utils.AnalyticsManager.adImpression(
+                        appContext, "banner", AdUnitIds.BANNER,
+                        adValue.valueMicros, adValue.currencyCode, adValue.precisionType
+                    )
+                }
                 container.removeAllViews()
                 container.addView(adView)
                 container.visibility = View.VISIBLE
@@ -156,6 +191,11 @@ object AdManager {
 
     /** Call from the hosting Activity's onResume() to resume a previously paused banner. */
     fun resumeBanner(container: FrameLayout) {
+        if (PrefManager.isAdsRemoved(container.context)) {
+            destroyBanner(container)
+            container.visibility = View.GONE
+            return
+        }
         (container.getChildAt(0) as? AdView)?.resume()
     }
 
@@ -187,19 +227,20 @@ object AdManager {
     // ─── Interstitial ─────────────────────────────────────────────────────────
 
     fun loadInterstitial(context: Context) {
+        val appContext = context.applicationContext
         if (isInterstitialLoading || interstitialAd != null) return
-        if (PrefManager.isAdsRemoved(context)) return
+        if (PrefManager.isAdsRemoved(appContext)) return
         isInterstitialLoading = true
 
         try {
             InterstitialAd.load(
-                context, AdUnitIds.INTERSTITIAL, buildRequest(),
+                appContext, AdUnitIds.INTERSTITIAL, buildRequest(),
                 object : InterstitialAdLoadCallback() {
                     override fun onAdLoaded(ad: InterstitialAd) {
                         ad.onPaidEventListener = OnPaidEventListener { adValue ->
                             Log.d(TAG, "[Revenue] Interstitial: ${adValue.valueMicros}µ ${adValue.currencyCode} prec=${adValue.precisionType}")
                             com.jeeneet.mocktest.utils.AnalyticsManager.adImpression(
-                                context, "interstitial", AdUnitIds.INTERSTITIAL,
+                                appContext, "interstitial", AdUnitIds.INTERSTITIAL,
                                 adValue.valueMicros, adValue.currencyCode, adValue.precisionType
                             )
                         }
@@ -208,12 +249,18 @@ object AdManager {
                         interstitialRetryCount = 0
                         interstitialRetryRunnable?.let { retryHandler.removeCallbacks(it) }
                         interstitialRetryRunnable = null
+                        interstitialTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
+                        interstitialTimeoutRunnable = null
                         Log.d(TAG, "Interstitial loaded")
-                        // Fire any queued show
-                        pendingInterstitialCallback?.let { cb ->
-                            pendingInterstitialCallback = null
-                            if (context is Activity) {
-                                showInterstitial(context, onDismissed = cb)
+                        // Fire any queued show using the Activity stored when showInterstitial was called
+                        val cb = pendingInterstitialCallback
+                        val act = pendingInterstitialActivityRef?.get()
+                        val bypass = pendingInterstitialBypassCooldown
+                        pendingInterstitialCallback = null
+                        pendingInterstitialActivityRef = null
+                        if (cb != null) {
+                            if (act != null && !act.isFinishing && !act.isDestroyed) {
+                                showInterstitial(act, bypassCooldown = bypass, onDismissed = cb)
                             } else {
                                 cb.invoke()
                             }
@@ -227,14 +274,18 @@ object AdManager {
                             interstitialRetryCount++
                             interstitialRetryRunnable?.let { retryHandler.removeCallbacks(it) }
                             interstitialRetryRunnable = Runnable {
-                                loadInterstitial(context)
+                                loadInterstitial(appContext)
                             }
                             retryHandler.postDelayed(interstitialRetryRunnable!!, 3000L * interstitialRetryCount)
                         } else {
                             // Give up — fire the pending callback without an ad
                             interstitialRetryCount = 0
-                            pendingInterstitialCallback?.invoke()
+                            interstitialTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
+                            interstitialTimeoutRunnable = null
+                            val cb = pendingInterstitialCallback
                             pendingInterstitialCallback = null
+                            pendingInterstitialActivityRef = null
+                            cb?.invoke()
                         }
                     }
                 }
@@ -254,7 +305,11 @@ object AdManager {
      * Set [bypassCooldown] = true to always show regardless of the frequency cap.
      */
     fun showInterstitial(activity: Activity, bypassCooldown: Boolean = false, onDismissed: () -> Unit = {}) {
-        if (PrefManager.isAdsRemoved(activity)) { onDismissed(); return }
+        if (PrefManager.isAdsRemoved(activity) || activity.isFinishing || activity.isDestroyed) {
+            onDismissed()
+            return
+        }
+        if (isInterstitialShowing) return  // rapid-tap guard — ad already on screen
 
         // Frequency cap: max 1 interstitial per 30s (skipped when bypassCooldown = true)
         val now = System.currentTimeMillis()
@@ -265,22 +320,39 @@ object AdManager {
 
         val ad = interstitialAd
         if (ad == null) {
-            // Queue and trigger a load — will auto-show when ready
+            // Queue with Activity WeakRef + short timeout so navigation never stalls,
+            // while background loading continues for the next opportunity.
             pendingInterstitialCallback = onDismissed
-            loadInterstitial(activity)
+            pendingInterstitialActivityRef = WeakReference(activity)
+            pendingInterstitialBypassCooldown = bypassCooldown
+            loadInterstitial(activity.applicationContext)
+            interstitialTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
+            interstitialTimeoutRunnable = Runnable {
+                val cb = pendingInterstitialCallback
+                if (cb != null) {
+                    pendingInterstitialCallback = null
+                    pendingInterstitialActivityRef = null
+                    cb.invoke()
+                }
+            }
+            retryHandler.postDelayed(interstitialTimeoutRunnable!!, INTERSTITIAL_QUEUE_TIMEOUT_MS)
             return
         }
 
+        val appContext = activity.applicationContext
+        interstitialAd = null
+        isInterstitialShowing = true
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
+                isInterstitialShowing = false
                 lastInterstitialShownMs = System.currentTimeMillis()
-                interstitialAd = null
                 interstitialRetryCount = 0
-                loadInterstitial(activity)
+                loadInterstitial(appContext)
                 onDismissed()
             }
             override fun onAdFailedToShowFullScreenContent(error: AdError) {
-                interstitialAd = null
+                isInterstitialShowing = false
+                loadInterstitial(appContext)
                 onDismissed()
             }
         }
@@ -288,23 +360,25 @@ object AdManager {
     }
 
     fun isInterstitialReady(): Boolean = interstitialAd != null
+    fun isFullscreenAdShowing(): Boolean = isInterstitialShowing || isRewardedShowing
 
     // ─── Rewarded ─────────────────────────────────────────────────────────────
 
     fun loadRewarded(context: Context) {
+        val appContext = context.applicationContext
         if (isRewardedLoading || rewardedAd != null) return
-        if (PrefManager.isAdsRemoved(context)) return
+        if (PrefManager.isAdsRemoved(appContext)) return
         isRewardedLoading = true
 
         try {
             RewardedAd.load(
-                context, AdUnitIds.REWARDED, buildRequest(),
+                appContext, AdUnitIds.REWARDED, buildRequest(),
                 object : RewardedAdLoadCallback() {
                     override fun onAdLoaded(ad: RewardedAd) {
                         ad.onPaidEventListener = OnPaidEventListener { adValue ->
                             Log.d(TAG, "[Revenue] Rewarded: ${adValue.valueMicros}µ ${adValue.currencyCode} prec=${adValue.precisionType}")
                             com.jeeneet.mocktest.utils.AnalyticsManager.adImpression(
-                                context, "rewarded", AdUnitIds.REWARDED,
+                                appContext, "rewarded", AdUnitIds.REWARDED,
                                 adValue.valueMicros, adValue.currencyCode, adValue.precisionType
                             )
                         }
@@ -316,13 +390,20 @@ object AdManager {
                         rewardedTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
                         rewardedTimeoutRunnable = null
                         Log.d(TAG, "Rewarded loaded")
-                        // Fire any queued show
+                        // Fire any queued show using the Activity stored when showRewarded was called
                         val onRewarded = pendingRewardedOnRewarded
                         val onNotAvailable = pendingRewardedOnNotAvailable
-                        if (onRewarded != null && context is Activity) {
-                            pendingRewardedOnRewarded = null
-                            pendingRewardedOnNotAvailable = null
-                            showRewarded(context, onRewarded, onNotAvailable ?: {})
+                        val act = pendingRewardedActivityRef?.get()
+                        val placement = pendingRewardedPlacement
+                        pendingRewardedOnRewarded = null
+                        pendingRewardedOnNotAvailable = null
+                        pendingRewardedActivityRef = null
+                        if (onRewarded != null) {
+                            if (act != null && !act.isFinishing && !act.isDestroyed) {
+                                showRewarded(act, onRewarded, onNotAvailable ?: {}, placement = placement)
+                            } else {
+                                onNotAvailable?.invoke()
+                            }
                         }
                     }
                     override fun onAdFailedToLoad(error: LoadAdError) {
@@ -333,15 +414,18 @@ object AdManager {
                             rewardedRetryCount++
                             rewardedRetryRunnable?.let { retryHandler.removeCallbacks(it) }
                             rewardedRetryRunnable = Runnable {
-                                loadRewarded(context)
+                                loadRewarded(appContext)
                             }
                             retryHandler.postDelayed(rewardedRetryRunnable!!, 3000L * rewardedRetryCount)
                         } else {
                             // Give up — fire not-available callback
                             rewardedRetryCount = 0
+                            rewardedTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
+                            rewardedTimeoutRunnable = null
                             pendingRewardedOnNotAvailable?.invoke()
                             pendingRewardedOnRewarded = null
                             pendingRewardedOnNotAvailable = null
+                            pendingRewardedActivityRef = null
                         }
                     }
                 }
@@ -367,21 +451,25 @@ object AdManager {
         placement: String = "unknown"
     ) {
         if (PrefManager.isAdsRemoved(activity)) { onRewarded(); return }
+        if (activity.isFinishing || activity.isDestroyed) { onNotAvailable(); return }
         if (isRewardedShowing) return  // rapid-tap guard — ad already on screen
 
         val ad = rewardedAd
         if (ad == null) {
             pendingRewardedOnRewarded = onRewarded
             pendingRewardedOnNotAvailable = onNotAvailable
+            pendingRewardedActivityRef = WeakReference(activity)
+            pendingRewardedPlacement = placement
             onLoading?.invoke()
-            loadRewarded(activity)
-            // Fallback: if ad doesn't load within 8s, fire onNotAvailable so user isn't stuck
+            loadRewarded(activity.applicationContext)
+            // Fallback: if ad doesn't load within timeout, fire onNotAvailable so user isn't stuck
             rewardedTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
             rewardedTimeoutRunnable = Runnable {
                 val cb = pendingRewardedOnNotAvailable
                 if (cb != null) {
                     pendingRewardedOnRewarded = null
                     pendingRewardedOnNotAvailable = null
+                    pendingRewardedActivityRef = null
                     cb.invoke()
                 }
             }
@@ -392,27 +480,28 @@ object AdManager {
         // Track reward separately so onRewarded() fires AFTER ad dismisses,
         // not during — prevents starting a new Activity mid-ad which causes early close.
         var earned = false
+        val appContext = activity.applicationContext
+        rewardedAd = null
+        isRewardedShowing = true
 
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdShowedFullScreenContent() {
-                isRewardedShowing = true
-                com.jeeneet.mocktest.utils.AnalyticsManager.rewardedAdShown(activity, placement)
+                com.jeeneet.mocktest.utils.AnalyticsManager.rewardedAdShown(appContext, placement)
             }
             override fun onAdDismissedFullScreenContent() {
                 isRewardedShowing = false
-                rewardedAd = null
                 rewardedRetryCount = 0
-                loadRewarded(activity) // pre-load next
+                loadRewarded(appContext) // pre-load next
                 if (earned) {
-                    com.jeeneet.mocktest.utils.AnalyticsManager.rewardedAdCompleted(activity, placement)
+                    com.jeeneet.mocktest.utils.AnalyticsManager.rewardedAdCompleted(appContext, placement)
                     onRewarded()
                 } else {
-                    com.jeeneet.mocktest.utils.AnalyticsManager.rewardedAdDismissed(activity, placement)
+                    com.jeeneet.mocktest.utils.AnalyticsManager.rewardedAdDismissed(appContext, placement)
                 }
             }
             override fun onAdFailedToShowFullScreenContent(error: AdError) {
                 isRewardedShowing = false
-                rewardedAd = null
+                loadRewarded(appContext)
                 onNotAvailable()
             }
         }
@@ -432,28 +521,51 @@ object AdManager {
      * Application.onCreate) so the first home-screen render is instant with zero blank time.
      */
     fun preloadNativeAd(context: Context) {
-        // TEMP-TEST-BYPASS: normally `if (AdUnitIds.IS_DEBUG) return` — disabled for manual
-        // native-ad testing session. REVERT before shipping.
-        if (PrefManager.isAdsRemoved(context)) return
-        if (isNativeAdLoading) return
+        val appContext = context.applicationContext
+        if (PrefManager.isAdsRemoved(appContext)) return
+        if (isPreloadingNativeAd) return
         // Cache already fresh — skip redundant network hit
         if (preloadedNativeAd != null &&
             System.currentTimeMillis() - lastNativeLoadMs < NATIVE_REFRESH_MS) return
 
         try {
-            isNativeAdLoading = true
-            AdLoader.Builder(context.applicationContext, AdUnitIds.NATIVE)
+            isPreloadingNativeAd = true
+            AdLoader.Builder(appContext, AdUnitIds.NATIVE)
                 .forNativeAd { nativeAd ->
-                    isNativeAdLoading = false
-                    preloadedNativeAd?.destroy()
-                    preloadedNativeAd = nativeAd
+                    isPreloadingNativeAd = false
                     lastNativeLoadMs = System.currentTimeMillis()
-                    Log.d(TAG, "Native preloaded")
+                    val pendingContainer = pendingNativeContainerRef?.get()
+                    val pendingContext = pendingNativeContextRef?.get()
+                    pendingNativeContainerRef = null
+                    pendingNativeContextRef = null
+                    val act = pendingContext as? Activity
+                    if (pendingContainer != null && pendingContext != null &&
+                        (act == null || (!act.isFinishing && !act.isDestroyed))
+                    ) {
+                        loadingNativeContainers.remove(pendingContainer)
+                        renderNativeAd(pendingContext, pendingContainer, nativeAd)
+                        preloadNativeAd(appContext)
+                    } else {
+                        preloadedNativeAd?.destroy()
+                        preloadedNativeAd = nativeAd
+                        Log.d(TAG, "Native preloaded")
+                    }
                 }
                 .withAdListener(object : AdListener() {
                     override fun onAdFailedToLoad(error: LoadAdError) {
-                        isNativeAdLoading = false
+                        isPreloadingNativeAd = false
                         Log.w(TAG, "Native preload failed: ${error.message}")
+                        val pendingContainer = pendingNativeContainerRef?.get()
+                        val pendingContext = pendingNativeContextRef?.get()
+                        pendingNativeContainerRef = null
+                        pendingNativeContextRef = null
+                        if (pendingContainer != null && pendingContext != null) {
+                            loadingNativeContainers.remove(pendingContainer)
+                            val act = pendingContext as? Activity
+                            if (act == null || (!act.isFinishing && !act.isDestroyed)) {
+                                loadNativeAd(pendingContext, pendingContainer, retryCount = 1)
+                            }
+                        }
                     }
                 })
                 .withNativeAdOptions(nativeAdOptions)
@@ -461,9 +573,8 @@ object AdManager {
                 .loadAd(buildRequest())
         } catch (e: Exception) {
             Log.e(TAG, "Error in preloadNativeAd: ${e.message}")
-            isNativeAdLoading = false
+            isPreloadingNativeAd = false
         }
-
     }
 
     /**
@@ -475,9 +586,9 @@ object AdManager {
      * Safe to call on every buildContent() / onResume — internal guards prevent double-loads.
      */
     fun loadNativeAd(context: Context, container: FrameLayout, retryCount: Int = 0) {
-        // TEMP-TEST-BYPASS: normally `if (AdUnitIds.IS_DEBUG) { container.visibility = View.GONE; return }`
-        // — disabled for manual native-ad testing session. REVERT before shipping.
         if (PrefManager.isAdsRemoved(context)) { container.visibility = View.GONE; return }
+        val act = context as? Activity
+        if (act != null && (act.isFinishing || act.isDestroyed)) return
 
         try {
             val now = System.currentTimeMillis()
@@ -488,37 +599,68 @@ object AdManager {
 
             // Fresh preloaded ad available — render instantly, then warm up next slot
             val cached = preloadedNativeAd
-            if (cached != null && !isStale) {
-                preloadedNativeAd = null          // consume from cache
-                renderNativeAd(context, container, cached)
-                preloadNativeAd(context)          // immediately warm up next
+            if (cached != null) {
+                if (!isStale) {
+                    preloadedNativeAd = null          // consume from cache
+                    loadingNativeContainers.remove(container)
+                    renderNativeAd(context, container, cached)
+                    preloadNativeAd(context)          // immediately warm up next
+                    return
+                } else {
+                    cached.destroy()
+                    preloadedNativeAd = null
+                }
+            }
+
+            // Avoid duplicate requests for the same container while already loading
+            if (retryCount == 0 && !loadingNativeContainers.add(container)) return
+
+            // If preload is already in flight and no other container is waiting for it,
+            // bind this container to receive it as soon as it arrives.
+            if (isPreloadingNativeAd && pendingNativeContainerRef?.get() == null) {
+                pendingNativeContainerRef = WeakReference(container)
+                pendingNativeContextRef = WeakReference(context)
                 return
             }
 
-            // Need a network load (cache empty or stale)
-            if (isNativeAdLoading && retryCount == 0) return
-            isNativeAdLoading = true
+            val appContext = context.applicationContext
+            val ctxRef = WeakReference(context)
+            val containerRef = WeakReference(container)
 
-            AdLoader.Builder(context, AdUnitIds.NATIVE)
+            AdLoader.Builder(appContext, AdUnitIds.NATIVE)
                 .forNativeAd { nativeAd ->
-                    isNativeAdLoading = false
+                    val targetContainer = containerRef.get()
+                    val targetCtx = ctxRef.get()
+                    if (targetContainer != null) loadingNativeContainers.remove(targetContainer)
                     lastNativeLoadMs = System.currentTimeMillis()
-                    renderNativeAd(context, container, nativeAd)
+                    val targetAct = targetCtx as? Activity
+                    if (targetContainer != null && targetCtx != null &&
+                        (targetAct == null || (!targetAct.isFinishing && !targetAct.isDestroyed))
+                    ) {
+                        renderNativeAd(targetCtx, targetContainer, nativeAd)
+                        preloadNativeAd(appContext)
+                    } else if (preloadedNativeAd == null) {
+                        preloadedNativeAd = nativeAd
+                    } else {
+                        nativeAd.destroy()
+                    }
                 }
                 .withAdListener(object : AdListener() {
                     override fun onAdFailedToLoad(error: LoadAdError) {
-                        isNativeAdLoading = false
+                        val targetContainer = containerRef.get()
+                        val targetCtx = ctxRef.get()
+                        if (targetContainer != null) loadingNativeContainers.remove(targetContainer)
                         Log.w(TAG, "Native failed (attempt ${retryCount + 1}): ${error.message}")
-                        if (retryCount < MAX_RETRIES) {
+                        if (retryCount < MAX_RETRIES && targetContainer != null && targetCtx != null) {
                             nativeAdRetryRunnable?.let { retryHandler.removeCallbacks(it) }
                             nativeAdRetryRunnable = Runnable {
-                                val act = context as? Activity
-                                if (act == null || (!act.isFinishing && !act.isDestroyed))
-                                    loadNativeAd(context, container, retryCount + 1)
+                                val a = targetCtx as? Activity
+                                if (a == null || (!a.isFinishing && !a.isDestroyed))
+                                    loadNativeAd(targetCtx, targetContainer, retryCount + 1)
                             }
                             retryHandler.postDelayed(nativeAdRetryRunnable!!, 10_000L * (retryCount + 1))
                         } else {
-                            container.visibility = View.GONE
+                            targetContainer?.visibility = View.GONE
                         }
                     }
                 })
@@ -527,21 +669,22 @@ object AdManager {
                 .loadAd(buildRequest())
         } catch (e: SecurityException) {
             Log.e(TAG, "SecurityException in loadNativeAd: ${e.message}")
-            isNativeAdLoading = false
+            loadingNativeContainers.remove(container)
             container.visibility = View.GONE
         } catch (e: Exception) {
             Log.e(TAG, "Error in loadNativeAd: ${e.message}")
-            isNativeAdLoading = false
+            loadingNativeContainers.remove(container)
             container.visibility = View.GONE
         }
     }
 
     private fun renderNativeAd(context: Context, container: FrameLayout, nativeAd: NativeAd) {
+        val appContext = context.applicationContext
         // Revenue tracking — compare per-format to find highest earner
         nativeAd.setOnPaidEventListener { adValue ->
             Log.d(TAG, "[Revenue] Native: ${adValue.valueMicros}µ ${adValue.currencyCode} prec=${adValue.precisionType}")
             com.jeeneet.mocktest.utils.AnalyticsManager.adImpression(
-                context, "native", AdUnitIds.NATIVE,
+                appContext, "native", AdUnitIds.NATIVE,
                 adValue.valueMicros, adValue.currencyCode, adValue.precisionType
             )
         }
@@ -558,6 +701,11 @@ object AdManager {
 
     /** Call from the hosting Activity's onDestroy() (or dialog dismiss) to release this container's native ad. */
     fun destroyNativeAd(container: FrameLayout) {
+        loadingNativeContainers.remove(container)
+        if (pendingNativeContainerRef?.get() === container) {
+            pendingNativeContainerRef = null
+            pendingNativeContextRef = null
+        }
         (container.tag as? NativeAd)?.destroy()
         container.tag = null
         container.removeAllViews()
@@ -565,14 +713,16 @@ object AdManager {
 
     fun cleanup() {
         interstitialRetryRunnable?.let { retryHandler.removeCallbacks(it) }
+        interstitialTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
         rewardedRetryRunnable?.let  { retryHandler.removeCallbacks(it) }
         nativeAdRetryRunnable?.let  { retryHandler.removeCallbacks(it) }
         rewardedTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
-        interstitialRetryRunnable = null
-        rewardedRetryRunnable     = null
-        nativeAdRetryRunnable     = null
-        rewardedTimeoutRunnable   = null
-        
+        interstitialRetryRunnable   = null
+        interstitialTimeoutRunnable = null
+        rewardedRetryRunnable       = null
+        nativeAdRetryRunnable       = null
+        rewardedTimeoutRunnable     = null
+
         // We only destroy ads that are NOT shared/preloaded or that are definitively
         // no longer needed. preloadedAds are kept for the next activity.
         // Per-container displayed native ads are released via destroyNativeAd() from
@@ -584,12 +734,18 @@ object AdManager {
         interstitialAd    = null
         rewardedAd        = null
         isInterstitialLoading = false
+        isInterstitialShowing = false
         isRewardedLoading     = false
         isRewardedShowing     = false
-        isNativeAdLoading     = false
+        isPreloadingNativeAd  = false
+        loadingNativeContainers.clear()
+        pendingNativeContainerRef     = null
+        pendingNativeContextRef       = null
         pendingInterstitialCallback   = null
+        pendingInterstitialActivityRef = null
         pendingRewardedOnRewarded     = null
         pendingRewardedOnNotAvailable = null
+        pendingRewardedActivityRef    = null
     }
 
     private fun buildNativeAdView(context: Context, nativeAd: NativeAd): NativeAdView {
@@ -742,7 +898,7 @@ object AdManager {
         // Neighboring URLs give AdMob content signals for better contextual matching → higher eCPM.
         // Only include real crawlable URLs — fake/unreachable URLs suppress fill rate.
         .setNeighboringContentUrls(listOf(
-            "https://jeemains.nta.nic.in",
+            "https://jeemain.nta.nic.in",
             "https://neet.nta.nic.in",
             "https://ncert.nic.in"
         ))

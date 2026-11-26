@@ -48,22 +48,40 @@ class Power100ResultActivity : AppCompatActivity() {
     // Wrong questions RecyclerView
     private lateinit var wrongRecycler: RecyclerView
     private lateinit var wrongFilterRow: LinearLayout
+    private lateinit var bannerContainer: FrameLayout
+    private lateinit var nativeAdContainer: FrameLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         exam = intent.getStringExtra(EXTRA_EXAM) ?: "JEE"
         uid = FirebaseAuth.getInstance().currentUser?.uid ?: "guest"
 
+        val outerRoot = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setBackgroundColor(bgPrimary)
+            layoutParams = ViewGroup.LayoutParams(-1, -1)
+        }
         val root = ScrollView(this).apply {
             setBackgroundColor(bgPrimary)
             isVerticalScrollBarEnabled = false
+            layoutParams = LinearLayout.LayoutParams(-1, 0, 1f)
         }
         val content = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(Space.L.dp, 0, Space.L.dp, Space.XL.dp)
         }
         root.addView(content)
-        setContentView(root)
+        outerRoot.addView(root)
+
+        bannerContainer = FrameLayout(this).apply {
+            layoutParams = LinearLayout.LayoutParams(-1, -2)
+            visibility = View.GONE
+        }
+        outerRoot.addView(bannerContainer)
+        setContentView(outerRoot)
+
+        com.jeeneet.mocktest.admob.AdManager.loadRewarded(this)
+        com.jeeneet.mocktest.admob.AdManager.showBanner(this, bannerContainer)
 
         lifecycleScope.launch {
             val db = MockTestDatabase.getInstance(this@Power100ResultActivity)
@@ -72,6 +90,22 @@ class Power100ResultActivity : AppCompatActivity() {
             progressMap = progressList.associateBy { it.position }
             withContext(Dispatchers.Main) { renderResult(content) }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (::bannerContainer.isInitialized) com.jeeneet.mocktest.admob.AdManager.pauseBanner(bannerContainer)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::bannerContainer.isInitialized) com.jeeneet.mocktest.admob.AdManager.resumeBanner(bannerContainer)
+    }
+
+    override fun onDestroy() {
+        if (::bannerContainer.isInitialized) com.jeeneet.mocktest.admob.AdManager.destroyBanner(bannerContainer)
+        if (::nativeAdContainer.isInitialized) com.jeeneet.mocktest.admob.AdManager.destroyNativeAd(nativeAdContainer)
+        super.onDestroy()
     }
 
     private fun renderResult(content: LinearLayout) {
@@ -89,6 +123,14 @@ class Power100ResultActivity : AppCompatActivity() {
 
         // Trophy + score card
         content.addView(buildScoreCard(correct, wrong, attempted, powerScore, coinsEarned))
+
+        // Native ad right below the score card
+        nativeAdContainer = FrameLayout(this).apply {
+            layoutParams = LinearLayout.LayoutParams(-1, -2).apply { topMargin = Space.L.dp }
+            visibility = View.GONE
+        }
+        content.addView(nativeAdContainer)
+        com.jeeneet.mocktest.admob.AdManager.loadNativeAd(this, nativeAdContainer)
 
         // Subject breakdown
         content.addView(uiSectionLabel("Performance by Subject").apply {

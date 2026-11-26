@@ -48,6 +48,7 @@ class ChapterwiseListActivity : AppCompatActivity() {
     }
 
     private lateinit var contentContainer: FrameLayout
+    private lateinit var bannerContainer: FrameLayout
     private var nativeAdContainer: FrameLayout? = null
     private lateinit var tvOverallProgress: TextView
     private lateinit var tvBottomSubtitle: TextView
@@ -96,6 +97,12 @@ class ChapterwiseListActivity : AppCompatActivity() {
         root.addView(buildHeader())
         root.addView(buildTabBar())
         root.addView(contentContainer)
+        bannerContainer = FrameLayout(this).apply {
+            layoutParams = LinearLayout.LayoutParams(-1, -2)
+            visibility = View.GONE
+        }
+        root.addView(bannerContainer)
+        AdManager.showBanner(this, bannerContainer)
         root.addView(buildBottomProgressBar())
         selectTab(1)   // default: Category
         return root
@@ -248,8 +255,19 @@ class ChapterwiseListActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (::bannerContainer.isInitialized) AdManager.pauseBanner(bannerContainer)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::bannerContainer.isInitialized) AdManager.resumeBanner(bannerContainer)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        if (::bannerContainer.isInitialized) AdManager.destroyBanner(bannerContainer)
         nativeAdContainer?.let { AdManager.destroyNativeAd(it) }
     }
 
@@ -326,9 +344,9 @@ class ChapterwiseListActivity : AppCompatActivity() {
         } else {
             chapters.forEachIndexed { index, chapter ->
                 list.addView(buildLatestTestCard(chapter, 200 + (10 - index), index))
-                // One native ad slot after the 6th item — not repeated further down (avoids
-                // stacking concurrent native ad loads on one screen, which starve each other).
-                if (index == 5 && chapters.size > 6) {
+                // One native ad slot after the 3rd item — visible in the first scroll without
+                // stacking concurrent native ad loads on one screen.
+                if (index == 2 && chapters.size > 3) {
                     val adContainer = FrameLayout(this).apply { layoutParams = lpRow(bottomDp = 10) }
                     list.addView(adContainer)
                     nativeAdContainer = adContainer
@@ -418,8 +436,8 @@ class ChapterwiseListActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 chapters.forEachIndexed { index, chapter ->
                     list.addView(buildChapterCard(index + 1, chapter, index, results))
-                    // One native ad slot after the 6th item — not repeated further down.
-                    if (index == 5 && chapters.size > 6) {
+                    // One native ad slot after the 3rd item — not repeated further down.
+                    if (index == 2 && chapters.size > 3) {
                         val adContainer = FrameLayout(this@ChapterwiseListActivity).apply { layoutParams = lpRow(bottomDp = 10) }
                         list.addView(adContainer)
                         nativeAdContainer = adContainer
@@ -845,7 +863,6 @@ class ChapterwiseListActivity : AppCompatActivity() {
             .setPositiveButton("Buy ₹49") { _, _ -> ShopActivity.start(this) }
             .setNeutralButton("🎬 Watch Ad (Next 10 Qs)") { _, _ ->
                 AnalyticsManager.chapterAdUnlockAttempted(this, subject, chapter)
-                AnalyticsManager.rewardedAdShown(this, "chapter_unlock")
                 AdManager.showRewarded(
                     activity = this,
                     onRewarded = {
@@ -853,7 +870,8 @@ class ChapterwiseListActivity : AppCompatActivity() {
                         TestActivity.start(this, exam, subject, chapter = chapter, adUnlocked = true, totalQuestions = 10)
                     },
                     onNotAvailable = { Toast.makeText(this, "No ad available. Try again later.", Toast.LENGTH_SHORT).show() },
-                    onLoading = { Toast.makeText(this, "Loading ad…", Toast.LENGTH_SHORT).show() }
+                    onLoading = { Toast.makeText(this, "Loading ad…", Toast.LENGTH_SHORT).show() },
+                    placement = "chapter_unlock"
                 )
             }
             .setNegativeButton("Practice 10 Free Qs") { _, _ ->

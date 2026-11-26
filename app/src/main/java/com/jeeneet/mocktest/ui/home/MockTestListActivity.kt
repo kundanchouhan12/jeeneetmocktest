@@ -48,6 +48,7 @@ class MockTestListActivity : AppCompatActivity() {
     }
 
     private lateinit var contentContainer: FrameLayout
+    private lateinit var bannerContainer: FrameLayout
     private lateinit var tabLayout: TabLayout
     private var nativeAdContainer: FrameLayout? = null
     private val type by lazy { intent.getStringExtra(EXTRA_TYPE) ?: "mock_test" }
@@ -93,6 +94,14 @@ class MockTestListActivity : AppCompatActivity() {
             )
         }
         root.addView(contentContainer)
+        bannerContainer = FrameLayout(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+            visibility = View.GONE
+        }
+        root.addView(bannerContainer)
+        AdManager.showBanner(this, bannerContainer)
         return root
     }
 
@@ -127,8 +136,19 @@ class MockTestListActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        if (::bannerContainer.isInitialized) AdManager.pauseBanner(bannerContainer)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (::bannerContainer.isInitialized) AdManager.resumeBanner(bannerContainer)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
+        if (::bannerContainer.isInitialized) AdManager.destroyBanner(bannerContainer)
         nativeAdContainer?.let { AdManager.destroyNativeAd(it) }
     }
 
@@ -157,10 +177,9 @@ class MockTestListActivity : AppCompatActivity() {
         } else {
             testSeries.forEachIndexed { index, (subject, testNum) ->
                 list.addView(buildTestItemCard(subject, testNum, index))
-                // One native ad slot after the 6th item — only on lists long enough that it
-                // doesn't dominate the screen. Not repeated further down (avoids stacking
-                // concurrent native ad loads, which starve each other — see AdManager notes).
-                if (index == 5 && testSeries.size > 6) {
+                // One native ad slot after the 3rd item — visible in the first scroll without
+                // stacking concurrent native ad loads on one screen.
+                if (index == 2 && testSeries.size > 3) {
                     val adContainer = FrameLayout(this).apply { layoutParams = lpRow(bottomDp = 10) }
                     list.addView(adContainer)
                     nativeAdContainer = adContainer
@@ -464,7 +483,6 @@ class MockTestListActivity : AppCompatActivity() {
             .setView(dialogView)
             .setPositiveButton("Buy ₹49") { _, _ -> ShopActivity.start(this) }
             .setNeutralButton("🎬 Watch Ad (Next 10 Qs)") { _, _ ->
-                AnalyticsManager.rewardedAdShown(this, "mock_test_unlock")
                 AdManager.showRewarded(
                     activity = this,
                     onRewarded = {
@@ -472,7 +490,7 @@ class MockTestListActivity : AppCompatActivity() {
                     },
                     onNotAvailable = { Toast.makeText(this, "No ad available. Try again later.", Toast.LENGTH_SHORT).show() },
                     onLoading = { Toast.makeText(this, "Loading ad…", Toast.LENGTH_SHORT).show() },
-                    placement = "unlock_pack"
+                    placement = "mock_test_unlock"
                 )
             }
             .setNegativeButton(if (setSubmitted) "Reattempt Same 10" else "Try 10 Free Qs") { _, _ ->

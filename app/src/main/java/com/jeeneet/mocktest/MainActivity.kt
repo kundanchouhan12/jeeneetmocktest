@@ -111,7 +111,18 @@ class MainActivity : AppCompatActivity() {
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
+            ).also { it.bottomMargin = Space.L.dp }
+        }
+    }
+
+    // Anchored adaptive banner container pinned above bottom navigation bar
+    private val bannerContainer by lazy {
+        FrameLayout(this).apply {
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
             )
+            visibility = View.GONE
         }
     }
 
@@ -419,8 +430,20 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        try { AdManager.pauseBanner(bannerContainer) } catch (_: Exception) {}
+    }
+
     override fun onResume() {
         super.onResume()
+        try { AdManager.resumeBanner(bannerContainer) } catch (_: Exception) {}
+        if (PrefManager.isAdsRemoved(this)) {
+            try {
+                AdManager.destroyNativeAd(nativeAdContainer)
+                nativeAdContainer.visibility = View.GONE
+            } catch (_: Exception) {}
+        }
 
         // Free users require internet; premium users can use offline cache
         val isOnline = com.jeeneet.mocktest.utils.NetworkUtils.isNetworkAvailable(this)
@@ -472,8 +495,8 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         try { heroCarouselHandler?.removeCallbacksAndMessages(null) } catch (_: Exception) {}
+        try { AdManager.destroyBanner(bannerContainer) } catch (_: Exception) {}
         try { AdManager.destroyNativeAd(nativeAdContainer) } catch (_: Exception) {}
-        try { AdManager.cleanup() } catch (_: Exception) {}
         try { if (::iapManager.isInitialized) iapManager.disconnect() } catch (_: Exception) {}
         try { appUpdateManager.unregisterListener(installStateListener) } catch (_: Exception) {}
     }
@@ -886,6 +909,8 @@ class MainActivity : AppCompatActivity() {
         frame.addView(scroll)
 
         root.addView(frame)
+        root.addView(bannerContainer)
+        AdManager.showBanner(this, bannerContainer)
         root.addView(buildBottomNavBar())
         return root
     }
@@ -1227,34 +1252,34 @@ class MainActivity : AppCompatActivity() {
         contentLayout.addView(uiSectionLabel("Daily Vault"))
         contentLayout.addView(buildDailyVaultCard().apply { tag = "daily_vault_card" })
 
-        // ─── 5. Practice (Mock Tests + PYQs) ─────────────────────────────────
+        // ─── 5. Native ad (placed high enough to actually be scrolled into view) ─
+        contentLayout.addView(nativeAdContainer)
+        AdManager.loadNativeAd(this, nativeAdContainer)
+
+        // ─── 6. Practice (Mock Tests + PYQs) ─────────────────────────────────
         contentLayout.addView(uiSectionLabel("Practice"))
         contentLayout.addView(buildMainTestCards())
 
-        // ─── 6. Special — Power 100 ──────────────────────────────────────────
+        // ─── 7. Special — Power 100 ──────────────────────────────────────────
         contentLayout.addView(uiSectionLabel("Special"))
         contentLayout.addView(buildPower100Card().apply { tag = "power100_card" })
 
-        // ─── 7. Continue Practice (Subjects) ─────────────────────────────────
+        // ─── 8. Continue Practice (Subjects) ─────────────────────────────────
         contentLayout.addView(uiSectionLabel("Continue Practice"))
         contentLayout.addView(buildSubjectsSection())
 
-        // ─── 8. Full Length Mock Test ────────────────────────────────────────
+        // ─── 9. Full Length Mock Test ────────────────────────────────────────
         contentLayout.addView(uiSectionLabel("Full Length Mock Test"))
         buildWeeklyNewTestBanner()?.let { contentLayout.addView(it) }
         contentLayout.addView(buildSimulationCard().apply { tag = "simulation_card" })
 
-        // ─── 9. Activity & Dynamic Analytics ──────────────────────────────────
+        // ─── 10. Activity & Dynamic Analytics ─────────────────────────────────
         contentLayout.addView(uiSectionLabel("Your Progress"))
         contentLayout.addView(buildYourProgressCard())
         contentLayout.addView(buildActivityHeatmap())
 
-        // ─── 10. Recent Doubts carousel ───────────────────────────────────────
+        // ─── 11. Recent Doubts carousel ───────────────────────────────────────
         buildRecentDoubtsCarousel()?.let { contentLayout.addView(it) }
-
-        // ─── 11. Native ad ────────────────────────────────────────────────────
-        contentLayout.addView(nativeAdContainer)
-        AdManager.loadNativeAd(this, nativeAdContainer)
 
         contentLayout.animate().cancel()
         if (!alreadyShowing) {

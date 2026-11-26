@@ -41,9 +41,10 @@ class AppOpenAdManager(private val application: Application) :
 
     private var appOpenAd: AppOpenAd? = null
     private var isLoadingAd = false
+    private var isShowingAd = false
     private var loadTimeMs  = 0L
     private var lastShownMs = 0L
-    private var isShowPending = false   // true when onStart fired but ad wasn't ready yet
+    private var isShowPending = false   // true when onStart fired but ad wasn't ready yet or splash was showing
     var currentActivity: Activity? = null
         private set
 
@@ -57,16 +58,29 @@ class AppOpenAdManager(private val application: Application) :
         this is TestActivity || this is Power100Activity || this is SimulationIntroActivity ||
         this is LoginActivity || this is OnboardingActivity || this is SignupActivity ||
         this is ForgotPasswordActivity || this is SplashActivity ||
-        this is ShopActivity || this is ScanActivity
+        this is ShopActivity || this is ScanActivity ||
+        this is com.google.android.gms.ads.AdActivity
 
     // ─── ProcessLifecycle — fires only on true foreground (not between activities) ──
 
     override fun onStart(owner: LifecycleOwner) {
         val activity = currentActivity ?: return
-        if (activity.isAdExcluded()) return                    // Auth screens & test — skip
         if (PrefManager.isAdsRemoved(activity)) return
         if (PrefManager.isFirstLaunch(activity)) return        // Skip App Open Ad on user's first launch session
         if (System.currentTimeMillis() - lastShownMs < SHOW_COOLDOWN) return
+
+        // On cold start, ProcessLifecycleOwner.onStart() fires while SplashActivity is active.
+        // Mark isShowPending so the ad shows as soon as the user transitions into MainActivity.
+        if (activity is SplashActivity) {
+            isShowPending = true
+            if (!isAdAvailable()) loadAd()
+            return
+        }
+
+        if (activity.isAdExcluded()) {
+            isShowPending = false
+            return
+        }
         if (!isAdAvailable()) {
             isShowPending = true   // Ad still loading (cold start) — show as soon as it's ready
             loadAd()
@@ -79,6 +93,7 @@ class AppOpenAdManager(private val application: Application) :
     // ─── Load ─────────────────────────────────────────────────────────────────
 
     fun loadAd() {
+        if (PrefManager.isAdsRemoved(application)) return
         if (isLoadingAd || isAdAvailable()) return
         isLoadingAd = true
         AppOpenAd.load(
@@ -96,13 +111,16 @@ class AppOpenAdManager(private val application: Application) :
                     loadTimeMs = System.currentTimeMillis()
                     isLoadingAd = false
                     Log.d(TAG, "Loaded")
-                    // Cold start: onStart fired before the ad was ready — show it now
+                    // Cold start: onStart fired before the ad was ready — show once past splash
                     if (isShowPending) {
-                        isShowPending = false
                         val activity = currentActivity
-                        if (activity != null && !activity.isAdExcluded() &&
+                        if (activity != null &&
+                            !activity.isFinishing && !activity.isDestroyed &&
+                            !activity.isAdExcluded() &&
                             !PrefManager.isAdsRemoved(activity) &&
-                            !PrefManager.isFirstLaunch(activity)) {
+                            !PrefManager.isFirstLaunch(activity)
+                        ) {
+                            isShowPending = false
                             showAdIfAvailable(activity)
                         }
                     }
@@ -122,18 +140,23 @@ class AppOpenAdManager(private val application: Application) :
         appOpenAd != null && System.currentTimeMillis() - loadTimeMs < AD_EXPIRY_MS
 
     private fun showAdIfAvailable(activity: Activity) {
+        if (isShowingAd || AdManager.isFullscreenAdShowing()) return
+        if (activity.isFinishing || activity.isDestroyed) return
         if (!isAdAvailable()) { loadAd(); return }
         val ad = appOpenAd ?: return
+        appOpenAd = null
+        isShowingAd = true
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdShowedFullScreenContent() {
                 lastShownMs = System.currentTimeMillis()
             }
             override fun onAdDismissedFullScreenContent() {
-                appOpenAd = null
+                isShowingAd = false
                 loadAd()   // Pre-load for next time
             }
             override fun onAdFailedToShowFullScreenContent(error: AdError) {
-                appOpenAd = null
+                isShowingAd = false
+                loadAd()
                 Log.w(TAG, "Failed to show: ${error.message}")
             }
         }
@@ -143,7 +166,21 @@ class AppOpenAdManager(private val application: Application) :
     // ─── ActivityLifecycleCallbacks ───────────────────────────────────────────
 
     override fun onActivityStarted(activity: Activity)  { currentActivity = activity }
-    override fun onActivityResumed(activity: Activity)  { currentActivity = activity }
+    override fun onActivityResumed(activity: Activity)  {
+        currentActivity = activity
+        if (isShowPending && activity !is SplashActivity) {
+            if (activity.isAdExcluded() ||
+                PrefManager.isAdsRemoved(activity) ||
+                PrefManager.isFirstLaunch(activity) ||
+                System.currentTimeMillis() - lastShownMs < SHOW_COOLDOWN
+            ) {
+                isShowPending = false
+            } else if (isAdAvailable()) {
+                isShowPending = false
+                showAdIfAvailable(activity)
+            }
+        }
+    }
     override fun onActivityDestroyed(activity: Activity) {
         if (currentActivity == activity) currentActivity = null
     }
