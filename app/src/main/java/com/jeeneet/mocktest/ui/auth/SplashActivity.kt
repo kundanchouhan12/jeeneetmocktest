@@ -111,9 +111,15 @@ class SplashActivity : AppCompatActivity() {
         setContentView(root)
 
         // UMP consent runs alongside the splash delay; ads SDK starts only once allowed.
-        var consentDone = false
-        com.jeeneet.mocktest.admob.ConsentManager.gatherConsent(this) { canRequestAds ->
+        // Consent already stored from a previous session → don't hold the splash for the network refresh.
+        val hasCachedConsent = com.jeeneet.mocktest.admob.ConsentManager.canRequestAds(this)
+        var consentDone = hasCachedConsent
+        com.jeeneet.mocktest.admob.ConsentManager.gatherConsent(
+            this,
+            onFormRequired = { consentDone = false }  // a form is about to show — hold the splash for it
+        ) { canRequestAds ->
             consentDone = true
+            // initAdsIfNeeded() only needs the application context, so it must not depend on this activity's state.
             if (canRequestAds) (application as? com.jeeneet.mocktest.MockTestApplication)?.initAdsIfNeeded()
         }
 

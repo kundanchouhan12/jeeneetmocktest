@@ -1,6 +1,7 @@
 package com.jeeneet.mocktest.admob
 
 import android.app.Activity
+import android.content.Context
 import android.util.Log
 import com.google.android.ump.ConsentDebugSettings
 import com.google.android.ump.ConsentInformation
@@ -16,10 +17,11 @@ object ConsentManager {
 
     private const val TAG = "ConsentManager"
 
-    private fun info(activity: Activity): ConsentInformation =
-        UserMessagingPlatform.getConsentInformation(activity)
+    private fun info(context: Context): ConsentInformation =
+        UserMessagingPlatform.getConsentInformation(context)
 
-    fun canRequestAds(activity: Activity): Boolean = info(activity).canRequestAds()
+    /** Uses consent stored from a previous session — safe to call from Application.onCreate(). */
+    fun canRequestAds(context: Context): Boolean = info(context).canRequestAds()
 
     /** True when the user is allowed (and required) to reopen the consent form from settings. */
     fun isPrivacyOptionsRequired(activity: Activity): Boolean =
@@ -30,7 +32,11 @@ object ConsentManager {
      * Refreshes consent state and shows the form if required. [onComplete] is always invoked
      * exactly once (also on errors/offline) with whether ads may be requested.
      */
-    fun gatherConsent(activity: Activity, onComplete: (canRequestAds: Boolean) -> Unit) {
+    fun gatherConsent(
+        activity: Activity,
+        onFormRequired: () -> Unit = {},
+        onComplete: (canRequestAds: Boolean) -> Unit
+    ) {
         var done = false
         fun finish() {
             if (done) return
@@ -49,6 +55,9 @@ object ConsentManager {
             activity, params,
             {
                 if (activity.isFinishing || activity.isDestroyed) { finish(); return@requestConsentInfoUpdate }
+                // Stored consent expired or the message changed: a form is about to show, so the
+                // caller must keep its screen alive until it closes.
+                if (info(activity).consentStatus == ConsentInformation.ConsentStatus.REQUIRED) onFormRequired()
                 UserMessagingPlatform.loadAndShowConsentFormIfRequired(activity) { formError ->
                     if (formError != null) Log.w(TAG, "Consent form: ${formError.errorCode} ${formError.message}")
                     finish()

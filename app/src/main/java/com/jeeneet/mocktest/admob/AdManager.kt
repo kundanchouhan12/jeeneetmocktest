@@ -353,7 +353,7 @@ object AdManager {
         }
         val ad = interstitialAd
         if (ad == null) {
-            // Queue with Activity WeakRef + short timeout so navigation never stalls,
+            // Queue with (latest tap wins if one is already queued — the user's most recent intent) Activity WeakRef + short timeout so navigation never stalls,
             // while background loading continues for the next opportunity.
             pendingInterstitialCallback = onDismissed
             pendingInterstitialActivityRef = WeakReference(activity)

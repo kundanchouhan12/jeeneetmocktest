@@ -87,9 +87,17 @@ class MockTestApplication : Application() {
             null
         }
 
-        // Ads init is gated on UMP consent: SplashActivity runs ConsentManager.gatherConsent()
-        // and then calls initAdsIfNeeded(). Returning users whose consent is already stored are
-        // initialised by SplashActivity immediately (canRequestAds() is true from cache).
+        // Returning users whose consent is already stored can start ads right away — this also
+        // covers cold starts that skip SplashActivity (e.g. opened from a notification).
+        try {
+            if (com.jeeneet.mocktest.admob.ConsentManager.canRequestAds(this)) initAdsIfNeeded()
+        } catch (e: Exception) {
+            android.util.Log.e("MockTestApp", "Cached consent check failed: ${e.message}")
+        }
+
+        // Ads init is gated on UMP consent. Returning users with stored consent start above;
+        // first-time / expired-consent users start from SplashActivity once
+        // ConsentManager.gatherConsent() reports that ad requests are allowed.
 
         // WorkManager scheduling is heavy on first call (SQLite init) — move off critical path
         appScope.launch {
