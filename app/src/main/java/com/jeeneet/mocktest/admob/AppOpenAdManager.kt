@@ -64,6 +64,7 @@ class AppOpenAdManager(private val application: Application) :
     // ─── ProcessLifecycle — fires only on true foreground (not between activities) ──
 
     override fun onStart(owner: LifecycleOwner) {
+        if (!AdManager.isSdkInitialized) return
         val activity = currentActivity ?: return
         if (PrefManager.isAdsRemoved(activity)) return
         if (PrefManager.isFirstLaunch(activity)) return        // Skip App Open Ad on user's first launch session
@@ -93,6 +94,7 @@ class AppOpenAdManager(private val application: Application) :
     // ─── Load ─────────────────────────────────────────────────────────────────
 
     fun loadAd() {
+        if (!AdManager.isSdkInitialized) return
         if (PrefManager.isAdsRemoved(application)) return
         if (isLoadingAd || isAdAvailable()) return
         isLoadingAd = true

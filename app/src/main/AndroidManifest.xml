@@ -27,7 +27,7 @@
             android:value="ocr" />
 
         <!-- ... -->
-        <!-- ★ Replace with your real AdMob App ID from admob.google.com -->
+        <!-- AdMob App ID (production) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3519378438987564~1853329297" />

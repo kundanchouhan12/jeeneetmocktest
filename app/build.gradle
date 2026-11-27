@@ -105,6 +105,7 @@ dependencies {
 
     // AdMob
     implementation 'com.google.android.gms:play-services-ads:24.2.0'
+    implementation 'com.google.android.ump:user-messaging-platform:3.2.0'
 
     // AdMob Mediation — Meta (Facebook) Audience Network
     implementation 'com.google.ads.mediation:facebook:6.17.0.0'

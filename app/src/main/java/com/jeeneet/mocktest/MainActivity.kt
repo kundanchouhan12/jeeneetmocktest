@@ -121,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
-            )
+            ).also { it.bottomMargin = Space.M.dp }  // gap so banner isn't flush against nav bar (accidental-click policy)
             visibility = View.GONE
         }
     }
@@ -808,7 +808,14 @@ class MainActivity : AppCompatActivity() {
             NavEntry("👑", "Upgrade Premium",   Color.parseColor("#F59E0B")) { requiresHomeRefresh = true; com.jeeneet.mocktest.ui.home.ShopActivity.start(this); close() },
             NavEntry("📅", "AI Study Plan",     Color.parseColor("#10B981")) { startActivity(Intent(this, com.jeeneet.mocktest.ui.insights.InsightsActivity::class.java)); close() },
             NavEntry("🔄", "Sync Fresh Questions", Color.parseColor("#0EA5E9")) { close(); forceSyncQuestionsWithProgress() }
-        )
+        ) + (if (com.jeeneet.mocktest.admob.ConsentManager.isPrivacyOptionsRequired(this))
+            listOf(NavEntry("🔒", "Privacy & Ad Choices", Color.parseColor("#64748B")) {
+                close()
+                com.jeeneet.mocktest.admob.ConsentManager.showPrivacyOptions(this) {
+                    (application as? MockTestApplication)?.initAdsIfNeeded()
+                }
+            })
+        else emptyList())
 
         navItems.forEach { entry -> container.addView(buildNavItem(entry.icon, entry.label, entry.color, entry.action)) }
 

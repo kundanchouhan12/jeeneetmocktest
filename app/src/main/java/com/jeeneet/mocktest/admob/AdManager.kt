@@ -36,6 +36,18 @@ object AdManager {
     private var rewardedAd: RewardedAd? = null
     private var isInterstitialLoading = false
     private var isInterstitialShowing = false  // guard against rapid-tap double-show
+    private var interstitialShowStartMs = 0L
+    private var interstitialLoadedMs = 0L
+    // A cached ad older than this is considered "aging": we request a fresh one first (bids are
+    // priced at load time) and only fall back to the aging ad if the fresh load doesn't arrive in time.
+    private const val INTERSTITIAL_FRESH_MS = 15 * 60 * 1000L
+    private var staleInterstitial: InterstitialAd? = null
+    private var rewardedLoadedMs = 0L
+    // Interstitial/rewarded ads expire ~1h after load; an expired ad fails to show and wastes the slot.
+    private const val FULLSCREEN_AD_TTL_MS = 55 * 60 * 1000L
+    private var rewardedShowStartMs = 0L
+    // If show callbacks never arrive (activity killed mid-ad), treat the flag as stale after this.
+    private const val FULLSCREEN_WATCHDOG_MS = 3 * 60 * 1000L
     private var isRewardedLoading = false
     private var isRewardedShowing = false  // guard against rapid-tap double-show
 
@@ -89,15 +101,17 @@ object AdManager {
 
     // ─── Initialization ───────────────────────────────────────────────────────
 
+    /** True once MobileAds.initialize ran — which only happens after UMP consent allows ad requests. */
+    @Volatile var isSdkInitialized = false
+        private set
+
     fun init(context: Context, onReady: () -> Unit = {}) {
+        isSdkInitialized = true
         val configBuilder = RequestConfiguration.Builder()
             .setTagForChildDirectedTreatment(RequestConfiguration.TAG_FOR_CHILD_DIRECTED_TREATMENT_FALSE)
             // Education app — teen audience (JEE/NEET, 16-25 yrs). T opens more inventory than PG.
             .setMaxAdContentRating(RequestConfiguration.MAX_AD_CONTENT_RATING_T)
-            // Explicitly enable personalized ads — higher eCPM than non-personalized
-            .setPublisherPrivacyPersonalizationState(
-                RequestConfiguration.PublisherPrivacyPersonalizationState.ENABLED
-            )
+            // Personalization is governed by the UMP consent result (ConsentManager), not forced here.
 
         // Register emulator as test device in debug so no invalid traffic is recorded
         if (com.jeeneet.mocktest.BuildConfig.DEBUG) {
@@ -131,6 +145,7 @@ object AdManager {
     // ─── Banner ───────────────────────────────────────────────────────────────
 
     fun showBanner(activity: Activity, container: FrameLayout) {
+        if (!isSdkInitialized) { container.visibility = View.GONE; return }
         if (PrefManager.isAdsRemoved(activity)) {
             container.removeAllViews()
             container.visibility = View.GONE
@@ -163,6 +178,7 @@ object AdManager {
                         adValue.valueMicros, adValue.currencyCode, adValue.precisionType
                     )
                 }
+                (container.getChildAt(0) as? AdView)?.takeIf { it !== adView }?.destroy()
                 container.removeAllViews()
                 container.addView(adView)
                 container.visibility = View.VISIBLE
@@ -228,6 +244,8 @@ object AdManager {
 
     fun loadInterstitial(context: Context) {
         val appContext = context.applicationContext
+        if (!isSdkInitialized) return
+        dropExpiredFullscreenAds()
         if (isInterstitialLoading || interstitialAd != null) return
         if (PrefManager.isAdsRemoved(appContext)) return
         isInterstitialLoading = true
@@ -245,6 +263,8 @@ object AdManager {
                             )
                         }
                         interstitialAd = ad
+                        interstitialLoadedMs = System.currentTimeMillis()
+                        staleInterstitial = null  // fresh ad supersedes the aging fallback
                         isInterstitialLoading = false
                         interstitialRetryCount = 0
                         interstitialRetryRunnable?.let { retryHandler.removeCallbacks(it) }
@@ -282,10 +302,7 @@ object AdManager {
                             interstitialRetryCount = 0
                             interstitialTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
                             interstitialTimeoutRunnable = null
-                            val cb = pendingInterstitialCallback
-                            pendingInterstitialCallback = null
-                            pendingInterstitialActivityRef = null
-                            cb?.invoke()
+                            deliverPendingInterstitialWithoutFresh()
                         }
                     }
                 }
@@ -309,7 +326,15 @@ object AdManager {
             onDismissed()
             return
         }
-        if (isInterstitialShowing) return  // rapid-tap guard — ad already on screen
+        if (!isSdkInitialized) { onDismissed(); return }  // no consent / not initialised — never block navigation
+        if (isInterstitialShowing) {
+            // Rapid-tap guard. A flag stuck past the watchdog window means callbacks never fired — reset it.
+            if (System.currentTimeMillis() - interstitialShowStartMs < FULLSCREEN_WATCHDOG_MS) {
+                onDismissed()  // never swallow the caller's continuation
+                return
+            }
+            isInterstitialShowing = false
+        }
 
         // Frequency cap: max 1 interstitial per 30s (skipped when bypassCooldown = true)
         val now = System.currentTimeMillis()
@@ -318,6 +343,14 @@ object AdManager {
             return
         }
 
+        dropExpiredFullscreenAds()
+        // Aging cached ad: park it as a fallback and request a fresh one (better eCPM than a stale bid).
+        interstitialAd?.let { cached ->
+            if (now - interstitialLoadedMs > INTERSTITIAL_FRESH_MS && !isInterstitialLoading) {
+                staleInterstitial = cached
+                interstitialAd = null
+            }
+        }
         val ad = interstitialAd
         if (ad == null) {
             // Queue with Activity WeakRef + short timeout so navigation never stalls,
@@ -327,21 +360,38 @@ object AdManager {
             pendingInterstitialBypassCooldown = bypassCooldown
             loadInterstitial(activity.applicationContext)
             interstitialTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
-            interstitialTimeoutRunnable = Runnable {
-                val cb = pendingInterstitialCallback
-                if (cb != null) {
-                    pendingInterstitialCallback = null
-                    pendingInterstitialActivityRef = null
-                    cb.invoke()
-                }
-            }
+            interstitialTimeoutRunnable = Runnable { deliverPendingInterstitialWithoutFresh() }
             retryHandler.postDelayed(interstitialTimeoutRunnable!!, INTERSTITIAL_QUEUE_TIMEOUT_MS)
             return
         }
 
-        val appContext = activity.applicationContext
         interstitialAd = null
+        showLoadedInterstitial(activity, ad, onDismissed)
+    }
+
+    /** Runs when no fresh ad arrived in time: show the aging fallback if we have one, else just continue. */
+    private fun deliverPendingInterstitialWithoutFresh() {
+        interstitialTimeoutRunnable?.let { retryHandler.removeCallbacks(it) }
+        interstitialTimeoutRunnable = null
+        val cb = pendingInterstitialCallback ?: return
+        val act = pendingInterstitialActivityRef?.get()
+        pendingInterstitialCallback = null
+        pendingInterstitialActivityRef = null
+        val fallback = staleInterstitial
+        staleInterstitial = null
+        if (fallback != null && act != null && !act.isFinishing && !act.isDestroyed &&
+            !isInterstitialShowing && !PrefManager.isAdsRemoved(act)
+        ) {
+            showLoadedInterstitial(act, fallback, cb)
+        } else {
+            cb.invoke()
+        }
+    }
+
+    private fun showLoadedInterstitial(activity: Activity, ad: InterstitialAd, onDismissed: () -> Unit) {
+        val appContext = activity.applicationContext
         isInterstitialShowing = true
+        interstitialShowStartMs = System.currentTimeMillis()
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdDismissedFullScreenContent() {
                 isInterstitialShowing = false
@@ -356,16 +406,37 @@ object AdManager {
                 onDismissed()
             }
         }
-        ad.show(activity)
+        try {
+            ad.show(activity)
+        } catch (e: Exception) {
+            Log.e(TAG, "Interstitial show threw: ${e.message}")
+            isInterstitialShowing = false
+            loadInterstitial(appContext)
+            onDismissed()
+        }
     }
 
-    fun isInterstitialReady(): Boolean = interstitialAd != null
-    fun isFullscreenAdShowing(): Boolean = isInterstitialShowing || isRewardedShowing
+    fun isInterstitialReady(): Boolean { dropExpiredFullscreenAds(); return interstitialAd != null }
+    /** Discards cached full-screen ads past their TTL so the next load replaces them before a show fails. */
+    private fun dropExpiredFullscreenAds() {
+        val now = System.currentTimeMillis()
+        if (interstitialAd != null && now - interstitialLoadedMs > FULLSCREEN_AD_TTL_MS) interstitialAd = null
+        if (staleInterstitial != null && now - interstitialLoadedMs > FULLSCREEN_AD_TTL_MS) staleInterstitial = null
+        if (rewardedAd != null && now - rewardedLoadedMs > FULLSCREEN_AD_TTL_MS) rewardedAd = null
+    }
+
+    fun isFullscreenAdShowing(): Boolean {
+        val now = System.currentTimeMillis()
+        return (isInterstitialShowing && now - interstitialShowStartMs < FULLSCREEN_WATCHDOG_MS) ||
+            (isRewardedShowing && now - rewardedShowStartMs < FULLSCREEN_WATCHDOG_MS)
+    }
 
     // ─── Rewarded ─────────────────────────────────────────────────────────────
 
     fun loadRewarded(context: Context) {
         val appContext = context.applicationContext
+        if (!isSdkInitialized) return
+        dropExpiredFullscreenAds()
         if (isRewardedLoading || rewardedAd != null) return
         if (PrefManager.isAdsRemoved(appContext)) return
         isRewardedLoading = true
@@ -383,6 +454,7 @@ object AdManager {
                             )
                         }
                         rewardedAd = ad
+                        rewardedLoadedMs = System.currentTimeMillis()
                         isRewardedLoading = false
                         rewardedRetryCount = 0
                         rewardedRetryRunnable?.let { retryHandler.removeCallbacks(it) }
@@ -452,8 +524,14 @@ object AdManager {
     ) {
         if (PrefManager.isAdsRemoved(activity)) { onRewarded(); return }
         if (activity.isFinishing || activity.isDestroyed) { onNotAvailable(); return }
-        if (isRewardedShowing) return  // rapid-tap guard — ad already on screen
+        if (!isSdkInitialized) { onNotAvailable(); return }
+        if (isRewardedShowing) {
+            // Rapid-tap guard; reset a flag stuck past the watchdog window.
+            if (System.currentTimeMillis() - rewardedShowStartMs < FULLSCREEN_WATCHDOG_MS) return
+            isRewardedShowing = false
+        }
 
+        dropExpiredFullscreenAds()
         val ad = rewardedAd
         if (ad == null) {
             pendingRewardedOnRewarded = onRewarded
@@ -483,6 +561,7 @@ object AdManager {
         val appContext = activity.applicationContext
         rewardedAd = null
         isRewardedShowing = true
+        rewardedShowStartMs = System.currentTimeMillis()
 
         ad.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdShowedFullScreenContent() {
@@ -505,13 +584,20 @@ object AdManager {
                 onNotAvailable()
             }
         }
-        ad.show(activity) { rewardItem ->
-            Log.d(TAG, "User earned reward: ${rewardItem.amount} ${rewardItem.type}")
-            earned = true  // fires BEFORE onAdDismissed — reward delivered only there
+        try {
+            ad.show(activity) { rewardItem ->
+                Log.d(TAG, "User earned reward: ${rewardItem.amount} ${rewardItem.type}")
+                earned = true  // fires BEFORE onAdDismissed — reward delivered only there
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Rewarded show threw: ${e.message}")
+            isRewardedShowing = false
+            loadRewarded(appContext)
+            onNotAvailable()
         }
     }
 
-    fun isRewardedReady() = rewardedAd != null
+    fun isRewardedReady(): Boolean { dropExpiredFullscreenAds(); return rewardedAd != null }
     fun isRewardedLoading() = isRewardedLoading
 
     // ─── Native Ad ────────────────────────────────────────────────────────────
@@ -522,6 +608,7 @@ object AdManager {
      */
     fun preloadNativeAd(context: Context) {
         val appContext = context.applicationContext
+        if (!isSdkInitialized) return
         if (PrefManager.isAdsRemoved(appContext)) return
         if (isPreloadingNativeAd) return
         // Cache already fresh — skip redundant network hit
@@ -586,7 +673,7 @@ object AdManager {
      * Safe to call on every buildContent() / onResume — internal guards prevent double-loads.
      */
     fun loadNativeAd(context: Context, container: FrameLayout, retryCount: Int = 0) {
-        if (PrefManager.isAdsRemoved(context)) { container.visibility = View.GONE; return }
+        if (PrefManager.isAdsRemoved(context) || !isSdkInitialized) { container.visibility = View.GONE; return }
         val act = context as? Activity
         if (act != null && (act.isFinishing || act.isDestroyed)) return
 

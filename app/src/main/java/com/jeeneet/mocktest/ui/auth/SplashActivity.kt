@@ -110,8 +110,18 @@ class SplashActivity : AppCompatActivity() {
 
         setContentView(root)
 
+        // UMP consent runs alongside the splash delay; ads SDK starts only once allowed.
+        var consentDone = false
+        com.jeeneet.mocktest.admob.ConsentManager.gatherConsent(this) { canRequestAds ->
+            consentDone = true
+            if (canRequestAds) (application as? com.jeeneet.mocktest.MockTestApplication)?.initAdsIfNeeded()
+        }
+
         lifecycleScope.launch {
             delay(2000)
+            // If a consent form is on screen, wait for it (capped) before moving on.
+            var waited = 0
+            while (!consentDone && waited < 60_000) { delay(250); waited += 250 }
             val user = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
             val dest = when {
                 !PrefManager.isOnboardingDone(this@SplashActivity) -> OnboardingActivity::class.java

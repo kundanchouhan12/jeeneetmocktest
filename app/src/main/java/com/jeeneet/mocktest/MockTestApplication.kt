@@ -17,6 +17,26 @@ class MockTestApplication : Application() {
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
+    private var appOpenAdManager: AppOpenAdManager? = null
+    private var adsInitStarted = false
+
+    /**
+     * Starts the ads SDK exactly once. Call only after UMP consent allows ad requests
+     * (see ConsentManager). Safe to call repeatedly.
+     */
+    fun initAdsIfNeeded() {
+        if (adsInitStarted) return
+        adsInitStarted = true
+        try {
+            AdManager.init(this) {
+                AdManager.preloadNativeAd(this)
+                appOpenAdManager?.loadAd()
+            }
+        } catch (e: Exception) {
+            android.util.Log.e("MockTestApp", "AdManager init failed: ${e.message}")
+        }
+    }
+
     override fun onCreate() {
         super.onCreate()
 
@@ -60,23 +80,16 @@ class MockTestApplication : Application() {
         // ActivityLifecycleCallbacks/ProcessLifecycleObserver catch every Activity from the
         // very first one — registering later (e.g. inside an async callback below) would miss
         // early lifecycle events and break currentActivity tracking.
-        val appOpenAdManager = try {
+        appOpenAdManager = try {
             AppOpenAdManager(this)
         } catch (e: Exception) {
             android.util.Log.e("MockTestApp", "AppOpenAdManager init failed: ${e.message}")
             null
         }
 
-        // AdManager must init before any Activity calls loadInterstitial/loadRewarded
-        try {
-            AdManager.init(this) {
-                // Preload native ad early so the home screen renders it instantly
-                AdManager.preloadNativeAd(this)
-                appOpenAdManager?.loadAd()
-            }
-        } catch (e: Exception) {
-            android.util.Log.e("MockTestApp", "AdManager init failed: ${e.message}")
-        }
+        // Ads init is gated on UMP consent: SplashActivity runs ConsentManager.gatherConsent()
+        // and then calls initAdsIfNeeded(). Returning users whose consent is already stored are
+        // initialised by SplashActivity immediately (canRequestAds() is true from cache).
 
         // WorkManager scheduling is heavy on first call (SQLite init) — move off critical path
         appScope.launch {
